@@ -1,5 +1,6 @@
 <?php
 $data["link_new"]=base_url()."create_crop/index/add";
+$data["link_back"]=base_url()."create_crop";
 $this->load->view("action_buttons_edit",$data);
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>create_crop/index/save" method="post">
