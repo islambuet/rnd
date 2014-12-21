@@ -66,6 +66,64 @@ $(document).ready(function()
         return false;
 
     });
+    $(document).on("click", ".sub-menu-container .menu-item", function(event)
+    {
+        $.ajax({
+            url: $(this).attr("data-menu-link"),
+            type: 'POST',
+            dataType: "JSON",
+            success: function (data, status)
+            {
+                if(data.status)
+                {
+                    //execute for success
+                    load_template(data.content);
+                    $(".form_valid").validationEngine();
+                }
+                else
+                {
+                    //also execute for error
+                    load_template(data.content);
+                }
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+
+    });
+    $(document).on("click", "a", function(event)
+    {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type: 'POST',
+            dataType: "JSON",
+            success: function (data, status)
+            {
+                if(data.status)
+                {
+                    //execute for success
+                    load_template(data.content);
+                    $(".form_valid").validationEngine();
+                }
+                else
+                {
+                    //also execute for error
+                    load_template(data.content);
+                }
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
 
 });
 function load_main_page()
