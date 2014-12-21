@@ -1,5 +1,5 @@
 <?php
-$data["link_new"]=base_url()."create_crop/add";
+$data["link_new"]=base_url()."create_crop/index/add";
 $this->load->view("action_buttons",$data);
 ?>
 
@@ -11,7 +11,7 @@ $this->load->view("action_buttons",$data);
         <div class="clearfix"></div>
     </div>
     <div class="col-sm-12">
-        <table class="table table-hover">
+        <table class="table table-hover table-bordered">
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("VOUCHER_NO"); ?></th>

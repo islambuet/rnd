@@ -124,6 +124,11 @@ $(document).ready(function()
         });
 
     });
+    $(document).on("click", "#button_save", function(event)
+    {
+        $("#save_form").submit();
+
+    });
 
 });
 function load_main_page()

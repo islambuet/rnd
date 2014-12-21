@@ -15,6 +15,15 @@ class Create_crop extends ROOT_Controller
         {
             $this->rnd_list($id);
         }
+        elseif($task=="add" || $task=="edit")
+        {
+            $this->rnd_add_edit($id);
+        }
+        elseif($task=="save")
+        {
+            $this->rnd_save();
+
+        }
         else
         {
             $this->rnd_list($id);
@@ -32,5 +41,21 @@ class Create_crop extends ROOT_Controller
         $this->jsonReturn($ajax);
 
     }
+    public function rnd_add_edit($id=0)
+    {
+        $data['title']="Add edit";
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));
+
+        $this->jsonReturn($ajax);
+
+    }
+    public function rnd_save()
+    {
+        //this function only do save nothing else
+        $this->rnd_list();//this is similar like redirect
+    }
+
 
 }
