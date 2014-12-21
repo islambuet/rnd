@@ -32,7 +32,9 @@ abstract class ROOT_Controller extends CI_Controller
     public function dashboard_page($message="")
     {
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("dashboard","",true));
+        $this->load->model("root_model");
+        $data['modules']=$this->root_model->get_modules();
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("dashboard",$data,true));
         $this->jsonReturn($ajax);
     }
 }

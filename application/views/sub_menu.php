@@ -6,76 +6,24 @@
         <div class="clearfix"></div>
     </div>
     <div class="sub-menu-container">
-        <div class="menu-item col-sm-2" data-menu-id="1">
-            <div class="menu_left pull-left">
-                <div class="menu_image">
-                    <img alt="menu" src="<?php echo base_url();?>images/menu.png">
+        <?php
+        foreach($tasks as $task)
+        {
+            ?>
+            <div class="menu-item col-sm-2" data-menu-id="<?php echo $task['st_id'];?>" title="<?php echo $task['st_name']; ?>">
+                <div class="menu_left pull-left">
+                    <div class="menu_image">
+                        <img alt="menu" src="http://armalikgroup.com.bd/rnd/images/module_icon/<?php echo $task['st_icon'];?>">
 
-                </div>
-                <div class="menu_title">
-                    Setup
-                </div>
-            </div>
-            <div class="menu_right pull-right">
-                <div class="menu_sub_count">7</div>
-            </div>
-        </div>
-        <div class="menu-item col-sm-2">
-            <div class="menu_left pull-left">
-                <div class="menu_image">
-                    <img alt="menu" src="<?php echo base_url();?>images/menu.png">
-                </div>
-                <div class="menu_title">
-                    Setup
+                    </div>
+                    <div class="menu_title">
+                        <?php echo $task['st_name']; ?>
+                    </div>
                 </div>
             </div>
-            <div class="menu_right pull-right">
-                <div class="menu_sub_count">7</div>
-            </div>
-
-        </div>
-        <div class="menu-item col-sm-2">
-            <div class="menu_left pull-left">
-                <div class="menu_image">
-                    <img alt="menu" src="<?php echo base_url();?>images/menu.png">
-                </div>
-                <div class="menu_title">
-                    Setup
-                </div>
-            </div>
-            <div class="menu_right pull-right">
-                <div class="menu_sub_count">7</div>
-            </div>
-
-        </div>
-        <div class="menu-item col-sm-2">
-            <div class="menu_left pull-left">
-                <div class="menu_image">
-                    <img alt="menu" src="<?php echo base_url();?>images/menu.png">
-                </div>
-                <div class="menu_title">
-                    Setup
-                </div>
-            </div>
-            <div class="menu_right pull-right">
-                <div class="menu_sub_count">7</div>
-            </div>
-
-        </div>
-        <div class="menu-item col-sm-2">
-            <div class="menu_left pull-left">
-                <div class="menu_image">
-                    <img alt="menu" src="<?php echo base_url();?>images/menu.png">
-                </div>
-                <div class="menu_title">
-                    Setup
-                </div>
-            </div>
-            <div class="menu_right pull-right">
-                <div class="menu_sub_count">7</div>
-            </div>
-
-        </div>
+        <?php
+        }
+        ?>
 
     </div>
 
