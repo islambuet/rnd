@@ -7,7 +7,7 @@
         <a class="btn" href="<?php echo $link_new; ?>">New</a>
     </div>
     <div class="action_button">
-        <a class="btn" href="<?php echo base_url()?>home/login">Logout</a>
+        <a class="btn" href="<?php echo base_url()?>home/logout">Logout</a>
     </div>
 
 

@@ -10,6 +10,7 @@ class Home extends ROOT_Controller
     public function login()
     {
         $user=User_helper::get_user();
+
         if($user)
         {
             $this->dashboard_page();
@@ -35,14 +36,10 @@ class Home extends ROOT_Controller
         }
 
     }
-    /*public function get_sub_menu()
+    public function logout()
     {
-        $menu_id=$this->input->post("menu_id");
-        $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#sub-menu","html"=>$this->load->view("sub_menu","",true));
-
-        $this->jsonReturn($ajax);
-
-    }*/
+        $this->session->set_userdata("user_id", "");
+        $this->login_page();
+    }
 
 }

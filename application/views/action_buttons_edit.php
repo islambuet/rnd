@@ -6,7 +6,7 @@
         <button id="button_save" class="btn">Save</button>
     </div>
     <div class="action_button">
-        <a class="btn" href="<?php echo base_url()?>home/login">Logout</a>
+        <a class="btn" href="<?php echo base_url()?>home/logout">Logout</a>
     </div>
 
 
