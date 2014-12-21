@@ -39,7 +39,7 @@ $(document).ready(function()
     $(document).on("click", ".main-menu-container .menu-item", function(event)
     {
         $.ajax({
-            url: base_url+"home/get_sub_menu/",
+            url: base_url+"dashboard/get_sub_menu/",
             type: 'POST',
             dataType: "JSON",
             data:{menu_id:$(this).attr("data-menu-id")},
@@ -71,7 +71,7 @@ $(document).ready(function()
 function load_main_page()
 {
     $.ajax({
-        url: base_url + 'home/load_main_page',
+        url: base_url + 'home/login',
         type: 'POST',
         dataType: "JSON",
         success: function (data, status)

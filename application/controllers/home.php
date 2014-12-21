@@ -7,19 +7,35 @@ class Home extends ROOT_Controller
 	{
 		$this->load->view("main");
 	}
-    public function load_main_page()
-    {
-        $this->dashboard_page();
-        //$this->login_page();
-    }
-
     public function login()
     {
-        $this->dashboard_page();
-        //$this->login_page();
+        $user=User_helper::get_user();
+        if($user)
+        {
+            $this->dashboard_page();
+        }
+        else
+        {
+            if($this->input->post())
+            {
+                if(User_helper::login($this->input->post("username"),$this->input->post("password")))
+                {
+                    $this->dashboard_page();
+                }
+                else
+                {
+                    $this->login_page("invalid login");
+                }
+            }
+            else
+            {
+                $this->login_page();
+            }
+
+        }
 
     }
-    public function get_sub_menu()
+    /*public function get_sub_menu()
     {
         $menu_id=$this->input->post("menu_id");
         $ajax['status']=true;
@@ -27,6 +43,6 @@ class Home extends ROOT_Controller
 
         $this->jsonReturn($ajax);
 
-    }
+    }*/
 
 }

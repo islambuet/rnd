@@ -5,6 +5,16 @@ abstract class ROOT_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $user=User_helper::get_user();
+        if(!$user)
+        {
+            if($this->router->class!="home")
+            {
+                $this->login_page("Time out");
+            }
+        }
+
+
     }
     public function jsonReturn($array)
     {
