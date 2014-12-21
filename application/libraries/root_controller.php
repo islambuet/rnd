@@ -12,4 +12,17 @@ abstract class ROOT_Controller extends CI_Controller
         echo json_encode($array);
         exit();
     }
+    public function login_page($message="")
+    {
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("login","",true));
+        $ajax['content'][]=array("id"=>"#right_side","html"=>$this->load->view("login_right","",true));
+        $this->jsonReturn($ajax);
+    }
+    public function dashboard_page($message="")
+    {
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("dashboard","",true));
+        $this->jsonReturn($ajax);
+    }
 }

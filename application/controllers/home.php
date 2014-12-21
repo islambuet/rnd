@@ -9,9 +9,24 @@ class Home extends ROOT_Controller
 	}
     public function load_main_page()
     {
-        $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("login","",true));
-        $ajax['content'][]=array("id"=>"#right_side","html"=>$this->load->view("login_right","",true));
-        $this->jsonReturn($ajax);
+        $this->dashboard_page();
+        //$this->login_page();
     }
+
+    public function login()
+    {
+        $this->dashboard_page();
+        //$this->login_page();
+
+    }
+    public function get_sub_menu()
+    {
+        $menu_id=$this->input->post("menu_id");
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#sub-menu","html"=>$this->load->view("sub_menu","",true));
+
+        $this->jsonReturn($ajax);
+
+    }
+
 }

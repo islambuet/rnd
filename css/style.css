@@ -6,7 +6,35 @@ body {
     line-height: 20px;
     margin: 0;
 }
+/*common*/
+.widget {
+    background: none repeat scroll 0 0 #fafafa;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+    clear: both;
+    margin: 10px 0;
+    padding-bottom: 20px;
 
+}
+.widget-header{
+    background-color: #e8e8e8;
+    background-image: -moz-linear-gradient(center top , #fcfcfc, #e8e8e8);
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 2px 2px 0 0;
+    line-height: 24px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.widget-header .title{
+    color: #333333;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+.margin_bottom{
+    margin-bottom: 10px;
+}
+/*main*/
 header {
     background-color: #212121;
     background-image: linear-gradient(#333333, #262626 85%, #0d0d0d);
@@ -30,6 +58,7 @@ footer {
     padding: 10px;
     z-index: 1;
 }
+
 .dashboard-wrapper {
     background: none repeat scroll 0 0 #f7f7f7;
     border-radius: 0 0 4px 4px;
@@ -39,11 +68,65 @@ footer {
     position: relative;
     margin: 0 0 20px 0;
 }
-.widget {
-    background: none repeat scroll 0 0 #fafafa;
-    border: 1px solid #cfcfcf;
-    border-radius: 3px;
-    clear: both;
-    margin-bottom: 30px;
-    margin-top: 0;
+/*for login form*/
+.login-wrapper {
+    background: none repeat scroll 0 0 #fcfcfc;
+    border: 2px solid #d9d9d9;
+    border-radius: 4px;
+    box-shadow: 0 18px 6px -8px #919191, 0 0 0 #cccccc;
+    position: relative;
+}
+.login_header{
+    margin: 0;
+    padding: 30px 20px 10px;
+}
+.login_header h3 {
+    color: #f63131;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.login_content{
+    padding: 10px 20px;
+}
+.login_action{
+padding: 10px 20px;
+}
+/*menu*/
+.menu-item{
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 300;
+    height: 70px;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    margin: 5px;
+    padding: 5px;
+}
+.menu-item:nth-child(odd)
+{
+    background:none repeat scroll 0 0 #0daed3;
+}
+.menu-item:nth-child(even)
+{
+    background:none repeat scroll 0 0 #74b749;
+}
+.menu-item .menu_title{
+   color: white;
+    font-size: 14px;
+}
+.menu-item .menu_image{
+    margin-bottom: 10px;
+}
+.menu-item .menu_image img{
+    height: 25px;
+    width: 25px;
+
+}
+.menu-item .menu_sub_count{
+    margin: 10px 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
 }

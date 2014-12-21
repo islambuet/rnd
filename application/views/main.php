@@ -9,10 +9,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/validationEngine.jquery.css">
 </head>
 <body>
     <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+    <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
     </script>
@@ -25,7 +28,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     <div class="container-fluid">
         <div class="row dashboard-wrapper">
             <div class="col-sm-9" id="content">
-
+            <?php
+                //$this->load->view("login");
+            ?>
             </div>
             <div class="col-sm-3" id="right_side">
 
@@ -41,6 +46,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     </footer>
 
     <script type="text/javascript" src="<?php echo base_url(); ?>js/rnd_common.js"></script>
+
 
 </body>
 </html>
