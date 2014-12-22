@@ -128,12 +128,14 @@ footer {
     color: white;
     font-size: 11px;
     font-weight: normal;
-    height: 30px;
     line-height: 30px;
     padding: 10px;
     z-index: 1;
+    margin: 0 15px;
 }
-
+footer a{
+    color: #000000;
+}
 .dashboard-wrapper {
     background: none repeat scroll 0 0 #f7f7f7;
     border-radius: 0 0 4px 4px;

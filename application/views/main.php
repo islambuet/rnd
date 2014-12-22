@@ -33,7 +33,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 //$this->load->view("login");
             ?>
             </div>
-            <div class="col-sm-3" id="right_side">
+            <div class="col-sm-3 hidden-sm hidden-xs" id="right_side">
 
             </div>
 
@@ -41,9 +41,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     </div>
     <footer>
-        <p>
+        <div>
             &copy; 2012 - All Rights Reserved <a href="http://amaderit.com" target="blank">Amader IT</a>
-        </p>
+        </div>
+        <div class="clearfix"></div>
     </footer>
     <div id="loading"><img src="<?php echo base_url(); ?>images/spinner.gif"></div>
     <div id="message"></div>
