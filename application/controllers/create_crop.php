@@ -24,14 +24,11 @@ class Create_crop extends ROOT_Controller
         elseif($task=="save")
         {
             $this->rnd_save();
-
         }
         else
         {
             $this->rnd_list($id);
         }
-
-
     }
     public function rnd_list($page=0)
     {
@@ -59,6 +56,9 @@ class Create_crop extends ROOT_Controller
     }
     public function rnd_save()
     {
+
+        print_r($this->input->post());
+        exit;
         //this function only do save nothing else
         if(!$this->check_validation())
         {

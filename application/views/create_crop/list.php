@@ -1,6 +1,6 @@
 <?php
-$data["link_new"]=base_url()."create_crop/index/add";
-$this->load->view("action_buttons",$data);
+    $data["link_new"]=base_url()."create_crop/index/add";
+    $this->load->view("action_buttons",$data);
 ?>
 
 <div class="row widget">
