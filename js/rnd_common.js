@@ -36,6 +36,7 @@ $(document).ready(function()
         return false;
 
     });
+    //action for menu-item click
     $(document).on("click", ".main-menu-container .menu-item", function(event)
     {
         $.ajax({
@@ -49,7 +50,7 @@ $(document).ready(function()
                 {
                     //execute for success
                     load_template(data.content);
-                    $(".form_valid").validationEngine();
+
                 }
                 else
                 {
@@ -66,6 +67,7 @@ $(document).ready(function()
         return false;
 
     });
+    //action for submenu click
     $(document).on("click", ".sub-menu-container .menu-item", function(event)
     {
         $.ajax({
@@ -78,7 +80,7 @@ $(document).ready(function()
                 {
                     //execute for success
                     load_template(data.content);
-                    $(".form_valid").validationEngine();
+
                 }
                 else
                 {
@@ -95,6 +97,7 @@ $(document).ready(function()
 
 
     });
+    //bind any anchor tag to ajax request
     $(document).on("click", "a", function(event)
     {
         event.preventDefault();
@@ -108,7 +111,7 @@ $(document).ready(function()
                 {
                     //execute for success
                     load_template(data.content);
-                    $(".form_valid").validationEngine();
+
                 }
                 else
                 {
@@ -124,6 +127,7 @@ $(document).ready(function()
         });
 
     });
+    //bind save button to submit the form
     $(document).on("click", "#button_save", function(event)
     {
         $("#save_form").submit();
