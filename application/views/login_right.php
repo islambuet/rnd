@@ -1,10 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-<div class="wrapper">
-    <a data-toggle="modal" class="btn btn-large btn-warning2 btn-block" id="datetime" role="button" href="#myModal">12:35:40 PM<br>Sat, Dec 20th, 2014</a>
-    <button style="padding-left: 2px;" type="button" class="btn btn-small  btn-block">
-    </button>
-    <button type="button" class="btn btn-warning btn-block">
-        Term &amp; Condition
-    </button>
-    <!-- Modal -->
-</div>
+<ul class="right_info">
+    <li>
+        <div class="info_icon pull-left"></div>
+        <div class="info_details pull-left">
+            <h5>IP Address:</h5>
+            <p>192.168.1.1</p>
+        </div>
+    </li>
+    <li>
+        <div class="info_icon pull-left"></div>
+        <div class="info_details pull-left">
+            <h5>Mac Address:</h5>
+            <p>Mac Address</p>
+        </div>
+    </li>
+</ul>
