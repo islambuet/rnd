@@ -44,7 +44,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             &copy; 2012 - All Rights Reserved <a href="http://amaderit.com" target="blank">Amader IT</a>
         </p>
     </footer>
-
+    <div id="loading"><img src="<?php echo base_url(); ?>images/spinner.gif"></div>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/rnd_common.js"></script>
 
 

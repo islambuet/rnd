@@ -1,5 +1,40 @@
 $(document).ready(function()
 {
+    $(document).ajaxStart(function()
+    {
+        $("#loading").show();
+    });
+    $(document).ajaxSuccess(function(event,xhr,options)
+    {
+        if(xhr.responseJSON)
+        {
+            if(xhr.responseJSON.content)
+            {
+                load_template(xhr.responseJSON.content);
+            }
+            if(xhr.responseJSON.message)
+            {
+                //alert("message");
+            }
+            else
+            {
+               // alert("no message")
+            }
+
+        }
+
+
+    });
+    $(document).ajaxComplete(function(event,xhr,options)
+    {
+        //$("#loading").hide();
+        setTimeout(function()
+        {
+           $("#loading").hide();
+        }, 1000);
+    });
+
+
     //load dashboard first time
     load_main_page();
     // binds form submission and fields to the validation engine
@@ -15,17 +50,7 @@ $(document).ready(function()
             data:$(this).serialize(),
             success: function (data, status)
             {
-                if(data.status)
-                {
-                    //execute for success
-                    load_template(data.content);
-                    $(".form_valid").validationEngine();
-                }
-                else
-                {
-                    //also execute for error
-                    load_template(data.content);
-                }
+
             },
             error: function (xhr, desc, err)
             {
@@ -46,17 +71,7 @@ $(document).ready(function()
             data:{menu_id:$(this).attr("data-menu-id")},
             success: function (data, status)
             {
-                if(data.status)
-                {
-                    //execute for success
-                    load_template(data.content);
 
-                }
-                else
-                {
-                    //also execute for error
-                    load_template(data.content);
-                }
             },
             error: function (xhr, desc, err)
             {
@@ -76,17 +91,7 @@ $(document).ready(function()
             dataType: "JSON",
             success: function (data, status)
             {
-                if(data.status)
-                {
-                    //execute for success
-                    load_template(data.content);
 
-                }
-                else
-                {
-                    //also execute for error
-                    load_template(data.content);
-                }
             },
             error: function (xhr, desc, err)
             {
@@ -107,17 +112,7 @@ $(document).ready(function()
             dataType: "JSON",
             success: function (data, status)
             {
-                if(data.status)
-                {
-                    //execute for success
-                    load_template(data.content);
 
-                }
-                else
-                {
-                    //also execute for error
-                    load_template(data.content);
-                }
             },
             error: function (xhr, desc, err)
             {
@@ -143,16 +138,7 @@ function load_main_page()
         dataType: "JSON",
         success: function (data, status)
         {
-            if(data.status)
-            {
-                //execute for success
-                load_template(data.content);
-            }
-            else
-            {
-                //also execute for error
-                load_template(data.content);
-            }
+
         },
         error: function (xhr, desc, err)
         {
