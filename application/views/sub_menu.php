@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <div class="row widget">
     <div class="widget-header">
         <div class="title">

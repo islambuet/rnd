@@ -21,8 +21,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     </script>
     <header>
 
-                <img alt="Logo" height="40" class="pull-left" src="<?php echo base_url(); ?>images/logo.png">
-                <div class="pull-right" id="user_info"></div>
+                <img alt="Logo" height="40" class="site_logo pull-left" src="<?php echo base_url(); ?>images/logo.png">
+                <div class="site_title pull-left">A.R MALIK & Co. (PVT) LTD.</div>
+                <div class="user_info pull-right" id="user_info"></div>
 
     </header>
     <div class="container-fluid">

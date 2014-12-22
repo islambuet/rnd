@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <div class="row widget" style="padding-bottom: 0px;">
     <div class="action_button">
         <a class="btn" href="<?php echo base_url()?>home/login">Dashboard</a>

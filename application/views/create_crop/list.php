@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     $data["link_new"]=base_url()."create_crop/index/add";
     $this->load->view("action_buttons",$data);
 ?>
