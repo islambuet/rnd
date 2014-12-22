@@ -161,48 +161,6 @@ class System_helper
         return $cal;
     }
 
-    public static function  get_detailHeadName($detailHeadCode)
-    {
-        $CI =& get_instance();
-        $CI->db->select('cad.*');
-        $CI->db->from('chartofaccountdetailhead cad');
-        $CI->db->where('DetailHeadCode',$detailHeadCode);
-
-        $result = $CI->db->get()->row_array();
-
-        if($result)
-        {
-            return $result['DetailHeadName'];
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public static function get_fiscal_year_month_min_max_date()
-    {
-
-        $user = User_helper::get_user();
-        $current_month = $user->current_month;
-        $fiscal_year = $user->fiscal_year;
-
-
-        $start_year = substr($fiscal_year,0,4);
-        $end_year = substr($fiscal_year,-4);
-
-        $year = ($current_month<=6)?$end_year:$start_year;
-
-        $starts = '01';
-        $ends = cal_days_in_month(CAL_GREGORIAN, $current_month, $year);
-
-        if(($current_month)<10)
-        {
-            $current_month = '0'.$current_month;
-        }
-        return array("max_date"=>$year.$current_month.$ends,"min_date"=>$year.$current_month.$starts);
-    }
-
     public static function getTime_Zone()
     {
         date_default_timezone_set('Asia/Dhaka');
@@ -275,33 +233,6 @@ class System_helper
         return $convert_date;
     }
 
-    public static function date_to_fiscal_year($date="")
-    {
-        date_default_timezone_set('Asia/Dhaka');
-        $strtodate=strtotime($date);
-        if($strtodate)
-        {
-            $convert_date = date('d-m-Y', $strtodate);
-            $edate=explode('-', $convert_date);
-            if($edate['1']>=1 && $edate['1']<=6)
-            {
-                $byear=$edate['2']-1;
-                $cyear=$edate['2'];
-                $fiscal_year=$byear."-".$cyear;
-            }
-            else
-            {
-                $ayear=$edate['2']+1;
-                $cyear=$edate['2'];
-                $fiscal_year=$cyear."-".$ayear;
-            }
-            return $fiscal_year;
-        }
-        else
-        {
-            return false;
-        }
-    }
     public static function get_pdf($html)
     {
         include(FCPATH."mpdf/mpdf.php");

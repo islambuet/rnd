@@ -16,7 +16,7 @@
                 <label class="control-label pull-right">Crop Name<span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" placeholder="Crop Name" value=""/>
+                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value=""/>
             </div>
         </div>
         <div style="" class="row show-grid">
@@ -24,7 +24,7 @@
                 <label class="control-label pull-right">Crop Code<span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" placeholder="Crop Code" value="" >
+                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" value="" >
             </div>
         </div>
         <div style="" class="row show-grid">
@@ -32,7 +32,7 @@
                 <label class="control-label pull-right">Crop Width<span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required]" placeholder="Crop Width" value="" >
+                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required]" value="" >
             </div>
         </div>
         <div style="" class="row show-grid">
@@ -40,7 +40,7 @@
                 <label class="control-label pull-right">Crop Height<span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required]" placeholder="Crop height" value="" >
+                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required]" value="" >
             </div>
         </div>
 

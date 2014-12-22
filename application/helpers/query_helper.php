@@ -75,39 +75,4 @@ class Query_helper
 
     }
 
-
-    public static function filter_access()
-    {
-        $CI =& get_instance();
-        $user = User_helper::get_user();
-
-        if($user->user_group > $CI->config->item('id_ministry'))
-        {
-            $CI->db->where("sui.division",$user->division);
-        }
-
-        if($user->user_group > $CI->config->item('id_division'))
-        {
-            $CI->db->where("sui.zilla",$user->zilla);
-        }
-
-        if($user->user_group > $CI->config->item('id_zilla'))
-        {
-            $CI->db->where("sui.upazilla",$user->upazilla);
-        }
-
-        if($user->user_group > $CI->config->item('id_upazilla'))
-        {
-            $CI->db->where("sui.union",$user->union);
-        }
-    }
-    public static function filter_by_dzuu($divid,$zillaid,$upazillaid,$unionid)
-    {
-        $CI =& get_instance();
-        $CI->db->where("sui.division",$divid);
-        $CI->db->where("sui.zilla",$zillaid);
-        $CI->db->where("sui.upazilla",$upazillaid);
-        $CI->db->where("sui.union",$unionid);
-    }
-
 }
