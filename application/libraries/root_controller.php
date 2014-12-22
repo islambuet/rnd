@@ -27,6 +27,10 @@ abstract class ROOT_Controller extends CI_Controller
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("login","",true));
         $ajax['content'][]=array("id"=>"#right_side","html"=>$this->load->view("login_right","",true));
+        if($message)
+        {
+            $ajax['message']=$message;
+        }
         $this->jsonReturn($ajax);
     }
     public function dashboard_page($message="")
@@ -35,6 +39,10 @@ abstract class ROOT_Controller extends CI_Controller
         $this->load->model("root_model");
         $data['modules']=$this->root_model->get_modules();
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("dashboard",$data,true));
+        if($message)
+        {
+            $ajax['message']=$message;
+        }
         $this->jsonReturn($ajax);
     }
 }

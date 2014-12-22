@@ -45,6 +45,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         </p>
     </footer>
     <div id="loading"><img src="<?php echo base_url(); ?>images/spinner.gif"></div>
+    <div id="message"></div>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/rnd_common.js"></script>
 
 

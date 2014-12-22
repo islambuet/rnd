@@ -12,14 +12,6 @@ $(document).ready(function()
             {
                 load_template(xhr.responseJSON.content);
             }
-            if(xhr.responseJSON.message)
-            {
-                //alert("message");
-            }
-            else
-            {
-               // alert("no message")
-            }
 
         }
 
@@ -30,7 +22,11 @@ $(document).ready(function()
         //$("#loading").hide();
         setTimeout(function()
         {
-           $("#loading").hide();
+            $("#loading").hide();
+            if(xhr.responseJSON.message)
+            {
+                animate_message(xhr.responseJSON.message);
+            }
         }, 1000);
     });
 
@@ -154,8 +150,14 @@ function load_template(content)
         $(content[i].id).html(content[i].html);
         //console.log(content[i].id);
         //console.log(content[i].html);
-
     }
+}
+function animate_message(message)
+{
+    $("#message").hide();
+    $("#message").html(message);
+    $('#message').slideToggle("slow").delay(3000).slideToggle("slow");
+    //$('#message').toggle("slide",{direction:"right"},500);
 
 }
 

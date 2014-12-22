@@ -21,11 +21,13 @@ class Home extends ROOT_Controller
             {
                 if(User_helper::login($this->input->post("username"),$this->input->post("password")))
                 {
-                    $this->dashboard_page();
+                    $this->dashboard_page($this->lang->line("MSG_LOGIN_SUCCESS"));
                 }
                 else
                 {
-                    $this->login_page("invalid login");
+                    $ajax['status']=false;
+                    $ajax['message']=$this->lang->line("MSG_USERNAME_PASSWORD_INVALID");
+                    $this->jsonReturn($ajax);
                 }
             }
             else
@@ -39,7 +41,7 @@ class Home extends ROOT_Controller
     public function logout()
     {
         $this->session->set_userdata("user_id", "");
-        $this->login_page();
+        $this->login_page($this->lang->line("MSG_LOGOUT_SUCCESS"));
     }
 
 }

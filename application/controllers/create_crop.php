@@ -3,9 +3,11 @@ require APPPATH.'/libraries/root_controller.php';
 
 class Create_crop extends ROOT_Controller
 {
+    private  $message;
     public function __construct()
     {
         parent::__construct();
+        $this->message="";
 //        $this->load->model("dashboard_model");
     }
 
@@ -37,6 +39,10 @@ class Create_crop extends ROOT_Controller
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/list",$data,true));
+        if($this->message)
+        {
+            $ajax['message']=$this->message;
+        }
 
         $this->jsonReturn($ajax);
 
@@ -54,7 +60,23 @@ class Create_crop extends ROOT_Controller
     public function rnd_save()
     {
         //this function only do save nothing else
-        $this->rnd_list();//this is similar like redirect
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            //check save if success call bellow two line
+            $this->message=$this->lang->line("MSG_SAVED_SUCCESS");
+            $this->rnd_list();//this is similar like redirect
+        }
+
+    }
+    private function check_validation()
+    {
+        return false;
     }
 
 

@@ -177,3 +177,14 @@ padding: 10px 20px;
     top: 40%;
     left: 35%;
 }
+/*message area*/
+#message{
+ position: fixed;
+    bottom: 20px;
+    right: 30px;
+    color: white;
+    background-color: #000000;
+    padding: 10px;
+    display: none;
+
+}
