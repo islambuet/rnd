@@ -40,12 +40,13 @@ class User_helper
         }
         else
         {
-            if($CI->session->userdata("user_id")>0)
+            if($CI->session->userdata("user_id")!="")
             {
                 User_helper::$logged_user = new User_helper($CI->session->userdata('user_id'));
                 return User_helper::$logged_user;
             }
-            else{
+            else
+            {
                 return null;
             }
 

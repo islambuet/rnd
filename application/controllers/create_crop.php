@@ -83,7 +83,8 @@ class Create_crop extends ROOT_Controller
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
-                System_helper::set_system_message($this->lang->line("MSG_UPDATE_SUCCESS"),1);
+                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+
             }
             else
             {
@@ -91,11 +92,10 @@ class Create_crop extends ROOT_Controller
                 $data['creation_date'] = time();
 
                 Query_helper::add('rnd_crop_info',$data);
-                System_helper::set_system_message($this->lang->line("MSG_CREATE_SUCCESS"),1);
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
 
-            $this->message=$this->lang->line("MSG_SAVED_SUCCESS");
             $this->rnd_list();//this is similar like redirect
         }
 
