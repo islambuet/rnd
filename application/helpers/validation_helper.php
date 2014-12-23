@@ -2,79 +2,65 @@
 
 class Validation_helper
 {
-    public static function is_numeric($str)
-    {
-        if(is_numeric($str))
-        {
-           return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
-    public static function is_empty($str)
+    public static function validate_email($str)
     {
-       if(strlen($str)<1)
-       {
-           return false;
-       }
-       else
-       {
-           return true;
-       }
-    }
-
-    public static function is_valid_email($str)
-    {
-        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$str))
+        if (!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",$str))
         {
             return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
-    public static function check_date_in_user_fiscal_year_month($date)
+
+    public static function validate_empty($str)
     {
-        $user=User_helper::get_user();
-        $voucherDate=strtotime($date);
-        if(!$voucherDate)
+        if (!preg_match("/\S+/",$str))
         {
             return false;
         }
         else
         {
-
-            $month=date("m",$voucherDate);
-            if($month!=$user->current_month)
-            {
-                return false;
-            }
-            else
-            {
-                $year=date("Y",$voucherDate);
-                if($month>6)
-                {
-                    if($year!=substr($user->fiscal_year,0,4))
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    if($year!=substr($user->fiscal_year,-4))
-                    {
-                        return false;
-                    }
-                }
-
-            }
+            return true;
         }
-        return true;
+    }
 
+    public static function validate_numeric($str)
+    {
+        if (!preg_match("/^-?\d*\.?\d*$/",$str))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public static function validate_int($str)
+    {
+        if (!preg_match("/^[0-9]\d*$/",$str))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public static function validate_float($str)
+    {
+        if (!preg_match("/^[0-9]*[.][0-9]+$/",$str))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
 

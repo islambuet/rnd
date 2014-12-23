@@ -61,6 +61,8 @@ class Create_crop extends ROOT_Controller
         $id = $this->input->post("crop_id");
         $user = User_helper::get_user();
 
+        print_r($user);exit;
+
         $data = Array(
             'crop_name'=>$this->input->post('crop_name'),
             'crop_code'=>$this->input->post('crop_code'),
@@ -103,6 +105,30 @@ class Create_crop extends ROOT_Controller
 
     private function check_validation()
     {
+        if(!Validation_helper::validate_empty($this->input->post('crop_name')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_empty($this->input->post('crop_code')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('status')))
+        {
+            return false;
+        }
         return true;
     }
 
