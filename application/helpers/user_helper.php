@@ -21,7 +21,7 @@ class User_helper
         $user = $CI->db->get_where('ait_user_login', array('user_name' => $username, 'user_pass' => md5(md5($password))))->row();
         if ($user)
         {
-            $CI->session->set_userdata("user_id", $user->id);
+            $CI->session->set_userdata("user_id", $user->user_id);
             return TRUE;
         }
         else
