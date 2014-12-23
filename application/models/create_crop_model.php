@@ -34,4 +34,14 @@ class Create_crop_model extends CI_Model
         return $this->db->count_all_results();
     }
 
+    public function get_crop_row($id)
+    {
+        $this->db->select('rnd_crop_info.*');
+        $this->db->from('rnd_crop_info');
+        $this->db->where('id',$id);
+
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
 }

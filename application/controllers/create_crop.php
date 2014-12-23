@@ -62,7 +62,7 @@ class Create_crop extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['cropInfo'] = $this->create_crop_model->get_crop_info($id);
+            $data['cropInfo'] = $this->create_crop_model->get_crop_row($id);
         }
         else
         {
