@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','user','validation','query');
+$autoload['helper'] = array('url','user','validation','query','system');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('url','user','validation','query');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('rnd_config');
 
 
 /*

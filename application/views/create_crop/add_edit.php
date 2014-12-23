@@ -51,8 +51,8 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
-                    <option value="0">Active</option>
-                    <option value="1">In-active</option>
+                    <option value="<?php echo $this->config->item('active');?>"><?php echo $this->lang->line('ACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('inactive');?>"><?php echo $this->lang->line('INACTIVE');?></option>
                 </select>
             </div>
         </div>

@@ -8,7 +8,7 @@ class Create_crop extends ROOT_Controller
     {
         parent::__construct();
         $this->message="";
-//        $this->load->model("dashboard_model");
+        $this->load->model("create_crop_model");
     }
 
     public function index($task="list",$id=0)
@@ -30,9 +30,22 @@ class Create_crop extends ROOT_Controller
             $this->rnd_list($id);
         }
     }
+
     public function rnd_list($page=0)
     {
-        $data['title']="Crate Crop";
+        $this->load->library('pagination');
+
+        $config = System_helper::pagination_config(base_url() . "tasks/create_crop/index/list/",$this->create_crop_model->get_total_crops(),5);
+        $this->pagination->initialize($config);
+        $data["links"] = $this->pagination->create_links();
+
+        if($page>0)
+        {
+            $page=$page-1;
+        }
+
+        $data['cropInfo'] = $this->create_crop_model->get_cropInfo($page);
+        $data['title']="Create Crop";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/list",$data,true));
@@ -45,23 +58,35 @@ class Create_crop extends ROOT_Controller
 
     }
 
-    public function rnd_add_edit($id=0)
+    public function rnd_add_edit($id)
     {
+        if ($id != 0)
+        {
+            $data['cropInfo'] = $this->create_crop_model->get_crop_info($id);
+        }
+        else
+        {
+            $data["cropInfo"] = Array(
+                'crop_name' => '',
+                'crop_code' => '',
+                'crop_height' => '',
+                'crop_width' => '',
+                'status' => ''
+            );
+        }
+
         $data['title']="Add edit";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
-
     }
 
     public function rnd_save()
     {
         $id = $this->input->post("crop_id");
         $user = User_helper::get_user();
-
-        print_r($user);exit;
 
         $data = Array(
             'crop_name'=>$this->input->post('crop_name'),
