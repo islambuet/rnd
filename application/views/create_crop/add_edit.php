@@ -18,6 +18,7 @@
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value=""/>
             </div>
+            <input type="hidden" name="crop_id" id="crop_id" value=""/>
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">

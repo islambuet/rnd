@@ -44,6 +44,7 @@ class Create_crop extends ROOT_Controller
         $this->jsonReturn($ajax);
 
     }
+
     public function rnd_add_edit($id=0)
     {
         $data['title']="Add edit";
@@ -54,9 +55,20 @@ class Create_crop extends ROOT_Controller
         $this->jsonReturn($ajax);
 
     }
+
     public function rnd_save()
     {
-        //this function only do save nothing else
+        $id = $this->input->post("crop_id");
+        $user = User_helper::get_user();
+
+        $data = Array(
+            'crop_name'=>$this->input->post('crop_name'),
+            'crop_code'=>$this->input->post('crop_code'),
+            'crop_width'=>$this->input->post('crop_width'),
+            'crop_height'=>$this->input->post('crop_height'),
+            'status'=>$this->input->post('status'),
+        );
+
         if(!$this->check_validation())
         {
             $ajax['status']=false;
@@ -65,15 +77,33 @@ class Create_crop extends ROOT_Controller
         }
         else
         {
-            //check save if success call bellow two line
+            if($id>0)
+            {
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+                Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
+                System_helper::set_system_message($this->lang->line("MSG_UPDATE_SUCCESS"),1);
+            }
+            else
+            {
+                $data['created_by'] = $user->user_id;
+                $data['creation_date'] = time();
+
+                Query_helper::add('rnd_crop_info',$data);
+                System_helper::set_system_message($this->lang->line("MSG_CREATE_SUCCESS"),1);
+
+            }
+
             $this->message=$this->lang->line("MSG_SAVED_SUCCESS");
             $this->rnd_list();//this is similar like redirect
         }
 
     }
+
     private function check_validation()
     {
-        return false;
+        return true;
     }
 
 
