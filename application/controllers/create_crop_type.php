@@ -43,7 +43,7 @@ class Create_crop_type extends ROOT_Controller
         }
 
         $data['typeInfo'] = $this->create_type_model->get_typeInfo($page);
-        $data['title']="Crop Type";
+        $data['title']="Crop Type List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/list",$data,true));
@@ -59,12 +59,13 @@ class Create_crop_type extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['title']="Edit Crop Type";
+
             $data['typeInfo'] = $this->create_type_model->get_type_row($id);
+            $data['title']="Edit Crop Type (".$data['typeInfo']['product_type'].")";
         }
         else
         {
-            $data['title']="Add Crop Type";
+            $data['title']="Create New Crop Type";
             $data["typeInfo"] = Array(
                 'id' => 0,
                 'crop_id' => '',
@@ -72,7 +73,7 @@ class Create_crop_type extends ROOT_Controller
                 'product_type_code' => '',
                 'product_type_height' => '',
                 'product_type_width' => '',
-                'status' => ''
+                'status' => $this->config->item('active')
             );
         }
 

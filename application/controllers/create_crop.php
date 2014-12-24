@@ -43,7 +43,7 @@ class Create_crop extends ROOT_Controller
         }
 
         $data['cropInfo'] = $this->create_crop_model->get_cropInfo($page);
-        $data['title']="Create Crop";
+        $data['title']="Crop List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/list",$data,true));
@@ -60,6 +60,7 @@ class Create_crop extends ROOT_Controller
         if ($id != 0)
         {
             $data['cropInfo'] = $this->create_crop_model->get_crop_row($id);
+            $data['title']="Edit Crop (".$data['cropInfo']['crop_name'].")";
         }
         else
         {
@@ -69,11 +70,12 @@ class Create_crop extends ROOT_Controller
                 'crop_code' => '',
                 'crop_height' => '',
                 'crop_width' => '',
-                'status' => ''
+                'status' => $this->config->item('active')
             );
+            $data['title']="Create New Crop";
         }
 
-        $data['title']="Add edit";
+
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));

@@ -20,7 +20,7 @@ class Create_type_model extends CI_Model
 
         $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rti.crop_id', 'left');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('rti.status !=',$this->config->item('rnd_delete_status_code'));
         $this->db->limit($limit,$start);
 
         $query = $this->db->get();

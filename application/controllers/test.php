@@ -7,11 +7,25 @@ class Test extends CI_Controller
 	{
         //$this->session->set_userdata("user_id", "");
         echo $this->session->userdata("user_id");
-        /*$this->load->model("dashboard_model");
-        $module_id="SM-000002";
-        $data['tasks']=$this->dashboard_model->get_tasks($module_id);
+        $ar = array("az"=>"1","xy"=>"2");
+        $ar2 = array("az2"=>"2","sa"=>4,"sds"=>5);
+        $arkeys = array_keys($ar);
+        $ar2keys=array_keys($ar2);
 
-        print_r($data);*/
+        for($i=0;$i<max(sizeof($ar),sizeof($ar2));$i++)
+        {
+            if(sizeof($ar)>$i)
+            {
+                echo $arkeys[$i];
+                echo $ar[$arkeys[$i]];
+            }
+            if(sizeof($ar2)>$i)
+            {
+                echo $ar2keys[$i];
+                echo $ar2[$ar2keys[$i]];
+            }
+
+        }
 	}
 
 

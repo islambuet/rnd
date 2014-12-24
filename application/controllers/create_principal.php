@@ -59,12 +59,13 @@ class Create_principal extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['title']="Edit Crop Principal";
+
             $data['principalInfo'] = $this->create_principal_model->get_principal_row($id);
+            $data['title']="Edit Crop Principal (".$data['principalInfo']['principal_name'].")";
         }
         else
         {
-            $data['title']="Add Crop Principal";
+            $data['title']="Create New Crop Principal";
             $data["principalInfo"] = Array(
                 'id' => 0,
                 'principal_name' => '',
@@ -73,7 +74,7 @@ class Create_principal extends ROOT_Controller
                 'email' => '',
                 'contact_number' => '',
                 'address' => '',
-                'status' => ''
+                'status' =>$this->config->item('active')
             );
         }
 
