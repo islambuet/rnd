@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Create_crop extends ROOT_Controller
+class Create_crop_type extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("create_crop_model");
+        $this->load->model("create_type_model");
     }
 
     public function index($task="list",$id=0)
@@ -33,7 +33,7 @@ class Create_crop extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "create_crop/index/list/",$this->create_crop_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "create_crop_type/index/list/",$this->create_type_model->get_total_types(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,11 +42,11 @@ class Create_crop extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->create_crop_model->get_cropInfo($page);
-        $data['title']="Create Crop";
+        $data['typeInfo'] = $this->create_type_model->get_typeInfo($page);
+        $data['title']="Crop Type";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
@@ -59,38 +59,41 @@ class Create_crop extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['cropInfo'] = $this->create_crop_model->get_crop_row($id);
+            $data['title']="Edit Crop Type";
+            $data['typeInfo'] = $this->create_type_model->get_type_row($id);
         }
         else
         {
-            $data["cropInfo"] = Array(
+            $data['title']="Add Crop Type";
+            $data["typeInfo"] = Array(
                 'id' => 0,
-                'crop_name' => '',
-                'crop_code' => '',
-                'crop_height' => '',
-                'crop_width' => '',
+                'crop_id' => '',
+                'product_type' => '',
+                'product_type_code' => '',
+                'product_type_height' => '',
+                'product_type_width' => '',
                 'status' => ''
             );
         }
 
-        $data['title']="Add edit";
-
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
     {
-        $id = $this->input->post("crop_id");
+        $id = $this->input->post("type_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_name'=>$this->input->post('crop_name'),
-            'crop_code'=>$this->input->post('crop_code'),
-            'crop_width'=>$this->input->post('crop_width'),
-            'crop_height'=>$this->input->post('crop_height'),
+            'crop_id'=>$this->input->post('crop_select'),
+            'product_type'=>$this->input->post('product_type'),
+            'product_type_code'=>$this->input->post('type_code'),
+            'product_type_height'=>$this->input->post('height'),
+            'product_type_width'=>$this->input->post('width'),
             'status'=>$this->input->post('status'),
         );
 
@@ -107,7 +110,7 @@ class Create_crop extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_product_type_info',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
             }
@@ -116,7 +119,7 @@ class Create_crop extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_crop_info',$data);
+                Query_helper::add('rnd_product_type_info',$data);
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
@@ -128,22 +131,27 @@ class Create_crop extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
+        if(Validation_helper::validate_empty($this->input->post('crop_select')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('product_type')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
+        if(Validation_helper::validate_empty($this->input->post('type_code')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
+        if(!Validation_helper::validate_numeric($this->input->post('height')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('width')))
         {
             return false;
         }
@@ -152,6 +160,7 @@ class Create_crop extends ROOT_Controller
         {
             return false;
         }
+
         return true;
     }
 

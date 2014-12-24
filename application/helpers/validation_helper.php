@@ -17,7 +17,7 @@ class Validation_helper
 
     public static function validate_empty($str)
     {
-        if (preg_match("/\S+/",$str))
+        if (strlen($str)>0)
         {
             return false;
         }

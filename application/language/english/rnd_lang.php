@@ -1,5 +1,6 @@
 <?php
 //common
+$lang['SELECT'] = 'Select';
 $lang['STATUS'] = 'Status';
 $lang['ACTION'] = 'Action';
 $lang['ACTIVE'] = 'Active';
@@ -21,9 +22,17 @@ $lang['ACTION_LOGOUT'] = 'Logout';
 $lang['ACTION_BACK'] = 'Back';
 $lang['ACTION_SAVE'] = 'Save';
 
-//Create crop
+//Create Crop
 $lang['LABEL_CROP_NAME'] = 'Crop Name';
 $lang['LABEL_CROP_CODE'] = 'Crop Code';
 $lang['LABEL_CROP_WIDTH'] = 'Crop Width';
 $lang['LABEL_CROP_HEIGHT'] = 'Crop Height';
+
+//Create Type
+$lang['LABEL_SELECT_CROP'] = 'Select Crop';
+$lang['LABEL_PRODUCT_TYPE'] = 'Product Type';
+$lang['LABEL_TYPE_CODE'] = 'Type Code';
+$lang['LABEL_WIDTH'] = 'Width';
+$lang['LABEL_HEIGHT'] = 'Height';
+
 

@@ -5,8 +5,10 @@ class Query_helper
     {
         $CI =& get_instance();
         $CI->db->insert($tablename, $data);
-        return ($CI->db->affected_rows() >0) ? true : false;
+        $id = $CI->db->insert_id();
+        return ($CI->db->affected_rows() >0) ? $id : false;
     }
+
     public static  function update($tablename,$data,$conditions)
     {
         $CI =& get_instance();
