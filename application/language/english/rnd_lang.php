@@ -35,4 +35,12 @@ $lang['LABEL_TYPE_CODE'] = 'Type Code';
 $lang['LABEL_WIDTH'] = 'Width';
 $lang['LABEL_HEIGHT'] = 'Height';
 
+//Create Principal
+$lang['LABEL_PRINCIPAL_NAME'] = 'Principal Name';
+$lang['LABEL_PRINCIPAL_CODE'] = 'Principal Code';
+$lang['LABEL_CONTACT_PERSON'] = 'Contact Person Name';
+$lang['LABEL_EMAIL'] = 'Email ID';
+$lang['LABEL_CONTACT'] = 'Contact Number';
+$lang['LABEL_ADDRESS'] = 'Address';
+
 
