@@ -1,53 +1,6 @@
 <?php
 class System_helper
 {
-    public static function set_system_message($message,$message_type=0)
-    {
-        /*
-         * $message_type=0 error
-         * 1=success
-         * 2=info
-         */
-        $CI =& get_instance();
-        $CI->session->set_userdata("system_message",array("message_type"=>$message_type,"message"=>$message));
-    }
-    public static function get_system_message()
-    {
-        $CI =& get_instance();
-        $message=$CI->session->userdata("system_message");
-        if($message)
-        {
-            $message_html=System_helper::get_system_message_string($message);
-            $CI->session->set_userdata("system_message","");
-            return $message_html;
-        }
-        else
-        {
-            return "";
-        }
-
-    }
-    public static function get_system_message_string($message)
-    {
-        $html="<div class='alert ";
-        if($message['message_type']==0)
-        {
-            $html.="alert-danger";
-        }
-        else if($message['message_type']==1)
-        {
-            $html.="alert-success";
-        }
-        else if($message['message_type']==2)
-        {
-            $html.="alert-info";
-        }
-        $html.="'><a class='close'>&times;</a>".$message['message']."</div>";
-        return $html;
-
-
-    }
-
     public static function pagination_config($base_url, $total_rows, $segment)
     {
         $CI =& get_instance();
@@ -136,36 +89,6 @@ class System_helper
         {
             return '';
         }
-    }
-
-
-
-    public static function Get_Eng_to_Bng($str = NULL) {
-        $engNumber = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '');
-        $bangNumber = array('১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০', '');
-        $converted = str_replace($engNumber, $bangNumber, $str);
-        return $converted;
-    }
-
-
-    public static function Get_Bng_to_Eng($str = NULL) {
-        $engNumber = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '');
-        $bangNumber = array('১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০', '');
-        $converted = str_replace($bangNumber, $engNumber, $str);
-        return $converted;
-    }
-
-    public static function calculate_percentage($total,$rate)
-    {
-        $cal = ($rate / 100) * $total;
-        return $cal;
-    }
-
-    public static function getTime_Zone()
-    {
-        date_default_timezone_set('Asia/Dhaka');
-
-        return $ctime = time();
     }
 
     public static function convert_date($date='', $type='')

@@ -33,9 +33,8 @@ class Create_crop extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $this->load->library('pagination');
 
-        $config = System_helper::pagination_config(base_url() . "tasks/create_crop/index/list/",$this->create_crop_model->get_total_crops(),5);
+        $config = System_helper::pagination_config(base_url() . "create_crop/index/list/",$this->create_crop_model->get_total_crops(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 

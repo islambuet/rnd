@@ -2680,9 +2680,7 @@ output {
 }
 
 .form-control {
-    /*Nikosh*/
-    font-family: 'NikoshBAN','Nikosh', cursive, fantasy;
-    /**/
+
     display: block;
     width: 100%;
     height: 34px;
