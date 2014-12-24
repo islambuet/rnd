@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2014-12-24 15:21:44
+Date: 2014-12-24 18:09:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -989,7 +989,11 @@ CREATE TABLE `rnd_principal_info` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `principal_name` varchar(50) DEFAULT NULL,
   `principal_code` varchar(20) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
+  `contact_person_name` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `contact_number` varchar(30) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
   `modified_by` varchar(20) DEFAULT NULL,
@@ -1006,11 +1010,14 @@ CREATE TABLE `rnd_principal_info` (
   KEY `modified_by_4` (`modified_by`),
   KEY `created_by_5` (`created_by`),
   KEY `modified_by_5` (`modified_by`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_principal_info
 -- ----------------------------
+INSERT INTO `rnd_principal_info` VALUES ('1', 'Principal Name11', 'Code11', 'Person11', 'email1@email.com', '01718564523', 'Address1\r\n', '1', 'UI-000001', '1419414306', 'UI-000001', '1419416482');
+INSERT INTO `rnd_principal_info` VALUES ('2', 'Principal Name2', 'Code2', 'Person2', 'email@email.com', '01712345671', ' Address ', '1', 'UI-000001', '1419414437', null, null);
+INSERT INTO `rnd_principal_info` VALUES ('3', 'Principal3', 'Code3', 'Person3', 'email@email.com', '01718675641', ' Address ', '1', 'UI-000001', '1419414480', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_product_type_info`
@@ -1023,7 +1030,7 @@ CREATE TABLE `rnd_product_type_info` (
   `product_type_code` varchar(20) DEFAULT NULL,
   `product_type_height` int(11) DEFAULT NULL,
   `product_type_width` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
   `modified_by` varchar(20) DEFAULT NULL,
