@@ -13,6 +13,7 @@ class Create_crop_variety extends ROOT_Controller
 
     public function index($task="list",$id=0)
     {
+
         if($task=="list")
         {
             $this->rnd_list($id);
@@ -33,7 +34,8 @@ class Create_crop_variety extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_type_model->get_total_types(),4);
+        
+        $config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_crop_variety_model->get_total_types(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,11 +44,11 @@ class Create_crop_variety extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['typeInfo'] = $this->create_type_model->get_typeInfo($page);
+        $data['typeInfo'] = $this->create_crop_variety_model->get_typeInfo($page);
         $data['title']="Crop Type";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
@@ -60,7 +62,7 @@ class Create_crop_variety extends ROOT_Controller
         if ($id != 0)
         {
             $data['title']="Edit Crop Type";
-            $data['typeInfo'] = $this->create_type_model->get_type_row($id);
+            $data['typeInfo'] = $this->create_crop_variety_model->get_type_row($id);
         }
         else
         {
@@ -78,7 +80,7 @@ class Create_crop_variety extends ROOT_Controller
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
