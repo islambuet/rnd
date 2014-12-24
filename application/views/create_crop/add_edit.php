@@ -63,3 +63,11 @@
     </div>
     <div class="clearfix"></div>
 </form>
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $(".form_valid").validationEngine();
+
+    });
+</script>
