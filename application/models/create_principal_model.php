@@ -17,7 +17,7 @@ class Create_principal_model extends CI_Model
         $this->db->from('rnd_principal_info rpi');
         $this->db->select('rpi.*');
 
-//        $this->db->where('status',1);
+        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         $this->db->limit($limit,$start);
 
         $query = $this->db->get();
@@ -29,7 +29,7 @@ class Create_principal_model extends CI_Model
         $this->db->select('rnd_principal_info.*');
         $this->db->from('rnd_principal_info');
 
-//        $this->db->where('status',1);
+        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         return $this->db->count_all_results();
     }
 
