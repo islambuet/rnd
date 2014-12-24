@@ -101,6 +101,10 @@ $(document).ready(function()
     //bind any anchor tag to ajax request
     $(document).on("click", "a", function(event)
     {
+        if($(this).hasClass('external'))
+        {
+            return true;
+        }
         event.preventDefault();
         $.ajax({
             url: $(this).attr("href"),
