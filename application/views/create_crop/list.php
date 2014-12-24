@@ -44,8 +44,8 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <div class="pagination_container pull-right" style="margin-right: 28px;">
+    <div class="col-sm-12">
+        <div class="pagination_container pull-right">
             <?php
                 echo $links;
             ?>
