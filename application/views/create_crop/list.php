@@ -17,11 +17,12 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
-                <th><?php echo $this->lang->line("CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("CROP_CODE"); ?></th>
-                <th><?php echo $this->lang->line("CROP_WIDTH"); ?></th>
-                <th><?php echo $this->lang->line("CROP_HEIGHT"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_CODE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_WIDTH"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_HEIGHT"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
+                <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
@@ -36,6 +37,11 @@
                 <td><?php echo $crop['crop_width'];?></td>
                 <td><?php echo $crop['crop_height'];?></td>
                 <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td>
+                    <a href="<?php echo base_url();?>create_crop/index/edit/<?php echo $crop['id'];?>">
+                        <img src="<?php echo base_url();?>images/edit_record.png">
+                    </a>
+                </td>
             </tr>
             <?php
             }

@@ -1,9 +1,5 @@
 <?php
 
-
-$config['db_active']='ACTIVE';
-$config['db_inactive']='IN-ACTIVE';
-
 $config['active']=1;
 $config['inactive']=0;
 

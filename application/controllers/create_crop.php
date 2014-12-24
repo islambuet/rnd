@@ -129,12 +129,12 @@ class Create_crop extends ROOT_Controller
 
     private function check_validation()
     {
-        if(!Validation_helper::validate_empty($this->input->post('crop_name')))
+        if(Validation_helper::validate_empty($this->input->post('crop_name')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('crop_code')))
         {
             return false;
         }

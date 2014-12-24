@@ -2,6 +2,10 @@
     $data["link_new"]=base_url()."create_crop/index/add";
     $data["link_back"]=base_url()."create_crop";
     $this->load->view("action_buttons_edit",$data);
+
+//echo '<pre>';
+//print_r($cropInfo);
+//echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>create_crop/index/save" method="post">
     <div class="row widget">
@@ -13,35 +17,35 @@
         </div>
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('CROP_NAME');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value=""/>
+                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value="<?php echo $cropInfo['crop_name'];?>"/>
             </div>
-            <input type="hidden" name="crop_id" id="crop_id" value=""/>
+            <input type="hidden" name="crop_id" id="crop_id" value="<?php echo $cropInfo['id'];?>"/>
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('CROP_CODE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" value="" >
-            </div>
-        </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('CROP_WIDTH');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required]" value="" >
+                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" value="<?php echo $cropInfo['crop_code'];?>" >
             </div>
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('CROP_HEIGHT');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_WIDTH');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required]" value="" >
+                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required]" value="<?php echo $cropInfo['crop_width'];?>" >
+            </div>
+        </div>
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_HEIGHT');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required]" value="<?php echo $cropInfo['crop_height'];?>" >
             </div>
         </div>
 
@@ -51,8 +55,8 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>"><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>"><?php echo $this->lang->line('INACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('active');?>" <?php if($cropInfo['status']==$this->config->item('active')){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($cropInfo['status']==$this->config->item('inactive')){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
                 </select>
             </div>
         </div>
