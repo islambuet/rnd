@@ -2,7 +2,7 @@
     $data["link_new"]=base_url()."create_principal/index/add";
     $this->load->view("action_buttons",$data);
 //echo '<pre>';
-//print_r($typeInfo);
+//print_r($principalInfo);
 //echo '</pre>';
 ?>
 
@@ -17,9 +17,10 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_TYPE_CODE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PRINCIPAL_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PRINCIPAL_CODE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CONTACT_PERSON"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CONTACT"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -27,16 +28,17 @@
 
             <tbody>
             <?php
-            foreach($typeInfo as $type)
+            foreach($principalInfo as $principal)
             {
             ?>
             <tr>
-                <td><?php echo $type['crop_name'];?></td>
-                <td><?php echo $type['product_type'];?></td>
-                <td><?php echo $type['product_type_code'];?></td>
-                <td><?php if($type['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td><?php echo $principal['principal_name'];?></td>
+                <td><?php echo $principal['principal_code'];?></td>
+                <td><?php echo $principal['contact_person_name'];?></td>
+                <td><?php echo $principal['contact_number'];?></td>
+                <td><?php if($principal['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                 <td>
-                    <a href="<?php echo base_url();?>create_crop_type/index/edit/<?php echo $type['id'];?>">
+                    <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
                     </a>
                 </td>

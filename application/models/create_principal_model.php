@@ -14,11 +14,8 @@ class Create_principal_model extends CI_Model
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_product_type_info rti');
-        $this->db->select('rti.*');
-        $this->db->select('cinfo.crop_name crop_name');
-
-        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rti.crop_id', 'left');
+        $this->db->from('rnd_principal_info rpi');
+        $this->db->select('rpi.*');
 
 //        $this->db->where('status',1);
         $this->db->limit($limit,$start);
@@ -29,8 +26,8 @@ class Create_principal_model extends CI_Model
 
     public function get_total_principals()
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_principal_info.*');
+        $this->db->from('rnd_principal_info');
 
 //        $this->db->where('status',1);
         return $this->db->count_all_results();
@@ -38,8 +35,8 @@ class Create_principal_model extends CI_Model
 
     public function get_principal_row($id)
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_principal_info.*');
+        $this->db->from('rnd_principal_info');
         $this->db->where('id',$id);
 
         $query = $this->db->get();

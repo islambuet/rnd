@@ -42,7 +42,7 @@ class Create_principal extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['typeInfo'] = $this->create_principal_model->get_principalInfo($page);
+        $data['principalInfo'] = $this->create_principal_model->get_principalInfo($page);
         $data['title']="Crop Principal";
 
         $ajax['status']=true;
@@ -60,23 +60,23 @@ class Create_principal extends ROOT_Controller
         if ($id != 0)
         {
             $data['title']="Edit Crop Principal";
-            $data['typeInfo'] = $this->create_type_model->get_type_row($id);
+            $data['principalInfo'] = $this->create_principal_model->get_principal_row($id);
         }
         else
         {
             $data['title']="Add Crop Principal";
-            $data["typeInfo"] = Array(
+            $data["principalInfo"] = Array(
                 'id' => 0,
-                'crop_id' => '',
-                'product_type' => '',
-                'product_type_code' => '',
-                'product_type_height' => '',
-                'product_type_width' => '',
+                'principal_name' => '',
+                'principal_code' => '',
+                'contact_person_name' => '',
+                'email' => '',
+                'contact_number' => '',
+                'address' => '',
                 'status' => ''
             );
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_principal/add_edit",$data,true));
 
@@ -85,16 +85,16 @@ class Create_principal extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("type_id");
+        $id = $this->input->post("principal_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_id'=>$this->input->post('principal_name'),
-            'product_type'=>$this->input->post('principal_code'),
-            'product_type_code'=>$this->input->post('contact_person_name'),
-            'product_type_height'=>$this->input->post('email_id'),
-            'product_type_width'=>$this->input->post('contact_number'),
-            'product_type_width'=>$this->input->post('address'),
+            'principal_name'=>$this->input->post('principal_name'),
+            'principal_code'=>$this->input->post('principal_code'),
+            'contact_person_name'=>$this->input->post('contact_person_name'),
+            'email'=>$this->input->post('email_id'),
+            'contact_number'=>$this->input->post('contact_number'),
+            'address'=>$this->input->post('address'),
             'status'=>$this->input->post('status'),
         );
 
@@ -111,7 +111,7 @@ class Create_principal extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_product_type_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_principal_info',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
             }
@@ -120,7 +120,7 @@ class Create_principal extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_product_type_info',$data);
+                Query_helper::add('rnd_principal_info',$data);
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
@@ -132,32 +132,12 @@ class Create_principal extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_select')))
+        if(Validation_helper::validate_empty($this->input->post('principal_name')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('product_type')))
-        {
-            return false;
-        }
-
-        if(Validation_helper::validate_empty($this->input->post('type_code')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('height')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('width')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
+        if(Validation_helper::validate_empty($this->input->post('principal_code')))
         {
             return false;
         }

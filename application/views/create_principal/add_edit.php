@@ -4,7 +4,7 @@
     $this->load->view("action_buttons_edit",$data);
 
 //echo '<pre>';
-//print_r($typeInfo);
+//print_r($principalInfo);
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>create_principal/index/save" method="post">
@@ -21,9 +21,9 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="principal_name" id="principal_name" class="form-control validate[required]" value="<?php echo $typeInfo['product_type'];?>" >
+                <input type="text" name="principal_name" id="principal_name" class="form-control validate[required]" value="<?php echo $principalInfo['principal_name'];?>" >
             </div>
-            <input type="hidden" name="principal_id" id="principal_id" value="<?php echo $typeInfo['id'];?>"/>
+            <input type="hidden" name="principal_id" id="principal_id" value="<?php echo $principalInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -31,49 +31,49 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="principal_code" id="principal_code" class="form-control validate[required]" value="<?php echo $typeInfo['product_type'];?>" >
+                <input type="text" name="principal_code" id="principal_code" class="form-control validate[required]" value="<?php echo $principalInfo['principal_code'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT_PERSON');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT_PERSON');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="contact_person_name" id="contact_person_name" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_code'];?>" >
+                <input type="text" name="contact_person_name" id="contact_person_name" class="form-control validate[required]" value="<?php echo $principalInfo['contact_person_name'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EMAIL');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EMAIL');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="email_id" id="email_id" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_width'];?>" >
+                <input type="text" name="email_id" id="email_id" class="form-control validate[required]" value="<?php echo $principalInfo['email'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="contact_number" id="contact_number" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_height'];?>" >
+                <input type="text" name="contact_number" id="contact_number" class="form-control validate[required]" value="<?php echo $principalInfo['contact_number'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADDRESS');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADDRESS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea name="address" id="address" class="form-control validate[required]"><?php echo $typeInfo['product_type_height'];?></textarea>
+                <textarea name="address" id="address" class="form-control validate[required]"><?php echo $principalInfo['address'];?></textarea>
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
