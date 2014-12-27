@@ -40,16 +40,65 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="product_type" id="product_type" class="form-control validate[required]" value="<?php echo $typeInfo['product_type'];?>" >
+                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($crops as $crop)
+                    {?>
+                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TYPE_CODE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($crops as $crop)
+                    {?>
+                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="type_code" id="type_code" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_code'];?>" >
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="1" > Fruit
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="2" > Curt
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="3" > Root
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="4" > Leaf
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="1" > Check Variety ARM
+                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="2" > Competitor Variety
             </div>
         </div>
 
