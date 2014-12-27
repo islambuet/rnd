@@ -19,6 +19,7 @@ $(document).ready(function()
     });
     $(document).ajaxComplete(function(event,xhr,options)
     {
+
         //$("#loading").hide();
         setTimeout(function()
         {
@@ -28,6 +29,18 @@ $(document).ready(function()
                 animate_message(xhr.responseJSON.message);
             }
         }, 1000);
+    });
+    $(document).ajaxError(function(event,xhr,options)
+    {
+
+        setTimeout(function()
+        {
+            $("#loading").hide();
+
+            animate_message("Server Error");
+
+        }, 1000);
+
     });
 
 
