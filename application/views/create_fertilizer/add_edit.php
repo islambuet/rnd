@@ -28,7 +28,7 @@
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">

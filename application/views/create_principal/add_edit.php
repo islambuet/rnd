@@ -40,7 +40,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT_PERSON');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="contact_person_name" id="contact_person_name" class="form-control validate[required]" value="<?php echo $principalInfo['contact_person_name'];?>" >
+                <input type="text" name="contact_person_name" id="contact_person_name" class="form-control" value="<?php echo $principalInfo['contact_person_name'];?>" >
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EMAIL');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="email_id" id="email_id" class="form-control validate[required]" value="<?php echo $principalInfo['email'];?>" >
+                <input type="text" name="email_id" id="email_id" class="form-control" value="<?php echo $principalInfo['email'];?>" >
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTACT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="contact_number" id="contact_number" class="form-control validate[required]" value="<?php echo $principalInfo['contact_number'];?>" >
+                <input type="text" name="contact_number" id="contact_number" class="form-control" value="<?php echo $principalInfo['contact_number'];?>" >
             </div>
         </div>
 
@@ -67,13 +67,13 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADDRESS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea name="address" id="address" class="form-control validate[required]"><?php echo $principalInfo['address'];?></textarea>
+                <textarea name="address" id="address" class="form-control"><?php echo $principalInfo['address'];?></textarea>
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
