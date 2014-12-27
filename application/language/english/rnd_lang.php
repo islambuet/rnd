@@ -47,4 +47,7 @@ $lang['LABEL_ADDRESS'] = 'Address';
 //Create Fertilizer
 $lang['LABEL_FERTILIZER_NAME'] = 'Fertilizer Name';
 
+//Create Fertilizer
+$lang['LABEL_PESTICIDE_NAME'] = 'Pesticide & Fungicide Name';
+
 
