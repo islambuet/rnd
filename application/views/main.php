@@ -42,7 +42,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     </div>
     <footer>
         <div>
-            &copy; 2012 - All Rights Reserved <a class="external" href="http://amaderit.com" target="blank">Amader IT</a>
+            &copy; 2014 - All Rights Reserved <a class="external" href="http://amaderit.com" target="blank">Amader IT</a>
         </div>
         <div class="clearfix"></div>
     </footer>
