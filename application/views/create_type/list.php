@@ -17,6 +17,7 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
+                <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_TYPE_CODE"); ?></th>
@@ -27,10 +28,11 @@
 
             <tbody>
             <?php
-            foreach($typeInfo as $type)
+            foreach($typeInfo as $key=>$type)
             {
             ?>
             <tr>
+                <td><?php echo $key+1;?></td>
                 <td><?php echo $type['crop_name'];?></td>
                 <td><?php echo $type['product_type'];?></td>
                 <td><?php echo $type['product_type_code'];?></td>

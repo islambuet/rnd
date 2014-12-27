@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."create_crop/index/add";
+    $data["link_new"]=base_url()."create_fertilizer/index/add";
     $this->load->view("action_buttons",$data);
 //echo '<pre>';
-//print_r($cropInfo);
+//print_r($fertilizerInfo);
 //echo '</pre>';
 ?>
 
@@ -18,10 +18,7 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_CODE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_WIDTH"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_HEIGHT"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_FERTILIZER_NAME"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -29,18 +26,15 @@
 
             <tbody>
             <?php
-            foreach($cropInfo as $key=>$crop)
+            foreach($fertilizerInfo as $key=>$fertilizer)
             {
             ?>
             <tr>
                 <td><?php echo $key+1;?></td>
-                <td><?php echo $crop['crop_name'];?></td>
-                <td><?php echo $crop['crop_code'];?></td>
-                <td><?php echo $crop['crop_width'];?></td>
-                <td><?php echo $crop['crop_height'];?></td>
-                <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td><?php echo $fertilizer['fertilizer_name'];?></td>
+                <td><?php if($fertilizer['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                 <td>
-                    <a href="<?php echo base_url();?>create_crop/index/edit/<?php echo $crop['id'];?>">
+                    <a href="<?php echo base_url();?>create_fertilizer/index/edit/<?php echo $fertilizer['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
                     </a>
                 </td>

@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Create_principal extends ROOT_Controller
+class Create_fertilizer extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("create_principal_model");
+        $this->load->model("create_fertilizer_model");
     }
 
     public function index($task="list",$id=0)
@@ -33,7 +33,7 @@ class Create_principal extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "create_principal/index/list/",$this->create_principal_model->get_total_principals(),4);
+        $config = System_helper::pagination_config(base_url() . "create_fertilizer/index/list/",$this->create_fertilizer_model->get_total_fertilizers(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,11 +42,11 @@ class Create_principal extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['principalInfo'] = $this->create_principal_model->get_principalInfo($page);
-        $data['title']="Crop Principal";
+        $data['fertilizerInfo'] = $this->create_fertilizer_model->get_fertilizerInfo($page);
+        $data['title']="Fertilizer";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_principal/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_fertilizer/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
@@ -59,43 +59,33 @@ class Create_principal extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['principalInfo'] = $this->create_principal_model->get_principal_row($id);
-            $data['title']="Edit Crop Principal (".$data['principalInfo']['principal_name'].")";
+            $data['fertilizerInfo'] = $this->create_fertilizer_model->get_fertilizer_row($id);
+            $data['title']="Edit Fertilizer (".$data['fertilizerInfo']['fertilizer_name'].")";
         }
         else
         {
-            $data['title']="Create New Crop Principal";
+            $data['title']="Create New Fertilizer";
             $data["principalInfo"] = Array(
                 'id' => 0,
-                'principal_name' => '',
-                'principal_code' => '',
-                'contact_person_name' => '',
-                'email' => '',
-                'contact_number' => '',
-                'address' => '',
+                'fertilizer_name' => '',
                 'status' =>$this->config->item('active')
             );
         }
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_principal/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_fertilizer/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
     {
-        $id = $this->input->post("principal_id");
+        $id = $this->input->post("fertilizer_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'principal_name'=>$this->input->post('principal_name'),
-            'principal_code'=>$this->input->post('principal_code'),
-            'contact_person_name'=>$this->input->post('contact_person_name'),
-            'email'=>$this->input->post('email_id'),
-            'contact_number'=>$this->input->post('contact_number'),
-            'address'=>$this->input->post('address'),
-            'status'=>$this->input->post('status'),
+            'fertilizer_name'=>$this->input->post('fertilizer_name'),
+            'status'=>$this->input->post('status')
         );
 
         if(!$this->check_validation())
@@ -111,7 +101,7 @@ class Create_principal extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_principal_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_fertilizer_info',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
             }
@@ -120,7 +110,7 @@ class Create_principal extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_principal_info',$data);
+                Query_helper::add('rnd_fertilizer_info',$data);
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
@@ -132,12 +122,12 @@ class Create_principal extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('principal_name')))
+        if(Validation_helper::validate_empty($this->input->post('fertilizer_name')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('principal_code')))
+        if(Validation_helper::validate_empty($this->input->post('status')))
         {
             return false;
         }

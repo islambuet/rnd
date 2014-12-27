@@ -17,6 +17,7 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
+                <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRINCIPAL_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRINCIPAL_CODE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CONTACT_PERSON"); ?></th>
@@ -28,10 +29,11 @@
 
             <tbody>
             <?php
-            foreach($principalInfo as $principal)
+            foreach($principalInfo as $key=>$principal)
             {
             ?>
             <tr>
+                <td><?php echo $key+1;?></td>
                 <td><?php echo $principal['principal_name'];?></td>
                 <td><?php echo $principal['principal_code'];?></td>
                 <td><?php echo $principal['contact_person_name'];?></td>

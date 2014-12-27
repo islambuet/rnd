@@ -1,6 +1,7 @@
 <?php
 //common
 $lang['SELECT'] = 'Select';
+$lang['SERIAL'] = 'Serial';
 $lang['STATUS'] = 'Status';
 $lang['ACTION'] = 'Action';
 $lang['ACTIVE'] = 'Active';
@@ -42,5 +43,8 @@ $lang['LABEL_CONTACT_PERSON'] = 'Contact Person Name';
 $lang['LABEL_EMAIL'] = 'Email ID';
 $lang['LABEL_CONTACT'] = 'Contact Number';
 $lang['LABEL_ADDRESS'] = 'Address';
+
+//Create Fertilizer
+$lang['LABEL_FERTILIZER_NAME'] = 'Fertilizer Name';
 
 
