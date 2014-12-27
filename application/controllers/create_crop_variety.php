@@ -79,6 +79,7 @@ class Create_crop_variety extends ROOT_Controller
         }
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
+        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/add_edit",$data,true));
 

@@ -50,4 +50,16 @@ $lang['LABEL_FERTILIZER_NAME'] = 'Fertilizer Name';
 //Create Fertilizer
 $lang['LABEL_PESTICIDE_NAME'] = 'Pesticide & Fungicide Name';
 
+//Create Fertilizer
+$lang['LABEL_VARIETY_NAME'] = 'Variety';
+$lang['LABEL_FLOWERING_TYPE'] = 'Flowering Type';
+$lang['LABEL_FRUIT'] = 'Fruit';
+$lang['LABEL_CURT'] = 'Curt';
+$lang['LABEL_ROOT'] = 'Root';
+$lang['LABEL_LEAF'] = 'Leaf';
+$lang['LABEL_CHECK_VARIETY_ARM'] = 'Check Variety ARM';
+$lang['LABEL_COMPETITOR_VARIETY'] = 'Competitor Variety';
+$lang['LABEL_SELECT_SEASON'] = 'Select Season';
+$lang['LABEL_VARIETY_TYPE'] = 'Variety Type';
+
 

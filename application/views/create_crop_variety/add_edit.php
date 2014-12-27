@@ -85,38 +85,36 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="1" > Fruit
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="2" > Curt
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="3" > Root
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="4" > Leaf
+                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_fruit_code');?>"> <?php echo $this->lang->line('LABEL_FRUIT');?>
+                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
+                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
+                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="1" > Check Variety ARM
-                <input type="radio" name="type_code" id="type_code" class=" validate[required]" value="2" > Competitor Variety
+                <input type="radio" name="variety_type" id="variety_type" class=" validate[required]" value="1"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+                <input type="radio" name="variety_type" id="variety_type" class=" validate[required]" value="2"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
             </div>
         </div>
 
-        <div style="" class="row show-grid">
+        <div class="row show-grid" id="season_div">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_WIDTH');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="width" id="width" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_width'];?>" >
-            </div>
-        </div>
-
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEIGHT');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="height" id="height" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_height'];?>" >
+                <?php
+                foreach($seasons as $season)
+                {
+                ?>
+                <input type="radio" name="season" id="season" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?>
+                <?php
+                }
+                ?>
             </div>
         </div>
 
@@ -134,6 +132,7 @@
     </div>
     <div class="clearfix"></div>
 </form>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()
