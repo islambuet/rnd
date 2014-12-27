@@ -38,12 +38,16 @@ $(document).ready(function()
     //binds form submission with ajax
     $(document).on("submit", "form", function(event)
     {
+        event.preventDefault();
+
         var url=$(this).attr("action");
         $.ajax({
             url: url,
             type: 'POST',
             dataType: "JSON",
-            data:$(this).serialize(),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
             success: function (data, status)
             {
 
