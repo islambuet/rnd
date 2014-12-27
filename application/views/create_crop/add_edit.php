@@ -37,7 +37,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_WIDTH');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required]" value="<?php echo $cropInfo['crop_width'];?>" >
+                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['crop_width'];?>" >
             </div>
         </div>
         <div style="" class="row show-grid">
@@ -45,7 +45,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_HEIGHT');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required]" value="<?php echo $cropInfo['crop_height'];?>" >
+                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['crop_height'];?>" >
             </div>
         </div>
 

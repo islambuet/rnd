@@ -58,7 +58,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_WIDTH');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="width" id="width" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_width'];?>" >
+                <input type="text" name="width" id="width" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['product_type_width'];?>" >
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEIGHT');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="height" id="height" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_height'];?>" >
+                <input type="text" name="height" id="height" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['product_type_height'];?>" >
             </div>
         </div>
 
@@ -85,3 +85,12 @@
     </div>
     <div class="clearfix"></div>
 </form>
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $(".form_valid").validationEngine();
+
+    });
+</script>
