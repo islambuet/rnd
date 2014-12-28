@@ -46,4 +46,6 @@ class Create_crop_variety_model extends CI_Model
         return $query->row_array();
     }
 
+
+
 }

@@ -1,0 +1,32 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require APPPATH.'/libraries/root_controller.php';
+
+class Rnd_common extends ROOT_Controller
+{
+    private  $message;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->message="";
+        $this->load->model("rnd_common_model");
+    }
+
+
+    public function dropDown_crop_type_by_name()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $croptypes = $this->rnd_common_model->dropDown_crop_type($crop_id);
+
+        foreach($croptypes as $ctype)
+        {
+            $data['value'] = $ctype['id'];
+            $data['name'] = $ctype['product_type'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#crop_type","html"=>$this->load->view("dropdown",$data,true));
+//        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+        $this->jsonReturn($ajax);
+    }
+
+}

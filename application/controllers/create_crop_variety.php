@@ -167,5 +167,4 @@ class Create_crop_variety extends ROOT_Controller
         return true;
     }
 
-
 }

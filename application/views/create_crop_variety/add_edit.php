@@ -3,9 +3,6 @@
     $data["link_back"]=base_url()."create_crop_variety";
     $this->load->view("action_buttons_edit",$data);
 
-//echo '<pre>';
-//print_r($typeInfo);
-//echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>create_crop_variety/index/save" method="post">
     <div class="row widget">
@@ -40,15 +37,9 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                <select name="crop_type" id="crop_type" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    foreach($crops as $crop)
-                    {?>
-                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
-                    <?php
-                    }
-                    ?>
+
                 </select>
             </div>
         </div>
@@ -97,8 +88,17 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="variety_type" id="variety_type" class=" validate[required]" value="1"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
-                <input type="radio" name="variety_type" id="variety_type" class=" validate[required]" value="2"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_arm" class=" validate[required]" value="1"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+                <input type="radio" name="variety_type" id="variety_type_competitor" class=" validate[required]" value="2"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
+            </div>
+        </div>
+
+        <div class="row show-grid hiddenCompany" id="competitor_div">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="company_name" id="company_name" class="form-control" value="">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 foreach($seasons as $season)
                 {
                 ?>
-                <input type="radio" name="season" id="season" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?>
+                <input type="checkbox" name="season" id="season" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?>
                 <?php
                 }
                 ?>
@@ -133,6 +133,13 @@
     <div class="clearfix"></div>
 </form>
 
+<style>
+    .hiddenCompany
+    {
+       display: none;
+    }
+</style>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()
@@ -140,4 +147,43 @@
         $(".form_valid").validationEngine();
 
     });
+
+    $(document).on("change", "#variety_type_competitor", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").removeClass('hiddenCompany');
+        }
+    });
+
+    $(document).on("change", "#variety_type_arm", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").addClass('hiddenCompany');
+        }
+
+    });
+
+    $(document).on("change", "#crop_select", function(event)
+    {
+        var crop_id = $("#crop_select").val();
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_id:crop_id},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
 </script>
