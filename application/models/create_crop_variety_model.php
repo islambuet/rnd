@@ -10,15 +10,15 @@ class Create_crop_variety_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_typeInfo($page=null)
+    public function get_varietyInfo($page=null)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_product_type_info rti');
-        $this->db->select('rti.*');
-        $this->db->select('cinfo.crop_name crop_name');
+        $this->db->from('rnd_variety_info rvi');
+        $this->db->select('rvi.*');
+        $this->db->select('sinfo.season_name season_name');
 
-        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rti.crop_id', 'left');
+        $this->db->join('rnd_season_info sinfo', 'sinfo.id = rvi.season_id', 'left');
 
 //        $this->db->where('status',1);
         $this->db->limit($limit,$start);
@@ -27,10 +27,10 @@ class Create_crop_variety_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_total_types()
+    public function get_total_varieties()
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_variety_info.*');
+        $this->db->from('rnd_variety_info');
 
 //        $this->db->where('status',1);
         return $this->db->count_all_results();
@@ -38,8 +38,8 @@ class Create_crop_variety_model extends CI_Model
 
     public function get_type_row($id)
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_variety_info.*');
+        $this->db->from('rnd_variety_info');
         $this->db->where('id',$id);
 
         $query = $this->db->get();

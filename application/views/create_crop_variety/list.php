@@ -2,7 +2,7 @@
     $data["link_new"]=base_url()."create_crop_variety/index/add";
     $this->load->view("action_buttons",$data);
 //echo '<pre>';
-//print_r($typeInfo);
+//print_r($varietyInfo);
 //echo '</pre>';
 ?>
 
@@ -17,9 +17,11 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_TYPE_CODE"); ?></th>
+                <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_FLOWERING_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -27,16 +29,51 @@
 
             <tbody>
             <?php
-            foreach($typeInfo as $type)
+            foreach($varietyInfo as $key=>$variety)
             {
             ?>
             <tr>
-                <td><?php echo $type['crop_name'];?></td>
-                <td><?php echo $type['product_type'];?></td>
-                <td><?php echo $type['product_type_code'];?></td>
-                <td><?php if($type['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td><?php echo $key+1;?></td>
+                <td><?php echo $variety['variety_name'];?></td>
                 <td>
-                    <a href="<?php echo base_url();?>create_crop_type/index/edit/<?php echo $type['id'];?>">
+                    <?php
+                    if($variety['variety_type']==$this->config->item('variety_type_arm'))
+                    {
+                        echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');
+                    }
+                    elseif($variety['variety_type']==$this->config->item('variety_type_company'))
+                    {
+                        echo $this->lang->line('LABEL_COMPETITOR_VARIETY');
+                    }
+                    ?>
+                </td>
+
+                <td>
+                    <?php
+                    if($variety['flowering_type_id']==$this->config->item('rnd_fruit_code'))
+                    {
+                        echo $this->lang->line('LABEL_FRUIT');
+                    }
+                    elseif($variety['flowering_type_id']==$this->config->item('rnd_curt_code'))
+                    {
+                        echo $this->lang->line('LABEL_CURT');
+                    }
+                    elseif($variety['flowering_type_id']==$this->config->item('rnd_root_code'))
+                    {
+                        echo $this->lang->line('LABEL_ROOT');
+                    }
+                    elseif($variety['flowering_type_id']==$this->config->item('rnd_leaf_code'))
+                    {
+                        echo $this->lang->line('LABEL_LEAF');
+                    }
+                    ?>
+                </td>
+
+                <td><?php echo $variety['season_name'];?></td>
+
+                <td><?php if($variety['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td>
+                    <a href="<?php echo base_url();?>create_crop_variety/index/edit/<?php echo $variety['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
                     </a>
                 </td>

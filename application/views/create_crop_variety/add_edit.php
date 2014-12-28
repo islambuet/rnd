@@ -29,7 +29,7 @@
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="type_id" id="type_id" value="<?php echo $typeInfo['id'];?>"/>
+            <input type="hidden" name="variety_id" id="variety_id" value="<?php echo $typeInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -39,7 +39,6 @@
             <div class="col-sm-4 col-xs-8">
                 <select name="crop_type" id="crop_type" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-
                 </select>
             </div>
         </div>
@@ -49,12 +48,12 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                <select name="principal_id" id="principal_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($crops as $crop)
+                    foreach($principals as $principal)
                     {?>
-                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
+                        <option value="<?php echo $principal['id']?>"><?php echo $principal['principal_name'];?></option>
                     <?php
                     }
                     ?>
@@ -67,7 +66,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="type_code" id="type_code" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_code'];?>" >
+                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="" >
             </div>
         </div>
 
@@ -76,10 +75,10 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_fruit_code');?>"> <?php echo $this->lang->line('LABEL_FRUIT');?>
-                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
-                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
-                <input type="radio" name="type_code" id="type_code" class="validate[required]" value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
+                <input type="radio" name="flowering_type" id="flowering_type" class="validate[required]" checked value="<?php echo $this->config->item('rnd_fruit_code');?>"> <?php echo $this->lang->line('LABEL_FRUIT');?>
+                <input type="radio" name="flowering_type" id="flowering_type" class="validate[required]" value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
+                <input type="radio" name="flowering_type" id="flowering_type" class="validate[required]" value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
+                <input type="radio" name="flowering_type" id="flowering_type" class="validate[required]" value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
             </div>
         </div>
 
@@ -88,8 +87,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="variety_type" id="variety_type_arm" class=" validate[required]" value="1"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
-                <input type="radio" name="variety_type" id="variety_type_competitor" class=" validate[required]" value="2"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_arm" class=" validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+                <input type="radio" name="variety_type" id="variety_type_competitor" class=" validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
             </div>
         </div>
 
@@ -111,7 +110,7 @@
                 foreach($seasons as $season)
                 {
                 ?>
-                <input type="checkbox" name="season" id="season" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?>
+                    <input type="checkbox" name="season[]" id="season" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?>
                 <?php
                 }
                 ?>

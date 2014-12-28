@@ -35,7 +35,7 @@ class Create_crop_variety extends ROOT_Controller
     public function rnd_list($page=0)
     {
 
-        $config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_crop_variety_model->get_total_types(),4);
+        $config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_crop_variety_model->get_total_varieties(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -44,7 +44,7 @@ class Create_crop_variety extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['typeInfo'] = $this->create_crop_variety_model->get_typeInfo($page);
+        $data['varietyInfo'] = $this->create_crop_variety_model->get_varietyInfo($page);
         $data['title']="Crop Variety List";
 
         $ajax['status']=true;
@@ -79,6 +79,7 @@ class Create_crop_variety extends ROOT_Controller
         }
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
+        $data['principals'] = Query_helper::get_info('rnd_principal_info', '*', array());
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/add_edit",$data,true));
@@ -88,15 +89,18 @@ class Create_crop_variety extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("type_id");
+        $id = $this->input->post("variety_id");
         $user = User_helper::get_user();
 
+        $seasonPost = $this->input->post('season');
+
         $data = Array(
+            'principal_id'=>$this->input->post('principal_id'),
+            'flowering_type_id'=>$this->input->post('flowering_type'),
             'crop_id'=>$this->input->post('crop_select'),
-            'product_type'=>$this->input->post('product_type'),
-            'product_type_code'=>$this->input->post('type_code'),
-            'product_type_height'=>$this->input->post('height'),
-            'product_type_width'=>$this->input->post('width'),
+            'product_type_id'=>$this->input->post('crop_type'),
+            'variety_name'=>$this->input->post('variety_name'),
+            'variety_type'=>$this->input->post('variety_type'),
             'status'=>$this->input->post('status'),
         );
 
@@ -110,19 +114,29 @@ class Create_crop_variety extends ROOT_Controller
         {
             if($id>0)
             {
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
+                for($i=0; $i<sizeof($seasonPost); $i++)
+                {
+                    $data['modified_by'] = $user->user_id;
+                    $data['modification_date'] = time();
+                    $data['season_id'] = $seasonPost[$i];
 
-                Query_helper::update('rnd_product_type_info',$data,array("id = ".$id));
+                    Query_helper::update('rnd_variety_info',$data,array("id = ".$id));
+                }
+
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
             }
             else
             {
-                $data['created_by'] = $user->user_id;
-                $data['creation_date'] = time();
+                for($i=0; $i<sizeof($seasonPost); $i++)
+                {
+                    $data['created_by'] = $user->user_id;
+                    $data['creation_date'] = time();
+                    $data['season_id'] = $seasonPost[$i];
 
-                Query_helper::add('rnd_product_type_info',$data);
+                    Query_helper::add('rnd_variety_info',$data);
+                }
+
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
@@ -134,27 +148,32 @@ class Create_crop_variety extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_select')))
+        if(!Validation_helper::validate_numeric($this->input->post('principal_id')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('product_type')))
+        if(!Validation_helper::validate_numeric($this->input->post('flowering_type')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('type_code')))
+        if(!Validation_helper::validate_numeric($this->input->post('crop_select')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('height')))
+        if(!Validation_helper::validate_numeric($this->input->post('crop_type')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('width')))
+        if(Validation_helper::validate_empty($this->input->post('variety_name')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('variety_type')))
         {
             return false;
         }

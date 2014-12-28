@@ -60,6 +60,7 @@ $lang['LABEL_LEAF'] = 'Leaf';
 $lang['LABEL_CHECK_VARIETY_ARM'] = 'Check Variety ARM';
 $lang['LABEL_COMPETITOR_VARIETY'] = 'Competitor Variety';
 $lang['LABEL_SELECT_SEASON'] = 'Select Season';
+$lang['LABEL_SEASON'] = 'Season';
 $lang['LABEL_VARIETY_TYPE'] = 'Variety Type';
 $lang['LABEL_COMPANY_NAME'] = 'Company Name';
 
