@@ -7,9 +7,11 @@ $lang['ACTION'] = 'Action';
 $lang['ACTIVE'] = 'Active';
 $lang['INACTIVE'] = 'In-active';
 $lang['MSG_SAVED_SUCCESS'] = 'Successfully Saved';
+$lang['MSG_NOT_SAVED_SUCCESS'] = 'Not Saved!';
 $lang['MSG_INVALID_INPUT'] = 'Invalid data entry';
 $lang['MSG_CREATE_SUCCESS'] = 'Successfully Saved Data!';
 $lang['MSG_UPDATE_SUCCESS'] = 'Successfully Updated!';
+$lang['MSG_NOT_UPDATED_SUCCESS'] = 'Not Updated!';
 
 //login
 $lang['MSG_USERNAME_PASSWORD_INVALID'] = 'Username and Password did not match or Invalid';

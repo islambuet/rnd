@@ -49,22 +49,12 @@ class Create_crop_variety_model extends CI_Model
 
     public function get_seasons($id)
     {
-        $this->db->select('rnd_variety_info.*');
-        $this->db->from('rnd_variety_info');
-        $this->db->where('id',$id);
+        $this->db->select('rnd_variety_season.*');
+        $this->db->from('rnd_variety_season');
+        $this->db->where('variety_id',$id);
 
         $query = $this->db->get();
-        $result = $query->row_array();
-
-        $this->db->select('season_id');
-        $this->db->from('rnd_variety_info');
-        $this->db->where('crop_id',$result['crop_id']);
-        $this->db->where('variety_name',$result['variety_name']);
-        $this->db->where('variety_type',$result['variety_type']);
-        $this->db->where('flowering_type_id',$result['flowering_type_id']);
-        $query2 = $this->db->get();
-        $result2 = $query2->result_array();
-        return $result2;
+        return $result = $query->result_array();
     }
 
     public function get_product_type($crop_id)
@@ -77,6 +67,10 @@ class Create_crop_variety_model extends CI_Model
         return $query->result_array();
     }
 
+    public function delete_variery_season($id)
+    {
+        $this->db->delete('rnd_variety_season', array('variety_id' => $id));
+    }
 
 
 }

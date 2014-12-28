@@ -112,6 +112,11 @@ class Create_crop_variety extends ROOT_Controller
             'status'=>$this->input->post('status'),
         );
 
+        $seasonData = Array(
+            'crop_id'=>$this->input->post('crop_select'),
+            'product_type_id'=>$this->input->post('crop_type')
+        );
+
         if(!$this->check_validation())
         {
             $ajax['status']=false;
@@ -122,30 +127,65 @@ class Create_crop_variety extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+                Query_helper::update('rnd_variety_info',$data,array("id = ".$id));
+                $this->create_crop_variety_model->delete_variery_season($id);
+
                 for($i=0; $i<sizeof($seasonPost); $i++)
                 {
-                    $data['modified_by'] = $user->user_id;
-                    $data['modification_date'] = time();
-                    $data['season_id'] = $seasonPost[$i];
-
-                    Query_helper::update('rnd_variety_info',$data,array("id = ".$id));
+                    $seasonData['variety_id'] = $id;
+                    $seasonData['created_by'] = $user->user_id;
+                    $seasonData['creation_date'] = time();
+                    $seasonData['season_id'] = $seasonPost[$i];
+                    Query_helper::add('rnd_variety_season',$seasonData);
                 }
 
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
 
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
+                $data['created_by'] = $user->user_id;
+                $data['creation_date'] = time();
+
+                Query_helper::add('rnd_variety_info',$data);
+
+                $last_id = $this->db->insert_id();
+
                 for($i=0; $i<sizeof($seasonPost); $i++)
                 {
-                    $data['created_by'] = $user->user_id;
-                    $data['creation_date'] = time();
-                    $data['season_id'] = $seasonPost[$i];
-
-                    Query_helper::add('rnd_variety_info',$data);
+                    $seasonData['variety_id'] = $last_id;
+                    $seasonData['season_id'] = $seasonPost[$i];
+                    $seasonData['created_by'] = $user->user_id;
+                    $seasonData['creation_date'] = time();
+                    Query_helper::add('rnd_variety_season',$seasonData);
                 }
 
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 

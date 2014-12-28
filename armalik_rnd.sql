@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2014-12-24 18:09:45
+Date: 2014-12-28 18:22:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -590,11 +590,14 @@ CREATE TABLE `rnd_fertilizer_info` (
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_fertilizer_info
 -- ----------------------------
+INSERT INTO `rnd_fertilizer_info` VALUES ('1', 'Euria', '1', 'UI-000001', '1419675354', 'UI-000001', '1419678814');
+INSERT INTO `rnd_fertilizer_info` VALUES ('2', 'Phosphate', '1', 'UI-000001', '1419675447', 'UI-000001', '1419677802');
+INSERT INTO `rnd_fertilizer_info` VALUES ('3', 'Potassium', '1', 'UI-000001', '1419675463', 'UI-000001', '1419680235');
 
 -- ----------------------------
 -- Table structure for `rnd_fertilizer_requirement_info`
@@ -935,11 +938,14 @@ CREATE TABLE `rnd_pesticide_fungicide_info` (
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_pesticide_fungicide_info
 -- ----------------------------
+INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('1', 'Abamectin', '1', 'UI-000001', '1419679767', 'UI-000001', '1419680543');
+INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('2', 'Bachmedesh', '1', 'UI-000001', '1419679806', null, null);
+INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('3', 'Kadethrin', '1', 'UI-000001', '1419679824', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_plot_info`
@@ -1015,7 +1021,7 @@ CREATE TABLE `rnd_principal_info` (
 -- ----------------------------
 -- Records of rnd_principal_info
 -- ----------------------------
-INSERT INTO `rnd_principal_info` VALUES ('1', 'Principal Name11', 'Code11', 'Person11', 'email1@email.com', '01718564523', 'Address1\r\n', '1', 'UI-000001', '1419414306', 'UI-000001', '1419416482');
+INSERT INTO `rnd_principal_info` VALUES ('1', 'Principal Name11', 'Code11', 'Person11', 'email1@email.com', '01718564523', 'Address1\r\n', '1', 'UI-000001', '1419414306', 'UI-000001', '1419519456');
 INSERT INTO `rnd_principal_info` VALUES ('2', 'Principal Name2', 'Code2', 'Person2', 'email@email.com', '01712345671', ' Address ', '1', 'UI-000001', '1419414437', null, null);
 INSERT INTO `rnd_principal_info` VALUES ('3', 'Principal3', 'Code3', 'Person3', 'email@email.com', '01718675641', ' Address ', '1', 'UI-000001', '1419414480', null, null);
 
@@ -1039,7 +1045,7 @@ CREATE TABLE `rnd_product_type_info` (
   UNIQUE KEY `id` (`id`),
   KEY `crop_id` (`crop_id`),
   CONSTRAINT `rnd_product_type_info_ibfk_1` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_product_type_info
@@ -1047,6 +1053,7 @@ CREATE TABLE `rnd_product_type_info` (
 INSERT INTO `rnd_product_type_info` VALUES ('1', '4', 'Type11', 'Code11', '231', '451', '1', 'UI-000001', '1419405999', 'UI-000001', '1419409332');
 INSERT INTO `rnd_product_type_info` VALUES ('2', '5', 'Type2', 'Code2', '89', '45', '1', 'UI-000001', '1419406090', null, null);
 INSERT INTO `rnd_product_type_info` VALUES ('3', '3', 'Type3', 'Code3', '43', '12', '1', 'UI-000001', '1419406111', null, null);
+INSERT INTO `rnd_product_type_info` VALUES ('4', '5', 'Type4', 'Code4', '45', '23', '1', 'UI-000001', '1419748051', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_sample_delivery_date`
@@ -1120,11 +1127,14 @@ CREATE TABLE `rnd_season_info` (
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_season_info
 -- ----------------------------
+INSERT INTO `rnd_season_info` VALUES ('1', 'Season 1', 'January', 'April', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('2', 'Season 2', 'April', 'August', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('3', 'Season 3', 'August', 'December', '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_seed_bed_info`
@@ -1176,12 +1186,12 @@ DROP TABLE IF EXISTS `rnd_variety_info`;
 CREATE TABLE `rnd_variety_info` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `principal_id` int(10) DEFAULT NULL,
-  `flowering_type_id` int(10) DEFAULT NULL,
-  `season_id` int(10) NOT NULL,
+  `flowering_type_id` int(10) DEFAULT NULL COMMENT '1=fruit, 2=curt, 3=root, 4=leaf',
   `crop_id` int(10) DEFAULT NULL,
   `product_type_id` int(10) DEFAULT NULL,
   `variety_name` varchar(50) DEFAULT NULL,
-  `variety_type` int(1) NOT NULL,
+  `variety_type` int(1) NOT NULL COMMENT '1=arm variety, 2=company',
+  `company_name` varchar(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
@@ -1190,16 +1200,39 @@ CREATE TABLE `rnd_variety_info` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `flowering_type_id` (`flowering_type_id`),
-  KEY `season_id` (`season_id`),
   KEY `product_type_id` (`product_type_id`),
   KEY `principal_id` (`principal_id`) USING BTREE,
   KEY `crop_id` (`crop_id`) USING BTREE,
   CONSTRAINT `rnd_variety_info_ibfk_1` FOREIGN KEY (`principal_id`) REFERENCES `rnd_principal_info` (`id`),
-  CONSTRAINT `rnd_variety_info_ibfk_2` FOREIGN KEY (`flowering_type_id`) REFERENCES `rnd_flowering_type_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_3` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_4` FOREIGN KEY (`product_type_id`) REFERENCES `rnd_product_type_info` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_variety_info
 -- ----------------------------
+INSERT INTO `rnd_variety_info` VALUES ('10', '1', '4', '5', '2', 'V0001111', '1', 'SoftBD', '1', 'UI-000001', '1419768116', 'UI-000001', '1419769338');
+
+-- ----------------------------
+-- Table structure for `rnd_variety_season`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_variety_season`;
+CREATE TABLE `rnd_variety_season` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `variety_id` int(11) NOT NULL,
+  `crop_id` int(11) NOT NULL,
+  `product_type_id` int(11) NOT NULL,
+  `season_id` int(11) NOT NULL,
+  `created_by` varchar(11) DEFAULT NULL,
+  `creation_date` int(11) DEFAULT NULL,
+  `modified_by` varchar(11) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_variety_season
+-- ----------------------------
+INSERT INTO `rnd_variety_season` VALUES ('14', '10', '5', '2', '1', 'UI-000001', '1419769338', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('15', '10', '5', '2', '2', 'UI-000001', '1419769338', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('16', '10', '5', '2', '3', 'UI-000001', '1419769338', null, null);
