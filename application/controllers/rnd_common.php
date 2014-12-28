@@ -15,12 +15,12 @@ class Rnd_common extends ROOT_Controller
     public function dropDown_crop_type_by_name()
     {
         $crop_id = $this->input->post('crop_id');
-        $croptypes = $this->rnd_common_model->dropDown_crop_type($crop_id);
+        $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
 
-        foreach($croptypes as $ctype)
+        foreach($data['details'] as $ctype)
         {
-            $data['value'] = $ctype['id'];
-            $data['name'] = $ctype['product_type'];
+            $data['value'][] = $ctype['id'];
+            $data['name'][] = $ctype['product_type'];
         }
 
         $ajax['status']=true;

@@ -2,4 +2,12 @@
 ?>
 
 <option value=""><?php echo $this->lang->line('SELECT');?></option>
-<option value="<?php echo $value;?>"><?php echo $name;?></option>
+<?php
+    for($i=0;$i<sizeof($value);$i++)
+    {
+?>
+    <option value="<?php echo $value[$i];?>"><?php echo $name[$i];?></option>
+<?php
+    }
+?>
+
