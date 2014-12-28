@@ -61,20 +61,27 @@ class Create_crop_variety extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['title']="Edit Crop Variety";
-            $data['typeInfo'] = $this->create_crop_variety_model->get_type_row($id);
+            $data['varietyInfo'] = $this->create_crop_variety_model->get_type_row($id);
+            $data['cropTypes'] = $this->create_crop_variety_model->get_product_type($data['varietyInfo']['crop_id']);
+            $data['seasonInfo'] = $this->create_crop_variety_model->get_seasons($id);
+            $data['title']="Edit Crop Variety (".$data['varietyInfo']['variety_name'].")";
         }
         else
         {
+            $data['seasonInfo'] = Array();
+            $data['cropTypes'] = Array();
+
             $data['title']="Add Crop Variety";
-            $data["typeInfo"] = Array(
+            $data["varietyInfo"] = Array(
                 'id' => 0,
+                'principal_id' => '',
+                'flowering_type_id' => '',
                 'crop_id' => '',
-                'product_type' => '',
-                'product_type_code' => '',
-                'product_type_height' => '',
-                'product_type_width' => '',
-                'status' => ''
+                'product_type_id' => 0,
+                'variety_name' => '',
+                'variety_type' => '',
+                'company_name' => '',
+                'status' => 1
             );
         }
 
@@ -101,6 +108,7 @@ class Create_crop_variety extends ROOT_Controller
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),
             'variety_type'=>$this->input->post('variety_type'),
+            'company_name'=>$this->input->post('company_name'),
             'status'=>$this->input->post('status'),
         );
 

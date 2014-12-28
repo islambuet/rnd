@@ -18,10 +18,10 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_FLOWERING_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -34,6 +34,7 @@
             ?>
             <tr>
                 <td><?php echo $key+1;?></td>
+                <td><?php echo $variety['crop_name'];?></td>
                 <td><?php echo $variety['variety_name'];?></td>
                 <td>
                     <?php
@@ -68,8 +69,6 @@
                     }
                     ?>
                 </td>
-
-                <td><?php echo $variety['season_name'];?></td>
 
                 <td><?php if($variety['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                 <td>

@@ -16,9 +16,10 @@ class Create_crop_variety_model extends CI_Model
         $start=$page*$limit;
         $this->db->from('rnd_variety_info rvi');
         $this->db->select('rvi.*');
-        $this->db->select('sinfo.season_name season_name');
+        $this->db->select('cinfo.crop_name crop_name');
 
-        $this->db->join('rnd_season_info sinfo', 'sinfo.id = rvi.season_id', 'left');
+        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rvi.crop_id', 'left');
+        $this->db->group_by('variety_name');
 
 //        $this->db->where('status',1);
         $this->db->limit($limit,$start);
@@ -44,6 +45,36 @@ class Create_crop_variety_model extends CI_Model
 
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_seasons($id)
+    {
+        $this->db->select('rnd_variety_info.*');
+        $this->db->from('rnd_variety_info');
+        $this->db->where('id',$id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        $this->db->select('season_id');
+        $this->db->from('rnd_variety_info');
+        $this->db->where('crop_id',$result['crop_id']);
+        $this->db->where('variety_name',$result['variety_name']);
+        $this->db->where('variety_type',$result['variety_type']);
+        $this->db->where('flowering_type_id',$result['flowering_type_id']);
+        $query2 = $this->db->get();
+        $result2 = $query2->result_array();
+        return $result2;
+    }
+
+    public function get_product_type($crop_id)
+    {
+        $this->db->select('rnd_product_type_info.*');
+        $this->db->from('rnd_product_type_info');
+        $this->db->where('crop_id',$crop_id);
+
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 
