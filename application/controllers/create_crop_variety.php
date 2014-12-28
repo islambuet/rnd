@@ -108,9 +108,17 @@ class Create_crop_variety extends ROOT_Controller
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),
             'variety_type'=>$this->input->post('variety_type'),
-            'company_name'=>$this->input->post('company_name'),
             'status'=>$this->input->post('status'),
         );
+
+        if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
+        {
+            $data['company_name'] = '';
+        }
+        else
+        {
+            $data['company_name'] = $this->input->post('company_name');
+        }
 
         $seasonData = Array(
             'crop_id'=>$this->input->post('crop_select'),

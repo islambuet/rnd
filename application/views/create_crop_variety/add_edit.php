@@ -107,7 +107,7 @@ foreach($seasonInfo as $result)
             </div>
         </div>
 
-        <div class="row show-grid hiddenCompany" id="competitor_div">
+        <div class="row show-grid <?php if($varietyInfo['variety_type']!=$this->config->item('variety_type_company')){ echo 'hiddenCompany';}?>" id="competitor_div">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
