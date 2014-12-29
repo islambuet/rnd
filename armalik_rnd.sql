@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2014-12-28 18:22:43
+Date: 2014-12-29 16:47:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -877,6 +877,28 @@ CREATE TABLE `rnd_fruit_curd_report` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `rnd_history`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_history`;
+CREATE TABLE `rnd_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `table_id` int(11) NOT NULL,
+  `table_name` varchar(50) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `date` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_history
+-- ----------------------------
+INSERT INTO `rnd_history` VALUES ('1', '13', 'rnd_variety_info', '{\"principal_id\":\"2\",\"flowering_type_id\":\"2\",\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_name\":\"V0004\",\"variety_type\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"created_by\":\"UI-000001\",\"creation_date\":1419837484}', 'UI-000001', '1419837484');
+INSERT INTO `rnd_history` VALUES ('2', '40', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":1,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1419837484}', 'UI-000001', '1419837484');
+INSERT INTO `rnd_history` VALUES ('3', '41', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":1,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1419837484}', 'UI-000001', '1419837484');
+INSERT INTO `rnd_history` VALUES ('4', '42', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":1,\"season_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1419837484}', 'UI-000001', '1419837484');
+
+-- ----------------------------
 -- Table structure for `rnd_labor_activity_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `rnd_labor_activity_info`;
@@ -1206,12 +1228,15 @@ CREATE TABLE `rnd_variety_info` (
   CONSTRAINT `rnd_variety_info_ibfk_1` FOREIGN KEY (`principal_id`) REFERENCES `rnd_principal_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_3` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_4` FOREIGN KEY (`product_type_id`) REFERENCES `rnd_product_type_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_variety_info
 -- ----------------------------
-INSERT INTO `rnd_variety_info` VALUES ('10', '1', '4', '5', '2', 'V0001111', '1', 'SoftBD', '1', 'UI-000001', '1419768116', 'UI-000001', '1419769338');
+INSERT INTO `rnd_variety_info` VALUES ('10', '1', '2', '5', '2', 'V0001', '1', '', '1', 'UI-000001', '1419768116', 'UI-000001', '1419773582');
+INSERT INTO `rnd_variety_info` VALUES ('11', '1', '3', '4', '1', 'V0002', '2', 'Soft-BD', '1', 'UI-000001', '1419771710', 'UI-000001', '1419773608');
+INSERT INTO `rnd_variety_info` VALUES ('12', '3', '2', '3', '3', 'V0003', '1', '', '1', 'UI-000001', '1419828140', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('13', '2', '2', '4', '1', 'V0004', '1', '', '1', 'UI-000001', '1419837484', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_variety_season`
@@ -1228,11 +1253,18 @@ CREATE TABLE `rnd_variety_season` (
   `modified_by` varchar(11) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_variety_season
 -- ----------------------------
-INSERT INTO `rnd_variety_season` VALUES ('14', '10', '5', '2', '1', 'UI-000001', '1419769338', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('15', '10', '5', '2', '2', 'UI-000001', '1419769338', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('16', '10', '5', '2', '3', 'UI-000001', '1419769338', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('33', '10', '5', '2', '1', 'UI-000001', '1419773582', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('34', '10', '5', '2', '3', 'UI-000001', '1419773582', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('35', '11', '4', '1', '1', 'UI-000001', '1419773608', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('36', '11', '4', '1', '2', 'UI-000001', '1419773608', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('37', '12', '3', '3', '1', 'UI-000001', '1419828140', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('38', '12', '3', '3', '2', 'UI-000001', '1419828140', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('39', '12', '3', '3', '3', 'UI-000001', '1419828140', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('40', '1', '4', '1', '1', 'UI-000001', '1419837484', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('41', '1', '4', '1', '2', 'UI-000001', '1419837484', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('42', '1', '4', '1', '3', 'UI-000001', '1419837484', null, null);
