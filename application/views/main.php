@@ -10,10 +10,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/validationEngine.jquery.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/css_calendar/jscal2.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/css_calendar/border-radius.css" />
 </head>
 <body>
     <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/js_calendar/jscal2.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/js_calendar/lang/en.js"></script>
     <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
     <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
