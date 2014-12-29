@@ -67,7 +67,7 @@ class Create_crop_variety_model extends CI_Model
         return $query->result_array();
     }
 
-    public function delete_variery_season($id)
+    public function delete_variety_season($id)
     {
         $this->db->delete('rnd_variety_season', array('variety_id' => $id));
     }

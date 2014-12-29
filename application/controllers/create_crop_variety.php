@@ -141,7 +141,7 @@ class Create_crop_variety extends ROOT_Controller
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_variety_info',$data,array("id = ".$id));
-                $this->create_crop_variety_model->delete_variery_season($id);
+                $this->create_crop_variety_model->delete_variety_season($id);
 
                 for($i=0; $i<sizeof($seasonPost); $i++)
                 {
