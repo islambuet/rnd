@@ -5,27 +5,8 @@ class Query_helper
     {
         $CI =& get_instance();
         $CI->db->insert($tablename, $data);
-        $user = User_helper::get_user();
-
-        if($CI->db->affected_rows() >0)
-        {
-            $id = $CI->db->insert_id();
-
-            $historyData = Array(
-                'table_id'=>$id,
-                'table_name'=>$tablename,
-                'data'=>json_encode($data),
-                'user_id'=>$user->user_id,
-                'date'=>time()
-            );
-
-            $CI->db->insert('rnd_history', $historyData);
-            return $id;
-        }
-        else
-        {
-            return false;
-        }
+        $id = $CI->db->insert_id();
+        return ($CI->db->affected_rows() >0) ? $id : false;
     }
 
     public static  function update($tablename,$data,$conditions)
