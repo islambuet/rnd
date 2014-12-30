@@ -75,6 +75,7 @@ class General_sample_delivery extends ROOT_Controller
             $data['title']="New Sample Delivery";
         }
 
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("general_sample_delivery/add_edit",$data,true));
 

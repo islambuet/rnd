@@ -103,7 +103,7 @@
                         </td>
 
                         <td style="width:100px;">
-                            <input type="text" name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]" value="" >
+                            <input type="text" name="sowing_date[]" id="sowing_date" class="form-control validate[required]" value="" >
                         </td>
 
                         <td style="width:100px;">
@@ -111,13 +111,16 @@
                         </td>
 
                         <td style="width:150px;">
-                            <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                            <select name="crop_id[]" id="crop_id" class="form-control validate[required]">
                                 <option value=""><?php echo $this->lang->line('SELECT')?></option>
+                                <?php foreach($crops as $crop){?>
+                                <option value="<?php echo $crop['id']?>"><?php echo $crop['crop_name']?></option>
+                                <?php }?>
                             </select>
                         </td>
 
                         <td>
-                            <a class="btn" style=""><?php echo $this->lang->line('LABEL_DELETE');?></a>
+                            <a class="btn btn-primary btn-rect" style=""><?php echo $this->lang->line('LABEL_DELETE');?></a>
                         </td>
                     </tr>
                 </table>
@@ -125,10 +128,8 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
-                <div class="col-lg-12">
-                    <input type="button" onclick="" class="btn btn-primary btn-rect pull-right col-lg-pull-1" value="<?php echo $this->lang->line('LABEL_ADD_MORE');?>">
-                </div>
+            <div class="col-lg-10" style="margin-left: 20px;">
+                <input type="button" onclick="RowIncrement()" class="btn btn-primary btn-rect pull-right" value="<?php echo $this->lang->line('LABEL_ADD_MORE');?>">
             </div>
         </div>
 
@@ -152,4 +153,57 @@
         $(".form_valid").validationEngine();
 
     });
+
+    var ExId = 0;
+    function RowIncrement()
+    {
+        //        alert('got');
+        var table = document.getElementById('adding_elements');
+
+        var rowCount = table.rows.length;
+        //        alert(rowCount);
+
+        var row = table.insertRow(rowCount);
+        row.id = "T" + ExId;
+        row.className = "table";
+        //    alert(row.id);
+        var cell1 = row.insertCell(0);
+        cell1.innerHTML = "<label class='control-label pull-right' style='font-size:12px;'><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style='color:#FF0000'>*</span></label>";
+        var cell1 = row.insertCell(1);
+        cell1.innerHTML = "<input type='text' name='sowing_date[]' id='sowing_date" + ExId + "' class='form-control'/>" +
+            "<input type='hidden' id='row_id' name='row_id[]' value=''/>";
+        var cell1 = row.insertCell(2);
+        cell1.innerHTML = "<label class='control-label pull-right' style='font-size:12px;'><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style='color:#FF0000'>*</span></label>";
+        var cell1 = row.insertCell(3);
+        cell1.innerHTML = "<select name='crop_id[]' id='crop_id" + ExId + "' class='form-control'>\n\
+        <option value=''><?php echo $this->lang->line('SELECT');?></option>\n\
+        <?php
+        foreach ($crops as $crop)
+            echo "<option value='" . $crop['id']."'>" . $crop['crop_name'] . "</option>";
+        ?>";
+        cell1 = row.insertCell(4);
+        cell1.innerHTML = "<a class='btn btn-primary btn-rect' data-original-title='' onclick=\"RowDecrement('adding_elements','T" + ExId + "')\" ><?php echo $this->lang->line('LABEL_DELETE');?></a>";
+        cell1.style.cursor = "default";
+        document.getElementById("sowing_date" + ExId).focus();
+        ExId = ExId + 1;
+        //    $("#row_id").tableDnD();
+    }
+
+
+    function RowDecrement(adding_elements, id)
+    {
+        try {
+            var table = document.getElementById(adding_elements);
+            for (var i = 1; i < table.rows.length; i++)
+            {
+                if (table.rows[i].id == id)
+                {
+                    table.deleteRow(i);
+                }
+            }
+        }
+        catch (e) {
+            alert(e);
+        }
+    }
 </script>
