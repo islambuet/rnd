@@ -30,4 +30,12 @@ class Rnd_common extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
+    public function load_variety_by_season()
+    {
+        $season = $this->input->post('season_id');
+        $varieties = $this->rnd_common_model->get_variety_by_season($season);
+//        return $varieties;
+        $this->jsonReturn($varieties);
+    }
+
 }

@@ -171,9 +171,7 @@ class Create_crop_variety extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_variety_info',$data);
-
-                $last_id = $this->db->insert_id();
+                $last_id = Query_helper::add('rnd_variety_info',$data);
 
                 for($i=0; $i<sizeof($seasonPost); $i++)
                 {

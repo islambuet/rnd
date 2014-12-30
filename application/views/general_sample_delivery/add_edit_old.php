@@ -97,23 +97,42 @@
             </div>
         </div>
 
-        <div class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control validate[required]" value="" >
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" id="adding_elements">
+                    <tr>
+                        <td width="300px">
+                            <label class="control-label pull-right" style="font-size: 12px;"><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
+                        </td>
+
+                        <td style="width:100px;">
+                            <input type="text" name="sowing_date[]" id="sowing_date" class="form-control validate[required]" value="" >
+                        </td>
+
+                        <td style="width:100px;">
+                            <label class="control-label pull-right" style="font-size: 12px;"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
+                        </td>
+
+                        <td style="width:150px;">
+                            <select name="crop_id[]" id="crop_id" class="form-control validate[required]">
+                                <option value=""><?php echo $this->lang->line('SELECT')?></option>
+                                <?php foreach($crops as $crop){?>
+                                <option value="<?php echo $crop['id']?>"><?php echo $crop['crop_name']?></option>
+                                <?php }?>
+                            </select>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-primary btn-rect" style=""><?php echo $this->lang->line('LABEL_DELETE');?></a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
-        <div class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_VARIETY');?></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <textarea name="crop_variety" id="crop_variety" class="form-control" disabled>
-
-                </textarea>
+        <div class="row">
+            <div class="col-lg-10" style="margin-left: 20px;">
+                <input type="button" onclick="RowIncrement()" class="btn btn-primary btn-rect pull-right" value="<?php echo $this->lang->line('LABEL_ADD_MORE');?>">
             </div>
         </div>
 
@@ -138,32 +157,58 @@
 
     });
 
-    $(document).on("change", "#select_season", function(event)
+    var ExId = 0;
+    function RowIncrement()
     {
-        var season_id = $("#select_season").val();
+        //        alert('got');
+        var table = document.getElementById('adding_elements');
 
-        $.ajax({
-            url: base_url+"rnd_common/load_variety_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id},
-            success: function (data, status)
+        var rowCount = table.rows.length;
+        //        alert(rowCount);
+
+        var row = table.insertRow(rowCount);
+        row.id = "T" + ExId;
+        row.className = "table";
+        //    alert(row.id);
+        var cell1 = row.insertCell(0);
+        cell1.innerHTML = "<label class='control-label pull-right' style='font-size:12px;'><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style='color:#FF0000'>*</span></label>";
+        var cell1 = row.insertCell(1);
+        cell1.innerHTML = "<input type='text' name='sowing_date[]' id='sowing_date" + ExId + "' class='form-control'/>" +
+            "<input type='hidden' id='row_id' name='row_id[]' value=''/>";
+        var cell1 = row.insertCell(2);
+        cell1.innerHTML = "<label class='control-label pull-right' style='font-size:12px;'><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style='color:#FF0000'>*</span></label>";
+        var cell1 = row.insertCell(3);
+        cell1.innerHTML = "<select name='crop_id[]' id='crop_id" + ExId + "' class='form-control'>\n\
+        <option value=''><?php echo $this->lang->line('SELECT');?></option>\n\
+        <?php
+        foreach ($crops as $crop)
+            echo "<option value='" . $crop['id']."'>" . $crop['crop_name'] . "</option>";
+        ?>";
+        cell1 = row.insertCell(4);
+        cell1.innerHTML = "<a class='btn btn-primary btn-rect' data-original-title='' onclick=\"RowDecrement('adding_elements','T" + ExId + "')\" ><?php echo $this->lang->line('LABEL_DELETE');?></a>";
+        cell1.style.cursor = "default";
+        document.getElementById("sowing_date" + ExId).focus();
+        ExId = ExId + 1;
+        //    $("#row_id").tableDnD();
+    }
+
+
+    function RowDecrement(adding_elements, id)
+    {
+        try {
+            var table = document.getElementById(adding_elements);
+            for (var i = 1; i < table.rows.length; i++)
             {
-                var varieties = '';
-                for(var i=0;i<data.length;i++)
+                if (table.rows[i].id == id)
                 {
-                    varieties += data[i]['variety_name'];
+                    table.deleteRow(i);
                 }
-                $("#crop_variety").html(varieties);
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
             }
-        });
-
-    });
+        }
+        catch (e) {
+            alert(e);
+        }
+    }
 
     Calendar.setup({
         inputField: "destined_delivery_date",

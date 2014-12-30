@@ -78,4 +78,5 @@ $lang['LABEL_SOWING_DATE'] = 'Sowing Date';
 $lang['LABEL_ADD_MORE'] = 'Add More';
 $lang['LABEL_REMARKS'] = 'Remarks';
 $lang['LABEL_DELETE'] = 'Delete';
+$lang['LABEL_CROP_VARIETY'] = 'Crop Variety';
 
