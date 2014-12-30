@@ -15,54 +15,136 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_NAME');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value="<?php echo $cropInfo['crop_name'];?>"/>
+                <select name="select_season" id="select_season" class="form-control validate[required]">
+                    <option value="<?php echo $this->lang->line("SELECT");?>"><?php echo $this->lang->line("SELECT");?></option>
+                </select>
             </div>
-            <input type="hidden" name="crop_id" id="crop_id" value="<?php echo $cropInfo['id'];?>"/>
+            <input type="hidden" name="crop_id" id="crop_id" value=""/>
         </div>
-        <div style="" class="row show-grid">
+
+        <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_CODE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" value="<?php echo $cropInfo['crop_code'];?>" >
-            </div>
-        </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_WIDTH');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_width" id="crop_width" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['crop_width'];?>" >
-            </div>
-        </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_HEIGHT');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_height" id="crop_height" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['crop_height'];?>" >
+                <input type="text" name="destined_delivery_date" id="destined_delivery_date" class="form-control validate[required]" value="" >
             </div>
         </div>
 
-        <div style="" class="row show-grid">
+        <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERED');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>" <?php if($cropInfo['status']==$this->config->item('active')){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($cropInfo['status']==$this->config->item('inactive')){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
-                </select>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
             </div>
         </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="delivery_date" id="delivery_date" class="form-control validate[required]" value="" >
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVED');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="radio" name="received" id="received" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="received" id="received" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_RECEIVE_DATE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="rnd_receive_date" id="rnd_receive_date" class="form-control validate[required]" value="" >
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]" value="" >
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="radio" name="sowing" id="sowing" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="sowing" id="sowing" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" id="adding_elements">
+                    <tr>
+                        <td width="300px">
+                            <label class="control-label pull-right" style="font-size: 12px;"><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
+                        </td>
+
+                        <td style="width:100px;">
+                            <input type="text" name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]" value="" >
+                        </td>
+
+                        <td style="width:100px;">
+                            <label class="control-label pull-right" style="font-size: 12px;"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
+                        </td>
+
+                        <td style="width:150px;">
+                            <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                                <option value=""><?php echo $this->lang->line('SELECT')?></option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <a class="btn" style=""><?php echo $this->lang->line('LABEL_DELETE');?></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
+                    <input type="button" onclick="" class="btn btn-primary btn-rect pull-right col-lg-pull-1" value="<?php echo $this->lang->line('LABEL_ADD_MORE');?>">
+                </div>
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <textarea name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]"></textarea>
+            </div>
+        </div>
+
     </div>
     <div class="clearfix"></div>
 </form>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()

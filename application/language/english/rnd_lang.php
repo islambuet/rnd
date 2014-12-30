@@ -49,10 +49,10 @@ $lang['LABEL_ADDRESS'] = 'Address';
 //Create Fertilizer
 $lang['LABEL_FERTILIZER_NAME'] = 'Fertilizer Name';
 
-//Create Fertilizer
+//Create Pesticide
 $lang['LABEL_PESTICIDE_NAME'] = 'Pesticide & Fungicide Name';
 
-//Create Fertilizer
+//Create Variety
 $lang['LABEL_VARIETY_NAME'] = 'Variety';
 $lang['LABEL_FLOWERING_TYPE'] = 'Flowering Type';
 $lang['LABEL_FRUIT'] = 'Fruit';
@@ -66,4 +66,16 @@ $lang['LABEL_SEASON'] = 'Season';
 $lang['LABEL_VARIETY_TYPE'] = 'Variety Type';
 $lang['LABEL_COMPANY_NAME'] = 'Company Name';
 
+//General Sample Delivery
+$lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Destined Delivery Date';
+$lang['LABEL_DELIVERED'] = 'Delivered';
+$lang['LABEL_DELIVERY_DATE'] = 'Delivery Date';
+$lang['LABEL_RECEIVED'] = 'Received';
+$lang['LABEL_RND_RECEIVE_DATE'] = 'R&D Receive Date';
+$lang['LABEL_DESTINED_SOWING_DATE'] = 'Destined Sowing Date';
+$lang['LABEL_SOWING'] = 'Sowing';
+$lang['LABEL_SOWING_DATE'] = 'Sowing Date';
+$lang['LABEL_ADD_MORE'] = 'Add More';
+$lang['LABEL_REMARKS'] = 'Remarks';
+$lang['LABEL_DELETE'] = 'Delete';
 
