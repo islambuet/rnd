@@ -16,7 +16,7 @@ class Query_helper
                 'table_name'=>$tablename,
                 'data'=>json_encode($data),
                 'user_id'=>$user->user_id,
-                'action'=>'insert',
+                'action'=>'INSERT',
                 'date'=>time()
             );
 
@@ -37,15 +37,50 @@ class Query_helper
             $CI->db->where($condition);
 
         }
+        $rows=$CI->db->get($tablename)->result_array();
 
+
+        foreach($conditions as $condition)
+        {
+            $CI->db->where($condition);
+
+        }
         $CI->db->update($tablename, $data);
-        return ($CI->db->affected_rows() >0) ? true : false;
+
+        if($CI->db->affected_rows() >0)
+        {
+            $user = User_helper::get_user();
+            $time=time();
+
+            foreach($rows as $row)
+            {
+
+                $historyData = Array(
+                    'table_id'=>$row['id'],
+                    'table_name'=>$tablename,
+                    'data'=>json_encode($data),
+                    'user_id'=>$user->user_id,
+                    'action'=>'UPDATE',
+                    'date'=>$time
+                );
+
+                $CI->db->insert('rnd_history', $historyData);
+            }
+
+            return true;
+
+        }
+        else
+        {
+
+            return false;
+        }
 
     }
 
     public static  function delete($tablename,$conditions)
     {
-        $CI =& get_instance();
+        /*$CI =& get_instance();
         foreach($conditions as $condition)
         {
             $CI->db->where($condition);
@@ -53,7 +88,7 @@ class Query_helper
         }
 
         $CI->db->delete($tablename, $data);
-        return ($CI->db->affected_rows() >0) ? true : false;
+        return ($CI->db->affected_rows() >0) ? true : false;*/
 
     }
 
