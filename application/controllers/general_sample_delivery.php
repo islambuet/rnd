@@ -87,13 +87,19 @@ class General_sample_delivery extends ROOT_Controller
     {
         $id = $this->input->post("sample_id");
         $user = User_helper::get_user();
+        $rndPost = $this->input->post('rnd_code');
 
         $data = Array(
-            'crop_name'=>$this->input->post('crop_name'),
-            'crop_code'=>$this->input->post('crop_code'),
-            'crop_width'=>$this->input->post('crop_width'),
-            'crop_height'=>$this->input->post('crop_height'),
-            'status'=>$this->input->post('status'),
+            'season_id'=>$this->input->post('season_id'),
+            'destined_delivery_date'=>$this->input->post('destined_delivery_date'),
+            'delivered_status'=>$this->input->post('delivered'),
+            'delivery_date'=>$this->input->post('delivery_date'),
+            'received_status'=>$this->input->post('received'),
+            'rnd_received_date'=>$this->input->post('rnd_receive_date'),
+            'destined_sowing_date'=>$this->input->post('destined_sowing_date'),
+            'sowing_status'=>$this->input->post('sowing'),
+            'sowing_date'=>$this->input->post('sowing_date'),
+            'remark'=>$this->input->post('remarks')
         );
 
         if(!$this->check_validation())
@@ -115,12 +121,36 @@ class General_sample_delivery extends ROOT_Controller
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_crop_info',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                $last_id = Query_helper::add('rnd_sample_delivery_date',$data);
 
+                $data_rnd = Array(
+                  'sample_delivery_date_id'=>$last_id,
+                  'created_by'=>$user->user_id,
+                  'creation_date'=>time()
+                );
+
+                for($i=0; $i<sizeof($rndPost); $i++)
+                {
+                    $data_rnd['rnd_code_id'] = $rndPost[$i];
+                    Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+
+                }
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
             }
 
             $this->rnd_list();//this is similar like redirect

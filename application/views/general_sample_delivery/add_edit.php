@@ -21,7 +21,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="select_season" id="select_season" class="form-control validate[required]">
+                <select name="season_id" id="season_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line("SELECT");?></option>
                     <?php foreach($seasons as $season){?>
                     <option value="<?php echo $season['id']?>"><?php echo $season['season_name']?></option>
@@ -108,21 +108,37 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_VARIETY');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?></label>
             </div>
-            <div class="col-sm-4 col-xs-8">
-                <textarea name="crop_variety" id="crop_variety" class="form-control" disabled>
+            <div class="col-sm-4 col-xs-8" id="load_rnd_code">
+                <table class="table table-condensed table-striped table-bordered table-hover no-margin">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" name="" id="" class="checkAll" checked="" /><?php echo $this->lang->line('All Select (R&D Code)');?>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="div_rnd_code">
+                        <tr class='first_row_id'><td colspan='21' style='text-align: center;' class='btn-warning2'><?php echo $this->lang->line('LABEL_NO_DATA_AVAILABLE');?></td></tr>
+                        <tr>
+                            <td>
+<!--                                <input type='checkbox' name='rnd_code[]' id='rnd_code' value='' />-->
+<!--                                <input type='hidden' name='row_id[]' id='row_id' value='' />-->
+                            </td>
+                        </tr>
+                    </tbody>
 
-                </textarea>
+                </table>
             </div>
         </div>
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea name="remarks" id="remarks" class="form-control validate[required]"></textarea>
+                <textarea name="remarks" id="remarks" class="form-control"></textarea>
             </div>
         </div>
 
@@ -136,11 +152,31 @@
     {
         $(".form_valid").validationEngine();
 
+
+        $('.checkAll').click(function(event)
+        {
+            if(this.checked)
+            {
+                $('.checksingle').each(function()
+                {
+                    this.checked = true;
+                });
+            }
+            else
+            {
+                $('.checksingle').each(function()
+                {
+                    this.checked = false;
+                });
+            }
+        });
+
     });
 
-    $(document).on("change", "#select_season", function(event)
+
+    $(document).on("change", "#season_id", function(event)
     {
-        var season_id = $("#select_season").val();
+        var season_id = $("#season_id").val();
 
         $.ajax({
             url: base_url+"rnd_common/load_variety_by_season/",
@@ -149,12 +185,25 @@
             data:{season_id:season_id},
             success: function (data, status)
             {
-                var varieties = '';
+//                var varieties = '';
+//
+//                for(var i=0;i<data.length;i++)
+//                {
+//                    varieties += '<input class="form-control" type="checkbox" name="rnd_code" value="'+data[i]['rnd_id']+'">'+data[i]['rnd_code'];
+//                }
+//
+//                $("#load_rnd_code").html(varieties);
+
+                // console.log(data);
+                var rnd_code_view = '';
                 for(var i=0;i<data.length;i++)
                 {
-                    varieties += data[i]['variety_name'];
+                    rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
+                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['rnd_id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
                 }
-                $("#crop_variety").html(varieties);
+                // console.log(rnd_code_view);
+                $("#div_rnd_code").html(rnd_code_view);
+
             },
             error: function (xhr, desc, err)
             {
@@ -164,6 +213,8 @@
         });
 
     });
+
+
 
     Calendar.setup({
         inputField: "destined_delivery_date",

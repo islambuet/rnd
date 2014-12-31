@@ -107,6 +107,7 @@ class Create_crop_variety extends ROOT_Controller
             'crop_id'=>$this->input->post('crop_select'),
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),
+            'rnd_code'=>$this->input->post('variety_name'),
             'variety_type'=>$this->input->post('variety_type'),
             'status'=>$this->input->post('status'),
         );

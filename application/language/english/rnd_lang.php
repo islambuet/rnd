@@ -79,4 +79,7 @@ $lang['LABEL_ADD_MORE'] = 'Add More';
 $lang['LABEL_REMARKS'] = 'Remarks';
 $lang['LABEL_DELETE'] = 'Delete';
 $lang['LABEL_CROP_VARIETY'] = 'Crop Variety';
+$lang['LABEL_RND_CODE'] = 'R&D Code';
+$lang['LABEL_ALL_SELECT_RND_CODE'] = 'All Select (R&D Code)';
+$lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 
