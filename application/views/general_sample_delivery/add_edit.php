@@ -45,17 +45,17 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERED');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="delivered" id="delivered" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
-                <input type="radio" name="delivered" id="delivered" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" value="<?php echo $this->config->item('sample_delivery_delivered_status_yes');?>"> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" checked value="<?php echo $this->config->item('sample_delivery_delivered_status_no');?>"> <?php echo $this->lang->line('NO');?>
             </div>
         </div>
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="delivery_date" id="delivery_date" class="form-control validate[required]" value="" >
+                <input type="text" name="delivery_date" id="delivery_date" class="form-control" value="" >
             </div>
         </div>
 
@@ -64,17 +64,17 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVED');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="received" id="received" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
-                <input type="radio" name="received" id="received" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
+                <input type="radio" name="received" id="received" class="validate[required]" value="<?php echo $this->config->item('sample_delivery_received_status_yes');?>"> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="received" id="received" class="validate[required]" checked value="<?php echo $this->config->item('sample_delivery_received_status_no');?>"> <?php echo $this->lang->line('NO');?>
             </div>
         </div>
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_RECEIVE_DATE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_RECEIVE_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="rnd_receive_date" id="rnd_receive_date" class="form-control validate[required]" value="" >
+                <input type="text" name="rnd_receive_date" id="rnd_receive_date" class="form-control" value="" >
             </div>
         </div>
 
@@ -92,17 +92,17 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="sowing" id="sowing" class="validate[required]" checked value=""> <?php echo $this->lang->line('YES');?>
-                <input type="radio" name="sowing" id="sowing" class="validate[required]" value=""> <?php echo $this->lang->line('NO');?>
+                <input type="radio" name="sowing" id="sowing" class="validate[required]" value="<?php echo $this->config->item('sample_delivery_sowing_status_yes');?>"> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="sowing" id="sowing" class="validate[required]" checked value="<?php echo $this->config->item('sample_delivery_sowing_status_no');?>"> <?php echo $this->lang->line('NO');?>
             </div>
         </div>
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control validate[required]" value="" >
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="" >
             </div>
         </div>
 
@@ -185,16 +185,6 @@
             data:{season_id:season_id},
             success: function (data, status)
             {
-//                var varieties = '';
-//
-//                for(var i=0;i<data.length;i++)
-//                {
-//                    varieties += '<input class="form-control" type="checkbox" name="rnd_code" value="'+data[i]['rnd_id']+'">'+data[i]['rnd_code'];
-//                }
-//
-//                $("#load_rnd_code").html(varieties);
-
-                // console.log(data);
                 var rnd_code_view = '';
                 for(var i=0;i<data.length;i++)
                 {

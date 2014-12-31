@@ -16,6 +16,15 @@ $config['rnd_leaf_code']=4;
 $config['variety_type_arm']=1;
 $config['variety_type_company']=2;
 
+$config['sample_delivery_delivered_status_yes']=1;
+$config['sample_delivery_delivered_status_no']=0;
+$config['sample_delivery_received_status_yes']=1;
+$config['sample_delivery_received_status_no']=0;
+$config['sample_delivery_sowing_status_yes']=1;
+$config['sample_delivery_sowing_status_no']=0;
+
+
+
 
 
 

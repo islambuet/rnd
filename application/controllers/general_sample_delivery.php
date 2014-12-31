@@ -91,16 +91,40 @@ class General_sample_delivery extends ROOT_Controller
 
         $data = Array(
             'season_id'=>$this->input->post('season_id'),
-            'destined_delivery_date'=>$this->input->post('destined_delivery_date'),
+            'destined_delivery_date'=>strtotime($this->input->post('destined_delivery_date')),
             'delivered_status'=>$this->input->post('delivered'),
-            'delivery_date'=>$this->input->post('delivery_date'),
             'received_status'=>$this->input->post('received'),
-            'rnd_received_date'=>$this->input->post('rnd_receive_date'),
-            'destined_sowing_date'=>$this->input->post('destined_sowing_date'),
+            'destined_sowing_date'=>strtotime($this->input->post('destined_sowing_date')),
             'sowing_status'=>$this->input->post('sowing'),
-            'sowing_date'=>$this->input->post('sowing_date'),
             'remark'=>$this->input->post('remarks')
         );
+
+        if($this->input->post('delivered')==$this->config->item('sample_delivery_delivered_status_yes'))
+        {
+            $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
+        }
+        else
+        {
+            $data['delivery_date'] = '';
+        }
+
+        if($this->input->post('received')==$this->config->item('sample_delivery_received_status_yes'))
+        {
+            $data['rnd_received_date'] = strtotime($this->input->post('rnd_receive_date'));
+        }
+        else
+        {
+            $data['rnd_received_date'] = '';
+        }
+
+        if($this->input->post('sowing')==$this->config->item('sample_delivery_sowing_status_yes'))
+        {
+            $data['sowing_date'] = strtotime($this->input->post('sowing_date'));
+        }
+        else
+        {
+            $data['sowing_date'] = '';
+        }
 
         if(!$this->check_validation())
         {
@@ -160,30 +184,56 @@ class General_sample_delivery extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
+        if(Validation_helper::validate_empty($this->input->post('season_id')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('destined_delivery_date')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
+        if(Validation_helper::validate_empty($this->input->post('delivered')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
+//        if(Validation_helper::validate_empty($this->input->post('delivery_date')))
+//        {
+//            return false;
+//        }
+
+        if(Validation_helper::validate_empty($this->input->post('received')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
+//        if(Validation_helper::validate_empty($this->input->post('rnd_receive_date')))
+//        {
+//            return false;
+//        }
+
+        if(Validation_helper::validate_empty($this->input->post('destined_sowing_date')))
         {
             return false;
         }
+
+        if(Validation_helper::validate_empty($this->input->post('sowing')))
+        {
+            return false;
+        }
+
+//        if(Validation_helper::validate_empty($this->input->post('sowing_date')))
+//        {
+//            return false;
+//        }
+
+//        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
+//        {
+//            return false;
+//        }
+
         return true;
     }
 
