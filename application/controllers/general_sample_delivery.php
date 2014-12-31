@@ -33,7 +33,7 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "general_sample_delivery/index/list/",$this->general_sample_delivery_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "general_sample_delivery/index/list/",$this->general_sample_delivery_model->get_total_samples(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,7 +42,7 @@ class General_sample_delivery extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->general_sample_delivery_model->get_cropInfo($page);
+        $data['sampleInfo'] = $this->general_sample_delivery_model->get_sampleInfo($page);
         $data['title']="Sample Delivery List";
 
         $ajax['status']=true;
@@ -59,18 +59,23 @@ class General_sample_delivery extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['cropInfo'] = $this->general_sample_delivery->get_crop_row($id);
-            $data['title']="Edit Crop (".$data['cropInfo']['crop_name'].")";
+            $data['sampleInfo'] = $this->general_sample_delivery_model->get_sample_row($id);
+            $data['title']="Edit Sample Delivery (".$data['sampleInfo']['season_name'].")";
         }
         else
         {
-            $data["cropInfo"] = Array(
+            $data["sampleInfo"] = Array(
                 'id' => 0,
-                'crop_name' => '',
-                'crop_code' => '',
-                'crop_height' => '',
-                'crop_width' => '',
-                'status' => $this->config->item('active')
+                'season_id' => '',
+                'destined_delivery_date' => '',
+                'delivered_status' => '',
+                'delivery_date' => '',
+                'received_status' => '',
+                'rnd_received_date' => '',
+                'destined_sowing_date' => '',
+                'sowing_status' => '',
+                'sowing_date' => '',
+                'remark' => ''
             );
             $data['title']="New Sample Delivery";
         }
@@ -90,7 +95,6 @@ class General_sample_delivery extends ROOT_Controller
         $rndPost = $this->input->post('rnd_code');
 
         $data = Array(
-            'season_id'=>$this->input->post('season_id'),
             'destined_delivery_date'=>strtotime($this->input->post('destined_delivery_date')),
             'delivered_status'=>$this->input->post('delivered'),
             'received_status'=>$this->input->post('received'),
@@ -149,6 +153,7 @@ class General_sample_delivery extends ROOT_Controller
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
+                $data['season_id'] = $this->input->post('season_id');
 
                 $last_id = Query_helper::add('rnd_sample_delivery_date',$data);
 
@@ -162,7 +167,6 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
-
                 }
 
                 $this->db->trans_complete();   //DB Transaction Handle END

@@ -4,7 +4,7 @@
     $this->load->view("action_buttons_edit",$data);
 
 //echo '<pre>';
-//print_r($cropInfo);
+//print_r($sampleInfo);
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>general_sample_delivery/index/save" method="post">
@@ -21,10 +21,10 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]">
+                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if($sampleInfo['season_id']!=''){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line("SELECT");?></option>
                     <?php foreach($seasons as $season){?>
-                    <option value="<?php echo $season['id']?>"><?php echo $season['season_name']?></option>
+                    <option value="<?php echo $season['id']?>" <?php if($season['id']==$sampleInfo['season_id']){ echo "selected";} ?>><?php echo $season['season_name']?></option>
                     <?php }?>
                 </select>
             </div>
@@ -36,7 +36,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="destined_delivery_date" id="destined_delivery_date" class="form-control validate[required]" value="" >
+                <input type="text" name="destined_delivery_date" id="destined_delivery_date" class="form-control validate[required]" value="<?php echo date('Y-m-d',$sampleInfo['destined_delivery_date']);?>" >
             </div>
         </div>
 
@@ -45,8 +45,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERED');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="delivered" id="delivered" class="validate[required]" value="<?php echo $this->config->item('sample_delivery_delivered_status_yes');?>"> <?php echo $this->lang->line('YES');?>
-                <input type="radio" name="delivered" id="delivered" class="validate[required]" checked value="<?php echo $this->config->item('sample_delivery_delivered_status_no');?>"> <?php echo $this->lang->line('NO');?>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" value="<?php echo $this->config->item('sample_delivery_delivered_status_yes');?>" <?php if($sampleInfo['delivered_status']==$this->config->item('sample_delivery_delivered_status_yes')){ echo "checked";}?>> <?php echo $this->lang->line('YES');?>
+                <input type="radio" name="delivered" id="delivered" class="validate[required]" checked value="<?php echo $this->config->item('sample_delivery_delivered_status_no');?>" <?php if($sampleInfo['delivered_status']==$this->config->item('sample_delivery_delivered_status_no')){ echo "checked";}?>> <?php echo $this->lang->line('NO');?>
             </div>
         </div>
 

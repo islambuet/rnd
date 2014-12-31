@@ -13,6 +13,9 @@ $lang['MSG_CREATE_SUCCESS'] = 'Successfully Saved Data!';
 $lang['MSG_UPDATE_SUCCESS'] = 'Successfully Updated!';
 $lang['MSG_NOT_UPDATED_SUCCESS'] = 'Not Updated!';
 
+$lang['LABEL_YES'] = 'Yes';
+$lang['LABEL_NO'] = 'No';
+
 //login
 $lang['MSG_USERNAME_PASSWORD_INVALID'] = 'Username and Password did not match or Invalid';
 $lang['MSG_LOGIN_SUCCESS'] = 'Successfully Logged In';

@@ -16,6 +16,7 @@ class Query_helper
                 'table_name'=>$tablename,
                 'data'=>json_encode($data),
                 'user_id'=>$user->user_id,
+                'action'=>'insert',
                 'date'=>time()
             );
 
