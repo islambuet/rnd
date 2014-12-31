@@ -68,12 +68,12 @@ class General_sample_delivery extends ROOT_Controller
                 'id' => 0,
                 'season_id' => '',
                 'destined_delivery_date' => '',
-                'delivered_status' => '',
+                'delivered_status' => 0,
                 'delivery_date' => '',
-                'received_status' => '',
+                'received_status' => 0,
                 'rnd_received_date' => '',
                 'destined_sowing_date' => '',
-                'sowing_status' => '',
+                'sowing_status' => 0,
                 'sowing_date' => '',
                 'remark' => ''
             );
