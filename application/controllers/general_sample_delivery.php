@@ -216,6 +216,7 @@ class General_sample_delivery extends ROOT_Controller
     private function check_validation()
     {
         // Will be Modified
+
         if($this->input->post('season_id'))
         {
             if(Validation_helper::validate_empty($this->input->post('season_id')))
