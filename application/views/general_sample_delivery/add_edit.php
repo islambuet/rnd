@@ -3,9 +3,19 @@
     $data["link_back"]=base_url()."general_sample_delivery";
     $this->load->view("action_buttons_edit",$data);
 
-//echo '<pre>';
-//print_r($sampleInfo);
-//echo '</pre>';
+if(!empty($sampleRndCodes))
+{
+    $newarray=array();
+
+    foreach($sampleRndCodes as $result)
+    {
+        $newarray[]=$result['rnd_code_id'];
+    }
+}
+else
+{
+    $newarray=array();
+}
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>general_sample_delivery/index/save" method="post">
     <div class="row widget">
@@ -28,7 +38,7 @@
                     <?php }?>
                 </select>
             </div>
-            <input type="hidden" name="sample_id" id="sample_id" value=""/>
+            <input type="hidden" name="sample_id" id="sample_id" value="<?php echo $sampleInfo['id'];?>"/>
         </div>
 
         <div class="row show-grid">
@@ -119,16 +129,20 @@
                             </th>
                         </tr>
                     </thead>
+
                     <tbody id="div_rnd_code">
-                        <tr class='first_row_id'><td colspan='21' style='text-align: center;' class='btn-warning2'><?php echo $this->lang->line('LABEL_NO_DATA_AVAILABLE');?></td></tr>
+                        <?php if(!empty($rndCodes)){ foreach($rndCodes as $codes){?>
                         <tr>
                             <td>
-<!--                                <input type='checkbox' name='rnd_code[]' id='rnd_code' value='' />-->
-<!--                                <input type='hidden' name='row_id[]' id='row_id' value='' />-->
+                                <input type='checkbox' name='rnd_code[]' id='rnd_code' class="checksingle" value='<?php echo $codes['rnd_id'];?>' <?php if(in_array($codes['rnd_id'],$newarray)){ echo "checked";}?> /><?php echo ' '.$codes['rnd_code'];?>
                             </td>
                         </tr>
+                        <?php }}else{?>
+                        <tr class='first_row_id'>
+                            <td colspan='21' style='text-align: center;' class='btn-warning2'><?php echo $this->lang->line('LABEL_NO_DATA_AVAILABLE');?></td>
+                        </tr>
+                        <?php }?>
                     </tbody>
-
                 </table>
             </div>
         </div>

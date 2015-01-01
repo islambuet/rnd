@@ -60,8 +60,8 @@ class General_sample_delivery extends ROOT_Controller
         if ($id != 0)
         {
             $data['sampleInfo'] = $this->general_sample_delivery_model->get_sample_row($id);
-            $data['rndcodes'] = $this->general_sample_delivery_model->get_rndcodes_by_season($data['sampleInfo']['season_id']);
-            $data['samplerndcodes'] = $this->general_sample_delivery_model->get_sample_rndcodes_by_season($data['sampleInfo']['season_id']);
+            $data['rndCodes'] = $this->general_sample_delivery_model->get_rnd_codes_by_season();
+            $data['sampleRndCodes'] = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($data['sampleInfo']['season_id']);
 
             $data['title']="Edit Sample Delivery (".$data['sampleInfo']['season_name'].")";
         }
@@ -143,12 +143,36 @@ class General_sample_delivery extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                Query_helper::update('rnd_sample_delivery_date',$data,array("id = ".$id));
+                $this->general_sample_delivery_model->delete_from_sample_crop_by_id($id);
 
+                $data_rnd = Array(
+                    'sample_delivery_date_id'=>$id,
+                    'created_by'=>$user->user_id,
+                    'creation_date'=>time()
+                );
+
+                for($i=0; $i<sizeof($rndPost); $i++)
+                {
+                    $data_rnd['rnd_code_id'] = $rndPost[$i];
+                    Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+                }
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
@@ -191,9 +215,12 @@ class General_sample_delivery extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('season_id')))
+        if($this->input->post('season_id'))
         {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('season_id')))
+            {
+                return false;
+            }
         }
 
         if(Validation_helper::validate_empty($this->input->post('destined_delivery_date')))
@@ -232,11 +259,6 @@ class General_sample_delivery extends ROOT_Controller
         }
 
 //        if(Validation_helper::validate_empty($this->input->post('sowing_date')))
-//        {
-//            return false;
-//        }
-
-//        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
 //        {
 //            return false;
 //        }
