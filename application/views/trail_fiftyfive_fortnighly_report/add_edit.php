@@ -36,7 +36,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php echo date('Y-m-d',$fortnightlyInfo['sowing_date']);?>" >
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php if(!empty($fortnightlyInfo['sowing_date'])){ echo date('Y-m-d',$fortnightlyInfo['sowing_date']);}?>" >
             </div>
         </div>
 
@@ -45,7 +45,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="transplanting_date" id="transplanting_date" class="form-control" value="<?php echo date('Y-m-d',$fortnightlyInfo['transplanting_date']);?>" >
+                <input type="text" name="transplanting_date" id="transplanting_date" class="form-control" value="<?php if(!empty($fortnightlyInfo['transplanting_date'])){ echo date('Y-m-d',$fortnightlyInfo['transplanting_date']);}?>" >
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FORTNIGHTLY_REPORTING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="fortnightly_reporting_date" id="fortnightly_reporting_date" class="form-control" value="<?php echo date('Y-m-d',$fortnightlyInfo['fortnightly_reporting_date']);?>" >
+                <input type="text" name="fortnightly_reporting_date" id="fortnightly_reporting_date" class="form-control" value="<?php if(!empty($fortnightlyInfo['fortnightly_reporting_date'])){ echo date('Y-m-d',$fortnightlyInfo['fortnightly_reporting_date']);}?>" >
             </div>
         </div>
 
