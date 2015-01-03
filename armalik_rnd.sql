@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2014-12-31 17:18:49
+Date: 2015-01-03 18:36:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -840,11 +840,14 @@ CREATE TABLE `rnd_fortnightly_report` (
   UNIQUE KEY `id` (`id`),
   KEY `rnd_code_id` (`rnd_code_id`),
   CONSTRAINT `rnd_fortnightly_report_ibfk_1` FOREIGN KEY (`rnd_code_id`) REFERENCES `rnd_variety_info` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_fortnightly_report
 -- ----------------------------
+INSERT INTO `rnd_fortnightly_report` VALUES ('1', '10', '1420480800', '1420480800', '12', '1420567200', '2', '2', '2', '2', '2', '2', '2', '2', '2', '1', ' Special Characters ssss', ' Remarks sss', '1', null, '1420269982', 'UI-000001', '1420278063');
+INSERT INTO `rnd_fortnightly_report` VALUES ('2', '10', '1420048800', '1420394400', '34', '1420999200', '2', '1', '1', '1', '2', '3', '1', '1', '1', '1', ' Special Character', ' Remarks ', '1', 'UI-000001', '1420270182', null, null);
+INSERT INTO `rnd_fortnightly_report` VALUES ('3', '15', '1421776800', '1421431200', '89', '1422208800', '2', '2', '1', '1', '1', '2', '2', '1', '1', '1', ' Special Characters ', '\r\nRemarks\r\n', '1', 'UI-000001', '1420270275', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_fruit_curd_report`
@@ -890,7 +893,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -940,6 +943,45 @@ INSERT INTO `rnd_history` VALUES ('42', '21', 'rnd_sample_delivery_date_crop', '
 INSERT INTO `rnd_history` VALUES ('43', '22', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":5,\"created_by\":\"UI-000001\",\"creation_date\":1420014800,\"rnd_code_id\":\"15\"}', 'UI-000001', '', '1420014800');
 INSERT INTO `rnd_history` VALUES ('44', '23', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":5,\"created_by\":\"UI-000001\",\"creation_date\":1420014800,\"rnd_code_id\":\"16\"}', 'UI-000001', '', '1420014800');
 INSERT INTO `rnd_history` VALUES ('45', '6', 'rnd_crop_info', '{\"crop_name\":\"Pumpkin\",\"crop_code\":\"C0007\",\"crop_width\":\"23\",\"crop_height\":\"45\",\"status\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420024701}', 'UI-000001', 'insert', '1420024701');
+INSERT INTO `rnd_history` VALUES ('46', '6', 'rnd_sample_delivery_date', '{\"destined_delivery_date\":1414951200,\"delivered_status\":\"1\",\"received_status\":\"1\",\"destined_sowing_date\":1419184800,\"sowing_status\":\"1\",\"remark\":\" Remarks \",\"delivery_date\":1419012000,\"rnd_received_date\":1418148000,\"sowing_date\":1418839200,\"created_by\":\"U', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('47', '24', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":6,\"created_by\":\"UI-000001\",\"creation_date\":1420093244,\"rnd_code_id\":\"10\"}', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('48', '25', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":6,\"created_by\":\"UI-000001\",\"creation_date\":1420093244,\"rnd_code_id\":\"11\"}', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('49', '26', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":6,\"created_by\":\"UI-000001\",\"creation_date\":1420093244,\"rnd_code_id\":\"12\"}', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('50', '27', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":6,\"created_by\":\"UI-000001\",\"creation_date\":1420093244,\"rnd_code_id\":\"15\"}', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('51', '28', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":6,\"created_by\":\"UI-000001\",\"creation_date\":1420093244,\"rnd_code_id\":\"16\"}', 'UI-000001', 'insert', '1420093244');
+INSERT INTO `rnd_history` VALUES ('52', '29', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1420094024,\"rnd_code_id\":\"10\"}', 'UI-000001', 'insert', '1420094024');
+INSERT INTO `rnd_history` VALUES ('53', '30', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1420094024,\"rnd_code_id\":\"11\"}', 'UI-000001', 'insert', '1420094024');
+INSERT INTO `rnd_history` VALUES ('54', '31', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1420094024,\"rnd_code_id\":\"16\"}', 'UI-000001', 'insert', '1420094024');
+INSERT INTO `rnd_history` VALUES ('55', '5', 'rnd_sample_delivery_date', '{\"destined_delivery_date\":1414951200,\"delivered_status\":\"1\",\"received_status\":\"1\",\"destined_sowing_date\":1419184800,\"sowing_status\":\"1\",\"remark\":\" Remarks \",\"delivery_date\":1419012000,\"rnd_received_date\":1418148000,\"sowing_date\":1418839200,\"modified_by\":\"', 'UI-000001', 'UPDATE', '1420094603');
+INSERT INTO `rnd_history` VALUES ('56', '32', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094603,\"rnd_code_id\":\"10\"}', 'UI-000001', 'INSERT', '1420094603');
+INSERT INTO `rnd_history` VALUES ('57', '33', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094603,\"rnd_code_id\":\"11\"}', 'UI-000001', 'INSERT', '1420094603');
+INSERT INTO `rnd_history` VALUES ('58', '34', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094603,\"rnd_code_id\":\"12\"}', 'UI-000001', 'INSERT', '1420094603');
+INSERT INTO `rnd_history` VALUES ('59', '35', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094603,\"rnd_code_id\":\"15\"}', 'UI-000001', 'INSERT', '1420094603');
+INSERT INTO `rnd_history` VALUES ('60', '36', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094603,\"rnd_code_id\":\"16\"}', 'UI-000001', 'INSERT', '1420094603');
+INSERT INTO `rnd_history` VALUES ('61', '5', 'rnd_sample_delivery_date', '{\"destined_delivery_date\":1414951200,\"delivered_status\":\"1\",\"received_status\":\"1\",\"destined_sowing_date\":1419184800,\"sowing_status\":\"1\",\"remark\":\" Remarks season 3\",\"delivery_date\":1419012000,\"rnd_received_date\":1418148000,\"sowing_date\":1418839200,\"modifi', 'UI-000001', 'UPDATE', '1420094622');
+INSERT INTO `rnd_history` VALUES ('62', '37', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094622,\"rnd_code_id\":\"12\"}', 'UI-000001', 'INSERT', '1420094622');
+INSERT INTO `rnd_history` VALUES ('63', '38', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094622,\"rnd_code_id\":\"15\"}', 'UI-000001', 'INSERT', '1420094622');
+INSERT INTO `rnd_history` VALUES ('64', '39', 'rnd_sample_delivery_date_crop', '{\"sample_delivery_date_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420094622,\"rnd_code_id\":\"16\"}', 'UI-000001', 'INSERT', '1420094622');
+INSERT INTO `rnd_history` VALUES ('65', '2', 'rnd_fortnightly_report', '{\"rnd_code_id\":\"10\",\"sowing_date\":1420048800,\"transplanting_date\":1420394400,\"initial_plants_during_trial_start\":false,\"fortnightly_reporting_date\":1420999200,\"plant_type\":\"2\",\"plant_uniformity\":\"1\",\"distance_from_ground_curd\":\"1\",\"crud_type\":\"1\",\"crud_co', 'UI-000001', 'INSERT', '1420270182');
+INSERT INTO `rnd_history` VALUES ('66', '3', 'rnd_fortnightly_report', '{\"rnd_code_id\":\"15\",\"sowing_date\":1421776800,\"transplanting_date\":1421431200,\"initial_plants_during_trial_start\":\"89\",\"fortnightly_reporting_date\":1422208800,\"plant_type\":\"2\",\"plant_uniformity\":\"2\",\"distance_from_ground_curd\":\"1\",\"crud_type\":\"1\",\"crud_col', 'UI-000001', 'INSERT', '1420270275');
+INSERT INTO `rnd_history` VALUES ('67', '1', 'rnd_fortnightly_report', '{\"rnd_code_id\":\"10\",\"sowing_date\":1420480800,\"transplanting_date\":1420480800,\"initial_plants_during_trial_start\":\"12\",\"fortnightly_reporting_date\":1420567200,\"plant_type\":\"2\",\"plant_uniformity\":\"2\",\"distance_from_ground_curd\":\"2\",\"crud_type\":\"2\",\"crud_col', 'UI-000001', 'UPDATE', '1420278063');
+INSERT INTO `rnd_history` VALUES ('68', '11', 'rnd_variety_info', '{\"flowering_type_id\":\"3\",\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_name\":\"V0002\",\"rnd_code\":\"V0002\",\"variety_type\":\"3\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"2\",\"modified_by\":\"UI-000001\",\"modification_date\":1420280527}', 'UI-000001', 'UPDATE', '1420280527');
+INSERT INTO `rnd_history` VALUES ('69', '52', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":\"11\",\"created_by\":\"UI-000001\",\"creation_date\":1420280527,\"season_id\":\"1\"}', 'UI-000001', 'INSERT', '1420280527');
+INSERT INTO `rnd_history` VALUES ('70', '53', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":\"11\",\"created_by\":\"UI-000001\",\"creation_date\":1420280527,\"season_id\":\"2\"}', 'UI-000001', 'INSERT', '1420280527');
+INSERT INTO `rnd_history` VALUES ('71', '12', 'rnd_variety_info', '{\"flowering_type_id\":\"2\",\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_name\":\"V0003\",\"rnd_code\":\"V0003\",\"variety_type\":\"2\",\"status\":\"1\",\"company_name\":\"SoftBD Ltd.\",\"principal_id\":\"\",\"modified_by\":\"UI-000001\",\"modification_date\":1420280895}', 'UI-000001', 'UPDATE', '1420280896');
+INSERT INTO `rnd_history` VALUES ('72', '54', 'rnd_variety_season', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_id\":\"12\",\"created_by\":\"UI-000001\",\"creation_date\":1420280896,\"season_id\":\"1\"}', 'UI-000001', 'INSERT', '1420280896');
+INSERT INTO `rnd_history` VALUES ('73', '55', 'rnd_variety_season', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_id\":\"12\",\"created_by\":\"UI-000001\",\"creation_date\":1420280896,\"season_id\":\"2\"}', 'UI-000001', 'INSERT', '1420280896');
+INSERT INTO `rnd_history` VALUES ('74', '56', 'rnd_variety_season', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_id\":\"12\",\"created_by\":\"UI-000001\",\"creation_date\":1420280896,\"season_id\":\"3\"}', 'UI-000001', 'INSERT', '1420280896');
+INSERT INTO `rnd_history` VALUES ('75', '5', 'rnd_product_type_info', '{\"crop_id\":\"6\",\"product_type\":\"Early\",\"product_type_code\":\"E\",\"product_type_height\":\"45\",\"product_type_width\":\"23\",\"status\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420288180}', 'UI-000001', 'INSERT', '1420288180');
+INSERT INTO `rnd_history` VALUES ('76', '17', 'rnd_variety_info', '{\"flowering_type_id\":\"1\",\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"V0006\",\"variety_type\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"\",\"rnd_code\":\"C0007-E-17-CKA\",\"created_by\":\"UI-000001\",\"creation_date\":1420288217}', 'UI-000001', 'INSERT', '1420288217');
+INSERT INTO `rnd_history` VALUES ('77', '57', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":17,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420288217}', 'UI-000001', 'INSERT', '1420288217');
+INSERT INTO `rnd_history` VALUES ('78', '58', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":17,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288217}', 'UI-000001', 'INSERT', '1420288217');
+INSERT INTO `rnd_history` VALUES ('79', '18', 'rnd_variety_info', '{\"flowering_type_id\":\"1\",\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"V0006\",\"variety_type\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"\",\"rnd_code\":\"C0007-E-18-CKA\",\"created_by\":\"UI-000001\",\"creation_date\":1420288227}', 'UI-000001', 'INSERT', '1420288227');
+INSERT INTO `rnd_history` VALUES ('80', '59', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":18,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420288227}', 'UI-000001', 'INSERT', '1420288227');
+INSERT INTO `rnd_history` VALUES ('81', '60', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":18,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288227}', 'UI-000001', 'INSERT', '1420288227');
+INSERT INTO `rnd_history` VALUES ('82', '19', 'rnd_variety_info', '{\"flowering_type_id\":\"1\",\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"V0008\",\"variety_type\":\"3\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"2\",\"rnd_code\":\"C0007-E-19-Code2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
+INSERT INTO `rnd_history` VALUES ('83', '61', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":19,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
+INSERT INTO `rnd_history` VALUES ('84', '62', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":19,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
 
 -- ----------------------------
 -- Table structure for `rnd_labor_activity_info`
@@ -1011,6 +1053,36 @@ CREATE TABLE `rnd_pesticide_fungicide_info` (
 INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('1', 'Abamectin', '1', 'UI-000001', '1419679767', 'UI-000001', '1419680543');
 INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('2', 'Bachmedesh', '1', 'UI-000001', '1419679806', null, null);
 INSERT INTO `rnd_pesticide_fungicide_info` VALUES ('3', 'Kadethrin', '1', 'UI-000001', '1419679824', null, null);
+
+-- ----------------------------
+-- Table structure for `rnd_pesticide_fungicide_stock_in`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_pesticide_fungicide_stock_in`;
+CREATE TABLE `rnd_pesticide_fungicide_stock_in` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `pesticide_id` int(10) DEFAULT NULL,
+  `pesticide_quantity` double(6,2) NOT NULL,
+  `pesticide_price` decimal(12,2) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` varchar(20) DEFAULT NULL,
+  `creation_date` int(11) DEFAULT NULL,
+  `modified_by` varchar(20) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `fertilizer_id` (`pesticide_id`),
+  CONSTRAINT `rnd_pesticide_fungicide_stock_in_ibfk_1` FOREIGN KEY (`pesticide_id`) REFERENCES `rnd_fertilizer_info` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of rnd_pesticide_fungicide_stock_in
+-- ----------------------------
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('1', '1', '50.00', '100.00', '1', 'UI-000001', '1420116208', null, null);
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('2', '2', '30.00', '200.00', '0', 'UI-000001', '1420116228', 'UI-000001', '1420267855');
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('3', '3', '30.00', '250.00', '0', 'UI-000001', '1420116240', null, null);
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('4', '1', '50.00', '600.00', '1', 'UI-000001', '1420266925', null, null);
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('5', '2', '20.00', '200.00', '1', 'UI-000001', '1420267164', null, null);
+INSERT INTO `rnd_pesticide_fungicide_stock_in` VALUES ('6', '3', '50.00', '250.00', '0', 'UI-000001', '1420268283', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_plot_info`
@@ -1110,7 +1182,7 @@ CREATE TABLE `rnd_product_type_info` (
   UNIQUE KEY `id` (`id`),
   KEY `crop_id` (`crop_id`),
   CONSTRAINT `rnd_product_type_info_ibfk_1` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_product_type_info
@@ -1119,6 +1191,7 @@ INSERT INTO `rnd_product_type_info` VALUES ('1', '4', 'Type11', 'Code11', '231',
 INSERT INTO `rnd_product_type_info` VALUES ('2', '5', 'Type2', 'Code2', '89', '45', '1', 'UI-000001', '1419406090', null, null);
 INSERT INTO `rnd_product_type_info` VALUES ('3', '3', 'Type3', 'Code3', '43', '12', '1', 'UI-000001', '1419406111', null, null);
 INSERT INTO `rnd_product_type_info` VALUES ('4', '5', 'Type4', 'Code4', '45', '23', '1', 'UI-000001', '1419748051', null, null);
+INSERT INTO `rnd_product_type_info` VALUES ('5', '6', 'Early', 'E', '45', '23', '1', 'UI-000001', '1420288180', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_sample_delivery_date`
@@ -1149,9 +1222,9 @@ CREATE TABLE `rnd_sample_delivery_date` (
 -- ----------------------------
 -- Records of rnd_sample_delivery_date
 -- ----------------------------
-INSERT INTO `rnd_sample_delivery_date` VALUES ('3', '1', '1414346400', '1', '1417975200', '1', '1417370400', '1417543200', '1', '1418839200', ' Remarks ', '0', 'UI-000001', '1420013895', null, null);
+INSERT INTO `rnd_sample_delivery_date` VALUES ('3', '1', '1412100000', '1', '1417370400', '1', '1417370400', '1417370400', '1', '1417370400', ' Remarks 2', '0', 'UI-000001', '1420013895', 'UI-000001', '1420094024');
 INSERT INTO `rnd_sample_delivery_date` VALUES ('4', '2', '1415037600', '1', '1418320800', '1', '1418148000', '1417629600', '1', '1417370400', ' Remarks ', '0', 'UI-000001', '1420014764', null, null);
-INSERT INTO `rnd_sample_delivery_date` VALUES ('5', '3', '1414951200', '1', '1419012000', '1', '1418148000', '1419184800', '1', '1418839200', ' Remarks ', '0', 'UI-000001', '1420014800', null, null);
+INSERT INTO `rnd_sample_delivery_date` VALUES ('5', '3', '1414951200', '1', '1419012000', '1', '1418148000', '1419184800', '1', '1418839200', ' Remarks season 3', '0', 'UI-000001', '1420014800', 'UI-000001', '1420094622');
 
 -- ----------------------------
 -- Table structure for `rnd_sample_delivery_date_crop`
@@ -1167,24 +1240,21 @@ CREATE TABLE `rnd_sample_delivery_date_crop` (
   `modified_by` varchar(20) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_sample_delivery_date_crop
 -- ----------------------------
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('11', '3', '10', '0', 'UI-000001', '1420013895', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('12', '3', '11', '0', 'UI-000001', '1420013895', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('13', '3', '12', '0', 'UI-000001', '1420013895', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('14', '3', '15', '0', 'UI-000001', '1420013895', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('15', '3', '16', '0', 'UI-000001', '1420013895', null, null);
 INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('16', '4', '11', '0', 'UI-000001', '1420014764', null, null);
 INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('17', '4', '12', '0', 'UI-000001', '1420014764', null, null);
 INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('18', '4', '15', '0', 'UI-000001', '1420014764', null, null);
 INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('19', '4', '16', '0', 'UI-000001', '1420014764', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('20', '5', '10', '0', 'UI-000001', '1420014800', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('21', '5', '12', '0', 'UI-000001', '1420014800', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('22', '5', '15', '0', 'UI-000001', '1420014800', null, null);
-INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('23', '5', '16', '0', 'UI-000001', '1420014800', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('29', '3', '10', '0', 'UI-000001', '1420094024', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('30', '3', '11', '0', 'UI-000001', '1420094024', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('31', '3', '16', '0', 'UI-000001', '1420094024', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('37', '5', '12', '0', 'UI-000001', '1420094622', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('38', '5', '15', '0', 'UI-000001', '1420094622', null, null);
+INSERT INTO `rnd_sample_delivery_date_crop` VALUES ('39', '5', '16', '0', 'UI-000001', '1420094622', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_season_info`
@@ -1279,19 +1349,21 @@ CREATE TABLE `rnd_variety_info` (
   KEY `product_type_id` (`product_type_id`),
   KEY `principal_id` (`principal_id`) USING BTREE,
   KEY `crop_id` (`crop_id`) USING BTREE,
-  CONSTRAINT `rnd_variety_info_ibfk_1` FOREIGN KEY (`principal_id`) REFERENCES `rnd_principal_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_3` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_4` FOREIGN KEY (`product_type_id`) REFERENCES `rnd_product_type_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_variety_info
 -- ----------------------------
 INSERT INTO `rnd_variety_info` VALUES ('10', '1', '2', '5', '2', 'V0001', 'V0001', '1', '', '1', 'UI-000001', '1419768116', 'UI-000001', '1419773582');
-INSERT INTO `rnd_variety_info` VALUES ('11', '1', '3', '4', '1', 'V0002', 'V0002', '2', 'Soft-BD', '1', 'UI-000001', '1419771710', 'UI-000001', '1419773608');
-INSERT INTO `rnd_variety_info` VALUES ('12', '3', '2', '3', '3', 'V0003', 'V0003', '1', '', '1', 'UI-000001', '1419828140', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('11', '2', '3', '4', '1', 'V0002', 'V0002', '3', '', '1', 'UI-000001', '1419771710', 'UI-000001', '1420280527');
+INSERT INTO `rnd_variety_info` VALUES ('12', '0', '2', '3', '3', 'V0003', 'V0003', '2', 'SoftBD Ltd.', '1', 'UI-000001', '1419828140', 'UI-000001', '1420280895');
 INSERT INTO `rnd_variety_info` VALUES ('15', '2', '1', '4', '1', 'V0004', 'V0004', '1', '', '1', 'UI-000001', '1419943231', null, null);
 INSERT INTO `rnd_variety_info` VALUES ('16', '2', '1', '5', '2', 'V0005', 'V0005', '1', '', '1', 'UI-000001', '1420004518', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('17', '0', '1', '6', '5', 'V0006', 'C0007-E-17-CKA', '1', '', '1', 'UI-000001', '1420288217', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('18', '0', '1', '6', '5', 'V0007', 'C0007-E-18-CKA', '1', '', '1', 'UI-000001', '1420288227', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('19', '2', '1', '6', '5', 'V0008', 'C0007-E-19-Code2', '3', '', '1', 'UI-000001', '1420288345', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_variety_season`
@@ -1308,21 +1380,27 @@ CREATE TABLE `rnd_variety_season` (
   `modified_by` varchar(11) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_variety_season
 -- ----------------------------
 INSERT INTO `rnd_variety_season` VALUES ('33', '10', '5', '2', '1', 'UI-000001', '1419773582', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('34', '10', '5', '2', '3', 'UI-000001', '1419773582', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('35', '11', '4', '1', '1', 'UI-000001', '1419773608', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('36', '11', '4', '1', '2', 'UI-000001', '1419773608', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('37', '12', '3', '3', '1', 'UI-000001', '1419828140', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('38', '12', '3', '3', '2', 'UI-000001', '1419828140', null, null);
-INSERT INTO `rnd_variety_season` VALUES ('39', '12', '3', '3', '3', 'UI-000001', '1419828140', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('46', '15', '4', '1', '1', 'UI-000001', '1419943231', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('47', '15', '4', '1', '2', 'UI-000001', '1419943231', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('48', '15', '4', '1', '3', 'UI-000001', '1419943231', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('49', '16', '5', '2', '1', 'UI-000001', '1420004518', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('50', '16', '5', '2', '2', 'UI-000001', '1420004518', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('51', '16', '5', '2', '3', 'UI-000001', '1420004518', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('52', '11', '4', '1', '1', 'UI-000001', '1420280527', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('53', '11', '4', '1', '2', 'UI-000001', '1420280527', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('54', '12', '3', '3', '1', 'UI-000001', '1420280896', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('55', '12', '3', '3', '2', 'UI-000001', '1420280896', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('56', '12', '3', '3', '3', 'UI-000001', '1420280896', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('57', '17', '6', '5', '1', 'UI-000001', '1420288217', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('58', '17', '6', '5', '2', 'UI-000001', '1420288217', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('59', '18', '6', '5', '1', 'UI-000001', '1420288227', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('60', '18', '6', '5', '2', 'UI-000001', '1420288227', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('61', '19', '6', '5', '1', 'UI-000001', '1420288345', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('62', '19', '6', '5', '2', 'UI-000001', '1420288345', null, null);
