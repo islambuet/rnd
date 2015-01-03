@@ -90,7 +90,7 @@ class Create_crop_type extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_id'=>$this->input->post('crop_select'),
+            'crop_id'=>$this->input->post('crop_id'),
             'product_type'=>$this->input->post('product_type'),
             'product_type_code'=>$this->input->post('type_code'),
             'product_type_height'=>$this->input->post('height'),
@@ -132,7 +132,7 @@ class Create_crop_type extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_select')))
+        if(Validation_helper::validate_empty($this->input->post('crop_id')))
         {
             return false;
         }

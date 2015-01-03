@@ -21,7 +21,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                <select name="crop_id" id="crop_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
