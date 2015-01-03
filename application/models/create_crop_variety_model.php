@@ -72,5 +72,52 @@ class Create_crop_variety_model extends CI_Model
         $this->db->delete('rnd_variety_season', array('variety_id' => $id));
     }
 
+    /////// Functions below were used to create R&D Code ///////
+
+    public function get_crop_code_by_id($crop_id)
+    {
+        $this->db->select('rnd_crop_info.crop_code');
+        $this->db->from('rnd_crop_info');
+        $this->db->where('id',$crop_id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result['crop_code'];
+    }
+
+    public function get_type_code_by_id($type_id)
+    {
+        $this->db->select('rnd_product_type_info.product_type_code');
+        $this->db->from('rnd_product_type_info');
+        $this->db->where('id',$type_id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result['product_type_code'];
+    }
+
+    public function get_variety_last_id()
+    {
+        $this->db->select('rnd_variety_info.id');
+        $this->db->from('rnd_variety_info');
+        $this->db->order_by('id','DESC');
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return ++$result['id'];
+    }
+
+    public function get_principal_code_by_id($principal_id)
+    {
+        $this->db->select('rnd_principal_info.principal_code');
+        $this->db->from('rnd_principal_info');
+        $this->db->where('id',$principal_id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result['principal_code'];
+    }
+
 
 }

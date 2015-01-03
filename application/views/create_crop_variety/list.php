@@ -50,6 +50,10 @@
                     {
                         echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');
                     }
+                    else
+                    {
+                        echo '';
+                    }
                     ?>
                 </td>
 

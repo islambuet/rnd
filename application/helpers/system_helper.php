@@ -168,4 +168,14 @@ class System_helper
 
     }
 
+    public static function get_rnd_codes()
+    {
+        $CI = & get_instance();
+        $CI->db->select('rnd_variety_info.*');
+        $CI->db->from('rnd_variety_info');
+
+        $query = $CI->db->get();
+        return $query->result_array();
+    }
+
 }

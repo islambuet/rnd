@@ -106,9 +106,8 @@ class Create_crop_variety extends ROOT_Controller
             'crop_id'=>$this->input->post('crop_select'),
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),
-            'rnd_code'=>$this->input->post('variety_name'),
             'variety_type'=>$this->input->post('variety_type'),
-            'status'=>$this->input->post('status'),
+            'status'=>$this->input->post('status')
         );
 
         if($this->input->post('variety_type')==$this->config->item('variety_type_arm') || $this->input->post('variety_type')==$this->config->item('variety_type_principal'))
@@ -128,6 +127,33 @@ class Create_crop_variety extends ROOT_Controller
         {
             $data['principal_id'] = $this->input->post('principal_id');
         }
+
+        // START Generating R&D Code
+
+        $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
+        $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
+        $variety_last_id = $this->create_crop_variety_model->get_variety_last_id();
+        $principal_code = $this->create_crop_variety_model->get_principal_code_by_id($this->input->post('principal_id'));
+
+        if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
+        {
+            $fourthPortion = 'CKA';
+        }
+        elseif($this->input->post('variety_type')==$this->config->item('variety_type_company'))
+        {
+            $fourthPortion = 'CKO';
+        }
+        else
+        {
+            $fourthPortion = $principal_code;
+        }
+
+        $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion;
+
+        $data['rnd_code'] = $RnDCode;
+
+        // END Generating R&D Code
+
 
         $seasonData = Array(
             'crop_id'=>$this->input->post('crop_select'),
