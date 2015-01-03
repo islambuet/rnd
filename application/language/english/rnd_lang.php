@@ -12,6 +12,8 @@ $lang['MSG_INVALID_INPUT'] = 'Invalid data entry';
 $lang['MSG_CREATE_SUCCESS'] = 'Successfully Saved Data!';
 $lang['MSG_UPDATE_SUCCESS'] = 'Successfully Updated!';
 $lang['MSG_NOT_UPDATED_SUCCESS'] = 'Not Updated!';
+$lang['LABEL_DATE']='Date';
+
 
 $lang['LABEL_YES'] = 'Yes';
 $lang['LABEL_NO'] = 'No';
@@ -108,4 +110,17 @@ $lang['LABEL_BELOW_AVERAGE'] = 'Below Average';
 
 $lang['LABEL_DOME'] = 'Dome';
 $lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
+
+
+
+/// Fertilizer
+$lang['LABEL_SELECT_FERTILIZER']='Select Fertilizer';
+$lang['LABEL_BED']='Select Row/Seed Bed';
+$lang['LABEL_QUANTITY']='Quantity';
+$lang['LABEL_PRICE']='Price';
+
+// pesticide Stock In
+$lang['LABEL_PESTICIDE_STOCK_IN']='Pesticide & Fungicide Name';
+$lang['LABEL_QUANTITY_STOCK_IN']='Quantity';
+$lang['LABEL_PRICE_STOCK_IN']='Price';
 
