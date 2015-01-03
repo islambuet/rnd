@@ -86,3 +86,25 @@ $lang['LABEL_RND_CODE'] = 'R&D Code';
 $lang['LABEL_ALL_SELECT_RND_CODE'] = 'All Select (R&D Code)';
 $lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 
+//Trial Analysis Fortnightly
+$lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
+$lang['LABEL_INITIAL_PLANTS'] = 'Initial Plants During Trial Started';
+$lang['LABEL_FORTNIGHTLY_REPORTING_DATE'] = 'Fortnightly Reporting Date';
+$lang['LABEL_PLANT_TYPE_APPEARANCE'] = 'Plant Type /Appearance';
+$lang['LABEL_PLANT_UNIFORMITY'] = 'Plant Uniformity';
+$lang['LABEL_DISTANCE_GROUND_TO_CURD'] = 'Distance From Ground to Curd';
+$lang['LABEL_CURD_TYPE'] = 'Crud Type';
+$lang['LABEL_CURD_COLOR'] = 'Crud Color';
+$lang['LABEL_CURD_COMPACTNESS'] = 'Curd Compactness';
+$lang['LABEL_CURD_UNIFORMITY'] = 'Crud Uniformity';
+$lang['LABEL_DISEASE_SEVERITY'] = 'Disease Severity';
+$lang['LABEL_SPECIAL_CHARACTERS'] = 'Special Characters';
+$lang['LABEL_ACCEPTED'] = 'Accepted';
+
+$lang['LABEL_GOOD'] = 'Good';
+$lang['LABEL_AVERAGE'] = 'Average';
+$lang['LABEL_BELOW_AVERAGE'] = 'Below Average';
+
+$lang['LABEL_DOME'] = 'Dome';
+$lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
+

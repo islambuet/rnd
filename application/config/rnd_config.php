@@ -23,6 +23,16 @@ $config['sample_delivery_received_status_no']=0;
 $config['sample_delivery_sowing_status_yes']=1;
 $config['sample_delivery_sowing_status_no']=0;
 
+$config['good']=1;
+$config['average']=2;
+$config['belowAverage']=3;
+
+$config['curd_type_dome']=1;
+$config['curd_type_semi_dome']=2;
+
+$config['accepted_code_yes']=1;
+$config['accepted_code_no']=0;
+
 
 
 
