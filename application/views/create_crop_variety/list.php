@@ -46,6 +46,10 @@
                     {
                         echo $this->lang->line('LABEL_COMPETITOR_VARIETY');
                     }
+                    elseif($variety['variety_type']==$this->config->item('variety_type_principal'))
+                    {
+                        echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');
+                    }
                     ?>
                 </td>
 

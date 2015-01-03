@@ -60,6 +60,26 @@ foreach($seasonInfo as $result)
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <input type="radio" name="variety_type" id="variety_type_arm" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+                <input type="radio" name="variety_type" id="variety_type_competitor" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_company')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_principal" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_principal')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_principal');?>"> <?php echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');?>
+            </div>
+        </div>
+
+        <div class="row show-grid <?php if($varietyInfo['variety_type']!=$this->config->item('variety_type_company')){ echo 'hiddenCompany';}?>" id="competitor_div">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="company_name" id="company_name" class="form-control" value="<?php echo $varietyInfo['company_name'];?>">
+            </div>
+        </div>
+
+        <div style="" class="row show-grid <?php if($varietyInfo['variety_type']!=$this->config->item('variety_type_principal')){ echo 'hiddenPrincipal';}?>" id="principal_div">
+            <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
@@ -97,24 +117,7 @@ foreach($seasonInfo as $result)
             </div>
         </div>
 
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="variety_type" id="variety_type_arm" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
-                <input type="radio" name="variety_type" id="variety_type_competitor" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_company')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
-            </div>
-        </div>
 
-        <div class="row show-grid <?php if($varietyInfo['variety_type']!=$this->config->item('variety_type_company')){ echo 'hiddenCompany';}?>" id="competitor_div">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="company_name" id="company_name" class="form-control" value="<?php echo $varietyInfo['company_name'];?>">
-            </div>
-        </div>
 
         <div class="row show-grid" id="season_div">
             <div class="col-xs-4">
@@ -152,6 +155,11 @@ foreach($seasonInfo as $result)
     {
        display: none;
     }
+
+    .hiddenPrincipal
+    {
+       display: none;
+    }
 </style>
 
 <script type="text/javascript">
@@ -178,6 +186,40 @@ foreach($seasonInfo as $result)
         }
 
     });
+
+    $(document).on("change", "#variety_type_principal", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").addClass('hiddenCompany');
+        }
+
+    });
+
+    $(document).on("change", "#variety_type_principal", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").removeClass('hiddenPrincipal');
+        }
+    });
+
+    $(document).on("change", "#variety_type_arm", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").addClass('hiddenPrincipal');
+        }
+    });
+
+    $(document).on("change", "#variety_type_competitor", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").addClass('hiddenPrincipal');
+        }
+    });
+
 
     $(document).on("change", "#crop_select", function(event)
     {

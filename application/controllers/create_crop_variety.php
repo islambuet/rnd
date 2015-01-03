@@ -102,7 +102,6 @@ class Create_crop_variety extends ROOT_Controller
         $seasonPost = $this->input->post('season');
 
         $data = Array(
-            'principal_id'=>$this->input->post('principal_id'),
             'flowering_type_id'=>$this->input->post('flowering_type'),
             'crop_id'=>$this->input->post('crop_select'),
             'product_type_id'=>$this->input->post('crop_type'),
@@ -112,13 +111,22 @@ class Create_crop_variety extends ROOT_Controller
             'status'=>$this->input->post('status'),
         );
 
-        if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
+        if($this->input->post('variety_type')==$this->config->item('variety_type_arm') || $this->input->post('variety_type')==$this->config->item('variety_type_principal'))
         {
             $data['company_name'] = '';
         }
         else
         {
             $data['company_name'] = $this->input->post('company_name');
+        }
+
+        if($this->input->post('variety_type')==$this->config->item('variety_type_arm') || $this->input->post('variety_type')==$this->config->item('variety_type_company'))
+        {
+            $data['principal_id'] = '';
+        }
+        else
+        {
+            $data['principal_id'] = $this->input->post('principal_id');
         }
 
         $seasonData = Array(
