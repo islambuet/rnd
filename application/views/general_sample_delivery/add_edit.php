@@ -193,7 +193,7 @@ else
         var season_id = $("#season_id").val();
 
         $.ajax({
-            url: base_url+"rnd_common/load_variety_by_season/",
+            url: base_url+"rnd_common/load_rnd_codes_by_season/",
             type: 'POST',
             dataType: "JSON",
             data:{season_id:season_id},

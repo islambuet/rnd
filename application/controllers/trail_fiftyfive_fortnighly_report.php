@@ -91,7 +91,6 @@ class Trail_fiftyfive_fortnighly_report extends ROOT_Controller
             $data['title']="New Trial Analysis Fortnightly";
         }
 
-        $data['rndCodes'] = $this->trail_fiftyfive_fortnighly_report_model->get_rndCodes();
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("trail_fiftyfive_fortnighly_report/add_edit",$data,true));
 

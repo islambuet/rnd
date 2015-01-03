@@ -133,7 +133,6 @@ class Create_crop_variety extends ROOT_Controller
         $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
         $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
         $variety_last_id = $this->create_crop_variety_model->get_variety_last_id();
-        $principal_code = $this->create_crop_variety_model->get_principal_code_by_id($this->input->post('principal_id'));
 
         if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
         {
@@ -145,6 +144,7 @@ class Create_crop_variety extends ROOT_Controller
         }
         else
         {
+            $principal_code = $this->create_crop_variety_model->get_principal_code_by_id($this->input->post('principal_id'));
             $fourthPortion = $principal_code;
         }
 
@@ -153,7 +153,6 @@ class Create_crop_variety extends ROOT_Controller
         $data['rnd_code'] = $RnDCode;
 
         // END Generating R&D Code
-
 
         $seasonData = Array(
             'crop_id'=>$this->input->post('crop_select'),

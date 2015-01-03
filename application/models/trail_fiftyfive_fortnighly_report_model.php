@@ -76,13 +76,4 @@ class Trail_fiftyfive_fortnighly_report_model extends CI_Model
         $this->db->delete('rnd_sample_delivery_date_crop', array('sample_delivery_date_id' => $id));
     }
 
-    public function get_rndCodes()
-    {
-        $this->db->from('rnd_variety_info rvi');
-        $this->db->select('rvi.*');
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
 }

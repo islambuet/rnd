@@ -23,7 +23,9 @@
             <div class="col-sm-4 col-xs-8">
                 <select name="rnd_code_id" id="rnd_code_id" class="form-control validate[required]" >
                     <option value=""><?php echo $this->lang->line("SELECT");?></option>
-                    <?php foreach($rndCodes as $code){?>
+                    <?php
+                    $rndCodes = System_helper::get_rnd_codes();
+                    foreach($rndCodes as $code){?>
                     <option value="<?php echo $code['id']?>" <?php if($fortnightlyInfo['rnd_code_id']==$code['id']){ echo 'selected';}?>><?php echo $code['rnd_code'];?></option>
                     <?php }?>
                 </select>
