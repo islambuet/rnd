@@ -83,8 +83,8 @@ class General_sample_delivery extends ROOT_Controller
             $data['title']="New Sample Delivery";
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
-        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array());
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("general_sample_delivery/add_edit",$data,true));
 

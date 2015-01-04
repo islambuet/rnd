@@ -77,7 +77,7 @@ class Create_crop_type extends ROOT_Controller
             );
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/add_edit",$data,true));
 

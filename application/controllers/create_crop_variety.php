@@ -85,9 +85,9 @@ class Create_crop_variety extends ROOT_Controller
             );
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array());
-        $data['principals'] = Query_helper::get_info('rnd_principal_info', '*', array());
-        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array());
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        $data['principals'] = Query_helper::get_info('rnd_principal_info', '*', array('status ='.$this->config->item('active')));
+        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/add_edit",$data,true));
 
