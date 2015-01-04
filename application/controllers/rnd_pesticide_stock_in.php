@@ -53,6 +53,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_in/list",$data,true));
+
         if($this->message)
         {
             $ajax['message']=$this->message;
@@ -66,12 +67,13 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         if ($id != 0)
         {
             $data['pesticideInfo'] = $this->rnd_pesticide_stock_in_model->get_pesticide_row($id);
-            $data['title']="Edit Crop (".$data['pesticideInfo']['pesticide_name'].")";
+            $data['title']="Edit Pesticide & Fungicide Stock (".$data['pesticideInfo']['pesticide_name'].")";
         }
         else
         {
             $data["pesticideInfo"] = Array(
                 'id' => 0,
+                'pesticide_id'=>'',
                 'pesticide_name' => '',
                 'pesticide_quantity' => '',
                 'pesticide_price' => '',
@@ -98,8 +100,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
             'pesticide_id'=>$this->input->post('pesticide_in'),
             'pesticide_quantity'=>$this->input->post('pesticide_in_quantity'),
             'pesticide_price'=>$this->input->post('pesticide_in_price'),
-            //'crop_height'=>$this->input->post('crop_height'),
-           // 'status'=>$this->input->post('status'),
+
         );
 
         if(!$this->check_validation())
@@ -149,13 +150,16 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         {
             return false;
         }
-if($this->input->post('pesticide_in_price'))
-{
+
+        if($this->input->post('pesticide_in_price'))
+
+        {
         if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
         {
             return false;
         }
-    }
+
+        }
         return true;
     }
 

@@ -124,3 +124,8 @@ $lang['LABEL_PESTICIDE_STOCK_IN']='Pesticide & Fungicide Name';
 $lang['LABEL_QUANTITY_STOCK_IN']='Quantity';
 $lang['LABEL_PRICE_STOCK_IN']='Price';
 
+
+// pesticide Stock Out
+
+$lang['LABEL_PESTICIDE_RND']='R&D Code';
+
