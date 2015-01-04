@@ -146,6 +146,29 @@
 
     });
 
+    $(document).on("change", "#crop_type", function(event)
+    {
+        var crop_id = $("#crop_id").val();
+        var type_id = $("#crop_type").val();
+        var selected = '<?php echo $typeInfo['id'];?>';
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_rnd_code_by_name_type/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_id:crop_id,type_id:type_id},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
     Calendar.setup({
         inputField: "sowing_date",
         trigger: "sowing_date",

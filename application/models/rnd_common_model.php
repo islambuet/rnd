@@ -20,6 +20,17 @@ class Rnd_common_model extends CI_Model
         return $query->result_array();
     }
 
+    public function dropDown_rnd_code_by_name_type($crop_id,$type_id)
+    {
+        $this->db->select('rnd_variety_info.*');
+        $this->db->from('rnd_variety_info');
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('product_type_id',$type_id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_variety_by_season($season)
     {
         $this->db->from('rnd_variety_season vs');

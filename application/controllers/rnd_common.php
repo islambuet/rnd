@@ -30,6 +30,25 @@ class Rnd_common extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
+    public function dropDown_rnd_code_by_name_type()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $type_id = $this->input->post('type_id');
+
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_name_type($crop_id,$type_id);
+        $data['selected'] = $this->input->post('selected');
+
+        foreach($data['details'] as $code)
+        {
+            $data['value'][] = $code['id'];
+            $data['name'][] = $code['rnd_code'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#rnd_code","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
     public function load_rnd_codes_by_season()
     {
         $season = $this->input->post('season_id');
