@@ -32,7 +32,7 @@
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="type_id" id="type_id" value="<?php echo $typeInfo['id'];?>"/>
+            <input type="hidden" name="fifteen_id" id="fifteen_id" value="<?php echo $typeInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -95,10 +95,10 @@
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADD_IMAGE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADD_IMAGE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="file" name="rnd_image" id="rnd_image" class="validate[required]" value="" >
+                <input type="file" name="rnd_image" id="rnd_image" class="" value="" >
             </div>
         </div>
 
@@ -144,5 +144,25 @@
             }
         });
 
+    });
+
+    Calendar.setup({
+        inputField: "sowing_date",
+        trigger: "sowing_date",
+        onSelect: function() {
+            this.hide()
+        },
+        showTime: 12,
+        dateFormat: "%d-%m-%Y"
+    });
+
+    Calendar.setup({
+        inputField: "picture_date",
+        trigger: "picture_date",
+        onSelect: function() {
+            this.hide()
+        },
+        showTime: 12,
+        dateFormat: "%d-%m-%Y"
     });
 </script>

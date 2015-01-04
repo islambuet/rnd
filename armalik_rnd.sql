@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-03 18:36:12
+Date: 2015-01-04 17:00:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -547,8 +547,8 @@ CREATE TABLE `rnd_crop_info` (
 -- ----------------------------
 -- Records of rnd_crop_info
 -- ----------------------------
-INSERT INTO `rnd_crop_info` VALUES ('3', 'Cucumber', 'C0001', '46', '23', '0', 'UI-000001', '1419337772', 'UI-000001', '1419399879');
-INSERT INTO `rnd_crop_info` VALUES ('4', 'Brinjal', 'B0001', '654', '344', '0', 'UI-000001', '1419342256', 'UI-000001', '1419400013');
+INSERT INTO `rnd_crop_info` VALUES ('3', 'Cucumber', 'C0001', '46', '23', '1', 'UI-000001', '1419337772', 'UI-000001', '1419399879');
+INSERT INTO `rnd_crop_info` VALUES ('4', 'Brinjal', 'B0001', '654', '344', '1', 'UI-000001', '1419342256', 'UI-000001', '1419400013');
 INSERT INTO `rnd_crop_info` VALUES ('5', 'Potato', 'P0001', '82', '41', '1', 'UI-000001', '1419342385', null, null);
 INSERT INTO `rnd_crop_info` VALUES ('6', 'Pumpkin', 'C0007', '45', '23', '1', 'UI-000001', '1420024701', null, null);
 
@@ -707,6 +707,31 @@ CREATE TABLE `rnd_fifteendays_interval_picture` (
 
 -- ----------------------------
 -- Records of rnd_fifteendays_interval_picture
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_fifteen_days_picture_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_fifteen_days_picture_report`;
+CREATE TABLE `rnd_fifteen_days_picture_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `rnd_code` varchar(20) NOT NULL,
+  `sowing_date` int(30) NOT NULL,
+  `picture_date` int(30) NOT NULL,
+  `picture_day` int(11) NOT NULL,
+  `image` varchar(20) NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(11) NOT NULL,
+  `modification_date` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_fifteen_days_picture_report
 -- ----------------------------
 
 -- ----------------------------

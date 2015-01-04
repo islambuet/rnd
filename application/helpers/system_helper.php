@@ -34,7 +34,7 @@ class System_helper
 
 
 
-    public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize)
+    public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize,$allowedtypes)
     {
         $CI = & get_instance();
         $ext = explode("/", @$_FILES[$post_file_name]['type']);
@@ -52,7 +52,7 @@ class System_helper
                     $CI->load->library('upload');
 
                     $config['upload_path'] = $save_dir;
-                    $config['allowed_types'] = $CI->config->item('user_profile_img_allowed_types');
+                    $config['allowed_types'] = $allowedtypes;
                     $config['max_size'] = $filesize;
                     $config['file_name'] = $fileName;
                     $CI->load->library('upload', $config);

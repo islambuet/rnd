@@ -88,13 +88,18 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         $id = $this->input->post("type_id");
         $user = User_helper::get_user();
 
+        $new_file_name = time().'.jpg';
+        $img = System_helper::file_upload('rnd_image',$this->config->item('fifteen_days_picture_report_img_upload_folder'),$new_file_name,$this->config->item('fifteen_days_picture_report_img_type'),$this->config->item('fifteen_days_picture_report_img_size'),$this->config->item('fifteen_days_picture_report_img_allowed_types'));
+
         $data = Array(
             'crop_id'=>$this->input->post('crop_id'),
-            'product_type'=>$this->input->post('product_type'),
-            'product_type_code'=>$this->input->post('type_code'),
-            'product_type_height'=>$this->input->post('height'),
-            'product_type_width'=>$this->input->post('width'),
-            'status'=>$this->input->post('status'),
+            'type_id'=>$this->input->post('crop_type'),
+            'rnd_code'=>$this->input->post('rnd_code'),
+            'sowing_date'=>$this->input->post('sowing_date'),
+            'picture_date'=>$this->input->post('picture_date'),
+            'picture_day'=>$this->input->post('picture_day'),
+            'image_name'=>$img,
+            'remarks'=>$this->input->post('remarks')
         );
 
         if(!$this->check_validation())
@@ -107,20 +112,44 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_product_type_info',$data,array("id = ".$id));
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
 
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_product_type_info',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                Query_helper::add('rnd_fifteen_days_picture_report',$data);
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 
@@ -136,32 +165,23 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('product_type')))
+        if(Validation_helper::validate_empty($this->input->post('crop_type')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('type_code')))
+        if(Validation_helper::validate_empty($this->input->post('rnd_code')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('height')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('width')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
+        if(Validation_helper::validate_empty($this->input->post('picture_day')))
         {
             return false;
         }
 
         return true;
+
     }
 
 
