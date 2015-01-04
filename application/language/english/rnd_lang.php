@@ -111,6 +111,12 @@ $lang['LABEL_BELOW_AVERAGE'] = 'Below Average';
 $lang['LABEL_DOME'] = 'Dome';
 $lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
 
+// 15 Days Picture Report
+
+$lang['LABEL_PICTURE_DATE'] = 'Picture Date';
+$lang['LABEL_PICTURE_DAY'] = 'Picture Day';
+$lang['LABEL_ADD_IMAGE'] = 'Add Image';
+
 
 
 /// Fertilizer
