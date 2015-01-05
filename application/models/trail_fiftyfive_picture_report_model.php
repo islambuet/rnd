@@ -10,40 +10,47 @@ class Trail_fiftyfive_picture_report_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_typeInfo($page=null)
+    public function get_pictureReportInfo($page=null)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_product_type_info rti');
-        $this->db->select('rti.*');
-        $this->db->select('cinfo.crop_name crop_name');
+        $this->db->from('rnd_fifteen_days_picture_report rpr');
+        $this->db->select('rpr.*');
+        $this->db->select('rvi.rnd_code rnd_code_variety');
 
-        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rti.crop_id', 'left');
-
-        $this->db->where('rti.status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->join('rnd_variety_info rvi', 'rvi.id = rpr.rnd_code', 'left');
         $this->db->limit($limit,$start);
 
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function get_total_types()
+    public function get_total_pictureReports()
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_fifteen_days_picture_report.*');
+        $this->db->from('rnd_fifteen_days_picture_report');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         return $this->db->count_all_results();
     }
 
-    public function get_type_row($id)
+    public function get_report_row($id)
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
-        $this->db->where('id',$id);
+        $this->db->select('rfdpr.*');
+        $this->db->from('rnd_fifteen_days_picture_report rfdpr');
+        $this->db->where('rfdpr.id',$id);
 
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_report_image_detail($id)
+    {
+        $this->db->select('rfdpri.*');
+        $this->db->from('rnd_fifteen_days_picture_report_images rfdpri');
+        $this->db->where('rfdpri.picture_report_id',$id);
+
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 }

@@ -33,7 +33,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "trail_fiftyfive_picture_report/index/list/",$this->trail_fiftyfive_picture_report_model->get_total_types(),4);
+        $config = System_helper::pagination_config(base_url() . "trail_fiftyfive_picture_report/index/list/",$this->trail_fiftyfive_picture_report_model->get_total_pictureReports(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,7 +42,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['typeInfo'] = $this->trail_fiftyfive_picture_report_model->get_typeInfo($page);
+        $data['pictureReports'] = $this->trail_fiftyfive_picture_report_model->get_pictureReportInfo($page);
         $data['title']="15 Days Picture Report List";
 
         $ajax['status']=true;
@@ -59,24 +59,27 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['typeInfo'] = $this->trail_fiftyfive_picture_report_model->get_type_row($id);
-            $data['title']="Edit Crop Type (".$data['typeInfo']['product_type'].")";
+            $data['pictureInfo'] = $this->trail_fiftyfive_picture_report_model->get_report_row($id);
+            $data['details'] = $this->trail_fiftyfive_picture_report_model->get_report_image_detail($id);
+            $data['title']="Edit 15 Day Picture Report";
         }
         else
         {
             $data['title']="New 15 Days Picture Report";
-            $data["typeInfo"] = Array(
+            $data["pictureInfo"] = Array(
                 'id' => 0,
                 'crop_id' => '',
-                'product_type' => '',
-                'product_type_code' => '',
-                'product_type_height' => '',
-                'product_type_width' => '',
-                'status' => $this->config->item('active')
+                'type_id' => '',
+                'rnd_code' => '',
+                'sowing_date' => '',
+                'picture_date' => '',
+                'picture_day' => '',
+                'remarks' => ''
             );
         }
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        $data['types'] = Query_helper::get_info('rnd_product_type_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("trail_fiftyfive_picture_report/add_edit",$data,true));
 
@@ -95,11 +98,14 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             'crop_id'=>$this->input->post('crop_id'),
             'type_id'=>$this->input->post('crop_type'),
             'rnd_code'=>$this->input->post('rnd_code'),
-            'sowing_date'=>$this->input->post('sowing_date'),
-            'picture_date'=>$this->input->post('picture_date'),
-            'picture_day'=>$this->input->post('picture_day'),
-            'image_name'=>$img,
-            'remarks'=>$this->input->post('remarks')
+            'sowing_date'=>strtotime($this->input->post('sowing_date'))
+        );
+
+        $data_img = Array(
+          'image_name'=>$img,
+          'picture_date'=>time(),
+          'picture_day'=>$this->input->post('picture_day'),
+          'remarks'=>$this->input->post('remarks')
         );
 
         if(!$this->check_validation())
@@ -116,6 +122,9 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
+
+                $data_img['modified_by'] = $user->user_id;
+                $data_img['modification_date'] = time();
 
                 Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
@@ -138,7 +147,13 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_fifteen_days_picture_report',$data);
+                $last_id = Query_helper::add('rnd_fifteen_days_picture_report',$data);
+
+                $data_img['picture_report_id']= $last_id;
+                $data_img['created_by'] = $user->user_id;
+                $data_img['creation_date'] = time();
+
+                Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 

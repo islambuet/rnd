@@ -4,7 +4,8 @@
     $this->load->view("action_buttons_edit",$data);
 
 //echo '<pre>';
-//print_r($typeInfo);
+//print_r($pictureInfo);
+////print_r($details);
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php base_url()?>trail_fiftyfive_picture_report/index/save" method="post">
@@ -21,18 +22,18 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
                     {?>
-                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
+                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$pictureInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
                     <?php
                     }
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="fifteen_id" id="fifteen_id" value="<?php echo $typeInfo['id'];?>"/>
+            <input type="hidden" name="fifteen_id" id="fifteen_id" value=""/>
         </div>
 
         <div style="" class="row show-grid">
@@ -40,8 +41,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type" id="crop_type" class="form-control">
+                <select name="crop_type" id="crop_type" class="form-control" <?php if(!empty($pictureInfo['type_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php foreach($types as $type){?>
+                        <option value="<?php echo $type['id'];?>" <?php if($type['id']==$pictureInfo['type_id']){ echo "selected";}?>><?php echo $type['product_type'];?></option>
+                    <?php }?>
                 </select>
             </div>
         </div>
@@ -51,14 +55,14 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="rnd_code" id="rnd_code" class="form-control">
+                <select name="rnd_code" id="rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     $rndCode = System_helper::get_rnd_codes();
                     foreach($rndCode as $code)
                     {
                     ?>
-                        <option value="<?php echo $code['id'];?>"><?php echo $code['rnd_code'];?></option>
+                        <option value="<?php echo $code['id'];?>" <?php if($code['id']==$pictureInfo['rnd_code']){ echo "selected";}?>><?php echo $code['rnd_code'];?></option>
                     <?php
                     }
                     ?>
@@ -71,7 +75,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php echo $typeInfo['product_type_code'];?>" >
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php echo date('d-m-Y',$pictureInfo['sowing_date']);?>" >
             </div>
         </div>
 
@@ -80,7 +84,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PICTURE_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="picture_date" id="picture_date" class="form-control" value="<?php echo $typeInfo['product_type_width'];?>" >
+                <input type="text" name="picture_date" id="picture_date" readonly class="form-control" value="<?php echo date('d-m-Y',time());?>" >
             </div>
         </div>
 
@@ -89,7 +93,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="picture_day" id="picture_day" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_height'];?>" >
+                <input type="text" name="picture_day" id="picture_day" class="form-control validate[required]" value="" >
             </div>
         </div>
 
@@ -110,11 +114,13 @@
                 <textarea name="remarks" id="remarks" class="form-control"></textarea>
             </div>
         </div>
-
-
     </div>
     <div class="clearfix"></div>
 </form>
+
+<div class="row">
+
+</div>
 
 <script type="text/javascript">
 
@@ -127,7 +133,7 @@
     $(document).on("change", "#crop_id", function(event)
     {
         var crop_id = $("#crop_id").val();
-        var product_type_id = '<?php echo $typeInfo['product_type'];?>';
+        var product_type_id = '<?php echo $pictureInfo['type_id'];?>';
         $.ajax({
             url: base_url+"rnd_common/dropDown_crop_type_by_name/",
             type: 'POST',
@@ -150,7 +156,7 @@
     {
         var crop_id = $("#crop_id").val();
         var type_id = $("#crop_type").val();
-        var selected = '<?php echo $typeInfo['id'];?>';
+        var selected = '<?php echo $pictureInfo['rnd_code'];?>';
         $.ajax({
             url: base_url+"rnd_common/dropDown_rnd_code_by_name_type/",
             type: 'POST',
@@ -163,7 +169,6 @@
             error: function (xhr, desc, err)
             {
                 console.log("error");
-
             }
         });
 
