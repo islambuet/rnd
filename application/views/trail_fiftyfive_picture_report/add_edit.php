@@ -75,7 +75,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php echo date('d-m-Y',$pictureInfo['sowing_date']);?>" >
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php if(!empty($pictureInfo['sowing_date'])){ echo date('d-m-Y',$pictureInfo['sowing_date']);}?>" >
             </div>
         </div>
 
@@ -116,11 +116,21 @@
         </div>
     </div>
     <div class="clearfix"></div>
+
+    <?php if(!empty($details)){?>
+        <div class="row widget">
+            <?php foreach($details as $detail){?>
+                <div class="col-xs-2">
+                    <label class="control-label pull-right"><?php echo $detail['picture_day'];?> Days
+                        <img width="80px" height="80px" src="<?php echo base_url()?>images/trail_fiftyfive_picture_report/<?php echo $detail['image_name'];?>"/>
+                    </label>
+                </div>
+
+            <?php }?>
+        </div>
+    <?php }?>
 </form>
 
-<div class="row">
-
-</div>
 
 <script type="text/javascript">
 
