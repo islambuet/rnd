@@ -14,14 +14,20 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         $start=$page*$limit;
         $this->db->from('rnd_pesticide_fungicide_stock_out pfs');
         $this->db->select('pfs.*');
+
         $this->db->select('pfi.pesticide_name pesticide_name');
+        $this->db->select('vi.rnd_code rnd_code');
 
         $this->db->join('rnd_pesticide_fungicide_info pfi', 'pfi.id = pfs.pesticide_id', 'left');
+        $this->db->join('rnd_variety_info vi', 'vi.id = pfs.rnd_code_id', 'left');
 
         $this->db->where('pfs.status',$this->config->item('active'));
         $this->db->limit($limit,$start);
 
+
+
         $query = $this->db->get();
+        //echo $this->db->last_query();exit;
 
         return $query->result_array();
     }

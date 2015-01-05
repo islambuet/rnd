@@ -1,4 +1,4 @@
-<?php if(!definded('BASEPATH')) exit('No direct script access allowed');
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 $data["link_new"]= base_url()."rnd_pesticide_stock_out/index/add";
 $data["link_back"]=base_url()."rnd_pesticide_stock_out";
 $this->load->view("action_buttons_edit",$data);
@@ -11,6 +11,26 @@ $this->load->view("action_buttons_edit",$data);
                 <?php echo $title; ?>
             </div>
             <div class="clearfix"></div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PESTICIDE_RND');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <select name="pesticide_out_rnd" id="pesticide_out_rnd" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    $rndCodes = System_helper::get_rnd_codes();
+                    foreach($rndCodes as $rndCode)
+                    {
+                        ?>
+                        <option value="<?php echo $rndCode['id']?>" <?php if ($rndCode['id']== $pesticideInfo['rnd_code_id']){ echo 'selected';}?>><?php echo $rndCode['rnd_code'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <input type="hidden" name="pesticide_stock_out_id" id="pesticide_stock_out_id" value="<?php echo $pesticideInfo['id'];?>"/>
         </div>
         <div class="row show-grid">
             <div class="col-xs-4">
@@ -29,7 +49,7 @@ $this->load->view("action_buttons_edit",$data);
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="pesticide_stock_in_id" id="pesticide_stock_in_id" value="<?php echo $pesticideInfo['id'];?>"/>
+
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
@@ -39,14 +59,7 @@ $this->load->view("action_buttons_edit",$data);
                 <input type="text" name="pesticide_out_quantity" id="pesticide_out_quantity" class="form-control validate[required]" value="<?php echo $pesticideInfo['pesticide_quantity'];?>" >
             </div>
         </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRICE_STOCK_IN');?></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="pesticide_out_price" id="pesticide_out_price" class="form-control validate[required, custom[number]]" value="<?php echo $pesticideInfo['pesticide_price'];?>" >
-            </div>
-        </div>
+
 
 
 
