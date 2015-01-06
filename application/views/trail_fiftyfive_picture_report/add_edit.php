@@ -151,13 +151,36 @@ if(!empty($details))
 
     <?php if(!empty($details)){?>
         <div class="row widget">
-            <?php foreach($details as $detail){?>
-                <div class="col-xs-2">
-                    <label class="control-label pull-right"><?php echo $detail['picture_day'];?> Days
+            <?php
+            $i = 0;
+            foreach($details as $detail)
+            {
+                ?>
+                <div class="col-xs-3">
+                    <label class="control-label"><?php echo $detail['picture_day'];?> Days
                         <img width="80px" height="80px" src="<?php echo base_url()?>images/trail_fiftyfive_picture_report/<?php echo $detail['image_name'];?>"/>
                     </label>
+                    <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?> <input type="text" name="picture_day_spec[]" value="<?php echo $detail['picture_day'];?>"/></label>
+                    <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DATE');?> <input type="text" name="picture_date_spec[]" id="picture_date_spec<?php echo $i;?>" value="<?php echo date('d-m-Y',$detail['picture_date']);?>"/></label>
+                    <label class="control-label"><?php echo $this->lang->line('LABEL_CHANGE_PICTURE');?> <input type="file" name="image_spec[]" value=""/></label>
+
                 </div>
-            <?php }?>
+
+                <script>
+                    var serial = '<?php echo $i;?>';
+                    Calendar.setup({
+                        inputField: "picture_date_spec"+serial,
+                        trigger: "picture_date_spec"+serial,
+                        onSelect: function() {
+                            this.hide()
+                        },
+                        showTime: 12,
+                        dateFormat: "%d-%m-%Y"
+                    });
+                </script>
+            <?php
+            $i++;
+            }?>
         </div>
     <?php }?>
 </form>
@@ -278,4 +301,17 @@ if(!empty($details))
         showTime: 12,
         dateFormat: "%d-%m-%Y"
     });
+
+//    $(document).on("click", "#picture_date_spec", function(event)
+//    {
+//        Calendar.setup({
+//            inputField: this,
+//            trigger: this,
+//            onSelect: function() {
+//                this.hide()
+//            },
+//            showTime: 12,
+//            dateFormat: "%d-%m-%Y"
+//        });
+//    });
 </script>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-04 17:00:15
+Date: 2015-01-06 16:51:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -715,24 +715,48 @@ CREATE TABLE `rnd_fifteendays_interval_picture` (
 DROP TABLE IF EXISTS `rnd_fifteen_days_picture_report`;
 CREATE TABLE `rnd_fifteen_days_picture_report` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `season_id` int(11) NOT NULL,
   `crop_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `rnd_code` varchar(20) NOT NULL,
   `sowing_date` int(30) NOT NULL,
-  `picture_date` int(30) NOT NULL,
-  `picture_day` int(11) NOT NULL,
-  `image` varchar(20) NOT NULL,
-  `remarks` varchar(255) NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  `creation_date` int(11) NOT NULL,
-  `modified_by` varchar(11) NOT NULL,
-  `modification_date` int(11) NOT NULL,
+  `created_by` varchar(20) DEFAULT NULL,
+  `creation_date` int(11) DEFAULT NULL,
+  `modified_by` varchar(11) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_fifteen_days_picture_report
 -- ----------------------------
+INSERT INTO `rnd_fifteen_days_picture_report` VALUES ('1', '1', '6', '5', '18', '1420048800', 'UI-000001', '1420453462', null, null);
+
+-- ----------------------------
+-- Table structure for `rnd_fifteen_days_picture_report_images`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_fifteen_days_picture_report_images`;
+CREATE TABLE `rnd_fifteen_days_picture_report_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `picture_report_id` int(11) NOT NULL,
+  `image_name` varchar(20) NOT NULL,
+  `picture_day` int(11) NOT NULL,
+  `picture_date` int(11) NOT NULL,
+  `actual_picture_date` int(11) NOT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `created_by` varchar(20) DEFAULT NULL,
+  `creation_date` int(11) DEFAULT NULL,
+  `modified_by` varchar(20) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_fifteen_days_picture_report_images
+-- ----------------------------
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('1', '1', '1420453462.jpg', '15', '1420453462', '0', 'Remarks', 'UI-000001', '1420453462', null, null);
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('3', '1', '1420519479.jpg', '30', '1420519479', '0', 'Remarkssssssssssssss', 'UI-000001', '1420519479', null, null);
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('4', '1', '1420519509.jpg', '45', '1420519509', '0', ' Remarks 33333333333333333', 'UI-000001', '1420519509', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_first_last_harvesting_report`
@@ -918,7 +942,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -1007,6 +1031,16 @@ INSERT INTO `rnd_history` VALUES ('81', '60', 'rnd_variety_season', '{\"crop_id\
 INSERT INTO `rnd_history` VALUES ('82', '19', 'rnd_variety_info', '{\"flowering_type_id\":\"1\",\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"V0008\",\"variety_type\":\"3\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"2\",\"rnd_code\":\"C0007-E-19-Code2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
 INSERT INTO `rnd_history` VALUES ('83', '61', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":19,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
 INSERT INTO `rnd_history` VALUES ('84', '62', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":19,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420288345}', 'UI-000001', 'INSERT', '1420288345');
+INSERT INTO `rnd_history` VALUES ('85', '1', 'rnd_fifteen_days_picture_report', '{\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code\":\"17\",\"sowing_date\":\"01-01-2015\",\"picture_date\":\"08-01-2015\",\"picture_day\":\"15\",\"image_name\":\"1420371609.jpg\",\"remarks\":\" Remarks \",\"created_by\":\"UI-000001\",\"creation_date\":1420371609}', 'UI-000001', 'INSERT', '1420371609');
+INSERT INTO `rnd_history` VALUES ('86', '2', 'rnd_fifteen_days_picture_report', '{\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code\":\"19\",\"sowing_date\":1420048800,\"picture_date\":1421949600,\"picture_day\":\"15\",\"image_name\":\"1420439487.jpg\",\"remarks\":\"\\r\\nRemarks\\r\\n\",\"created_by\":\"UI-000001\",\"creation_date\":1420439487}', 'UI-000001', 'INSERT', '1420439487');
+INSERT INTO `rnd_history` VALUES ('87', '1', 'rnd_fifteen_days_picture_report', '{\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code\":\"17\",\"sowing_date\":1420048800,\"picture_date\":1422036000,\"picture_day\":\"15\",\"remarks\":\"Remarks \",\"created_by\":\"UI-000001\",\"creation_date\":1420445999}', 'UI-000001', 'INSERT', '1420445999');
+INSERT INTO `rnd_history` VALUES ('88', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420445999.jpg\",\"picture_day\":\"15\",\"remarks\":\"Remarks \",\"picture_report_id\":1,\"created_by\":\"UI-000001\",\"creation_date\":1420445999}', 'UI-000001', 'INSERT', '1420445999');
+INSERT INTO `rnd_history` VALUES ('89', '1', 'rnd_fifteen_days_picture_report', '{\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code\":\"18\",\"sowing_date\":1420048800,\"created_by\":\"UI-000001\",\"creation_date\":1420453462}', 'UI-000001', 'INSERT', '1420453462');
+INSERT INTO `rnd_history` VALUES ('90', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420453462.jpg\",\"picture_date\":\"15-01-2015\",\"picture_day\":\"15\",\"remarks\":\"Remarks\",\"picture_report_id\":1,\"created_by\":\"UI-000001\",\"creation_date\":1420453462}', 'UI-000001', 'INSERT', '1420453462');
+INSERT INTO `rnd_history` VALUES ('91', '2', 'rnd_fifteen_days_picture_report', '{\"crop_id\":false,\"type_id\":false,\"rnd_code\":false,\"sowing_date\":1420048800,\"created_by\":\"UI-000001\",\"creation_date\":1420519363}', 'UI-000001', 'INSERT', '1420519363');
+INSERT INTO `rnd_history` VALUES ('92', '2', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519363.jpg\",\"picture_date\":1420519363,\"picture_day\":\"30\",\"remarks\":\" Remarks \",\"picture_report_id\":2,\"created_by\":\"UI-000001\",\"creation_date\":1420519363}', 'UI-000001', 'INSERT', '1420519363');
+INSERT INTO `rnd_history` VALUES ('93', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519479.jpg\",\"picture_date\":1420519479,\"picture_day\":\"30\",\"remarks\":\"Remarkssssssssssssss\",\"picture_report_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420519479}', 'UI-000001', 'INSERT', '1420519479');
+INSERT INTO `rnd_history` VALUES ('94', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519509.jpg\",\"picture_date\":1420519509,\"picture_day\":\"45\",\"remarks\":\" Remarks 33333333333333333\",\"picture_report_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420519509}', 'UI-000001', 'INSERT', '1420519509');
 
 -- ----------------------------
 -- Table structure for `rnd_labor_activity_info`
@@ -1302,9 +1336,9 @@ CREATE TABLE `rnd_season_info` (
 -- ----------------------------
 -- Records of rnd_season_info
 -- ----------------------------
-INSERT INTO `rnd_season_info` VALUES ('1', 'Season 1', 'January', 'April', '1', null, null, null, null);
-INSERT INTO `rnd_season_info` VALUES ('2', 'Season 2', 'April', 'August', '1', null, null, null, null);
-INSERT INTO `rnd_season_info` VALUES ('3', 'Season 3', 'August', 'December', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('1', 'Winter', 'January', 'April', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('2', 'Summer', 'April', 'August', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('3', 'Fall', 'August', 'December', '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_seed_bed_info`
