@@ -68,16 +68,19 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             $data['title']="New 15 Days Picture Report";
             $data["pictureInfo"] = Array(
                 'id' => 0,
+                'season_id' => '',
                 'crop_id' => '',
                 'type_id' => '',
                 'rnd_code' => '',
                 'sowing_date' => '',
                 'picture_date' => '',
+                'actual_picture_date' => '',
                 'picture_day' => '',
                 'remarks' => ''
             );
         }
 
+        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['types'] = Query_helper::get_info('rnd_product_type_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status']=true;
@@ -103,7 +106,8 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
         $data_img = Array(
           'image_name'=>$img,
-          'picture_date'=>time(),
+          'picture_date'=>$this->input->post('picture_date'),
+          'actual_picture_date'=>time(),
           'picture_day'=>$this->input->post('picture_day'),
           'remarks'=>$this->input->post('remarks')
         );

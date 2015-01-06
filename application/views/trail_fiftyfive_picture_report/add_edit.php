@@ -24,6 +24,24 @@ if(!empty($details))
 
         <div class="row show-grid">
             <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($seasons as $season)
+                    {?>
+                        <option value="<?php echo $season['id']?>" <?php if($season['id']==$pictureInfo['season_id']){ echo "selected";}?>><?php echo $season['season_name'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
@@ -86,10 +104,19 @@ if(!empty($details))
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACTUAL_PICTURE_DATE');?></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="actual_picture_date" id="actual_picture_date" readonly class="form-control" value="<?php echo date('d-m-Y',time());?>" >
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PICTURE_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="picture_date" id="picture_date" readonly class="form-control" value="<?php echo date('d-m-Y',time());?>" >
+                <input type="text" name="picture_date" id="picture_date" class="form-control" value="" >
             </div>
         </div>
 
@@ -98,7 +125,7 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="picture_day" id="picture_day" readonly class="form-control" value="<?php if(!empty($count)){ echo $count*15+15;}else{ echo 15;}?>" >
+                <input type="text" name="picture_day" id="picture_day" class="form-control" value="<?php if(!empty($count)){ echo $count*15+15;}else{ echo 15;}?>" >
             </div>
         </div>
 
@@ -141,6 +168,50 @@ if(!empty($details))
     jQuery(document).ready(function()
     {
         $(".form_valid").validationEngine();
+
+    });
+
+    $(document).on("change", "#season_id", function(event)
+    {
+        var season_id = $("#season_id").val();
+        var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_crop_by_season/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{season_id:season_id,crop_selected:crop_selected},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+    $(document).on("change", "#season_id", function(event)
+    {
+        var season_id = $("#season_id").val();
+
+        $.ajax({
+            url: base_url+"rnd_common/sowing_date_by_season/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{season_id:season_id},
+            success: function (data, status)
+            {
+                $("#sowing_date").val(data);
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
 
     });
 

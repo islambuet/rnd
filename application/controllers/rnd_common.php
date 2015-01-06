@@ -12,6 +12,24 @@ class Rnd_common extends ROOT_Controller
     }
 
 
+    public function dropDown_crop_by_season()
+    {
+        $season_id = $this->input->post('season_id');
+        $data['selected'] = $this->input->post('crop_selected');
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#crop_id","html"=>$this->load->view("dropdown",$data,true));
+//        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+        $this->jsonReturn($ajax);
+    }
+
     public function dropDown_crop_type_by_name()
     {
         $crop_id = $this->input->post('crop_id');
@@ -20,7 +38,7 @@ class Rnd_common extends ROOT_Controller
 
         foreach($data['details'] as $ctype)
         {
-            $data['value'][] = $ctype['id'];
+            $data['value'][] = $ctype['product_type_id'];
             $data['name'][] = $ctype['product_type'];
         }
 
@@ -55,6 +73,13 @@ class Rnd_common extends ROOT_Controller
         $varieties = $this->rnd_common_model->get_variety_by_season($season);
 
         $this->jsonReturn($varieties);
+    }
+
+    public function sowing_date_by_season()
+    {
+        $season = $this->input->post('season_id');
+        $sowing_date = $this->rnd_common_model->get_sowing_date_by_season($season);
+        $this->jsonReturn($sowing_date);
     }
 
 }
