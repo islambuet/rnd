@@ -163,7 +163,6 @@ if(!empty($details))
                     <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?> <input type="text" name="picture_day_spec[]" value="<?php echo $detail['picture_day'];?>"/></label>
                     <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DATE');?> <input type="text" name="picture_date_spec[]" id="picture_date_spec<?php echo $i;?>" value="<?php echo date('d-m-Y',$detail['picture_date']);?>"/></label>
                     <label class="control-label"><?php echo $this->lang->line('LABEL_CHANGE_PICTURE');?> <input type="file" name="image_spec[]" value=""/></label>
-
                 </div>
 
                 <script>

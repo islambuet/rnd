@@ -132,6 +132,69 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
                 Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
 
+                $count = count($this->input->post('picture_day_spec'));
+
+                if($count>0)
+                {
+                    $picture_day_spec = $this->input->post('picture_day_spec');
+                    $picture_date_spec = $this->input->post('picture_date_spec');
+                    $file_name = $_FILES["image_spec"]['name'];
+                    $file_temp = $_FILES['image_spec']['tmp_name'];
+
+                    for($i=0; $i<$count; $i++)
+                    {
+                        $ext = end(explode(".", @$file_name[$i]));
+
+                        $size = $file_name[$i]['size'];
+
+                        $new_file_name = time().$i;
+                        $save_file_name = time().$i.'.'.$ext;
+
+                        if (@$file_name[$i] != "")
+                        {
+                            if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
+                            {
+                                if($size < $this->config->item('fifteen_days_picture_report_img_size'))
+                                {
+                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    $file_url = $new_file_name . "." . $ext;
+                                    copy(@$file_temp[$i], $this->config->item('fifteen_days_picture_report_img_upload_folder')."/".$file_url);
+
+                                    $data_spec = Array(
+                                        'image_name' => $save_file_name,
+                                        'picture_day' => $picture_day_spec[$i],
+                                        'picture_date' => $picture_date_spec[$i]
+                                    );
+
+                                    $data_spec['modified_by'] = $user->user_id;
+                                    $data_spec['modification_date'] = time();
+                                    Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("picture_report_id = ".$id));
+
+                                }
+                                else
+                                {
+                                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                }
+                            }
+                            else
+                            {
+                                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                            }
+                        }
+                        else
+                        {
+                            $data_spec = Array(
+                                'picture_day' => $picture_day_spec[$i],
+                                'picture_date' => $picture_date_spec[$i]
+                            );
+
+                            $data_spec['modified_by'] = $user->user_id;
+                            $data_spec['modification_date'] = time();
+                            Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("picture_report_id = ".$id));
+                        }
+                    }
+                }
+
                 $this->db->trans_complete();   //DB Transaction Handle END
 
                 if ($this->db->trans_status() === TRUE)
