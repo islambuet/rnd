@@ -122,7 +122,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         {
             if($id>0)
             {
-                $this->db->trans_start();  //DB Transaction Handle START
+//                $this->db->trans_start();  //DB Transaction Handle START
 
 //                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
@@ -130,7 +130,10 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                 $data_img['created_by'] = $user->user_id;
                 $data_img['creation_date'] = time();
 
-                Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
+                if($img)
+                {
+                    Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
+                }
 
                 $count = count($this->input->post('picture_day_spec'));
 
@@ -163,7 +166,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                                     $data_spec = Array(
                                         'image_name' => $save_file_name,
                                         'picture_day' => $picture_day_spec[$i],
-                                        'picture_date' => $picture_date_spec[$i]
+                                        'picture_date' => strtotime($picture_date_spec[$i])
                                     );
 
                                     $data_spec['modified_by'] = $user->user_id;
@@ -193,18 +196,20 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                             Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("picture_report_id = ".$id));
                         }
                     }
+
+
                 }
 
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-                }
+//                $this->db->trans_complete();   //DB Transaction Handle END
+//
+//                if ($this->db->trans_status() === TRUE)
+//                {
+//                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+//                }
+//                else
+//                {
+//                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+//                }
 
             }
             else
