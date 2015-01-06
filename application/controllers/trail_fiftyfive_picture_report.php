@@ -106,7 +106,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
         $data_img = Array(
           'image_name'=>$img,
-          'picture_date'=>$this->input->post('picture_date'),
+          'picture_date'=>strtotime($this->input->post('picture_date')),
           'actual_picture_date'=>time(),
           'picture_day'=>$this->input->post('picture_day'),
           'remarks'=>$this->input->post('remarks')
@@ -122,7 +122,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         {
             if($id>0)
             {
-//                $this->db->trans_start();  //DB Transaction Handle START
+                $this->db->trans_start();  //DB Transaction Handle START
 
 //                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
@@ -201,16 +201,16 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
                 }
 
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-//                }
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
 
             }
             else
