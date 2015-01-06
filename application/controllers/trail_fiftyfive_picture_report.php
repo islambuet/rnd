@@ -177,12 +177,12 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                                 }
                                 else
                                 {
-                                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
                                 }
                             }
                             else
                             {
-                                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
                             }
                         }
                         else
