@@ -88,7 +88,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("type_id");
+        $id = $this->input->post("fifteen_id");
         $user = User_helper::get_user();
 
         $new_file_name = time().'.jpg';
@@ -120,13 +120,13 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
+//                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
-                $data_img['modified_by'] = $user->user_id;
-                $data_img['modification_date'] = time();
+                $data_img['picture_report_id']= $id;
+                $data_img['created_by'] = $user->user_id;
+                $data_img['creation_date'] = time();
 
-                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
+                Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -175,20 +175,30 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_id')))
+        if($this->input->post('crop_id'))
         {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('crop_id')))
+            {
+                return false;
+            }
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_type')))
+        if($this->input->post('crop_type'))
         {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('crop_type')))
+            {
+                return false;
+            }
         }
 
-        if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+        if($this->input->post('rnd_code'))
         {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+            {
+                return false;
+            }
         }
+
 
         if(Validation_helper::validate_empty($this->input->post('picture_day')))
         {

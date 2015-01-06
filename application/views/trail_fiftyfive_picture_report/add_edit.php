@@ -7,6 +7,11 @@
 //print_r($pictureInfo);
 ////print_r($details);
 //echo '</pre>';
+if(!empty($details))
+{
+    $count = sizeof($details);
+}
+
 ?>
 <form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php base_url()?>trail_fiftyfive_picture_report/index/save" method="post">
     <div class="row widget">
@@ -33,7 +38,7 @@
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="fifteen_id" id="fifteen_id" value=""/>
+            <input type="hidden" name="fifteen_id" id="fifteen_id" value="<?php echo $pictureInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -93,7 +98,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="picture_day" id="picture_day" class="form-control validate[required]" value="" >
+                <input type="text" name="picture_day" id="picture_day" readonly class="form-control" value="<?php if(!empty($count)){ echo $count*15+15;}else{ echo 15;}?>" >
             </div>
         </div>
 
@@ -125,7 +130,6 @@
                         <img width="80px" height="80px" src="<?php echo base_url()?>images/trail_fiftyfive_picture_report/<?php echo $detail['image_name'];?>"/>
                     </label>
                 </div>
-
             <?php }?>
         </div>
     <?php }?>
