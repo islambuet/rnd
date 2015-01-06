@@ -139,16 +139,17 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
                 if($count>0)
                 {
+                    $row_spec_id = $this->input->post('row_spec_id');
                     $picture_day_spec = $this->input->post('picture_day_spec');
                     $picture_date_spec = $this->input->post('picture_date_spec');
-                    $file_name = $_FILES["image_spec"]['name'];
+                    $file_name = $_FILES['image_spec']['name'];
                     $file_temp = $_FILES['image_spec']['tmp_name'];
 
                     for($i=0; $i<$count; $i++)
                     {
                         $ext = end(explode(".", @$file_name[$i]));
 
-                        $size = $file_name[$i]['size'];
+                        $size = @$file_name[$i]['size'];
 
                         $new_file_name = time().$i;
                         $save_file_name = time().$i.'.'.$ext;
@@ -164,14 +165,14 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                                     copy(@$file_temp[$i], $this->config->item('fifteen_days_picture_report_img_upload_folder')."/".$file_url);
 
                                     $data_spec = Array(
-                                        'image_name' => $save_file_name,
+                                        'image_name' => $file_url,
                                         'picture_day' => $picture_day_spec[$i],
                                         'picture_date' => strtotime($picture_date_spec[$i])
                                     );
 
                                     $data_spec['modified_by'] = $user->user_id;
                                     $data_spec['modification_date'] = time();
-                                    Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("picture_report_id = ".$id));
+                                    Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("id = ".$row_spec_id[$i]));
 
                                 }
                                 else
@@ -188,12 +189,12 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                         {
                             $data_spec = Array(
                                 'picture_day' => $picture_day_spec[$i],
-                                'picture_date' => $picture_date_spec[$i]
+                                'picture_date' => strtotime($picture_date_spec[$i])
                             );
 
                             $data_spec['modified_by'] = $user->user_id;
                             $data_spec['modification_date'] = time();
-                            Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("picture_report_id = ".$id));
+                            Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("id = ".$row_spec_id[$i]));
                         }
                     }
 

@@ -160,6 +160,7 @@ if(!empty($details))
                     <label class="control-label"><?php echo $detail['picture_day'];?> Days
                         <img width="80px" height="80px" src="<?php echo base_url()?>images/trail_fiftyfive_picture_report/<?php echo $detail['image_name'];?>"/>
                     </label>
+                    <input type="hidden" name="row_spec_id[]" value="<?php echo $detail['id']?>">
                     <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DAY');?> <input type="text" name="picture_day_spec[]" value="<?php echo $detail['picture_day'];?>"/></label>
                     <label class="control-label"><?php echo $this->lang->line('LABEL_PICTURE_DATE');?> <input type="text" name="picture_date_spec[]" id="picture_date_spec<?php echo $i;?>" value="<?php echo date('d-m-Y',$detail['picture_date']);?>"/></label>
                     <label class="control-label"><?php echo $this->lang->line('LABEL_CHANGE_PICTURE');?> <input type="file" name="image_spec[]" value=""/></label>
