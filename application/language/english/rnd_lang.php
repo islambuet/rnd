@@ -40,7 +40,7 @@ $lang['LABEL_CROP_HEIGHT'] = 'Crop Height';
 
 //Create Type
 $lang['LABEL_SELECT_CROP'] = 'Select Crop';
-$lang['LABEL_PRODUCT_TYPE'] = 'Product Type';
+$lang['LABEL_PRODUCT_TYPE'] = 'Crop Type';
 $lang['LABEL_TYPE_CODE'] = 'Type Code';
 $lang['LABEL_WIDTH'] = 'Width';
 $lang['LABEL_HEIGHT'] = 'Height';

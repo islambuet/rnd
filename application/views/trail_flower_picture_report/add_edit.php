@@ -51,7 +51,7 @@
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="fifteen_id" id="fifteen_id" value="<?php echo $pictureInfo['id'];?>"/>
+            <input type="hidden" name="pic_report_id" id="pic_report_id" value="<?php echo $pictureInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">

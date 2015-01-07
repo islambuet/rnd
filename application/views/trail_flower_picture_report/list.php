@@ -18,8 +18,10 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_SOWING_DATE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -31,8 +33,10 @@
             ?>
             <tr>
                 <td><?php echo $key+1;?></td>
-                <td><?php echo $report['rnd_code_variety'];?></td>
-                <td><?php echo date('d-m-Y',$report['sowing_date']);?></td>
+                <td><?php echo $report['season_name'];?></td>
+                <td><?php echo $report['crop_name'];?></td>
+                <td><?php echo $report['product_type'];?></td>
+                <td><?php echo $report['rnd_code'];?></td>
                 <td>
                     <a href="<?php echo base_url();?>trail_fiftyfive_picture_report/index/edit/<?php echo $report['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">

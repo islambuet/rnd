@@ -60,8 +60,7 @@ class Trail_flower_picture_report extends ROOT_Controller
         if ($id != 0)
         {
             $data['pictureInfo'] = $this->trail_flower_picture_report_model->get_report_row($id);
-            $data['details'] = $this->trail_flower_picture_report_model->get_report_image_detail($id);
-            $data['title']="Edit 15 Day Picture Report";
+            $data['title']="Edit Flowering Picture Report";
         }
         else
         {
@@ -91,7 +90,7 @@ class Trail_flower_picture_report extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("fifteen_id");
+        $id = $this->input->post("pic_report_id");
         $user = User_helper::get_user();
 
         $file_name1 = $_FILES['first_flowering_pic']['name'];
@@ -230,6 +229,9 @@ class Trail_flower_picture_report extends ROOT_Controller
         }
 
         $data = Array(
+            'season_id'=>$this->input->post('season_id'),
+            'crop_id'=>$this->input->post('crop_id'),
+            'type_id'=>$this->input->post('crop_type'),
             'rnd_code_id'=>$this->input->post('rnd_code'),
             'first_flowering_pic'=>$file_url1,
             'first_flowering_remark'=>$this->input->post('first_flowering_remark'),
