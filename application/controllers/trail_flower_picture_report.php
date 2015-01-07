@@ -94,29 +94,152 @@ class Trail_flower_picture_report extends ROOT_Controller
         $id = $this->input->post("fifteen_id");
         $user = User_helper::get_user();
 
-        $new_file_name1 = $this->config->item('first_flowering_pic_code').time().'.jpg';
-        $new_file_name2 = $this->config->item('fifty_percent_flowering_pic_code').time().'.jpg';
-        $new_file_name3 = $this->config->item('first_fruit_setting_pic_code').time().'.jpg';
-        $new_file_name4 = $this->config->item('first_harvested_fruit_code').time().'.jpg';
-        $new_file_name5 = $this->config->item('last_harvested_fruit_code').time().'.jpg';
+        $file_name1 = $_FILES['first_flowering_pic']['name'];
+        $file_name2 = $_FILES['fifty_percent_flowering_pic']['name'];
+        $file_name3 = $_FILES['first_fruit_setting_pic']['name'];
+        $file_name4 = $_FILES['first_harvested_fruit']['name'];
+        $file_name5 = $_FILES['last_harvested_fruit']['name'];
 
-        $img1 = System_helper::file_upload('first_flowering_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name1,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img2 = System_helper::file_upload('fifty_percent_flowering_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name2,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img3 = System_helper::file_upload('first_fruit_setting_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name3,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img4 = System_helper::file_upload('first_harvested_fruit',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name4,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img5 = System_helper::file_upload('last_harvested_fruit',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name5,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $file_temp1 = $_FILES['first_flowering_pic']['tmp_name'];
+        $file_temp2 = $_FILES['fifty_percent_flowering_pic']['tmp_name'];
+        $file_temp3 = $_FILES['first_fruit_setting_pic']['tmp_name'];
+        $file_temp4 = $_FILES['first_harvested_fruit']['tmp_name'];
+        $file_temp5 = $_FILES['last_harvested_fruit']['tmp_name'];
+
+        $ext1 = end(explode(".", @$file_name1));
+        $ext2 = end(explode(".", @$file_name2));
+        $ext3 = end(explode(".", @$file_name3));
+        $ext4 = end(explode(".", @$file_name4));
+        $ext5 = end(explode(".", @$file_name5));
+
+        $size1 = @$file_name1['size'];
+        $size2 = @$file_name2['size'];
+        $size3 = @$file_name3['size'];
+        $size4 = @$file_name4['size'];
+        $size5 = @$file_name5['size'];
+
+        $new_file_name1 = $this->config->item('first_flowering_pic_code').time();
+        $new_file_name2 = $this->config->item('fifty_percent_flowering_pic_code').time();
+        $new_file_name3 = $this->config->item('first_fruit_setting_pic_code').time();
+        $new_file_name4 = $this->config->item('first_harvested_fruit_code').time();
+        $new_file_name5 = $this->config->item('last_harvested_fruit_code').time();
+
+        if (@$file_name1 != "")
+        {
+            if(($ext1 == 'jpg') || ($ext1 == 'png') || ($ext1 == 'jpeg'))
+            {
+                if($size1 < $this->config->item('flowering_picture_report_img_size'))
+                {
+                    @$ext1 = end(explode(".", @$file_name1));
+                    $file_url1 = $new_file_name1 . "." . $ext1;
+                    copy(@$file_temp1, $this->config->item('flowering_picture_report_img_upload_folder')."/".$file_url1);
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
+                }
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
+            }
+        }
+
+        if (@$file_name2 != "")
+        {
+            if(($ext2 == 'jpg') || ($ext2 == 'png') || ($ext2 == 'jpeg'))
+            {
+                if($size2 < $this->config->item('flowering_picture_report_img_size'))
+                {
+                    @$ext2 = end(explode(".", @$file_name2));
+                    $file_url2 = $new_file_name2 . "." . $ext2;
+                    copy(@$file_temp2, $this->config->item('flowering_picture_report_img_upload_folder')."/".$file_url2);
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
+                }
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
+            }
+        }
+
+        if (@$file_name3 != "")
+        {
+            if(($ext3 == 'jpg') || ($ext3 == 'png') || ($ext3 == 'jpeg'))
+            {
+                if($size3 < $this->config->item('flowering_picture_report_img_size'))
+                {
+                    @$ext3 = end(explode(".", @$file_name3));
+                    $file_url3 = $new_file_name3 . "." . $ext3;
+                    copy(@$file_temp3, $this->config->item('flowering_picture_report_img_upload_folder')."/".$file_url3);
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
+                }
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
+            }
+        }
+
+        if (@$file_name4 != "")
+        {
+            if(($ext4 == 'jpg') || ($ext4 == 'png') || ($ext4 == 'jpeg'))
+            {
+                if($size4 < $this->config->item('flowering_picture_report_img_size'))
+                {
+                    @$ext4 = end(explode(".", @$file_name4));
+                    $file_url4 = $new_file_name4 . "." . $ext4;
+                    copy(@$file_temp4, $this->config->item('flowering_picture_report_img_upload_folder')."/".$file_url4);
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
+                }
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
+            }
+        }
+
+        if (@$file_name5 != "")
+        {
+            if(($ext5 == 'jpg') || ($ext5 == 'png') || ($ext5 == 'jpeg'))
+            {
+                if($size5 < $this->config->item('flowering_picture_report_img_size'))
+                {
+                    @$ext5 = end(explode(".", @$file_name5));
+                    $file_url5 = $new_file_name5 . "." . $ext5;
+                    copy(@$file_temp5, $this->config->item('flowering_picture_report_img_upload_folder')."/".$file_url5);
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
+                }
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
+            }
+        }
 
         $data = Array(
             'rnd_code_id'=>$this->input->post('rnd_code'),
-            'first_flowering_pic'=>$img1,
+            'first_flowering_pic'=>$file_url1,
             'first_flowering_remark'=>$this->input->post('first_flowering_remark'),
-            'fifty_flowering_pic'=>$img2,
+            'fifty_flowering_pic'=>$file_url2,
             'fifty_flowering_remark'=>$this->input->post('fifty_percent_flowering_remark'),
-            'first_setting_pic'=>$img3,
+            'first_setting_pic'=>$file_url3,
             'first_setting_remark'=>$this->input->post('first_fruit_setting_remark'),
-            'first_harvested_pic'=>$img4,
+            'first_harvested_pic'=>$file_url4,
             'first_harvested_remark'=>$this->input->post('first_harvested_fruit_remark'),
-            'last_harvested_pic'=>$img5,
+            'last_harvested_pic'=>$file_url5,
             'last_harvested_remark'=>$this->input->post('last_harvested_fruit_remark')
         );
 
@@ -178,32 +301,7 @@ class Trail_flower_picture_report extends ROOT_Controller
 
     private function check_validation()
     {
-        if($this->input->post('crop_id'))
-        {
-            if(Validation_helper::validate_empty($this->input->post('crop_id')))
-            {
-                return false;
-            }
-        }
-
-        if($this->input->post('crop_type'))
-        {
-            if(Validation_helper::validate_empty($this->input->post('crop_type')))
-            {
-                return false;
-            }
-        }
-
-        if($this->input->post('rnd_code'))
-        {
-            if(Validation_helper::validate_empty($this->input->post('rnd_code')))
-            {
-                return false;
-            }
-        }
-
-
-        if(Validation_helper::validate_empty($this->input->post('picture_day')))
+        if(Validation_helper::validate_empty($this->input->post('rnd_code')))
         {
             return false;
         }

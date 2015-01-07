@@ -62,8 +62,8 @@ class System_helper
                         if (!$CI->upload->do_upload($key)) {
 
                             $errors[] = $CI->upload->display_errors();
-                            System_helper::set_system_message($CI->lang->line("IMG_ERROR"),0);
-                            redirect(base_url());
+//                            System_helper::set_system_message($CI->lang->line("IMG_ERROR"),0);
+//                            redirect(base_url());
                         }
                         else
                         {
