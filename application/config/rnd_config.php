@@ -44,6 +44,12 @@ $config['fruit_report_after_harvest_single']=2;
 $config['fruit_report_after_harvest_several']=3;
 $config['fruit_report_after_harvest_cut']=4;
 
+$config['first_flowering_pic_code']='ffp';
+$config['fifty_percent_flowering_pic_code']='fpp';
+$config['first_fruit_setting_pic_code']='ffs';
+$config['first_harvested_fruit_code']='fhf';
+$config['last_harvested_fruit_code']='lhf';
+
 
 
 

@@ -94,31 +94,30 @@ class Trail_flower_picture_report extends ROOT_Controller
         $id = $this->input->post("fifteen_id");
         $user = User_helper::get_user();
 
-        $new_file_name1 = time().'.jpg';
-        $new_file_name2 = time().'.jpg';
-        $new_file_name3 = time().'.jpg';
-        $new_file_name4 = time().'.jpg';
-        $new_file_name5 = time().'.jpg';
+        $new_file_name1 = $this->config->item('first_flowering_pic_code').time().'.jpg';
+        $new_file_name2 = $this->config->item('fifty_percent_flowering_pic_code').time().'.jpg';
+        $new_file_name3 = $this->config->item('first_fruit_setting_pic_code').time().'.jpg';
+        $new_file_name4 = $this->config->item('first_harvested_fruit_code').time().'.jpg';
+        $new_file_name5 = $this->config->item('last_harvested_fruit_code').time().'.jpg';
 
-        $img1 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name1,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img2 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name2,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img3 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name3,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img4 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name4,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
-        $img5 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name5,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img1 = System_helper::file_upload('first_flowering_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name1,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img2 = System_helper::file_upload('fifty_percent_flowering_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name2,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img3 = System_helper::file_upload('first_fruit_setting_pic',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name3,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img4 = System_helper::file_upload('first_harvested_fruit',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name4,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img5 = System_helper::file_upload('last_harvested_fruit',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name5,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
 
         $data = Array(
-            'rnd_code_id'=>$this->input->post('crop_id'),
-            'first_flowering_pic'=>$this->input->post('crop_type'),
-            'first_flowering_remark'=>$this->input->post('rnd_code'),
-            'fifty_flowering_pic'=>$this->input->post('rnd_code'),
-            'fifty_flowering_remark'=>$this->input->post('rnd_code'),
-            'first_setting_pic'=>$this->input->post('rnd_code'),
-            'first_setting_remark'=>$this->input->post('rnd_code'),
-            'first_harvested_pic'=>$this->input->post('rnd_code'),
-            'first_harvested_remark'=>$this->input->post('rnd_code'),
-            'last_harvested_pic'=>$this->input->post('rnd_code'),
-            'last_harvested_pic'=>$this->input->post('rnd_code'),
-            'last_harvested_remark'=>strtotime($this->input->post('sowing_date'))
+            'rnd_code_id'=>$this->input->post('rnd_code'),
+            'first_flowering_pic'=>$img1,
+            'first_flowering_remark'=>$this->input->post('first_flowering_remark'),
+            'fifty_flowering_pic'=>$img2,
+            'fifty_flowering_remark'=>$this->input->post('fifty_percent_flowering_remark'),
+            'first_setting_pic'=>$img3,
+            'first_setting_remark'=>$this->input->post('first_fruit_setting_remark'),
+            'first_harvested_pic'=>$img4,
+            'first_harvested_remark'=>$this->input->post('first_harvested_fruit_remark'),
+            'last_harvested_pic'=>$img5,
+            'last_harvested_remark'=>$this->input->post('last_harvested_fruit_remark')
         );
 
         if(!$this->check_validation())
@@ -133,7 +132,10 @@ class Trail_flower_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+                Query_helper::update('rnd_flowering_picture_report',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -154,7 +156,7 @@ class Trail_flower_picture_report extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_fifteen_days_picture_report',$data);
+                Query_helper::add('rnd_flowering_picture_report',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
