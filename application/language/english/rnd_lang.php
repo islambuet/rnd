@@ -139,3 +139,33 @@ $lang['LABEL_PRICE_STOCK_IN']='Price';
 
 $lang['LABEL_PESTICIDE_RND']='R&D Code';
 
+// Labour Activities
+
+$lang['LABEL_LABOUR_ACTIVITY']='Activity';
+$lang['LABEL_LABOUR_QUANTITY']='Number of Labor';
+
+/// Fruit Report Entry
+
+$lang['LABEL_FRUIT_REPORT_BEFORE_HARVEST']='Before Harvesting';
+$lang['LABEL_FRUIT_REPORT_AFTER_HARVEST']='After Harvesting';
+$lang['LABEL_FRUIT_REPORT_PLOT']='Plot Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_PLANT']='Plant Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_CLOSE_FRUIT']='Close Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_SINGLE']='Single Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_SEVERAL']='Several Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_CUT']='Cut Fruit Picture';
+$lang['LABEL_FRUIT_REPORT_PIC1']='Picture no 1';
+$lang['LABEL_FRUIT_REPORT_PIC2']='Picture no 2';
+$lang['LABEL_FRUIT_REPORT_PIC3']='Picture no 3';
+
+// Fruit Flowering Picture Report
+
+$lang['LABEL_FLOWERING_STAGE']='Flowering Stage';
+$lang['LABEL_FRUIT_MATURITY_INFO']='Fruit Maturity Information';
+$lang['LABEL_1ST_FLOWERING_PIC']='1st Flowering Pic';
+$lang['LABEL_50P_FLOWERING_PIC']='50% Flowering Pic';
+$lang['LABEL_1ST_FRUIT_SETTING_PIC']='1st Fruit Setting Pic';
+$lang['LABEL_1ST_HARVESTED_FRUIT']='1st Harvested Fruit';
+$lang['LABEL_LAST_HARVESTED_FRUIT']='Last Harvested Fruit';
+
+
