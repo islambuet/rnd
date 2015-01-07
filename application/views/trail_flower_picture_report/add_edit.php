@@ -73,14 +73,14 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="rnd_code" id="rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code'])){ echo "disabled";}?>>
+                <select name="rnd_code" id="rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     $rndCode = System_helper::get_rnd_codes();
                     foreach($rndCode as $code)
                     {
                     ?>
-                        <option value="<?php echo $code['id'];?>" <?php if($code['id']==$pictureInfo['rnd_code']){ echo "selected";}?>><?php echo $code['rnd_code'];?></option>
+                        <option value="<?php echo $code['id'];?>" <?php if($code['id']==$pictureInfo['rnd_code_id']){ echo "selected";}?>><?php echo $code['rnd_code'];?></option>
                     <?php
                     }
                     ?>
@@ -102,7 +102,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_FLOWERING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
+                <?php if(!empty($pictureInfo['first_flowering_pic'])){?>
+                <img src="<?php echo base_url()?>images/flowering_picture_report/<?php echo $pictureInfo['first_flowering_pic'];?>" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
+                <?php }else{?>
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
+                <?php }?>
                 <input type="file" name="first_flowering_pic" id="first_flowering_pic" onchange="readURL1(this)" />
             </div>
         </div>
@@ -112,7 +116,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="first_flowering_remark" id="first_flowering_remark"></textarea>
+                <textarea class="form-control" name="first_flowering_remark" id="first_flowering_remark"><?php echo $pictureInfo['first_flowering_remark'];?></textarea>
             </div>
         </div>
 
@@ -121,7 +125,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50P_FLOWERING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
+                <?php if(!empty($pictureInfo['fifty_flowering_pic'])){?>
+                    <img src="<?php echo base_url()?>images/flowering_picture_report/<?php echo $pictureInfo['fifty_flowering_pic'];?>" style="width: 77px; height: 77px;" id="fifty_flowering_pic_id" />
+                <?php }else{?>
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="fifty_flowering_pic_id" />
+                <?php }?>
                 <input type="file" name="fifty_percent_flowering_pic" id="fifty_percent_flowering_pic" onchange="readURL2(this)"/>
             </div>
         </div>
@@ -131,7 +139,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="fifty_percent_flowering_remark" id="fifty_percent_flowering_remark"></textarea>
+                <textarea class="form-control" name="fifty_percent_flowering_remark" id="fifty_percent_flowering_remark"><?php echo $pictureInfo['fifty_flowering_remark'];?></textarea>
             </div>
         </div>
     </div>
@@ -151,7 +159,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_FRUIT_SETTING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
+                <?php if(!empty($pictureInfo['first_setting_pic'])){?>
+                    <img src="<?php echo base_url()?>images/flowering_picture_report/<?php echo $pictureInfo['first_setting_pic'];?>" style="width: 77px; height: 77px;" id="first_fruit_setting_id" />
+                <?php }else{?>
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_fruit_setting_id" />
+                <?php }?>
                 <input type="file" name="first_fruit_setting_pic" id="first_fruit_setting_pic" onchange="readURL3(this)"/>
             </div>
         </div>
@@ -161,7 +173,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="first_fruit_setting_remark" id="first_fruit_setting_remark"></textarea>
+                <textarea class="form-control" name="first_fruit_setting_remark" id="first_fruit_setting_remark"><?php echo $pictureInfo['first_setting_remark'];?></textarea>
             </div>
         </div>
 
@@ -170,7 +182,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
+                <?php if(!empty($pictureInfo['first_harvested_pic'])){?>
+                    <img src="<?php echo base_url()?>images/flowering_picture_report/<?php echo $pictureInfo['first_harvested_pic'];?>" style="width: 77px; height: 77px;" id="first_harvested_fruit_id" />
+                <?php }else{?>
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_harvested_fruit_id" />
+                <?php }?>
                 <input type="file" name="first_harvested_fruit" id="first_harvested_fruit" onchange="readURL4(this)"/>
             </div>
         </div>
@@ -180,7 +196,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="first_harvested_fruit_remark" id="first_harvested_fruit_remark"></textarea>
+                <textarea class="form-control" name="first_harvested_fruit_remark" id="first_harvested_fruit_remark"><?php echo $pictureInfo['first_harvested_remark'];?></textarea>
             </div>
         </div>
 
@@ -189,7 +205,11 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LAST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
+                <?php if(!empty($pictureInfo['last_harvested_pic'])){?>
+                    <img src="<?php echo base_url()?>images/flowering_picture_report/<?php echo $pictureInfo['last_harvested_pic'];?>" style="width: 77px; height: 77px;" id="last_harvested_fruit_id" />
+                <?php }else{?>
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="last_harvested_fruit_id" />
+                <?php }?>
                 <input type="file" name="last_harvested_fruit" id="last_harvested_fruit" onchange="readURL5(this)"/>
             </div>
         </div>
@@ -199,7 +219,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="last_harvested_fruit_remark" id="last_harvested_fruit_remark"></textarea>
+                <textarea class="form-control" name="last_harvested_fruit_remark" id="last_harvested_fruit_remark"><?php echo $pictureInfo['last_harvested_remark'];?></textarea>
             </div>
         </div>
     </div>
@@ -342,7 +362,7 @@
     {
         var crop_id = $("#crop_id").val();
         var type_id = $("#crop_type").val();
-        var selected = '<?php echo $pictureInfo['rnd_code'];?>';
+        var selected = '<?php echo $pictureInfo['rnd_code_id'];?>';
         $.ajax({
             url: base_url+"rnd_common/dropDown_rnd_code_by_name_type/",
             type: 'POST',

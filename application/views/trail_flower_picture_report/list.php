@@ -38,7 +38,7 @@
                 <td><?php echo $report['product_type'];?></td>
                 <td><?php echo $report['rnd_code'];?></td>
                 <td>
-                    <a href="<?php echo base_url();?>trail_fiftyfive_picture_report/index/edit/<?php echo $report['id'];?>">
+                    <a href="<?php echo base_url();?>trail_flower_picture_report/index/edit/<?php echo $report['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
                     </a>
                 </td>

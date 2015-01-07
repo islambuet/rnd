@@ -70,12 +70,17 @@ class Trail_flower_picture_report extends ROOT_Controller
                 'season_id' => '',
                 'crop_id' => '',
                 'type_id' => '',
-                'rnd_code' => '',
-                'sowing_date' => '',
-                'picture_date' => '',
-                'actual_picture_date' => '',
-                'picture_day' => '',
-                'remarks' => ''
+                'rnd_code_id' => '',
+                'first_flowering_pic' => '',
+                'first_flowering_remark' => '',
+                'fifty_flowering_pic' => '',
+                'fifty_flowering_remark' => '',
+                'first_setting_pic' => '',
+                'first_setting_remark' => '',
+                'first_harvested_pic' => '',
+                'first_harvested_remark' => '',
+                'last_harvested_pic' => '',
+                'last_harvested_remark' => ''
             );
         }
 
@@ -228,22 +233,39 @@ class Trail_flower_picture_report extends ROOT_Controller
             }
         }
 
+
         $data = Array(
-            'season_id'=>$this->input->post('season_id'),
-            'crop_id'=>$this->input->post('crop_id'),
-            'type_id'=>$this->input->post('crop_type'),
-            'rnd_code_id'=>$this->input->post('rnd_code'),
-            'first_flowering_pic'=>$file_url1,
             'first_flowering_remark'=>$this->input->post('first_flowering_remark'),
-            'fifty_flowering_pic'=>$file_url2,
             'fifty_flowering_remark'=>$this->input->post('fifty_percent_flowering_remark'),
-            'first_setting_pic'=>$file_url3,
             'first_setting_remark'=>$this->input->post('first_fruit_setting_remark'),
-            'first_harvested_pic'=>$file_url4,
             'first_harvested_remark'=>$this->input->post('first_harvested_fruit_remark'),
-            'last_harvested_pic'=>$file_url5,
             'last_harvested_remark'=>$this->input->post('last_harvested_fruit_remark')
         );
+
+        if(isset($file_url1))
+        {
+            $data['first_flowering_pic'] = $file_url1;
+        }
+
+        if(isset($file_url2))
+        {
+            $data['fifty_flowering_pic'] = $file_url2;
+        }
+
+        if(isset($file_url3))
+        {
+            $data['first_setting_pic'] = $file_url3;
+        }
+
+        if(isset($file_url4))
+        {
+            $data['first_harvested_pic'] = $file_url4;
+        }
+
+        if(isset($file_url5))
+        {
+            $data['last_harvested_pic'] = $file_url5;
+        }
 
         if(!$this->check_validation())
         {
@@ -278,6 +300,11 @@ class Trail_flower_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+                $data['season_id'] = $this->input->post('season_id');
+                $data['crop_id'] = $this->input->post('crop_id');
+                $data['type_id'] = $this->input->post('crop_type');
+                $data['rnd_code_id'] = $this->input->post('rnd_code');
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
@@ -303,11 +330,13 @@ class Trail_flower_picture_report extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+        if($this->input->post('rnd_code'))
         {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+            {
+                return false;
+            }
         }
-
         return true;
 
     }
