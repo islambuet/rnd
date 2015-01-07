@@ -94,8 +94,17 @@ class Trail_flower_picture_report extends ROOT_Controller
         $id = $this->input->post("fifteen_id");
         $user = User_helper::get_user();
 
-        $new_file_name = time().'.jpg';
-        $img = System_helper::file_upload('rnd_image',$this->config->item('fifteen_days_picture_report_img_upload_folder'),$new_file_name,$this->config->item('fifteen_days_picture_report_img_type'),$this->config->item('fifteen_days_picture_report_img_size'),$this->config->item('fifteen_days_picture_report_img_allowed_types'));
+        $new_file_name1 = time().'.jpg';
+        $new_file_name2 = time().'.jpg';
+        $new_file_name3 = time().'.jpg';
+        $new_file_name4 = time().'.jpg';
+        $new_file_name5 = time().'.jpg';
+
+        $img1 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name1,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img2 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name2,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img3 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name3,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img4 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name4,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
+        $img5 = System_helper::file_upload('rnd_image',$this->config->item('flowering_picture_report_img_upload_folder'),$new_file_name5,$this->config->item('flowering_picture_report_img_type'),$this->config->item('flowering_picture_report_img_size'),$this->config->item('flowering_picture_report_img_allowed_types'));
 
         $data = Array(
             'rnd_code_id'=>$this->input->post('crop_id'),

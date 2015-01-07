@@ -34,6 +34,10 @@ $config['curd_type_semi_dome']=2;
 $config['accepted_code_yes']=1;
 $config['accepted_code_no']=0;
 
+$config['fruit_report_before_harvest']=1;
+$config['fruit_report_after_harvest_single']=2;
+$config['fruit_report_after_harvest_several']=3;
+$config['fruit_report_after_harvest_cut']=4;
 
 $config['fruit_report_before_harvest']=1;
 $config['fruit_report_after_harvest_single']=2;

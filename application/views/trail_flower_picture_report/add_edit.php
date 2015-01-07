@@ -105,7 +105,7 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
-                <input type="file" name="first_flowering_pic" id="first_flowering_pic" onchange="readURL(this)" />
+                <input type="file" name="first_flowering_pic" id="first_flowering_pic" onchange="readURL1(this)" />
             </div>
         </div>
 
@@ -123,8 +123,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50P_FLOWERING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
-                <input type="file" name="fifty_percent_flowering_pic" id="fifty_percent_flowering_pic"/>
+                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="fifty_flowering_pic_id" />
+                <input type="file" name="fifty_percent_flowering_pic" id="fifty_percent_flowering_pic" onchange="readURL2(this)"/>
             </div>
         </div>
 
@@ -153,8 +153,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_FRUIT_SETTING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
-                <input type="file" name="first_fruit_setting_pic" id="first_fruit_setting_pic"/>
+                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_fruit_setting_id" />
+                <input type="file" name="first_fruit_setting_pic" id="first_fruit_setting_pic" onchange="readURL3(this)"/>
             </div>
         </div>
 
@@ -172,8 +172,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
-                <input type="file" name="first_harvested_fruit" id="first_harvested_fruit"/>
+                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_harvested_fruit_id" />
+                <input type="file" name="first_harvested_fruit" id="first_harvested_fruit" onchange="readURL4(this)"/>
             </div>
         </div>
 
@@ -191,8 +191,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LAST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="first_flowering_pic_id" />
-                <input type="file" name="last_harvested_fruit" id="last_harvested_fruit"/>
+                <img src="<?php echo base_url()?>images/no_image.jpg" style="width: 77px; height: 77px;" id="last_harvested_fruit_id" />
+                <input type="file" name="last_harvested_fruit" id="last_harvested_fruit" onchange="readURL5(this)"/>
             </div>
         </div>
 
@@ -212,7 +212,7 @@
 
 <script type="text/javascript">
 
-    function readURL(input)
+    function readURL1(input)
     {
         if (input.files && input.files[0])
         {
@@ -221,6 +221,66 @@
             reader.onload = function ( e )
             {
                 $('#first_flowering_pic_id').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL2(input)
+    {
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+            reader.onload = function ( e )
+            {
+                $('#fifty_flowering_pic_id').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL3(input)
+    {
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+            reader.onload = function ( e )
+            {
+                $('#first_fruit_setting_id').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL4(input)
+    {
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+            reader.onload = function ( e )
+            {
+                $('#first_harvested_fruit_id').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL5(input)
+    {
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+            reader.onload = function ( e )
+            {
+                $('#last_harvested_fruit_id').attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
