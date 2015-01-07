@@ -151,7 +151,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_FRUIT_SETTING_PIC');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="file" name="first_flowering_pic" id="first_flowering_pic"/>
+                <input type="file" name="first_fruit_setting_pic" id="first_fruit_setting_pic"/>
             </div>
         </div>
 
@@ -160,7 +160,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="fifty_percent_flowering_remark" id="fifty_percent_flowering_remark"></textarea>
+                <textarea class="form-control" name="first_fruit_setting_remark" id="first_fruit_setting_remark"></textarea>
             </div>
         </div>
 
@@ -169,7 +169,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="file" name="first_flowering_pic" id="first_flowering_pic"/>
+                <input type="file" name="first_harvested_fruit" id="first_harvested_fruit"/>
             </div>
         </div>
 
@@ -178,7 +178,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="fifty_percent_flowering_remark" id="fifty_percent_flowering_remark"></textarea>
+                <textarea class="form-control" name="first_harvested_fruit_remark" id="first_harvested_fruit_remark"></textarea>
             </div>
         </div>
 
@@ -187,7 +187,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LAST_HARVESTED_FRUIT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="file" name="first_flowering_pic" id="first_flowering_pic"/>
+                <input type="file" name="last_harvested_fruit" id="last_harvested_fruit"/>
             </div>
         </div>
 
@@ -196,7 +196,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea class="form-control" name="fifty_percent_flowering_remark" id="fifty_percent_flowering_remark"></textarea>
+                <textarea class="form-control" name="last_harvested_fruit_remark" id="last_harvested_fruit_remark"></textarea>
             </div>
         </div>
     </div>
