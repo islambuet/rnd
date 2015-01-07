@@ -75,7 +75,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="labour_activity_date" id="labour_activity_date" class="form-control validate[required]" value="<?php echo date('d-m-Y',$pesticideInfo['activity_date']);?>" placeholder="Date" >
+                <input type="text" name="labour_activity_date" id="labour_activity_date" class="form-control validate[required]" value="<?php if(!empty($pesticideInfo['activity_date'])){ echo date('d-m-Y',$pesticideInfo['activity_date']);}?>" placeholder="Date" >
             </div>
         </div>
         <div style="" class="row show-grid">
