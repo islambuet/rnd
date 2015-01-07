@@ -98,18 +98,18 @@ class Trail_flower_picture_report extends ROOT_Controller
         $img = System_helper::file_upload('rnd_image',$this->config->item('fifteen_days_picture_report_img_upload_folder'),$new_file_name,$this->config->item('fifteen_days_picture_report_img_type'),$this->config->item('fifteen_days_picture_report_img_size'),$this->config->item('fifteen_days_picture_report_img_allowed_types'));
 
         $data = Array(
-            'crop_id'=>$this->input->post('crop_id'),
-            'type_id'=>$this->input->post('crop_type'),
-            'rnd_code'=>$this->input->post('rnd_code'),
-            'sowing_date'=>strtotime($this->input->post('sowing_date'))
-        );
-
-        $data_img = Array(
-          'image_name'=>$img,
-          'picture_date'=>strtotime($this->input->post('picture_date')),
-          'actual_picture_date'=>time(),
-          'picture_day'=>$this->input->post('picture_day'),
-          'remarks'=>$this->input->post('remarks')
+            'rnd_code_id'=>$this->input->post('crop_id'),
+            'first_flowering_pic'=>$this->input->post('crop_type'),
+            'first_flowering_remark'=>$this->input->post('rnd_code'),
+            'fifty_flowering_pic'=>$this->input->post('rnd_code'),
+            'fifty_flowering_remark'=>$this->input->post('rnd_code'),
+            'first_setting_pic'=>$this->input->post('rnd_code'),
+            'first_setting_remark'=>$this->input->post('rnd_code'),
+            'first_harvested_pic'=>$this->input->post('rnd_code'),
+            'first_harvested_remark'=>$this->input->post('rnd_code'),
+            'last_harvested_pic'=>$this->input->post('rnd_code'),
+            'last_harvested_pic'=>$this->input->post('rnd_code'),
+            'last_harvested_remark'=>strtotime($this->input->post('sowing_date'))
         );
 
         if(!$this->check_validation())
@@ -124,82 +124,7 @@ class Trail_flower_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-//                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
-
-                $data_img['picture_report_id']= $id;
-                $data_img['created_by'] = $user->user_id;
-                $data_img['creation_date'] = time();
-
-                if($img)
-                {
-                    Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
-                }
-
-                $count = count($this->input->post('picture_day_spec'));
-
-                if($count>0)
-                {
-                    $row_spec_id = $this->input->post('row_spec_id');
-                    $picture_day_spec = $this->input->post('picture_day_spec');
-                    $picture_date_spec = $this->input->post('picture_date_spec');
-                    $file_name = $_FILES['image_spec']['name'];
-                    $file_temp = $_FILES['image_spec']['tmp_name'];
-
-                    for($i=0; $i<$count; $i++)
-                    {
-                        $ext = end(explode(".", @$file_name[$i]));
-
-                        $size = @$file_name[$i]['size'];
-
-                        $new_file_name = time().$i;
-                        $save_file_name = time().$i.'.'.$ext;
-
-                        if (@$file_name[$i] != "")
-                        {
-                            if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
-                            {
-                                if($size < $this->config->item('fifteen_days_picture_report_img_size'))
-                                {
-                                    @$ext = end(explode(".", @$file_name[$i]));
-                                    $file_url = $new_file_name . "." . $ext;
-                                    copy(@$file_temp[$i], $this->config->item('fifteen_days_picture_report_img_upload_folder')."/".$file_url);
-
-                                    $data_spec = Array(
-                                        'image_name' => $file_url,
-                                        'picture_day' => $picture_day_spec[$i],
-                                        'picture_date' => strtotime($picture_date_spec[$i])
-                                    );
-
-                                    $data_spec['modified_by'] = $user->user_id;
-                                    $data_spec['modification_date'] = time();
-                                    Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("id = ".$row_spec_id[$i]));
-
-                                }
-                                else
-                                {
-                                    $this->message=$this->lang->line("MSG_FILE_SIZE_ERROR");
-                                }
-                            }
-                            else
-                            {
-                                $this->message=$this->lang->line("MSG_FILE_TYPE_ERROR");
-                            }
-                        }
-                        else
-                        {
-                            $data_spec = Array(
-                                'picture_day' => $picture_day_spec[$i],
-                                'picture_date' => strtotime($picture_date_spec[$i])
-                            );
-
-                            $data_spec['modified_by'] = $user->user_id;
-                            $data_spec['modification_date'] = time();
-                            Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("id = ".$row_spec_id[$i]));
-                        }
-                    }
-
-
-                }
+                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -220,13 +145,7 @@ class Trail_flower_picture_report extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                $last_id = Query_helper::add('rnd_fifteen_days_picture_report',$data);
-
-                $data_img['picture_report_id']= $last_id;
-                $data_img['created_by'] = $user->user_id;
-                $data_img['creation_date'] = time();
-
-                Query_helper::add('rnd_fifteen_days_picture_report_images',$data_img);
+                Query_helper::add('rnd_fifteen_days_picture_report',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
