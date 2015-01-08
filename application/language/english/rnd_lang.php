@@ -36,7 +36,12 @@ $lang['ACTION_SAVE'] = 'Save';
 $lang['LABEL_CROP_NAME'] = 'Crop Name';
 $lang['LABEL_CROP_CODE'] = 'Crop Code';
 $lang['LABEL_CROP_WIDTH'] = 'Crop Width';
-$lang['LABEL_CROP_HEIGHT'] = 'Crop Height';
+$lang['LABEL_CROP_HEIGHT'] = 'Crop Length';
+$lang['LABEL_FLOWERING_TYPE'] = 'Fruit Type';
+$lang['LABEL_FRUIT'] = 'Fruit';
+$lang['LABEL_CURT'] = 'Curd';
+$lang['LABEL_ROOT'] = 'Root';
+$lang['LABEL_LEAF'] = 'Leaf';
 
 //Create Type
 $lang['LABEL_SELECT_CROP'] = 'Select Crop';
@@ -61,11 +66,6 @@ $lang['LABEL_PESTICIDE_NAME'] = 'Pesticide & Fungicide Name';
 
 //Create Variety
 $lang['LABEL_VARIETY_NAME'] = 'Variety';
-$lang['LABEL_FLOWERING_TYPE'] = 'Flowering Type';
-$lang['LABEL_FRUIT'] = 'Fruit';
-$lang['LABEL_CURT'] = 'Curt';
-$lang['LABEL_ROOT'] = 'Root';
-$lang['LABEL_LEAF'] = 'Leaf';
 $lang['LABEL_CHECK_VARIETY_ARM'] = 'Check Variety ARM';
 $lang['LABEL_COMPETITOR_VARIETY'] = 'Competitor Variety';
 $lang['LABEL_PRINCIPAL_VARIETY'] = 'Principal Variety';
