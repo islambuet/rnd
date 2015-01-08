@@ -43,5 +43,24 @@ class Home extends ROOT_Controller
         $this->session->set_userdata("user_id", "");
         $this->login_page($this->lang->line("MSG_LOGOUT_SUCCESS"));
     }
+    public function sidebar()
+    {
+        $user=User_helper::get_user();
+        $ajax['status']=true;
+
+        if($user)
+        {
+
+            $ajax['content'][]=array("id"=>"#user_info","html"=>$this->load->view("user_info","",true));
+            $ajax['content'][]=array("id"=>"#right_side","html"=>$this->load->view("dashboard_right","",true));
+        }
+        else
+        {
+
+            $ajax['content'][]=array("id"=>"#right_side","html"=>$this->load->view("login_right","",true));
+            $ajax['content'][]=array("id"=>"#user_info","html"=>"");
+        }
+        $this->jsonReturn($ajax);
+    }
 
 }

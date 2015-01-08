@@ -160,6 +160,20 @@ function load_main_page()
         dataType: "JSON",
         success: function (data, status)
         {
+            $.ajax({
+                url: base_url+"home/sidebar/",
+                type: 'POST',
+                dataType: "JSON",
+                success: function (data, status)
+                {
+
+                },
+                error: function (xhr, desc, err)
+                {
+                    console.log("error");
+
+                }
+            });
 
         },
         error: function (xhr, desc, err)
