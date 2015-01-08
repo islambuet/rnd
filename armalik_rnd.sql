@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-06 16:51:32
+Date: 2015-01-08 19:19:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -521,10 +521,12 @@ INSERT INTO `ait_user_login` VALUES ('48', 'UI-000033', 'EI-000079', 'Md. Asraf 
 DROP TABLE IF EXISTS `rnd_crop_info`;
 CREATE TABLE `rnd_crop_info` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `crop_name` varchar(50) DEFAULT NULL,
-  `crop_code` varchar(20) DEFAULT NULL,
-  `crop_height` int(11) DEFAULT NULL,
-  `crop_width` int(11) DEFAULT NULL,
+  `crop_name` varchar(50) NOT NULL,
+  `crop_code` varchar(20) NOT NULL,
+  `crop_height` int(11) NOT NULL,
+  `crop_width` int(11) NOT NULL,
+  `fruit_type` int(11) NOT NULL,
+  `sample_size` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
@@ -547,10 +549,10 @@ CREATE TABLE `rnd_crop_info` (
 -- ----------------------------
 -- Records of rnd_crop_info
 -- ----------------------------
-INSERT INTO `rnd_crop_info` VALUES ('3', 'Cucumber', 'C0001', '46', '23', '1', 'UI-000001', '1419337772', 'UI-000001', '1419399879');
-INSERT INTO `rnd_crop_info` VALUES ('4', 'Brinjal', 'B0001', '654', '344', '1', 'UI-000001', '1419342256', 'UI-000001', '1419400013');
-INSERT INTO `rnd_crop_info` VALUES ('5', 'Potato', 'P0001', '82', '41', '1', 'UI-000001', '1419342385', null, null);
-INSERT INTO `rnd_crop_info` VALUES ('6', 'Pumpkin', 'C0007', '45', '23', '1', 'UI-000001', '1420024701', null, null);
+INSERT INTO `rnd_crop_info` VALUES ('3', 'Cucumber', 'C0001', '46', '23', '2', '1', '1', 'UI-000001', '1419337772', 'UI-000001', '1420697092');
+INSERT INTO `rnd_crop_info` VALUES ('4', 'Brinjal', 'B0001', '654', '344', '3', '1', '1', 'UI-000001', '1419342256', 'UI-000001', '1420698019');
+INSERT INTO `rnd_crop_info` VALUES ('5', 'Potato', 'P0001', '82', '41', '0', '0', '1', 'UI-000001', '1419342385', null, null);
+INSERT INTO `rnd_crop_info` VALUES ('6', 'Pumpkin', 'C0007', '45', '23', '0', '0', '1', 'UI-000001', '1420024701', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_disease_info`
@@ -725,12 +727,13 @@ CREATE TABLE `rnd_fifteen_days_picture_report` (
   `modified_by` varchar(11) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_fifteen_days_picture_report
 -- ----------------------------
 INSERT INTO `rnd_fifteen_days_picture_report` VALUES ('1', '1', '6', '5', '18', '1420048800', 'UI-000001', '1420453462', null, null);
+INSERT INTO `rnd_fifteen_days_picture_report` VALUES ('3', '0', '6', '5', '17', '1417370400', 'UI-000001', '1420554118', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_fifteen_days_picture_report_images`
@@ -749,14 +752,16 @@ CREATE TABLE `rnd_fifteen_days_picture_report_images` (
   `modified_by` varchar(20) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_fifteen_days_picture_report_images
 -- ----------------------------
-INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('1', '1', '1420453462.jpg', '15', '1420453462', '0', 'Remarks', 'UI-000001', '1420453462', null, null);
-INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('3', '1', '1420519479.jpg', '30', '1420519479', '0', 'Remarkssssssssssssss', 'UI-000001', '1420519479', null, null);
-INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('4', '1', '1420519509.jpg', '45', '1420519509', '0', ' Remarks 33333333333333333', 'UI-000001', '1420519509', null, null);
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('1', '1', '14205530160.jpg', '15', '1421172000', '0', 'Remarks', 'UI-000001', '1420453462', 'UI-000001', '1420553887');
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('3', '1', '14205530171.jpg', '30', '1421172000', '0', 'Remarkssssssssssssss', 'UI-000001', '1420519479', 'UI-000001', '1420553887');
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('4', '1', '14205530172.jpg', '45', '1422381600', '0', ' Remarks 33333333333333333', 'UI-000001', '1420519509', 'UI-000001', '1420553887');
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('5', '1', '1420553803.jpg', '60', '1422468000', '1420553803', ' Remarks sdsdsdsd', 'UI-000001', '1420553803', 'UI-000001', '1420553887');
+INSERT INTO `rnd_fifteen_days_picture_report_images` VALUES ('6', '3', '1420554118.jpg', '15', '1420480800', '1420554118', ' Remarks new', 'UI-000001', '1420554118', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_first_last_harvesting_report`
@@ -791,6 +796,9 @@ CREATE TABLE `rnd_first_last_harvesting_report` (
 DROP TABLE IF EXISTS `rnd_flowering_picture_report`;
 CREATE TABLE `rnd_flowering_picture_report` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `season_id` int(11) DEFAULT NULL,
+  `crop_id` int(11) DEFAULT NULL,
+  `type_id` int(11) DEFAULT NULL,
   `rnd_code_id` int(10) DEFAULT NULL,
   `first_flowering_pic` varchar(20) DEFAULT NULL,
   `first_flowering_remark` text,
@@ -802,7 +810,7 @@ CREATE TABLE `rnd_flowering_picture_report` (
   `first_harvested_remark` text,
   `last_harvested_pic` varchar(20) DEFAULT NULL,
   `last_harvested_remark` text,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
   `modified_by` varchar(20) DEFAULT NULL,
@@ -811,11 +819,12 @@ CREATE TABLE `rnd_flowering_picture_report` (
   UNIQUE KEY `id` (`id`),
   KEY `rnd_code_id` (`rnd_code_id`),
   CONSTRAINT `rnd_flowering_picture_report_ibfk_1` FOREIGN KEY (`rnd_code_id`) REFERENCES `rnd_variety_info` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_flowering_picture_report
 -- ----------------------------
+INSERT INTO `rnd_flowering_picture_report` VALUES ('3', '1', '6', '5', '18', 'ffp1420634742.jpg', 'r11', 'fpp1420634742.jpg', 'r22', 'ffs1420634742.jpg', 'r33', 'fhf1420634742.jpg', 'r44', 'lhf1420642020.jpg', 'r55', '1', 'UI-000001', '1420634742', 'UI-000001', '1420642020');
 
 -- ----------------------------
 -- Table structure for `rnd_flowering_type_info`
@@ -942,7 +951,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=233 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -1041,6 +1050,144 @@ INSERT INTO `rnd_history` VALUES ('91', '2', 'rnd_fifteen_days_picture_report', 
 INSERT INTO `rnd_history` VALUES ('92', '2', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519363.jpg\",\"picture_date\":1420519363,\"picture_day\":\"30\",\"remarks\":\" Remarks \",\"picture_report_id\":2,\"created_by\":\"UI-000001\",\"creation_date\":1420519363}', 'UI-000001', 'INSERT', '1420519363');
 INSERT INTO `rnd_history` VALUES ('93', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519479.jpg\",\"picture_date\":1420519479,\"picture_day\":\"30\",\"remarks\":\"Remarkssssssssssssss\",\"picture_report_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420519479}', 'UI-000001', 'INSERT', '1420519479');
 INSERT INTO `rnd_history` VALUES ('94', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420519509.jpg\",\"picture_date\":1420519509,\"picture_day\":\"45\",\"remarks\":\" Remarks 33333333333333333\",\"picture_report_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420519509}', 'UI-000001', 'INSERT', '1420519509');
+INSERT INTO `rnd_history` VALUES ('95', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484180.jpg\",\"picture_day\":\"14\",\"picture_date\":\"05-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('96', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484180.jpg\",\"picture_day\":\"14\",\"picture_date\":\"05-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('97', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484180.jpg\",\"picture_day\":\"14\",\"picture_date\":\"05-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('98', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484191.jpg\",\"picture_day\":\"29\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('99', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484191.jpg\",\"picture_day\":\"29\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('100', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484191.jpg\",\"picture_day\":\"29\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('101', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484192.jpg\",\"picture_day\":\"44\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('102', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484192.jpg\",\"picture_day\":\"44\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('103', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205484192.jpg\",\"picture_day\":\"44\",\"picture_date\":\"06-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548419}', 'UI-000001', 'UPDATE', '1420548419');
+INSERT INTO `rnd_history` VALUES ('104', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('105', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('106', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('107', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('108', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('109', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('110', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('111', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('112', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420548507}', 'UI-000001', 'UPDATE', '1420548507');
+INSERT INTO `rnd_history` VALUES ('113', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205493890.jpg\",\"picture_day\":\"44\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549389}', 'UI-000001', 'UPDATE', '1420549389');
+INSERT INTO `rnd_history` VALUES ('114', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205493890.jpg\",\"picture_day\":\"44\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549389}', 'UI-000001', 'UPDATE', '1420549389');
+INSERT INTO `rnd_history` VALUES ('115', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205493890.jpg\",\"picture_day\":\"44\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549389}', 'UI-000001', 'UPDATE', '1420549389');
+INSERT INTO `rnd_history` VALUES ('116', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549390}', 'UI-000001', 'UPDATE', '1420549390');
+INSERT INTO `rnd_history` VALUES ('117', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549390}', 'UI-000001', 'UPDATE', '1420549390');
+INSERT INTO `rnd_history` VALUES ('118', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549390}', 'UI-000001', 'UPDATE', '1420549390');
+INSERT INTO `rnd_history` VALUES ('119', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('120', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('121', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('122', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('123', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('124', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('125', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('126', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('127', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549440}', 'UI-000001', 'UPDATE', '1420549440');
+INSERT INTO `rnd_history` VALUES ('128', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549732}', 'UI-000001', 'UPDATE', '1420549732');
+INSERT INTO `rnd_history` VALUES ('129', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549732}', 'UI-000001', 'UPDATE', '1420549732');
+INSERT INTO `rnd_history` VALUES ('130', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549732}', 'UI-000001', 'UPDATE', '1420549732');
+INSERT INTO `rnd_history` VALUES ('131', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205497970.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('132', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205497970.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('133', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205497970.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('134', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('135', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('136', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549797}', 'UI-000001', 'UPDATE', '1420549797');
+INSERT INTO `rnd_history` VALUES ('137', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205498070.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('138', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205498070.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('139', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205498070.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('140', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('141', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('142', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420549807}', 'UI-000001', 'UPDATE', '1420549807');
+INSERT INTO `rnd_history` VALUES ('143', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500710.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('144', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500710.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('145', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500710.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('146', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500711.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('147', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500711.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('148', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205500711.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550071');
+INSERT INTO `rnd_history` VALUES ('149', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550072');
+INSERT INTO `rnd_history` VALUES ('150', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550072');
+INSERT INTO `rnd_history` VALUES ('151', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550071}', 'UI-000001', 'UPDATE', '1420550072');
+INSERT INTO `rnd_history` VALUES ('152', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502320.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550232}', 'UI-000001', 'UPDATE', '1420550232');
+INSERT INTO `rnd_history` VALUES ('153', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502320.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550232}', 'UI-000001', 'UPDATE', '1420550232');
+INSERT INTO `rnd_history` VALUES ('154', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502320.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550232}', 'UI-000001', 'UPDATE', '1420550232');
+INSERT INTO `rnd_history` VALUES ('155', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502331.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('156', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502331.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('157', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205502331.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('158', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('159', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('160', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"01-01-1970\",\"modified_by\":\"UI-000001\",\"modification_date\":1420550233}', 'UI-000001', 'UPDATE', '1420550233');
+INSERT INTO `rnd_history` VALUES ('161', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516430.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('162', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516430.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('163', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516430.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('164', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516431.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('165', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516431.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('166', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516431.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551643');
+INSERT INTO `rnd_history` VALUES ('167', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516432.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551644');
+INSERT INTO `rnd_history` VALUES ('168', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516432.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551644');
+INSERT INTO `rnd_history` VALUES ('169', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205516432.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420551643}', 'UI-000001', 'UPDATE', '1420551644');
+INSERT INTO `rnd_history` VALUES ('170', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524770.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('171', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524770.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('172', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524770.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('173', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524771.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('174', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524771.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('175', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524771.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('176', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524772.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('177', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524772.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('178', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205524772.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552477}', 'UI-000001', 'UPDATE', '1420552477');
+INSERT INTO `rnd_history` VALUES ('179', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('180', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('181', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('182', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('183', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('184', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"4\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('185', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('186', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('187', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"2\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420552619}', 'UI-000001', 'UPDATE', '1420552619');
+INSERT INTO `rnd_history` VALUES ('188', '1', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205530160.jpg\",\"picture_day\":\"44\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553017}', 'UI-000001', 'UPDATE', '1420553017');
+INSERT INTO `rnd_history` VALUES ('189', '3', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205530171.jpg\",\"picture_day\":\"45\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553017}', 'UI-000001', 'UPDATE', '1420553017');
+INSERT INTO `rnd_history` VALUES ('190', '4', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"14205530172.jpg\",\"picture_day\":\"46\",\"picture_date\":-21600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553017}', 'UI-000001', 'UPDATE', '1420553017');
+INSERT INTO `rnd_history` VALUES ('191', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"44\",\"picture_date\":\"15-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420553105}', 'UI-000001', 'UPDATE', '1420553105');
+INSERT INTO `rnd_history` VALUES ('192', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":\"15-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420553105}', 'UI-000001', 'UPDATE', '1420553105');
+INSERT INTO `rnd_history` VALUES ('193', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"46\",\"picture_date\":\"07-01-2015\",\"modified_by\":\"UI-000001\",\"modification_date\":1420553105}', 'UI-000001', 'UPDATE', '1420553105');
+INSERT INTO `rnd_history` VALUES ('194', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"15\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553304}', 'UI-000001', 'UPDATE', '1420553304');
+INSERT INTO `rnd_history` VALUES ('195', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"30\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553304}', 'UI-000001', 'UPDATE', '1420553304');
+INSERT INTO `rnd_history` VALUES ('196', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":1422381600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553304}', 'UI-000001', 'UPDATE', '1420553304');
+INSERT INTO `rnd_history` VALUES ('197', '5', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420553803.jpg\",\"picture_date\":\"06-01-2015\",\"actual_picture_date\":1420553803,\"picture_day\":\"60\",\"remarks\":\" Remarks sdsdsdsd\",\"picture_report_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420553803}', 'UI-000001', 'INSERT', '1420553803');
+INSERT INTO `rnd_history` VALUES ('198', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"15\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553803}', 'UI-000001', 'UPDATE', '1420553803');
+INSERT INTO `rnd_history` VALUES ('199', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"30\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553803}', 'UI-000001', 'UPDATE', '1420553803');
+INSERT INTO `rnd_history` VALUES ('200', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":1422381600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553803}', 'UI-000001', 'UPDATE', '1420553803');
+INSERT INTO `rnd_history` VALUES ('201', '1', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"15\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553887}', 'UI-000001', 'UPDATE', '1420553887');
+INSERT INTO `rnd_history` VALUES ('202', '3', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"30\",\"picture_date\":1421172000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553887}', 'UI-000001', 'UPDATE', '1420553887');
+INSERT INTO `rnd_history` VALUES ('203', '4', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"45\",\"picture_date\":1422381600,\"modified_by\":\"UI-000001\",\"modification_date\":1420553887}', 'UI-000001', 'UPDATE', '1420553887');
+INSERT INTO `rnd_history` VALUES ('204', '5', 'rnd_fifteen_days_picture_report_images', '{\"picture_day\":\"60\",\"picture_date\":1422468000,\"modified_by\":\"UI-000001\",\"modification_date\":1420553887}', 'UI-000001', 'UPDATE', '1420553887');
+INSERT INTO `rnd_history` VALUES ('205', '3', 'rnd_fifteen_days_picture_report', '{\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code\":\"17\",\"sowing_date\":1417370400,\"created_by\":\"UI-000001\",\"creation_date\":1420554118}', 'UI-000001', 'INSERT', '1420554118');
+INSERT INTO `rnd_history` VALUES ('206', '6', 'rnd_fifteen_days_picture_report_images', '{\"image_name\":\"1420554118.jpg\",\"picture_date\":1420480800,\"actual_picture_date\":1420554118,\"picture_day\":\"15\",\"remarks\":\" Remarks new\",\"picture_report_id\":3,\"created_by\":\"UI-000001\",\"creation_date\":1420554118}', 'UI-000001', 'INSERT', '1420554118');
+INSERT INTO `rnd_history` VALUES ('207', '3', 'rnd_flowering_picture_report', '{\"rnd_code_id\":\"18\",\"first_flowering_pic\":\"ffp1420628781.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420628781.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420628781.jpg\",\"first_setting_remark\":\"r3\",\"first_harvested_pic\":\"', 'UI-000001', 'INSERT', '1420628782');
+INSERT INTO `rnd_history` VALUES ('208', '4', 'rnd_flowering_picture_report', '{\"rnd_code_id\":\"12\",\"first_flowering_pic\":\"ffp1420631853.jpg.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420631853.jpg.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420631853.jpg.jpg\",\"first_setting_remark\":\"r3\",\"first_harv', 'UI-000001', 'INSERT', '1420631853');
+INSERT INTO `rnd_history` VALUES ('209', '5', 'rnd_flowering_picture_report', '{\"rnd_code_id\":\"18\",\"first_flowering_pic\":\"ffp1420632031.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420632031.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420632031.jpg\",\"first_setting_remark\":\"r3\",\"first_harvested_pic\":\"', 'UI-000001', 'INSERT', '1420632031');
+INSERT INTO `rnd_history` VALUES ('210', '1', 'rnd_flowering_picture_report', '{\"season_id\":\"1\",\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code_id\":\"18\",\"first_flowering_pic\":\"ffp1420634647.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420634647.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420634647.jpg\",\"first_', 'UI-000001', 'INSERT', '1420634647');
+INSERT INTO `rnd_history` VALUES ('211', '2', 'rnd_flowering_picture_report', '{\"season_id\":\"1\",\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code_id\":\"18\",\"first_flowering_pic\":\"ffp1420634661.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420634661.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420634661.jpg\",\"first_', 'UI-000001', 'INSERT', '1420634661');
+INSERT INTO `rnd_history` VALUES ('212', '3', 'rnd_flowering_picture_report', '{\"season_id\":\"1\",\"crop_id\":\"6\",\"type_id\":\"5\",\"rnd_code_id\":\"18\",\"first_flowering_pic\":\"ffp1420634742.jpg\",\"first_flowering_remark\":\"r1\",\"fifty_flowering_pic\":\"fpp1420634742.jpg\",\"fifty_flowering_remark\":\"r2\",\"first_setting_pic\":\"ffs1420634742.jpg\",\"first_', 'UI-000001', 'INSERT', '1420634742');
+INSERT INTO `rnd_history` VALUES ('213', '3', 'rnd_flowering_picture_report', '{\"first_flowering_remark\":\"r11\",\"fifty_flowering_remark\":\"r22\",\"first_setting_remark\":\"r33\",\"first_harvested_remark\":\"r44\",\"last_harvested_remark\":\"r55\",\"last_harvested_pic\":\"lhf1420642020.jpg\",\"modified_by\":\"UI-000001\",\"modification_date\":1420642020}', 'UI-000001', 'UPDATE', '1420642020');
+INSERT INTO `rnd_history` VALUES ('214', '7', 'rnd_pesticide_fungicide_stock_in', '{\"pesticide_id\":\"1\",\"pesticide_quantity\":\"100\",\"pesticide_price\":\"50\",\"created_by\":\"UI-000001\",\"creation_date\":1420646513}', 'UI-000001', 'INSERT', '1420646514');
+INSERT INTO `rnd_history` VALUES ('215', '3', 'rnd_crop_info', '{\"crop_name\":\"Cucumber\",\"crop_code\":\"C0001\",\"crop_width\":\"23\",\"crop_height\":\"46\",\"fruit_type\":\"2\",\"sample_size\":\"1\",\"status\":\"1\",\"modified_by\":\"UI-000001\",\"modification_date\":1420697092}', 'UI-000001', 'UPDATE', '1420697092');
+INSERT INTO `rnd_history` VALUES ('216', '4', 'rnd_crop_info', '{\"crop_name\":\"Brinjal\",\"crop_code\":\"B0001\",\"crop_width\":\"344\",\"crop_height\":\"654\",\"fruit_type\":\"3\",\"sample_size\":\"1\",\"status\":\"1\",\"modified_by\":\"UI-000001\",\"modification_date\":1420698019}', 'UI-000001', 'UPDATE', '1420698019');
+INSERT INTO `rnd_history` VALUES ('217', '1', 'rnd_product_type_info', '{\"crop_id\":\"4\",\"product_type\":\"Type11\",\"product_type_code\":\"Code11\",\"status\":\"1\",\"modified_by\":\"UI-000001\",\"modification_date\":1420698961}', 'UI-000001', 'UPDATE', '1420698961');
+INSERT INTO `rnd_history` VALUES ('218', '20', 'rnd_variety_info', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"V0009\",\"variety_type\":\"2\",\"number_of_seeds\":\"10\",\"quantity\":\"11\",\"characteristics\":\" Characteristics \",\"new_old_status\":\"0\",\"status\":\"1\",\"company_name\":\"SoftBD\",\"principal_id\":\"\",\"rnd_code\":\"C0007-E-4-C', 'UI-000001', 'INSERT', '1420719295');
+INSERT INTO `rnd_history` VALUES ('219', '63', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":20,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420719295}', 'UI-000001', 'INSERT', '1420719295');
+INSERT INTO `rnd_history` VALUES ('220', '64', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":20,\"season_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1420719295}', 'UI-000001', 'INSERT', '1420719295');
+INSERT INTO `rnd_history` VALUES ('221', '21', 'rnd_variety_info', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_name\":\"v00012\",\"variety_type\":\"3\",\"number_of_seeds\":\"12\",\"quantity\":\"11\",\"characteristics\":\" Characteristics \",\"new_old_status\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"2\",\"rnd_code\":\"B0001-Code11-3-', 'UI-000001', 'INSERT', '1420719532');
+INSERT INTO `rnd_history` VALUES ('222', '65', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":21,\"season_id\":\"1\",\"created_by\":\"UI-000001\",\"creation_date\":1420719532}', 'UI-000001', 'INSERT', '1420719532');
+INSERT INTO `rnd_history` VALUES ('223', '66', 'rnd_variety_season', '{\"crop_id\":\"4\",\"product_type_id\":\"1\",\"variety_id\":21,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420719532}', 'UI-000001', 'INSERT', '1420719532');
+INSERT INTO `rnd_history` VALUES ('224', '22', 'rnd_variety_info', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_name\":\"v00011\",\"variety_type\":\"1\",\"number_of_seeds\":\"12\",\"quantity\":\"11\",\"characteristics\":\"sdsdsscscscs\",\"new_old_status\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"\",\"rnd_code\":\"C0001-Code3-2-CKA-15\"', 'UI-000001', 'INSERT', '1420720724');
+INSERT INTO `rnd_history` VALUES ('225', '67', 'rnd_variety_season', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_id\":22,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420720724}', 'UI-000001', 'INSERT', '1420720724');
+INSERT INTO `rnd_history` VALUES ('226', '68', 'rnd_variety_season', '{\"crop_id\":\"3\",\"product_type_id\":\"3\",\"variety_id\":22,\"season_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420720724}', 'UI-000001', 'INSERT', '1420720724');
+INSERT INTO `rnd_history` VALUES ('227', '23', 'rnd_variety_info', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"c00013\",\"variety_type\":\"1\",\"number_of_seeds\":\"34\",\"quantity\":\"12\",\"characteristics\":\"sdsdsd\",\"new_old_status\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"\",\"rnd_code\":\"C0007-E-5-CKA-15\",\"created_', 'UI-000001', 'INSERT', '1420721880');
+INSERT INTO `rnd_history` VALUES ('228', '69', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":23,\"season_id\":\"3\",\"created_by\":\"UI-000001\",\"creation_date\":1420721880}', 'UI-000001', 'INSERT', '1420721880');
+INSERT INTO `rnd_history` VALUES ('229', '70', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":23,\"season_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420721880}', 'UI-000001', 'INSERT', '1420721880');
+INSERT INTO `rnd_history` VALUES ('230', '24', 'rnd_variety_info', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_name\":\"v00014\",\"variety_type\":\"1\",\"number_of_seeds\":\"34\",\"quantity\":\"12\",\"characteristics\":\"wdwdwdw\",\"new_old_status\":\"1\",\"status\":\"1\",\"company_name\":\"\",\"principal_id\":\"\",\"rnd_code\":\"C0007-E-6-CKA-15\",\"created', 'UI-000001', 'INSERT', '1420722016');
+INSERT INTO `rnd_history` VALUES ('231', '71', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":24,\"season_id\":\"2\",\"created_by\":\"UI-000001\",\"creation_date\":1420722016}', 'UI-000001', 'INSERT', '1420722016');
+INSERT INTO `rnd_history` VALUES ('232', '72', 'rnd_variety_season', '{\"crop_id\":\"6\",\"product_type_id\":\"5\",\"variety_id\":24,\"season_id\":\"5\",\"created_by\":\"UI-000001\",\"creation_date\":1420722016}', 'UI-000001', 'INSERT', '1420722016');
 
 -- ----------------------------
 -- Table structure for `rnd_labor_activity_info`
@@ -1246,7 +1393,7 @@ CREATE TABLE `rnd_product_type_info` (
 -- ----------------------------
 -- Records of rnd_product_type_info
 -- ----------------------------
-INSERT INTO `rnd_product_type_info` VALUES ('1', '4', 'Type11', 'Code11', '231', '451', '1', 'UI-000001', '1419405999', 'UI-000001', '1419409332');
+INSERT INTO `rnd_product_type_info` VALUES ('1', '4', 'Type11', 'Code11', '231', '451', '1', 'UI-000001', '1419405999', 'UI-000001', '1420698961');
 INSERT INTO `rnd_product_type_info` VALUES ('2', '5', 'Type2', 'Code2', '89', '45', '1', 'UI-000001', '1419406090', null, null);
 INSERT INTO `rnd_product_type_info` VALUES ('3', '3', 'Type3', 'Code3', '43', '12', '1', 'UI-000001', '1419406111', null, null);
 INSERT INTO `rnd_product_type_info` VALUES ('4', '5', 'Type4', 'Code4', '45', '23', '1', 'UI-000001', '1419748051', null, null);
@@ -1331,14 +1478,16 @@ CREATE TABLE `rnd_season_info` (
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_season_info
 -- ----------------------------
-INSERT INTO `rnd_season_info` VALUES ('1', 'Winter', 'January', 'April', '1', null, null, null, null);
-INSERT INTO `rnd_season_info` VALUES ('2', 'Summer', 'April', 'August', '1', null, null, null, null);
-INSERT INTO `rnd_season_info` VALUES ('3', 'Fall', 'August', 'December', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('1', 'Summer', 'January', 'March', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('2', 'Rainy Summer', 'March', 'June', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('3', 'Early Winter', 'June', 'August', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('4', 'Optimum Winter', 'August', 'October', '1', null, null, null, null);
+INSERT INTO `rnd_season_info` VALUES ('5', 'Late Winter', 'October', 'January', '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_seed_bed_info`
@@ -1394,9 +1543,13 @@ CREATE TABLE `rnd_variety_info` (
   `crop_id` int(10) DEFAULT NULL,
   `product_type_id` int(10) DEFAULT NULL,
   `variety_name` varchar(50) DEFAULT NULL,
-  `rnd_code` varchar(20) DEFAULT NULL,
+  `rnd_code` varchar(30) DEFAULT NULL,
   `variety_type` int(1) NOT NULL COMMENT '1=arm variety, 2=company',
   `company_name` varchar(50) DEFAULT NULL,
+  `number_of_seeds` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `characteristics` varchar(255) DEFAULT NULL,
+  `new_old_status` int(1) NOT NULL DEFAULT '1',
   `status` tinyint(1) NOT NULL,
   `created_by` varchar(20) DEFAULT NULL,
   `creation_date` int(11) DEFAULT NULL,
@@ -1410,19 +1563,23 @@ CREATE TABLE `rnd_variety_info` (
   KEY `crop_id` (`crop_id`) USING BTREE,
   CONSTRAINT `rnd_variety_info_ibfk_3` FOREIGN KEY (`crop_id`) REFERENCES `rnd_crop_info` (`id`),
   CONSTRAINT `rnd_variety_info_ibfk_4` FOREIGN KEY (`product_type_id`) REFERENCES `rnd_product_type_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of rnd_variety_info
 -- ----------------------------
-INSERT INTO `rnd_variety_info` VALUES ('10', '1', '2', '5', '2', 'V0001', 'V0001', '1', '', '1', 'UI-000001', '1419768116', 'UI-000001', '1419773582');
-INSERT INTO `rnd_variety_info` VALUES ('11', '2', '3', '4', '1', 'V0002', 'V0002', '3', '', '1', 'UI-000001', '1419771710', 'UI-000001', '1420280527');
-INSERT INTO `rnd_variety_info` VALUES ('12', '0', '2', '3', '3', 'V0003', 'V0003', '2', 'SoftBD Ltd.', '1', 'UI-000001', '1419828140', 'UI-000001', '1420280895');
-INSERT INTO `rnd_variety_info` VALUES ('15', '2', '1', '4', '1', 'V0004', 'V0004', '1', '', '1', 'UI-000001', '1419943231', null, null);
-INSERT INTO `rnd_variety_info` VALUES ('16', '2', '1', '5', '2', 'V0005', 'V0005', '1', '', '1', 'UI-000001', '1420004518', null, null);
-INSERT INTO `rnd_variety_info` VALUES ('17', '0', '1', '6', '5', 'V0006', 'C0007-E-17-CKA', '1', '', '1', 'UI-000001', '1420288217', null, null);
-INSERT INTO `rnd_variety_info` VALUES ('18', '0', '1', '6', '5', 'V0007', 'C0007-E-18-CKA', '1', '', '1', 'UI-000001', '1420288227', null, null);
-INSERT INTO `rnd_variety_info` VALUES ('19', '2', '1', '6', '5', 'V0008', 'C0007-E-19-Code2', '3', '', '1', 'UI-000001', '1420288345', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('10', '1', '2', '5', '2', 'V0001', 'V0001', '1', '', '0', '0', null, '1', '1', 'UI-000001', '1419768116', 'UI-000001', '1419773582');
+INSERT INTO `rnd_variety_info` VALUES ('11', '2', '3', '4', '1', 'V0002', 'V0002', '3', '', '0', '0', null, '1', '1', 'UI-000001', '1419771710', 'UI-000001', '1420280527');
+INSERT INTO `rnd_variety_info` VALUES ('12', '0', '2', '3', '3', 'V0003', 'V0003', '2', 'SoftBD Ltd.', '0', '0', null, '1', '1', 'UI-000001', '1419828140', 'UI-000001', '1420280895');
+INSERT INTO `rnd_variety_info` VALUES ('15', '2', '1', '4', '1', 'V0004', 'V0004', '1', '', '0', '0', null, '1', '1', 'UI-000001', '1419943231', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('16', '2', '1', '5', '2', 'V0005', 'V0005', '1', '', '0', '0', null, '1', '1', 'UI-000001', '1420004518', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('17', '0', '1', '6', '5', 'V0006', 'C0007-E-17-CKA', '1', '', '0', '0', null, '1', '1', 'UI-000001', '1420288217', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('18', '0', '1', '6', '5', 'V0007', 'C0007-E-18-CKA', '1', '', '0', '0', null, '1', '1', 'UI-000001', '1420288227', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('19', '2', '1', '6', '5', 'V0008', 'C0007-E-19-Code2', '3', '', '0', '0', null, '1', '1', 'UI-000001', '1420288345', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('21', '2', null, '4', '1', 'v00012', 'B0001-Code11-3-Code2', '3', '', '12', '11', ' Characteristics ', '1', '1', 'UI-000001', '1420719532', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('22', '0', null, '3', '3', 'v00011', 'C0001-Code3-2-CKA-15', '1', '', '12', '11', 'sdsdsscscscs', '1', '1', 'UI-000001', '1420720724', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('23', '0', null, '6', '5', 'c00013', 'C0007-E-5-CKA-15', '1', '', '34', '12', 'sdsdsd', '1', '1', 'UI-000001', '1420721880', null, null);
+INSERT INTO `rnd_variety_info` VALUES ('24', '0', null, '6', '5', 'v00014', 'C0007-E-6-CKA-15', '1', '', '34', '12', 'wdwdwdw', '1', '1', 'UI-000001', '1420722016', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_variety_season`
@@ -1439,7 +1596,7 @@ CREATE TABLE `rnd_variety_season` (
   `modified_by` varchar(11) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_variety_season
@@ -1463,3 +1620,13 @@ INSERT INTO `rnd_variety_season` VALUES ('59', '18', '6', '5', '1', 'UI-000001',
 INSERT INTO `rnd_variety_season` VALUES ('60', '18', '6', '5', '2', 'UI-000001', '1420288227', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('61', '19', '6', '5', '1', 'UI-000001', '1420288345', null, null);
 INSERT INTO `rnd_variety_season` VALUES ('62', '19', '6', '5', '2', 'UI-000001', '1420288345', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('63', '20', '6', '5', '2', 'UI-000001', '1420719295', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('64', '20', '6', '5', '3', 'UI-000001', '1420719295', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('65', '21', '4', '1', '1', 'UI-000001', '1420719532', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('66', '21', '4', '1', '2', 'UI-000001', '1420719532', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('67', '22', '3', '3', '2', 'UI-000001', '1420720724', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('68', '22', '3', '3', '5', 'UI-000001', '1420720724', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('69', '23', '6', '5', '3', 'UI-000001', '1420721880', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('70', '23', '6', '5', '5', 'UI-000001', '1420721880', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('71', '24', '6', '5', '2', 'UI-000001', '1420722016', null, null);
+INSERT INTO `rnd_variety_season` VALUES ('72', '24', '6', '5', '5', 'UI-000001', '1420722016', null, null);
