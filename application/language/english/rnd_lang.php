@@ -42,6 +42,8 @@ $lang['LABEL_FRUIT'] = 'Fruit';
 $lang['LABEL_CURT'] = 'Curd';
 $lang['LABEL_ROOT'] = 'Root';
 $lang['LABEL_LEAF'] = 'Leaf';
+$lang['LABEL_SAMPLE_SIZE_RND'] = 'Sample Size for R&D (gm)';
+$lang['LABEL_GM'] = 'gm';
 
 //Create Type
 $lang['LABEL_SELECT_CROP'] = 'Select Crop';
@@ -73,6 +75,9 @@ $lang['LABEL_SELECT_SEASON'] = 'Select Season';
 $lang['LABEL_SEASON'] = 'Season';
 $lang['LABEL_VARIETY_TYPE'] = 'Variety Type';
 $lang['LABEL_COMPANY_NAME'] = 'Company Name';
+$lang['LABEL_SEEDS_PER_GRAM'] = 'Number of Seeds Per Gram';
+$lang['LABEL_QUANTITY_IN_GRAM'] = 'Quantity (gm)';
+$lang['LABEL_CHARACTERISTICS'] = 'Characteristics';
 
 //General Sample Delivery
 $lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Destined Delivery Date';

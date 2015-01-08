@@ -45,14 +45,15 @@ foreach($seasonInfo as $result)
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="crop_type" id="crop_type" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($cropTypes as $ctypes)
-                    {
-                    ?>
-                        <option value="<?php echo $ctypes['id']?>" <?php if($ctypes['id']==$varietyInfo['product_type_id']){ echo 'selected';}?>><?php echo $ctypes['product_type'];?></option>
-                    <?php
-                    }
+                        $data=array();
+                        $data["selected"]=$varietyInfo['product_type_id'];
+                        foreach($cropTypes as $ctypes)
+                        {
+                            $data['value'][]=$ctypes['id'];
+                            $data['name'][]=$ctypes['product_type'];
+                        }
+                        $this->load->view("dropdown",$data);
                     ?>
                 </select>
             </div>
@@ -105,20 +106,6 @@ foreach($seasonInfo as $result)
             </div>
         </div>
 
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="flowering_type" id="flowering_type" <?php if($varietyInfo['flowering_type_id']==$this->config->item('rnd_fruit_code')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('rnd_fruit_code');?>"> <?php echo $this->lang->line('LABEL_FRUIT');?>
-                <input type="radio" name="flowering_type" id="flowering_type" <?php if($varietyInfo['flowering_type_id']==$this->config->item('rnd_curt_code')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
-                <input type="radio" name="flowering_type" id="flowering_type" <?php if($varietyInfo['flowering_type_id']==$this->config->item('rnd_root_code')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
-                <input type="radio" name="flowering_type" id="flowering_type" <?php if($varietyInfo['flowering_type_id']==$this->config->item('rnd_leaf_code')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
-            </div>
-        </div>
-
-
-
         <div class="row show-grid" id="season_div">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
@@ -132,6 +119,43 @@ foreach($seasonInfo as $result)
                 <?php
                 }
                 ?>
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEEDS_PER_GRAM');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="seed_per_gram" id="seed_per_gram" class="form-control validate[required, custom[number]]" value="" >
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_IN_GRAM');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="quantity_in_gram" id="quantity_in_gram" class="form-control validate[required, custom[number]]" value="" >
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CHARACTERISTICS');?></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <textarea name="characteristics" id="characteristics" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="radio" name="old" value="" />
+                <input type="radio" name="new" value="" />
             </div>
         </div>
 

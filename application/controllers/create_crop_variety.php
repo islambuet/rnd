@@ -75,7 +75,6 @@ class Create_crop_variety extends ROOT_Controller
             $data["varietyInfo"] = Array(
                 'id' => 0,
                 'principal_id' => '',
-                'flowering_type_id' => '',
                 'crop_id' => '',
                 'product_type_id' => 0,
                 'variety_name' => '',
@@ -102,7 +101,6 @@ class Create_crop_variety extends ROOT_Controller
         $seasonPost = $this->input->post('season');
 
         $data = Array(
-            'flowering_type_id'=>$this->input->post('flowering_type'),
             'crop_id'=>$this->input->post('crop_select'),
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),

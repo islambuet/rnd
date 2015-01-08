@@ -53,23 +53,23 @@
             </div>
         </div>
 
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_WIDTH');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="width" id="width" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['product_type_width'];?>" >
-            </div>
-        </div>
-
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEIGHT');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="height" id="height" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['product_type_height'];?>" >
-            </div>
-        </div>
+<!--        <div style="" class="row show-grid">-->
+<!--            <div class="col-xs-4">-->
+<!--                <label class="control-label pull-right">--><?php //echo $this->lang->line('LABEL_WIDTH');?><!--<span style="color:#FF0000">*</span></label>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4 col-xs-8">-->
+<!--                <input type="text" name="width" id="width" class="form-control validate[required, custom[number]]" value="--><?php //echo $typeInfo['product_type_width'];?><!--" >-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div style="" class="row show-grid">-->
+<!--            <div class="col-xs-4">-->
+<!--                <label class="control-label pull-right">--><?php //echo $this->lang->line('LABEL_HEIGHT');?><!--<span style="color:#FF0000">*</span></label>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4 col-xs-8">-->
+<!--                <input type="text" name="height" id="height" class="form-control validate[required, custom[number]]" value="--><?php //echo $typeInfo['product_type_height'];?><!--" >-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">

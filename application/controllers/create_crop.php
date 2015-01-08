@@ -70,6 +70,8 @@ class Create_crop extends ROOT_Controller
                 'crop_code' => '',
                 'crop_height' => '',
                 'crop_width' => '',
+                'fruit_type' => '',
+                'sample_size' => '',
                 'status' => $this->config->item('active')
             );
             $data['title']="Create New Crop";
@@ -93,6 +95,8 @@ class Create_crop extends ROOT_Controller
             'crop_code'=>$this->input->post('crop_code'),
             'crop_width'=>$this->input->post('crop_width'),
             'crop_height'=>$this->input->post('crop_height'),
+            'fruit_type'=>$this->input->post('fruit_type'),
+            'sample_size'=>$this->input->post('sample_size'),
             'status'=>$this->input->post('status'),
         );
 
@@ -150,10 +154,21 @@ class Create_crop extends ROOT_Controller
             return false;
         }
 
+        if(!Validation_helper::validate_numeric($this->input->post('fruit_type')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('sample_size')))
+        {
+            return false;
+        }
+
         if(!Validation_helper::validate_numeric($this->input->post('status')))
         {
             return false;
         }
+
         return true;
     }
 

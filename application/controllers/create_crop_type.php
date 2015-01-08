@@ -71,8 +71,6 @@ class Create_crop_type extends ROOT_Controller
                 'crop_id' => '',
                 'product_type' => '',
                 'product_type_code' => '',
-                'product_type_height' => '',
-                'product_type_width' => '',
                 'status' => $this->config->item('active')
             );
         }
@@ -93,9 +91,7 @@ class Create_crop_type extends ROOT_Controller
             'crop_id'=>$this->input->post('crop_id'),
             'product_type'=>$this->input->post('product_type'),
             'product_type_code'=>$this->input->post('type_code'),
-            'product_type_height'=>$this->input->post('height'),
-            'product_type_width'=>$this->input->post('width'),
-            'status'=>$this->input->post('status'),
+            'status'=>$this->input->post('status')
         );
 
         if(!$this->check_validation())
