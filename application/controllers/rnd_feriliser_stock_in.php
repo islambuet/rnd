@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Rnd_pesticide_stock_in extends ROOT_Controller
+class Rnd_feriliser_stock_in extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("rnd_pesticide_stock_in_model");
+        $this->load->model("rnd_feriliser_stock_in_model");
     }
 
     public function index($task="list",$id=0)
@@ -39,7 +39,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "rnd_pesticide_stock_in/index/list/",$this->rnd_pesticide_stock_in_model->get_total_pesticide_stock_in(),4);
+        $config = System_helper::pagination_config(base_url() . "rnd_feriliser_stock_in/index/list/",$this->rnd_feriliser_stock_in_model->get_total_feriliser_stock_in(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -48,11 +48,11 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['stock_in_info'] = $this->rnd_pesticide_stock_in_model->get_stock_in_info($page);
-        $data['title']="Pesticide & Fungicide Stock In List";
+        $data['stock_in_info'] = $this->rnd_feriliser_stock_in_model->get_stock_in_info($page);
+        $data['title']="Fertiliser Stock In List";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_in/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_feriliser_stock_in/list",$data,true));
 
         if($this->message)
         {
@@ -66,40 +66,42 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['pesticideInfo'] = $this->rnd_pesticide_stock_in_model->get_pesticide_row($id);
-            $data['title']="Edit Pesticide & Fungicide Stock (".$data['pesticideInfo']['pesticide_name'].")";
+            $data['feriliserInfo'] = $this->rnd_feriliser_stock_in_model->get_feriliser_row($id);
+            $data['title']="Edit fertilizer Stock (".$data['feriliserInfo']['fertilizer_name'].")";
         }
         else
         {
-            $data["pesticideInfo"] = Array(
+            $data["feriliserInfo"] = Array(
                 'id' => 0,
-                'pesticide_id'=>'',
-                'pesticide_name' => '',
-                'pesticide_quantity' => '',
-                'pesticide_price' => '',
+                'fertilizer_id'=>'',
+                'fertilizer_name' => '',
+                'fertilizer_quantity' => '',
+                'fertilizer_price' => '',
                 //'crop_width' => '',
                 //'status' => $this->config->item('active')
             );
-            $data['title']="New Pesticide & Fungicide Stock";
+            $data['title']="New Fertiliser Stock";
         }
 
 
-        $data['pesticide_info']= $this->rnd_pesticide_stock_in_model->get_pesticides();
+        $data['feriliser_info']= $this->rnd_feriliser_stock_in_model->get_ferilisers();
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_in/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_feriliser_stock_in/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
     {
-        $id = $this->input->post("pesticide_stock_in_id");
+//        print_r($this->input->post());
+//        exit;
+        $id = $this->input->post("feriliser_stock_in_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'pesticide_id'=>$this->input->post('pesticide_in'),
-            'pesticide_quantity'=>$this->input->post('pesticide_in_quantity'),
-            'pesticide_price'=>$this->input->post('pesticide_in_price'),
+            'fertilizer_id'=>$this->input->post('feriliser_in'),
+            'fertilizer_quantity'=>$this->input->post('feriliser_in_quantity'),
+            'fertilizer_price'=>$this->input->post('feriliser_in_price'),
 
         );
 
@@ -116,7 +118,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
+                Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
             }
@@ -125,7 +127,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_pesticide_fungicide_stock_in',$data);
+                Query_helper::add('rnd_fertilizer_stock_in',$data);
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
             }
@@ -136,25 +138,25 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
     }
     public function rnd_change_status($id){
           $data=array('status'=>$this->config->item('inactive'));
-          Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
+          Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
           $this->rnd_list();//this is similar like redirect
        }
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('pesticide_in')))
+        if(Validation_helper::validate_empty($this->input->post('feriliser_in')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('pesticide_in_quantity')))
+        if(!Validation_helper::validate_numeric($this->input->post('feriliser_in_quantity')))
         {
             return false;
         }
 
-        if($this->input->post('pesticide_in_price'))
+        if($this->input->post('feriliser_in_price'))
 
         {
-        if(!Validation_helper::validate_numeric($this->input->post('pesticide_in_price')))
+        if(!Validation_helper::validate_numeric($this->input->post('feriliser_in_price')))
         {
             return false;
         }

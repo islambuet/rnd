@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-$data["link_new"]=base_url()."trial_fruit_report_entry/index/add";
+$data["link_new"]=base_url()."rnd_feriliser_stock_out/index/add";
 $this->load->view("action_buttons",$data);
 //echo '<pre>';
-//print_r($pictureReports);
+//print_r($stock_in_info);
 //echo '</pre>';
 ?>
 
@@ -18,35 +18,32 @@ $this->load->view("action_buttons",$data);
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PESTICIDE_RND"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_FERTILIZER_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
             <tbody>
             <?php
-            foreach($pictureReports as $key=>$report)
+            foreach($stock_in_info as $key=>$stock_in)
             {
                 ?>
                 <tr>
                     <td><?php echo $key+1;?></td>
+                    <td><?php echo $stock_in['rnd_code'];?></td>
+                    <td><?php echo $stock_in['fertilizer_name'];?></td>
+                    <td><?php echo date('d-m-Y',$stock_in['creation_date']);?></td>
+                    <td><?php echo $stock_in['fertilizer_quantity'];?></td>
 
-                    <td><?php echo $report['season_name'];?></td>
+
                     <td>
-                        <?php echo $report['crop_name'];?>
-                    </td>
-                    <td>
-                        <?php echo $report['product_type'];?>
-                    </td>
-                    <td><?php echo $report['rnd_code_variety'];?></td>
-                    <td>
-                        <a href="<?php echo base_url();?>trial_fruit_report_entry/index/edit/<?php echo $report['id'];?>">
+                        <a href="<?php echo base_url();?>rnd_feriliser_stock_out/index/edit/<?php echo $stock_in['id'];?>">
                             <img src="<?php echo base_url();?>images/edit_record.png">
                         </a>
-                        <a href="<?php echo base_url();?>trial_fruit_report_entry/index/delete/<?php echo $report['id'];?>">
+                        <a href="<?php echo base_url();?>rnd_feriliser_stock_out/index/delete/<?php echo $stock_in['id'];?>">
                             <img src="<?php echo base_url();?>images/delete_record.png">
                         </a>
                     </td>

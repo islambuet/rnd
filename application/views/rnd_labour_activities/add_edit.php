@@ -12,12 +12,32 @@ $this->load->view("action_buttons_edit",$data);
             </div>
             <div class="clearfix"></div>
         </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['season_id'])){ echo "disabled";}?>>
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($seasons as $season)
+                    {?>
+                        <option value="<?php echo $season['id']?>" <?php if($season['id']==$pesticideInfo['season_id']){ echo "selected";}?>><?php echo $season['season_name'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <input type="hidden" name="labour_activity_id" id="labour_activity_id" value="<?php echo $pesticideInfo['id'];?>"/>
+        </div>
+
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="labour_crop" id="labour_crop" class="form-control validate[required]">
+                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
 
@@ -30,20 +50,20 @@ $this->load->view("action_buttons_edit",$data);
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="labour_activity_id" id="labour_activity_id" value="<?php echo $pesticideInfo['id'];?>"/>
+
         </div>
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="labour_activity_product" id="labour_activity_product" class="form-control validate[required]">
+                <select name="labour_activity_varity" id="labour_activity_varity" class="form-control validate[required]" <?php if(!empty($pesticideInfo['varity_type_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($product_types as $product_type)
+                    foreach($types as $type)
                     {
                         ?>
-                        <option value="<?php echo $product_type['id']?>" <?php if ($product_type['id']== $pesticideInfo['product_type_id']){ echo 'selected';}?>><?php echo $product_type['product_type'];?></option>
+                        <option value="<?php echo $type['id']?>" <?php if ($type['id']== $pesticideInfo['varity_type_id']){ echo 'selected';}?>><?php echo $type['variety_name'];?></option>
                     <?php
                     }
                     ?>
@@ -56,17 +76,11 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LABOUR_ACTIVITY');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="labour_activity_name" id="labour_activity_name" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    foreach($activity_names as $activity_name)
-                    {
-                        ?>
-                        <option value="<?php echo $activity_name['id']?>" <?php if ($activity_name['id']== $pesticideInfo['labor_activity_name_id']){ echo 'selected';}?>><?php echo $activity_name['labor_activity_name'];?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
+
+                    <textarea rows="1" cols="50" name="labour_activity_name" id="labour_activity_name" class="form-control validate[required]" placeholder="Labour Activity">
+                        <?php echo $pesticideInfo['labor_activity_name'];?>
+                    </textarea>
+
             </div>
 
         </div>
@@ -119,6 +133,51 @@ $this->load->view("action_buttons_edit",$data);
         },
         showTime: 12,
         dateFormat: "%d-%m-%Y"
+    });
+
+
+    $(document).on("change", "#season_id", function(event)
+    {
+
+        var season_id = $("#season_id").val();
+        //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_crop_by_season/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{season_id:season_id},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+    $(document).on("change", "#crop_id", function(event)
+    {
+        var crop_id = $("#crop_id").val();
+        //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_varity_name_by_crop_name/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_id:crop_id},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+            }
+        });
+
     });
 
 </script>

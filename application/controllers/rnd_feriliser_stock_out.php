@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH . '/libraries/root_controller.php';
 
-class Rnd_pesticide_stock_out extends ROOT_Controller
+class Rnd_feriliser_stock_out extends ROOT_Controller
 {
 
     private $message;
@@ -10,7 +10,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     {
         parent::__construct();
         $this->message = "";
-        $this->load->model("rnd_pesticide_stock_out_model");
+        $this->load->model("rnd_feriliser_stock_out_model");
 
     }
 
@@ -32,7 +32,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     public function rnd_list($page = 0)
     {
 
-        $config = System_helper::pagination_config(base_url() . "rnd_pesticide_stock_out/index/list/", $this->rnd_pesticide_stock_out_model->get_total_pesticide_stock_out(), 4);
+        $config = System_helper::pagination_config(base_url() . "rnd_feriliser_stock_out/index/list/", $this->rnd_feriliser_stock_out_model->get_total_feriliser_stock_out(), 4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -40,11 +40,11 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
             $page = $page - 1;
         }
 
-        $data['stock_in_info'] = $this->rnd_pesticide_stock_out_model->get_stock_out_info($page);
-        $data['title'] = "Pesticide & Fungicide Stock Out List";
+        $data['stock_in_info'] = $this->rnd_feriliser_stock_out_model->get_stock_out_info($page);
+        $data['title'] = "Fertilizer Stock Out List";
 
         $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_pesticide_stock_out/list", $data, true));
+        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_feriliser_stock_out/list", $data, true));
 
         if ($this->message) {
             $ajax['message'] = $this->message;
@@ -56,27 +56,27 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     public function rnd_add_edit($id)
     {
         if ($id != 0) {
-            $data['pesticideInfo'] = $this->rnd_pesticide_stock_out_model->get_pesticide_row($id);
-            $data['title'] = "Edit Pesticide & Fungicide Stock (" . $data['pesticideInfo']['pesticide_name'] . ")";
+            $data['feriliserInfo'] = $this->rnd_feriliser_stock_out_model->get_feriliser_row($id);
+            $data['title'] = "Edit fertilizer Stock (" . $data['feriliserInfo']['fertilizer_name'] . ")";
         } else {
-            $data['pesticideInfo'] = Array(
+            $data['feriliserInfo'] = Array(
                 'id' => 0,
                 'season_id' =>'',
                 'crop_id' =>'',
-                'pesticide_id' => '',
+                'fertilizer_id' => '',
                 'rnd_code_id' => '',
                 //'pesticide_name' => '',
-                'pesticide_quantity' => '',
+                'fertilizer_quantity' => '',
             );
 
-            $data['title'] = "New Pesticide & Fungicide Stock Out";
+            $data['title'] = "New Fertilizer Stock Out";
         }
-        $data['pesticide_info'] = $this->rnd_pesticide_stock_out_model->get_pesticides();
+        $data['feriliser_info'] = $this->rnd_feriliser_stock_out_model->get_ferilisers();
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
         $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_pesticide_stock_out/add_edit", $data, true));
+        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_feriliser_stock_out/add_edit", $data, true));
 
         $this->jsonReturn($ajax);
     } ///// add edit end
@@ -84,13 +84,13 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     public function rnd_save()
     {
 
-        $id = $this->input->post("pesticide_stock_out_id");
+        $id = $this->input->post("feriliser_stock_out_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'pesticide_id' => $this->input->post('pesticide_in'),
-            'pesticide_quantity' => $this->input->post('pesticide_out_quantity'),
-            //'pesticide_price'=>$this->input->post('pesticide_out_price'),
+            'fertilizer_id' => $this->input->post('feriliser_in'),
+            'fertilizer_quantity' => $this->input->post('feriliser_out_quantity'),
+            //'feriliser_price'=>$this->input->post('pesticide_out_price'),
 
         );
         if (!$this->check_validation())
@@ -106,18 +106,18 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_pesticide_fungicide_stock_out', $data, array("id = " . $id));
+                Query_helper::update('rnd_fertilizer_stock_out', $data, array("id = " . $id));
                 $this->message = $this->lang->line("MSG_UPDATE_SUCCESS");
             }
             else
             {
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
-                $data['rnd_code_id'] = $this->input->post('pesticide_out_rnd');
+                $data['rnd_code_id'] = $this->input->post('feriliser_out_rnd');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_pesticide_fungicide_stock_out', $data);
+                Query_helper::add('rnd_fertilizer_stock_out', $data);
                 $this->message = $this->lang->line("MSG_CREATE_SUCCESS");
             }
             $this->rnd_list();
@@ -129,9 +129,9 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     {
 
         $data = array('status' => $this->config->item('inactive'));
-        Query_helper::update('rnd_pesticide_fungicide_stock_out', $data, array("id = " . $id));
+        Query_helper::update('rnd_fertilizer_stock_out', $data, array("id = " . $id));
         $this->message = $this->lang->line("MSG_DELETE_SUCCESS");
-        redirect(base_url() . "rnd_pesticide_stock_out/index/list/");
+        redirect(base_url() . "rnd_feriliser_stock_out/index/list/");
        // $this->rnd_list();
     }
 
@@ -139,11 +139,11 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     private function check_validation()
     {
 
-        if (Validation_helper::validate_empty($this->input->post('pesticide_in'))) {
+        if (Validation_helper::validate_empty($this->input->post('feriliser_in'))) {
             return false;
         }
 
-        if (!Validation_helper::validate_numeric($this->input->post('pesticide_out_quantity'))) {
+        if (!Validation_helper::validate_numeric($this->input->post('feriliser_out_quantity'))) {
             return false;
         }
 

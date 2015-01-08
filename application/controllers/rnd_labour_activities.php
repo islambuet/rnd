@@ -61,9 +61,10 @@ class Rnd_labour_activities extends ROOT_Controller
         } else {
             $data['pesticideInfo'] = Array(
                 'id' => 0,
+                'season_id'=>'',
                 'crop_id' => '',
-                'product_type_id' => '',
-                'labor_activity_name_id' => '',
+                'varity_type_id' => '',
+                'labor_activity_name' => '',
                 'activity_date' => '',
                 'number_of_labor' => '',
                 'remark' => '',
@@ -72,9 +73,9 @@ class Rnd_labour_activities extends ROOT_Controller
             $data['title'] = "New Labour Activity";
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info','*',array('status = '.$this->config->item('active')));
-        $data['product_types'] = Query_helper::get_info('rnd_product_type_info','*',array('status = '.$this->config->item('active')));
-        $data['activity_names'] = Query_helper::get_info('rnd_labor_activity_name','*',array('status = '.$this->config->item('active')));
+        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
+        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        $data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
 
 
         $ajax['status'] = true;
@@ -90,12 +91,11 @@ class Rnd_labour_activities extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_id' => $this->input->post('labour_crop'),
-            'product_type_id' => $this->input->post('labour_activity_product'),
-            'labor_activity_name_id' => $this->input->post('labour_activity_name'),
+
+            'labor_activity_name' => $this->input->post('labour_activity_name'),
             'activity_date' => strtotime($this->input->post('labour_activity_date')),
             'number_of_labor' => $this->input->post('labour_activity_quantity'),
-            'remark' => $this->input->post('labour_remark'),
+            'remark' => $this->input->post('labour_remark')
 
         );
         if (!$this->check_validation()) {
@@ -110,6 +110,10 @@ class Rnd_labour_activities extends ROOT_Controller
                 Query_helper::update('rnd_labor_activity_info', $data, array("id = " . $id));
                 $this->message = $this->lang->line("MSG_UPDATE_SUCCESS");
             } else {
+
+                $data['season_id'] = $this->input->post('season_id');
+                $data['crop_id'] = $this->input->post('crop_id');
+                $data['varity_type_id'] = $this->input->post('labour_activity_varity');
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -136,12 +140,26 @@ class Rnd_labour_activities extends ROOT_Controller
     private function check_validation()
     {
 
-        if (Validation_helper::validate_empty($this->input->post('labour_crop'))) {
+        if($this->input->post('season_id')){
+        if (Validation_helper::validate_empty($this->input->post('season_id'))) {
             return false;
         }
 
-        if (Validation_helper::validate_empty($this->input->post('labour_activity_product'))) {
+        }
+
+        if($this->input->post('crop_id')){
+        if (Validation_helper::validate_empty($this->input->post('crop_id'))) {
             return false;
+        }
+
+        }
+
+        if($this->input->post('labour_activity_varity')){
+
+        if (Validation_helper::validate_empty($this->input->post('labour_activity_varity'))) {
+            return false;
+        }
+
         }
         if (Validation_helper::validate_empty($this->input->post('labour_activity_name'))) {
             return false;

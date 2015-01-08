@@ -16,12 +16,12 @@ class Rnd_labour_activities_model extends CI_Model
         $this->db->select('lai.*');
 
         $this->db->select('ci.crop_name crop_name');
-        $this->db->select('pti.product_type product_type');
-        $this->db->select('lan.labor_activity_name labor_activity_name');
+        $this->db->select('rvi.variety_name variety_name');
+        //$this->db->select('lan.labor_activity_name labor_activity_name');
 
         $this->db->join('rnd_crop_info ci', 'ci.id = lai.crop_id', 'left');
-        $this->db->join('rnd_product_type_info pti', 'pti.id = lai.product_type_id', 'left');
-        $this->db->join('rnd_labor_activity_name lan', 'lan.id = lai.labor_activity_name_id', 'left');
+        $this->db->join('rnd_variety_info rvi', 'rvi.id = lai.varity_type_id', 'left');
+        //$this->db->join('rnd_labor_activity_name lan', 'lan.id = lai.labor_activity_name_id', 'left');
 
         $this->db->where('lai.status',$this->config->item('active'));
         $this->db->limit($limit,$start);
@@ -47,9 +47,9 @@ class Rnd_labour_activities_model extends CI_Model
     {
         $this->db->select('lai.*');
         $this->db->from('rnd_labor_activity_info lai');
-        $this->db->select('lan.labor_activity_name labor_activity_name');
+        //$this->db->select('lan.labor_activity_name labor_activity_name');
 
-        $this->db->join('rnd_labor_activity_name lan', 'lan.id = lai.labor_activity_name_id', 'left');
+        //$this->db->join('rnd_labor_activity_name lan', 'lan.id = lai.labor_activity_name_id', 'left');
 
         $this->db->where('lai.id',$id);
 

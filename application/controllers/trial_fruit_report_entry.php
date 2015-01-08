@@ -43,7 +43,7 @@ class Trial_fruit_report_entry extends ROOT_Controller
         }
 
         $data['pictureReports'] = $this->trial_fruit_report_entry_model->get_pictureReportInfo($page);
-        $data['title']="15 Days Picture Report List";
+        $data['title']="Fruit Picture Report List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("trial_fruit_report_entry/list",$data,true));
@@ -60,7 +60,11 @@ class Trial_fruit_report_entry extends ROOT_Controller
         if ($id != 0)
         {
             $data['pictureInfo'] = $this->trial_fruit_report_entry_model->get_report_row($id);
-            $data['details'] = $this->trial_fruit_report_entry_model->get_report_image_detail($id);
+            //$data['details'] = $this->trial_fruit_report_entry_model->get_report_image_detail($id);
+            $data['images'][$this->config->item("fruit_report_before_harvest")]=$this->trial_fruit_report_entry_model->get_report_row_images($id,$this->config->item("fruit_report_before_harvest"));
+            $data['images'][$this->config->item("fruit_report_after_harvest_single")]=$this->trial_fruit_report_entry_model->get_report_row_images($id,$this->config->item("fruit_report_after_harvest_single"));
+            $data['images'][$this->config->item("fruit_report_after_harvest_several")]=$this->trial_fruit_report_entry_model->get_report_row_images($id,$this->config->item("fruit_report_after_harvest_several"));
+            $data['images'][$this->config->item("fruit_report_after_harvest_cut")]=$this->trial_fruit_report_entry_model->get_report_row_images($id,$this->config->item("fruit_report_after_harvest_cut"));
             $data['title']="Edit Fruit Picture Report";
         }
         else
@@ -70,10 +74,12 @@ class Trial_fruit_report_entry extends ROOT_Controller
                 'id' => 0,
                 'season_id' => '',
                 'crop_id' => '',
-                'type_id' => '',
-                'rnd_code' => '',
+                'product_type_id' => '',
+                'rnd_code_id' => '',
 
             );
+            $data['images']=array();
+
         }
 
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
@@ -87,7 +93,7 @@ class Trial_fruit_report_entry extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("fifteen_id");
+        $id = $this->input->post("fruit_report_id");
         $user = User_helper::get_user();
 
         //$new_file_name = time().'.jpg';
@@ -144,7 +150,7 @@ class Trial_fruit_report_entry extends ROOT_Controller
             }
             else
             {
-//                $this->db->trans_start();  //DB Transaction Handle START
+                $this->db->trans_start();  //DB Transaction Handle START
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -152,6 +158,10 @@ class Trial_fruit_report_entry extends ROOT_Controller
                 $last_id =Query_helper::add('rnd_fruit_report_entry',$data);
 
                 $count = count($_FILES["before_harvest"]['name']);
+
+
+ //               Before Harvest Loop Start  //
+
 
                 if($count>0)
                 {
@@ -206,18 +216,194 @@ class Trial_fruit_report_entry extends ROOT_Controller
 
                 }
 
+               /// Before Harvest Loop End ////
+
+                /// After Harvest Single Fruit ////
+
+                $count1 = count($_FILES["after_harvest_single"]['name']);
+
+                if($count1>0)
+                {
+
+                    $file_name = $_FILES["after_harvest_single"]['name'];
+                    $file_temp = $_FILES['after_harvest_single']['tmp_name'];
+
+                    for($i=0; $i<$count1; $i++)
+                    {
+                        $ext = end(explode(".", @$file_name[$i]));
+
+                        $size = @$file_name[$i]['size'];
+
+                        $new_file_name = "ahs".time().$i;
+                        $save_file_name = "ahs".time().$i.'.'.$ext;
+
+                        if (@$file_name[$i] != "")
+                        {
+                            if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
+                            {
+                                if($size < $this->config->item('fruit_picture_report_img_size'))
+                                {
+                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    $file_url = $new_file_name . "." . $ext;
+                                    copy(@$file_temp[$i], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
+
+                                    $data2 = Array(
+                                        'fruit_report_entry_id'=>$last_id,
+                                        'image' => $save_file_name,
+                                        'fruit_report_entry_type' => $this->config->item('fruit_report_after_harvest_single')
+
+                                    );
+
+                                    $data2['created_by'] = $user->user_id;
+                                    $data2['creation_date'] = time();
+                                    Query_helper::add('rnd_fruit_report_entry_image',$data2);
+
+                                }
+                                else
+                                {
+                                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                }
+                            }
+                            else
+                            {
+                                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                            }
+                        }
+
+                    }
 
 
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-//                }
+                }
+
+                /// After Harvest Several Fruit ////
+
+
+                $count2 = count($_FILES["after_harvest_several"]['name']);
+
+                if($count2>0)
+                {
+
+                    $file_name = $_FILES["after_harvest_several"]['name'];
+                    $file_temp = $_FILES['after_harvest_several']['tmp_name'];
+
+                    for($i=0; $i<$count2; $i++)
+                    {
+                        $ext = end(explode(".", @$file_name[$i]));
+
+                        $size = @$file_name[$i]['size'];
+
+                        $new_file_name = "ah_sv".time().$i;
+                        $save_file_name = "ah_sv".time().$i.'.'.$ext;
+
+                        if (@$file_name[$i] != "")
+                        {
+                            if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
+                            {
+                                if($size < $this->config->item('fruit_picture_report_img_size'))
+                                {
+                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    $file_url = $new_file_name . "." . $ext;
+                                    copy(@$file_temp[$i], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
+
+                                    $data3 = Array(
+                                        'fruit_report_entry_id'=>$last_id,
+                                        'image' => $save_file_name,
+                                        'fruit_report_entry_type' => $this->config->item('fruit_report_after_harvest_several')
+
+                                    );
+
+                                    $data3['created_by'] = $user->user_id;
+                                    $data3['creation_date'] = time();
+                                    Query_helper::add('rnd_fruit_report_entry_image',$data3);
+
+                                }
+                                else
+                                {
+                                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                }
+                            }
+                            else
+                            {
+                                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                            }
+                        }
+
+                    }
+
+
+                }
+
+
+                /// After Harvest cut Fruit ////
+
+
+                $count3 = count($_FILES["after_harvest_cut"]['name']);
+
+                if($count3>0)
+                {
+
+                    $file_name = $_FILES["after_harvest_cut"]['name'];
+                    $file_temp = $_FILES['after_harvest_cut']['tmp_name'];
+
+                    for($i=0; $i<$count3; $i++)
+                    {
+                        $ext = end(explode(".", @$file_name[$i]));
+
+                        $size = @$file_name[$i]['size'];
+
+                        $new_file_name = "ah_cut".time().$i;
+                        $save_file_name = "ah_cut".time().$i.'.'.$ext;
+
+                        if (@$file_name[$i] != "")
+                        {
+                            if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
+                            {
+                                if($size < $this->config->item('fruit_picture_report_img_size'))
+                                {
+                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    $file_url = $new_file_name . "." . $ext;
+                                    copy(@$file_temp[$i], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
+
+                                    $data4 = Array(
+                                        'fruit_report_entry_id'=>$last_id,
+                                        'image' => $save_file_name,
+                                        'fruit_report_entry_type' => $this->config->item('fruit_report_after_harvest_cut')
+
+                                    );
+
+                                    $data4['created_by'] = $user->user_id;
+                                    $data4['creation_date'] = time();
+                                    Query_helper::add('rnd_fruit_report_entry_image',$data4);
+
+                                }
+                                else
+                                {
+                                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                                }
+                            }
+                            else
+                            {
+                                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                            }
+                        }
+
+                    }
+
+
+                }
+
+
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 
