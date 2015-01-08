@@ -96,16 +96,21 @@ class Create_crop_variety_model extends CI_Model
         return $result['product_type_code'];
     }
 
-    public function get_variety_last_id()
+    public function get_variety_last_id($crop_id)
     {
-        $this->db->select('rnd_variety_info.id');
+        $this->db->select('rnd_variety_info.rnd_code');
         $this->db->from('rnd_variety_info');
+        $this->db->where('crop_id',$crop_id);
         $this->db->order_by('id','DESC');
-        $this->db->limit(1);
+        $this->db->limit('1');
 
         $query = $this->db->get();
         $result = $query->row_array();
-        return ++$result['id'];
+
+        $rndCode = $result['rnd_code'];
+        $exp = explode('-',$rndCode);
+        $code = $exp[2];
+        return ++$code;
     }
 
     public function get_principal_code_by_id($principal_id)

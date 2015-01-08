@@ -80,6 +80,10 @@ class Create_crop_variety extends ROOT_Controller
                 'variety_name' => '',
                 'variety_type' => '',
                 'company_name' => '',
+                'number_of_seeds' => '',
+                'quantity' => '',
+                'characteristics' => '',
+                'new_old_status' => 1,
                 'status' => 1
             );
         }
@@ -105,6 +109,10 @@ class Create_crop_variety extends ROOT_Controller
             'product_type_id'=>$this->input->post('crop_type'),
             'variety_name'=>$this->input->post('variety_name'),
             'variety_type'=>$this->input->post('variety_type'),
+            'number_of_seeds'=>$this->input->post('seed_per_gram'),
+            'quantity'=>$this->input->post('quantity_in_gram'),
+            'characteristics'=>$this->input->post('characteristics'),
+            'new_old_status'=>$this->input->post('new_old_status'),
             'status'=>$this->input->post('status')
         );
 
@@ -130,7 +138,7 @@ class Create_crop_variety extends ROOT_Controller
 
         $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
         $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
-        $variety_last_id = $this->create_crop_variety_model->get_variety_last_id();
+        $variety_last_id = $this->create_crop_variety_model->get_variety_last_id($this->input->post('crop_select'));
 
         if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
         {
@@ -146,7 +154,16 @@ class Create_crop_variety extends ROOT_Controller
             $fourthPortion = $principal_code;
         }
 
-        $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion;
+        $lastPortion = substr(date('Y',time()),-2);
+
+        if($this->input->post('new_old_status')==$this->config->item('variety_old_code'))
+        {
+            $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$this->lang->line('LABEL_OLD').'-'.$lastPortion;
+        }
+        else
+        {
+            $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$lastPortion;
+        }
 
         $data['rnd_code'] = $RnDCode;
 

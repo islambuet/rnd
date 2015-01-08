@@ -127,7 +127,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEEDS_PER_GRAM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="seed_per_gram" id="seed_per_gram" class="form-control validate[required, custom[number]]" value="" >
+                <input type="text" name="seed_per_gram" id="seed_per_gram" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['number_of_seeds'];?>" >
             </div>
         </div>
 
@@ -136,7 +136,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_IN_GRAM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="quantity_in_gram" id="quantity_in_gram" class="form-control validate[required, custom[number]]" value="" >
+                <input type="text" name="quantity_in_gram" id="quantity_in_gram" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['quantity'];?>" >
             </div>
         </div>
 
@@ -145,7 +145,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CHARACTERISTICS');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <textarea name="characteristics" id="characteristics" class="form-control"></textarea>
+                <textarea name="characteristics" id="characteristics" class="form-control"><?php echo $varietyInfo['characteristics'];?></textarea>
             </div>
         </div>
 
@@ -154,8 +154,8 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="old" value="" />
-                <input type="radio" name="new" value="" />
+                <input type="radio" name="new_old_status" <?php if($this->config->item('variety_new_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_new_code');?>" /><?php echo $this->lang->line('LABEL_NEW');?>
+                <input type="radio" name="new_old_status" <?php if($this->config->item('variety_old_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_old_code');?>" /><?php echo $this->lang->line('LABEL_OLD');?>
             </div>
         </div>
 

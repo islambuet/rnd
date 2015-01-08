@@ -21,7 +21,6 @@
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_FLOWERING_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -53,27 +52,6 @@
                     else
                     {
                         echo '';
-                    }
-                    ?>
-                </td>
-
-                <td>
-                    <?php
-                    if($variety['flowering_type_id']==$this->config->item('rnd_fruit_code'))
-                    {
-                        echo $this->lang->line('LABEL_FRUIT');
-                    }
-                    elseif($variety['flowering_type_id']==$this->config->item('rnd_curt_code'))
-                    {
-                        echo $this->lang->line('LABEL_CURT');
-                    }
-                    elseif($variety['flowering_type_id']==$this->config->item('rnd_root_code'))
-                    {
-                        echo $this->lang->line('LABEL_ROOT');
-                    }
-                    elseif($variety['flowering_type_id']==$this->config->item('rnd_leaf_code'))
-                    {
-                        echo $this->lang->line('LABEL_LEAF');
                     }
                     ?>
                 </td>
