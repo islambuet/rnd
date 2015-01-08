@@ -19,6 +19,11 @@ $(document).ready(function()
     });
     $(document).ajaxComplete(function(event,xhr,options)
     {
+        if(xhr.responseJSON.page_url)
+        {
+            //window.history.pushState(null, "Search Results",base_url);
+            window.history.replaceState(null, "Search Results",xhr.responseJSON.page_url);
+        }
 
         //$("#loading").hide();
         setTimeout(function()
@@ -150,7 +155,7 @@ $(document).ready(function()
 function load_main_page()
 {
     $.ajax({
-        url: base_url + 'home/login',
+        url: location,
         type: 'POST',
         dataType: "JSON",
         success: function (data, status)

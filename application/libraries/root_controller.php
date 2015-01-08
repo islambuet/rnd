@@ -38,6 +38,7 @@ abstract class ROOT_Controller extends CI_Controller
         {
             $ajax['message']=$message;
         }
+        $ajax['page_url']=base_url()."home/login";
         $this->jsonReturn($ajax);
     }
     public function dashboard_page($message="")
@@ -52,6 +53,7 @@ abstract class ROOT_Controller extends CI_Controller
         {
             $ajax['message']=$message;
         }
+        $ajax['page_url']=base_url()."home";
         $this->jsonReturn($ajax);
     }
 }
