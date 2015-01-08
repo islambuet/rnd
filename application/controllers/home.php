@@ -5,7 +5,7 @@ class Home extends ROOT_Controller
 {
 	public function index()
 	{
-		$this->load->view("main");
+		$this->login();
 	}
     public function login()
     {

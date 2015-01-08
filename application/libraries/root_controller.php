@@ -5,16 +5,22 @@ abstract class ROOT_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $user=User_helper::get_user();
-        if(!$user)
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
         {
-            if($this->router->class!="home")
+            $user=User_helper::get_user();
+            if(!$user)
             {
-                $this->login_page("Time out");
+                if($this->router->class!="home")
+                {
+                    $this->login_page("Time out");
+                }
             }
         }
-
-
+        else
+        {
+            echo $this->load->view("main",'',true);
+            die();
+        }
     }
     public function jsonReturn($array)
     {
