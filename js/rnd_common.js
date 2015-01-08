@@ -21,7 +21,7 @@ $(document).ready(function()
     {
         if(xhr.responseJSON.page_url)
         {
-            //window.history.pushState(null, "Search Results",base_url);
+            //window.history.pushState(null, "Search Results",xhr.responseJSON.page_url);
             window.history.replaceState(null, "Search Results",xhr.responseJSON.page_url);
         }
 
@@ -164,7 +164,7 @@ function load_main_page()
         },
         error: function (xhr, desc, err)
         {
-            console.log(error);
+            console.log("error");
 
         }
     });
