@@ -6,8 +6,8 @@
     for($i=0;$i<sizeof($value);$i++)
     {
 ?>
-<!--    <option value="--><?php //echo $value[$i];?><!--" --><?php //if($selected==$value[$i]){ echo "selected";}?><!-->--><?php //echo $name[$i];?><!--</option>-->
-    <option value="<?php echo $value[$i];?>"><?php echo $name[$i];?></option>
+    <option value="<?php echo $value[$i];?>" <?php if($selected==$value[$i]){ echo "selected";}?>><?php echo $name[$i];?></option>
+
 <?php
     }
 ?>
