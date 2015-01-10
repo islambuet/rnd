@@ -91,6 +91,7 @@ class Create_crop extends ROOT_Controller
 
     public function rnd_save()
     {
+
         $id = $this->input->post("crop_id");
         $user = User_helper::get_user();
 
@@ -114,20 +115,44 @@ class Create_crop extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
 
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
                 Query_helper::add('rnd_crop_info',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 
