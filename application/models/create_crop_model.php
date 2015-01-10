@@ -19,6 +19,7 @@ class Create_crop_model extends CI_Model
 
         $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         $this->db->limit($limit,$start);
+        $this->db->order_by("rci.id","DESC");
 
         $query = $this->db->get();
 
