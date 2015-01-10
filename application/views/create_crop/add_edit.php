@@ -8,6 +8,7 @@
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop/index/save" method="post">
+    <input type="hidden" name="crop_id" id="crop_id" value="<?php echo $cropInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -22,7 +23,6 @@
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value="<?php echo $cropInfo['crop_name'];?>"/>
             </div>
-            <input type="hidden" name="crop_id" id="crop_id" value="<?php echo $cropInfo['id'];?>"/>
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
