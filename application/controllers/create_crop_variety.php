@@ -107,14 +107,9 @@ class Create_crop_variety extends ROOT_Controller
         $seasonPost = $this->input->post('season');
 
         $data = Array(
-            'crop_id'=>$this->input->post('crop_select'),
-            'product_type_id'=>$this->input->post('crop_type'),
-            'variety_name'=>$this->input->post('variety_name'),
-            'variety_type'=>$this->input->post('variety_type'),
             'number_of_seeds'=>$this->input->post('seed_per_gram'),
             'quantity'=>$this->input->post('quantity_in_gram'),
             'characteristics'=>$this->input->post('characteristics'),
-            'new_old_status'=>$this->input->post('new_old_status'),
             'status'=>$this->input->post('status')
         );
 
@@ -136,40 +131,7 @@ class Create_crop_variety extends ROOT_Controller
             $data['principal_id'] = $this->input->post('principal_id');
         }
 
-        // START Generating R&D Code
 
-        $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
-        $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
-        $variety_last_id = $this->create_crop_variety_model->get_variety_last_id($this->input->post('crop_select'));
-
-        if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
-        {
-            $fourthPortion = 'CKA';
-        }
-        elseif($this->input->post('variety_type')==$this->config->item('variety_type_company'))
-        {
-            $fourthPortion = 'CKO';
-        }
-        else
-        {
-            $principal_code = $this->create_crop_variety_model->get_principal_code_by_id($this->input->post('principal_id'));
-            $fourthPortion = $principal_code;
-        }
-
-        $lastPortion = substr(date('Y',time()),-2);
-
-        if($this->input->post('new_old_status')==$this->config->item('variety_old_code'))
-        {
-            $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$this->lang->line('LABEL_OLD').'-'.$lastPortion;
-        }
-        else
-        {
-            $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$lastPortion;
-        }
-
-        $data['rnd_code'] = $RnDCode;
-
-        // END Generating R&D Code
 
         $seasonData = Array(
             'crop_id'=>$this->input->post('crop_select'),
@@ -219,6 +181,46 @@ class Create_crop_variety extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+                // START Generating R&D Code
+
+                $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
+                $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
+                $variety_last_id = $this->create_crop_variety_model->get_variety_last_id($this->input->post('crop_select'));
+
+                if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
+                {
+                    $fourthPortion = 'CKA';
+                }
+                elseif($this->input->post('variety_type')==$this->config->item('variety_type_company'))
+                {
+                    $fourthPortion = 'CKO';
+                }
+                else
+                {
+                    $principal_code = $this->create_crop_variety_model->get_principal_code_by_id($this->input->post('principal_id'));
+                    $fourthPortion = $principal_code;
+                }
+
+                $lastPortion = substr(date('Y',time()),-2);
+
+                if($this->input->post('new_old_status')==$this->config->item('variety_old_code'))
+                {
+                    $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$this->lang->line('LABEL_OLD').'-'.$lastPortion;
+                }
+                else
+                {
+                    $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$lastPortion;
+                }
+
+                // END Generating R&D Code
+
+                $data['crop_id'] = $this->input->post('crop_select');
+                $data['product_type_id'] = $this->input->post('crop_type');
+                $data['variety_name'] = $this->input->post('variety_name');
+                $data['variety_type'] = $this->input->post('variety_type');
+                $data['new_old_status'] = $this->input->post('new_old_status');
+
+                $data['rnd_code'] = $RnDCode;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
@@ -253,32 +255,52 @@ class Create_crop_variety extends ROOT_Controller
 
     private function check_validation()
     {
-        if(!Validation_helper::validate_numeric($this->input->post('principal_id')))
+        if($this->input->post('principal_id'))
+        {
+            if(!Validation_helper::validate_numeric($this->input->post('principal_id')))
+            {
+                return false;
+            }
+        }
+
+        if($this->input->post('crop_select'))
+        {
+            if(!Validation_helper::validate_numeric($this->input->post('crop_select')))
+            {
+                return false;
+            }
+        }
+
+        if($this->input->post('crop_type'))
+        {
+            if(!Validation_helper::validate_numeric($this->input->post('crop_type')))
+            {
+                return false;
+            }
+        }
+
+        if($this->input->post('variety_name'))
+        {
+            if(Validation_helper::validate_empty($this->input->post('variety_name')))
+            {
+                return false;
+            }
+        }
+
+        if($this->input->post('variety_type'))
+        {
+            if(!Validation_helper::validate_numeric($this->input->post('variety_type')))
+            {
+                return false;
+            }
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('seed_per_gram')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('flowering_type')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('crop_select')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('crop_type')))
-        {
-            return false;
-        }
-
-        if(Validation_helper::validate_empty($this->input->post('variety_name')))
-        {
-            return false;
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('variety_type')))
+        if(!Validation_helper::validate_numeric($this->input->post('quantity_in_gram')))
         {
             return false;
         }

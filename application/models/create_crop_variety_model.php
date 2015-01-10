@@ -107,7 +107,7 @@ class Create_crop_variety_model extends CI_Model
         $query = $this->db->get();
         $result = $query->row_array();
 
-        if($result)
+        if($result['rnd_code'])
         {
             $rndCode = $result['rnd_code'];
             $exp = explode('-',$rndCode);

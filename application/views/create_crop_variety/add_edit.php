@@ -12,6 +12,7 @@ foreach($seasonInfo as $result)
 
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop_variety/index/save" method="post">
+    <input type="hidden" name="variety_id" id="variety_id" value="<?php echo $varietyInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -25,7 +26,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_select" id="crop_select" class="form-control validate[required]">
+                <select name="crop_select" id="crop_select" class="form-control validate[required]" <?php if(!empty($varietyInfo['crop_id'])){ echo 'disabled';}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -36,7 +37,6 @@ foreach($seasonInfo as $result)
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="variety_id" id="variety_id" value="<?php echo $varietyInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -44,7 +44,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type" id="crop_type" class="form-control validate[required]">
+                <select name="crop_type" id="crop_type" class="form-control validate[required]" <?php if(!empty($varietyInfo['product_type_id'])){ echo 'disabled';}?>>
                     <?php
                         $data=array();
                         $data["selected"]=$varietyInfo['product_type_id'];
@@ -64,9 +64,9 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-2 col-xs-4">
-                <input type="radio" name="variety_type" id="variety_type_arm" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
-                <input type="radio" name="variety_type" id="variety_type_competitor" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_company')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
-                <input type="radio" name="variety_type" id="variety_type_principal" <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_principal')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_principal');?>"> <?php echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_arm" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+                <input type="radio" name="variety_type" id="variety_type_competitor" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_company')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_principal" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_principal')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_principal');?>"> <?php echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');?>
             </div>
         </div>
 
@@ -102,7 +102,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="<?php echo $varietyInfo['variety_name'];?>" >
+                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" <?php if(!empty($varietyInfo['variety_name'])){ echo "disabled";}?> value="<?php echo $varietyInfo['variety_name'];?>" >
             </div>
         </div>
 
@@ -154,8 +154,8 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="new_old_status" <?php if($this->config->item('variety_new_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_new_code');?>" /><?php echo $this->lang->line('LABEL_NEW');?>
-                <input type="radio" name="new_old_status" <?php if($this->config->item('variety_old_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_old_code');?>" /><?php echo $this->lang->line('LABEL_OLD');?>
+                <input type="radio" name="new_old_status" <?php if(!empty($varietyInfo['new_old_status'])){ echo "disabled";}?> <?php if($this->config->item('variety_new_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_new_code');?>" /><?php echo $this->lang->line('LABEL_NEW');?>
+                <input type="radio" name="new_old_status" <?php if(!empty($varietyInfo['new_old_status'])){ echo "disabled";}?> <?php if($this->config->item('variety_old_code')==$varietyInfo['new_old_status']){ echo "checked";}?> value="<?php echo $this->config->item('variety_old_code');?>" /><?php echo $this->lang->line('LABEL_OLD');?>
             </div>
         </div>
 
