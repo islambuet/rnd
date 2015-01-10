@@ -96,8 +96,8 @@ class Create_crop extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_name'=>$this->input->post('crop_name'),
-            'crop_code'=>$this->input->post('crop_code'),
+            'crop_name'=>$this->input->post('cc_crop_name'),
+            'crop_code'=>$this->input->post('cc_crop_code'),
             'crop_width'=>$this->input->post('crop_width'),
             'crop_height'=>$this->input->post('crop_height'),
             'fruit_type'=>$this->input->post('fruit_type'),
@@ -161,14 +161,61 @@ class Create_crop extends ROOT_Controller
 
     }
 
+    public function check_existing_crop_name()
+    {
+
+        if($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name')))
+        {
+            $ajax['status']=true;
+        }
+        else
+        {
+            $ajax['status']=false;
+        }
+
+        if($ajax['status'])
+        {
+            $ajax['message'] = 'Crop Name Exists';
+        }
+        else
+        {
+            $ajax['message'] = '';
+        }
+
+        $this->jsonReturn($ajax);
+    }
+
+    public function check_existing_crop_code()
+    {
+        if($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code')))
+        {
+            $ajax['status']=true;
+        }
+        else
+        {
+            $ajax['status']=false;
+        }
+
+        if($ajax['status'])
+        {
+            $ajax['message'] = 'Crop Code Exists';
+        }
+        else
+        {
+            $ajax['message'] = '';
+        }
+
+        $this->jsonReturn($ajax);
+    }
+
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
+        if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code')))
         {
             return false;
         }

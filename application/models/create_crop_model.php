@@ -45,4 +45,42 @@ class Create_crop_model extends CI_Model
         return $query->row_array();
     }
 
+    public function check_crop_name_existence($crop_name)
+    {
+        $this->db->select('rnd_crop_info.*');
+        $this->db->from('rnd_crop_info');
+        $this->db->where('crop_name',$crop_name);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function check_crop_code_existence($crop_code)
+    {
+        $this->db->select('rnd_crop_info.*');
+        $this->db->from('rnd_crop_info');
+        $this->db->where('crop_code',$crop_code);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

@@ -16,22 +16,25 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_name" id="crop_name" class="form-control validate[required]" value="<?php echo $cropInfo['crop_name'];?>"/>
+                <input type="text" name="cc_crop_name" id="cc_crop_name" class="form-control validate[required]" value="<?php echo $cropInfo['crop_name'];?>"/>
             </div>
         </div>
+
         <div style="" class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="crop_code" id="crop_code" class="form-control validate[required]" value="<?php echo $cropInfo['crop_code'];?>" >
+                <input type="text" name="cc_crop_code" id="cc_crop_code" class="form-control validate[required]" value="<?php echo $cropInfo['crop_code'];?>" >
             </div>
         </div>
+
         <div style="" class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_WIDTH');?><span style="color:#FF0000">*</span></label>
@@ -83,6 +86,7 @@
             </div>
         </div>
     </div>
+
     <div class="clearfix"></div>
 </form>
 <script type="text/javascript">

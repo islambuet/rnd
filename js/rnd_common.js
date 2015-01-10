@@ -281,3 +281,53 @@ $(document).ready(function()
 });
 
 //////// Variety END
+
+//////// Create Crop START
+
+$(document).ready(function()
+{
+    $(document).on("change", "#cc_crop_name", function(event)
+    {
+        var crop_name = $("#cc_crop_name").val();
+        $.ajax({
+            url: base_url+"create_crop/check_existing_crop_name/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_name:crop_name},
+            success: function (data, status, message)
+            {
+                //$("#cc_crop_name").val('');
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+    $(document).on("change", "#cc_crop_code", function(event)
+    {
+        var crop_code = $("#cc_crop_code").val();
+        $.ajax({
+            url: base_url+"create_crop/check_existing_crop_code/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_code:crop_code},
+            success: function (data, status, message)
+            {
+                //$("#cc_crop_code").val('');
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+});
+
+//////// Create Crop END
