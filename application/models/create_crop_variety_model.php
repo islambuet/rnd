@@ -107,10 +107,17 @@ class Create_crop_variety_model extends CI_Model
         $query = $this->db->get();
         $result = $query->row_array();
 
-        $rndCode = $result['rnd_code'];
-        $exp = explode('-',$rndCode);
-        $code = $exp[2];
-        return ++$code;
+        if($result)
+        {
+            $rndCode = $result['rnd_code'];
+            $exp = explode('-',$rndCode);
+            $code = $exp[2];
+            return ++$code;
+        }
+        else
+        {
+            return 1;
+        }
     }
 
     public function get_principal_code_by_id($principal_id)
