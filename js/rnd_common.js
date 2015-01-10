@@ -259,7 +259,6 @@ $(document).ready(function()
     $(document).on("change", "#variety_crop_select", function(event)
     {
         var crop_id = $("#variety_crop_select").val();
-//        var product_type_id = '<?php echo $varietyInfo['product_type_id'];?>';
         $.ajax({
             url: base_url+"rnd_common/dropDown_crop_type_by_name/",
             type: 'POST',
@@ -289,11 +288,12 @@ $(document).ready(function()
     $(document).on("change", "#cc_crop_name", function(event)
     {
         var crop_name = $("#cc_crop_name").val();
+        var crop_id = $("#crop_id").val();
         $.ajax({
             url: base_url+"create_crop/check_existing_crop_name/",
             type: 'POST',
             dataType: "JSON",
-            data:{crop_name:crop_name},
+            data:{crop_name:crop_name,crop_id:crop_id},
             success: function (data, status, message)
             {
                 //$("#cc_crop_name").val('');
@@ -310,11 +310,12 @@ $(document).ready(function()
     $(document).on("change", "#cc_crop_code", function(event)
     {
         var crop_code = $("#cc_crop_code").val();
+        var crop_id = $("#crop_id").val();
         $.ajax({
             url: base_url+"create_crop/check_existing_crop_code/",
             type: 'POST',
             dataType: "JSON",
-            data:{crop_code:crop_code},
+            data:{crop_code:crop_code,crop_id:crop_id},
             success: function (data, status, message)
             {
                 //$("#cc_crop_code").val('');

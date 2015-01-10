@@ -164,7 +164,7 @@ class Create_crop extends ROOT_Controller
     public function check_existing_crop_name()
     {
 
-        if($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name')))
+        if($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name'),$this->input->post('crop_id')))
         {
             $ajax['status']=true;
         }
@@ -187,7 +187,7 @@ class Create_crop extends ROOT_Controller
 
     public function check_existing_crop_code()
     {
-        if($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code')))
+        if($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code'),$this->input->post('crop_id')))
         {
             $ajax['status']=true;
         }
@@ -210,17 +210,14 @@ class Create_crop extends ROOT_Controller
 
     private function check_validation()
     {
-        if($this->input->post('crop_id')==0)
+        if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name'),$this->input->post('crop_id')))
         {
-            if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name')))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code')))
-            {
-                return false;
-            }
+        if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code'),$this->input->post('crop_id')))
+        {
+            return false;
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('crop_width')))

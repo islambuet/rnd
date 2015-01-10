@@ -45,11 +45,12 @@ class Create_crop_model extends CI_Model
         return $query->row_array();
     }
 
-    public function check_crop_name_existence($crop_name)
+    public function check_crop_name_existence($crop_name,$id)
     {
         $this->db->select('rnd_crop_info.*');
         $this->db->from('rnd_crop_info');
         $this->db->where('crop_name',$crop_name);
+        $this->db->where('id !=',$id);
 
         $query = $this->db->get();
         $result = $query->row_array();
@@ -64,11 +65,12 @@ class Create_crop_model extends CI_Model
         }
     }
 
-    public function check_crop_code_existence($crop_code)
+    public function check_crop_code_existence($crop_code,$id)
     {
         $this->db->select('rnd_crop_info.*');
         $this->db->from('rnd_crop_info');
         $this->db->where('crop_code',$crop_code);
+        $this->db->where('id !=',$id);
 
         $query = $this->db->get();
         $result = $query->row_array();
