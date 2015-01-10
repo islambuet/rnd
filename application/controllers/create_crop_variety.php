@@ -84,7 +84,7 @@ class Create_crop_variety extends ROOT_Controller
                 'number_of_seeds' => '',
                 'quantity' => '',
                 'characteristics' => '',
-                'new_old_status' => 1,
+                'new_old_status' => $this->config->item('variety_new_code'),
                 'status' => 1
             );
             $ajax['page_url']=base_url()."create_crop_variety/index/add";
