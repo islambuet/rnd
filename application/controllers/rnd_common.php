@@ -38,13 +38,12 @@ class Rnd_common extends ROOT_Controller
 
         foreach($data['details'] as $ctype)
         {
-            $data['value'][] = $ctype['product_type_id'];
+            $data['value'][] = $ctype['id'];
             $data['name'][] = $ctype['product_type'];
         }
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#crop_type","html"=>$this->load->view("dropdown",$data,true));
-//        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
         $this->jsonReturn($ajax);
     }
 

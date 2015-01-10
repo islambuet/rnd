@@ -26,13 +26,17 @@ class Rnd_common_model extends CI_Model
 
     public function dropDown_crop_type($crop_id)
     {
-        $this->db->select('vs.*');
-        $this->db->from('rnd_variety_season vs');
-        $this->db->select('tinfo.product_type product_type');
+//        $this->db->select('vs.*');
+//        $this->db->from('rnd_variety_season vs');
+//        $this->db->select('tinfo.product_type product_type');
+//
+//        $this->db->join('rnd_product_type_info tinfo', 'tinfo.id = vs.product_type_id', 'left');
+//        $this->db->where('vs.crop_id',$crop_id);
+//        $this->db->group_by('vs.product_type_id');
 
-        $this->db->join('rnd_product_type_info tinfo', 'tinfo.id = vs.product_type_id', 'left');
-        $this->db->where('vs.crop_id',$crop_id);
-        $this->db->group_by('vs.product_type_id');
+        $this->db->select('rnd_product_type_info.*');
+        $this->db->from('rnd_product_type_info');
+        $this->db->where('crop_id',$crop_id);
 
         $query = $this->db->get();
         return $query->result_array();
