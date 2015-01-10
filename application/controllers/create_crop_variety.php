@@ -53,7 +53,7 @@ class Create_crop_variety extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."create_crop_variety/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -65,6 +65,7 @@ class Create_crop_variety extends ROOT_Controller
             $data['cropTypes'] = $this->create_crop_variety_model->get_product_type($data['varietyInfo']['crop_id']);
             $data['seasonInfo'] = $this->create_crop_variety_model->get_seasons($id);
             $data['title']="Edit Crop Variety (".$data['varietyInfo']['variety_name'].")";
+            $ajax['page_url']=base_url()."create_crop_variety/index/edit/".$id;
         }
         else
         {
@@ -86,6 +87,7 @@ class Create_crop_variety extends ROOT_Controller
                 'new_old_status' => 1,
                 'status' => 1
             );
+            $ajax['page_url']=base_url()."create_crop_variety/index/add";
         }
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
