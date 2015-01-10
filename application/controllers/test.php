@@ -3,30 +3,59 @@ require APPPATH.'/libraries/root_controller.php';
 
 class Test extends CI_Controller
 {
-	public function index()
+    static private $person = 1;
+
+    public function sum(&$a,$b)
+    {
+        $a++;
+        return $a+$b;
+
+    }
+    public function index()
 	{
-        //$this->session->set_userdata("user_id", "");
-        echo $this->session->userdata("user_id");
-        $ar = array("az"=>"1","xy"=>"2");
-        $ar2 = array("az2"=>"2","sa"=>4,"sds"=>5);
-        $arkeys = array_keys($ar);
-        $ar2keys=array_keys($ar2);
 
-        for($i=0;$i<max(sizeof($ar),sizeof($ar2));$i++)
+
+
+
+    }
+    public function geta()
+    {
+        return 5;
+    }
+    public function string_sub($a,$b)
+    {
+        echo $b;
+
+    }
+    public function string_sum($a,$b,$base)
+    {
+        $a=strrev($a);
+        $b=strrev($b);
+        $result="";
+        $carry=0;
+
+        for($i=0;$i<max(strlen($a),strlen($b));$i++)
         {
-            if(sizeof($ar)>$i)
+            $x=$y=0;
+            if($i<strlen($a))
             {
-                echo $arkeys[$i];
-                echo $ar[$arkeys[$i]];
+                $x=substr($a,$i,1);
             }
-            if(sizeof($ar2)>$i)
+            if($i<strlen($b))
             {
-                echo $ar2keys[$i];
-                echo $ar2[$ar2keys[$i]];
+                $y=substr($b,$i,1);
             }
-
+            $sum=$x+$y+$carry;
+            $result=$sum%$base.$result;
+            $carry= intval($sum/$base);
         }
-	}
+        if($carry)
+        {
+            $result=$carry.$result;
+        }
+        return $result;
+
+    }
 
 
 }
