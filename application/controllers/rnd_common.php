@@ -33,7 +33,7 @@ class Rnd_common extends ROOT_Controller
     public function dropDown_crop_type_by_name()
     {
         $crop_id = $this->input->post('crop_id');
-        $data['selected'] = $this->input->post('product_type_id');
+//        $data['selected'] = $this->input->post('product_type_id');
         $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
 
         foreach($data['details'] as $ctype)

@@ -26,7 +26,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_select" id="crop_select" class="form-control validate[required]" <?php if(!empty($varietyInfo['crop_id'])){ echo 'disabled';}?>>
+                <select name="variety_crop_select" id="variety_crop_select" class="form-control validate[required]" <?php if(!empty($varietyInfo['crop_id'])){ echo 'disabled';}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -191,79 +191,6 @@ foreach($seasonInfo as $result)
     jQuery(document).ready(function()
     {
         $(".form_valid").validationEngine();
-
-    });
-
-    $(document).on("change", "#variety_type_competitor", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#competitor_div").removeClass('hiddenCompany');
-        }
-    });
-
-    $(document).on("change", "#variety_type_arm", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#competitor_div").addClass('hiddenCompany');
-        }
-
-    });
-
-    $(document).on("change", "#variety_type_principal", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#competitor_div").addClass('hiddenCompany');
-        }
-
-    });
-
-    $(document).on("change", "#variety_type_principal", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#principal_div").removeClass('hiddenPrincipal');
-        }
-    });
-
-    $(document).on("change", "#variety_type_arm", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#principal_div").addClass('hiddenPrincipal');
-        }
-    });
-
-    $(document).on("change", "#variety_type_competitor", function(event)
-    {
-        if( $(this).is(':checked') )
-        {
-            $("#principal_div").addClass('hiddenPrincipal');
-        }
-    });
-
-
-    $(document).on("change", "#crop_select", function(event)
-    {
-        var crop_id = $("#crop_select").val();
-        var product_type_id = '<?php echo $varietyInfo['product_type_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id,product_type_id:product_type_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
 
     });
 

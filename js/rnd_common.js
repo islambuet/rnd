@@ -201,3 +201,83 @@ function animate_message(message)
 
 }
 
+////////// Variety START
+
+$(document).ready(function()
+{
+
+    $(document).on("change", "#variety_type_competitor", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").removeClass('hiddenCompany');
+        }
+    });
+
+    $(document).on("change", "#variety_type_arm", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").addClass('hiddenCompany');
+        }
+
+    });
+
+    $(document).on("change", "#variety_type_principal", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#competitor_div").addClass('hiddenCompany');
+        }
+
+    });
+
+    $(document).on("change", "#variety_type_principal", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").removeClass('hiddenPrincipal');
+        }
+    });
+
+    $(document).on("change", "#variety_type_arm", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").addClass('hiddenPrincipal');
+        }
+    });
+
+    $(document).on("change", "#variety_type_competitor", function(event)
+    {
+        if( $(this).is(':checked') )
+        {
+            $("#principal_div").addClass('hiddenPrincipal');
+        }
+    });
+
+    $(document).on("change", "#variety_crop_select", function(event)
+    {
+        var crop_id = $("#variety_crop_select").val();
+//        var product_type_id = '<?php echo $varietyInfo['product_type_id'];?>';
+        $.ajax({
+            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_id:crop_id},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+});
+
+//////// Variety END
