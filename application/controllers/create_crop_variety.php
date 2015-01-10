@@ -181,7 +181,7 @@ class Create_crop_variety extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                // START Generating R&D Code
+                ///////////////////// START Generating R&D Code ////////////////////
 
                 $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('crop_select'));
                 $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
@@ -212,7 +212,7 @@ class Create_crop_variety extends ROOT_Controller
                     $RnDCode = $crop_code.'-'.$type_code.'-'.$variety_last_id.'-'.$fourthPortion.'-'.$lastPortion;
                 }
 
-                // END Generating R&D Code
+                ////////////////////// END Generating R&D Code ////////////////////////
 
                 $data['crop_id'] = $this->input->post('crop_select');
                 $data['product_type_id'] = $this->input->post('crop_type');
