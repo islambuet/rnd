@@ -210,14 +210,17 @@ class Create_crop extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name')))
+        if($this->input->post('crop_id')==0)
         {
-            return false;
-        }
+            if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name')))
+            {
+                return false;
+            }
 
-        if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code')))
-        {
-            return false;
+            if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code')))
+            {
+                return false;
+            }
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
