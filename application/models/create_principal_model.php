@@ -44,4 +44,45 @@ class Create_principal_model extends CI_Model
         return $query->row_array();
     }
 
+    public function check_existing_principal_name($principal_name,$id)
+    {
+        $this->db->select('rnd_principal_info.*');
+        $this->db->from('rnd_principal_info');
+        $this->db->where('principal_name',$principal_name);
+        $this->db->where('id !=',$id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function check_existing_principal_code($principal_code,$id)
+    {
+        $this->db->select('rnd_principal_info.*');
+        $this->db->from('rnd_principal_info');
+        $this->db->where('principal_code',$principal_code);
+        $this->db->where('id !=',$id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 }

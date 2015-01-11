@@ -80,11 +80,8 @@ class Create_crop extends ROOT_Controller
             $ajax['page_url']=base_url()."create_crop/index/add";
         }
 
-
-
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));
-
 
         $this->jsonReturn($ajax);
     }

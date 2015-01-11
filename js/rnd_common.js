@@ -325,3 +325,56 @@ $(document).ready(function()
 });
 
 //////// Create Crop END
+
+
+/////// Create Principal START
+
+$(document).ready(function()
+{
+    $(document).on("change", "#cp_principal_name", function(event)
+    {
+        var principal_name = $("#cp_principal_name").val();
+        var principal_id = $("#principal_id").val();
+        $.ajax({
+            url: base_url+"create_principal/check_existing_principal_name/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{principal_name:principal_name,principal_id:principal_id},
+            success: function (data, status, message)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+    $(document).on("change", "#cp_principal_code", function(event)
+    {
+        var principal_code = $("#cp_principal_code").val();
+        var principal_id = $("#principal_id").val();
+        $.ajax({
+            url: base_url+"create_principal/check_existing_principal_code/",
+            type: 'POST',
+            dataType: "JSON",
+            data:{principal_code:principal_code,principal_id:principal_id},
+            success: function (data, status, message)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+
+    });
+
+});
+
+//////// Create Principal END
