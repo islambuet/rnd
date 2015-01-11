@@ -51,6 +51,7 @@ class Create_principal extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
+        $ajax['page_url']=base_url()."create_principal/index/list/".($page+1);
 
         $this->jsonReturn($ajax);
     }
@@ -61,6 +62,7 @@ class Create_principal extends ROOT_Controller
         {
             $data['principalInfo'] = $this->create_principal_model->get_principal_row($id);
             $data['title']="Edit Crop Principal (".$data['principalInfo']['principal_name'].")";
+            $ajax['page_url']=base_url()."create_principal/index/edit/".$id;
         }
         else
         {
@@ -75,6 +77,7 @@ class Create_principal extends ROOT_Controller
                 'address' => '',
                 'status' =>$this->config->item('active')
             );
+            $ajax['page_url']=base_url()."create_principal/index/add";
         }
 
         $ajax['status']=true;

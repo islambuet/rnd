@@ -203,6 +203,7 @@ class Create_crop extends ROOT_Controller
         else
         {
             $ajax['message'] = '';
+
         }
 
         $this->jsonReturn($ajax);

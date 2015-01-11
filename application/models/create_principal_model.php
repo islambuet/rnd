@@ -19,6 +19,7 @@ class Create_principal_model extends CI_Model
 
         $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         $this->db->limit($limit,$start);
+        $this->db->order_by('rpi.id','DESC');
 
         $query = $this->db->get();
         return $query->result_array();

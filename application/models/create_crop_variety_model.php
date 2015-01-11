@@ -20,7 +20,7 @@ class Create_crop_variety_model extends CI_Model
 
         $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rvi.crop_id', 'left');
         $this->db->group_by('variety_name');
-
+        $this->db->order_by('rvi.id','DESC');
 //        $this->db->where('status',1);
         $this->db->limit($limit,$start);
 

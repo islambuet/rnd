@@ -52,6 +52,7 @@ class Create_fertilizer extends ROOT_Controller
             $ajax['message']=$this->message;
         }
 
+        $ajax['page_url']=base_url()."create_fertilizer/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -61,6 +62,7 @@ class Create_fertilizer extends ROOT_Controller
         {
             $data['fertilizerInfo'] = $this->create_fertilizer_model->get_fertilizer_row($id);
             $data['title']="Edit Fertilizer (".$data['fertilizerInfo']['fertilizer_name'].")";
+            $ajax['page_url']=base_url()."create_fertilizer/index/edit/".$id;
         }
         else
         {
@@ -70,6 +72,8 @@ class Create_fertilizer extends ROOT_Controller
                 'fertilizer_name' => '',
                 'status' =>$this->config->item('active')
             );
+
+            $ajax['page_url']=base_url()."create_fertilizer/index/add";
         }
 
         $ajax['status']=true;

@@ -26,25 +26,18 @@ $(document).ready(function()
         }
 
         //$("#loading").hide();
-        setTimeout(function()
+        $("#loading").hide();
+        if(xhr.responseJSON.message)
         {
-            $("#loading").hide();
-            if(xhr.responseJSON.message)
-            {
-                animate_message(xhr.responseJSON.message);
-            }
-        }, 1000);
+            animate_message(xhr.responseJSON.message);
+        }
     });
     $(document).ajaxError(function(event,xhr,options)
     {
 
-        setTimeout(function()
-        {
-            $("#loading").hide();
+        $("#loading").hide();
 
-            animate_message("Server Error");
-
-        }, 1000);
+        animate_message("Server Error");
 
     });
 

@@ -52,6 +52,7 @@ class Create_pesticide extends ROOT_Controller
             $ajax['message']=$this->message;
         }
 
+        $ajax['page_url']=base_url()."create_pesticide/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -61,6 +62,7 @@ class Create_pesticide extends ROOT_Controller
         {
             $data['pesticideInfo'] = $this->create_pesticide_model->get_pesticide_row($id);
             $data['title']="Edit Pesticide (".$data['pesticideInfo']['pesticide_name'].")";
+            $ajax['page_url']=base_url()."create_pesticide/index/edit/".$id;
         }
         else
         {
@@ -70,6 +72,7 @@ class Create_pesticide extends ROOT_Controller
                 'pesticide_name' => '',
                 'status' =>$this->config->item('active')
             );
+            $ajax['page_url']=base_url()."create_pesticide/index/add";
         }
 
         $ajax['status']=true;
