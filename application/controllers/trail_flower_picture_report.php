@@ -302,10 +302,10 @@ class Trail_flower_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data['season_id'] = $this->input->post('season_id');
-                $data['crop_id'] = $this->input->post('crop_id');
-                $data['type_id'] = $this->input->post('crop_type');
-                $data['rnd_code_id'] = $this->input->post('rnd_code');
+                $data['season_id'] = $this->input->post('common_season_id');
+                $data['crop_id'] = $this->input->post('common_crop_id');
+                $data['type_id'] = $this->input->post('common_crop_type');
+                $data['rnd_code_id'] = $this->input->post('common_rnd_code');
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -334,7 +334,7 @@ class Trail_flower_picture_report extends ROOT_Controller
     {
         if($this->input->post('rnd_code'))
         {
-            if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+            if(Validation_helper::validate_empty($this->input->post('common_rnd_code')))
             {
                 return false;
             }

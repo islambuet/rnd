@@ -103,7 +103,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         $data = Array(
             'crop_id'=>$this->input->post('common_crop_id'),
             'type_id'=>$this->input->post('common_crop_type'),
-            'rnd_code'=>$this->input->post('rnd_code'),
+            'rnd_code'=>$this->input->post('common_rnd_code'),
             'sowing_date'=>strtotime($this->input->post('sowing_date'))
         );
 
@@ -155,7 +155,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                         $size = @$file_name[$i]['size'];
 
                         $new_file_name = time().$i;
-                        $save_file_name = time().$i.'.'.$ext;
+//                        $save_file_name = time().$i.'.'.$ext;
 
                         if (@$file_name[$i] != "")
                         {
@@ -267,12 +267,11 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
         if($this->input->post('rnd_code'))
         {
-            if(Validation_helper::validate_empty($this->input->post('rnd_code')))
+            if(Validation_helper::validate_empty($this->input->post('common_rnd_code')))
             {
                 return false;
             }
         }
-
 
         if(Validation_helper::validate_empty($this->input->post('picture_day')))
         {

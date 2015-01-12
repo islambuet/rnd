@@ -134,7 +134,8 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ADD_IMAGE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="file" name="rnd_image" id="rnd_image" class="" value="" >
+                <img src="<?php echo base_url();?>images/no_image.jpg" style="width: 77px; height: 77px;" class="file_display_container" />
+                <input type="file" name="rnd_image" id="rnd_image" class="file_button" value="" />
             </div>
         </div>
 
