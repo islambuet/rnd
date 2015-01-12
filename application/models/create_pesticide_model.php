@@ -43,4 +43,24 @@ class Create_pesticide_model extends CI_Model
         return $query->row_array();
     }
 
+    public function check_pesticide_existence($pesticide,$id)
+    {
+        $this->db->select('rnd_pesticide_fungicide_info.*');
+        $this->db->from('rnd_pesticide_fungicide_info');
+        $this->db->where('pesticide_name',$pesticide);
+        $this->db->where('id !=',$id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

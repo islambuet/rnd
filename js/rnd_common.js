@@ -391,7 +391,7 @@ $(document).on("blur", "#fertilizer_name", function(event)
         url: base_url+"create_fertilizer/check_existing_fertilizer_name/",
         type: 'POST',
         dataType: "JSON",
-        data:{fertilizer_name:fertilizer_name},
+        data:{fertilizer_name:fertilizer_name, fertilizer_id:fertilizer_id},
         success: function (data, status, message)
         {
 
@@ -406,6 +406,33 @@ $(document).on("blur", "#fertilizer_name", function(event)
 });
 
 //////// Create Fertilizer END
+
+/////// Create Pesticide START
+
+$(document).on("blur", "#pesticide_name", function(event)
+{
+    var pesticide_name = $("#pesticide_name").val();
+    var pesticide_id = $("#pesticide_id").val();
+
+    $.ajax({
+        url: base_url+"create_pesticide/check_existing_pesticide_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{pesticide_name:pesticide_name, pesticide_id:pesticide_id},
+        success: function (data, status, message)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+//////// Create Pesticide END
 
 
 ////////////////////////////////////////// Common DropDown START //////////////////////////////////////

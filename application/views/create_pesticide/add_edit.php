@@ -4,6 +4,7 @@
     $this->load->view("action_buttons_edit",$data);
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_pesticide/index/save" method="post">
+    <input type="hidden" name="pesticide_id" id="pesticide_id" value="<?php echo $pesticideInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -19,7 +20,7 @@
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="pesticide_name" id="pesticide_name" class="form-control validate[required]" value="<?php echo $pesticideInfo['pesticide_name'];?>" >
             </div>
-            <input type="hidden" name="pesticide_id" id="pesticide_id" value="<?php echo $pesticideInfo['id'];?>"/>
+
         </div>
 
         <div style="" class="row show-grid">

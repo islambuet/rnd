@@ -147,9 +147,32 @@ class Create_pesticide extends ROOT_Controller
 
     }
 
+    public function check_existing_pesticide_name()
+    {
+        if($this->create_pesticide_model->check_pesticide_existence($this->input->post('pesticide_name'),$this->input->post('pesticide_id')))
+        {
+            $ajax['status']=true;
+        }
+        else
+        {
+            $ajax['status']=false;
+        }
+
+        if($ajax['status'])
+        {
+            $ajax['message'] = 'Fertilizer Name Exists';
+        }
+        else
+        {
+            $ajax['message'] = '';
+        }
+
+        $this->jsonReturn($ajax);
+    }
+
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('pesticide_name')))
+        if(Validation_helper::validate_empty($this->input->post('pesticide_name')) || $this->create_pesticide_model->check_pesticide_existence($this->input->post('pesticide_name'),$this->input->post('pesticide_id')))
         {
             return false;
         }
