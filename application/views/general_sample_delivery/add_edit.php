@@ -31,7 +31,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if($sampleInfo['season_id']!=''){ echo "disabled";}?>>
+                <select name="sample_season_id" id="sample_season_id" class="form-control validate[required]" <?php if($sampleInfo['season_id']!=''){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line("SELECT");?></option>
                     <?php foreach($seasons as $season){?>
                     <option value="<?php echo $season['id']?>" <?php if($season['id']==$sampleInfo['season_id']){ echo "selected";} ?>><?php echo $season['season_name']?></option>
@@ -186,39 +186,6 @@ else
         });
 
     });
-
-
-    $(document).on("change", "#season_id", function(event)
-    {
-        var season_id = $("#season_id").val();
-
-        $.ajax({
-            url: base_url+"rnd_common/load_rnd_codes_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id},
-            success: function (data, status)
-            {
-                var rnd_code_view = '';
-                for(var i=0;i<data.length;i++)
-                {
-                    rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
-                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['rnd_id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
-                }
-                // console.log(rnd_code_view);
-                $("#div_rnd_code").html(rnd_code_view);
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-
 
     Calendar.setup({
         inputField: "destined_delivery_date",

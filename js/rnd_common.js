@@ -435,6 +435,41 @@ $(document).on("blur", "#pesticide_name", function(event)
 //////// Create Pesticide END
 
 
+/////// General Sample Delivery START
+
+$(document).on("change", "#sample_season_id", function(event)
+{
+    var season_id = $("#sample_season_id").val();
+
+    $.ajax({
+        url: base_url+"rnd_common/load_rnd_codes_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+            var rnd_code_view = '';
+            for(var i=0;i<data.length;i++)
+            {
+                rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
+                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['rnd_id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
+            }
+
+            $("#div_rnd_code").html(rnd_code_view);
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+//////// General Sample Delivery END
+
+
 ////////////////////////////////////////// Common DropDown START //////////////////////////////////////
 
 $(document).on("change", "#common_season_id", function(event)

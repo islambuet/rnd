@@ -180,7 +180,7 @@ class General_sample_delivery extends ROOT_Controller
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
-                $data['season_id'] = $this->input->post('season_id');
+                $data['season_id'] = $this->input->post('sample_season_id');
 
                 $last_id = Query_helper::add('rnd_sample_delivery_date',$data);
 
@@ -217,9 +217,9 @@ class General_sample_delivery extends ROOT_Controller
     {
         // Will be Modified
 
-        if($this->input->post('season_id'))
+        if($this->input->post('sample_season_id'))
         {
-            if(Validation_helper::validate_empty($this->input->post('season_id')))
+            if(Validation_helper::validate_empty($this->input->post('sample_season_id')))
             {
                 return false;
             }
@@ -235,20 +235,10 @@ class General_sample_delivery extends ROOT_Controller
             return false;
         }
 
-//        if(Validation_helper::validate_empty($this->input->post('delivery_date')))
-//        {
-//            return false;
-//        }
-
         if(Validation_helper::validate_empty($this->input->post('received')))
         {
             return false;
         }
-
-//        if(Validation_helper::validate_empty($this->input->post('rnd_receive_date')))
-//        {
-//            return false;
-//        }
 
         if(Validation_helper::validate_empty($this->input->post('destined_sowing_date')))
         {
@@ -259,11 +249,6 @@ class General_sample_delivery extends ROOT_Controller
         {
             return false;
         }
-
-//        if(Validation_helper::validate_empty($this->input->post('sowing_date')))
-//        {
-//            return false;
-//        }
 
         return true;
     }
