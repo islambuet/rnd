@@ -499,3 +499,25 @@ $(document).on("change", "#pr_common_season_id", function(event)
 });
 
 ///// Sowing Date by Season END /////////
+
+
+////////////////////////////////////// File Upload And Instant Display START /////////////////////////
+
+$(document).on("change", ".file_button", function(event)
+{
+    var image_container = $(this ).siblings( ".file_display_container" );
+    if (this.files && this.files[0])
+    {
+        var reader = new FileReader();
+
+        reader.onload = function ( e )
+        {
+            image_container.attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(this.files[0]);
+    }
+
+});
+
+////////////////////////////////////// File Upload And Instant Display END /////////////////////////
