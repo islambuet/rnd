@@ -378,3 +378,124 @@ $(document).ready(function()
 });
 
 //////// Create Principal END
+
+
+////////////////////////////////////////// Common DropDown START //////////////////////////////////////
+
+$(document).on("change", "#common_season_id", function(event)
+{
+    var common_season_id = $("#common_season_id").val();
+//    var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/common_dropDown_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_season_id:common_season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+
+$(document).on("change", "#common_crop_id", function(event)
+{
+    var common_crop_id = $("#common_crop_id").val();
+//    var product_type_id = '<?php echo $pictureInfo['type_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/common_dropDown_crop_type_by_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_crop_id:common_crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#common_crop_type", function(event)
+{
+    var common_crop_id = $("#common_crop_id").val();
+    var common_type_id = $("#common_crop_type").val();
+    $.ajax({
+        url: base_url+"rnd_common/common_dropDown_rnd_code_by_name_type/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_crop_id:common_crop_id,common_type_id:common_type_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
+
+//////////////////////////////////////////////// Common DropDown END /////////////////////////////////////////////
+
+
+
+///// Sowing Date by Season START /////////
+
+$(document).on("change", "#pr_common_season_id", function(event)
+{
+    var common_season_id = $("#pr_common_season_id").val();
+    $.ajax({
+        url: base_url+"rnd_common/common_dropDown_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_season_id:common_season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+
+$(document).on("change", "#pr_common_season_id", function(event)
+{
+    var season_id = $("#pr_common_season_id").val();
+
+    $.ajax({
+        url: base_url+"rnd_common/sowing_date_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+            $("#sowing_date").val(data);
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+///// Sowing Date by Season END /////////

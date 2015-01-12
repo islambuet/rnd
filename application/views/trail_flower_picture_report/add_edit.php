@@ -8,7 +8,8 @@
 ////print_r($details);
 //echo '</pre>';
 ?>
-<form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php base_url()?>trail_flower_picture_report/index/save" method="post">
+<form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php echo base_url();?>trail_flower_picture_report/index/save" method="post">
+<input type="hidden" name="pic_report_id" id="pic_report_id" value="<?php echo $pictureInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -22,7 +23,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
+                <select name="common_season_id" id="common_season_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -40,7 +41,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
+                <select name="common_crop_id" id="common_crop_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -51,7 +52,7 @@
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="pic_report_id" id="pic_report_id" value="<?php echo $pictureInfo['id'];?>"/>
+
         </div>
 
         <div style="" class="row show-grid">
@@ -59,7 +60,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type" id="crop_type" class="form-control" <?php if(!empty($pictureInfo['type_id'])){ echo "disabled";}?>>
+                <select name="common_crop_type" id="common_crop_type" class="form-control" <?php if(!empty($pictureInfo['type_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php foreach($types as $type){?>
                         <option value="<?php echo $type['id'];?>" <?php if($type['id']==$pictureInfo['type_id']){ echo "selected";}?>><?php echo $type['product_type'];?></option>
@@ -73,7 +74,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="rnd_code" id="rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code_id'])){ echo "disabled";}?>>
+                <select name="common_rnd_code" id="common_rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     $rndCode = System_helper::get_rnd_codes();
@@ -310,77 +311,6 @@
         $(".form_valid").validationEngine();
 
     });
-
-
-
-
-    $(document).on("change", "#season_id", function(event)
-    {
-        var season_id = $("#season_id").val();
-        var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id,crop_selected:crop_selected},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_id", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-        var product_type_id = '<?php echo $pictureInfo['type_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id,product_type_id:product_type_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_type", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-        var type_id = $("#crop_type").val();
-        var selected = '<?php echo $pictureInfo['rnd_code_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_rnd_code_by_name_type/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id,type_id:type_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-            }
-        });
-
-    });
-
-
 
 
 </script>

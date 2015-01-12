@@ -51,7 +51,7 @@ class Trail_flower_picture_report extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."trail_flower_picture_report/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -61,6 +61,7 @@ class Trail_flower_picture_report extends ROOT_Controller
         {
             $data['pictureInfo'] = $this->trail_flower_picture_report_model->get_report_row($id);
             $data['title']="Edit Flowering Picture Report";
+            $ajax['page_url']=base_url()."trail_flower_picture_report/index/edit/".$id;
         }
         else
         {
@@ -82,6 +83,7 @@ class Trail_flower_picture_report extends ROOT_Controller
                 'last_harvested_pic' => '',
                 'last_harvested_remark' => ''
             );
+            $ajax['page_url']=base_url()."trail_flower_picture_report/index/add";
         }
 
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));

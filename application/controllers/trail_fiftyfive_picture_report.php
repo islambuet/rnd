@@ -52,6 +52,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             $ajax['message']=$this->message;
         }
 
+        $ajax['page_url']=base_url()."trail_fiftyfive_picture_report/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -62,6 +63,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             $data['pictureInfo'] = $this->trail_fiftyfive_picture_report_model->get_report_row($id);
             $data['details'] = $this->trail_fiftyfive_picture_report_model->get_report_image_detail($id);
             $data['title']="Edit 15 Day Picture Report";
+            $ajax['page_url']=base_url()."trail_fiftyfive_picture_report/index/edit/".$id;
         }
         else
         {
@@ -78,6 +80,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                 'picture_day' => '',
                 'remarks' => ''
             );
+            $ajax['page_url']=base_url()."trail_fiftyfive_picture_report/index/add";
         }
 
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
@@ -98,8 +101,8 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
         $img = System_helper::file_upload('rnd_image',$this->config->item('fifteen_days_picture_report_img_upload_folder'),$new_file_name,$this->config->item('fifteen_days_picture_report_img_type'),$this->config->item('fifteen_days_picture_report_img_size'),$this->config->item('fifteen_days_picture_report_img_allowed_types'));
 
         $data = Array(
-            'crop_id'=>$this->input->post('crop_id'),
-            'type_id'=>$this->input->post('crop_type'),
+            'crop_id'=>$this->input->post('common_crop_id'),
+            'type_id'=>$this->input->post('common_crop_type'),
             'rnd_code'=>$this->input->post('rnd_code'),
             'sowing_date'=>strtotime($this->input->post('sowing_date'))
         );
@@ -197,8 +200,6 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                             Query_helper::update('rnd_fifteen_days_picture_report_images',$data_spec,array("id = ".$row_spec_id[$i]));
                         }
                     }
-
-
                 }
 
                 $this->db->trans_complete();   //DB Transaction Handle END
@@ -248,17 +249,17 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
 
     private function check_validation()
     {
-        if($this->input->post('crop_id'))
+        if($this->input->post('common_crop_id'))
         {
-            if(Validation_helper::validate_empty($this->input->post('crop_id')))
+            if(Validation_helper::validate_empty($this->input->post('common_crop_id')))
             {
                 return false;
             }
         }
 
-        if($this->input->post('crop_type'))
+        if($this->input->post('common_crop_type'))
         {
-            if(Validation_helper::validate_empty($this->input->post('crop_type')))
+            if(Validation_helper::validate_empty($this->input->post('common_crop_type')))
             {
                 return false;
             }

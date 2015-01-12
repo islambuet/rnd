@@ -11,11 +11,12 @@ class Rnd_common extends ROOT_Controller
         $this->load->model("rnd_common_model");
     }
 
+/////////////////////////////////////////////////// Common START /////////////////////////////////////////////
 
-    public function dropDown_crop_by_season()
+    public function common_dropDown_crop_by_season()
     {
-        $season_id = $this->input->post('season_id');
-        $data['selected'] = $this->input->post('crop_selected');
+        $season_id = $this->input->post('common_season_id');
+        $data['selected'] = '';
         $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
 
         foreach($data['details'] as $ctype)
@@ -25,14 +26,13 @@ class Rnd_common extends ROOT_Controller
         }
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#crop_id","html"=>$this->load->view("dropdown",$data,true));
-//        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+        $ajax['content'][]=array("id"=>"#common_crop_id","html"=>$this->load->view("dropdown",$data,true));
         $this->jsonReturn($ajax);
     }
 
-    public function dropDown_crop_type_by_name()
+    public function common_dropDown_crop_type_by_name()
     {
-        $crop_id = $this->input->post('crop_id');
+        $crop_id = $this->input->post('common_crop_id');
         $data['selected'] = '';
         $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
 
@@ -43,17 +43,17 @@ class Rnd_common extends ROOT_Controller
         }
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#crop_type","html"=>$this->load->view("dropdown",$data,true));
+        $ajax['content'][]=array("id"=>"#common_crop_type","html"=>$this->load->view("dropdown",$data,true));
         $this->jsonReturn($ajax);
     }
 
-    public function dropDown_rnd_code_by_name_type()
+    public function common_dropDown_rnd_code_by_name_type()
     {
-        $crop_id = $this->input->post('crop_id');
-        $type_id = $this->input->post('type_id');
+        $crop_id = $this->input->post('common_crop_id');
+        $type_id = $this->input->post('common_type_id');
 
         $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_name_type($crop_id,$type_id);
-        $data['selected'] = $this->input->post('selected');
+        $data['selected'] = '';
 
         foreach($data['details'] as $code)
         {
@@ -62,9 +62,11 @@ class Rnd_common extends ROOT_Controller
         }
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#rnd_code","html"=>$this->load->view("dropdown",$data,true));
+        $ajax['content'][]=array("id"=>"#common_rnd_code","html"=>$this->load->view("dropdown",$data,true));
         $this->jsonReturn($ajax);
     }
+
+/////////////////////////////////////////////////// Common END /////////////////////////////////////////////
 
     public function dropDown_rnd_code_by_crop_name()
     {

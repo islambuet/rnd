@@ -7,7 +7,8 @@
 //print_r($fortnightlyInfo);
 //echo '</pre>';
 ?>
-<form class="form_valid" id="save_form" action="<?php base_url()?>trail_fiftyfive_fortnighly_report/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>trail_fiftyfive_fortnighly_report/index/save" method="post">
+<input type="hidden" name="fortnightly_id" id="fortnightly_id" value="<?php echo $fortnightlyInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -30,7 +31,6 @@
                     <?php }?>
                 </select>
             </div>
-            <input type="hidden" name="fortnightly_id" id="fortnightly_id" value="<?php echo $fortnightlyInfo['id'];?>"/>
         </div>
 
         <div class="row show-grid">

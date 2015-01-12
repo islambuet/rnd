@@ -51,7 +51,7 @@ class Trail_fiftyfive_fortnighly_report extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."trail_fiftyfive_fortnighly_report/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -60,8 +60,8 @@ class Trail_fiftyfive_fortnighly_report extends ROOT_Controller
         if ($id != 0)
         {
             $data['fortnightlyInfo'] = $this->trail_fiftyfive_fortnighly_report_model->get_fortnightly_row($id);
-
             $data['title']="Edit Fortnightly Report (".$data['fortnightlyInfo']['rnd_code'].")";
+            $ajax['page_url']=base_url()."trail_fiftyfive_fortnighly_report/index/edit/".$id;
         }
         else
         {
@@ -88,6 +88,7 @@ class Trail_fiftyfive_fortnighly_report extends ROOT_Controller
                 'status' => $this->config->item('active')
             );
 
+            $ajax['page_url']=base_url()."trail_fiftyfive_fortnighly_report/index/add";
             $data['title']="New Trial Analysis Fortnightly";
         }
 
@@ -99,10 +100,8 @@ class Trail_fiftyfive_fortnighly_report extends ROOT_Controller
 
     public function rnd_save()
     {
-
         $id = $this->input->post("fortnightly_id");
         $user = User_helper::get_user();
-
 
         $data = Array(
             'rnd_code_id'=>$this->input->post('rnd_code_id'),
