@@ -44,4 +44,24 @@ class Create_fertilizer_model extends CI_Model
         return $query->row_array();
     }
 
+    public function check_fertilizer_existence($fertilizer,$id)
+    {
+        $this->db->select('rnd_fertilizer_info.*');
+        $this->db->from('rnd_fertilizer_info');
+        $this->db->where('fertilizer_name',$fertilizer);
+        $this->db->where('id !=',$id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

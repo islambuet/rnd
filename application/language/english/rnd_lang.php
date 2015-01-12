@@ -20,6 +20,8 @@ $lang['MSG_FILE_TYPE_ERROR']='File Type Error';
 $lang['LABEL_YES'] = 'Yes';
 $lang['LABEL_NO'] = 'No';
 
+$lang['LABEL_DAYS'] = 'Days';
+
 //login
 $lang['MSG_USERNAME_PASSWORD_INVALID'] = 'Username and Password did not match or Invalid';
 $lang['MSG_LOGIN_SUCCESS'] = 'Successfully Logged In';

@@ -148,9 +148,32 @@ class Create_fertilizer extends ROOT_Controller
 
     }
 
+    public function check_existing_fertilizer_name()
+    {
+        if($this->create_fertilizer_model->check_fertilizer_existence($this->input->post('fertilizer_name'),$this->input->post('fertilizer_id')))
+        {
+            $ajax['status']=true;
+        }
+        else
+        {
+            $ajax['status']=false;
+        }
+
+        if($ajax['status'])
+        {
+            $ajax['message'] = 'Fertilizer Name Exists';
+        }
+        else
+        {
+            $ajax['message'] = '';
+        }
+
+        $this->jsonReturn($ajax);
+    }
+
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('fertilizer_name')))
+        if(Validation_helper::validate_empty($this->input->post('fertilizer_name')) || $this->create_fertilizer_model->check_fertilizer_existence($this->input->post('fertilizer_name'),$this->input->post('fertilizer_id')))
         {
             return false;
         }

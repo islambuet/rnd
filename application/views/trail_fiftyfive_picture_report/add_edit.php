@@ -158,7 +158,7 @@ if(!empty($details))
             {
                 ?>
                 <div class="col-xs-3">
-                    <label class="control-label"><?php echo $detail['picture_day'];?> Days
+                    <label class="control-label"><?php echo $detail['picture_day'];?> <?php echo $this->lang->line('LABEL_DAYS');?>
                         <img width="80px" height="80px" src="<?php echo base_url()?>images/trail_fiftyfive_picture_report/<?php echo $detail['image_name'];?>"/>
                     </label>
                     <input type="hidden" name="row_spec_id[]" value="<?php echo $detail['id']?>">

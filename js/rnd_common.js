@@ -380,6 +380,34 @@ $(document).ready(function()
 //////// Create Principal END
 
 
+//////// Create Fertilizer START
+
+$(document).on("blur", "#fertilizer_name", function(event)
+{
+    var fertilizer_name = $("#fertilizer_name").val();
+    var fertilizer_id = $("#fertilizer_id").val();
+
+    $.ajax({
+        url: base_url+"create_fertilizer/check_existing_fertilizer_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{fertilizer_name:fertilizer_name},
+        success: function (data, status, message)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+//////// Create Fertilizer END
+
+
 ////////////////////////////////////////// Common DropDown START //////////////////////////////////////
 
 $(document).on("change", "#common_season_id", function(event)

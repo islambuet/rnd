@@ -8,6 +8,7 @@
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_fertilizer/index/save" method="post">
+    <input type="hidden" name="fertilizer_id" id="fertilizer_id" value="<?php echo $fertilizerInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -23,7 +24,6 @@
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="fertilizer_name" id="fertilizer_name" class="form-control validate[required]" value="<?php echo $fertilizerInfo['fertilizer_name'];?>" >
             </div>
-            <input type="hidden" name="fertilizer_id" id="fertilizer_id" value="<?php echo $fertilizerInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
