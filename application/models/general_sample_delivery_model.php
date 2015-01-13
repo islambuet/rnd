@@ -76,4 +76,28 @@ class General_sample_delivery_model extends CI_Model
         $this->db->delete('rnd_sample_delivery_date_crop', array('sample_delivery_date_id' => $id));
     }
 
+    public function get_crop_id_by_rnd_code($rnd_code)
+    {
+        $this->db->from('rnd_variety_info vi');
+        $this->db->select('vi.*');
+
+        $this->db->where('vi.id', $rnd_code);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result;
+    }
+
+    public function get_crop_sample_size($crop_id)
+    {
+        $this->db->from('rnd_crop_info cinfo');
+        $this->db->select('cinfo.*');
+
+        $this->db->where('cinfo.id', $crop_id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result['sample_size'];
+    }
+
 }

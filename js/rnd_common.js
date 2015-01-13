@@ -452,7 +452,7 @@ $(document).on("change", "#sample_season_id", function(event)
             for(var i=0;i<data.length;i++)
             {
                 rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
-                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['rnd_id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
+                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
             }
 
             $("#div_rnd_code").html(rnd_code_view);

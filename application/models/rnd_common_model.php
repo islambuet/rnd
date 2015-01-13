@@ -65,10 +65,13 @@ class Rnd_common_model extends CI_Model
 
     public function get_variety_by_season($season)
     {
-        $this->db->from('rnd_variety_season vs');
-        $this->db->select('vi.rnd_code rnd_code, vi.id rnd_id');
+        $this->db->from('rnd_variety_info vi');
+        $this->db->select('vi.*');
 
-        $this->db->join('rnd_variety_info vi', 'vi.id = vs.variety_id', 'left');
+        $this->db->join('rnd_sample_delivery_date_crop sddc', 'sddc.rnd_code_id = vi.id', 'left');
+        $this->db->join('rnd_variety_season vs', 'vs.variety_id = vi.id', 'left');
+
+        $this->db->where('vi.id NOT IN (SELECT rnd_code_id FROM rnd_sample_delivery_date_crop)', NULL, FALSE);
         $this->db->where('vs.season_id',$season);
         $query = $this->db->get();
 

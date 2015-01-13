@@ -166,7 +166,6 @@ else
     {
         $(".form_valid").validationEngine();
 
-
         $('.checkAll').click(function(event)
         {
             if(this.checked)

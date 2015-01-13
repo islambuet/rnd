@@ -194,6 +194,15 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+
+                    $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);
+                    $crop_id = $varietyInfo['crop_id'];
+                    $quantity = $varietyInfo['quantity'];
+                    $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
+                    $revised_quantity = $quantity-$crop_sample_size;
+
+                    $data_revised = Array('quantity'=>$revised_quantity);
+                    Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost[$i]));
                 }
 
                 $this->db->trans_complete();   //DB Transaction Handle END
