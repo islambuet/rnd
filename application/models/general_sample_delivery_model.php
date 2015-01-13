@@ -47,13 +47,14 @@ class General_sample_delivery_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_rnd_codes_by_season()
+    public function get_rnd_codes_by_season($season_id)
     {
-        $this->db->from('rnd_variety_season vs');
+        $this->db->from('rnd_variety_info vi');
         $this->db->select('vi.rnd_code rnd_code, vi.id rnd_id');
 
-        $this->db->join('rnd_variety_info vi', 'vi.id = vs.variety_id', 'left');
+        $this->db->join('rnd_variety_season vs', 'vs.variety_id = vi.id', 'left');
         $this->db->group_by('vi.id');
+        $this->db->where('vs.season_id',$season_id);
 
         $query = $this->db->get();
         return $query->result_array();

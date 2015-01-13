@@ -60,7 +60,7 @@ class General_sample_delivery extends ROOT_Controller
         if ($id != 0)
         {
             $data['sampleInfo'] = $this->general_sample_delivery_model->get_sample_row($id);
-            $data['rndCodes'] = $this->general_sample_delivery_model->get_rnd_codes_by_season();
+            $data['rndCodes'] = $this->general_sample_delivery_model->get_rnd_codes_by_season($data['sampleInfo']['season_id']);
             $data['sampleRndCodes'] = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($data['sampleInfo']['season_id']);
 
             $data['title']="Edit Sample Delivery (".$data['sampleInfo']['season_name'].")";

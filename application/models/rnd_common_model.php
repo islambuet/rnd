@@ -73,8 +73,8 @@ class Rnd_common_model extends CI_Model
 
         $this->db->where('vi.id NOT IN (SELECT rnd_code_id FROM rnd_sample_delivery_date_crop)', NULL, FALSE);
         $this->db->where('vs.season_id',$season);
-        $query = $this->db->get();
 
+        $query = $this->db->get();
         return $query->result_array();
     }
 

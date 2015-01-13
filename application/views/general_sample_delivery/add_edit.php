@@ -6,7 +6,6 @@
 if(!empty($sampleRndCodes))
 {
     $newarray=array();
-
     foreach($sampleRndCodes as $result)
     {
         $newarray[]=$result['rnd_code_id'];
