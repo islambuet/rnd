@@ -157,10 +157,38 @@ class General_sample_delivery extends ROOT_Controller
                     'creation_date'=>time()
                 );
 
+                $season_id = $this->input->post('old_season_id');
+                $oldRndCodes = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($season_id);
+
+                if(!empty($oldRndCodes))
+                {
+                    foreach($oldRndCodes as $oldCode)
+                    {
+                        $code = $oldCode['rnd_code_id'];
+                        $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($code);
+                        $crop_id = $varietyInfo['crop_id'];
+                        $quantity = $varietyInfo['quantity'];
+                        $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
+                        $revised_quantity = $quantity+$crop_sample_size;
+
+                        $data_revised = Array('quantity'=>$revised_quantity);
+                        Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$code));
+                    }
+                }
+
                 for($i=0; $i<sizeof($rndPost); $i++)
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+
+                    $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);
+                    $crop_id = $varietyInfo['crop_id'];
+                    $quantity = $varietyInfo['quantity'];
+                    $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
+                    $revised_quantity = $quantity-$crop_sample_size;
+
+                    $data_revised = Array('quantity'=>$revised_quantity);
+                    Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost[$i]));
                 }
 
                 $this->db->trans_complete();   //DB Transaction Handle END

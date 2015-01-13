@@ -15,8 +15,11 @@ else
 {
     $newarray=array();
 }
+
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>general_sample_delivery/index/save" method="post">
+    <input type="hidden" name="sample_id" id="sample_id" value="<?php echo $sampleInfo['id'];?>"/>
+    <input type="hidden" name="old_season_id" id="old_season_id" value="<?php echo $sampleInfo['season_id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -37,7 +40,6 @@ else
                     <?php }?>
                 </select>
             </div>
-            <input type="hidden" name="sample_id" id="sample_id" value="<?php echo $sampleInfo['id'];?>"/>
         </div>
 
         <div class="row show-grid">

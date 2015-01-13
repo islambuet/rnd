@@ -67,9 +67,18 @@ class General_sample_delivery_model extends CI_Model
 
         $this->db->join('rnd_sample_delivery_date rsdd', 'rsdd.id = rsdc.sample_delivery_date_id', 'left');
         $this->db->where('rsdd.season_id',$season_id);
-        $query = $this->db->get();
 
-        return $query->result_array();
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public function delete_from_sample_crop_by_id($id)
