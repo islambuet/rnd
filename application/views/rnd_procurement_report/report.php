@@ -87,7 +87,7 @@
                     <?php
                     if($procurement['variety_type']==$this->config->item('variety_type_arm'))
                     {
-                        echo $this->lang->line('LABEL_ARMALIK');
+                        echo $this->lang->line('LABEL_ARMALIK_SELF');
                     }
                     elseif($procurement['variety_type']==$this->config->item('variety_type_company'))
                     {

@@ -190,5 +190,6 @@ $lang['LABEL_TYPE'] = 'Type';
 $lang['LABEL_ARMALIK'] = 'A. R. Malik';
 $lang['LABEL_COMPETITOR'] = 'Competitor';
 $lang['LABEL_PRINCIPAL'] = 'Principal';
+$lang['LABEL_ARMALIK_SELF'] = 'Self';
 
 
