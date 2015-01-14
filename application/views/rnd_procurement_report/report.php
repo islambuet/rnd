@@ -30,20 +30,20 @@
             <tr>
                 <td>
                     <?php
-                    if ($crop_name == '')
-                    {
-                        echo $procurement['crop_name'];
-                        $crop_name = $procurement['crop_name'];
-                    }
-                    else if ($crop_name == $procurement['crop_name'])
-                    {
-                        echo "&nbsp;";
-                    }
-                    else
-                    {
-                        echo $procurement['crop_name'];
-                        $crop_name = $procurement['crop_name'];
-                    }
+                        if ($crop_name == '')
+                        {
+                            echo $procurement['crop_name'];
+                            $crop_name = $procurement['crop_name'];
+                        }
+                        else if ($crop_name == $procurement['crop_name'])
+                        {
+                            echo "&nbsp;";
+                        }
+                        else
+                        {
+                            echo $procurement['crop_name'];
+                            $crop_name = $procurement['crop_name'];
+                        }
                     ?>
                 </td>
                 <td>

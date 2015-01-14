@@ -182,4 +182,141 @@ class Rnd_common extends ROOT_Controller
 
     /////////////////////////// Procurement Report END//////////////////
 
+
+    ///////// Pesticide & Fungicide Stock Out Start //////////
+    public function pesticide_crop_by_season()
+    {
+        $season_id = $this->input->post('season_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        //print_r($data['details']);
+        //exit;
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#pesticide_crop_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    public function pesticide_rnd_code_by_crop_name()
+    {
+        $crop_id = $this->input->post('crop_id');
+        //$type_id = $this->input->post('type_id');
+
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id);
+        $data['selected'] = $this->input->post('selected');
+
+        foreach($data['details'] as $code)
+        {
+            $data['value'][] = $code['id'];
+            $data['name'][] = $code['rnd_code'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#pesticide_out_rnd","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+
+
+    ///////// Pesticide & Fungicide Stock Out End //////////
+
+
+
+    ///////// Fertilizer Stock Out Start ////////
+
+    public function fertilizer_crop_by_season()
+    {
+        $season_id = $this->input->post('season_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        //print_r($data['details']);
+        //exit;
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#fertilizer_crop_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    public function fertilizer_rnd_code_by_crop()
+    {
+        $crop_id = $this->input->post('crop_id');
+        //$type_id = $this->input->post('type_id');
+
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id);
+        $data['selected'] = $this->input->post('selected');
+
+        foreach($data['details'] as $code)
+        {
+            $data['value'][] = $code['id'];
+            $data['name'][] = $code['rnd_code'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#fertilizer_out_rnd","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+
+    ////////// Fertilizer Stock Out End //////////
+
+
+    //////// Labour Activity Start //////////
+
+    public function labour_activity_crop_by_season()
+    {
+        $season_id = $this->input->post('season_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        //print_r($data['details']);
+        //exit;
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#labour_activity_crop_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+
+    public function labour_activity_variety_name_by_crop()
+    {
+        $crop_id = $this->input->post('crop_id');
+        //$type_id = $this->input->post('type_id');
+
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id);
+        $data['selected'] = $this->input->post('selected');
+
+        foreach($data['details'] as $code)
+        {
+            $data['value'][] = $code['id'];
+            $data['name'][] = $code['variety_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#labour_activity_variety","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    /////// Labour Activity End /////////
+
+
 }

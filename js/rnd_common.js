@@ -642,3 +642,224 @@ $(document).on("change", "#procurement_season_id", function(event)
 });
 
 ////////////////////////////////////////// Procurement Report START //////////////////////////////////////
+
+
+/////// Fertilizer Stock Out START /////////
+
+$(document).on("blur", "#feriliser_out_quantity", function(event)
+{
+    var common_fertilizer_quantity = $("#feriliser_out_quantity").val();
+    var common_fertilizer_id = $("#feriliser_in").val();
+
+    $.ajax({
+        url: base_url+"rnd_feriliser_stock_out/check_current_stock/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_fertilizer_quantity:common_fertilizer_quantity, common_fertilizer_id:common_fertilizer_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+
+$(document).on("change", "#fertilizer_season_id", function(event)
+{
+    var season_id = $("#fertilizer_season_id").val();
+    //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/fertilizer_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#fertilizer_crop_id", function(event)
+{
+    var crop_id = $("#fertilizer_crop_id").val();
+    //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/fertilizer_rnd_code_by_crop/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_id:crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
+
+
+/////// Fertilizer Stock Out END /////////
+
+
+/////// Pesticide Stock Out START /////////
+
+
+$(document).on("change", "#pesticide_in", function(event)
+{
+
+    var pesticide_id = $("#pesticide_in").val();
+    //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_pesticide_stock_out/check_pesticide_stock/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{pesticide_id:pesticide_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("blur", "#pesticide_out_quantity", function(event)
+{
+    var common_pesticide_quantity = $("#pesticide_out_quantity").val();
+    var common_pesticide_id = $("#pesticide_in").val();
+
+    $.ajax({
+        url: base_url+"rnd_pesticide_stock_out/check_current_stock/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_pesticide_quantity:common_pesticide_quantity, common_pesticide_id:common_pesticide_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+
+$(document).on("change", "#pesticide_season_id", function(event)
+{
+
+    var season_id = $("#pesticide_season_id").val();
+    //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/pesticide_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#pesticide_crop_id", function(event)
+{
+    var crop_id = $("#pesticide_crop_id").val();
+    //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/pesticide_rnd_code_by_crop_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_id:crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
+
+/////// Pesticide Stock Out END /////////
+
+//////// Labour Activity Start ////////////
+
+
+$(document).on("change", "#labour_activity_season_id", function(event)
+{
+
+    var season_id = $("#labour_activity_season_id").val();
+    //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/labour_activity_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#labour_activity_crop_id", function(event)
+{
+    var crop_id = $("#labour_activity_crop_id").val();
+    //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/labour_activity_variety_name_by_crop/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_id:crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
+
+
+
+//////// Labour Activity End  /////////
