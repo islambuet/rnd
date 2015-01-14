@@ -9,7 +9,7 @@ class Rnd_labour_activity_report_model extends CI_Model
     }
 
 
-    public function get_activity_infos($season,$crop,$variety)
+    public function get_activity_infos($season,$crop,$variety,$start_date,$end_date)
     {
         $this->db->select('lai.*');
         $this->db->from('rnd_labor_activity_info lai');
@@ -43,7 +43,30 @@ class Rnd_labour_activity_report_model extends CI_Model
             $this->db->where("lai.varity_type_id",$variety);
         }
 
+        if($start_date !='')
+        {
+
+            if($end_date !='')
+            {
+                $this->db->where("lai.activity_date >=",$start_date);
+                $this->db->where("lai.activity_date <=",$end_date);
+            }
+            else
+            {
+                $this->db->where("lai.activity_date",$start_date);
+
+            }
+
+        }
+//        if($end_date !='' )
+//        {
+//
+//            //$this->db->where("lai.activity_date >=",$start_date);
+//            $this->db->where("lai.activity_date <=",$end_date);
+//
+//        }
         $result = $this->db->get()->result_array();
+        //$this->db->last_query();exit;
         return $result;
     }
 //    public function get_fertilizer_stock_in($id=0)

@@ -135,6 +135,31 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
        // $this->rnd_list();
     }
 
+    public function check_pesticide_stock()
+    {
+        if($this->input->post('pesticide_id'))
+        {
+            if($this->rnd_pesticide_stock_out_model->check_existing_pesticide($this->input->post('pesticide_id')))
+            {
+                $ajax['status']=true;
+            }
+            else
+            {
+                $ajax['status']=false;
+            }
+
+            if(!$ajax['status'])
+            {
+                $ajax['message'] = 'This Pesticide is not Available in Stock';
+            }
+
+        }
+        else
+        {
+            $ajax['message'] = 'Please Select Pesticide';
+        }
+        $this->jsonReturn($ajax);
+    }
     public function check_current_stock()
     {
         if($this->input->post('common_pesticide_id'))

@@ -60,10 +60,12 @@ class Rnd_labour_activity_report extends ROOT_Controller
         $season_id=$this->input->post("season_id");
         $crop_id=$this->input->post("crop_id");
         $variety_id=$this->input->post("labour_activity_variety");
+        $start_date=strtotime($this->input->post("labour_activity_start_date"));
+        $end_date=strtotime($this->input->post("labour_activity_end_date"));
 //        $data['fertilizers']=$this->rnd_labour_activity_report_model->get_fertilizers($id);
 //        $data['stock_in_infos']=$this->rnd_labour_activity_report_model->get_fertilizer_stock_in($id);
 //        $data['stock_out_infos']=$this->rnd_labour_activity_report_model->get_fertilizer_stock_out($id);
-        $data['labour_activity_infos']=$this->rnd_labour_activity_report_model->get_activity_infos($season_id,$crop_id,$variety_id);
+        $data['labour_activity_infos']=$this->rnd_labour_activity_report_model->get_activity_infos($season_id,$crop_id,$variety_id,$start_date,$end_date);
 
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("rnd_labour_activity_report/report", $data, true));

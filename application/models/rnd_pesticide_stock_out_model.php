@@ -74,7 +74,7 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         $this->db->where('pso.status',$this->config->item('active'));
         $stock_out_result=$this->db->get()->row_array();
         //echo $this->db->last_query();
-        if(empty($stock_out_result['total_stock_out']))
+        if(!$stock_out_result)
         {
 
             $stock_out_result['total_stock_out'] =0  ;
@@ -87,13 +87,14 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         $this->db->group_by("psi.pesticide_id");
         $result_stock_in=$this->db->get()->row_array();
 
-        if(empty($stock_out_result['total_stock_in']))
+        if(!$result_stock_in)
         {
 
-            $stock_out_result['total_stock_in'] =0  ;
+            $result_stock_in['total_stock_in'] =0  ;
         }
 
         $current_stock = $result_stock_in['total_stock_in']-$stock_out_result['total_stock_out'];
+
 
         if($current_stock>=$quantity)
         {
@@ -105,6 +106,24 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         }
 
 
+    }
+
+    public function check_existing_pesticide($pesticide)
+    {
+        $this->db->from("rnd_pesticide_fungicide_stock_in psi");
+        $this->db->where("psi.pesticide_id",$pesticide);
+        $this->db->where('psi.status',$this->config->item('active'));
+
+        $result_pesticide_stock_in = $this->db->get()->result_array();
+//echo $this->db->last_query();exit;
+        if($result_pesticide_stock_in)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

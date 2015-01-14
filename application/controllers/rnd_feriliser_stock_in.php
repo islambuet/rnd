@@ -59,6 +59,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
             $ajax['message']=$this->message;
         }
 
+        //$ajax['page_url']=base_url()."rnd_feriliser_stock_in";
         $this->jsonReturn($ajax);
     }
 
@@ -87,6 +88,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         $data['feriliser_info']= $this->rnd_feriliser_stock_in_model->get_ferilisers();
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_feriliser_stock_in/add_edit",$data,true));
+
 
         $this->jsonReturn($ajax);
     }

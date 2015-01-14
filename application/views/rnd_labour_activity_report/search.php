@@ -61,6 +61,24 @@
                     ?>
                 </select>
             </div>
+
+        </div>
+        <div style="" class="row show-grid">
+            <div class="col-xs-1">
+                <label class="control-label pull-right"><?php echo $this->lang->line('From Date');?></label>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <input type="text" name="labour_activity_start_date" id="labour_activity_start_date" class="form-control" value="<?php if(!empty($pesticideInfo['activity_date'])){ echo date('d-m-Y',$pesticideInfo['activity_date']);}?>" placeholder="Date" >
+            </div>
+
+            <div class="col-xs-1">
+                <label class="control-label pull-right"><?php echo $this->lang->line('To Date');?></label>
+            </div>
+
+            <div class="col-sm-2 col-xs-4">
+                <input type="text" name="labour_activity_end_date" id="labour_activity_end_date" class="form-control" value="<?php if(!empty($pesticideInfo['activity_date'])){ echo date('d-m-Y',$pesticideInfo['activity_date']);}?>" placeholder="Date" >
+            </div>
+
             <div class="col-xs-1">
                 <input type="submit" class="btn btn-default btn-primary" name="search_report" value="Search">
             </div>
@@ -83,8 +101,8 @@
     });
 
     Calendar.setup({
-        inputField: "labour_activity_date",
-        trigger: "labour_activity_date",
+        inputField: "labour_activity_start_date",
+        trigger: "labour_activity_start_date",
         onSelect: function() {
             this.hide()
         },
@@ -92,7 +110,14 @@
         dateFormat: "%d-%m-%Y"
     });
 
-
-
+    Calendar.setup({
+        inputField: "labour_activity_end_date",
+        trigger: "labour_activity_end_date",
+        onSelect: function() {
+            this.hide()
+        },
+        showTime: 12,
+        dateFormat: "%d-%m-%Y"
+    });
 
 </script>

@@ -81,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FERTILIZER_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="feriliser_in" id="feriliser_in" class="form-control validate[required]">
+                <select name="feriliser_in" id="feriliser_out" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($feriliser_info as $feriliser_in)
