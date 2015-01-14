@@ -18,7 +18,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($feriliserInfo['season_id'])){ echo "disabled";}?>>
+                <select name="season_id" id="fertilizer_season_id" class="form-control validate[required]" <?php if(!empty($feriliserInfo['season_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -39,7 +39,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($feriliserInfo['crop_id'])){ echo "disabled";}?> <?php if(!empty($feriliserInfo['crop_id'])){ echo "disabled";}?>>
+                <select name="crop_id" id="fertilizer_crop_id" class="form-control validate[required]" <?php if(!empty($feriliserInfo['crop_id'])){ echo "disabled";}?> <?php if(!empty($feriliserInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -61,7 +61,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PESTICIDE_RND');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="feriliser_out_rnd" id="feriliser_out_rnd" class="form-control validate[required]" <?php if(!empty($feriliserInfo['rnd_code_id'])){ echo "disabled";}?>>
+                <select name="feriliser_out_rnd" id="fertilizer_out_rnd" class="form-control validate[required]" <?php if(!empty($feriliserInfo['rnd_code_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     $rndCodes = System_helper::get_rnd_codes();
@@ -121,48 +121,6 @@ $this->load->view("action_buttons_edit",$data);
 
     });
 
-    $(document).on("change", "#season_id", function(event)
-    {
-        var season_id = $("#season_id").val();
-        //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_id", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-       //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_rnd_code_by_fertilizer_crop_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-            }
-        });
-
-    });
 
 
 

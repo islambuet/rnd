@@ -18,7 +18,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['season_id'])){ echo "disabled";}?>>
+                <select name="season_id" id="labour_activity_season_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['season_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -37,7 +37,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['crop_id'])){ echo "disabled";}?>>
+                <select name="crop_id" id="labour_activity_crop_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
 
@@ -57,7 +57,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="labour_activity_varity" id="labour_activity_varity" class="form-control validate[required]" <?php if(!empty($pesticideInfo['varity_type_id'])){ echo "disabled";}?>>
+                <select name="labour_activity_variety" id="labour_activity_variety" class="form-control validate[required]" <?php if(!empty($pesticideInfo['varity_type_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($types as $type)
@@ -135,49 +135,5 @@ $this->load->view("action_buttons_edit",$data);
         dateFormat: "%d-%m-%Y"
     });
 
-
-    $(document).on("change", "#season_id", function(event)
-    {
-
-        var season_id = $("#season_id").val();
-        //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_id", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-        //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_varity_name_by_crop_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-            }
-        });
-
-    });
 
 </script>

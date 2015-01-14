@@ -135,15 +135,47 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
        // $this->rnd_list();
     }
 
+    public function check_current_stock()
+    {
+        if($this->input->post('common_fertilizer_id'))
+        {
+
+            if($this->rnd_feriliser_stock_out_model->check_existing_stock($this->input->post('common_fertilizer_id'),$this->input->post('common_fertilizer_quantity')))
+            {
+                $ajax['status']=true;
+            }
+            else
+            {
+                $ajax['status']=false;
+            }
+
+            if(!$ajax['status'])
+            {
+                $ajax['message'] = 'Stock Unavailable';
+            }
+            else
+            {
+                $ajax['message'] = 'Stock Available';
+            }
+        }
+        else
+        {
+            $ajax['message'] = 'Please Select Fertilizer';
+        }
+
+        $this->jsonReturn($ajax);
+    }
 
     private function check_validation()
     {
 
-        if (Validation_helper::validate_empty($this->input->post('feriliser_in'))) {
+        if (Validation_helper::validate_empty($this->input->post('feriliser_in')))
+        {
             return false;
         }
 
-        if (!Validation_helper::validate_numeric($this->input->post('feriliser_out_quantity'))) {
+        if (!Validation_helper::validate_numeric($this->input->post('feriliser_out_quantity')) || !$this->rnd_feriliser_stock_out_model->check_existing_stock($this->input->post('feriliser_in'),$this->input->post('feriliser_out_quantity')))
+        {
             return false;
         }
 

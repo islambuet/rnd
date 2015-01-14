@@ -113,7 +113,7 @@ class Rnd_labour_activities extends ROOT_Controller
 
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
-                $data['varity_type_id'] = $this->input->post('labour_activity_varity');
+                $data['varity_type_id'] = $this->input->post('labour_activity_variety');
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
