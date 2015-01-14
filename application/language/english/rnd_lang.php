@@ -177,4 +177,15 @@ $lang['LABEL_1ST_FRUIT_SETTING_PIC']='1st Fruit Setting Pic';
 $lang['LABEL_1ST_HARVESTED_FRUIT']='1st Harvested Fruit';
 $lang['LABEL_LAST_HARVESTED_FRUIT']='Last Harvested Fruit';
 
+// Procurement Report
+
+$lang['LABEL_NAMES_OF_CROPS'] = 'Names of Crops';
+$lang['LABEL_CLASSIFICATION'] = 'Classification';
+$lang['LABEL_VARIETY_NAME'] = 'Variety Name';
+$lang['LABEL_COMPANY_NAME'] = 'Company Name';
+$lang['LABEL_PROCUREMENT_DATE'] = 'Procurement Date';
+$lang['LABEL_QUANTITY'] = 'Quantity';
+$lang['LABEL_RND_CODE'] = 'R&D Code';
+$lang['LABEL_TYPE'] = 'Type';
+
 

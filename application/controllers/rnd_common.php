@@ -140,4 +140,25 @@ class Rnd_common extends ROOT_Controller
         $this->jsonReturn($sowing_date);
     }
 
+    /////////////////////////// Procurement Report START//////////////////
+
+    public function procurement_dropDown_crop_by_season()
+    {
+        $season_id = $this->input->post('common_season_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#procurement_crop_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    /////////////////////////// Procurement Report END//////////////////
+
 }

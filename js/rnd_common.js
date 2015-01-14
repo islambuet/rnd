@@ -611,3 +611,30 @@ $(document).on("change", ".file_button", function(event)
 });
 
 ////////////////////////////////////// File Upload And Instant Display END /////////////////////////
+
+
+////////////////////////////////////////// Procurement Report START //////////////////////////////////////
+
+$(document).on("change", "#procurement_season_id", function(event)
+{
+    var common_season_id = $("#procurement_season_id").val();
+//    var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/procurement_dropDown_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{common_season_id:common_season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+////////////////////////////////////////// Procurement Report START //////////////////////////////////////

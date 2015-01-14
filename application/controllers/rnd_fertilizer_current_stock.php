@@ -33,7 +33,6 @@ class Rnd_fertilizer_current_stock extends ROOT_Controller
     }
 
 
-
     public function rnd_search()
     {
 
