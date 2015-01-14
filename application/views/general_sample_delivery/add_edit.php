@@ -15,6 +15,14 @@ else
 {
     $newarray=array();
 }
+//echo '<pre>';
+//print_r($sampleRndCodes);
+//echo '</pre>';
+
+//foreach($sampleRndCodes as $rs)
+//{
+//    echo $rs['rnd_code_id'].'<br>';
+//}
 
 ?>
 <form class="form_valid" id="save_form" action="<?php base_url()?>general_sample_delivery/index/save" method="post">

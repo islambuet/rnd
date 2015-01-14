@@ -81,6 +81,7 @@ class General_sample_delivery_model extends CI_Model
         }
     }
 
+
     public function delete_from_sample_crop_by_id($id)
     {
         $this->db->delete('rnd_sample_delivery_date_crop', array('sample_delivery_date_id' => $id));

@@ -143,7 +143,9 @@ class General_sample_delivery extends ROOT_Controller
         {
             if($id>0)
             {
-                $this->db->trans_start();  //DB Transaction Handle START
+
+//                print_r($this->input->post());
+//                $this->db->trans_start();  //DB Transaction Handle START
 
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
@@ -162,17 +164,16 @@ class General_sample_delivery extends ROOT_Controller
 
                 if(!empty($oldRndCodes))
                 {
-                    foreach($oldRndCodes as $oldCode)
+                    foreach($oldRndCodes as $oldcode)
                     {
-                        $code = $oldCode['rnd_code_id'];
-                        $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($code);
-                        $crop_id = $varietyInfo['crop_id'];
-                        $quantity = $varietyInfo['quantity'];
-                        $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
-                        $revised_quantity = $quantity+$crop_sample_size;
+                        $varietyInfo_update = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($oldcode['rnd_code_id']);
+                        $crop_id_update = $varietyInfo_update['crop_id'];
+                        $quantity_update = $varietyInfo_update['quantity'];
+                        $crop_sample_size_update = $this->general_sample_delivery_model->get_crop_sample_size($crop_id_update);
+                        $revised_quantity_update = $quantity_update+$crop_sample_size_update;
 
-                        $data_revised = Array('quantity'=>$revised_quantity);
-                        Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$code));
+                        $data_revised_update = array('quantity'=>$revised_quantity_update);
+                        Query_helper::update('rnd_variety_info',$data_revised_update,array("id = ".$oldcode['rnd_code_id']));
                     }
                 }
 
@@ -191,16 +192,16 @@ class General_sample_delivery extends ROOT_Controller
                     Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost[$i]));
                 }
 
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-                }
+//                $this->db->trans_complete();   //DB Transaction Handle END
+//
+//                if ($this->db->trans_status() === TRUE)
+//                {
+//                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+//                }
+//                else
+//                {
+//                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+//                }
             }
             else
             {
