@@ -37,7 +37,8 @@ class Rnd_procurement_report extends ROOT_Controller
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_procurement_report/search", $data, true));
 
-        if ($this->message) {
+        if ($this->message)
+        {
             $ajax['message'] = $this->message;
         }
 
