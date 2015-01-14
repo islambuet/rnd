@@ -11,6 +11,27 @@ class Rnd_common extends ROOT_Controller
         $this->load->model("rnd_common_model");
     }
 
+    //////////////////////////////////////////////// Variety START ////////////////////////////////////////
+
+    public function variety_dropDown_crop_type_by_name()
+    {
+        $crop_id = $this->input->post('variety_crop_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['id'];
+            $data['name'][] = $ctype['product_type'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#variety_crop_type","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    //////////////////////////////////////////////// Variety END ////////////////////////////////////////
+
 /////////////////////////////////////////////////// Common START /////////////////////////////////////////////
 
     public function common_dropDown_crop_by_season()

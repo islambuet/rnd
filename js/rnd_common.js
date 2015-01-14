@@ -249,27 +249,6 @@ $(document).ready(function()
         }
     });
 
-    $(document).on("change", "#variety_crop_select", function(event)
-    {
-        var crop_id = $("#variety_crop_select").val();
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
 });
 
 //////// Variety END
@@ -325,6 +304,31 @@ $(document).ready(function()
 });
 
 //////// Create Crop END
+
+////////////////////////////////////////////// Variety START ///////////////////////////////////////
+
+$(document).on("change", "#variety_crop_select", function(event)
+{
+    var variety_crop_id = $("#variety_crop_select").val();
+    $.ajax({
+        url: base_url+"rnd_common/variety_dropDown_crop_type_by_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{variety_crop_id:variety_crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+////////////////////////////////////////////// Variety END ///////////////////////////////////////
 
 
 /////// Create Principal START

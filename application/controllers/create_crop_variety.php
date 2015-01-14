@@ -135,7 +135,7 @@ class Create_crop_variety extends ROOT_Controller
 
         $seasonData = Array(
             'crop_id'=>$this->input->post('variety_crop_select'),
-            'product_type_id'=>$this->input->post('crop_type')
+            'product_type_id'=>$this->input->post('variety_crop_type')
         );
 
         if(!$this->check_validation())
@@ -184,7 +184,7 @@ class Create_crop_variety extends ROOT_Controller
                 ///////////////////// START Generating R&D Code ////////////////////
 
                 $crop_code = $this->create_crop_variety_model->get_crop_code_by_id($this->input->post('variety_crop_select'));
-                $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('crop_type'));
+                $type_code = $this->create_crop_variety_model->get_type_code_by_id($this->input->post('variety_crop_type'));
                 $variety_last_id = $this->create_crop_variety_model->get_variety_last_id($this->input->post('variety_crop_select'));
 
                 if($this->input->post('variety_type')==$this->config->item('variety_type_arm'))
@@ -215,7 +215,7 @@ class Create_crop_variety extends ROOT_Controller
                 ////////////////////// END Generating R&D Code ////////////////////////
 
                 $data['crop_id'] = $this->input->post('variety_crop_select');
-                $data['product_type_id'] = $this->input->post('crop_type');
+                $data['product_type_id'] = $this->input->post('variety_crop_type');
                 $data['variety_name'] = $this->input->post('variety_name');
                 $data['variety_type'] = $this->input->post('variety_type');
                 $data['new_old_status'] = $this->input->post('new_old_status');
@@ -271,9 +271,9 @@ class Create_crop_variety extends ROOT_Controller
             }
         }
 
-        if($this->input->post('crop_type'))
+        if($this->input->post('variety_crop_type'))
         {
-            if(!Validation_helper::validate_numeric($this->input->post('crop_type')))
+            if(!Validation_helper::validate_numeric($this->input->post('variety_crop_type')))
             {
                 return false;
             }

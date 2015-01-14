@@ -187,5 +187,8 @@ $lang['LABEL_PROCUREMENT_DATE'] = 'Procurement Date';
 $lang['LABEL_QUANTITY'] = 'Quantity';
 $lang['LABEL_RND_CODE'] = 'R&D Code';
 $lang['LABEL_TYPE'] = 'Type';
+$lang['LABEL_ARMALIK'] = 'A. R. Malik';
+$lang['LABEL_COMPETITOR'] = 'Competitor';
+$lang['LABEL_PRINCIPAL'] = 'Principal';
 
 

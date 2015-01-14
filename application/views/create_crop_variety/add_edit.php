@@ -44,7 +44,7 @@ foreach($seasonInfo as $result)
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type" id="crop_type" class="form-control validate[required]" <?php if(!empty($varietyInfo['product_type_id'])){ echo 'disabled';}?>>
+                <select name="variety_crop_type" id="variety_crop_type" class="form-control validate[required]" <?php if(!empty($varietyInfo['product_type_id'])){ echo 'disabled';}?>>
                     <?php
                         $data=array();
                         $data["selected"]=$varietyInfo['product_type_id'];
