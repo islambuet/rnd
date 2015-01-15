@@ -62,6 +62,7 @@
                 <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_curt_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
                 <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_root_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
                 <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_leaf_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
+                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_head_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_head_code');?>"> <?php echo $this->lang->line('LABEL_HEAD');?>
             </div>
         </div>
 
@@ -71,6 +72,15 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="sample_size" id="sample_size" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['sample_size'];?>" />
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_INITIAL_PLANTS');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="initial_plants" id="initial_plants" class="form-control validate[required, custom[number]]" value="<?php echo $cropInfo['initial_plants'];?>" />
             </div>
         </div>
 

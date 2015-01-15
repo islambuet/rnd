@@ -12,6 +12,7 @@ $config['rnd_fruit_code']=1;
 $config['rnd_curt_code']=2;
 $config['rnd_root_code']=3;
 $config['rnd_leaf_code']=4;
+$config['rnd_head_code']=5;
 
 $config['variety_type_arm']=1;
 $config['variety_type_company']=2;

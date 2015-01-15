@@ -44,6 +44,7 @@ $lang['LABEL_FRUIT'] = 'Fruit';
 $lang['LABEL_CURT'] = 'Curd';
 $lang['LABEL_ROOT'] = 'Root';
 $lang['LABEL_LEAF'] = 'Leaf';
+$lang['LABEL_HEAD'] = 'Head';
 $lang['LABEL_SAMPLE_SIZE_RND'] = 'Sample Size for R&D (gm)';
 $lang['LABEL_GM'] = 'gm';
 

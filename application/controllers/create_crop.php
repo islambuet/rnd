@@ -99,6 +99,7 @@ class Create_crop extends ROOT_Controller
             'crop_height'=>$this->input->post('crop_height'),
             'fruit_type'=>$this->input->post('fruit_type'),
             'sample_size'=>$this->input->post('sample_size'),
+            'initial_plants'=>$this->input->post('initial_plants'),
             'status'=>$this->input->post('status'),
         );
 
@@ -234,6 +235,11 @@ class Create_crop extends ROOT_Controller
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('sample_size')))
+        {
+            return false;
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('initial_plants')))
         {
             return false;
         }
