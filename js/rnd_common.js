@@ -646,10 +646,34 @@ $(document).on("change", "#procurement_season_id", function(event)
 
 /////// Fertilizer Stock Out START /////////
 
+$(document).on("change", "#feriliser_out", function(event)
+{
+
+    var feriliser_id = $("#feriliser_out").val();
+//var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_feriliser_stock_out/check_fertilizer_stock/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{feriliser_id:feriliser_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+
 $(document).on("blur", "#feriliser_out_quantity", function(event)
 {
     var common_fertilizer_quantity = $("#feriliser_out_quantity").val();
-    var common_fertilizer_id = $("#feriliser_in").val();
+    var common_fertilizer_id = $("#feriliser_out").val();
 
     $.ajax({
         url: base_url+"rnd_feriliser_stock_out/check_current_stock/",
@@ -720,10 +744,10 @@ $(document).on("change", "#fertilizer_crop_id", function(event)
 /////// Pesticide Stock Out START /////////
 
 
-$(document).on("change", "#pesticide_in", function(event)
+$(document).on("change", "#pesticide_out", function(event)
 {
 
-    var pesticide_id = $("#pesticide_in").val();
+    var pesticide_id = $("#pesticide_out").val();
     //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
     $.ajax({
         url: base_url+"rnd_pesticide_stock_out/check_pesticide_stock/",
@@ -746,7 +770,7 @@ $(document).on("change", "#pesticide_in", function(event)
 $(document).on("blur", "#pesticide_out_quantity", function(event)
 {
     var common_pesticide_quantity = $("#pesticide_out_quantity").val();
-    var common_pesticide_id = $("#pesticide_in").val();
+    var common_pesticide_id = $("#pesticide_out").val();
 
     $.ajax({
         url: base_url+"rnd_pesticide_stock_out/check_current_stock/",
