@@ -143,8 +143,7 @@ class General_sample_delivery extends ROOT_Controller
         {
             if($id>0)
             {
-
-//                $this->db->trans_start();  //DB Transaction Handle START
+                $this->db->trans_start();  //DB Transaction Handle START
 
                 $data_rnd = Array(
                     'sample_delivery_date_id'=>$id,
@@ -155,7 +154,7 @@ class General_sample_delivery extends ROOT_Controller
                 $season_id = $this->input->post('old_season_id');
                 $oldRndCodes = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($season_id);
 
-                // Quantity plus when edit
+                // Quantity plus
                 if(!empty($oldRndCodes))
                 {
                     foreach($oldRndCodes as $oldcode)
@@ -178,7 +177,7 @@ class General_sample_delivery extends ROOT_Controller
                 Query_helper::update('rnd_sample_delivery_date',$data,array("id = ".$id));
                 $this->general_sample_delivery_model->delete_from_sample_crop_by_id($id);
 
-                // Quantity minus when edit
+                // Quantity minus
                 for($i=0; $i<sizeof($rndPost); $i++)
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
@@ -195,16 +194,16 @@ class General_sample_delivery extends ROOT_Controller
                 }
 
 
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-//                }
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
