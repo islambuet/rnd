@@ -154,7 +154,7 @@ class General_sample_delivery extends ROOT_Controller
                 $season_id = $this->input->post('old_season_id');
                 $oldRndCodes = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($season_id);
 
-                // Quantity plus (unchecked codes)
+                // Quantity plus (for unchecked codes only)
                 if(!empty($oldRndCodes))
                 {
                     foreach($oldRndCodes as $oldcode)
@@ -177,7 +177,7 @@ class General_sample_delivery extends ROOT_Controller
                 Query_helper::update('rnd_sample_delivery_date',$data,array("id = ".$id));
                 $this->general_sample_delivery_model->delete_from_sample_crop_by_id($id);
 
-                // Quantity minus (checked codes)
+                // Quantity minus (for checked codes only)
                 for($i=0; $i<sizeof($rndPost); $i++)
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
