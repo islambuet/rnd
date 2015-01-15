@@ -74,6 +74,7 @@ class Create_crop extends ROOT_Controller
                 'crop_width' => '',
                 'fruit_type' => '',
                 'sample_size' => '',
+                'initial_plants' => '',
                 'status' => $this->config->item('active')
             );
             $data['title']="Create New Crop";
