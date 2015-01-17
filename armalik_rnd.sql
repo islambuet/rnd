@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-17 11:45:04
+Date: 2015-01-17 12:18:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -165,13 +165,13 @@ INSERT INTO `ait_system_task` VALUES ('ST-000093', 'SM-000009', '', '8', 'First 
 INSERT INTO `ait_system_task` VALUES ('ST-000094', 'SM-000010', '', '1', 'Crop Classification', 'hofc_crop_classification', '', null, '', '', '', '', '2014-09-17 13:00:37', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000095', 'SM-000010', '', '2', 'Sample Local Procurement', 'hofc_sample_local_procurement', '', null, '', '', '', '', '2014-09-17 13:01:09', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000096', 'SM-000010', '', '3', 'Sample Principal Procurement', 'hofc_principal_procurement', '', null, '', '', '', '', '2014-09-17 13:01:23', 'Active');
-INSERT INTO `ait_system_task` VALUES ('ST-000097', 'SM-000011', '', '1', 'Sample Delivery Date', 'general_sample_delivery', '', null, '', '', '', '', '2014-09-17 16:05:04', 'Active');
+INSERT INTO `ait_system_task` VALUES ('ST-000097', 'SM-000011', '', '1', 'Sample Delivery Status', 'general_sample_delivery', '', null, '', '', '', '', '2015-01-17 12:10:38', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000098', 'SM-000009', '', '0', 'Fruit Report Entry', 'trial_fruit_report_entry', '', '', '', '', '', '', '2015-01-06 17:28:35', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000099', 'SM-000009', '', '0', 'Fruit Report', 'trial_fruit_report', '', '', '', '', '', '', '2015-01-06 17:28:40', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000100', 'SM-000012', '', '0', 'Fertilizer Current Stock Report', 'rnd_fertilizer_current_stock', '', null, '', '', '', '', '2015-01-12 15:00:38', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000101', 'SM-000012', '', '0', 'Pesticide Current Stock Report', 'rnd_pesticide_current_stock', '', null, '', '', '', '', '2015-01-12 19:12:23', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000102', 'SM-000012', '', '0', 'Labour Activity Report', 'rnd_labour_activity_report', '', null, '', '', '', '', '2015-01-13 17:18:52', 'Active');
-INSERT INTO `ait_system_task` VALUES ('ST-000103', 'SM-000012', '', '0', 'Sample Procurement Report', 'rnd_procurement_report', '', null, '', '', '', '', '2015-01-17 11:44:04', 'Active');
+INSERT INTO `ait_system_task` VALUES ('ST-000103', 'SM-000012', '', '0', 'Procurement Report', 'rnd_procurement_report', '', null, '', '', '', '', '2015-01-17 12:09:45', 'Active');
 
 -- ----------------------------
 -- Table structure for `ait_user_group`
