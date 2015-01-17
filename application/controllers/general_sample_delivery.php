@@ -70,6 +70,7 @@ class General_sample_delivery extends ROOT_Controller
             $data["sampleInfo"] = Array(
                 'id' => 0,
                 'season_id' => '',
+                'rnd_year' => '',
                 'destined_delivery_date' => '',
                 'delivered_status' => 0,
                 'delivery_date' => '',
@@ -85,6 +86,7 @@ class General_sample_delivery extends ROOT_Controller
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
+        $data['years'] = Query_helper::get_info('rnd_year', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("general_sample_delivery/add_edit",$data,true));
 
@@ -212,6 +214,7 @@ class General_sample_delivery extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
                 $data['season_id'] = $this->input->post('sample_season_id');
+                $data['rnd_year'] = $this->input->post('sample_rnd_year');
 
                 $last_id = Query_helper::add('rnd_sample_delivery_date',$data);
 

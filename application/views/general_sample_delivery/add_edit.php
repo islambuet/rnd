@@ -15,17 +15,9 @@ else
 {
     $newarray=array();
 }
-//echo '<pre>';
-//print_r($sampleRndCodes);
-//echo '</pre>';
-
-//foreach($sampleRndCodes as $rs)
-//{
-//    echo $rs['rnd_code_id'].'<br>';
-//}
-
 ?>
-<form class="form_valid" id="save_form" action="<?php base_url()?>general_sample_delivery/index/save" method="post">
+
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>general_sample_delivery/index/save" method="post">
     <input type="hidden" name="sample_id" id="sample_id" value="<?php echo $sampleInfo['id'];?>"/>
     <input type="hidden" name="old_season_id" id="old_season_id" value="<?php echo $sampleInfo['season_id'];?>"/>
     <div class="row widget">
@@ -45,6 +37,20 @@ else
                     <option value=""><?php echo $this->lang->line("SELECT");?></option>
                     <?php foreach($seasons as $season){?>
                     <option value="<?php echo $season['id']?>" <?php if($season['id']==$sampleInfo['season_id']){ echo "selected";} ?>><?php echo $season['season_name']?></option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_YEAR');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <select name="sample_rnd_year" id="sample_rnd_year" class="form-control validate[required]" <?php if($sampleInfo['rnd_year']!=''){ echo "disabled";}?>>
+                    <option value=""><?php echo $this->lang->line("SELECT");?></option>
+                    <?php foreach($years as $year){?>
+                    <option value="<?php echo $year['id']?>" <?php if($year['id']==$sampleInfo['rnd_year']){ echo "selected";}?>><?php echo $year['rnd_year']?></option>
                     <?php }?>
                 </select>
             </div>
