@@ -63,10 +63,10 @@ foreach($seasonInfo as $result)
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
-            <div class="col-sm-2 col-xs-4">
-                <input type="radio" name="variety_type" id="variety_type_arm" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
+            <div class="col-sm-3 col-xs-2">
+                <input type="radio" name="variety_type" id="variety_type_principal" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_principal')){ echo 'checked';}?> class="validate[required]" checked value="<?php echo $this->config->item('variety_type_principal');?>"> <?php echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');?>
+                <input type="radio" name="variety_type" id="variety_type_arm" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_arm')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_arm');?>"> <?php echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');?>
                 <input type="radio" name="variety_type" id="variety_type_competitor" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_company')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_company');?>"> <?php echo $this->lang->line('LABEL_COMPETITOR_VARIETY');?>
-                <input type="radio" name="variety_type" id="variety_type_principal" <?php if(!empty($varietyInfo['variety_type'])){ echo "disabled";}?> <?php if($varietyInfo['variety_type']==$this->config->item('variety_type_principal')){ echo 'checked';}?> class="validate[required]" value="<?php echo $this->config->item('variety_type_principal');?>"> <?php echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');?>
             </div>
         </div>
 
