@@ -111,4 +111,24 @@ class General_sample_delivery_model extends CI_Model
         return $result['sample_size'];
     }
 
+    public function check_existing_season($season, $year)
+    {
+        $this->db->select('rsd.*');
+        $this->db->from('rnd_sample_delivery_date rsd');
+        $this->db->where('rsd.season_id',$season);
+        $this->db->where('rsd.rnd_year',$year);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

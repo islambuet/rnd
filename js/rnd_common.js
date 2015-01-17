@@ -471,6 +471,29 @@ $(document).on("change", "#sample_season_id", function(event)
 
 });
 
+$(document).on("change", "#sample_rnd_year", function(event)
+{
+    var sample_rnd_year = $("#sample_rnd_year").val();
+    var sample_season_id = $("#sample_season_id").val();
+
+    $.ajax({
+        url: base_url+"general_sample_delivery/check_existing_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{sample_rnd_year:sample_rnd_year, sample_season_id:sample_season_id},
+        success: function (data, status, message)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
 //////// General Sample Delivery END
 
 

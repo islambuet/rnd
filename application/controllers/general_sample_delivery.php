@@ -256,6 +256,31 @@ class General_sample_delivery extends ROOT_Controller
 
     }
 
+
+    public function check_existing_season()
+    {
+        if($this->general_sample_delivery_model->check_existing_season($this->input->post('sample_season_id'), $this->input->post('sample_rnd_year')))
+        {
+            $ajax['status']=true;
+        }
+        else
+        {
+            $ajax['status']=false;
+        }
+
+        if($ajax['status'])
+        {
+            $ajax['message'] = 'Season Exists for the selected year';
+        }
+        else
+        {
+            $ajax['message'] = '';
+
+        }
+
+        $this->jsonReturn($ajax);
+    }
+
     private function check_validation()
     {
         // Will be Modified
@@ -263,6 +288,14 @@ class General_sample_delivery extends ROOT_Controller
         if($this->input->post('sample_season_id'))
         {
             if(Validation_helper::validate_empty($this->input->post('sample_season_id')))
+            {
+                return false;
+            }
+        }
+
+        if($this->input->post('sample_rnd_year'))
+        {
+            if(Validation_helper::validate_empty($this->input->post('sample_rnd_year')) || $this->general_sample_delivery_model->check_existing_season($this->input->post('sample_season_id'), $this->input->post('sample_rnd_year')))
             {
                 return false;
             }
