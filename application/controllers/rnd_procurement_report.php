@@ -29,7 +29,7 @@ class Rnd_procurement_report extends ROOT_Controller
 
     public function rnd_search()
     {
-        $data['title'] = "Sample Procurement Report";
+        $data['title'] = "Procurement Report";
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
