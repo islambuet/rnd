@@ -455,8 +455,11 @@ $(document).on("change", "#sample_season_id", function(event)
             var rnd_code_view = '';
             for(var i=0;i<data.length;i++)
             {
+
                 rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
-                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
+                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</td><td> \n\
+                    <input type='text' placeholder='Sowing Date' name='specific_sowing_date[]' id='specific_sowing_date_"+i+"' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' ></td></td></tr>";
+
             }
 
             $("#div_rnd_code").html(rnd_code_view);
@@ -470,6 +473,14 @@ $(document).on("change", "#sample_season_id", function(event)
     });
 
 });
+
+$(document).on("mouseout", "#sowing_date", function(event)
+{
+    var sowingDate = $("#sowing_date").val();
+    $(".specific_sowing_date").val(sowingDate);
+
+});
+
 
 $(document).on("change", "#sample_rnd_year", function(event)
 {

@@ -135,28 +135,61 @@ else
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?></label>
             </div>
-            <div class="col-sm-4 col-xs-8" id="load_rnd_code">
+            <div class="col-sm-5 col-xs-9" id="load_rnd_code">
                 <table class="table table-condensed table-striped table-bordered table-hover no-margin">
                     <thead>
                         <tr>
                             <th>
-                                <input type="checkbox" name="" id="" class="checkAll" checked="" /><?php echo $this->lang->line('All Select (R&D Code)');?>
+                                <input type="checkbox" name="" id="" class="checkAll" checked="" /><?php echo $this->lang->line('LABEL_ALL_SELECT_RND_CODE');?>
+                            </th>
+
+                            <th>
+                                <?php echo $this->lang->line('LABEL_SOWING_DATE');?>
                             </th>
                         </tr>
                     </thead>
 
                     <tbody id="div_rnd_code">
-                        <?php if(!empty($rndCodes)){ foreach($rndCodes as $codes){?>
+                        <?php
+                        $i = 0;
+                        if(!empty($rndCodes))
+                        {
+                            foreach($rndCodes as $codes)
+                            {
+                                ?>
                         <tr>
                             <td>
                                 <input type='checkbox' name='rnd_code[]' id='rnd_code' class="checksingle" value='<?php echo $codes['rnd_id'];?>' <?php if(in_array($codes['rnd_id'],$newarray)){ echo "checked";}?> /><?php echo ' '.$codes['rnd_code'];?>
                             </td>
+                            <td>
+                                <input type='text' placeholder='Sowing Date' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
+                            </td>
                         </tr>
-                        <?php }}else{?>
+                        <script>
+                            var serial = '<?php echo $i;?>';
+                            Calendar.setup({
+                                inputField: "specific_sowing_date"+serial,
+                                trigger: "specific_sowing_date"+serial,
+                                onSelect: function() {
+                                    this.hide()
+                                },
+                                showTime: 12,
+                                dateFormat: "%d-%m-%Y"
+                            });
+                        </script>
+                        <?php
+                                $i++;
+                            }
+                        }
+                        else
+                        {
+                            ?>
                         <tr class='first_row_id'>
                             <td colspan='21' style='text-align: center;' class='btn-warning2'><?php echo $this->lang->line('LABEL_NO_DATA_AVAILABLE');?></td>
                         </tr>
-                        <?php }?>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -166,7 +199,7 @@ else
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
             </div>
-            <div class="col-sm-4 col-xs-8">
+            <div class="col-sm-5 col-xs-9">
                 <textarea name="remarks" id="remarks" class="form-control"><?php echo $sampleInfo['remark'];?></textarea>
             </div>
         </div>
@@ -197,6 +230,23 @@ else
                     this.checked = false;
                 });
             }
+        });
+
+
+
+        $(document).on("click", ".specific_sowing_date", function(event)
+        {
+          //  alert (this.value)
+            Calendar.setup({
+                inputField: this,
+                trigger: this,
+                onSelect: function() {
+                    this.hide()
+                },
+                showTime: 12,
+                dateFormat: "%Y-%m-%d"
+            });
+
         });
 
     });
@@ -250,4 +300,20 @@ else
         showTime: 12,
         dateFormat: "%Y-%m-%d"
     });
+
+    function cal_txt(serial)
+    {
+
+//        Calendar.setup({
+//            inputField: "specific_sowing_date_"+serial,
+//            trigger: "specific_sowing_date_"+serial,
+//            onSelect: function() {
+//                "specific_sowing_date_"+serial.hide()
+//            },
+//            showTime: 12,
+//            dateFormat: "%Y-%m-%d"
+//        });
+    }
+
+
 </script>

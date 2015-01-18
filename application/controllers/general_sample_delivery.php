@@ -98,6 +98,7 @@ class General_sample_delivery extends ROOT_Controller
         $id = $this->input->post("sample_id");
         $user = User_helper::get_user();
         $rndPost = $this->input->post('rnd_code');
+        $sowingPost = $this->input->post('specific_sowing_date');
 
         $data = Array(
             'destined_delivery_date'=>strtotime($this->input->post('destined_delivery_date')),
@@ -156,7 +157,7 @@ class General_sample_delivery extends ROOT_Controller
                 $season_id = $this->input->post('old_season_id');
                 $oldRndCodes = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($season_id);
 
-                // Quantity plus (for unchecked codes only)
+                // Quantity plus (for UNCHECKED codes only)
                 if(!empty($oldRndCodes))
                 {
                     foreach($oldRndCodes as $oldcode)
@@ -179,10 +180,20 @@ class General_sample_delivery extends ROOT_Controller
                 Query_helper::update('rnd_sample_delivery_date',$data,array("id = ".$id));
                 $this->general_sample_delivery_model->delete_from_sample_crop_by_id($id);
 
-                // Quantity minus (for checked codes only)
+                // Quantity minus (for CHECKED codes only)
                 for($i=0; $i<sizeof($rndPost); $i++)
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
+
+                    if($sowingPost[$i])
+                    {
+                        $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                    }
+                    else
+                    {
+                        $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                    }
+
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
 
                     $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);
@@ -227,6 +238,16 @@ class General_sample_delivery extends ROOT_Controller
                 for($i=0; $i<sizeof($rndPost); $i++)
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
+
+                    if($sowingPost[$i])
+                    {
+                        $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                    }
+                    else
+                    {
+                        $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                    }
+
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
 
                     $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);

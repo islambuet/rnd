@@ -101,6 +101,7 @@ $lang['LABEL_RND_CODE'] = 'R&D Code';
 $lang['LABEL_ALL_SELECT_RND_CODE'] = 'All Select (R&D Code)';
 $lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 $lang['LABEL_RND_YEAR'] = 'R&D Year';
+$lang['LABEL_ALL_SELECT_RND_CODE'] = ' All Select (R&D Code)';
 
 //Trial Analysis Fortnightly
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
