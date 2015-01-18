@@ -456,10 +456,10 @@ $(document).on("change", "#sample_season_id", function(event)
             for(var i=0;i<data.length;i++)
             {
 
-                rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
-                    <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</td><td> \n\
+                rnd_code_view += "<tr><td><input type='hidden' name='elm_id[]' id='elm_id' value='"+data[i]['id']+"'  /> \n\
+                    <input type='checkbox' id='rnd_code[]' name='rnd_code"+data[i]['id']+"' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</td><td> \n\
                     <input type='text' name='specific_sowing_date[]' id='specific_sowing_date_"+i+"' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' ></td><td> \n\
-                    <input type='text' name='specific_transplanting_date[]' id='specific_transplanting_date"+i+"' class='form-control specific_transplanting_date' onclick='cal_txt("+i+")' ><input type='text' name='elm_id[]' id='elm_id' value='"+data[i]['id']+"'  /></td></tr>";
+                    <input type='text' name='specific_transplanting_date[]' id='specific_transplanting_date"+i+"' class='form-control specific_transplanting_date' onclick='cal_txt("+i+")' ></td></tr>";
 
             }
 

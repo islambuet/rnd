@@ -163,7 +163,7 @@ else
                                 ?>
                         <tr>
                             <td>
-                                <input type='checkbox' name='rnd_code[]' id='rnd_code' class="checksingle" value='<?php echo $codes['rnd_id'];?>' <?php if(in_array($codes['rnd_id'],$newarray)){ echo "checked";}?> /><?php echo ' '.$codes['rnd_code'];?>
+                                <input type='checkbox' name='rnd_code<?php echo $codes['rnd_id'];?>' id='rnd_code' class="checksingle" value='<?php echo $codes['rnd_id'];?>' <?php if(in_array($codes['rnd_id'],$newarray)){ echo "checked";}?> /><?php echo ' '.$codes['rnd_code'];?>
                                 <input type='hidden' name='elm_id[]' id='elm_id' value='<?php echo $codes['rnd_id'];?>'  />
                             </td>
                             <td>

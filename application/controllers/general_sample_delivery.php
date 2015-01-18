@@ -95,12 +95,9 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_save()
     {
-//        print_r($this->input->post());
-//        exit;
         $id = $this->input->post("sample_id");
         $user = User_helper::get_user();
 
-        $rndPost = $this->input->post('rnd_code');
         $sowingPost = $this->input->post('specific_sowing_date');
         $transplantingPost = $this->input->post('specific_transplanting_date');
         $elmPost = $this->input->post('elm_id');
@@ -186,24 +183,30 @@ class General_sample_delivery extends ROOT_Controller
                 $this->general_sample_delivery_model->delete_from_sample_crop_by_id($id);
 
                 // Quantity minus (for CHECKED codes only)
-                for($i=0; $i<sizeof($rndPost); $i++)
-                {
-                    echo $elmPost[$i];
-                    $data_rnd['rnd_code_id'] = $rndPost[$i];
 
+                for($i=0; $i<sizeof($elmPost); $i++)
+                {
+                    $rndPost = $this->input->post('rnd_code'.$elmPost[$i]);
+                    echo $rndPost;
 //                    if($rndPost[$i])
 //                    {
-//                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
+
+
+//                        if(@$rndPost[$i]==$elmPost[$i])
+//                        {
+//                            $data_rnd['rnd_code_id'] = $rndPost[$i];
+//                            $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
 //
-//                        if($sowingPost[$i])
-//                        {
-//                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+//                            if($sowingPost[$i])
+//                            {
+//                                $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+//                            }
+//                            else
+//                            {
+//                                $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+//                            }
 //                        }
-//                        else
-//                        {
-//                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
-//                        }
-//                    }
+////                    }
 //
 //                    Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
 //
@@ -228,7 +231,7 @@ class General_sample_delivery extends ROOT_Controller
 //                {
 //                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
 //                }
-                exit;
+
             }
             else
             {
@@ -239,49 +242,43 @@ class General_sample_delivery extends ROOT_Controller
                 $data['season_id'] = $this->input->post('sample_season_id');
                 $data['rnd_year'] = $this->input->post('sample_rnd_year');
 
-                //$last_id = Query_helper::add('rnd_sample_delivery_date',$data);
+                $last_id = Query_helper::add('rnd_sample_delivery_date',$data);
 
-//                $data_rnd = Array(
-//                  'sample_delivery_date_id'=>$last_id,
-//                  'created_by'=>$user->user_id,
-//                  'creation_date'=>time()
-//                );
+                $data_rnd = Array(
+                  'sample_delivery_date_id'=>$last_id,
+                  'created_by'=>$user->user_id,
+                  'creation_date'=>time()
+                );
 
-                for($i=0; $i<sizeof($rndPost); $i++)
+                for($i=0; $i<sizeof($elmPost); $i++)
                 {
-                    echo $elmPost[$i].'-';
-//                    if($rndPost[$i]==$elmPost[$i])
-//                    {
-//                        echo $rndPost[$i].'- '.$i;
-//                    }
-                    //$data_rnd['rnd_code_id'] = $rndPost[$i];
+                    $rndPost = $this->input->post('rnd_code'.$elmPost[$i]);
+                    if($rndPost==$elmPost[$i])
+                    {
+                        $data_rnd['rnd_code_id'] = $rndPost;
+                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
 
-//                    if($rndPost[$i]==$elmPost[$i])
-//                    {
-//                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
-//
-//                        if($sowingPost[$i])
-//                        {
-//                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
-//                        }
-//                        else
-//                        {
-//                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
-//                        }
-//                    }
-//
-//                    Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
-//
-//                    $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);
-//                    $crop_id = $varietyInfo['crop_id'];
-//                    $quantity = $varietyInfo['quantity'];
-//                    $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
-//                    $revised_quantity = $quantity-$crop_sample_size;
-//
-//                    $data_revised = Array('quantity'=>$revised_quantity);
-//                    Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost[$i]));
+                        if($sowingPost[$i])
+                        {
+                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                        }
+                        else
+                        {
+                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        }
+                        Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+
+                        $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost);
+                        $crop_id = $varietyInfo['crop_id'];
+                        $quantity = $varietyInfo['quantity'];
+                        $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
+                        $revised_quantity = $quantity-$crop_sample_size;
+
+                        $data_revised = Array('quantity'=>$revised_quantity);
+                        Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost));
+                    }
                 }
-exit;
+
 //                $this->db->trans_complete();   //DB Transaction Handle END
 //
 //                if ($this->db->trans_status() === TRUE)
