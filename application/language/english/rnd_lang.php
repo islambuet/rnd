@@ -15,6 +15,7 @@ $lang['MSG_NOT_UPDATED_SUCCESS'] = 'Not Updated!';
 $lang['LABEL_DATE']='Date';
 $lang['MSG_FILE_SIZE_ERROR']='File Size Error';
 $lang['MSG_FILE_TYPE_ERROR']='File Type Error';
+$lang['NO_DATA_FOUND']='No Data Found';
 
 
 $lang['LABEL_YES'] = 'Yes';
