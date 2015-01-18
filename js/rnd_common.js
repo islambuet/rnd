@@ -458,7 +458,7 @@ $(document).on("change", "#sample_season_id", function(event)
 
                 rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
                     <input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</td><td> \n\
-                    <input type='text' placeholder='Sowing Date' name='specific_sowing_date[]' id='specific_sowing_date_"+i+"' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' ></td></td></tr>";
+                    <input type='text' name='specific_sowing_date[]' id='specific_sowing_date_"+i+"' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' ></td></td></tr>";
 
             }
 

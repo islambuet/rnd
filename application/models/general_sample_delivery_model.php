@@ -51,8 +51,10 @@ class General_sample_delivery_model extends CI_Model
     {
         $this->db->from('rnd_variety_info vi');
         $this->db->select('vi.rnd_code rnd_code, vi.id rnd_id');
+        $this->db->select('sdc.sowing_date rnd_sowing_date');
 
         $this->db->join('rnd_variety_season vs', 'vs.variety_id = vi.id', 'left');
+        $this->db->join('rnd_sample_delivery_date_crop sdc', 'sdc.rnd_code_id = vi.id', 'left');
         $this->db->group_by('vi.id');
         $this->db->where('vs.season_id',$season_id);
 

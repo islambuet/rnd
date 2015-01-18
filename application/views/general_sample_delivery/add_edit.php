@@ -162,7 +162,7 @@ else
                                 <input type='checkbox' name='rnd_code[]' id='rnd_code' class="checksingle" value='<?php echo $codes['rnd_id'];?>' <?php if(in_array($codes['rnd_id'],$newarray)){ echo "checked";}?> /><?php echo ' '.$codes['rnd_code'];?>
                             </td>
                             <td>
-                                <input type='text' placeholder='Sowing Date' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
+                                <input type='text' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_sowing_date'])){ echo date('d-m-Y',$codes['rnd_sowing_date']);}?>" class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
                             </td>
                         </tr>
                         <script>
