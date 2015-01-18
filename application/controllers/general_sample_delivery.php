@@ -95,10 +95,13 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_save()
     {
+        print_r($this->input->post());
+        exit;
         $id = $this->input->post("sample_id");
         $user = User_helper::get_user();
         $rndPost = $this->input->post('rnd_code');
         $sowingPost = $this->input->post('specific_sowing_date');
+        $transplantingPost = $this->input->post('specific_transplanting_date');
 
         $data = Array(
             'destined_delivery_date'=>strtotime($this->input->post('destined_delivery_date')),
@@ -185,13 +188,18 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
 
-                    if($sowingPost[$i])
+                    if($rndPost[$i])
                     {
-                        $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
-                    }
-                    else
-                    {
-                        $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
+
+                        if($sowingPost[$i])
+                        {
+                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                        }
+                        else
+                        {
+                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        }
                     }
 
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
@@ -239,13 +247,18 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $data_rnd['rnd_code_id'] = $rndPost[$i];
 
-                    if($sowingPost[$i])
+                    if($rndPost[$i])
                     {
-                        $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
-                    }
-                    else
-                    {
-                        $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
+
+                        if($sowingPost[$i])
+                        {
+                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                        }
+                        else
+                        {
+                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        }
                     }
 
                     Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);

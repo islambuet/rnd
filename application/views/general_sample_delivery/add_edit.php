@@ -61,7 +61,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="destined_delivery_date" id="destined_delivery_date" class="form-control validate[required]" value="<?php if($sampleInfo['destined_delivery_date']){ echo date('Y-m-d',$sampleInfo['destined_delivery_date']);}?>" >
+                <input type="text" name="destined_delivery_date" id="destined_delivery_date" class="form-control validate[required]" value="<?php if($sampleInfo['destined_delivery_date']){ echo date('d-m-Y',$sampleInfo['destined_delivery_date']);}?>" >
             </div>
         </div>
 
@@ -80,7 +80,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="delivery_date" id="delivery_date" class="form-control" value="<?php if($sampleInfo['delivery_date']){ echo date('Y-m-d',$sampleInfo['delivery_date']);}?>" >
+                <input type="text" name="delivery_date" id="delivery_date" class="form-control" value="<?php if($sampleInfo['delivery_date']){ echo date('d-m-Y',$sampleInfo['delivery_date']);}?>" >
             </div>
         </div>
 
@@ -99,7 +99,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_RECEIVE_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="rnd_receive_date" id="rnd_receive_date" class="form-control" value="<?php if($sampleInfo['rnd_received_date']){ echo date('Y-m-d',$sampleInfo['rnd_received_date']);}?>">
+                <input type="text" name="rnd_receive_date" id="rnd_receive_date" class="form-control" value="<?php if($sampleInfo['rnd_received_date']){ echo date('d-m-Y',$sampleInfo['rnd_received_date']);}?>">
             </div>
         </div>
 
@@ -108,7 +108,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_SOWING_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]" value="<?php if($sampleInfo['destined_sowing_date']){ echo date('Y-m-d',$sampleInfo['destined_sowing_date']);}?>" >
+                <input type="text" name="destined_sowing_date" id="destined_sowing_date" class="form-control validate[required]" value="<?php if($sampleInfo['destined_sowing_date']){ echo date('d-m-Y',$sampleInfo['destined_sowing_date']);}?>" >
             </div>
         </div>
 
@@ -127,7 +127,7 @@ else
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php if($sampleInfo['sowing_date']){ echo date('Y-m-d',$sampleInfo['sowing_date']);}?>" >
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" value="<?php if($sampleInfo['sowing_date']){ echo date('d-m-Y',$sampleInfo['sowing_date']);}?>" >
             </div>
         </div>
 
@@ -135,7 +135,7 @@ else
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?></label>
             </div>
-            <div class="col-sm-5 col-xs-9" id="load_rnd_code">
+            <div class="col-xs-8" id="load_rnd_code">
                 <table class="table table-condensed table-striped table-bordered table-hover no-margin">
                     <thead>
                         <tr>
@@ -145,6 +145,10 @@ else
 
                             <th>
                                 <?php echo $this->lang->line('LABEL_SOWING_DATE');?>
+                            </th>
+
+                            <th>
+                                <?php echo $this->lang->line('LABEL_TRANSPLANTING_DATE');?>
                             </th>
                         </tr>
                     </thead>
@@ -164,12 +168,26 @@ else
                             <td>
                                 <input type='text' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_sowing_date'])){ echo date('d-m-Y',$codes['rnd_sowing_date']);}?>" class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
                             </td>
+                            <td>
+                                <input type='text' name='specific_transplanting_date[]' id='specific_transplanting_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_transplanting_date'])){ echo date('d-m-Y',$codes['rnd_transplanting_date']);}?>" class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
+                            </td>
                         </tr>
                         <script>
                             var serial = '<?php echo $i;?>';
+
                             Calendar.setup({
                                 inputField: "specific_sowing_date"+serial,
                                 trigger: "specific_sowing_date"+serial,
+                                onSelect: function() {
+                                    this.hide()
+                                },
+                                showTime: 12,
+                                dateFormat: "%d-%m-%Y"
+                            });
+
+                            Calendar.setup({
+                                inputField: "specific_transplanting_date"+serial,
+                                trigger: "specific_transplanting_date"+serial,
                                 onSelect: function() {
                                     this.hide()
                                 },
@@ -244,7 +262,22 @@ else
                     this.hide()
                 },
                 showTime: 12,
-                dateFormat: "%Y-%m-%d"
+                dateFormat: "%d-%m-%Y"
+            });
+
+        });
+
+        $(document).on("click", ".specific_transplanting_date", function(event)
+        {
+          //  alert (this.value)
+            Calendar.setup({
+                inputField: this,
+                trigger: this,
+                onSelect: function() {
+                    this.hide()
+                },
+                showTime: 12,
+                dateFormat: "%d-%m-%Y"
             });
 
         });
@@ -258,7 +291,7 @@ else
             this.hide()
         },
         showTime: 12,
-        dateFormat: "%Y-%m-%d"
+        dateFormat: "%d-%m-%Y"
     });
 
     Calendar.setup({
@@ -268,7 +301,7 @@ else
             this.hide()
         },
         showTime: 12,
-        dateFormat: "%Y-%m-%d"
+        dateFormat: "%d-%m-%Y"
     });
 
     Calendar.setup({
@@ -278,7 +311,7 @@ else
             this.hide()
         },
         showTime: 12,
-        dateFormat: "%Y-%m-%d"
+        dateFormat: "%d-%m-%Y"
     });
 
     Calendar.setup({
@@ -288,7 +321,7 @@ else
             this.hide()
         },
         showTime: 12,
-        dateFormat: "%Y-%m-%d"
+        dateFormat: "%d-%m-%Y"
     });
 
     Calendar.setup({
@@ -298,22 +331,10 @@ else
             this.hide()
         },
         showTime: 12,
-        dateFormat: "%Y-%m-%d"
+        dateFormat: "%d-%m-%Y"
     });
 
-    function cal_txt(serial)
-    {
 
-//        Calendar.setup({
-//            inputField: "specific_sowing_date_"+serial,
-//            trigger: "specific_sowing_date_"+serial,
-//            onSelect: function() {
-//                "specific_sowing_date_"+serial.hide()
-//            },
-//            showTime: 12,
-//            dateFormat: "%Y-%m-%d"
-//        });
-    }
 
 
 </script>

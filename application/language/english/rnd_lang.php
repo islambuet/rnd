@@ -101,7 +101,8 @@ $lang['LABEL_RND_CODE'] = 'R&D Code';
 $lang['LABEL_ALL_SELECT_RND_CODE'] = 'All Select (R&D Code)';
 $lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 $lang['LABEL_RND_YEAR'] = 'R&D Year';
-$lang['LABEL_ALL_SELECT_RND_CODE'] = ' All Select (R&D Code)';
+$lang['LABEL_ALL_SELECT_RND_CODE'] = ' Select All';
+$lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
 
 //Trial Analysis Fortnightly
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
@@ -140,6 +141,8 @@ $lang['LABEL_SELECT_FERTILIZER']='Select Fertilizer';
 $lang['LABEL_BED']='Select Row/Seed Bed';
 $lang['LABEL_QUANTITY']='Quantity';
 $lang['LABEL_PRICE']='Price';
+$lang['LABEL_FERTILISER_NAME']='Fertilizer Name';
+$lang['LABEL_SEED_BED']='Seed Bed';
 
 // pesticide Stock In
 $lang['LABEL_PESTICIDE_STOCK_IN']='Pesticide & Fungicide Name';
