@@ -19,7 +19,7 @@ $this->load->view("action_buttons",$data);
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("Crop Type"); ?></th>
 <!--                <th>--><?php //echo $this->lang->line("LABEL_LABOUR_ACTIVITY"); ?><!--</th>-->
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_LABOUR_QUANTITY"); ?></th>
@@ -35,7 +35,7 @@ $this->load->view("action_buttons",$data);
                 <tr>
                     <td><?php echo $key+1;?></td>
                     <td><?php echo $stock_in['crop_name'];?></td>
-                    <td><?php echo $stock_in['variety_name'];?></td>
+                    <td><?php echo $stock_in['product_type'];?></td>
 <!--                    <td>--><?php //echo $stock_in['labor_activity_name'];?><!--</td>-->
                     <td><?php echo date('d-m-Y',$stock_in['activity_date']);?></td>
                     <td><?php echo $stock_in['number_of_labor'];?></td>

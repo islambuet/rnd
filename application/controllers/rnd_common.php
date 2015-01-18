@@ -241,18 +241,18 @@ class Rnd_common extends ROOT_Controller
     }
 
 
-    public function labour_activity_variety_name_by_crop()
+    public function labour_activity_crop_type_by_crop()
     {
         $crop_id = $this->input->post('crop_id');
         //$type_id = $this->input->post('type_id');
 
-        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id);
+        $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
         $data['selected'] = $this->input->post('selected');
 
         foreach($data['details'] as $code)
         {
             $data['value'][] = $code['id'];
-            $data['name'][] = $code['variety_name'];
+            $data['name'][] = $code['product_type'];
         }
 
         $ajax['status']=true;
@@ -260,7 +260,81 @@ class Rnd_common extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
+
+    public function labour_activity_rnd_by_crop_type()
+    {
+        $crop_type = $this->input->post('crop_type');
+        //$type_id = $this->input->post('type_id');
+
+        $rnd_result = $this->rnd_common_model->dropDown_rnd_code_by_type($crop_type);
+
+
+        $this->jsonReturn($rnd_result);
+
+    }
+
+
     /////// Labour Activity End /////////
+
+
+
+    //////// Fruit Picture Report Start ////////
+
+    public function picture_report_crop_by_season()
+    {
+        $season_id = $this->input->post('season_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop($season_id);
+
+        //print_r($data['details']);
+        //exit;
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['crop_id'];
+            $data['name'][] = $ctype['crop_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#picture_report_crop_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+    public function picture_report_crop_type_by_name()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['id'];
+            $data['name'][] = $ctype['product_type'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#picture_report_crop_type","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+    public function picture_report_rnd_code_by_name()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $type_id = $this->input->post('type_id');
+
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_name_type($crop_id,$type_id);
+        $data['selected'] = '';
+
+        foreach($data['details'] as $code)
+        {
+            $data['value'][] = $code['id'];
+            $data['name'][] = $code['rnd_code'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#picture_report_rnd_code","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    /////// Fruit Picture Report End //////////
 
 
 }

@@ -30,7 +30,7 @@ if(!empty($details))
         font-weight: bold;
     }
 </style>
-<form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php base_url()?>trial_fruit_report_entry/index/save" method="post">
+<form class="form_valid" id="save_form" enctype="multipart/form-data" action="<?php echo base_url()?>trial_fruit_report_entry/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -44,7 +44,7 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['season_id'])){ echo "disabled";}?>>
+                <select name="season_id" id="picture_report_season_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['season_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -55,6 +55,7 @@ if(!empty($details))
                     ?>
                 </select>
             </div>
+            <input type="hidden" name="fruit_report_id" id="fruit_report_id" value="<?php echo $pictureInfo['id'];?>"/>
         </div>
 
         <div class="row show-grid">
@@ -62,7 +63,7 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
+                <select name="crop_id" id="picture_report_crop_id" class="form-control validate[required]" <?php if(!empty($pictureInfo['crop_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -73,7 +74,7 @@ if(!empty($details))
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="fruit_report_id" id="fruit_report_id" value="<?php echo $pictureInfo['id'];?>"/>
+
         </div>
 
         <div style="" class="row show-grid">
@@ -81,7 +82,7 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type" id="crop_type" class="form-control" <?php if(!empty($pictureInfo['product_type_id'])){ echo "disabled";}?>>
+                <select name="crop_type" id="picture_report_crop_type" class="form-control" <?php if(!empty($pictureInfo['product_type_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php foreach($types as $type){?>
                         <option value="<?php echo $type['id'];?>" <?php if($type['id']==$pictureInfo['product_type_id']){ echo "selected";}?>><?php echo $type['product_type'];?></option>
@@ -95,7 +96,7 @@ if(!empty($details))
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="rnd_code" id="rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code_id'])){ echo "disabled";}?>>
+                <select name="rnd_code" id="picture_report_rnd_code" class="form-control" <?php if(!empty($pictureInfo['rnd_code_id'])){ echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     $rndCode = System_helper::get_rnd_codes();
@@ -132,8 +133,10 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_1" />
-                <input type="text" readonly name="before_harvest_image_caption[]" value="<?php echo $this->lang->line('LABEL_FRUIT_REPORT_PLOT');?>"/> <input type="file" name="before_harvest[]" value="" onchange="readURL1(this)"/>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_1"  class="file_display_container"/>
+                <?php echo $this->lang->line('Plot Plant');?>
+<!--                <input type="text" readonly name="before_harvest_image_caption[]" value="--><?php //echo $this->lang->line('LABEL_FRUIT_REPORT_PLOT');?><!--"/> -->
+                <input type="file" name="before_harvest[]" value="" class="file_button"/>
             </label>
             <?php
             $img=base_url()."images/no_image.jpg";
@@ -146,8 +149,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_2" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PLANT');?> <input type="file" name="before_harvest[]" value="" onchange="readURL2(this)"/>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_2" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PLANT');?>
+                <input type="file" name="before_harvest[]" value="" class="file_button"/>
             </label>
             <?php
             $img=base_url()."images/no_image.jpg";
@@ -159,8 +163,9 @@ if(!empty($details))
             }
             ?>
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_3" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_CLOSE_FRUIT');?> <input type="file" name="before_harvest[]" value="" onchange="readURL3(this)"/>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="before_harvest_pic_3" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_CLOSE_FRUIT');?>
+                <input type="file" name="before_harvest[]" value="" class="file_button"/>
             </label>
 
         </div>
@@ -195,8 +200,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_1" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?> <input type="file" name="after_harvest_single[]" value=""  onchange="readURL4(this)" />
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_1" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?>
+                <input type="file" name="after_harvest_single[]" value=""  class="file_button"/>
             </label>
             <?php
             $img=base_url()."images/no_image.jpg";
@@ -209,8 +215,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_2" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?> <input type="file" name="after_harvest_single[]" value="" onchange="readURL5(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_2" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?>
+                <input type="file" name="after_harvest_single[]" value="" class="file_button" /></label>
             <?php
             $img=base_url()."images/no_image.jpg";
 
@@ -222,8 +229,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_3" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC3');?> <input type="file" name="after_harvest_single[]" value="" onchange="readURL6(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_single_3" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC3');?>
+                <input type="file" name="after_harvest_single[]" value="" class="file_button" /></label>
 
         </div>
         <div class="clearfix"></div>
@@ -246,8 +254,9 @@ if(!empty($details))
             }
             ?>
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_several_1" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?> <input type="file" name="after_harvest_several[]" value="" onchange="readURL7(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_several_1" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?>
+                <input type="file" name="after_harvest_several[]" value="" class="file_button" /></label>
 
             <?php
             $img=base_url()."images/no_image.jpg";
@@ -259,8 +268,9 @@ if(!empty($details))
             }
             ?>
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_several_2" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?> <input type="file" name="after_harvest_several[]" value="" onchange="readURL8(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_several_2" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?>
+                <input type="file" name="after_harvest_several[]" value="" class="file_button" /></label>
 
 
         </div>
@@ -283,8 +293,9 @@ if(!empty($details))
             }
             ?>
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_1" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?> <input type="file" name="after_harvest_cut[]" value="" onchange="readURL9(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_1" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC1');?>
+                <input type="file" name="after_harvest_cut[]" value="" class="file_button" /></label>
             <?php
             $img=base_url()."images/no_image.jpg";
 
@@ -296,8 +307,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_2" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?> <input type="file" name="after_harvest_cut[]" value="" onchange="readURL10(this)" /></label>
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_2"  class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC2');?>
+                <input type="file" name="after_harvest_cut[]" value="" class="file_button" /></label>
             <?php
             $img=base_url()."images/no_image.jpg";
 
@@ -309,8 +321,9 @@ if(!empty($details))
             ?>
 
             <label class="control-label">
-                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_3" />
-                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC3');?> <input type="file" name="after_harvest_cut[]" value="" onchange="readURL11(this)" />
+                <img src="<?php echo $img;?>" style="width: 77px; height: 77px;" id="after_harvest_cut_3" class="file_display_container"/>
+                <?php echo $this->lang->line('LABEL_FRUIT_REPORT_PIC3');?>
+                <input type="file" name="after_harvest_cut[]" value="" class="file_button" />
             </label>
 
         </div>
@@ -323,160 +336,160 @@ if(!empty($details))
 
 <script type="text/javascript">
 
-    function readURL1(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#before_harvest_pic_1').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL2(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#before_harvest_pic_2').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL3(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#before_harvest_pic_3').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL4(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_single_1').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL5(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_single_2').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL6(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_single_3').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL7(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_several_1').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL8(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_several_2').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL9(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_cut_1').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL10(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_cut_2').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL11(input)
-    {
-        if (input.files && input.files[0])
-        {
-            var reader = new FileReader();
-
-            reader.onload = function ( e )
-            {
-                $('#after_harvest_cut_3').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+//    function readURL1(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#before_harvest_pic_1').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL2(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#before_harvest_pic_2').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL3(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#before_harvest_pic_3').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL4(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_single_1').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL5(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_single_2').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL6(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_single_3').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL7(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_several_1').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL8(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_several_2').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL9(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_cut_1').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL10(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_cut_2').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    function readURL11(input)
+//    {
+//        if (input.files && input.files[0])
+//        {
+//            var reader = new FileReader();
+//
+//            reader.onload = function ( e )
+//            {
+//                $('#after_harvest_cut_3').attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
 
 
     ///// image view end
@@ -487,71 +500,6 @@ if(!empty($details))
 
     });
 
-    $(document).on("change", "#season_id", function(event)
-    {
-        var season_id = $("#season_id").val();
-        var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_by_season/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{season_id:season_id,crop_selected:crop_selected},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_id", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-        var product_type_id = '<?php echo $pictureInfo['product_type_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_crop_type_by_name/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id,product_type_id:product_type_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-
-            }
-        });
-
-    });
-
-    $(document).on("change", "#crop_type", function(event)
-    {
-        var crop_id = $("#crop_id").val();
-        var type_id = $("#crop_type").val();
-        var selected = '<?php echo $pictureInfo['rnd_code_id'];?>';
-        $.ajax({
-            url: base_url+"rnd_common/dropDown_rnd_code_by_name_type/",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:crop_id,type_id:type_id},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-            }
-        });
-
-    });
 
 
 </script>

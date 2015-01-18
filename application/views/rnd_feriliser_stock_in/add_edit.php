@@ -7,7 +7,7 @@
 //print_r($feriliser_info);
 //echo '</pre>';
 ?>
-<form class="form_valid" id="save_form" action="<?php base_url()?>rnd_feriliser_stock_in/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url()?>rnd_feriliser_stock_in/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">

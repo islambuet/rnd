@@ -63,7 +63,7 @@ class Rnd_labour_activities extends ROOT_Controller
                 'id' => 0,
                 'season_id'=>'',
                 'crop_id' => '',
-                'varity_type_id' => '',
+                'crop_type_id' => '',
                 'labor_activity_name' => '',
                 'activity_date' => '',
                 'number_of_labor' => '',
@@ -75,7 +75,7 @@ class Rnd_labour_activities extends ROOT_Controller
 
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
-        $data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
+        $data['types'] = Query_helper::get_info('rnd_product_type_info', '*', array('status ='.$this->config->item('active')));
 
 
         $ajax['status'] = true;
@@ -109,18 +109,59 @@ class Rnd_labour_activities extends ROOT_Controller
 
                 Query_helper::update('rnd_labor_activity_info', $data, array("id = " . $id));
                 $this->message = $this->lang->line("MSG_UPDATE_SUCCESS");
-            } else {
+            }
+            else
+            {
+
+                $this->db->trans_start();
 
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
-                $data['varity_type_id'] = $this->input->post('labour_activity_variety');
+                $data['crop_type_id'] = $this->input->post('labour_activity_variety');
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
 
-                Query_helper::add('rnd_labor_activity_info', $data);
-                $this->message = $this->lang->line("MSG_CREATE_SUCCESS");
+                $last_id = Query_helper::add('rnd_labor_activity_info', $data);
+
+                $count = count($this->input->post('rnd_code'));
+
+                if($count>0)
+
+                {
+
+
+                    $rnd_codes = $this->input->post('rnd_code');
+                    foreach($rnd_codes as $rnd_code)
+                    {
+
+
+                        $data1 = Array(
+                            'labor_activity_info_id'=>$last_id,
+                            'rnd_code_id' => $rnd_code,
+                            //'fruit_report_entry_type' => $this->config->item('fruit_report_before_harvest')
+
+                        );
+
+                        $data1['created_by'] = $user->user_id;
+                        $data1['creation_date'] = time();
+                        Query_helper::add('rnd_labor_activity_rndcode',$data1);
+                    }
+                }
+
+
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
             }
             $this->rnd_list();
         }

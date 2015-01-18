@@ -130,11 +130,14 @@ class Trial_fruit_report_entry extends ROOT_Controller
 
 //                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
 
-                $data_img['picture_report_id']= $id;
-                $data_img['created_by'] = $user->user_id;
-                $data_img['creation_date'] = time();
 
-                Query_helper::add('rnd_fruit_report_entry',$data_img);
+                //$data_img['id']= $id;
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+               // Query_helper::update('rnd_fruit_report_entry',$data_img);
+
+                Query_helper::update('rnd_fruit_report_entry',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -150,7 +153,9 @@ class Trial_fruit_report_entry extends ROOT_Controller
             }
             else
             {
+
                 $this->db->trans_start();  //DB Transaction Handle START
+
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -221,31 +226,32 @@ class Trial_fruit_report_entry extends ROOT_Controller
                 /// After Harvest Single Fruit ////
 
                 $count1 = count($_FILES["after_harvest_single"]['name']);
-
+//                echo $count1;
+//                exit;
                 if($count1>0)
                 {
 
                     $file_name = $_FILES["after_harvest_single"]['name'];
                     $file_temp = $_FILES['after_harvest_single']['tmp_name'];
 
-                    for($i=0; $i<$count1; $i++)
+                    for($j=0; $j<$count1; $j++)
                     {
-                        $ext = end(explode(".", @$file_name[$i]));
+                        $ext = end(explode(".", @$file_name[$j]));
 
-                        $size = @$file_name[$i]['size'];
+                        $size = @$file_name[$j]['size'];
 
-                        $new_file_name = "ahs".time().$i;
-                        $save_file_name = "ahs".time().$i.'.'.$ext;
+                        $new_file_name = "ahs".time().$j;
+                        $save_file_name = "ahs".time().$j.'.'.$ext;
 
-                        if (@$file_name[$i] != "")
+                        if (@$file_name[$j] != "")
                         {
                             if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
                             {
                                 if($size < $this->config->item('fruit_picture_report_img_size'))
                                 {
-                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    @$ext = end(explode(".", @$file_name[$j]));
                                     $file_url = $new_file_name . "." . $ext;
-                                    copy(@$file_temp[$i], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
+                                    copy(@$file_temp[$j], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
 
                                     $data2 = Array(
                                         'fruit_report_entry_id'=>$last_id,
@@ -286,24 +292,24 @@ class Trial_fruit_report_entry extends ROOT_Controller
                     $file_name = $_FILES["after_harvest_several"]['name'];
                     $file_temp = $_FILES['after_harvest_several']['tmp_name'];
 
-                    for($i=0; $i<$count2; $i++)
+                    for($k=0; $k<$count2; $k++)
                     {
-                        $ext = end(explode(".", @$file_name[$i]));
+                        $ext = end(explode(".", @$file_name[$k]));
 
-                        $size = @$file_name[$i]['size'];
+                        $size = @$file_name[$k]['size'];
 
-                        $new_file_name = "ah_sv".time().$i;
-                        $save_file_name = "ah_sv".time().$i.'.'.$ext;
+                        $new_file_name = "ah_sv".time().$k;
+                        $save_file_name = "ah_sv".time().$k.'.'.$ext;
 
-                        if (@$file_name[$i] != "")
+                        if (@$file_name[$k] != "")
                         {
                             if(($ext == 'jpg') || ($ext == 'png') || ($ext == 'jpeg'))
                             {
                                 if($size < $this->config->item('fruit_picture_report_img_size'))
                                 {
-                                    @$ext = end(explode(".", @$file_name[$i]));
+                                    @$ext = end(explode(".", @$file_name[$k]));
                                     $file_url = $new_file_name . "." . $ext;
-                                    copy(@$file_temp[$i], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
+                                    copy(@$file_temp[$k], $this->config->item('fruit_picture_report_after_harvesting_img_upload_folder')."/".$file_url);
 
                                     $data3 = Array(
                                         'fruit_report_entry_id'=>$last_id,
