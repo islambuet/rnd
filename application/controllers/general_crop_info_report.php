@@ -48,15 +48,14 @@ class General_crop_info_report extends ROOT_Controller
 
     public function rnd_report()
     {
-        $crop = $this->input->post('procurement_crop_id');
-        $type = $this->input->post('procurement_variety');
+        $rndCode = $this->input->post('common_rnd_code');
+        $inputRndCode = $this->input->post('input_rnd_code');
 
-        $data['procurements']=$this->general_crop_info_report_model->get_procurement($crop, $type);
+        $data['procurements']=$this->general_crop_info_report_model->get_procurement($rndCode, $inputRndCode);
 
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("general_crop_info_report/report", $data, true));
         $this->jsonReturn($ajax);
-
     }
 
 }

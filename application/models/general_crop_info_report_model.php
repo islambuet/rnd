@@ -8,7 +8,7 @@ class General_crop_info_report_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_procurement($crop=null, $type=null)
+    public function get_procurement($rndCode=null, $inputRndCode=null)
     {
         $this->db->select('vi.*');
         $this->db->from('rnd_variety_info vi');
@@ -22,14 +22,14 @@ class General_crop_info_report_model extends CI_Model
         $this->db->join('rnd_principal_info pi', 'pi.id = vi.principal_id', 'left');
         $this->db->order_by('vi.crop_id','vi.product_type_id');
 
-        if($crop !='')
+        if($rndCode !='')
         {
-            $this->db->where('vi.crop_id',$crop);
+            $this->db->where('vi.id',$rndCode);
         }
 
-        if($type !='')
+        if($inputRndCode !='')
         {
-            $this->db->where('vi.variety_type',$type);
+            $this->db->like('vi.rnd_code',$inputRndCode);
         }
 
         $result = $this->db->get()->result_array();
