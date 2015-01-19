@@ -108,13 +108,6 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
 
         );
 
-//        if (!$this->rnd_feriliser_stock_out_model->check_existing_stock($this->input->post('feriliser_in'), $this->input->post('feriliser_out_quantity')))
-//        {
-//            $ajax['status'] = false;
-//            $ajax['message'] = $this->lang->line("MSG_FERTILISER_NOT_AVAILABLE_STOCK");
-//            $this->jsonReturn($ajax);
-//        }
-
         if (!$this->check_validation())
         {
             $ajax['status'] = false;
@@ -125,14 +118,28 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
         {
             if ($id > 0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_fertilizer_stock_out', $data, array("id = " . $id));
-                $this->message = $this->lang->line("MSG_UPDATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
                 $data['rnd_code_id'] = $this->input->post('feriliser_out_rnd');
@@ -141,7 +148,17 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
                 $data['creation_date'] = time();
 
                 Query_helper::add('rnd_fertilizer_stock_out', $data);
-                $this->message = $this->lang->line("MSG_CREATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             $this->rnd_list();
         }

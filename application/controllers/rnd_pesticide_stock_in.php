@@ -58,7 +58,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -68,6 +68,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         {
             $data['pesticideInfo'] = $this->rnd_pesticide_stock_in_model->get_pesticide_row($id);
             $data['title']="Edit Pesticide & Fungicide Stock (".$data['pesticideInfo']['pesticide_name'].")";
+            $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/edit/".$id;
         }
         else
         {
@@ -81,6 +82,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
                 //'status' => $this->config->item('active')
             );
             $data['title']="New Pesticide & Fungicide Stock";
+            $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/add";
         }
 
 
@@ -122,6 +124,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
             }
             else
             {
+                $data['status'] = $this->config->item('active');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 

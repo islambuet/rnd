@@ -46,7 +46,8 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
-        if ($page > 0) {
+        if ($page > 0)
+        {
             $page = $page - 1;
         }
 
@@ -56,19 +57,24 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_pesticide_stock_out/list", $data, true));
 
-        if ($this->message) {
+        if ($this->message)
+        {
             $ajax['message'] = $this->message;
         }
-
+        $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/list/".($page+1);
         $this->jsonReturn($ajax);
     } /////    Render list end
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0) {
+        if ($id != 0)
+        {
             $data['pesticideInfo'] = $this->rnd_pesticide_stock_out_model->get_pesticide_row($id);
-            $data['title'] = "Edit Pesticide & Fungicide Stock (" . $data['pesticideInfo']['pesticide_name'] . ")";
-        } else {
+            $data['title'] = "Edit Pesticide & Fungicide Stock";
+            $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/edit/".$id;
+        }
+        else
+        {
             $data['pesticideInfo'] = Array(
                 'id' => 0,
                 'season_id' =>'',
@@ -78,7 +84,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
                 //'pesticide_name' => '',
                 'pesticide_quantity' => '',
             );
-
+            $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/add";
             $data['title'] = "New Pesticide & Fungicide Stock Out";
         }
         $data['pesticide_info'] = $this->rnd_pesticide_stock_out_model->get_pesticides();
@@ -113,14 +119,28 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         {
             if ($id > 0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_pesticide_fungicide_stock_out', $data, array("id = " . $id));
-                $this->message = $this->lang->line("MSG_UPDATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
                 $data['rnd_code_id'] = $this->input->post('pesticide_out_rnd');
@@ -128,7 +148,17 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
                 $data['creation_date'] = time();
 
                 Query_helper::add('rnd_pesticide_fungicide_stock_out', $data);
-                $this->message = $this->lang->line("MSG_CREATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             $this->rnd_list();
         }
@@ -203,10 +233,10 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     private function check_validation()
     {
 
-        if (Validation_helper::validate_empty($this->input->post('pesticide_in'))) {
-            return false;
-        }
-
+        if (Validation_helper::validate_empty($this->input->post('season_id'))) { return false; }
+        if (Validation_helper::validate_empty($this->input->post('crop_id'))) {  return false; }
+        if (Validation_helper::validate_empty($this->input->post('pesticide_out_rnd'))) { return false; }
+        if (Validation_helper::validate_empty($this->input->post('pesticide_in'))) { return false; }
         if (!Validation_helper::validate_numeric($this->input->post('pesticide_out_quantity')) || !$this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('pesticide_in'),$this->input->post('pesticide_out_quantity')))
         {
             return false;

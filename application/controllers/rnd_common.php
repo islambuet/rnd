@@ -150,10 +150,11 @@ class Rnd_common extends ROOT_Controller
 
     public function pesticide_rnd_code_by_crop_name()
     {
+        $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         //$type_id = $this->input->post('type_id');
 
-        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id);
+        $data['details'] = $this->rnd_common_model->dropDown_rnd_code_by_crop_name($crop_id, $season_id);
         $data['selected'] = $this->input->post('selected');
 
         foreach($data['details'] as $code)

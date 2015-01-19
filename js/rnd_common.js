@@ -847,13 +847,14 @@ $(document).on("change", "#pesticide_season_id", function(event)
 
 $(document).on("change", "#pesticide_crop_id", function(event)
 {
+    var season_id = $("#pesticide_season_id").val();
     var crop_id = $("#pesticide_crop_id").val();
     //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
     $.ajax({
         url: base_url+"rnd_common/pesticide_rnd_code_by_crop_name/",
         type: 'POST',
         dataType: "JSON",
-        data:{crop_id:crop_id},
+        data:{crop_id:crop_id, season_id: season_id},
         success: function (data, status)
         {
 
