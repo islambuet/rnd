@@ -71,21 +71,22 @@ class General_crop_info_report extends ROOT_Controller
     {
         if($this->input->post('common_season_id'))
         {
-            if(Validation_helper::validate_empty($this->input->post('common_season_id')))
-            {
-                return false;
-            }
-
             if(Validation_helper::validate_empty($this->input->post('common_crop_id')))
             {
                 return false;
             }
+        }
 
+        if($this->input->post('common_crop_id'))
+        {
             if(Validation_helper::validate_empty($this->input->post('common_crop_type')))
             {
                 return false;
             }
+        }
 
+        if($this->input->post('common_crop_type'))
+        {
             if(Validation_helper::validate_empty($this->input->post('common_rnd_code')))
             {
                 return false;
