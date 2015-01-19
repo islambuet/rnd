@@ -51,7 +51,7 @@ class General_sample_delivery extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."general_sample_delivery/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -64,6 +64,7 @@ class General_sample_delivery extends ROOT_Controller
             $data['sampleRndCodes'] = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($data['sampleInfo']['season_id']);
 
             $data['title']="Edit Sample Delivery (".$data['sampleInfo']['season_name'].")";
+            $ajax['page_url']=base_url()."general_sample_delivery/index/edit/".$id;
         }
         else
         {
@@ -82,6 +83,7 @@ class General_sample_delivery extends ROOT_Controller
                 'remark' => ''
             );
             $data['title']="New Sample Delivery";
+            $ajax['page_url']=base_url()."general_sample_delivery/index/add";
         }
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));

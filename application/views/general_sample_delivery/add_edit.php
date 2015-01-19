@@ -255,7 +255,7 @@ else
 
         $(document).on("click", ".specific_sowing_date", function(event)
         {
-          //  alert (this.value)
+            //  alert (this.value)
             Calendar.setup({
                 inputField: this,
                 trigger: this,
@@ -270,7 +270,7 @@ else
 
         $(document).on("click", ".specific_transplanting_date", function(event)
         {
-          //  alert (this.value)
+            //  alert (this.value)
             Calendar.setup({
                 inputField: this,
                 trigger: this,
