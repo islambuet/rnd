@@ -16,12 +16,10 @@ $lang['LABEL_DATE']='Date';
 $lang['MSG_FILE_SIZE_ERROR']='File Size Error';
 $lang['MSG_FILE_TYPE_ERROR']='File Type Error';
 $lang['NO_DATA_FOUND']='No Data Found';
-
-
 $lang['LABEL_YES'] = 'Yes';
 $lang['LABEL_NO'] = 'No';
-
 $lang['LABEL_DAYS'] = 'Days';
+$lang['LABEL_TYPE_RND_CODE'] = 'Type R&D Code';
 
 //login
 $lang['MSG_USERNAME_PASSWORD_INVALID'] = 'Username and Password did not match or Invalid';

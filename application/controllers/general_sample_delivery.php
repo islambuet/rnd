@@ -175,7 +175,6 @@ class General_sample_delivery extends ROOT_Controller
                     }
                 }
 
-
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
@@ -213,7 +212,6 @@ class General_sample_delivery extends ROOT_Controller
                         $data_revised = Array('quantity'=>$revised_quantity);
                         Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost));
                     }
-
                 }
 
                 $this->db->trans_complete();   //DB Transaction Handle END
