@@ -79,7 +79,7 @@ foreach($seasonInfo as $result)
             </div>
         </div>
 
-        <div style="" class="row show-grid <?php if($varietyInfo['variety_type']!=$this->config->item('variety_type_principal')){ echo 'hiddenPrincipal';}?>" id="principal_div">
+        <div class="row show-grid <?php if(!empty($varietyInfo['variety_type'])){if($varietyInfo['variety_type']!=$this->config->item('variety_type_principal')){ echo 'hiddenPrincipal';}}?>" id="principal_div">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>

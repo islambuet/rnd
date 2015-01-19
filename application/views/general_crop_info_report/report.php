@@ -64,8 +64,6 @@
                         }
                     ?>
                 </td>
-<!--                <td>--><?php //echo $procurement['crop_name'];?><!--</td>-->
-<!--                <td>--><?php //echo $procurement['product_type'];?><!--</td>-->
                 <td><?php echo $procurement['variety_name'];?></td>
                 <td>
                     <?php
