@@ -190,21 +190,22 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
 
             if(!$ajax['status'])
             {
-                $ajax['message'] = 'This Pesticide is not Available in Stock';
+                $ajax['message'] = $this->lang->line("MSG_PESTICIDE_NOT_AVAILABLE_STOCK");
             }
 
         }
         else
         {
-            $ajax['message'] = 'Please Select Pesticide';
+            $ajax['message'] =  $this->lang->line("MSG_SELECT_PESTICIDE");
         }
         $this->jsonReturn($ajax);
     }
     public function check_current_stock()
     {
+
         if($this->input->post('common_pesticide_id'))
         {
-            if($this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('common_pesticide_id'),$this->input->post('common_pesticide_quantity')))
+            if($this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('common_pesticide_id'),$this->input->post('common_pesticide_quantity'),$this->input->post('rowid')))
             {
                 $ajax['status']=true;
             }
@@ -215,16 +216,16 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
 
             if(!$ajax['status'])
             {
-                $ajax['message'] = 'Stock Unavailable';
+                $ajax['message'] = $this->lang->line("MSG_STOCK_UNAVAILABLE");
             }
             else
             {
-                $ajax['message'] = 'Stock Available';
+                $ajax['message'] = $this->lang->line("MSG_STOCK_AVAILABLE");
             }
         }
         else
         {
-            $ajax['message'] = 'Please Select Pesticide';
+            $ajax['message'] = $this->lang->line("MSG_SELECT_PESTICIDE");
         }
         $this->jsonReturn($ajax);
 
@@ -237,7 +238,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         if (Validation_helper::validate_empty($this->input->post('crop_id'))) {  return false; }
         if (Validation_helper::validate_empty($this->input->post('pesticide_out_rnd'))) { return false; }
         if (Validation_helper::validate_empty($this->input->post('pesticide_in'))) { return false; }
-        if (!Validation_helper::validate_numeric($this->input->post('pesticide_out_quantity')) || !$this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('pesticide_in'),$this->input->post('pesticide_out_quantity')))
+        if (!Validation_helper::validate_numeric($this->input->post('pesticide_out_quantity')) || !$this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('pesticide_in'),$this->input->post('pesticide_out_quantity'),$this->input->post('pesticide_stock_out_id')))
         {
             return false;
         }

@@ -800,6 +800,7 @@ $(document).on("change", "#pesticide_out", function(event)
 
 $(document).on("blur", "#pesticide_out_quantity", function(event)
 {
+    var rowid = $("#pesticide_stock_out_id").val();
     var common_pesticide_quantity = $("#pesticide_out_quantity").val();
     var common_pesticide_id = $("#pesticide_out").val();
 
@@ -807,7 +808,7 @@ $(document).on("blur", "#pesticide_out_quantity", function(event)
         url: base_url+"rnd_pesticide_stock_out/check_current_stock/",
         type: 'POST',
         dataType: "JSON",
-        data:{common_pesticide_quantity:common_pesticide_quantity, common_pesticide_id:common_pesticide_id},
+        data:{common_pesticide_quantity:common_pesticide_quantity, common_pesticide_id:common_pesticide_id, rowid:rowid},
         success: function (data, status)
         {
 

@@ -11,7 +11,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         $this->load->model("rnd_pesticide_stock_in_model");
     }
 
-    public function index($task="list",$id=0)
+    public function index($task="list",$id=0, $pesticide_id=0)
     {
         if($task=="list")
         {
@@ -28,7 +28,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
 
         elseif($task=="delete")
         {
-           $this->rnd_change_status($id);
+           $this->rnd_change_status($id, $pesticide_id);
         }
 
         else
@@ -137,11 +137,21 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         }
 
     }
-    public function rnd_change_status($id){
-          $data=array('status'=>$this->config->item('inactive'));
-          Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
-          $this->rnd_list();//this is similar like redirect
-       }
+    public function rnd_change_status($id, $pesticide_id)
+    {
+        $check=$this->rnd_pesticide_stock_in_model->check_pesticide_stock_out($pesticide_id);
+        if($check)
+        {
+            $this->message=$this->lang->line("MSG_THIS_PESTICIDE_OUT_OF_STOCK");
+        }
+        else
+        {
+            $data=array('status'=>$this->config->item('inactive'));
+            Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
+//            $this->rnd_list();//this is similar like redirect
+        }
+        $this->rnd_list();//this is similar like redirect
+    }
     private function check_validation()
     {
         if(Validation_helper::validate_empty($this->input->post('pesticide_in')))

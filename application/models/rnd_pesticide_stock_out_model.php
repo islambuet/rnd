@@ -65,18 +65,22 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         return $query->result_array();
     }
 
-    public function check_existing_stock($pesticide, $quantity)
+    public function check_existing_stock($pesticide, $quantity, $rowid)
     {
+        if(!empty($rowid) || $rowid!=0)
+        {
+            $this->db->where("pso.id !=", $rowid);
+        }
+
         $this->db->from("rnd_pesticide_fungicide_stock_out pso");
         $this->db->select("sum(pso.pesticide_quantity) total_stock_out");
         $this->db->where("pso.pesticide_id",$pesticide);
         $this->db->group_by("pso.pesticide_id");
         $this->db->where('pso.status',$this->config->item('active'));
         $stock_out_result=$this->db->get()->row_array();
-        //echo $this->db->last_query();
+//        echo $this->db->last_query();
         if(!$stock_out_result)
         {
-
             $stock_out_result['total_stock_out'] =0  ;
         }
 

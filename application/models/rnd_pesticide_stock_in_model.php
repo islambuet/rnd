@@ -59,4 +59,21 @@ class Rnd_pesticide_stock_in_model extends CI_Model
         return $query->result_array();
     }
 
+    public function check_pesticide_stock_out($pesticide_id)
+    {
+        $this->db->from('rnd_pesticide_fungicide_stock_out');
+        $this->db->where('pesticide_id',$pesticide_id);
+        $this->db->where('status',$this->config->item('active'));
+        $query = $this->db->get();
+        $result=$query->num_rows();
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

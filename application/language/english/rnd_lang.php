@@ -22,12 +22,17 @@ $lang['LABEL_DAYS'] = 'Days';
 $lang['LABEL_TYPE_RND_CODE'] = 'Type R&D Code';
 
 // CREATE BY MARAJ MASSAGE CAPTION
+////////////////////////// FERTILISER
 $lang['MSG_FERTILISER_NOT_AVAILABLE_STOCK'] = 'This Fertilizer is not Available in Stock';
 $lang['MSG_SELECT_FERTILISER'] = 'Please Select Fertilizer';
 $lang['MSG_STOCK_UNAVAILABLE'] = 'Stock Unavailable';
 $lang['MSG_STOCK_AVAILABLE'] = 'Stock Available';
 $lang['MSG_ARE_YOU_SURE_DELETE_RECORD'] = 'Are you sure delete this record?';
 $lang['MSG_THIS_FERTILISER_OUT_OF_STOCK'] = 'This fertiliser out of stock! try again.';
+/////////////// PESTICIDE
+$lang['MSG_PESTICIDE_NOT_AVAILABLE_STOCK'] = 'This Pesticide is not Available in Stock';
+$lang['MSG_SELECT_PESTICIDE'] = 'Please Select Pesticide';
+$lang['MSG_THIS_PESTICIDE_OUT_OF_STOCK'] = 'This pesticide out of stock! try again.';
 
 //login
 $lang['MSG_USERNAME_PASSWORD_INVALID'] = 'Username and Password did not match or Invalid';

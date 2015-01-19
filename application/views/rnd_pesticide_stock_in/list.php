@@ -43,7 +43,7 @@
                     <a href="<?php echo base_url();?>rnd_pesticide_stock_in/index/edit/<?php echo $stock_in['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
                     </a>
-                    <a href="<?php echo base_url();?>rnd_pesticide_stock_in/index/delete/<?php echo $stock_in['id'];?>">
+                    <a href="<?php echo base_url();?>rnd_pesticide_stock_in/index/delete/<?php echo $stock_in['id']."/".$stock_in['pesticide_id'];?>">
                         <img src="<?php echo base_url();?>images/delete_record.png">
                     </a>
                 </td>

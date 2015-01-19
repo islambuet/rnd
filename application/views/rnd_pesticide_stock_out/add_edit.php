@@ -18,13 +18,29 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="season_id" id="pesticide_season_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['season_id'])){ echo "disabled";}?>>
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <select name="season_id" id="pesticide_season_id" class="form-control validate[required]">
                     <?php
+                    if(empty($pesticideInfo['season_id']))
+                    {
+                        ?>
+                        <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                        <?php
+                        foreach($seasons as $season)
+                        {
+                            ?>
+                                <option value="<?php echo $season['id']?>" ><?php echo $season['season_name'];?></option>
+                            <?php
+                        }
+                    }
                     foreach($seasons as $season)
-                    {?>
-                        <option value="<?php echo $season['id']?>" <?php if($season['id']==$pesticideInfo['season_id']){ echo "selected";}?>><?php echo $season['season_name'];?></option>
-                    <?php
+                    {
+                        if($season['id']==$pesticideInfo['season_id'])
+                        {
+
+                        ?>
+                            <option value="<?php echo $season['id']?>" ><?php echo $season['season_name'];?></option>
+                        <?php
+                        }
                     }
                     ?>
                 </select>
@@ -32,20 +48,27 @@ $this->load->view("action_buttons_edit",$data);
             <input type="hidden" name="pesticide_stock_out_id" id="pesticide_stock_out_id" value="<?php echo $pesticideInfo['id'];?>"/>
         </div>
 
-
-
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="pesticide_crop_id" class="form-control validate[required]" <?php if(!empty($pesticideInfo['crop_id'])){ echo "disabled";}?>>
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <select name="crop_id" id="pesticide_crop_id" class="form-control validate[required]" >
                     <?php
+                    if(empty($pesticideInfo['crop_id']))
+                    {
+                        ?>
+                        <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                        <?php
+                    }
                     foreach($crops as $crop)
-                    {?>
-                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$pesticideInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
-                    <?php
+                    {
+                        if($crop['id']==$pesticideInfo['crop_id'])
+                        {
+                        ?>
+                            <option value="<?php echo $crop['id']?>"><?php echo $crop['crop_name'];?></option>
+                        <?php
+                        }
                     }
                     ?>
                 </select>
@@ -53,23 +76,28 @@ $this->load->view("action_buttons_edit",$data);
 
         </div>
 
-
-
-
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PESTICIDE_RND');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="pesticide_out_rnd" id="pesticide_out_rnd" class="form-control validate[required]" <?php if(!empty($pesticideInfo['rnd_code_id'])){ echo "disabled";}?>>
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <select name="pesticide_out_rnd" id="pesticide_out_rnd" class="form-control validate[required]">
                     <?php
+                    if(empty($pesticideInfo['rnd_code_id']))
+                    {
+                        ?>
+                        <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                        <?php
+                    }
                     $rndCodes = System_helper::get_rnd_codes();
                     foreach($rndCodes as $rndCode)
                     {
+                        if($rndCode['id']== $pesticideInfo['rnd_code_id'])
+                        {
                         ?>
-                        <option value="<?php echo $rndCode['id']?>" <?php if ($rndCode['id']== $pesticideInfo['rnd_code_id']){ echo 'selected';}?>><?php echo $rndCode['rnd_code'];?></option>
-                    <?php
+                            <option value="<?php echo $rndCode['id']?>" ><?php echo $rndCode['rnd_code'];?></option>
+                        <?php
+                        }
                     }
                     ?>
                 </select>
