@@ -148,7 +148,7 @@ class General_sample_delivery extends ROOT_Controller
         {
             if($id>0)
             {
-//                $this->db->trans_start();  //DB Transaction Handle START
+                $this->db->trans_start();  //DB Transaction Handle START
 
                 $data_rnd = Array(
                     'sample_delivery_date_id'=>$id,
@@ -187,55 +187,50 @@ class General_sample_delivery extends ROOT_Controller
                 for($i=0; $i<sizeof($elmPost); $i++)
                 {
                     $rndPost = $this->input->post('rnd_code'.$elmPost[$i]);
-                    echo $rndPost;
-//                    if($rndPost[$i])
-//                    {
 
+                    if($rndPost==$elmPost[$i])
+                    {
+                        $data_rnd['rnd_code_id'] = $rndPost;
+                        $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
 
-//                        if(@$rndPost[$i]==$elmPost[$i])
-//                        {
-//                            $data_rnd['rnd_code_id'] = $rndPost[$i];
-//                            $data_rnd['transplanting_date'] = strtotime($transplantingPost[$i]);
-//
-//                            if($sowingPost[$i])
-//                            {
-//                                $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
-//                            }
-//                            else
-//                            {
-//                                $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
-//                            }
-//                        }
-////                    }
-//
-//                    Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
-//
-//                    $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost[$i]);
-//                    $crop_id = $varietyInfo['crop_id'];
-//                    $quantity = $varietyInfo['quantity'];
-//                    $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
-//                    $revised_quantity = $quantity-$crop_sample_size;
-//
-//                    $data_revised = Array('quantity'=>$revised_quantity);
-//                    Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost[$i]));
+                        if($sowingPost[$i])
+                        {
+                            $data_rnd['sowing_date'] = strtotime($sowingPost[$i]);
+                        }
+                        else
+                        {
+                            $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                        }
+
+                        Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
+
+                        $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost);
+                        $crop_id = $varietyInfo['crop_id'];
+                        $quantity = $varietyInfo['quantity'];
+                        $crop_sample_size = $this->general_sample_delivery_model->get_crop_sample_size($crop_id);
+                        $revised_quantity = $quantity-$crop_sample_size;
+
+                        $data_revised = Array('quantity'=>$revised_quantity);
+                        Query_helper::update('rnd_variety_info',$data_revised,array("id = ".$rndPost));
+                    }
+
                 }
 
+                $this->db->trans_complete();   //DB Transaction Handle END
 
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-//                }
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
 
             }
             else
             {
-//                $this->db->trans_start();  //DB Transaction Handle START
+                $this->db->trans_start();  //DB Transaction Handle START
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -266,6 +261,7 @@ class General_sample_delivery extends ROOT_Controller
                         {
                             $data_rnd['sowing_date'] = strtotime($this->input->post('sowing_date'));
                         }
+
                         Query_helper::add('rnd_sample_delivery_date_crop',$data_rnd);
 
                         $varietyInfo = $this->general_sample_delivery_model->get_crop_id_by_rnd_code($rndPost);
@@ -279,16 +275,16 @@ class General_sample_delivery extends ROOT_Controller
                     }
                 }
 
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-//                }
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
             }
 
             $this->rnd_list();//this is similar like redirect
