@@ -28,11 +28,11 @@ $this->load->view("action_buttons",$data);
 
             <tbody>
             <?php
-            foreach($stock_in_info as $key=>$stock_in)
+            foreach($stock_in_info as $stock_in)
             {
                 ?>
                 <tr>
-                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $stock_in['id'];?></td>
                     <td><?php echo $stock_in['rnd_code'];?></td>
                     <td><?php echo $stock_in['fertilizer_name'];?></td>
                     <td><?php echo date('d-m-Y',$stock_in['creation_date']);?></td>

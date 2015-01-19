@@ -54,9 +54,25 @@ class Rnd_feriliser_stock_in_model extends CI_Model
         $this->db->select('rnd_fertilizer_info.*');
         $this->db->from('rnd_fertilizer_info');
         $this->db->where('status',$this->config->item('active'));
-
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function check_fertiliser_stock_out($fertiliser_id)
+    {
+        $this->db->from('rnd_fertilizer_stock_out');
+        $this->db->where('fertilizer_id',$fertiliser_id);
+        $this->db->where('status',$this->config->item('active'));
+        $query = $this->db->get();
+        $result=$query->num_rows();
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

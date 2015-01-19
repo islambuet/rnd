@@ -683,7 +683,7 @@ $(document).on("change", "#procurement_season_id", function(event)
 
 $(document).on("change", "#feriliser_out", function(event)
 {
-
+    $("#feriliser_out_quantity").val('');
     var feriliser_id = $("#feriliser_out").val();
 //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
     $.ajax({
@@ -698,23 +698,20 @@ $(document).on("change", "#feriliser_out", function(event)
         error: function (xhr, desc, err)
         {
             console.log("error");
-
         }
     });
-
 });
-
 
 $(document).on("blur", "#feriliser_out_quantity", function(event)
 {
+    var rowid = $("#feriliser_stock_out_id").val();
     var common_fertilizer_quantity = $("#feriliser_out_quantity").val();
     var common_fertilizer_id = $("#feriliser_out").val();
-
     $.ajax({
         url: base_url+"rnd_feriliser_stock_out/check_current_stock/",
         type: 'POST',
         dataType: "JSON",
-        data:{common_fertilizer_quantity:common_fertilizer_quantity, common_fertilizer_id:common_fertilizer_id},
+        data:{common_fertilizer_quantity:common_fertilizer_quantity, common_fertilizer_id:common_fertilizer_id, rowid:rowid},
         success: function (data, status)
         {
 
@@ -722,15 +719,14 @@ $(document).on("blur", "#feriliser_out_quantity", function(event)
         error: function (xhr, desc, err)
         {
             console.log("error");
-
         }
     });
 
 });
 
-
 $(document).on("change", "#fertilizer_season_id", function(event)
 {
+    $("#feriliser_out_rnd").html('')
     var season_id = $("#fertilizer_season_id").val();
     //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
     $.ajax({
@@ -745,7 +741,6 @@ $(document).on("change", "#fertilizer_season_id", function(event)
         error: function (xhr, desc, err)
         {
             console.log("error");
-
         }
     });
 
@@ -753,13 +748,14 @@ $(document).on("change", "#fertilizer_season_id", function(event)
 
 $(document).on("change", "#fertilizer_crop_id", function(event)
 {
+    var season_id = $("#fertilizer_season_id").val();
     var crop_id = $("#fertilizer_crop_id").val();
     //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
     $.ajax({
         url: base_url+"rnd_common/fertilizer_rnd_code_by_crop/",
         type: 'POST',
         dataType: "JSON",
-        data:{crop_id:crop_id},
+        data:{crop_id:crop_id, season_id:season_id},
         success: function (data, status)
         {
 

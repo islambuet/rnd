@@ -62,14 +62,18 @@ class Rnd_feriliser_stock_out_model extends CI_Model
         return $query->result_array();
     }
 
-    public function check_existing_stock($fertilizer, $quantity)
+    public function check_existing_stock($fertilizer, $quantity, $rowid)
     {
-            $this->db->from("rnd_fertilizer_stock_out fso");
-            $this->db->select("sum(fso.fertilizer_quantity) total_stock_out");
-            $this->db->where("fso.fertilizer_id",$fertilizer);
-            $this->db->group_by("fso.fertilizer_id");
-            $this->db->where('fso.status',$this->config->item('active'));
-            $stock_out_result=$this->db->get()->row_array();
+        if(!empty($rowid) || $rowid!=0)
+        {
+            $this->db->where("fso.id !=", $rowid);
+        }
+        $this->db->from("rnd_fertilizer_stock_out fso");
+        $this->db->select("sum(fso.fertilizer_quantity) total_stock_out");
+        $this->db->where("fso.fertilizer_id",$fertilizer);
+        $this->db->group_by("fso.fertilizer_id");
+        $this->db->where('fso.status',$this->config->item('active'));
+        $stock_out_result=$this->db->get()->row_array();
 
         if(!$stock_out_result)
         {
@@ -99,9 +103,8 @@ class Rnd_feriliser_stock_out_model extends CI_Model
         {
             return false;
         }
-
-
     }
+
     public function check_existing_fertilizer($fertilizer)
     {
         $this->db->from("rnd_fertilizer_stock_in fsi");
