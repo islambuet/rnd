@@ -33,7 +33,7 @@ class Rnd_feriliser_requirement extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "create_crop/index/list/",$this->rnd_feriliser_requirement_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "rnd_feriliser_requirement/index/list/",$this->rnd_feriliser_requirement_model->get_total_row(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,7 +42,7 @@ class Rnd_feriliser_requirement extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->rnd_feriliser_requirement_model->get_cropInfo($page);
+        $data['row_list'] = $this->rnd_feriliser_requirement_model->get_record_list($page);
         $data['title']="Fertilizer Requirement List";
 
         $ajax['status']=true;
@@ -51,7 +51,7 @@ class Rnd_feriliser_requirement extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
+        $ajax['page_url']=base_url()."rnd_feriliser_requirement/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -59,26 +59,27 @@ class Rnd_feriliser_requirement extends ROOT_Controller
     {
         if ($id != 0)
         {
-            $data['cropInfo'] = $this->rnd_feriliser_requirement_model->get_crop_row($id);
-            $data['title']="Edit Crop (".$data['cropInfo']['crop_name'].")";
+            $data['row_info'] = $this->rnd_feriliser_requirement_model->get_row_info($id);
+            $data['title']="Edit Fertilizer Requirement";
+            $ajax['page_url']=base_url()."rnd_feriliser_requirement/index/edit/".$id;
         }
         else
         {
-            $data["cropInfo"] = Array(
+            $data["row_info"] = Array
+            (
                 'id' => 0,
-                'crop_name' => '',
-                'crop_code' => '',
-                'crop_height' => '',
-                'crop_width' => '',
+                'fertilizer_id' => '',
+                'seed_bed_id' => '',
+                'fertilizer_quantity' => '',
+                'fertilizer_price' => '',
                 'status' => $this->config->item('active')
             );
             $data['title']="New Fertilizer Requirements";
+            $ajax['page_url']=base_url()."rnd_feriliser_requirement/index/add";
         }
 
         $data['fertilizers']= Query_helper::get_info('rnd_fertilizer_info', '*', array());
         $data['seedbeds']= Query_helper::get_info('rnd_seed_bed_info', '*', array());
-
-
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_feriliser_requirement/add_edit",$data,true));
 
@@ -87,15 +88,16 @@ class Rnd_feriliser_requirement extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("requirement_id");
+        $id = $this->input->post("row_elm_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'fertilizer_id'=>$this->input->post('fertilizer'),
-            'seed_bed_id'=>$this->input->post('seedbed'),
-            'crop_width'=>$this->input->post('quantity'),
-            'crop_height'=>$this->input->post('crop_height'),
-            'status'=>$this->input->post('status'),
+            'fertilizer_id'=>$this->input->post('fertilizer_id'),
+            'seed_bed_id'=>$this->input->post('seed_bed_id'),
+            'fertilizer_quantity'=>$this->input->post('fertilizer_quantity'),
+            'fertilizer_price'=>$this->input->post('fertilizer_price'),
+            'requirement_date'=>time(),
+            'status'=>$this->config->item('active')
         );
 
         if(!$this->check_validation())
@@ -108,20 +110,45 @@ class Rnd_feriliser_requirement extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_fertilizer_requirement_info',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_crop_info',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                Query_helper::add('rnd_fertilizer_requirement_info',$data);
+                //$this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 
@@ -132,30 +159,26 @@ class Rnd_feriliser_requirement extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
+        if(Validation_helper::validate_empty($this->input->post('fertilizer_id')))
         {
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('seed_bed_id')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
+        if(!Validation_helper::validate_numeric($this->input->post('fertilizer_quantity')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
+        if(!Validation_helper::validate_numeric($this->input->post('fertilizer_price')))
         {
             return false;
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
-        {
-            return false;
-        }
         return true;
     }
 

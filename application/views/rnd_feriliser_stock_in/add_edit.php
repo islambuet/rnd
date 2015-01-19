@@ -44,7 +44,7 @@
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRICE_STOCK_IN');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRICE_STOCK_IN');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="feriliser_in_price" id="feriliser_in_price" class="form-control validate[required, custom[number]]" value="<?php echo $feriliserInfo['fertilizer_price'];?>" >

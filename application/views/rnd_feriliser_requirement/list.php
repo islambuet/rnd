@@ -18,33 +18,43 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_CODE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_WIDTH"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_HEIGHT"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_FERTILISER_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEED_BED"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_QUANTITY"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PRICE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
             <tbody>
             <?php
-            foreach($cropInfo as $key=>$crop)
+            if($row_list)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $crop['crop_name'];?></td>
-                <td><?php echo $crop['crop_code'];?></td>
-                <td><?php echo $crop['crop_width'];?></td>
-                <td><?php echo $crop['crop_height'];?></td>
-                <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
-                <td>
-                    <a href="<?php echo base_url();?>rnd_feriliser_requirement/index/edit/<?php echo $crop['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
+                foreach($row_list as $row_lists)
+                {
+                    ?>
+                    <tr>
+                        <td><?php echo $row_lists['id'];?></td>
+                        <td><?php echo $row_lists['fertilizer_name'];?></td>
+                        <td><?php echo $row_lists['seed_bed'];?></td>
+                        <td><?php echo $row_lists['fertilizer_quantity'];?></td>
+                        <td><?php echo $row_lists['fertilizer_price'];?></td>
+                        <td>
+                            <a href="<?php echo base_url();?>rnd_feriliser_requirement/index/edit/<?php echo $row_lists['id'];?>">
+                                <img src="<?php echo base_url();?>images/edit_record.png">
+                            </a>
+                        </td>
+                    </tr>
+                <?php
+                }
+
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="21" style="text-align: center; font-size: 12px; color: #ff958a;"><?php echo $this->lang->line("NO_DATA_FOUND"); ?></td>
+                </tr>
             <?php
             }
             ?>

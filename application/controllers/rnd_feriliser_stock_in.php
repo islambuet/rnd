@@ -58,8 +58,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
-
-        //$ajax['page_url']=base_url()."rnd_feriliser_stock_in";
+        $ajax['page_url']=base_url()."rnd_feriliser_stock_in/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -69,6 +68,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         {
             $data['feriliserInfo'] = $this->rnd_feriliser_stock_in_model->get_feriliser_row($id);
             $data['title']="Edit fertilizer Stock (".$data['feriliserInfo']['fertilizer_name'].")";
+            $ajax['page_url']=base_url()."rnd_feriliser_stock_in/index/edit/".$id;
         }
         else
         {
@@ -77,11 +77,10 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
                 'fertilizer_id'=>'',
                 'fertilizer_name' => '',
                 'fertilizer_quantity' => '',
-                'fertilizer_price' => '',
-                //'crop_width' => '',
-                //'status' => $this->config->item('active')
+                'fertilizer_price' => ''
             );
             $data['title']="New Fertiliser Stock";
+            $ajax['page_url']=base_url()."rnd_feriliser_stock_in/index/add";
         }
 
 
@@ -95,8 +94,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
 
     public function rnd_save()
     {
-//        print_r($this->input->post());
-//        exit;
+
         $id = $this->input->post("feriliser_stock_in_id");
         $user = User_helper::get_user();
 
@@ -117,20 +115,45 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
                 Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
                 $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
+                $this->db->trans_start();  //DB Transaction Handle START
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
                 Query_helper::add('rnd_fertilizer_stock_in',$data);
                 $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
 
             }
 
@@ -138,11 +161,12 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         }
 
     }
-    public function rnd_change_status($id){
-          $data=array('status'=>$this->config->item('inactive'));
-          Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
-          $this->rnd_list();//this is similar like redirect
-       }
+//    public function rnd_change_status($id)
+//    {
+//          $data=array('status'=>$this->config->item('inactive'));
+//          Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
+//          $this->rnd_list();//this is similar like redirect
+//   }
     private function check_validation()
     {
         if(Validation_helper::validate_empty($this->input->post('feriliser_in')))
@@ -155,15 +179,12 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
             return false;
         }
 
-        if($this->input->post('feriliser_in_price'))
-
-        {
         if(!Validation_helper::validate_numeric($this->input->post('feriliser_in_price')))
         {
             return false;
         }
 
-        }
+
         return true;
     }
 

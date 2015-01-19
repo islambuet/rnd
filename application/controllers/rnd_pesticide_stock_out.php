@@ -16,16 +16,26 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
 
     public function index($task = "list", $id = 0)
     {
-        if ($task == "list") {
+        if ($task == "list")
+        {
             $this->rnd_list($id);
-        } elseif ($task == "add" || $task == "edit") {
+        }
+        elseif ($task == "add" || $task == "edit")
+        {
             $this->rnd_add_edit($id);
-        } elseif ($task == "save") {
+        }
+        elseif ($task == "save")
+        {
             $this->rnd_save($id);
-        } elseif ($task == "delete") {
+        }
+        elseif ($task == "delete")
+        {
             $this->rnd_change_status($id);
-        } else
+        }
+        else
+        {
             $this->rnd_list($id);
+        }
     }
 
 
