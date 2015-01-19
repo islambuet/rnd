@@ -16,7 +16,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="pr_common_season_id" id="pr_common_season_id" class="form-control validate[required]">
+                <select name="common_season_id" id="common_season_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -34,13 +34,7 @@
             <div class="col-xs-4">
                 <select name="common_crop_id" id="common_crop_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    foreach($crops as $crop)
-                    {?>
-                        <option value="<?php echo $crop['id']?>"><?php echo $crop['crop_name'];?></option>
-                    <?php
-                    }
-                    ?>
+
                 </select>
             </div>
         </div>
@@ -50,11 +44,9 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="common_crop_type" id="common_crop_type" class="form-control">
+                <select name="common_crop_type" id="common_crop_type" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php foreach($types as $type){?>
-                        <option value="<?php echo $type['id'];?>" <?php if($type['id']==$pictureInfo['type_id']){ echo "selected";}?>><?php echo $type['product_type'];?></option>
-                    <?php }?>
+
                 </select>
             </div>
 
@@ -62,17 +54,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="common_rnd_code" id="common_rnd_code" class="form-control">
+                <select name="common_rnd_code" id="common_rnd_code" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    $rndCode = System_helper::get_rnd_codes();
-                    foreach($rndCode as $code)
-                    {
-                        ?>
-                        <option value="<?php echo $code['id'];?>"><?php echo $code['rnd_code'];?></option>
-                    <?php
-                    }
-                    ?>
                 </select>
             </div>
         </div>
@@ -96,3 +79,11 @@
 <div class="row widget" id="report_list">
 
 </div>
+<script type="text/javascript">
+
+//    jQuery(document).ready(function()
+//    {
+//        $(".form_valid").validationEngine();
+//
+//    });
+</script>

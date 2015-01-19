@@ -48,14 +48,51 @@ class General_crop_info_report extends ROOT_Controller
 
     public function rnd_report()
     {
-        $rndCode = $this->input->post('common_rnd_code');
-        $inputRndCode = $this->input->post('input_rnd_code');
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            $rndCode = $this->input->post('common_rnd_code');
+            $inputRndCode = $this->input->post('input_rnd_code');
 
-        $data['procurements']=$this->general_crop_info_report_model->get_procurement($rndCode, $inputRndCode);
+            $data['procurements']=$this->general_crop_info_report_model->get_procurement($rndCode, $inputRndCode);
 
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("general_crop_info_report/report", $data, true));
-        $this->jsonReturn($ajax);
+            $ajax['status'] = true;
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("general_crop_info_report/report", $data, true));
+            $this->jsonReturn($ajax);
+        }
+    }
+
+    private function check_validation()
+    {
+        if($this->input->post('common_season_id'))
+        {
+            if(Validation_helper::validate_empty($this->input->post('common_season_id')))
+            {
+                return false;
+            }
+
+            if(Validation_helper::validate_empty($this->input->post('common_crop_id')))
+            {
+                return false;
+            }
+
+            if(Validation_helper::validate_empty($this->input->post('common_crop_type')))
+            {
+                return false;
+            }
+
+            if(Validation_helper::validate_empty($this->input->post('common_rnd_code')))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
