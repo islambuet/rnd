@@ -877,7 +877,7 @@ $(document).on("change", "#labour_activity_season_id", function(event)
 {
 
     var season_id = $("#labour_activity_season_id").val();
-    //var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
+//var crop_selected = '<?php //echo $pesticideInfo['crop_id'];?>';
     $.ajax({
         url: base_url+"rnd_common/labour_activity_crop_by_season/",
         type: 'POST',
@@ -899,9 +899,9 @@ $(document).on("change", "#labour_activity_season_id", function(event)
 $(document).on("change", "#labour_activity_crop_id", function(event)
 {
     var crop_id = $("#labour_activity_crop_id").val();
-    //var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+//var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
     $.ajax({
-        url: base_url+"rnd_common/labour_activity_variety_name_by_crop/",
+        url: base_url+"rnd_common/labour_activity_crop_type_by_crop/",
         type: 'POST',
         dataType: "JSON",
         data:{crop_id:crop_id},
@@ -917,6 +917,109 @@ $(document).on("change", "#labour_activity_crop_id", function(event)
 
 });
 
+$(document).on("change", "#labour_activity_crop_type", function(event)
+{
+    var crop_type = $("#labour_activity_crop_type").val();
+//var selected = '<?php //echo $pesticideInfo['pesticide_out_rnd'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/labour_activity_rnd_by_crop_type/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_type:crop_type},
+        success: function (data, status)
+        {
+            var rnd_code_view = '';
+            for(var i=0;i<data.length;i++)
+            {
+                rnd_code_view += "<tr><td><input type='hidden' id='row_id[]' name='row_id[]' value='' /> \n\
+<input type='checkbox' id='rnd_code[]' name='rnd_code[]' value='"+data[i]['id']+"' class='checksingle' checked='' /> "+data[i]['rnd_code']+"</tr></td>";
+            }
+
+            $("#div_rnd_code").html(rnd_code_view);
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
 
 
-//////// Labour Activity End  /////////
+
+//////// Labour Activity End /////////
+
+
+
+//////// Picture Report Entry Start ////////
+
+$(document).on("change", "#picture_report_season_id", function(event)
+{
+    var season_id = $("#picture_report_season_id").val();
+//var crop_selected = '<?php echo $pictureInfo['crop_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/picture_report_crop_by_season/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{season_id:season_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#picture_report_crop_id", function(event)
+{
+    var crop_id = $("#picture_report_crop_id").val();
+//var product_type_id = '<?php echo $pictureInfo['product_type_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/picture_report_crop_type_by_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_id:crop_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+
+        }
+    });
+
+});
+
+$(document).on("change", "#picture_report_crop_type", function(event)
+{
+    var crop_id = $("#picture_report_crop_id").val();
+    var type_id = $("#picture_report_crop_type").val();
+//var selected = '<?php echo $pictureInfo['rnd_code_id'];?>';
+    $.ajax({
+        url: base_url+"rnd_common/picture_report_rnd_code_by_name/",
+        type: 'POST',
+        dataType: "JSON",
+        data:{crop_id:crop_id,type_id:type_id},
+        success: function (data, status)
+        {
+
+        },
+        error: function (xhr, desc, err)
+        {
+            console.log("error");
+        }
+    });
+
+});
+
+
+
+
+//////// Picture Report Entry End //////////
