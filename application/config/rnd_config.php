@@ -8,11 +8,11 @@ $config['links_per_page']=5;
 
 $config['rnd_delete_status_code']=2;
 
-$config['rnd_fruit_code']=1;
-$config['rnd_curt_code']=2;
-$config['rnd_root_code']=3;
-$config['rnd_leaf_code']=4;
-$config['rnd_head_code']=5;
+$config['fruit_type'][1] = 'Fruit';
+$config['fruit_type'][2] = 'Curd';
+$config['fruit_type'][3] = 'Root';
+$config['fruit_type'][4] = 'Leaf';
+$config['fruit_type'][5] = 'Head';
 
 $config['variety_type_arm']=1;
 $config['variety_type_company']=2;

@@ -6,6 +6,7 @@
 //echo '<pre>';
 //print_r($cropInfo);
 //echo '</pre>';
+
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop/index/save" method="post">
     <input type="hidden" name="crop_id" id="crop_id" value="<?php echo $cropInfo['id'];?>"/>
@@ -58,11 +59,9 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLOWERING_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" checked <?php if($cropInfo['fruit_type']==$this->config->item('rnd_fruit_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_fruit_code');?>"> <?php echo $this->lang->line('LABEL_FRUIT');?>
-                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_curt_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_curt_code');?>"> <?php echo $this->lang->line('LABEL_CURT');?>
-                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_root_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_root_code');?>"> <?php echo $this->lang->line('LABEL_ROOT');?>
-                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_leaf_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_leaf_code');?>"> <?php echo $this->lang->line('LABEL_LEAF');?>
-                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$this->config->item('rnd_head_code')){ echo "checked";}?> value="<?php echo $this->config->item('rnd_head_code');?>"> <?php echo $this->lang->line('LABEL_HEAD');?>
+                <?php foreach($this->config->item('fruit_type') as $val=>$fruit){?>
+                <input type="radio" name="fruit_type" id="fruit_type" class="validate[required]" <?php if($cropInfo['fruit_type']==$val){ echo "checked";}?> value="<?php echo $val;?>"> <?php echo $fruit;?>
+                <?php }?>
             </div>
         </div>
 

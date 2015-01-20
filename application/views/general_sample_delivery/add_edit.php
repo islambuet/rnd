@@ -167,10 +167,10 @@ else
                                 <input type='hidden' name='elm_id[]' id='elm_id' value='<?php echo $codes['rnd_id'];?>'  />
                             </td>
                             <td>
-                                <input type='text' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_sowing_date'])){ echo date('d-m-Y',$codes['rnd_sowing_date']);}?>" class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
+                                <input type='text' name='specific_sowing_date[]' id='specific_sowing_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_sowing_date'])){ echo date('d-m-Y',$codes['rnd_sowing_date']);}?>" class='form-control specific_sowing_date' />
                             </td>
                             <td>
-                                <input type='text' name='specific_transplanting_date[]' id='specific_transplanting_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_transplanting_date'])){ echo date('d-m-Y',$codes['rnd_transplanting_date']);}?>" class='form-control specific_sowing_date' onclick='cal_txt("+i+")' >
+                                <input type='text' name='specific_transplanting_date[]' id='specific_transplanting_date<?php echo $i;?>' value="<?php if(!empty($codes['rnd_transplanting_date'])){ echo date('d-m-Y',$codes['rnd_transplanting_date']);}?>" class='form-control specific_sowing_date' />
                             </td>
                         </tr>
                         <script>
@@ -251,11 +251,9 @@ else
             }
         });
 
-
-
         $(document).on("click", ".specific_sowing_date", function(event)
         {
-            //  alert (this.value)
+            // alert (this.value)
             Calendar.setup({
                 inputField: this,
                 trigger: this,
@@ -265,12 +263,11 @@ else
                 showTime: 12,
                 dateFormat: "%d-%m-%Y"
             });
-
         });
 
         $(document).on("click", ".specific_transplanting_date", function(event)
         {
-            //  alert (this.value)
+            // alert (this.value)
             Calendar.setup({
                 inputField: this,
                 trigger: this,
@@ -280,7 +277,6 @@ else
                 showTime: 12,
                 dateFormat: "%d-%m-%Y"
             });
-
         });
 
     });
