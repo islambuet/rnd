@@ -127,6 +127,8 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+//                Query_helper::update('rnd_fifteen_days_picture_report',$data,array("id = ".$id));
+
                 $data_img['picture_report_id']= $id;
                 $data_img['created_by'] = $user->user_id;
                 $data_img['creation_date'] = time();
@@ -153,6 +155,7 @@ class Trail_fiftyfive_picture_report extends ROOT_Controller
                         $size = @$file_name[$i]['size'];
 
                         $new_file_name = time().$i;
+//                        $save_file_name = time().$i.'.'.$ext;
 
                         if (@$file_name[$i] != "")
                         {

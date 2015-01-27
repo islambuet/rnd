@@ -15,6 +15,7 @@ class Test extends CI_Controller
 
     public function index()
 	{
+        echo date("Y-m-d",1420561888);
 
         $this->load->model('general_sample_delivery_model');
         $season_id = 1;

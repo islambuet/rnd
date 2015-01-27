@@ -52,5 +52,4 @@ class User_helper
 
         }
     }
-
 }

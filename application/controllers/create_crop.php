@@ -17,7 +17,7 @@ class Create_crop extends ROOT_Controller
         {
             $this->rnd_list($id);
         }
-        elseif($task=="add" || $task=="edit")
+        elseif($task=="add")
         {
             $this->rnd_add_edit($id);
         }
@@ -106,6 +106,7 @@ class Create_crop extends ROOT_Controller
 
         if(!$this->check_validation())
         {
+            //redirect(base_url()."create_crop");
             $ajax['status']=false;
             $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
             $this->jsonReturn($ajax);

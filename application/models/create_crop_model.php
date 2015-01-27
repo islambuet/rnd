@@ -10,12 +10,12 @@ class Create_crop_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_cropInfo($page=null)
+    public function get_cropInfo($page=0)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_crop_info rci');
-        $this->db->select('rci.*');
+        $this->db->from('rnd_crop rc');
+        $this->db->select('rc.*');
 
         $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
         $this->db->limit($limit,$start);
