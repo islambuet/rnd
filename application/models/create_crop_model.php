@@ -17,9 +17,9 @@ class Create_crop_model extends CI_Model
         $this->db->from('rnd_crop rc');
         $this->db->select('rc.*');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('rc.status != ',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
-        $this->db->order_by("rci.id","DESC");
+        $this->db->order_by("rc.crop_id","ASC");
 
         $query = $this->db->get();
 
@@ -28,10 +28,10 @@ class Create_crop_model extends CI_Model
 
     public function get_total_crops()
     {
-        $this->db->select('rnd_crop_info.*');
-        $this->db->from('rnd_crop_info');
+        $this->db->select('rnd_crop.*');
+        $this->db->from('rnd_crop');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('status != ',$this->config->item('status_delete'));
         return $this->db->count_all_results();
     }
 

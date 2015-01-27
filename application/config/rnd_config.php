@@ -10,6 +10,7 @@ $config['links_per_page']=5;
 
 
 
+//fix bellow config latter
 $config['rnd_fruit_code']=1;
 $config['rnd_curt_code']=2;
 $config['rnd_root_code']=3;

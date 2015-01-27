@@ -1,9 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
     $data["link_new"]=base_url()."create_crop/index/add";
     $this->load->view("action_buttons",$data);
-//echo '<pre>';
-//print_r($cropInfo);
-//echo '</pre>';
+
 ?>
 
 <div class="row widget">
@@ -29,24 +28,37 @@
 
             <tbody>
             <?php
-            foreach($cropInfo as $key=>$crop)
-            {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $crop['crop_name'];?></td>
-                <td><?php echo $crop['crop_code'];?></td>
-                <td><?php echo $crop['crop_width'];?></td>
-                <td><?php echo $crop['crop_height'];?></td>
-                <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
-                <td>
-                    <a href="<?php echo base_url();?>create_crop/index/edit/<?php echo $crop['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
-            <?php
-            }
+                if(sizeof($cropInfo)>0)
+                {
+                    foreach($cropInfo as $key=>$crop)
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo $key+1;?></td>
+                            <td><?php echo $crop['crop_name'];?></td>
+                            <td><?php echo $crop['crop_code'];?></td>
+                            <td><?php echo $crop['crop_width'];?></td>
+                            <td><?php echo $crop['crop_height'];?></td>
+                            <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                            <td>
+                                <a href="<?php echo base_url();?>create_crop/index/edit/<?php echo $crop['id'];?>">
+                                    <img src="<?php echo base_url();?>images/edit_record.png">
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                else
+                {
+                    ?>
+                    <tr>
+                        <td colspan="20" class="text-center alert-danger">
+                            <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
             ?>
 
             </tbody>
