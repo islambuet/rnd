@@ -52,11 +52,7 @@ $lang['LABEL_CROP_CODE'] = 'Crop Code';
 $lang['LABEL_CROP_WIDTH'] = 'Crop Width';
 $lang['LABEL_CROP_HEIGHT'] = 'Crop Length';
 $lang['LABEL_FLOWERING_TYPE'] = 'Fruit Type';
-$lang['LABEL_FRUIT'] = 'Fruit';
-$lang['LABEL_CURT'] = 'Curd';
-$lang['LABEL_ROOT'] = 'Root';
-$lang['LABEL_LEAF'] = 'Leaf';
-$lang['LABEL_HEAD'] = 'Head';
+$lang['LABEL_PLANTS_PER_HECTARE'] = 'Plants Per hectare';
 $lang['LABEL_SAMPLE_SIZE_RND'] = 'Sample Size for R&D (gm)';
 $lang['LABEL_GM'] = 'gm';
 

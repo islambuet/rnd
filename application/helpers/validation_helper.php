@@ -29,19 +29,26 @@ class Validation_helper
 
     public static function validate_numeric($str)
     {
-        if (!preg_match("/^-?\d*\.?\d*$/",$str))
+        if(strlen($str)>0)
         {
-            return false;
+            if (!preg_match("/^-?\d*\.?\d*$/",$str))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
     public static function validate_int($str)
     {
-        if (!preg_match("/^[0-9]\d*$/",$str))
+        if (!preg_match("/^-?[0-9]\d*$/",$str))
         {
             return false;
         }
@@ -53,7 +60,7 @@ class Validation_helper
 
     public static function validate_float($str)
     {
-        if (!preg_match("/^[0-9]*[.][0-9]+$/",$str))
+        if (!preg_match("/^-?[0-9]*[.][0-9]+$/",$str))
         {
             return false;
         }

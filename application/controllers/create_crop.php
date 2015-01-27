@@ -19,7 +19,7 @@ class Create_crop extends ROOT_Controller
         }
         elseif($task=="add")
         {
-            $this->rnd_add_edit($id);
+            $this->rnd_add_edit();
         }
         elseif($task=="save")
         {
@@ -56,30 +56,10 @@ class Create_crop extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
-    public function rnd_add_edit($id)
+    public function rnd_add_edit()
     {
-        if ($id != 0)
-        {
-            $data['cropInfo'] = $this->create_crop_model->get_crop_row($id);
-            $data['title']="Edit Crop (".$data['cropInfo']['crop_name'].")";
-            $ajax['page_url']=base_url()."create_crop/index/edit/".$id;
-        }
-        else
-        {
-            $data["cropInfo"] = Array(
-                'id' => 0,
-                'crop_name' => '',
-                'crop_code' => '',
-                'crop_height' => '',
-                'crop_width' => '',
-                'fruit_type' => '',
-                'sample_size' => '',
-                'initial_plants' => '',
-                'status' => $this->config->item('active')
-            );
-            $data['title']="Create New Crop";
-            $ajax['page_url']=base_url()."create_crop/index/add";
-        }
+        $data['title']="Create New Crop";
+        $ajax['page_url']=base_url()."create_crop/index/add";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop/add_edit",$data,true));
@@ -94,164 +74,111 @@ class Create_crop extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_name'=>$this->input->post('cc_crop_name'),
-            'crop_code'=>$this->input->post('cc_crop_code'),
+            'crop_name'=>$this->input->post('crop_name'),
+            'crop_code'=>$this->input->post('crop_code'),
             'crop_width'=>$this->input->post('crop_width'),
             'crop_height'=>$this->input->post('crop_height'),
             'fruit_type'=>$this->input->post('fruit_type'),
             'sample_size'=>$this->input->post('sample_size'),
             'initial_plants'=>$this->input->post('initial_plants'),
-            'status'=>$this->input->post('status'),
+            'plants_per_hectare'=>$this->input->post('plants_per_hectare'),
+            'status'=>$this->config->item('status_active')
         );
 
         if(!$this->check_validation())
         {
-            //redirect(base_url()."create_crop");
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
         {
-            if($id>0)
+
+            $this->db->trans_start();  //DB Transaction Handle START
+
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = time();
+
+            Query_helper::add('rnd_crop',$data);
+
+            $this->db->trans_complete();   //DB Transaction Handle END
+
+            if ($this->db->trans_status() === TRUE)
             {
-                $this->db->trans_start();  //DB Transaction Handle START
-
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
-
-                Query_helper::update('rnd_crop_info',$data,array("id = ".$id));
-
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-                }
-
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
             }
             else
             {
-                $this->db->trans_start();  //DB Transaction Handle START
-
-                $data['created_by'] = $user->user_id;
-                $data['creation_date'] = time();
-
-                Query_helper::add('rnd_crop_info',$data);
-
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-                }
-
+                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
             }
 
             $this->rnd_list();//this is similar like redirect
         }
 
     }
-
-    public function check_existing_crop_name()
-    {
-
-        if($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name'),$this->input->post('crop_id')))
-        {
-            $ajax['status']=true;
-        }
-        else
-        {
-            $ajax['status']=false;
-        }
-
-        if($ajax['status'])
-        {
-            $ajax['message'] = 'Crop Name Exists';
-        }
-        else
-        {
-            $ajax['message'] = '';
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
-    public function check_existing_crop_code()
-    {
-        if($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code'),$this->input->post('crop_id')))
-        {
-            $ajax['status']=true;
-        }
-        else
-        {
-            $ajax['status']=false;
-        }
-
-        if($ajax['status'])
-        {
-            $ajax['message'] = 'Crop Code Exists';
-        }
-        else
-        {
-            $ajax['message'] = '';
-
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('cc_crop_name')) || $this->create_crop_model->check_crop_name_existence($this->input->post('cc_crop_name'),$this->input->post('crop_id')))
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('crop_name')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Crop Name Cannot Be Empty<br>";
+        }
+        elseif($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name')))
+        {
+            $valid=false;
+            $this->message.="Crop Name Exists<br>";
         }
 
-        if(Validation_helper::validate_empty($this->input->post('cc_crop_code')) || $this->create_crop_model->check_crop_code_existence($this->input->post('cc_crop_code'),$this->input->post('crop_id')))
+        if(Validation_helper::validate_empty($this->input->post('crop_code')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Crop Code Cannot Be Empty<br>";
         }
-
+        elseif($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code')))
+        {
+            $valid=false;
+            $this->message.="Crop Code Exists<br>";
+        }
         if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Crop Width Must be number<br>";
         }
-
         if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Crop height Must be number<br>";
         }
-
-        if(!Validation_helper::validate_numeric($this->input->post('fruit_type')))
+        if(!Validation_helper::validate_int($this->input->post('fruit_type')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Select Fruit Type<br>";
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('sample_size')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Sample size Must be number<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('initial_plants')))
+        if(!Validation_helper::validate_int($this->input->post('initial_plants')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Initial plants Must be number<br>";
         }
-
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
+        if(!Validation_helper::validate_int($this->input->post('plants_per_hectare')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Plants per hectare Must be number<br>";
         }
 
-        return true;
+        // ||
+        //||
+
+
+
+        return $valid;
     }
 
 

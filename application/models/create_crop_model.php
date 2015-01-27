@@ -45,17 +45,15 @@ class Create_crop_model extends CI_Model
         return $query->row_array();
     }
 
-    public function check_crop_name_existence($crop_name,$id)
+    public function check_crop_name_existence($crop_name)
     {
-        $this->db->select('rnd_crop_info.*');
-        $this->db->from('rnd_crop_info');
+        $this->db->select('rnd_crop.crop_id');
+        $this->db->from('rnd_crop');
         $this->db->where('crop_name',$crop_name);
-        $this->db->where('id !=',$id);
 
-        $query = $this->db->get();
-        $result = $query->row_array();
+        $result = $this->db->count_all_results();
 
-        if($result)
+        if($result>0)
         {
             return true;
         }
@@ -65,17 +63,16 @@ class Create_crop_model extends CI_Model
         }
     }
 
-    public function check_crop_code_existence($crop_code,$id)
+    public function check_crop_code_existence($crop_code)
     {
-        $this->db->select('rnd_crop_info.*');
-        $this->db->from('rnd_crop_info');
+        $this->db->select('crop_id');
+        $this->db->from('rnd_crop');
         $this->db->where('crop_code',$crop_code);
-        $this->db->where('id !=',$id);
 
-        $query = $this->db->get();
-        $result = $query->row_array();
+        $result = $this->db->count_all_results();
+        
 
-        if($result)
+        if($result>0)
         {
             return true;
         }

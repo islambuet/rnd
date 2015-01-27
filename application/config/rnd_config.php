@@ -8,6 +8,12 @@ $config['status_delete']=0;
 $config['view_per_page']=3;
 $config['links_per_page']=5;
 
+//crop fruit type config
+$config['fruit_type'][1] = 'Fruit';
+$config['fruit_type'][2] = 'Curd';
+$config['fruit_type'][3] = 'Root';
+$config['fruit_type'][4] = 'Leaf';
+$config['fruit_type'][5] = 'Head';
 
 
 //fix bellow config latter

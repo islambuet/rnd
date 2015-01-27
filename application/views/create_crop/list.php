@@ -21,8 +21,11 @@
                 <th><?php echo $this->lang->line("LABEL_CROP_CODE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_WIDTH"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_HEIGHT"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
-                <th><?php echo $this->lang->line("ACTION"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_FLOWERING_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_INITIAL_PLANTS"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PLANTS_PER_HECTARE"); ?></th>
+
             </tr>
             </thead>
 
@@ -39,12 +42,17 @@
                             <td><?php echo $crop['crop_code'];?></td>
                             <td><?php echo $crop['crop_width'];?></td>
                             <td><?php echo $crop['crop_height'];?></td>
-                            <td><?php if($crop['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                             <td>
-                                <a href="<?php echo base_url();?>create_crop/index/edit/<?php echo $crop['id'];?>">
-                                    <img src="<?php echo base_url();?>images/edit_record.png">
-                                </a>
+                                <?php
+                                    $fruit_types=$this->config->item("fruit_type");
+                                    echo $fruit_types[$crop['fruit_type']];
+
+                                ?>
                             </td>
+                            <td><?php echo $crop['sample_size'];?></td>
+                            <td><?php echo $crop['initial_plants'];?></td>
+                            <td><?php echo $crop['plants_per_hectare'];?></td>
+
                         </tr>
                         <?php
                     }
