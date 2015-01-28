@@ -68,7 +68,7 @@ class Create_principal extends ROOT_Controller
         {
             $data['title']="Create New Principal";
             $data["principalInfo"] = Array(
-                'principal_id' => 0,
+                'id' => 0,
                 'principal_name' => '',
                 'principal_code' => '',
                 'contact_person_name' => '',
@@ -92,8 +92,6 @@ class Create_principal extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'principal_name'=>$this->input->post('principal_name'),
-            'principal_code'=>$this->input->post('principal_code'),
             'contact_person_name'=>$this->input->post('contact_person_name'),
             'email'=>$this->input->post('email_id'),
             'contact_number'=>$this->input->post('contact_number'),
@@ -116,7 +114,7 @@ class Create_principal extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_principal',$data,array("principal_id = ".$id),'principal_id');
+                Query_helper::update('rnd_principal',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -133,6 +131,8 @@ class Create_principal extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+                $data['principal_name'] = $this->input->post('principal_name');
+                $data['principal_code'] = $this->input->post('principal_code');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
@@ -160,27 +160,34 @@ class Create_principal extends ROOT_Controller
     {
         $valid=true;
 
-        if(Validation_helper::validate_empty($this->input->post('principal_name')))
+        if($this->input->post('principal_name'))
         {
-            $valid=false;
-            $this->message.="Principal Name Cannot Be Empty<br>";
-        }
-        elseif($this->create_principal_model->check_existing_principal_name($this->input->post('principal_name'),$this->input->post('principal_id')))
-        {
-            $valid=false;
-            $this->message.="Principal Name Exists<br>";
+            if(Validation_helper::validate_empty($this->input->post('principal_name')))
+            {
+                $valid=false;
+                $this->message.="Principal Name Cann't Be Empty<br>";
+            }
+            elseif($this->create_principal_model->check_existing_principal_name($this->input->post('principal_name'),$this->input->post('principal_id')))
+            {
+                $valid=false;
+                $this->message.="Principal Name Exists<br>";
+            }
         }
 
-        if(Validation_helper::validate_empty($this->input->post('principal_code')))
+        if($this->input->post('principal_code'))
         {
-            $valid=false;
-            $this->message.="Principal Code Cannot Be Empty<br>";
+            if(Validation_helper::validate_empty($this->input->post('principal_code')))
+            {
+                $valid=false;
+                $this->message.="Principal Code Cann't Be Empty<br>";
+            }
+            elseif($this->create_principal_model->check_existing_principal_code($this->input->post('principal_code'),$this->input->post('principal_id')))
+            {
+                $valid=false;
+                $this->message.="Principal Code Exists<br>";
+            }
         }
-        elseif($this->create_principal_model->check_existing_principal_code($this->input->post('principal_code'),$this->input->post('principal_id')))
-        {
-            $valid=false;
-            $this->message.="Principal Code Exists<br>";
-        }
+
 
         return $valid;
     }

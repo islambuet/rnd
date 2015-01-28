@@ -42,7 +42,7 @@
                         <td><?php echo $principal['contact_number'];?></td>
                         <td><?php if($principal['status']==$this->config->item('status_active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                         <td>
-                            <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['principal_id'];?>">
+                            <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">
                             </a>
                         </td>

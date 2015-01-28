@@ -29,7 +29,7 @@ class Query_helper
         }
     }
 
-    public static  function update($tablename,$data,$conditions,$id)
+    public static  function update($tablename,$data,$conditions)
     {
         $CI =& get_instance();
         foreach($conditions as $condition)
@@ -37,8 +37,8 @@ class Query_helper
             $CI->db->where($condition);
 
         }
-
         $rows=$CI->db->get($tablename)->result_array();
+
 
         foreach($conditions as $condition)
         {
@@ -56,7 +56,7 @@ class Query_helper
             {
 
                 $historyData = Array(
-                    'table_id'=>$row[$id],
+                    'table_id'=>$row['id'],
                     'table_name'=>$tablename,
                     'data'=>json_encode($data),
                     'user_id'=>$user->user_id,
