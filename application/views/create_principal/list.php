@@ -22,7 +22,6 @@
                 <th><?php echo $this->lang->line("LABEL_PRINCIPAL_CODE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CONTACT_PERSON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CONTACT"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -40,7 +39,6 @@
                         <td><?php echo $principal['principal_code'];?></td>
                         <td><?php echo $principal['contact_person_name'];?></td>
                         <td><?php echo $principal['contact_number'];?></td>
-                        <td><?php if($principal['status']==$this->config->item('status_active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                         <td>
                             <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">

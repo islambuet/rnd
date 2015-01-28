@@ -31,9 +31,6 @@ class System_helper
         $config['uri_segment'] = $segment;
         return $config;
     }
-
-
-
     public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize,$allowedtypes)
     {
         $CI = & get_instance();
@@ -177,5 +174,6 @@ class System_helper
         $query = $CI->db->get();
         return $query->result_array();
     }
+
 
 }

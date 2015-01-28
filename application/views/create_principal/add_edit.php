@@ -22,7 +22,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="principal_name" id="principal_name" class="form-control validate[required]" <?php if(!empty($principalInfo['principal_name'])){echo 'disabled';}?> value="<?php echo $principalInfo['principal_name'];?>" >
+                <input type="text" name="principal_name" id="principal_name" class="form-control validate[required]" value="<?php echo $principalInfo['principal_name'];?>" >
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="principal_code" id="principal_code" class="form-control validate[required]" <?php if(!empty($principalInfo['principal_code'])){echo 'disabled';}?> value="<?php echo $principalInfo['principal_code'];?>" >
+                <input type="text" name="principal_code" id="principal_code" class="form-control validate[required]" <?php if(!empty($principalInfo['principal_code'])){echo 'readonly';}?> value="<?php echo $principalInfo['principal_code'];?>" >
             </div>
         </div>
 
@@ -68,18 +68,6 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <textarea name="address" id="address" class="form-control"><?php echo $principalInfo['address'];?></textarea>
-            </div>
-        </div>
-
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('status_active');?>" <?php if($this->config->item('status_active')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('status_delete');?>" <?php if($this->config->item('status_delete')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
-                </select>
             </div>
         </div>
     </div>

@@ -95,12 +95,21 @@ class Create_crop extends ROOT_Controller
         {
 
             $this->db->trans_start();  //DB Transaction Handle START
+            $time=time();;
 
             $data['created_by'] = $user->user_id;
-            $data['creation_date'] = time();
+            $data['creation_date'] = $time;
 
-            Query_helper::add('rnd_crop',$data);
-
+            $crop_id=Query_helper::add('rnd_crop',$data);
+            $status_data['crop_id']=$crop_id;
+            $status_data['created_by']=$user->user_id;
+            $status_data['creation_date']=$time;
+            Query_helper::add('rnd_status_fifteen_days_report',$status_data);
+            Query_helper::add('rnd_status_flowering_report',$status_data);
+            Query_helper::add('rnd_status_fruit_report',$status_data);
+            Query_helper::add('rnd_status_harvest_compile_report',$status_data);
+            Query_helper::add('rnd_status_harvest_report',$status_data);
+            Query_helper::add('rnd_status_yield_report',$status_data);
             $this->db->trans_complete();   //DB Transaction Handle END
 
             if ($this->db->trans_status() === TRUE)
