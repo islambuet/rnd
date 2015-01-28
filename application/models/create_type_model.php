@@ -70,11 +70,11 @@ class Create_type_model extends CI_Model
         }
     }
 
-    public function check_type_code_existence($type_code, $type_name, $id)
+    public function check_type_code_existence($type_code, $crop_id, $id)
     {
         $this->db->select('rnd_crop_type.*');
         $this->db->from('rnd_crop_type');
-        $this->db->where('type_name',$type_name);
+        $this->db->where('crop_id',$crop_id);
         $this->db->where('type_code',$type_code);
         $this->db->where('id !=',$id);
 

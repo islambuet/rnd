@@ -180,7 +180,7 @@ class Create_crop_type extends ROOT_Controller
             $valid=false;
             $this->message.="Type Code Cann't Be Empty<br>";
         }
-        elseif($this->create_type_model->check_type_code_existence($this->input->post('type_code'),$this->input->post('type_name'),$this->input->post('type_id')))
+        elseif($this->create_type_model->check_type_code_existence($this->input->post('type_code'),$this->input->post('crop_id'),$this->input->post('type_id')))
         {
             $valid=false;
             $this->message.="Type Code Exists<br>";
