@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-28 14:13:10
+Date: 2015-01-28 14:44:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -676,3 +676,125 @@ CREATE TABLE `rnd_principal` (
 INSERT INTO `rnd_principal` VALUES ('1', 'Principal1', 'P1', 'Shaiful Islam', 'shaiful@gmail.com', '01912564190', 'Address\r\n', '1', 'UI-000037', '1422424688', 'UI-000037', '1422429331');
 INSERT INTO `rnd_principal` VALUES ('2', 'Principal2', 'P2', 'Maraj Hossain', 'maraj@gmail.com', '01946311456', ' Address', '1', 'UI-000037', '1422426749', 'UI-000037', '1422431018');
 INSERT INTO `rnd_principal` VALUES ('3', 'Principal3', 'P3', 'Farid Ahmed', 'farid@jukto.com', '01716564231', ' Address ', '1', 'UI-000037', '1422431110', 'UI-000037', '1422431137');
+
+-- ----------------------------
+-- Table structure for `rnd_status_fifteen_days_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_fifteen_days_report`;
+CREATE TABLE `rnd_status_fifteen_days_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `sowing_date` tinyint(4) DEFAULT NULL,
+  `transplanting_date` tinyint(4) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_fifteen_days_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_status_flowering_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_flowering_report`;
+CREATE TABLE `rnd_status_flowering_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_flowering_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_status_fruit_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_fruit_report`;
+CREATE TABLE `rnd_status_fruit_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_fruit_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_status_harvest_compile_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_harvest_compile_report`;
+CREATE TABLE `rnd_status_harvest_compile_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_harvest_compile_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_status_harvest_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_harvest_report`;
+CREATE TABLE `rnd_status_harvest_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_harvest_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_status_yield_report`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_status_yield_report`;
+CREATE TABLE `rnd_status_yield_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `rnd_code` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_status_yield_report
+-- ----------------------------
