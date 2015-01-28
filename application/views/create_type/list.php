@@ -30,23 +30,36 @@
 
             <tbody>
             <?php
-            foreach($typeInfo as $key=>$type)
+            if(sizeof($typeInfo)>0)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $type['crop_name'];?></td>
-                <td><?php echo $type['type_name'];?></td>
-                <td><?php echo $type['type_code'];?></td>
-                <td><?php echo $type['terget_length'];?></td>
-                <td><?php echo $type['terget_weight'];?></td>
-                <td><?php echo $type['terget_yeild'];?></td>
-                <td>
-                    <a href="<?php echo base_url();?>create_crop_type/index/edit/<?php echo $type['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
+                foreach($typeInfo as $key=>$type)
+                {
+                ?>
+                <tr>
+                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $type['crop_name'];?></td>
+                    <td><?php echo $type['type_name'];?></td>
+                    <td><?php echo $type['type_code'];?></td>
+                    <td><?php echo $type['terget_length'];?></td>
+                    <td><?php echo $type['terget_weight'];?></td>
+                    <td><?php echo $type['terget_yeild'];?></td>
+                    <td>
+                        <a href="<?php echo base_url();?>create_crop_type/index/edit/<?php echo $type['id'];?>">
+                            <img src="<?php echo base_url();?>images/edit_record.png">
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
             <?php
             }
             ?>

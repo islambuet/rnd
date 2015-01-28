@@ -102,7 +102,7 @@
 
     jQuery(document).ready(function()
     {
-//        $(".form_valid").validationEngine();
+        $(".form_valid").validationEngine();
 
     });
 </script>
