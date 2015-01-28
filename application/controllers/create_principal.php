@@ -96,7 +96,7 @@ class Create_principal extends ROOT_Controller
             'email'=>$this->input->post('email_id'),
             'contact_number'=>$this->input->post('contact_number'),
             'address'=>$this->input->post('address'),
-            'status'=>$this->input->post('status'),
+            'status'=>$this->input->post('status')
         );
 
         if(!$this->check_validation())

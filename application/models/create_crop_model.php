@@ -19,7 +19,7 @@ class Create_crop_model extends CI_Model
 
         $this->db->where('rc.status != ',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
-        $this->db->order_by("rc.crop_id","ASC");
+        $this->db->order_by("rc.id","ASC");
 
         $query = $this->db->get();
 
@@ -47,7 +47,7 @@ class Create_crop_model extends CI_Model
 
     public function check_crop_name_existence($crop_name)
     {
-        $this->db->select('rnd_crop.crop_id');
+        $this->db->select('rnd_crop.id');
         $this->db->from('rnd_crop');
         $this->db->where('crop_name',$crop_name);
 
@@ -65,12 +65,11 @@ class Create_crop_model extends CI_Model
 
     public function check_crop_code_existence($crop_code)
     {
-        $this->db->select('crop_id');
+        $this->db->select('id');
         $this->db->from('rnd_crop');
         $this->db->where('crop_code',$crop_code);
 
         $result = $this->db->count_all_results();
-        
 
         if($result>0)
         {
