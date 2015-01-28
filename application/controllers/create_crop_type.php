@@ -61,7 +61,7 @@ class Create_crop_type extends ROOT_Controller
         if ($id != 0)
         {
             $data['typeInfo'] = $this->create_type_model->get_type_row($id);
-            $data['title']="Edit Crop Type (".$data['typeInfo']['type_name'].")";
+            $data['title']="Edit Crop Type (".$data['typeInfo']['crop_name'].'/ '.$data['typeInfo']['type_name'].")";
             $ajax['page_url']=base_url()."create_crop_type/index/edit/".$id;
         }
         else
