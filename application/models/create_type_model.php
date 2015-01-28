@@ -14,15 +14,15 @@ class Create_type_model extends CI_Model
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_product_type_info rti');
-        $this->db->select('rti.*');
-        $this->db->select('cinfo.crop_name crop_name');
+        $this->db->from('rnd_crop_type rct');
+        $this->db->select('rct.*');
+        $this->db->select('rc.crop_name crop_name');
 
-        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rti.crop_id', 'left');
+        $this->db->join('rnd_crop rc', 'rc.id = rct.crop_id', 'left');
 
-        $this->db->where('rti.status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('rct.status',$this->config->item('status_active'));
         $this->db->limit($limit,$start);
-        $this->db->order_by("rti.id","DESC");
+        $this->db->order_by("rct.id","DESC");
 
         $query = $this->db->get();
         return $query->result_array();
@@ -30,21 +30,64 @@ class Create_type_model extends CI_Model
 
     public function get_total_types()
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
+        $this->db->select('rnd_crop_type.*');
+        $this->db->from('rnd_crop_type');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('status',$this->config->item('status_active'));
         return $this->db->count_all_results();
     }
 
     public function get_type_row($id)
     {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
-        $this->db->where('id',$id);
+        $this->db->select('rct.*');
+        $this->db->from('rnd_crop_type rct');
+        $this->db->select('rc.crop_name crop_name');
+
+        $this->db->join('rnd_crop rc', 'rc.id = rct.crop_id', 'left');
+        $this->db->where('rct.id',$id);
 
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function check_type_name_existence($type, $crop_id, $id)
+    {
+        $this->db->select('rnd_crop_type.*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('type_name',$type);
+        $this->db->where('id !=',$id);
+
+        $result = $this->db->count_all_results();
+
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function check_type_code_existence($type_code, $type_name, $id)
+    {
+        $this->db->select('rnd_crop_type.*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('type_name',$type_name);
+        $this->db->where('type_code',$type_code);
+        $this->db->where('id !=',$id);
+
+        $result = $this->db->count_all_results();
+
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

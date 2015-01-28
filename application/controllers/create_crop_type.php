@@ -60,9 +60,8 @@ class Create_crop_type extends ROOT_Controller
     {
         if ($id != 0)
         {
-
             $data['typeInfo'] = $this->create_type_model->get_type_row($id);
-            $data['title']="Edit Crop Type (".$data['typeInfo']['product_type'].")";
+            $data['title']="Edit Crop Type (".$data['typeInfo']['type_name'].")";
             $ajax['page_url']=base_url()."create_crop_type/index/edit/".$id;
         }
         else
@@ -71,14 +70,16 @@ class Create_crop_type extends ROOT_Controller
             $data["typeInfo"] = Array(
                 'id' => 0,
                 'crop_id' => '',
-                'product_type' => '',
-                'product_type_code' => '',
-                'status' => $this->config->item('active')
+                'type_name' => '',
+                'type_code' => '',
+                'terget_length' => '',
+                'terget_weight' => '',
+                'terget_yeild' => ''
             );
             $ajax['page_url']=base_url()."create_crop_type/index/add";
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        $data['crops'] = Query_helper::get_info('rnd_crop', '*', array('status ='.$this->config->item('status_active')));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/add_edit",$data,true));
 
@@ -91,16 +92,16 @@ class Create_crop_type extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_id'=>$this->input->post('crop_id'),
-            'product_type'=>$this->input->post('product_type'),
-            'product_type_code'=>$this->input->post('type_code'),
-            'status'=>$this->input->post('status')
+            'type_name'=>$this->input->post('type_name'),
+            'terget_length'=>$this->input->post('target_length'),
+            'terget_weight'=>$this->input->post('target_weight'),
+            'terget_yeild'=>$this->input->post('target_yield')
         );
 
         if(!$this->check_validation())
         {
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
@@ -112,7 +113,7 @@ class Create_crop_type extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_product_type_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_crop_type',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -124,16 +125,17 @@ class Create_crop_type extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
                 }
-
             }
             else
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+                $data['crop_id'] = $this->input->post('crop_id');
+                $data['type_code'] = $this->input->post('type_code');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_product_type_info',$data);
+                Query_helper::add('rnd_crop_type',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -155,37 +157,53 @@ class Create_crop_type extends ROOT_Controller
 
     private function check_validation()
     {
+        $valid=true;
         if(Validation_helper::validate_empty($this->input->post('crop_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Crop Name Cann't Be Empty<br>";
         }
 
-        if(Validation_helper::validate_empty($this->input->post('product_type')))
+        if(Validation_helper::validate_empty($this->input->post('type_name')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Type Name Cann't Be Empty<br>";
+        }
+        elseif($this->create_type_model->check_type_name_existence($this->input->post('type_name'),$this->input->post('crop_id'),$this->input->post('type_id')))
+        {
+            $valid=false;
+            $this->message.="Type Name Exists<br>";
         }
 
         if(Validation_helper::validate_empty($this->input->post('type_code')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Type Code Cann't Be Empty<br>";
         }
-
-        if(!Validation_helper::validate_numeric($this->input->post('height')))
+        elseif($this->create_type_model->check_type_code_existence($this->input->post('type_code'),$this->input->post('type_name'),$this->input->post('type_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Type Code Exists<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('width')))
+        if(!Validation_helper::validate_numeric($this->input->post('target_length')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Targeted Length Must be number<br>";
         }
-
-        if(!Validation_helper::validate_numeric($this->input->post('status')))
+        if(!Validation_helper::validate_int($this->input->post('target_weight')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Targeted Weight Must be number<br>";
         }
 
-        return true;
+        if(!Validation_helper::validate_numeric($this->input->post('target_yield')))
+        {
+            $valid=false;
+            $this->message.="Targeted Yield Must be number<br>";
+        }
+
+        return $valid;
     }
 
 

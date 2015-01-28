@@ -8,6 +8,7 @@
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop_type/index/save" method="post">
+    <input type="hidden" name="type_id" id="type_id" value="<?php echo $typeInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -21,18 +22,31 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    foreach($crops as $crop)
-                    {?>
-                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
-                    <?php
-                    }
+                <?php
+                if(!$typeInfo['crop_id'])
+                {
+                ?>
+                    <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                        <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                        <?php
+                        foreach($crops as $crop)
+                        {?>
+                            <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$typeInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                <?php
+                }
+                else
+                {
                     ?>
-                </select>
+                    <input type="text" class="form-control validate[required]" readonly value="<?php echo $typeInfo['crop_name']?>">
+                    <input type="hidden" name="crop_id" class="form-control validate[required]" value="<?php echo $typeInfo['crop_id']?>">
+                <?php
+                }
+                ?>
             </div>
-            <input type="hidden" name="type_id" id="type_id" value="<?php echo $typeInfo['id'];?>"/>
         </div>
 
         <div style="" class="row show-grid">
@@ -40,7 +54,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="product_type" id="product_type" class="form-control validate[required]" value="<?php echo $typeInfo['product_type'];?>" >
+                <input type="text" name="type_name" id="type_name" class="form-control validate[required]" value="<?php echo $typeInfo['type_name'];?>" >
             </div>
         </div>
 
@@ -49,39 +63,37 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TYPE_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="type_code" id="type_code" class="form-control validate[required]" value="<?php echo $typeInfo['product_type_code'];?>" >
+                <input type="text" name="type_code" id="type_code" class="form-control validate[required]" <?php if(!empty($typeInfo['type_code'])){echo "readonly";}?> value="<?php echo $typeInfo['type_code'];?>" >
             </div>
         </div>
-
-<!--        <div style="" class="row show-grid">-->
-<!--            <div class="col-xs-4">-->
-<!--                <label class="control-label pull-right">--><?php //echo $this->lang->line('LABEL_WIDTH');?><!--<span style="color:#FF0000">*</span></label>-->
-<!--            </div>-->
-<!--            <div class="col-sm-4 col-xs-8">-->
-<!--                <input type="text" name="width" id="width" class="form-control validate[required, custom[number]]" value="--><?php //echo $typeInfo['product_type_width'];?><!--" >-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div style="" class="row show-grid">-->
-<!--            <div class="col-xs-4">-->
-<!--                <label class="control-label pull-right">--><?php //echo $this->lang->line('LABEL_HEIGHT');?><!--<span style="color:#FF0000">*</span></label>-->
-<!--            </div>-->
-<!--            <div class="col-sm-4 col-xs-8">-->
-<!--                <input type="text" name="height" id="height" class="form-control validate[required, custom[number]]" value="--><?php //echo $typeInfo['product_type_height'];?><!--" >-->
-<!--            </div>-->
-<!--        </div>-->
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('STATUS');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_LENGTH');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>" <?php if($this->config->item('active')==$typeInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($this->config->item('inactive')==$typeInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
-                </select>
+                <input type="text" name="target_length" id="target_length" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_length'];?>" >
             </div>
         </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_WEIGHT');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="target_weight" id="target_weight" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_weight'];?>" >
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_YIELD');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="target_yield" id="target_yield" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_yeild'];?>" >
+            </div>
+        </div>
+
     </div>
     <div class="clearfix"></div>
 </form>
@@ -90,7 +102,7 @@
 
     jQuery(document).ready(function()
     {
-        $(".form_valid").validationEngine();
+//        $(".form_valid").validationEngine();
 
     });
 </script>

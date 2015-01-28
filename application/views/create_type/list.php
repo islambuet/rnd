@@ -21,7 +21,9 @@
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRODUCT_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_TYPE_CODE"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_TARGET_LENGTH"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_TARGET_WEIGHT"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_TARGET_YIELD"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -34,9 +36,11 @@
             <tr>
                 <td><?php echo $key+1;?></td>
                 <td><?php echo $type['crop_name'];?></td>
-                <td><?php echo $type['product_type'];?></td>
-                <td><?php echo $type['product_type_code'];?></td>
-                <td><?php if($type['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                <td><?php echo $type['type_name'];?></td>
+                <td><?php echo $type['type_code'];?></td>
+                <td><?php echo $type['terget_length'];?></td>
+                <td><?php echo $type['terget_weight'];?></td>
+                <td><?php echo $type['terget_yeild'];?></td>
                 <td>
                     <a href="<?php echo base_url();?>create_crop_type/index/edit/<?php echo $type['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">

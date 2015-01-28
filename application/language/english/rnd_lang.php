@@ -58,10 +58,13 @@ $lang['LABEL_GM'] = 'gm';
 
 //Create Type
 $lang['LABEL_SELECT_CROP'] = 'Select Crop';
-$lang['LABEL_PRODUCT_TYPE'] = 'Crop Type';
+$lang['LABEL_PRODUCT_TYPE'] = 'Type Name';
 $lang['LABEL_TYPE_CODE'] = 'Type Code';
 $lang['LABEL_WIDTH'] = 'Width';
 $lang['LABEL_HEIGHT'] = 'Height';
+$lang['LABEL_TARGET_LENGTH'] = 'Targeted Length';
+$lang['LABEL_TARGET_WEIGHT'] = 'Targeted Weight';
+$lang['LABEL_TARGET_YIELD'] = 'Targeted Yield';
 
 //Create Principal
 $lang['LABEL_PRINCIPAL_NAME'] = 'Principal Name';
