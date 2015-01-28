@@ -64,6 +64,23 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['armalik']['hostname'] = '127.0.0.1';
+$db['armalik']['username'] = 'armalikg_rndci';
+$db['armalik']['password'] = 'KGa-hn7U*RaE';
+$db['armalik']['database'] = 'armalikg_rndci';
+$db['armalik']['dbdriver'] = 'mysql';
+$db['armalik']['dbprefix'] = '';
+$db['armalik']['pconnect'] = TRUE;
+$db['armalik']['db_debug'] = TRUE;
+$db['armalik']['cache_on'] = FALSE;
+$db['armalik']['cachedir'] = '';
+$db['armalik']['char_set'] = 'utf8';
+$db['armalik']['dbcollat'] = 'utf8_general_ci';
+$db['armalik']['swap_pre'] = '';
+$db['armalik']['autoinit'] = TRUE;
+$db['armalik']['stricton'] = FALSE;
+
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
