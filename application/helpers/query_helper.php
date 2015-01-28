@@ -29,7 +29,7 @@ class Query_helper
         }
     }
 
-    public static  function update($tablename,$data,$conditions)
+    public static  function update($tablename,$data,$conditions,$id)
     {
         $CI =& get_instance();
         foreach($conditions as $condition)
@@ -52,20 +52,20 @@ class Query_helper
             $user = User_helper::get_user();
             $time=time();
 
-//            foreach($rows as $row)
-//            {
-//
-//                $historyData = Array(
-//                    'table_id'=>$row['id'],
-//                    'table_name'=>$tablename,
-//                    'data'=>json_encode($data),
-//                    'user_id'=>$user->user_id,
-//                    'action'=>'UPDATE',
-//                    'date'=>$time
-//                );
-//
-//                $CI->db->insert('rnd_history', $historyData);
-//            }
+            foreach($rows as $row)
+            {
+
+                $historyData = Array(
+                    'table_id'=>$row[$id],
+                    'table_name'=>$tablename,
+                    'data'=>json_encode($data),
+                    'user_id'=>$user->user_id,
+                    'action'=>'UPDATE',
+                    'date'=>$time
+                );
+
+                $CI->db->insert('rnd_history', $historyData);
+            }
 
             return true;
 

@@ -116,7 +116,7 @@ class Create_principal extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_principal',$data,array("principal_id = ".$id));
+                Query_helper::update('rnd_principal',$data,array("principal_id = ".$id),'principal_id');
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
