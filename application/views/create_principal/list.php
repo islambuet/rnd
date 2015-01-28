@@ -29,22 +29,35 @@
 
             <tbody>
             <?php
-            foreach($principalInfo as $key=>$principal)
+            if(sizeof($principalInfo)>0)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $principal['principal_name'];?></td>
-                <td><?php echo $principal['principal_code'];?></td>
-                <td><?php echo $principal['contact_person_name'];?></td>
-                <td><?php echo $principal['contact_number'];?></td>
-                <td><?php if($principal['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
-                <td>
-                    <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
+                foreach($principalInfo as $key=>$principal)
+                {
+                ?>
+                    <tr>
+                        <td><?php echo $key+1;?></td>
+                        <td><?php echo $principal['principal_name'];?></td>
+                        <td><?php echo $principal['principal_code'];?></td>
+                        <td><?php echo $principal['contact_person_name'];?></td>
+                        <td><?php echo $principal['contact_number'];?></td>
+                        <td><?php if($principal['status']==$this->config->item('status_active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
+                        <td>
+                            <a href="<?php echo base_url();?>create_principal/index/edit/<?php echo $principal['principal_id'];?>">
+                                <img src="<?php echo base_url();?>images/edit_record.png">
+                            </a>
+                        </td>
+                    </tr>
+                <?php
+                }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
             <?php
             }
             ?>

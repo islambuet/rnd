@@ -14,12 +14,12 @@ class Create_principal_model extends CI_Model
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_principal_info rpi');
-        $this->db->select('rpi.*');
+        $this->db->from('rnd_principal rp');
+        $this->db->select('rp.*');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('status !=',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
-        $this->db->order_by('rpi.id','DESC');
+        $this->db->order_by('rp.principal_id','DESC');
 
         $query = $this->db->get();
         return $query->result_array();
@@ -27,18 +27,18 @@ class Create_principal_model extends CI_Model
 
     public function get_total_principals()
     {
-        $this->db->select('rnd_principal_info.*');
-        $this->db->from('rnd_principal_info');
+        $this->db->select('rnd_principal.*');
+        $this->db->from('rnd_principal');
 
-        $this->db->where('status !=',$this->config->item('rnd_delete_status_code'));
+        $this->db->where('status !=',$this->config->item('status_delete'));
         return $this->db->count_all_results();
     }
 
     public function get_principal_row($id)
     {
-        $this->db->select('rnd_principal_info.*');
-        $this->db->from('rnd_principal_info');
-        $this->db->where('id',$id);
+        $this->db->select('rnd_principal.*');
+        $this->db->from('rnd_principal');
+        $this->db->where('principal_id',$id);
 
         $query = $this->db->get();
         return $query->row_array();
@@ -46,15 +46,14 @@ class Create_principal_model extends CI_Model
 
     public function check_existing_principal_name($principal_name,$id)
     {
-        $this->db->select('rnd_principal_info.*');
-        $this->db->from('rnd_principal_info');
+        $this->db->select('rnd_principal.*');
+        $this->db->from('rnd_principal');
         $this->db->where('principal_name',$principal_name);
-        $this->db->where('id !=',$id);
+        $this->db->where('principal_id !=',$id);
 
-        $query = $this->db->get();
-        $result = $query->row_array();
+        $result = $this->db->count_all_results();
 
-        if($result)
+        if($result>0)
         {
             return true;
         }
@@ -66,15 +65,14 @@ class Create_principal_model extends CI_Model
 
     public function check_existing_principal_code($principal_code,$id)
     {
-        $this->db->select('rnd_principal_info.*');
-        $this->db->from('rnd_principal_info');
+        $this->db->select('rnd_principal.*');
+        $this->db->from('rnd_principal');
         $this->db->where('principal_code',$principal_code);
-        $this->db->where('id !=',$id);
+        $this->db->where('principal_id !=',$id);
 
-        $query = $this->db->get();
-        $result = $query->row_array();
+        $result = $this->db->count_all_results();
 
-        if($result)
+        if($result>0)
         {
             return true;
         }

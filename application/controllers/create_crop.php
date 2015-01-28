@@ -116,6 +116,7 @@ class Create_crop extends ROOT_Controller
         }
 
     }
+
     private function check_validation()
     {
         $valid=true;
@@ -172,11 +173,6 @@ class Create_crop extends ROOT_Controller
             $valid=false;
             $this->message.="Plants per hectare Must be number<br>";
         }
-
-        // ||
-        //||
-
-
 
         return $valid;
     }

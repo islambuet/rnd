@@ -43,7 +43,7 @@ class Create_principal extends ROOT_Controller
         }
 
         $data['principalInfo'] = $this->create_principal_model->get_principalInfo($page);
-        $data['title']="Crop Principal";
+        $data['title']="R&D Principal";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_principal/list",$data,true));
@@ -61,21 +61,21 @@ class Create_principal extends ROOT_Controller
         if ($id != 0)
         {
             $data['principalInfo'] = $this->create_principal_model->get_principal_row($id);
-            $data['title']="Edit Crop Principal (".$data['principalInfo']['principal_name'].")";
+            $data['title']="Edit Principal (".$data['principalInfo']['principal_name'].")";
             $ajax['page_url']=base_url()."create_principal/index/edit/".$id;
         }
         else
         {
-            $data['title']="Create New Crop Principal";
+            $data['title']="Create New Principal";
             $data["principalInfo"] = Array(
-                'id' => 0,
+                'principal_id' => 0,
                 'principal_name' => '',
                 'principal_code' => '',
                 'contact_person_name' => '',
                 'email' => '',
                 'contact_number' => '',
                 'address' => '',
-                'status' =>$this->config->item('active')
+                'status' =>$this->config->item('status_active')
             );
             $ajax['page_url']=base_url()."create_principal/index/add";
         }
@@ -92,8 +92,8 @@ class Create_principal extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'principal_name'=>$this->input->post('cp_principal_name'),
-            'principal_code'=>$this->input->post('cp_principal_code'),
+            'principal_name'=>$this->input->post('principal_name'),
+            'principal_code'=>$this->input->post('principal_code'),
             'contact_person_name'=>$this->input->post('contact_person_name'),
             'email'=>$this->input->post('email_id'),
             'contact_number'=>$this->input->post('contact_number'),
@@ -104,7 +104,7 @@ class Create_principal extends ROOT_Controller
         if(!$this->check_validation())
         {
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
@@ -116,7 +116,7 @@ class Create_principal extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_principal_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_principal',$data,array("principal_id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -128,7 +128,6 @@ class Create_principal extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
                 }
-
             }
             else
             {
@@ -137,7 +136,7 @@ class Create_principal extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_principal_info',$data);
+                Query_helper::add('rnd_principal',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -157,66 +156,33 @@ class Create_principal extends ROOT_Controller
 
     }
 
-    public function check_existing_principal_name()
-    {
-        if($this->create_principal_model->check_existing_principal_name($this->input->post('principal_name'),$this->input->post('principal_id')))
-        {
-            $ajax['status']=true;
-        }
-        else
-        {
-            $ajax['status']=false;
-        }
-
-        if($ajax['status'])
-        {
-            $ajax['message'] = 'Principal Name Exists';
-        }
-        else
-        {
-            $ajax['message'] = '';
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
-    public function check_existing_principal_code()
-    {
-        if($this->create_principal_model->check_existing_principal_code($this->input->post('principal_code'),$this->input->post('principal_id')))
-        {
-            $ajax['status']=true;
-        }
-        else
-        {
-            $ajax['status']=false;
-        }
-
-        if($ajax['status'])
-        {
-            $ajax['message'] = 'Principal Code Exists';
-        }
-        else
-        {
-            $ajax['message'] = '';
-
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('cp_principal_name')) || $this->create_principal_model->check_existing_principal_name($this->input->post('cp_principal_name'),$this->input->post('principal_id')))
+        $valid=true;
+
+        if(Validation_helper::validate_empty($this->input->post('principal_name')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Principal Name Cannot Be Empty<br>";
+        }
+        elseif($this->create_principal_model->check_existing_principal_name($this->input->post('principal_name'),$this->input->post('principal_id')))
+        {
+            $valid=false;
+            $this->message.="Principal Name Exists<br>";
         }
 
-        if(Validation_helper::validate_empty($this->input->post('cp_principal_code')) || $this->create_principal_model->check_existing_principal_code($this->input->post('cp_principal_code'),$this->input->post('principal_id')))
+        if(Validation_helper::validate_empty($this->input->post('principal_code')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Principal Code Cannot Be Empty<br>";
+        }
+        elseif($this->create_principal_model->check_existing_principal_code($this->input->post('principal_code'),$this->input->post('principal_id')))
+        {
+            $valid=false;
+            $this->message.="Principal Code Exists<br>";
         }
 
-        return true;
+        return $valid;
     }
 
 

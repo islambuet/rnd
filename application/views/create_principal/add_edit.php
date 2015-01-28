@@ -8,7 +8,7 @@
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_principal/index/save" method="post">
-    <input type="hidden" name="principal_id" id="principal_id" value="<?php echo $principalInfo['id'];?>"/>
+    <input type="hidden" name="principal_id" id="principal_id" value="<?php echo $principalInfo['principal_id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -22,7 +22,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="cp_principal_name" id="cp_principal_name" class="form-control validate[required]" value="<?php echo $principalInfo['principal_name'];?>" >
+                <input type="text" name="principal_name" id="principal_name" class="form-control validate[required]" value="<?php echo $principalInfo['principal_name'];?>" >
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="cp_principal_code" id="cp_principal_code" class="form-control validate[required]" value="<?php echo $principalInfo['principal_code'];?>" >
+                <input type="text" name="principal_code" id="principal_code" class="form-control validate[required]" value="<?php echo $principalInfo['principal_code'];?>" >
             </div>
         </div>
 
@@ -77,8 +77,8 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>" <?php if($this->config->item('active')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($this->config->item('inactive')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_active');?>" <?php if($this->config->item('status_active')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_delete');?>" <?php if($this->config->item('status_delete')==$principalInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
                 </select>
             </div>
         </div>
@@ -87,9 +87,9 @@
 </form>
 <script type="text/javascript">
 
-    jQuery(document).ready(function()
-    {
-        $(".form_valid").validationEngine();
-
-    });
+//    jQuery(document).ready(function()
+//    {
+//        $(".form_valid").validationEngine();
+//
+//    });
 </script>
