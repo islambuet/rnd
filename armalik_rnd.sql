@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-01-28 14:44:37
+Date: 2015-01-28 16:51:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -610,11 +610,14 @@ CREATE TABLE `rnd_crop_type` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_crop_type
 -- ----------------------------
+INSERT INTO `rnd_crop_type` VALUES ('1', '1', 'Early', 'CC0001', '12', '14', '22', '1', 'UI-000037', '1422438252', 'UI-000037', '1422440062');
+INSERT INTO `rnd_crop_type` VALUES ('2', '1', 'Late', 'L0001', '34', '32', '12', '1', 'UI-000037', '1422440109', 'UI-000037', '1422440138');
+INSERT INTO `rnd_crop_type` VALUES ('3', '2', 'Early', 'CB0001', '34', '89', '43', '1', 'UI-000037', '1422440375', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_history`
@@ -629,7 +632,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -649,6 +652,19 @@ INSERT INTO `rnd_history` VALUES ('12', '2', 'rnd_principal', '{\"contact_person
 INSERT INTO `rnd_history` VALUES ('13', '2', 'rnd_principal', '{\"contact_person_name\":\"Maraj Hossain\",\"email\":\"maraj@gmail.com\",\"contact_number\":\"01946311456\",\"address\":\" Address\",\"status\":\"1\",\"modified_by\":\"UI-000037\",\"modification_date\":1422431018}', 'UI-000037', 'UPDATE', '1422431018');
 INSERT INTO `rnd_history` VALUES ('14', '3', 'rnd_principal', '{\"contact_person_name\":\"\",\"email\":\"\",\"contact_number\":\"\",\"address\":\"\",\"status\":\"1\",\"principal_name\":\"Principal3\",\"principal_code\":\"P3\",\"created_by\":\"UI-000037\",\"creation_date\":1422431110}', 'UI-000037', 'INSERT', '1422431110');
 INSERT INTO `rnd_history` VALUES ('15', '3', 'rnd_principal', '{\"contact_person_name\":\"Farid Ahmed\",\"email\":\"farid@jukto.com\",\"contact_number\":\"01716564231\",\"address\":\" Address \",\"status\":\"1\",\"modified_by\":\"UI-000037\",\"modification_date\":1422431137}', 'UI-000037', 'UPDATE', '1422431137');
+INSERT INTO `rnd_history` VALUES ('16', '1', 'rnd_crop_type', '{\"type_name\":\"a\",\"terget_length\":\"1\",\"terget_weight\":\"2\",\"terget_yeild\":\"3\",\"crop_id\":\"1\",\"type_code\":\"a\",\"created_by\":\"UI-000037\",\"creation_date\":1422438252}', 'UI-000037', 'INSERT', '1422438252');
+INSERT INTO `rnd_history` VALUES ('17', '1', 'rnd_crop_type', '{\"type_name\":\"a\",\"terget_length\":\"1\",\"terget_weight\":\"2\",\"terget_yeild\":\"3\",\"modified_by\":\"UI-000037\",\"modification_date\":1422438303}', 'UI-000037', 'UPDATE', '1422438303');
+INSERT INTO `rnd_history` VALUES ('18', '1', 'rnd_crop_type', '{\"type_name\":\"a\",\"terget_length\":\"1\",\"terget_weight\":\"2\",\"terget_yeild\":\"3\",\"modified_by\":\"UI-000037\",\"modification_date\":1422438311}', 'UI-000037', 'UPDATE', '1422438311');
+INSERT INTO `rnd_history` VALUES ('19', '1', 'rnd_crop_type', '{\"type_name\":\"a\",\"terget_length\":\"1.10\",\"terget_weight\":\"2\",\"terget_yeild\":\"3\",\"modified_by\":\"UI-000037\",\"modification_date\":1422438403}', 'UI-000037', 'UPDATE', '1422438403');
+INSERT INTO `rnd_history` VALUES ('20', '1', 'rnd_crop_type', '{\"type_name\":\"a\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422438429}', 'UI-000037', 'UPDATE', '1422438429');
+INSERT INTO `rnd_history` VALUES ('21', '1', 'rnd_crop_type', '{\"type_name\":\"TC0001\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422438461}', 'UI-000037', 'UPDATE', '1422438461');
+INSERT INTO `rnd_history` VALUES ('22', '1', 'rnd_crop_type', '{\"type_name\":\"TC0001\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422439028}', 'UI-000037', 'UPDATE', '1422439028');
+INSERT INTO `rnd_history` VALUES ('23', '1', 'rnd_crop_type', '{\"type_name\":\"TC00011\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422439572}', 'UI-000037', 'UPDATE', '1422439572');
+INSERT INTO `rnd_history` VALUES ('24', '1', 'rnd_crop_type', '{\"type_name\":\"TC0001\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422439579}', 'UI-000037', 'UPDATE', '1422439579');
+INSERT INTO `rnd_history` VALUES ('25', '1', 'rnd_crop_type', '{\"type_name\":\"Early\",\"terget_length\":\"12\",\"terget_weight\":\"14\",\"terget_yeild\":\"22\",\"modified_by\":\"UI-000037\",\"modification_date\":1422440062}', 'UI-000037', 'UPDATE', '1422440062');
+INSERT INTO `rnd_history` VALUES ('26', '2', 'rnd_crop_type', '{\"type_name\":\"Late\",\"terget_length\":\"34\",\"terget_weight\":\"56\",\"terget_yeild\":\"12\",\"crop_id\":\"1\",\"type_code\":\"L0001\",\"created_by\":\"UI-000037\",\"creation_date\":1422440109}', 'UI-000037', 'INSERT', '1422440109');
+INSERT INTO `rnd_history` VALUES ('27', '2', 'rnd_crop_type', '{\"type_name\":\"Late\",\"terget_length\":\"34\",\"terget_weight\":\"32\",\"terget_yeild\":\"12\",\"modified_by\":\"UI-000037\",\"modification_date\":1422440138}', 'UI-000037', 'UPDATE', '1422440138');
+INSERT INTO `rnd_history` VALUES ('28', '3', 'rnd_crop_type', '{\"type_name\":\"Early\",\"terget_length\":\"34\",\"terget_weight\":\"89\",\"terget_yeild\":\"43\",\"crop_id\":\"2\",\"type_code\":\"CB0001\",\"created_by\":\"UI-000037\",\"creation_date\":1422440375}', 'UI-000037', 'INSERT', '1422440375');
 
 -- ----------------------------
 -- Table structure for `rnd_principal`
@@ -797,4 +813,32 @@ CREATE TABLE `rnd_status_yield_report` (
 
 -- ----------------------------
 -- Records of rnd_status_yield_report
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rnd_variety`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_variety`;
+CREATE TABLE `rnd_variety` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `season_id` int(11) NOT NULL,
+  `crop_id` int(11) NOT NULL,
+  `crop_type_id` int(11) NOT NULL,
+  `principal_id` int(11) NOT NULL,
+  `variety_name` varchar(255) NOT NULL,
+  `rnd_code` varchar(255) NOT NULL,
+  `variety_type` int(11) NOT NULL,
+  `compay_name` varchar(255) DEFAULT NULL,
+  `number_of_seeds` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `characterstics` varchar(255) DEFAULT NULL,
+  `new_old_status` tinyint(4) NOT NULL,
+  `replica_status` tinyint(4) NOT NULL,
+  `rnd_year` varchar(255) NOT NULL,
+  `sample_delivery_status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_variety
 -- ----------------------------
