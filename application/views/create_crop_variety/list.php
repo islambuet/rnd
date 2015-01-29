@@ -31,45 +31,58 @@
 
             <tbody>
             <?php
-            foreach($varietyInfo as $key=>$variety)
+            if(sizeof($varietyInfo)>0)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $variety['year'];?></td>
-                <td><?php echo $variety['variety_name'];?></td>
-                <td><?php echo System_helper::get_rnd_code($variety);?></td>
+                foreach($varietyInfo as $key=>$variety)
+                {
+                ?>
+                <tr>
+                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $variety['year'];?></td>
+                    <td><?php echo $variety['variety_name'];?></td>
+                    <td><?php echo System_helper::get_rnd_code($variety);?></td>
 
-                <td>
-                    <?php
-                    if($variety['variety_type']==$this->config->item('variety_type_arm'))
-                    {
-                        echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');
-                    }
-                    elseif($variety['variety_type']==$this->config->item('variety_type_company'))
-                    {
-                        echo $this->lang->line('LABEL_COMPETITOR_VARIETY');
-                    }
-                    elseif($variety['variety_type']==$this->config->item('variety_type_principal'))
-                    {
-                        echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');
-                    }
-                    else
-                    {
-                        echo '';
-                    }
-                    ?>
-                </td>
-                <td><?php echo $variety['crop_name'];?></td>
-                <td><?php echo $variety['type_name'];?></td>
-                <td><?php if($variety['replica_status']==1){ echo 'Yes';}else{ echo 'No';}?></td>
+                    <td>
+                        <?php
+                        if($variety['variety_type']==$this->config->item('variety_type_arm'))
+                        {
+                            echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');
+                        }
+                        elseif($variety['variety_type']==$this->config->item('variety_type_company'))
+                        {
+                            echo $this->lang->line('LABEL_COMPETITOR_VARIETY');
+                        }
+                        elseif($variety['variety_type']==$this->config->item('variety_type_principal'))
+                        {
+                            echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');
+                        }
+                        else
+                        {
+                            echo '';
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $variety['crop_name'];?></td>
+                    <td><?php echo $variety['type_name'];?></td>
+                    <td><?php if($variety['replica_status']==1){ echo 'Yes';}else{ echo 'No';}?></td>
 
-                <td>
-                    <a href="<?php echo base_url();?>create_crop_variety/index/edit/<?php echo $variety['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
+                    <td>
+                        <a href="<?php echo base_url();?>create_crop_variety/index/edit/<?php echo $variety['id'];?>">
+                            <img src="<?php echo base_url();?>images/edit_record.png">
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
             <?php
             }
             ?>
