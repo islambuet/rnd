@@ -63,7 +63,7 @@ class Create_crop_variety extends ROOT_Controller
         {
             $data['varietyInfo'] = $this->create_crop_variety_model->get_variety_info($id);
             $data['cropTypes'] = $this->create_crop_variety_model->get_crop_types($data['varietyInfo']['crop_id']);
-            //$data['seasonInfo'] = $this->create_crop_variety_model->get_seasons($id);
+            $data['seasonInfo'] = $this->create_crop_variety_model->get_seasons_info($id);
             $data['title']="Edit Crop Variety (".$data['varietyInfo']['variety_name'].")";
             $ajax['page_url']=base_url()."create_crop_variety/index/edit/".$id;
         }
@@ -116,10 +116,44 @@ class Create_crop_variety extends ROOT_Controller
             $seasons = Query_helper::get_info('rnd_season', '*', array());
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
 
-                $ajax['status']=false;
-                $ajax['message']="wait save";
-                $this->jsonReturn($ajax);
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = $time;
+
+                $data['number_of_seeds']=$this->input->post("number_of_seeds");
+                $data['characteristics']=$this->input->post("characteristics");
+                Query_helper::update('rnd_variety',$data,array("id = ".$id));
+                $variety_season=$this->input->post("season");
+
+                $season_data=array();
+                $season_data['modified_by'] = $user->user_id;
+                $season_data['modification_date'] = $time;
+
+                foreach($seasons as $season)
+                {
+
+                    $season_data['season_status'] =0;
+                    if(is_array($variety_season))
+                    {
+                        $season_data['season_status']=(in_array($season['id'],$variety_season))?1:0;
+                    }
+                    Query_helper::update('rnd_variety_season',$season_data,array("season_id = ".$season['id'],"variety_id = ".$id,"sample_delivery_status != 1"));
+
+                }
+
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
+                $this->rnd_list();//this is similar like redirect
             }
             else
             {
@@ -202,7 +236,14 @@ class Create_crop_variety extends ROOT_Controller
     }
     private function check_validation_edit()
     {
-        return true;
+        $valid=true;
+        if(!Validation_helper::validate_numeric($this->input->post('number_of_seeds')))
+        {
+            $valid=false;
+            $this->message.="Number of Seeds must be a number.<br>";
+        }
+
+        return $valid;
     }
 
     private function check_validation_add()

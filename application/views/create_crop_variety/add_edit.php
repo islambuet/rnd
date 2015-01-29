@@ -2,7 +2,6 @@
     $data["link_new"]=base_url()."create_crop_variety/index/add";
     $data["link_back"]=base_url()."create_crop_variety";
     $this->load->view("action_buttons_edit",$data);
-
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop_variety/index/save" method="post">
     <input type="hidden" name="variety_id" id="variety_id" value="<?php echo $varietyInfo['id'];?>"/>
@@ -135,9 +134,25 @@
                 <?php
                 foreach($seasons as $season)
                 {
-                ?>
-                    <input type="checkbox" name="season[]" class="validate[required]" value="<?php echo $season['id'];?>"> <?php echo $season['season_name'];?><br>
-                <?php
+                    $checked="";
+                    $show=true;
+                    if($varietyInfo['id']>0)
+                    {
+                        if($seasonInfo[$season['id']]['season_status']==1)
+                        {
+                            $checked=" checked";
+                        }
+                        if($seasonInfo[$season['id']]['sample_delivery_status']==1)
+                        {
+                            $show=false;
+                        }
+                    }
+                    if($show)
+                    {
+                        ?>
+                            <input type="checkbox" name="season[]" class="validate[required]" value="<?php echo $season['id'];?>"<?php echo $checked; ?> > <?php echo $season['season_name'];?><br>
+                        <?php
+                    }
                 }
                 ?>
             </div>
@@ -157,7 +172,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_IN_GRAM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="quantity" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['quantity'];?>" >
+                <input type="text" name="quantity" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['quantity'];?>" <?php if($varietyInfo['id']>0){echo "readonly";}?> >
             </div>
         </div>
 
@@ -174,7 +189,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="checkbox" name="replica_status" class="validate[required]" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>>
+                <input type="checkbox" name="replica_status" class="validate[required]" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>  <?php if($varietyInfo['id']>0){echo "readonly";}?>>
             </div>
         </div>
 

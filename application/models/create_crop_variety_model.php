@@ -116,6 +116,21 @@ class Create_crop_variety_model extends CI_Model
         $result = $this->db->get()->result_array();
         return $result;
     }
+    public function get_seasons_info($id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_variety_season');
+        $this->db->where('variety_id',$id);
+
+        $result = $this->db->get()->result_array();
+        $seasons=array();
+        foreach($result as $season)
+        {
+            $seasons[$season['season_id']]=array("season_status"=>$season['season_status'],"sample_delivery_status"=>$season['sample_delivery_status']);
+
+        }
+        return $seasons;
+    }
 
     /*
 
@@ -129,15 +144,7 @@ class Create_crop_variety_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_seasons($id)
-    {
-        $this->db->select('rnd_variety_season.*');
-        $this->db->from('rnd_variety_season');
-        $this->db->where('variety_id',$id);
 
-        $query = $this->db->get();
-        return $result = $query->result_array();
-    }
 
 
 
