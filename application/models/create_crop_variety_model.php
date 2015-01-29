@@ -9,8 +9,64 @@ class Create_crop_variety_model extends CI_Model
     public function __construct() {
         parent::__construct();
     }
+    public function get_varietyIndex($year,$crop_id)
+    {
+        $this->db->select('max(variety_index) variety_index');
+        $this->db->from('rnd_variety');
+        $this->db->where('year',$year);
+        $this->db->where('crop_id',$crop_id);
+        $result = $this->db->get()->row_array();
 
-    public function get_varietyInfo($page=null)
+        if($result)
+        {
+            if($result['variety_index']>0)
+            {
+                return ($result['variety_index']+1);
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            return 1;
+        }
+
+    }
+    public function check_variety_exists($year,$crop_id,$variety_name,$variety_id=0)
+    {
+        $this->db->from("rnd_variety");
+        $this->db->where("id !=",$variety_id);
+        $this->db->where("year",$year);
+        $this->db->where("crop_id",$crop_id);
+        $this->db->where("variety_name",$variety_name);
+        if($this->db->count_all_results()>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public function check_new_status($crop_id,$variety_name,$variety_id=0)
+    {
+        $this->db->from("rnd_variety");
+        $this->db->where("id !=",$variety_id);
+        $this->db->where("crop_id",$crop_id);
+        $this->db->where("variety_name",$variety_name);
+        if($this->db->count_all_results()>0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /*public function get_varietyInfo($page=null)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
@@ -129,7 +185,7 @@ class Create_crop_variety_model extends CI_Model
         $query = $this->db->get();
         $result = $query->row_array();
         return $result['principal_code'];
-    }
+    }*/
 
 
 }

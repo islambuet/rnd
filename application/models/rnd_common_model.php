@@ -9,6 +9,18 @@ class Rnd_common_model extends CI_Model
     public function __construct() {
         parent::__construct();
     }
+    public function get_cropTypes_by_cropId($crop_id)
+    {
+
+
+        $this->db->select('*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+    //bellow code is not final
 
     public function dropDown_crop($season_id)
     {
@@ -25,23 +37,7 @@ class Rnd_common_model extends CI_Model
         return $query->result_array();
     }
 
-    public function dropDown_crop_type($crop_id)
-    {
-//        $this->db->select('vs.*');
-//        $this->db->from('rnd_variety_season vs');
-//        $this->db->select('tinfo.product_type product_type');
-//
-//        $this->db->join('rnd_product_type_info tinfo', 'tinfo.id = vs.product_type_id', 'left');
-//        $this->db->where('vs.crop_id',$crop_id);
-//        $this->db->group_by('vs.product_type_id');
 
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
-        $this->db->where('crop_id',$crop_id);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
 
     public function dropDown_rnd_code_by_name_type($crop_id,$type_id)
     {

@@ -20,6 +20,7 @@ $lang['LABEL_YES'] = 'Yes';
 $lang['LABEL_NO'] = 'No';
 $lang['LABEL_DAYS'] = 'Days';
 $lang['LABEL_TYPE_RND_CODE'] = 'Type R&D Code';
+$lang['LABEL_SELECT_YEAR'] = 'Select Year';
 
 // CREATE BY MARAJ MASSAGE CAPTION
 ////////////////////////// FERTILISER
@@ -94,6 +95,11 @@ $lang['LABEL_QUANTITY_IN_GRAM'] = 'Quantity (gm)';
 $lang['LABEL_NEW'] = 'New';
 $lang['LABEL_OLD'] = 'Old';
 $lang['LABEL_CHARACTERISTICS'] = 'Characteristics';
+
+$lang['PRINCIPAL'] = 'Principal Variety';
+$lang['CKA'] = 'Check Variety ARM';
+$lang['CKO'] = 'Competitor Variety';
+$lang['LABEL_REPLICA'] = 'Replica';
 
 //General Sample Delivery
 $lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Destined Delivery Date';

@@ -16,12 +16,19 @@ $config['fruit_type'][4] = 'Leaf';
 $config['fruit_type'][5] = 'Head';
 
 
+
+//year config
+$config['start_year']=2014;
+$config['next_year_range']=2;
+
+//variety type config
+$config['variety_type'][1] = 'PRINCIPAL';
+$config['variety_type'][2] = 'CKA';
+$config['variety_type'][3] = 'CKO';
+
+
 //fix bellow config latter
-$config['rnd_fruit_code']=1;
-$config['rnd_curt_code']=2;
-$config['rnd_root_code']=3;
-$config['rnd_leaf_code']=4;
-$config['rnd_head_code']=5;
+
 
 $config['variety_type_arm']=1;
 $config['variety_type_company']=2;

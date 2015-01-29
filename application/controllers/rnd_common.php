@@ -10,6 +10,25 @@ class Rnd_common extends ROOT_Controller
         $this->message="";
         $this->load->model("rnd_common_model");
     }
+    //get crop types of a crop
+    public function get_dropDown_cropType_by_cropId()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $data['selected'] = '';
+        $data['details'] = $this->rnd_common_model->get_cropTypes_by_cropId($crop_id);
+
+        foreach($data['details'] as $ctype)
+        {
+            $data['value'][] = $ctype['id'];
+            $data['name'][] = $ctype['type_name'];
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#crop_type_id","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
+    }
+
+    //bellow code is not final
 
     //////////////////////////////////////////////// Variety START ////////////////////////////////////////
 
@@ -51,22 +70,7 @@ class Rnd_common extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
-    public function common_dropDown_crop_type_by_name()
-    {
-        $crop_id = $this->input->post('common_crop_id');
-        $data['selected'] = '';
-        $data['details'] = $this->rnd_common_model->dropDown_crop_type($crop_id);
 
-        foreach($data['details'] as $ctype)
-        {
-            $data['value'][] = $ctype['id'];
-            $data['name'][] = $ctype['product_type'];
-        }
-
-        $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#common_crop_type","html"=>$this->load->view("dropdown",$data,true));
-        $this->jsonReturn($ajax);
-    }
 
     public function common_dropDown_rnd_code_by_name_type()
     {

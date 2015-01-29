@@ -95,7 +95,7 @@ class Create_crop extends ROOT_Controller
         {
 
             $this->db->trans_start();  //DB Transaction Handle START
-            $time=time();;
+            $time=time();
 
             $data['created_by'] = $user->user_id;
             $data['creation_date'] = $time;
