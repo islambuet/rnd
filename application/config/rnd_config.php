@@ -5,7 +5,7 @@ $config['status_delete']=0;
 
 
 //pagination
-$config['view_per_page']=3;
+$config['view_per_page']=15;
 $config['links_per_page']=5;
 
 //crop fruit type config

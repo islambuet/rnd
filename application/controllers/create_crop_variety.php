@@ -44,7 +44,7 @@ class Create_crop_variety extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['varietyInfo'] = $this->create_crop_variety_model->get_varietyInfo($page);
+        $data['varietyInfo'] = $this->create_crop_variety_model->get_varieties($page);
         $data['title']="Crop Variety List";
 
         $ajax['status']=true;
@@ -61,10 +61,10 @@ class Create_crop_variety extends ROOT_Controller
     {
         if ($id != 0)
         {
-            //$data['varietyInfo'] = $this->create_crop_variety_model->get_type_row($id);
-            //$data['cropTypes'] = $this->create_crop_variety_model->get_product_type($data['varietyInfo']['crop_id']);
+            $data['varietyInfo'] = $this->create_crop_variety_model->get_variety_info($id);
+            $data['cropTypes'] = $this->create_crop_variety_model->get_crop_types($data['varietyInfo']['crop_id']);
             //$data['seasonInfo'] = $this->create_crop_variety_model->get_seasons($id);
-            //$data['title']="Edit Crop Variety (".$data['varietyInfo']['variety_name'].")";
+            $data['title']="Edit Crop Variety (".$data['varietyInfo']['variety_name'].")";
             $ajax['page_url']=base_url()."create_crop_variety/index/edit/".$id;
         }
         else
@@ -117,6 +117,9 @@ class Create_crop_variety extends ROOT_Controller
             if($id>0)
             {
 
+                $ajax['status']=false;
+                $ajax['message']="wait save";
+                $this->jsonReturn($ajax);
             }
             else
             {
@@ -186,8 +189,23 @@ class Create_crop_variety extends ROOT_Controller
         }
 
     }
-
     private function check_validation()
+    {
+        if($this->input->post("variety_id"))
+        {
+            return $this->check_validation_edit();
+        }
+        else
+        {
+            return $this->check_validation_add();
+        }
+    }
+    private function check_validation_edit()
+    {
+        return true;
+    }
+
+    private function check_validation_add()
     {
         $valid=true;
         if(Validation_helper::validate_empty($this->input->post('crop_id')))

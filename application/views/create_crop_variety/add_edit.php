@@ -18,7 +18,8 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="year" class="form-control validate[required]">
+
+                <select name="year" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
                     <?php
                     $current_year=date("Y",time());
 
@@ -37,12 +38,12 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
                     {?>
-                        <option value="<?php echo $crop['id']?>"><?php echo $crop['crop_name'];?></option>
+                        <option value="<?php echo $crop['id']?>" <?php if($crop['id']==$varietyInfo['crop_id']){ echo "selected";}?>><?php echo $crop['crop_name'];?></option>
                     <?php
                     }
                     ?>
@@ -55,8 +56,16 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]">
+                <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($cropTypes as $ct)
+                    {?>
+                        <option value="<?php echo $ct['id']?>" <?php if($ct['id']==$varietyInfo['crop_type_id']){ echo "selected";}?>><?php echo $ct['type_name'];?></option>
+                    <?php
+                    }
+                    ?>
+
                 </select>
             </div>
         </div>
@@ -65,7 +74,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="<?php echo $varietyInfo['variety_name'];?>" >
+                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="<?php echo $varietyInfo['variety_name'];?>" <?php if($varietyInfo['id']>0){echo "readonly";}?>>
             </div>
         </div>
 
@@ -78,7 +87,7 @@
                     foreach($this->config->item("variety_type") as $val=>$variety_types)
                     {
                         ?>
-                            <input type="radio" name="variety_type" <?php if($varietyInfo['variety_type']==$val){ echo 'checked';}?> class="validate[required]" value="<?php echo $val;?>"> <?php echo $this->lang->line($variety_types);?><br>
+                            <input type="radio" name="variety_type" <?php if($varietyInfo['variety_type']==$val){ echo 'checked';}?> class="validate[required]" value="<?php echo $val;?>" > <?php echo $this->lang->line($variety_types);?><br>
                         <?php
 
                     }
@@ -92,7 +101,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="principal_id" class="form-control validate[required]">
+                <select name="principal_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($principals as $principal)

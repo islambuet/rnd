@@ -10,7 +10,7 @@ class Create_crop_variety_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_varietyInfo($page=0)
+    public function get_varieties($page=0)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
@@ -96,6 +96,26 @@ class Create_crop_variety_model extends CI_Model
             return true;
         }
     }
+    public function get_variety_info($id)
+    {
+        $this->db->from("rnd_variety rv");
+        $this->db->select("rv.*");
+        $this->db->select('ct.type_name crop_type_name');
+
+        $this->db->join('rnd_crop_type ct', 'ct.id = rv.crop_type_id', 'inner');
+        $this->db->where("rv.id",$id);
+        $variety=$this->db->get()->row_array();
+        return $variety;
+    }
+    public function get_crop_types($crop_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
 
     /*
 
@@ -119,15 +139,7 @@ class Create_crop_variety_model extends CI_Model
         return $result = $query->result_array();
     }
 
-    public function get_product_type($crop_id)
-    {
-        $this->db->select('rnd_product_type_info.*');
-        $this->db->from('rnd_product_type_info');
-        $this->db->where('crop_id',$crop_id);
 
-        $query = $this->db->get();
-        return $query->result_array();
-    }
 
     public function delete_variety_season($id)
     {

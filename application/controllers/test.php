@@ -14,7 +14,10 @@ class Test extends CI_Controller
 
     public function index()
 	{
-        echo sizeof("");
+
+        $crops = Query_helper::get_info('rnd_crop', '*', array('status !='.$this->config->item('status_delete')));
+        print_r($crops);
+        echo $crops[1]['crop_name'];
     }
 
 
