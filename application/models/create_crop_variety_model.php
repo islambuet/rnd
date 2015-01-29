@@ -9,6 +9,37 @@ class Create_crop_variety_model extends CI_Model
     public function __construct() {
         parent::__construct();
     }
+
+    public function get_varietyInfo($page=0)
+    {
+        $limit=$this->config->item('view_per_page');
+        $start=$page*$limit;
+        $this->db->from('rnd_variety rv');
+        $this->db->select('rv.*');
+        $this->db->select('rc.crop_name crop_name, rc.crop_code crop_code');
+        $this->db->select('ct.type_code type_code, ct.type_name type_name');
+        $this->db->select('rp.principal_code,rp.principal_name');
+
+        $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'inner');
+        $this->db->join('rnd_crop_type ct', 'ct.id = rv.crop_type_id', 'inner');
+
+        $this->db->join('rnd_principal rp', 'rp.id = rv.principal_id', 'left');
+
+
+        $this->db->order_by('rv.id','DESC');
+        $this->db->limit($limit,$start);
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+
+    public function get_total_varieties()
+    {
+        $this->db->select('rnd_variety.*');
+        $this->db->from('rnd_variety');
+
+        return $this->db->count_all_results();
+    }
+
     public function get_varietyIndex($year,$crop_id)
     {
         $this->db->select('max(variety_index) variety_index');
@@ -66,32 +97,7 @@ class Create_crop_variety_model extends CI_Model
         }
     }
 
-    /*public function get_varietyInfo($page=null)
-    {
-        $limit=$this->config->item('view_per_page');
-        $start=$page*$limit;
-        $this->db->from('rnd_variety_info rvi');
-        $this->db->select('rvi.*');
-        $this->db->select('cinfo.crop_name crop_name');
-
-        $this->db->join('rnd_crop_info cinfo', 'cinfo.id = rvi.crop_id', 'left');
-        $this->db->group_by('variety_name');
-        $this->db->order_by('rvi.id','DESC');
-//        $this->db->where('status',1);
-        $this->db->limit($limit,$start);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function get_total_varieties()
-    {
-        $this->db->select('rnd_variety_info.*');
-        $this->db->from('rnd_variety_info');
-
-//        $this->db->where('status',1);
-        return $this->db->count_all_results();
-    }
+    /*
 
     public function get_type_row($id)
     {

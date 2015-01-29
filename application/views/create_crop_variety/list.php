@@ -18,10 +18,12 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -33,8 +35,10 @@
             ?>
             <tr>
                 <td><?php echo $key+1;?></td>
-                <td><?php echo $variety['crop_name'];?></td>
+                <td><?php echo $variety['year'];?></td>
                 <td><?php echo $variety['variety_name'];?></td>
+                <td><?php echo System_helper::get_rnd_code($variety);?></td>
+
                 <td>
                     <?php
                     if($variety['variety_type']==$this->config->item('variety_type_arm'))
@@ -55,8 +59,9 @@
                     }
                     ?>
                 </td>
+                <td><?php echo $variety['crop_name'];?></td>
+                <td><?php echo $variety['type_name'];?></td>
 
-                <td><?php if($variety['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                 <td>
                     <a href="<?php echo base_url();?>create_crop_variety/index/edit/<?php echo $variety['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">

@@ -165,14 +165,44 @@ class System_helper
 
     }
 
-    public static function get_rnd_codes()
+    public static function get_rnd_code($variety)
     {
         $CI = & get_instance();
-        $CI->db->select('rnd_variety_info.*');
-        $CI->db->from('rnd_variety_info');
+        $rndCode = '';
 
-        $query = $CI->db->get();
-        return $query->result_array();
+        $rndCode = $variety['crop_code'].'-'.$variety['type_code'].'-'.str_pad($variety['variety_index'],3,'0',STR_PAD_LEFT);
+
+        $varietyConfig = $CI->config->item('variety_type');
+        if($variety['variety_type']==1)
+        {
+            $rndCode = $rndCode.'-'.$variety['principal_code'];
+        }
+        else
+        {
+            $rndCode = $rndCode.'-'.$varietyConfig[$variety['variety_type']];
+        }
+
+        $rndCode = $rndCode.'-'.$variety['year'];
+
+        if($variety['new_status']==1)
+        {
+            $rndCode = $rndCode.'-NEW';
+        }
+        else
+        {
+            $rndCode = $rndCode.'-OLD';
+        }
+
+        if($variety['replica_status']==1)
+        {
+            $rndCode = $rndCode.'-R';
+        }
+        else
+        {
+            $rndCode = $rndCode.'-N';
+        }
+
+        return $rndCode;
     }
 
 

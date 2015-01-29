@@ -95,6 +95,8 @@ $lang['LABEL_QUANTITY_IN_GRAM'] = 'Quantity (gm)';
 $lang['LABEL_NEW'] = 'New';
 $lang['LABEL_OLD'] = 'Old';
 $lang['LABEL_CHARACTERISTICS'] = 'Characteristics';
+$lang['LABEL_YEAR'] = 'Year';
+$lang['LABEL_CROP_TYPE'] = 'Crop Type';
 
 $lang['PRINCIPAL'] = 'Principal Variety';
 $lang['CKA'] = 'Check Variety ARM';

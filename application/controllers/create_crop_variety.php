@@ -35,7 +35,7 @@ class Create_crop_variety extends ROOT_Controller
     public function rnd_list($page=0)
     {
 
-        /*$config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_crop_variety_model->get_total_varieties(),4);
+        $config = System_helper::pagination_config(base_url() . "create_crop_variety/index/list/",$this->create_crop_variety_model->get_total_varieties(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -44,7 +44,7 @@ class Create_crop_variety extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['varietyInfo'] = $this->create_crop_variety_model->get_varietyInfo($page);*/
+        $data['varietyInfo'] = $this->create_crop_variety_model->get_varietyInfo($page);
         $data['title']="Crop Variety List";
 
         $ajax['status']=true;
