@@ -54,7 +54,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="type_name" id="type_name" class="form-control validate[required]" value="<?php echo $typeInfo['type_name'];?>" >
+                <input type="text" name="type_name" id="type_name" class="form-control validate[required]" <?php if(!empty($typeInfo['type_name'])){echo "readonly";}?> value="<?php echo $typeInfo['type_name'];?>" >
             </div>
         </div>
 

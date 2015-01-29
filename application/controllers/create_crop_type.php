@@ -92,7 +92,6 @@ class Create_crop_type extends ROOT_Controller
         $user = User_helper::get_user();
 
         $data = Array(
-            'type_name'=>$this->input->post('type_name'),
             'terget_length'=>$this->input->post('target_length'),
             'terget_weight'=>$this->input->post('target_weight'),
             'terget_yeild'=>$this->input->post('target_yield')
@@ -131,6 +130,7 @@ class Create_crop_type extends ROOT_Controller
                 $this->db->trans_start();  //DB Transaction Handle START
 
                 $data['crop_id'] = $this->input->post('crop_id');
+                $data['type_name'] = $this->input->post('type_name');
                 $data['type_code'] = $this->input->post('type_code');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();

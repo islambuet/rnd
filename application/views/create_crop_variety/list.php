@@ -24,6 +24,7 @@
                 <th><?php echo $this->lang->line("LABEL_VARIETY_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_REPLICA_STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -61,6 +62,7 @@
                 </td>
                 <td><?php echo $variety['crop_name'];?></td>
                 <td><?php echo $variety['type_name'];?></td>
+                <td><?php if($variety['replica_status']==1){ echo 'Yes';}else{ echo 'No';}?></td>
 
                 <td>
                     <a href="<?php echo base_url();?>create_crop_variety/index/edit/<?php echo $variety['id'];?>">
