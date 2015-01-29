@@ -191,7 +191,7 @@ class Create_crop_type extends ROOT_Controller
             $valid=false;
             $this->message.="Targeted Length Must be number<br>";
         }
-        if(!Validation_helper::validate_int($this->input->post('target_weight')))
+        if(!Validation_helper::validate_numeric($this->input->post('target_weight')))
         {
             $valid=false;
             $this->message.="Targeted Weight Must be number<br>";
