@@ -14,11 +14,11 @@ class Test extends CI_Controller
 
     public function index()
 	{
+        $i=1;
 
-        $crops = Query_helper::get_info('rnd_crop', '*', array('status !='.$this->config->item('status_delete')));
-        print_r($crops);
-        echo $crops[1]['crop_name'];
+        print_r($_GET['item_name' + $i]);
     }
+
 
 
 

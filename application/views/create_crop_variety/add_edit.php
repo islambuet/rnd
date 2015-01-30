@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm-4 col-xs-8">
 
-                <select name="year" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
+                <select name="year" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "disabled";} ?>>
                     <?php
                     $current_year=date("Y",time());
 
@@ -37,7 +37,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
+                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "disabled";} ?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
@@ -55,7 +55,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRODUCT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";} ?>>
+                <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "disabled";} ?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($cropTypes as $ct)
@@ -73,7 +73,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_VARIETY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="<?php echo $varietyInfo['variety_name'];?>" <?php if($varietyInfo['id']>0){echo "readonly";}?>>
+                <input type="text" name="variety_name" id="variety_name" class="form-control validate[required]" value="<?php echo $varietyInfo['variety_name'];?>" <?php if($varietyInfo['id']>0){echo "disabled";}?>>
             </div>
         </div>
 
@@ -86,7 +86,7 @@
                     foreach($this->config->item("variety_type") as $val=>$variety_types)
                     {
                         ?>
-                            <input type="radio" name="variety_type" <?php if($varietyInfo['variety_type']==$val){ echo 'checked';}?> class="validate[required]" value="<?php echo $val;?>" > <?php echo $this->lang->line($variety_types);?><br>
+                            <input type="radio" name="variety_type" <?php if($varietyInfo['variety_type']==$val){ echo 'checked';}?> class="validate[required]" value="<?php echo $val;?>" <?php if($varietyInfo['id']>0){echo "disabled";}?>> <?php echo $this->lang->line($variety_types);?><br>
                         <?php
 
                     }
@@ -100,7 +100,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="principal_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "readonly";}?>>
+                <select name="principal_id" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "disabled";}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($principals as $principal)
@@ -118,7 +118,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="company_name" id="company_name" class="form-control" value="<?php echo $varietyInfo['company_name'];?>">
+                <input type="text" name="company_name" id="company_name" class="form-control" value="<?php echo $varietyInfo['company_name'];?>" <?php if($varietyInfo['id']>0){echo "disabled";}?>>
             </div>
         </div>
 
@@ -172,7 +172,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_IN_GRAM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="quantity" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['quantity'];?>" <?php if($varietyInfo['id']>0){echo "readonly";}?> >
+                <input type="text" name="quantity" class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['quantity'];?>" <?php if($varietyInfo['id']>0){echo "disabled";}?> >
             </div>
         </div>
 
@@ -189,7 +189,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="checkbox" name="replica_status" class="validate[required]" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>  <?php if($varietyInfo['id']>0){echo "readonly";}?>>
+                <input type="checkbox" name="replica_status" class="validate[required]" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>  <?php if($varietyInfo['id']>0){echo "disabled";}?>>
             </div>
         </div>
 
