@@ -140,7 +140,7 @@
                     <?php
                     if(sizeof($variety_sent)>0)
                     {
-                        foreach($variety_not_sent as $key=>$variety)
+                        foreach($variety_sent as $key=>$variety)
                         {
                             ?>
                             <tr>

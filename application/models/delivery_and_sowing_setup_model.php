@@ -24,7 +24,7 @@ class Delivery_and_sowing_setup_model extends CI_Model
 
         $this->db->where('dss.status != ',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
-        $this->db->order_by("dss.id","ASC");
+        $this->db->order_by("dss.id","DESC");
         $query = $this->db->get();
 
         return $query->result_array();

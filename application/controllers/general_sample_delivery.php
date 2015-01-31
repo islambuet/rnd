@@ -79,11 +79,24 @@ class General_sample_delivery extends ROOT_Controller
         {
             $user = User_helper::get_user();
             $varieties=$this->input->post("varieties");
-            echo "<pre>";
-            print_r($varieties);
-            echo "</pre>";
-            echo $id;
-            die();
+            $data['sample_delivery_status']=1;
+            $data['modified_by']=$user->user_id;
+            $data['modification_date']=time();
+            $this->db->trans_start();  //DB Transaction Handle START
+            foreach($varieties as $variety_season_id)
+            {
+                Query_helper::update('rnd_variety_season',$data,array("id = ".$variety_season_id));
+            }
+            $this->db->trans_complete();   //DB Transaction Handle END
+
+            if ($this->db->trans_status() === TRUE)
+            {
+                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+            }
         }
         else
         {

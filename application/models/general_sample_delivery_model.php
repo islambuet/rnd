@@ -21,6 +21,7 @@ class General_sample_delivery_model extends CI_Model
         $this->db->join('rnd_season rs', 'rs.id = das.season_id', 'INNER');
         $this->db->join('rnd_crop rc', 'rc.id = das.crop_id', 'INNER');
         $this->db->limit($limit,$start);
+        $this->db->order_by("id","DESC");
 
         $result = $this->db->get()->result_array();
 
