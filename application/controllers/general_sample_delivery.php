@@ -57,7 +57,7 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
+        /*if ($id != 0)
         {
             $data['sampleInfo'] = $this->general_sample_delivery_model->get_sample_row($id);
             $data['rndCodes'] = $this->general_sample_delivery_model->get_rnd_codes_by_season($data['sampleInfo']['season_id']);
@@ -88,9 +88,12 @@ class General_sample_delivery extends ROOT_Controller
 
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
-        $data['years'] = Query_helper::get_info('rnd_year', '*', array());
+        $data['years'] = Query_helper::get_info('rnd_year', '*', array());*/
+        $data['title']="Sample Delivery";
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("general_sample_delivery/add_edit",$data,true));
+
+        $ajax['page_url']=base_url()."general_sample_delivery/index/edit/".$id;
 
         $this->jsonReturn($ajax);
     }

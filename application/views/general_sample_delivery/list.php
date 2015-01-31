@@ -2,9 +2,6 @@
     $data["link_new"]="#";
     $data["hide_new"]="1";
     $this->load->view("action_buttons",$data);
-//echo '<pre>';
-//print_r($sampleInfo);
-//echo '</pre>';
 ?>
 
 <div class="row widget">
@@ -50,7 +47,7 @@
                         <?php
                             if(($sample['estimated_delivery_date'])>0)
                             {
-                                echo date('Y-m-d', $sample['estimated_delivery_date']);
+                                echo System_helper::display_date($sample['estimated_delivery_date']);
                             }
                             else
                             {
@@ -62,7 +59,7 @@
                         <?php
                         if(($sample['delivery_date'])>0)
                         {
-                            echo date('Y-m-d', $sample['delivery_date']);
+                            echo System_helper::display_date($sample['delivery_date']);
                         }
                         else
                         {
@@ -74,7 +71,7 @@
                         <?php
                         if(($sample['estimated_receive_date'])>0)
                         {
-                            echo date('Y-m-d', $sample['estimated_receive_date']);
+                            echo System_helper::display_date($sample['estimated_receive_date']);
                         }
                         else
                         {
@@ -86,7 +83,7 @@
                         <?php
                         if(($sample['receive_date'])>0)
                         {
-                            echo date('Y-m-d', $sample['receive_date']);
+                            echo System_helper::display_date($sample['receive_date']);
                         }
                         else
                         {
@@ -98,7 +95,7 @@
                         <?php
                         if(($sample['sowing_status'])==1)
                         {
-                            echo date('Y-m-d', $sample['sowing_date']);
+                            echo System_helper::display_date($sample['sowing_date']);
                         }
                         else
                         {
@@ -110,7 +107,7 @@
                         <?php
                         if(($sample['season_end_status'])==1)
                         {
-                            echo date('Y-m-d', $sample['season_end_date']);
+                            echo System_helper::display_date($sample['season_end_date']);
                         }
                         else
                         {

@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."general_sample_delivery/index/add";
+
     $data["link_back"]=base_url()."general_sample_delivery";
     $this->load->view("action_buttons_edit",$data);
 
@@ -231,109 +231,13 @@ else
 
     jQuery(document).ready(function()
     {
-        $(".form_valid").validationEngine();
-
-        $('.checkAll').click(function(event)
-        {
-            if(this.checked)
-            {
-                $('.checksingle').each(function()
-                {
-                    this.checked = true;
-                });
-            }
-            else
-            {
-                $('.checksingle').each(function()
-                {
-                    this.checked = false;
-                });
-            }
-        });
+        //$(".form_valid").validationEngine();
 
 
-
-        $(document).on("click", ".specific_sowing_date", function(event)
-        {
-            //  alert (this.value)
-            Calendar.setup({
-                inputField: this,
-                trigger: this,
-                onSelect: function() {
-                    this.hide()
-                },
-                showTime: 12,
-                dateFormat: "%d-%m-%Y"
-            });
-
-        });
-
-        $(document).on("click", ".specific_transplanting_date", function(event)
-        {
-            //  alert (this.value)
-            Calendar.setup({
-                inputField: this,
-                trigger: this,
-                onSelect: function() {
-                    this.hide()
-                },
-                showTime: 12,
-                dateFormat: "%d-%m-%Y"
-            });
-
-        });
 
     });
 
-    Calendar.setup({
-        inputField: "destined_delivery_date",
-        trigger: "destined_delivery_date",
-        onSelect: function() {
-            this.hide()
-        },
-        showTime: 12,
-        dateFormat: "%d-%m-%Y"
-    });
 
-    Calendar.setup({
-        inputField: "delivery_date",
-        trigger: "delivery_date",
-        onSelect: function() {
-            this.hide()
-        },
-        showTime: 12,
-        dateFormat: "%d-%m-%Y"
-    });
-
-    Calendar.setup({
-        inputField: "rnd_receive_date",
-        trigger: "rnd_receive_date",
-        onSelect: function() {
-            this.hide()
-        },
-        showTime: 12,
-        dateFormat: "%d-%m-%Y"
-    });
-
-    Calendar.setup({
-        inputField: "destined_sowing_date",
-        trigger: "destined_sowing_date",
-        onSelect: function() {
-            this.hide()
-        },
-        showTime: 12,
-        dateFormat: "%d-%m-%Y"
-    });
-
-    Calendar.setup({
-        inputField: "sowing_date",
-        trigger: "sowing_date",
-        onSelect: function() {
-            this.hide()
-        },
-        showTime: 12,
-        dateFormat: "%d-%m-%Y"
-    });
 
 
 
