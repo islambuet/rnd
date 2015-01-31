@@ -10,31 +10,31 @@ class General_sample_delivery_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_sampleInfo($page=null)
+    public function get_samples($page=0)
     {
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;
-        $this->db->from('rnd_sample_delivery_date rsd');
-        $this->db->select('rsd.*');
-        $this->db->select('rsi.season_name season_name');
-
-        $this->db->join('rnd_season_info rsi', 'rsi.id = rsd.season_id', 'left');
+        $this->db->from('delivery_and_sowing_setup das');
+        $this->db->select('das.*');
+        $this->db->select('rs.season_name season_name');
+        $this->db->select('rc.crop_name crop_name');
+        $this->db->join('rnd_season rs', 'rs.id = das.season_id', 'INNER');
+        $this->db->join('rnd_crop rc', 'rc.id = das.crop_id', 'INNER');
         $this->db->limit($limit,$start);
 
-        $query = $this->db->get();
+        $result = $this->db->get()->result_array();
 
-        return $query->result_array();
+        return $result;
     }
 
     public function get_total_samples()
     {
-        $this->db->select('rnd_sample_delivery_date.*');
-        $this->db->from('rnd_sample_delivery_date');
-
+        $this->db->select('*');
+        $this->db->from('delivery_and_sowing_setup');
         return $this->db->count_all_results();
     }
 
-    public function get_sample_row($id)
+    /*public function get_sample_row($id)
     {
         $this->db->select('rsd.*');
         $this->db->from('rnd_sample_delivery_date rsd');
@@ -132,6 +132,6 @@ class General_sample_delivery_model extends CI_Model
         {
             return false;
         }
-    }
+    }*/
 
 }

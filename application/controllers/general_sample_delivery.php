@@ -17,7 +17,7 @@ class General_sample_delivery extends ROOT_Controller
         {
             $this->rnd_list($id);
         }
-        elseif($task=="add" || $task=="edit")
+        elseif($task=="edit")
         {
             $this->rnd_add_edit($id);
         }
@@ -33,16 +33,16 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-//        $config = System_helper::pagination_config(base_url() . "general_sample_delivery/index/list/",$this->general_sample_delivery_model->get_total_samples(),4);
-//        $this->pagination->initialize($config);
-//        $data["links"] = $this->pagination->create_links();
-//
-//        if($page>0)
-//        {
-//            $page=$page-1;
-//        }
-//
-//        $data['sampleInfo'] = $this->general_sample_delivery_model->get_sampleInfo($page);
+        $config = System_helper::pagination_config(base_url() . "general_sample_delivery/index/list/",$this->general_sample_delivery_model->get_total_samples(),4);
+        $this->pagination->initialize($config);
+        $data["links"] = $this->pagination->create_links();
+
+        if($page>0)
+        {
+            $page=$page-1;
+        }
+
+        $data['samples'] = $this->general_sample_delivery_model->get_samples($page);
         $data['title']="Sample Delivery List";
 
         $ajax['status']=true;
