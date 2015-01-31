@@ -3,7 +3,7 @@
     <div class="action_button">
         <a class="btn" href="<?php echo base_url()?>home/login"><?php echo $this->lang->line("ACTION_DASHBOARD"); ?></a>
     </div>
-    <div class="action_button">
+    <div class="action_button" style="display: <?php if(isset($hide_save)&&($hide_save==1)){ echo "none";} else{echo "block";} ?>">
         <button id="button_save" class="btn"><?php echo $this->lang->line("ACTION_SAVE"); ?></button>
     </div>
     <div class="action_button">
