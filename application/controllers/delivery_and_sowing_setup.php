@@ -205,19 +205,29 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         if(Validation_helper::validate_empty($this->input->post('year')))
         {
             $valid=false;
-            $this->message.="Year Cannot Be Empty<br>";
+            $this->message.="Please select a Year<br>";
         }
 
         if(Validation_helper::validate_empty($this->input->post('season_id')))
         {
             $valid=false;
-            $this->message.="Season Cannot Be Empty<br>";
+            $this->message.="Please select a Season<br>";
         }
 
         if(Validation_helper::validate_empty($this->input->post('crop_id')))
         {
             $valid=false;
-            $this->message.="Crop Cannot Be Empty<br>";
+            $this->message.="Please select a Crop<br>";
+        }
+
+        if(!((Validation_helper::validate_empty($this->input->post('year'))) || (Validation_helper::validate_empty($this->input->post('season_id'))) || (Validation_helper::validate_empty($this->input->post('crop_id')))))
+        {
+            if($this->delivery_and_sowing_setup_model->check_setup_exists($this->input->post('year'),$this->input->post('season_id'),$this->input->post('crop_id'),$this->input->post('delivery_id')))
+            {
+                $valid=false;
+                $this->message.="This Crop is delivered this Year and Season For R&D<br>";
+            }
+
         }
 
         return $valid;

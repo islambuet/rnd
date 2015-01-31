@@ -55,15 +55,15 @@ class Delivery_and_sowing_setup_model extends CI_Model
         return $query->row_array();
     }
 
-    public function check_crop_name_existence($crop_name)
+    public function check_setup_exists($year, $season, $crop, $id)
     {
-        $this->db->select('rnd_crop.id');
-        $this->db->from('rnd_crop');
-        $this->db->where('crop_name',$crop_name);
+        $this->db->from("delivery_and_sowing_setup");
+        $this->db->where("id !=",$id);
+        $this->db->where("year",$year);
+        $this->db->where("crop_id",$crop);
+        $this->db->where("season_id",$season);
 
-        $result = $this->db->count_all_results();
-
-        if($result>0)
+        if($this->db->count_all_results()>0)
         {
             return true;
         }
@@ -73,22 +73,5 @@ class Delivery_and_sowing_setup_model extends CI_Model
         }
     }
 
-    public function check_crop_code_existence($crop_code)
-    {
-        $this->db->select('id');
-        $this->db->from('rnd_crop');
-        $this->db->where('crop_code',$crop_code);
-
-        $result = $this->db->count_all_results();
-
-        if($result>0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
 }

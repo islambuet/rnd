@@ -24,7 +24,7 @@
             </div>
             <div class="col-xs-4">
 
-                <select name="year" class="form-control validate[required]">
+                <select name="year" class="form-control validate[required]" <?php if(!empty($deliveryInfo['year'])){echo 'disabled';}?>>
                     <?php
                     $current_year=date("Y",time());
                     for($i=$this->config->item("start_year");$i<=($current_year+$this->config->item("next_year_range"));$i++)
@@ -42,7 +42,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="season_id" id="season_id" class="form-control validate[required]">
+                <select name="season_id" id="season_id" class="form-control validate[required]" <?php if(!empty($deliveryInfo['season_id'])){echo 'disabled';}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($seasons as $season)
@@ -60,7 +60,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="crop_id" id="crop_id" class="form-control validate[required]">
+                <select name="crop_id" id="crop_id" class="form-control validate[required]" <?php if(!empty($deliveryInfo['crop_id'])){echo 'disabled';}?>>
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($crops as $crop)
