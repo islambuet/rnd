@@ -46,6 +46,30 @@ class General_sample_delivery_model extends CI_Model
         $result = $this->db->get()->row_array();
         return $result;
     }
+    public function get_varieties($year,$season_id,$crop_id,$status=0)
+    {
+        $this->db->from('rnd_variety_season rvs');
+        $this->db->select('rv.*');
+        $this->db->select('rvs.id variety_season_id');
+        $this->db->select('rc.crop_name crop_name, rc.crop_code crop_code');
+        $this->db->select('ct.type_code type_code, ct.type_name type_name');
+        $this->db->select('rp.principal_code,rp.principal_name');
+        $this->db->join('rnd_variety rv', 'rv.id = rvs.variety_id', 'inner');
+        $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'inner');
+        $this->db->join('rnd_crop_type ct', 'ct.id = rv.crop_type_id', 'inner');
+        $this->db->join('rnd_principal rp', 'rp.id = rv.principal_id', 'left');
+
+        $this->db->where('rvs.year',$year);
+        $this->db->where('rvs.season_id',$season_id);
+        $this->db->where('rvs.season_status',1);
+        $this->db->where('rvs.sample_delivery_status',$status);
+        $this->db->where('rv.crop_id',$crop_id);
+
+
+        $result = $this->db->get()->result_array();
+        return $result;
+
+    }
 
     /*public function get_rnd_codes_by_season($season_id)
     {

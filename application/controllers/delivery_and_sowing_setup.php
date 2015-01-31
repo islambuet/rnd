@@ -130,7 +130,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
                 if($this->input->post('sowing_status'))
                 {
-                    $data['sowing_date'] = strtotime($this->config->item('sowing_date'));
+                    $data['sowing_date'] = strtotime($this->input->post('sowing_date'));
                 }
 
                 if($this->input->post('season_end_status'))

@@ -130,6 +130,7 @@ $lang['LABEL_RECEIVE_DATE'] = 'Receive Date';
 $lang['LABEL_SEASON_END'] = 'Season End';
 $lang['LABEL_SEASON_END_DATE'] = 'Season End Date';
 $lang['LABEL_NOT_SET'] = 'Not Set';
+$lang['SOWING_STARTED_NO_MORE_DELIVERY'] = 'Sowing already started.<br>You cannot Send any More samples';
 
 //Trial Analysis Fortnightly
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
