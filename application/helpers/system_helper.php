@@ -205,5 +205,10 @@ class System_helper
         return $rndCode;
     }
 
+    public static function rnd_date($int)
+    {
+        return date('Y-m-d',$int);
+    }
+
 
 }

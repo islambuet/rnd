@@ -8,6 +8,7 @@
 //echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>delivery_and_sowing_setup/index/save" method="post">
+    <input type="hidden" name="delivery_id" value="<?php echo $deliveryInfo['id']?>">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -156,4 +157,6 @@
 //        $(".form_valid").validationEngine();
 
     });
+
+
 </script>

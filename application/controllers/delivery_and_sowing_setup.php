@@ -67,14 +67,8 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         else
         {
             $data['title']="Delivery And Sowing Setup";
-            $data["typeInfo"] = Array(
-                'id' => 0,
-                'crop_id' => '',
-                'type_name' => '',
-                'type_code' => '',
-                'terget_length' => '',
-                'terget_weight' => '',
-                'terget_yeild' => ''
+            $data["deliveryInfo"] = Array(
+                'id' => 0
             );
             $ajax['page_url']=base_url()."delivery_and_sowing_setup/index/add";
         }
@@ -89,21 +83,23 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
     public function rnd_save()
     {
-
-        $id = $this->input->post("crop_id");
+        $id = $this->input->post("delivery_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'crop_name'=>$this->input->post('crop_name'),
-            'crop_code'=>$this->input->post('crop_code'),
-            'crop_width'=>$this->input->post('crop_width'),
-            'crop_height'=>$this->input->post('crop_height'),
-            'fruit_type'=>$this->input->post('fruit_type'),
-            'sample_size'=>$this->input->post('sample_size'),
-            'initial_plants'=>$this->input->post('initial_plants'),
-            'plants_per_hectare'=>$this->input->post('plants_per_hectare'),
-            'status'=>$this->config->item('status_active')
+            'estimated_delivery_date'=>strtotime($this->input->post('estimated_delivery_date')),
+            'estimated_receive_date'=>strtotime($this->input->post('estimated_receive_date'))
         );
+
+        if($this->input->post('estimated_delivery_date'))
+        {
+            $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
+        }
+
+        if($this->input->post('estimated_receive_date'))
+        {
+            $data['receive_date'] = strtotime($this->input->post('receive_date'));
+        }
 
         if(!$this->check_validation())
         {
@@ -115,35 +111,55 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         {
             if($id>0)
             {
+                $this->db->trans_start();  //DB Transaction Handle START
 
-//                $this->db->trans_start();  //DB Transaction Handle START
-//                $time=time();
-//
-//                $data['created_by'] = $user->user_id;
-//                $data['creation_date'] = $time;
-//
-//                Query_helper::add('rnd_crop',$data);
-//                $this->db->trans_complete();   //DB Transaction Handle END
-//
-//                if ($this->db->trans_status() === TRUE)
-//                {
-//                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-//                }
-//                else
-//                {
-//                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-//                }
-//
-//                $this->rnd_list();//this is similar like redirect
+                $data = Array(
+                    'sowing_status'=>$this->input->post('sowing_status'),
+                    'season_end_status'=>$this->input->post('season_end_status')
+                );
+
+                if($this->input->post('sowing_status'))
+                {
+                    $data['sowing_date'] = strtotime($this->config->item('sowing_date'));
+                }
+
+                if($this->input->post('season_end_status'))
+                {
+                    $data['season_end_date'] = strtotime($this->input->post('season_end_date'));
+                }
+
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+                Query_helper::update('delivery_and_sowing_setup',$data,array("id = ".$id));
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
+
+                $this->rnd_list();//this is similar like redirect
             }
             else
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
+                $data = Array(
+                    'year'=>$this->input->post('year'),
+                    'season_id'=>$this->input->post('season_id'),
+                    'crop_id'=>$this->input->post('crop_id'),
+                );
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_fertilizer_info',$data);
+                Query_helper::add('delivery_and_sowing_setup',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -162,26 +178,44 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
     private function check_validation()
     {
+        if($this->input->post("delivery_id")>0)
+        {
+            return $this->check_validation_edit();
+        }
+        else
+        {
+            return $this->check_validation_add();
+        }
+    }
+
+    private function check_validation_add()
+    {
         $valid=true;
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
+
+        if(Validation_helper::validate_empty($this->input->post('year')))
         {
             $valid=false;
-            $this->message.="Crop Name Cannot Be Empty<br>";
+            $this->message.="Year Cannot Be Empty<br>";
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('season_id')))
         {
             $valid=false;
-            $this->message.="Crop Code Cannot Be Empty<br>";
+            $this->message.="Season Cannot Be Empty<br>";
         }
 
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
+        if(Validation_helper::validate_empty($this->input->post('crop_id')))
         {
             $valid=false;
-            $this->message.="Crop Code Cannot Be Empty<br>";
+            $this->message.="Crop Cannot Be Empty<br>";
         }
 
         return $valid;
+    }
+
+    private function check_validation_edit()
+    {
+        return true;
     }
 
 
