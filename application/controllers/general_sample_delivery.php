@@ -89,6 +89,7 @@ class General_sample_delivery extends ROOT_Controller
         $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
         $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
         $data['years'] = Query_helper::get_info('rnd_year', '*', array());*/
+        $data['sample']=$this->general_sample_delivery_model->get_sample_info($id);
         $data['title']="Sample Delivery";
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("general_sample_delivery/add_edit",$data,true));
@@ -100,7 +101,7 @@ class General_sample_delivery extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("sample_id");
+        /*$id = $this->input->post("sample_id");
         $user = User_helper::get_user();
 
         $sowingPost = $this->input->post('specific_sowing_date');
@@ -288,10 +289,9 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
                 }
-            }
+            }*/
 
-            $this->rnd_list();//this is similar like redirect
-        }
+        $this->rnd_list();//this is similar like redirect
 
     }
 

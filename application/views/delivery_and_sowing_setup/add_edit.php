@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."delivery_and_sowing_setup/index/add";
     $data["link_back"]=base_url()."delivery_and_sowing_setup";
     $this->load->view("action_buttons_edit",$data);
 
@@ -161,12 +160,12 @@
 
     jQuery(document).ready(function()
     {
-        $( "#estimated_delivery_date" ).datepicker();
-        $( "#delivery_date" ).datepicker();
-        $( "#estimated_receive_date" ).datepicker();
-        $( "#receive_date" ).datepicker();
-        $( "#sowing_date" ).datepicker();
-        $( "#season_end_date" ).datepicker();
+        $( "#estimated_delivery_date" ).datepicker({dateFormat : display_date_format});
+        $( "#delivery_date" ).datepicker({dateFormat : display_date_format});
+        $( "#estimated_receive_date" ).datepicker({dateFormat : display_date_format});
+        $( "#receive_date" ).datepicker({dateFormat : display_date_format});
+        $( "#sowing_date" ).datepicker({dateFormat : display_date_format});
+        $( "#season_end_date" ).datepicker({dateFormat : display_date_format});
 
 //        $(".form_valid").validationEngine();
 

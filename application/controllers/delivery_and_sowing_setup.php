@@ -76,9 +76,9 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 'delivery_date' => '',
                 'estimated_receive_date' => '',
                 'receive_date' => '',
-                'sowing_status' => '',
+                'sowing_status' => 0,
                 'sowing_date' => '',
-                'season_end_status' => '',
+                'season_end_status' => 0,
                 'season_end_date' => ''
             );
 

@@ -12,7 +12,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="col-sm-12" style="overflow-x: scroll;">
+    <div class="col-sm-12" style="overflow-x: auto;">
         <table class="table table-hover table-bordered" style="font-size: 13px;">
             <thead>
             <tr>

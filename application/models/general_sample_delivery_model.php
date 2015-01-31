@@ -34,20 +34,20 @@ class General_sample_delivery_model extends CI_Model
         return $this->db->count_all_results();
     }
 
-    /*public function get_sample_row($id)
+    public function get_sample_info($id)
     {
-        $this->db->select('rsd.*');
-        $this->db->from('rnd_sample_delivery_date rsd');
-        $this->db->select('rsi.season_name season_name');
-
-        $this->db->join('rnd_season_info rsi', 'rsi.id = rsd.season_id', 'left');
-        $this->db->where('rsd.id',$id);
-
-        $query = $this->db->get();
-        return $query->row_array();
+        $this->db->from('delivery_and_sowing_setup das');
+        $this->db->select('das.*');
+        $this->db->select('rs.season_name season_name');
+        $this->db->select('rc.crop_name crop_name');
+        $this->db->join('rnd_season rs', 'rs.id = das.season_id', 'INNER');
+        $this->db->join('rnd_crop rc', 'rc.id = das.crop_id', 'INNER');
+        $this->db->where('das.id',$id);
+        $result = $this->db->get()->row_array();
+        return $result;
     }
 
-    public function get_rnd_codes_by_season($season_id)
+    /*public function get_rnd_codes_by_season($season_id)
     {
         $this->db->from('rnd_variety_info vi');
         $this->db->select('vi.rnd_code rnd_code, vi.id rnd_id');
