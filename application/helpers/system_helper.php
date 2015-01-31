@@ -205,9 +205,9 @@ class System_helper
         return $rndCode;
     }
 
-    public static function rnd_date($int)
+    public static function display_date($date)
     {
-        return date('Y-m-d',$int);
+        return date('Y-m-d',$date);
     }
 
 
