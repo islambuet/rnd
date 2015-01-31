@@ -9,14 +9,14 @@ class Test extends CI_Controller
     {
 
 
+
     }
 
 
     public function index()
 	{
-        $i=1;
-
-        print_r($_GET['item_name' + $i]);
+        $a=5;
+        echo ++$a;
     }
 
 

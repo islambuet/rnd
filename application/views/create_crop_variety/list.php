@@ -44,21 +44,18 @@
 
                     <td>
                         <?php
-                        if($variety['variety_type']==$this->config->item('variety_type_arm'))
+                        if($variety['variety_type']==1)
+                        {
+                            echo $variety['principal_name'];
+                        }
+                        elseif($variety['variety_type']==2)
                         {
                             echo $this->lang->line('LABEL_CHECK_VARIETY_ARM');
+
                         }
-                        elseif($variety['variety_type']==$this->config->item('variety_type_company'))
+                        elseif($variety['variety_type']==3)
                         {
                             echo $this->lang->line('LABEL_COMPETITOR_VARIETY');
-                        }
-                        elseif($variety['variety_type']==$this->config->item('variety_type_principal'))
-                        {
-                            echo $this->lang->line('LABEL_PRINCIPAL_VARIETY');
-                        }
-                        else
-                        {
-                            echo '';
                         }
                         ?>
                     </td>
