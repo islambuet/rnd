@@ -105,6 +105,7 @@ $lang['LABEL_REPLICA'] = 'Replica';
 $lang['LABEL_REPLICA_STATUS'] = 'Replica Status';
 
 //General Sample Delivery
+
 $lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Destined Delivery Date';
 $lang['LABEL_DELIVERED'] = 'Delivered';
 $lang['LABEL_DELIVERY_DATE'] = 'Delivery Date';
@@ -123,6 +124,11 @@ $lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 $lang['LABEL_RND_YEAR'] = 'R&D Year';
 $lang['LABEL_ALL_SELECT_RND_CODE'] = ' Select All';
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';
+$lang['LABEL_ESTIMATED_DELIVERY_DATE'] = 'Destined Delivery Date';
+$lang['LABEL_ESTIMATED_RECEIVE_DATE'] = 'Destined Receive Date';
+$lang['LABEL_RECEIVE_DATE'] = 'Receive Date';
+$lang['LABEL_SEASON_END'] = 'Season End';
+$lang['LABEL_SEASON_END_DATE'] = 'Season End Date';
 
 //Trial Analysis Fortnightly
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';

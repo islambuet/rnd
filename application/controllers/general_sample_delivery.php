@@ -162,6 +162,7 @@ class General_sample_delivery extends ROOT_Controller
                 $oldRndCodes = $this->general_sample_delivery_model->get_sample_rnd_codes_by_season($season_id);
 
                 // Quantity plus (for UNCHECKED codes only)
+
                 if(!empty($oldRndCodes))
                 {
                     foreach($oldRndCodes as $oldcode)
@@ -226,7 +227,6 @@ class General_sample_delivery extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
                 }
-
             }
             else
             {
