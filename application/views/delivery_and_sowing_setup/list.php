@@ -12,61 +12,129 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="col-sm-12">
-        <table class="table table-hover table-bordered">
+    <div class="col-sm-12" style="overflow-x: scroll;">
+        <table class="table table-hover table-bordered" style="font-size: 13px;">
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_CODE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_WIDTH"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_CROP_HEIGHT"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_FLOWERING_TYPE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_INITIAL_PLANTS"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PLANTS_PER_HECTARE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_ESTIMATED_DELIVERY_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_DELIVERY_DATE"); ?></th>
 
+                <th><?php echo $this->lang->line("LABEL_ESTIMATED_RECEIVE_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_RECEIVE_DATE"); ?></th>
+
+                <th><?php echo $this->lang->line("LABEL_SOWING_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON_END_DATE"); ?></th>
+                <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
             <tbody>
             <?php
-                if(sizeof($cropInfo)>0)
-                {
-                    foreach($cropInfo as $key=>$crop)
-                    {
-                        ?>
-                        <tr>
-                            <td><?php echo $key+1;?></td>
-                            <td><?php echo $crop['crop_name'];?></td>
-                            <td><?php echo $crop['crop_code'];?></td>
-                            <td><?php echo $crop['crop_width'];?></td>
-                            <td><?php echo $crop['crop_height'];?></td>
-                            <td>
-                                <?php
-                                    $fruit_types=$this->config->item("fruit_type");
-                                    echo $fruit_types[$crop['fruit_type']];
-
-                                ?>
-                            </td>
-                            <td><?php echo $crop['sample_size'];?></td>
-                            <td><?php echo $crop['initial_plants'];?></td>
-                            <td><?php echo $crop['plants_per_hectare'];?></td>
-
-                        </tr>
-                        <?php
-                    }
-                }
-                else
+            if(sizeof($samples)>0)
+            {
+                foreach($samples as $key=>$sample)
                 {
                     ?>
                     <tr>
-                        <td colspan="20" class="text-center alert-danger">
-                            <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                        <td><?php echo $key+1;?></td>
+                        <td><?php echo $sample['year'];?></td>
+                        <td><?php echo $sample['season_name'];?></td>
+                        <td><?php echo $sample['crop_name'];?></td>
+                        <td>
+                            <?php
+                            if(($sample['estimated_delivery_date'])>0)
+                            {
+                                echo System_helper::display_date($sample['estimated_delivery_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['delivery_date'])>0)
+                            {
+                                echo System_helper::display_date($sample['delivery_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['estimated_receive_date'])>0)
+                            {
+                                echo System_helper::display_date($sample['estimated_receive_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['receive_date'])>0)
+                            {
+                                echo System_helper::display_date($sample['receive_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['sowing_status'])==1)
+                            {
+                                echo System_helper::display_date($sample['sowing_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['season_end_status'])==1)
+                            {
+                                echo System_helper::display_date($sample['season_end_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <a href="<?php echo base_url();?>delivery_and_sowing_setup/index/edit/<?php echo $sample['id'];?>">
+                                <img src="<?php echo base_url();?>images/edit_record.png">
+                            </a>
                         </td>
                     </tr>
-                    <?php
+                <?php
                 }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
+            <?php
+            }
             ?>
 
             </tbody>
@@ -75,7 +143,7 @@
     <div class="col-sm-12">
         <div class="pagination_container pull-right">
             <?php
-                echo $links;
+            echo $links;
             ?>
         </div>
     </div>

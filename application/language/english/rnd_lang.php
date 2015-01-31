@@ -129,6 +129,7 @@ $lang['LABEL_ESTIMATED_RECEIVE_DATE'] = 'Destined Receive Date';
 $lang['LABEL_RECEIVE_DATE'] = 'Receive Date';
 $lang['LABEL_SEASON_END'] = 'Season End';
 $lang['LABEL_SEASON_END_DATE'] = 'Season End Date';
+$lang['LABEL_NOT_SET'] = 'Not Set';
 
 //Trial Analysis Fortnightly
 $lang['LABEL_TRANSPLANTING_DATE'] = 'Transplanting Date';

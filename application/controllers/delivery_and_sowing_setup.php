@@ -17,7 +17,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         {
             $this->rnd_list($id);
         }
-        elseif($task=="add")
+        elseif($task=="add" || $task=="edit")
         {
             $this->rnd_add_edit($id);
         }
@@ -33,7 +33,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "delivery_and_sowing_setup/index/list/",$this->delivery_and_sowing_setup_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "delivery_and_sowing_setup/index/list/",$this->delivery_and_sowing_setup_model->get_total_setup(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,7 +42,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->delivery_and_sowing_setup_model->get_cropInfo($page);
+        $data['samples'] = $this->delivery_and_sowing_setup_model->get_setups($page);
         $data['title']="Delivery And Sowing Setup List";
 
         $ajax['status']=true;
@@ -60,16 +60,28 @@ class Delivery_and_sowing_setup extends ROOT_Controller
     {
         if ($id != 0)
         {
-//            $data['typeInfo'] = $this->delivery_and_sowing_setup_model->get_type_row($id);
-//            $data['title']="Edit Crop Type (".$data['typeInfo']['crop_name'].'/ '.$data['typeInfo']['type_name'].")";
-//            $ajax['page_url']=base_url()."create_crop_type/index/edit/".$id;
+            $data['deliveryInfo'] = $this->delivery_and_sowing_setup_model->get_setup_row($id);
+            $data['title']="Edit Setup";
+            $ajax['page_url']=base_url()."delivery_and_sowing_setup/index/edit/".$id;
         }
         else
         {
             $data['title']="Delivery And Sowing Setup";
             $data["deliveryInfo"] = Array(
-                'id' => 0
+                'id' => 0,
+                'year' => '',
+                'season_id' => '',
+                'crop_id' => '',
+                'estimated_delivery_date' => '',
+                'delivery_date' => '',
+                'estimated_receive_date' => '',
+                'receive_date' => '',
+                'sowing_status' => '',
+                'sowing_date' => '',
+                'season_end_status' => '',
+                'season_end_date' => ''
             );
+
             $ajax['page_url']=base_url()."delivery_and_sowing_setup/index/add";
         }
 
@@ -86,21 +98,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         $id = $this->input->post("delivery_id");
         $user = User_helper::get_user();
 
-        $data = Array(
-            'estimated_delivery_date'=>strtotime($this->input->post('estimated_delivery_date')),
-            'estimated_receive_date'=>strtotime($this->input->post('estimated_receive_date'))
-        );
-
-        if($this->input->post('estimated_delivery_date'))
-        {
-            $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
-        }
-
-        if($this->input->post('estimated_receive_date'))
-        {
-            $data['receive_date'] = strtotime($this->input->post('receive_date'));
-        }
-
         if(!$this->check_validation())
         {
             $ajax['status']=false;
@@ -109,14 +106,27 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         }
         else
         {
+            $data = Array(
+                'estimated_delivery_date'=>strtotime($this->input->post('estimated_delivery_date')),
+                'estimated_receive_date'=>strtotime($this->input->post('estimated_receive_date'))
+            );
+
+            if($this->input->post('estimated_delivery_date'))
+            {
+                $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
+            }
+
+            if($this->input->post('estimated_receive_date'))
+            {
+                $data['receive_date'] = strtotime($this->input->post('receive_date'));
+            }
+
             if($id>0)
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data = Array(
-                    'sowing_status'=>$this->input->post('sowing_status'),
-                    'season_end_status'=>$this->input->post('season_end_status')
-                );
+                $data['sowing_status'] = $this->input->post('sowing_status');
+                $data['season_end_status'] = $this->input->post('season_end_status');
 
                 if($this->input->post('sowing_status'))
                 {
@@ -150,11 +160,9 @@ class Delivery_and_sowing_setup extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data = Array(
-                    'year'=>$this->input->post('year'),
-                    'season_id'=>$this->input->post('season_id'),
-                    'crop_id'=>$this->input->post('crop_id'),
-                );
+                $data['year'] = $this->input->post('year');
+                $data['season_id'] = $this->input->post('season_id');
+                $data['crop_id'] = $this->input->post('crop_id');
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
@@ -171,6 +179,8 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
                 }
+
+                $this->rnd_list();//this is similar like redirect
             }
         }
 
