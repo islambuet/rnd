@@ -25,6 +25,7 @@
                 <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_INITIAL_PLANTS"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PLANTS_PER_HECTARE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_ORDERING"); ?></th>
 
             </tr>
             </thead>
@@ -52,6 +53,13 @@
                             <td><?php echo $crop['sample_size'];?></td>
                             <td><?php echo $crop['initial_plants'];?></td>
                             <td><?php echo $crop['plants_per_hectare'];?></td>
+                            <td>
+                                <?php
+                                    ?>
+                                       <input type="text" data-crop-id="<?php echo $crop['id'];?>" class="form-control crop_ordering" value="<?php echo $crop['ordering']; ?>">
+                                    <?php
+                                ?>
+                            </td>
 
                         </tr>
                         <?php
@@ -83,3 +91,27 @@
 
 </div>
 <div class="clearfix"></div>
+<script type="text/javascript">
+
+    $(document).off("blur",".crop_ordering");
+    $(document).on("blur",".crop_ordering",function()
+    {
+        //var crop_ordering=$(this).val();
+        //console.log(crop_ordering);
+        $.ajax({
+            url: base_url+"create_crop/index/save_ordering",
+            type: 'POST',
+            dataType: "JSON",
+            data:{crop_id:$(this).attr("data-crop-id"),ordering:$(this).val()},
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+                console.log("error");
+
+            }
+        });
+    });
+</script>

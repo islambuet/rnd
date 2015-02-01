@@ -21,6 +21,10 @@ class Create_crop extends ROOT_Controller
         {
             $this->rnd_add_edit();
         }
+        elseif($task=="save_ordering")
+        {
+            $this->rnd_save_ordering();
+        }
         elseif($task=="save")
         {
             $this->rnd_save();
@@ -123,6 +127,32 @@ class Create_crop extends ROOT_Controller
 
             $this->rnd_list();//this is similar like redirect
         }
+
+    }
+    public function rnd_save_ordering()
+    {
+
+        $id = $this->input->post("crop_id");
+        $data['ordering']=$this->input->post("ordering");
+        $user = User_helper::get_user();
+        $this->db->trans_start();  //DB Transaction Handle START
+
+        $data['modified_by'] = $user->user_id;
+        $data['modification_date'] = time();
+
+        Query_helper::update('rnd_crop',$data,array("id = ".$id));
+
+        $this->db->trans_complete();   //DB Transaction Handle END
+
+        if ($this->db->trans_status() === TRUE)
+        {
+            $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+        }
+        else
+        {
+            $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+        }
+        $this->rnd_list();//this is similar like redirect
 
     }
 

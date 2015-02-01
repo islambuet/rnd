@@ -19,7 +19,9 @@ class Create_crop_model extends CI_Model
 
         $this->db->where('rc.status != ',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
+        $this->db->order_by("rc.ordering","ASC");
         $this->db->order_by("rc.id","ASC");
+
 
         $query = $this->db->get();
 
