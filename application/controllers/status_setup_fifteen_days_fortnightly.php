@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Fifteen_days_status_setup extends ROOT_Controller
+class Status_setup_fifteen_days_fortnightly extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("fifteen_days_status_setup_model");
+        $this->load->model("status_setup_fifteen_days_fortnightly_model");
     }
 
     public function index($task="list",$id=0)
@@ -37,7 +37,7 @@ class Fifteen_days_status_setup extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "fifteen_days_status_setup/index/list/",$this->fifteen_days_status_setup_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "status_setup_fifteen_days_fortnightly/index/list/",$this->status_setup_fifteen_days_fortnightly_model->get_total_crops(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -46,16 +46,16 @@ class Fifteen_days_status_setup extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->fifteen_days_status_setup_model->get_cropInfo($page);
+        $data['cropInfo'] = $this->status_setup_fifteen_days_fortnightly_model->get_cropInfo($page);
         $data['title']="Fifteen Days Status Setup List";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("fifteen_days_status_setup/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("status_setup_fifteen_days_fortnightly/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
-        $ajax['page_url']=base_url()."fifteen_days_status_setup/index/list/".($page+1);
+        $ajax['page_url']=base_url()."status_setup_fifteen_days_fortnightly/index/list/".($page+1);
 
         $this->jsonReturn($ajax);
     }
@@ -65,10 +65,10 @@ class Fifteen_days_status_setup extends ROOT_Controller
         $data = array();
 //        $data['typeInfo'] = $this->create_type_model->get_type_row($id);
 //        $data['title']="Edit Crop Type (".$data['typeInfo']['crop_name'].'/ '.$data['typeInfo']['type_name'].")";
-        $ajax['page_url']=base_url()."fifteen_days_status_setup/index/edit/".$id;
+        $ajax['page_url']=base_url()."status_setup_fifteen_days_fortnightly/index/edit/".$id;
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("fifteen_days_status_setup/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("status_setup_fifteen_days_fortnightly/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Fifteen_days_status_setup_model extends CI_Model
+class Status_setup_fifteen_days_fortnightly_model extends CI_Model
 {
 
     public function __construct() {

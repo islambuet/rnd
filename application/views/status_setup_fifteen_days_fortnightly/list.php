@@ -54,7 +54,7 @@
 <!--                            <td>--><?php //echo $crop['initial_plants'];?><!--</td>-->
 <!--                            <td>--><?php //echo $crop['plants_per_hectare'];?><!--</td>-->
                             <td>
-                                <a href="<?php echo base_url();?>fifteen_days_status_setup/index/edit/<?php echo $crop['id'];?>">
+                                <a href="<?php echo base_url();?>status_setup_fifteen_days_fortnightly/index/edit/<?php echo $crop['id'];?>">
                                     <img src="<?php echo base_url();?>images/edit_record.png">
                                 </a>
                             </td>
