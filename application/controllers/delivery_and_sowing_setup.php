@@ -116,11 +116,13 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
                 if($deliveryInfo['sowing_status']==1)
                 {
-                    $data['transplanting_date'] = strtotime($this->input->post('transplanting_date'));
-
+                    if(strlen($this->input->post('transplanting_date'))>0)
+                    {
+                        $data['transplanting_date'] = strtotime($this->input->post('transplanting_date'));
+                    }
                     if($this->input->post('season_end_status')==1)
                     {
-                        $data['season_end_status'] = strtotime($this->input->post('season_end_status'));
+                        $data['season_end_status'] = $this->input->post('season_end_status');
                         $data['season_end_date'] = strtotime($this->input->post('season_end_date'));
                     }
                 }
@@ -249,12 +251,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
         if($deliveryInfo['sowing_status']==1)
         {
-            if(Validation_helper::validate_empty($this->input->post('transplanting_date')))
-            {
-                $valid=false;
-                $this->message.="Please input a Transplanting Date<br>";
-            }
-
             if($this->input->post('season_end_status')==1)
             {
                 if(Validation_helper::validate_empty($this->input->post('season_end_date')))
@@ -273,10 +269,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                     $valid=false;
                     $this->message.="Please input a Sowing Date<br>";
                 }
-            }
-            else
-            {
-                $valid=true;
             }
         }
 

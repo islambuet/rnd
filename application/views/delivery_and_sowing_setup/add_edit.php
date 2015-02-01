@@ -108,7 +108,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING');?></label>
             </div>
             <div class="col-xs-8">
-                <input type="checkbox" name="sowing_status" id="sowing_status" <?php if($deliveryInfo['sowing_status']==1){ echo 'checked';}?> value="1">
+                <input type="checkbox" name="sowing_status" id="sowing_status" <?php if($deliveryInfo['sowing_status']==1){ echo 'checked disabled';}?> value="1">
             </div>
         </div>
 
@@ -117,7 +117,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="sowing_date" id="sowing_date" class="form-control" <?php if(!empty($deliveryInfo['transplanting_date'])){echo 'disabled';}?> value="<?php if(!empty($deliveryInfo['sowing_date'])){ echo System_helper::display_date($deliveryInfo['sowing_date']);}?>">
+                <input type="text" name="sowing_date" id="sowing_date" class="form-control" <?php if($deliveryInfo['sowing_status']==1){ echo 'checked disabled';}?> value="<?php if(!empty($deliveryInfo['sowing_date'])){ echo System_helper::display_date($deliveryInfo['sowing_date']);}?>">
             </div>
         </div>
         <?php
@@ -142,7 +142,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEASON_END');?></label>
             </div>
             <div class="col-xs-8">
-                <input type="checkbox" name="season_end_status" id="season_end_status" <?php if($deliveryInfo['season_end_status']==1){ echo 'checked';}?> value="1">
+                <input type="checkbox" name="season_end_status" id="season_end_status" <?php if($deliveryInfo['season_end_status']==1){ echo 'checked disabled';}?> value="1">
             </div>
         </div>
 
@@ -151,7 +151,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEASON_END_DATE');?></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="season_end_date" id="season_end_date" class="form-control" value="<?php if(!empty($deliveryInfo['season_end_date'])){ echo System_helper::display_date($deliveryInfo['season_end_date']);}?>">
+                <input type="text" name="season_end_date" id="season_end_date" class="form-control" <?php if(($deliveryInfo['season_end_status']==1)){ echo "disabled";}?> value="<?php if(($deliveryInfo['season_end_status']==1)){ echo System_helper::display_date($deliveryInfo['season_end_date']);}?>">
             </div>
         </div>
 
