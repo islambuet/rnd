@@ -164,6 +164,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 $data['year'] = $this->input->post('year');
                 $data['season_id'] = $this->input->post('season_id');
                 $data['crop_id'] = $this->input->post('crop_id');
+                $data['estimated_delivery_date'] = strtotime($this->input->post('estimated_delivery_date'));
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
