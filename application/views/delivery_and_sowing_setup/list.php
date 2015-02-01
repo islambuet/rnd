@@ -22,11 +22,9 @@
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_ESTIMATED_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DELIVERY_DATE"); ?></th>
-
-                <th><?php echo $this->lang->line("LABEL_ESTIMATED_RECEIVE_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_RECEIVE_DATE"); ?></th>
-
                 <th><?php echo $this->lang->line("LABEL_SOWING_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_TRANSPLANTING_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SEASON_END_DATE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
@@ -68,18 +66,7 @@
                             }
                             ?>
                         </td>
-                        <td>
-                            <?php
-                            if(($sample['estimated_receive_date'])>0)
-                            {
-                                echo System_helper::display_date($sample['estimated_receive_date']);
-                            }
-                            else
-                            {
-                                echo $this->lang->line("LABEL_NOT_SET");
-                            }
-                            ?>
-                        </td>
+
                         <td>
                             <?php
                             if(($sample['receive_date'])>0)
@@ -97,6 +84,18 @@
                             if(($sample['sowing_status'])==1)
                             {
                                 echo System_helper::display_date($sample['sowing_date']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($sample['transplanting_date'])>0)
+                            {
+                                echo System_helper::display_date($sample['transplanting_date']);
                             }
                             else
                             {

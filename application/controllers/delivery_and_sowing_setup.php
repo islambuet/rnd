@@ -106,36 +106,37 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         }
         else
         {
-            $data = Array(
-                'estimated_delivery_date'=>strtotime($this->input->post('estimated_delivery_date')),
-                'estimated_receive_date'=>strtotime($this->input->post('estimated_receive_date'))
-            );
-
-            if($this->input->post('estimated_delivery_date'))
-            {
-                $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
-            }
-
-            if($this->input->post('estimated_receive_date'))
-            {
-                $data['receive_date'] = strtotime($this->input->post('receive_date'));
-            }
+            $data = array();
 
             if($id>0)
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data['sowing_status'] = $this->input->post('sowing_status');
-                $data['season_end_status'] = $this->input->post('season_end_status');
+                $deliveryInfo = $this->delivery_and_sowing_setup_model->get_setup_row($id);
 
-                if($this->input->post('sowing_status'))
+                if($deliveryInfo['sowing_status']==1)
                 {
-                    $data['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                    $data['transplanting_date'] = strtotime($this->input->post('transplanting_date'));
+
+                    if($this->input->post('season_end_status')==1)
+                    {
+                        $data['season_end_status'] = strtotime($this->input->post('season_end_status'));
+                        $data['season_end_date'] = strtotime($this->input->post('season_end_date'));
+                    }
                 }
-
-                if($this->input->post('season_end_status'))
+                else
                 {
-                    $data['season_end_date'] = strtotime($this->input->post('season_end_date'));
+                    if($this->input->post('sowing_status')==1)
+                    {
+                        $data['sowing_status'] = $this->input->post('sowing_status');
+                        $data['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                    }
+                    else
+                    {
+                        $data['estimated_delivery_date'] = strtotime($this->input->post('estimated_delivery_date'));
+                        $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
+                        $data['receive_date'] = strtotime($this->input->post('receive_date'));
+                    }
                 }
 
                 $data['modified_by'] = $user->user_id;
@@ -220,6 +221,12 @@ class Delivery_and_sowing_setup extends ROOT_Controller
             $this->message.="Please select a Crop<br>";
         }
 
+        if(Validation_helper::validate_empty($this->input->post('estimated_delivery_date')))
+        {
+            $valid=false;
+            $this->message.="Please input Destined Delivery Date<br>";
+        }
+
         if(!((Validation_helper::validate_empty($this->input->post('year'))) || (Validation_helper::validate_empty($this->input->post('season_id'))) || (Validation_helper::validate_empty($this->input->post('crop_id')))))
         {
             if($this->delivery_and_sowing_setup_model->check_setup_exists($this->input->post('year'),$this->input->post('season_id'),$this->input->post('crop_id'),$this->input->post('delivery_id')))
@@ -233,9 +240,46 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         return $valid;
     }
 
+
     private function check_validation_edit()
     {
-        return true;
+        $deliveryInfo = $this->delivery_and_sowing_setup_model->get_setup_row($this->input->post('delivery_id'));
+        $valid=true;
+
+        if($deliveryInfo['sowing_status']==1)
+        {
+            if(Validation_helper::validate_empty($this->input->post('transplanting_date')))
+            {
+                $valid=false;
+                $this->message.="Please input a Transplanting Date<br>";
+            }
+
+            if($this->input->post('season_end_status')==1)
+            {
+                if(Validation_helper::validate_empty($this->input->post('season_end_date')))
+                {
+                    $valid=false;
+                    $this->message.="Please input a Season End Date<br>";
+                }
+            }
+        }
+        else
+        {
+            if($this->input->post('sowing_status')==1)
+            {
+                if(Validation_helper::validate_empty($this->input->post('sowing_date')))
+                {
+                    $valid=false;
+                    $this->message.="Please input a Sowing Date<br>";
+                }
+            }
+            else
+            {
+                $valid=true;
+            }
+        }
+
+        return $valid;
     }
 
 
