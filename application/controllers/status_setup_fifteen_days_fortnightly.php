@@ -21,10 +21,6 @@ class Status_setup_fifteen_days_fortnightly extends ROOT_Controller
         {
             $this->rnd_add_edit($id);
         }
-        elseif($task=="save_ordering")
-        {
-            $this->rnd_save_ordering();
-        }
         elseif($task=="save")
         {
             $this->rnd_save();
@@ -63,8 +59,10 @@ class Status_setup_fifteen_days_fortnightly extends ROOT_Controller
     public function rnd_add_edit($id)
     {
         $data = array();
-//        $data['typeInfo'] = $this->create_type_model->get_type_row($id);
-//        $data['title']="Edit Crop Type (".$data['typeInfo']['crop_name'].'/ '.$data['typeInfo']['type_name'].")";
+        $data['typeInfo'] = $this->status_setup_fifteen_days_fortnightly_model->get_crop_info($id);
+        $data['columns'] = $this->status_setup_fifteen_days_fortnightly_model->get_setup($id);
+        $data['title']='15 Days Fortnightly Setup For ('.$data['typeInfo']['crop_name'].')';
+
         $ajax['page_url']=base_url()."status_setup_fifteen_days_fortnightly/index/edit/".$id;
 
         $ajax['status']=true;
@@ -75,122 +73,53 @@ class Status_setup_fifteen_days_fortnightly extends ROOT_Controller
 
     public function rnd_save()
     {
+        $crop_id = $this->input->post("crop_id");
+        $columns=$this->input->post("columns");
 
-//        $id = $this->input->post("crop_id");
-//        $user = User_helper::get_user();
-//
-//        $data = Array(
-//            'crop_name'=>$this->input->post('crop_name'),
-//            'crop_code'=>$this->input->post('crop_code'),
-//            'crop_width'=>$this->input->post('crop_width'),
-//            'crop_height'=>$this->input->post('crop_height'),
-//            'fruit_type'=>$this->input->post('fruit_type'),
-//            'sample_size'=>$this->input->post('sample_size'),
-//            'initial_plants'=>$this->input->post('initial_plants'),
-//            'plants_per_hectare'=>$this->input->post('plants_per_hectare'),
-//            'status'=>$this->config->item('status_active')
-//        );
-//
-//        if(!$this->check_validation())
-//        {
-//            $ajax['status']=false;
-//            $ajax['message']=$this->message;
-//            $this->jsonReturn($ajax);
-//        }
-//        else
-//        {
-//
-//            $this->db->trans_start();  //DB Transaction Handle START
-//            $time=time();
-//
-//            $data['created_by'] = $user->user_id;
-//            $data['creation_date'] = $time;
-//
-//            $crop_id=Query_helper::add('rnd_crop',$data);
-//            $status_data['crop_id']=$crop_id;
-//            $status_data['created_by']=$user->user_id;
-//            $status_data['creation_date']=$time;
-//            Query_helper::add('rnd_status_fifteen_days_report',$status_data);
-//            Query_helper::add('rnd_status_flowering_report',$status_data);
-//            Query_helper::add('rnd_status_fruit_report',$status_data);
-//            Query_helper::add('rnd_status_harvest_compile_report',$status_data);
-//            Query_helper::add('rnd_status_harvest_report',$status_data);
-//            Query_helper::add('rnd_status_yield_report',$status_data);
-//            $this->db->trans_complete();   //DB Transaction Handle END
-//
-//            if ($this->db->trans_status() === TRUE)
-//            {
-//                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-//            }
-//            else
-//            {
-//                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-//            }
-//
-//            $this->rnd_list();//this is similar like redirect
-//        }
+        $data = $this->status_setup_fifteen_days_fortnightly_model->get_setup($crop_id);
+        unset($data['id']);
+        unset($data['crop_id']);
+        unset($data['status']);
+        unset($data['created_by']);
+        unset($data['creation_date']);
+        unset($data['modified_by']);
+        unset($data['modification_date']);
+
+        foreach($data as $key=>&$d)
+        {
+            if(is_array($columns)&&in_array($key,$columns))
+            {
+                $d=1;
+            }
+            else
+            {
+                $d=0;
+            }
+
+        }
+        $user = User_helper::get_user();
+        $data['modified_by'] = $user->user_id;
+        $data['modification_date'] = time();
+        $this->db->trans_start();  //DB Transaction Handle START
+
+        Query_helper::update('rnd_status_fifteen_days_report',$data,array("crop_id = ".$crop_id));
+
+        $this->db->trans_complete();   //DB Transaction Handle END
+
+        if ($this->db->trans_status() === TRUE)
+        {
+            $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+        }
+        else
+        {
+            $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+        }
+        $this->rnd_list();//this is similar like redirect
+
+
 
     }
 
-    private function check_validation()
-    {
-        $valid=true;
-        if(Validation_helper::validate_empty($this->input->post('crop_name')))
-        {
-            $valid=false;
-            $this->message.="Crop Name Cannot Be Empty<br>";
-        }
-        elseif($this->create_crop_model->check_crop_name_existence($this->input->post('crop_name')))
-        {
-            $valid=false;
-            $this->message.="Crop Name Exists<br>";
-        }
-
-        if(Validation_helper::validate_empty($this->input->post('crop_code')))
-        {
-            $valid=false;
-            $this->message.="Crop Code Cannot Be Empty<br>";
-        }
-        elseif($this->create_crop_model->check_crop_code_existence($this->input->post('crop_code')))
-        {
-            $valid=false;
-            $this->message.="Crop Code Exists<br>";
-        }
-        if(!Validation_helper::validate_numeric($this->input->post('crop_width')))
-        {
-            $valid=false;
-            $this->message.="Crop Width Must be number<br>";
-        }
-        if(!Validation_helper::validate_numeric($this->input->post('crop_height')))
-        {
-            $valid=false;
-            $this->message.="Crop height Must be number<br>";
-        }
-        if(!Validation_helper::validate_int($this->input->post('fruit_type')))
-        {
-            $valid=false;
-            $this->message.="Select Fruit Type<br>";
-        }
-
-        if(!Validation_helper::validate_numeric($this->input->post('sample_size')))
-        {
-            $valid=false;
-            $this->message.="Sample size Must be number<br>";
-        }
-
-        if(!Validation_helper::validate_int($this->input->post('initial_plants')))
-        {
-            $valid=false;
-            $this->message.="Initial plants Must be number<br>";
-        }
-        if(!Validation_helper::validate_int($this->input->post('plants_per_hectare')))
-        {
-            $valid=false;
-            $this->message.="Plants per hectare Must be number<br>";
-        }
-
-        return $valid;
-    }
 
 
 }

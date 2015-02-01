@@ -37,50 +37,24 @@ class Status_setup_fifteen_days_fortnightly_model extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function get_crop_row($id)
+    public function get_crop_info($id)
     {
-        $this->db->select('rnd_crop_info.*');
-        $this->db->from('rnd_crop_info');
+        $this->db->select('*');
+        $this->db->from('rnd_crop');
         $this->db->where('id',$id);
 
         $query = $this->db->get();
         return $query->row_array();
     }
 
-    public function check_crop_name_existence($crop_name)
+    public function get_setup($id)
     {
-        $this->db->select('rnd_crop.id');
-        $this->db->from('rnd_crop');
-        $this->db->where('crop_name',$crop_name);
+        $this->db->select('*');
+        $this->db->from('rnd_status_fifteen_days_report');
+        $this->db->where('crop_id',$id);
 
-        $result = $this->db->count_all_results();
-
-        if($result>0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public function check_crop_code_existence($crop_code)
-    {
-        $this->db->select('id');
-        $this->db->from('rnd_crop');
-        $this->db->where('crop_code',$crop_code);
-
-        $result = $this->db->count_all_results();
-
-        if($result>0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
 }
