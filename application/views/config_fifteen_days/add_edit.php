@@ -1,11 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."create_crop/index/add";
-    $data["link_back"]=base_url()."create_crop";
-    $this->load->view("action_buttons_edit",$data);
 
-//echo '<pre>';
-//print_r($cropInfo);
-//echo '</pre>';
+$data["link_back"]="#";
+$data["hide_back"]="1";
+$this->load->view("action_buttons_edit",$data);
+
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop/index/save" method="post">
     <div class="row widget">
@@ -71,9 +69,21 @@
             </div>
         </div>
 
-    </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_TYPE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-xs-4">
+                <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
+                </select>
+            </div>
+        </div>
+
+    </div>
     <div class="clearfix"></div>
+
 </form>
 <script type="text/javascript">
 
@@ -81,5 +91,26 @@
     {
 //        $(".form_valid").validationEngine();
 
+        $(document).off("change", "#crop_id");
+        $(document).on("change", "#crop_id", function(event)
+        {
+            var crop_id = $("#crop_id").val();
+            $.ajax({
+                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                type: 'POST',
+                dataType: "JSON",
+                data:{crop_id:crop_id},
+                success: function (data, status)
+                {
+
+                },
+                error: function (xhr, desc, err)
+                {
+                    console.log("error");
+
+                }
+            });
+        });
     });
+
 </script>
