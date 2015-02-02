@@ -15,7 +15,11 @@ class Config_fifteen_days extends ROOT_Controller
     {
         if($task=="add_edit")
         {
-            $this->rnd_add_edit($id);
+            $this->rnd_add_edit();
+        }
+        elseif($task=="list")
+        {
+            $this->rnd_list($id);
         }
         elseif($task=="save")
         {
@@ -23,9 +27,8 @@ class Config_fifteen_days extends ROOT_Controller
         }
     }
 
-    public function rnd_add_edit($page=0)
+    public function rnd_add_edit()
     {
-        $data['cropInfo'] = $this->config_fifteen_days_model->get_cropInfo($page);
         $data['title']="Config Fifteen Days";
 
         $data['crops'] = System_helper::get_ordered_crops();
@@ -40,6 +43,11 @@ class Config_fifteen_days extends ROOT_Controller
 
         $ajax['page_url']=base_url()."config_fifteen_days/index/add_edit";
         $this->jsonReturn($ajax);
+    }
+
+    public function rnd_list($id)
+    {
+        
     }
 
     public function rnd_save()
