@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Status_setup_fifteen_days_fortnightly_model extends CI_Model
+class Setup_text_fifteen_days_model extends CI_Model
 {
 
     public function __construct() {
@@ -21,8 +21,6 @@ class Status_setup_fifteen_days_fortnightly_model extends CI_Model
         $this->db->limit($limit,$start);
         $this->db->order_by("rc.ordering","ASC");
         $this->db->order_by("rc.id","ASC");
-
-
         $query = $this->db->get();
 
         return $query->result_array();

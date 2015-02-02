@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-    $data["link_new"]=base_url()."create_crop/index/add";
+    $data["link_new"]=base_url()."setup_image_fifteen_days/index/add";
     $this->load->view("action_buttons",$data);
 
 ?>

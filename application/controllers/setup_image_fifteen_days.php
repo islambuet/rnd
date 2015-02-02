@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Config_fifteen_days extends ROOT_Controller
+class Setup_image_fifteen_days extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("config_fifteen_days_model");
+        $this->load->model("setup_image_fifteen_days_model");
     }
 
     public function index($task="add_edit",$id=0)
@@ -29,19 +29,19 @@ class Config_fifteen_days extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Config Fifteen Days";
+        $data['title']="Setup Image Fifteen Days";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("config_fifteen_days/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_image_fifteen_days/add_edit",$data,true));
 
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
 
-        $ajax['page_url']=base_url()."config_fifteen_days/index/add_edit";
+        $ajax['page_url']=base_url()."setup_image_fifteen_days/index/add_edit";
         $this->jsonReturn($ajax);
     }
 

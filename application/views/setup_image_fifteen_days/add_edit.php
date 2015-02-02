@@ -5,7 +5,7 @@ $data["hide_back"]="1";
 $this->load->view("action_buttons_edit",$data);
 
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>create_crop/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>setup_image_fifteen_days/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">

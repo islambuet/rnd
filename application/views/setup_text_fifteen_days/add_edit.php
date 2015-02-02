@@ -1,14 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_back"]=base_url()."status_setup_fifteen_days_fortnightly";
+    $data["link_back"]=base_url()."setup_text_fifteen_days";
     $this->load->view("action_buttons_edit",$data);
 
 //echo '<pre>';
 //print_r($columns);
 //echo '</pre>';
 
-
 ?>
-<form id="save_form" action="<?php echo base_url();?>status_setup_fifteen_days_fortnightly/index/save" method="post">
+<form id="save_form" action="<?php echo base_url();?>setup_text_fifteen_days/index/save" method="post">
     <input type="hidden" name="crop_id" value="<?php echo $columns['crop_id'];?>"/>
     <div class="row widget">
         <div class="widget-header">

@@ -36,7 +36,7 @@
                             <td><?php echo $crop['crop_name'];?></td>
                             <td><?php echo $crop['crop_code'];?></td>
                             <td>
-                                <a href="<?php echo base_url();?>status_setup_fifteen_days_fortnightly/index/edit/<?php echo $crop['id'];?>">
+                                <a href="<?php echo base_url();?>setup_text_fifteen_days/index/edit/<?php echo $crop['id'];?>">
                                     <img src="<?php echo base_url();?>images/edit_record.png">
                                 </a>
                             </td>
