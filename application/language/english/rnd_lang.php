@@ -56,6 +56,7 @@ $lang['LABEL_FLOWERING_TYPE'] = 'Fruit Type';
 $lang['LABEL_PLANTS_PER_HECTARE'] = 'Plants Per hectare';
 $lang['LABEL_SAMPLE_SIZE_RND'] = 'Sample Size for R&D (gm)';
 $lang['LABEL_GM'] = 'gm';
+$lang['LABEL_ORDERING'] = 'Ordering';
 
 //Create Type
 $lang['LABEL_SELECT_CROP'] = 'Select Crop';
