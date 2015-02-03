@@ -143,7 +143,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
             $crop_id=$this->input->post("crop_id");
             $crop_type_id=$this->input->post("crop_type_id");
             $number_of_fifteendays=$this->input->post("number_of_fifteendays");
-            $config=Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id));
+            $config=Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
             $user = User_helper::get_user();
             $time=time();
             $data['number_of_fifteendays']=$number_of_fifteendays;
