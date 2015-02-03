@@ -203,7 +203,6 @@ function display_browse_image(brose_bttion,display_id)
 {
     if (brose_bttion.files && brose_bttion.files[0])
     {
-        console.log("inside if");
         var reader = new FileReader();
 
         reader.onload = function (e)

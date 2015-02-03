@@ -57,7 +57,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
         {
             $data['title']="Upload Images";
             $data['number_of_fifteendays']=$this->config->item("default_number_of_fifteen_days");
-            for($i=0;$i<$this->config->item("max_number_of_fifteen_days");$i++)
+            for($i=0;$i<=$this->config->item("max_number_of_fifteen_days");$i++)
             {
                 $data['images'][$i*15]=base_url().'images/15_days_image_config/no_image.jpg';
             }
@@ -71,50 +71,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
 
     public function rnd_save()
     {
-        /*$id = $this->input->post("crop_id");
-        $user = User_helper::get_user();
-
-        $data = Array(
-            'crop_name'=>$this->input->post('crop_name'),
-            'crop_code'=>$this->input->post('crop_code'),
-            'crop_width'=>$this->input->post('crop_width'),
-            'crop_height'=>$this->input->post('crop_height'),
-            'fruit_type'=>$this->input->post('fruit_type'),
-            'sample_size'=>$this->input->post('sample_size'),
-            'initial_plants'=>$this->input->post('initial_plants'),
-            'plants_per_hectare'=>$this->input->post('plants_per_hectare'),
-            'status'=>$this->config->item('status_active')
-        );
-
-        if(!$this->check_validation())
-        {
-            $ajax['status']=false;
-            $ajax['message']=$this->message;
-            $this->jsonReturn($ajax);
-        }
-        else
-        {
-            $this->db->trans_start();  //DB Transaction Handle START
-            $time=time();
-
-            $data['created_by'] = $user->user_id;
-            $data['creation_date'] = $time;
-
-            $crop_id=Query_helper::add('rnd_crop',$data);
-
-            $this->db->trans_complete();   //DB Transaction Handle END
-
-            if ($this->db->trans_status() === TRUE)
-            {
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-            }
-            else
-            {
-                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-            }
-
-            $this->rnd_add_edit();//this is similar like redirect
-        }*/
+        System_helper::upload_file($this->config->item("15_days_image_config"));
 
     }
 

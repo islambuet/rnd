@@ -80,7 +80,7 @@ $autoload['helper'] = array('url','user','validation','query','system');
 |
 */
 
-$autoload['config'] = array('rnd_config','upload_config');
+$autoload['config'] = array('rnd_config');
 
 
 /*

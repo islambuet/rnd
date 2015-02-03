@@ -31,6 +31,11 @@ $config['default_number_of_fifteen_days'] = 3;
 $config['max_number_of_fifteen_days'] = 8;
 
 
+//config for file upload and directory
+$config['max_file_size'] = 1024*10;
+$config['dir']['15_days_image_config'] = 'images/15_days_image_config';
+
+
 
 
 //fix bellow config latter

@@ -26,7 +26,8 @@
     </div>
 </div>
 <?php
-for($i=1;$i<$this->config->item('max_number_of_fifteen_days');$i++)
+for($i=1;$i<=$this->config->item('max_number_of_fifteen_days');$i++)
+//for($i=1;$i<2;$i++)
 {
     ?>
     <div class="row show-grid container_15_days" id="container_15_days_<?php echo $i*15;?>" style="display: <?php if($i<=$number_of_fifteendays){echo "block";}else{echo "none";} ?>">

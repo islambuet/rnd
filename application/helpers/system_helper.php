@@ -31,7 +31,60 @@ class System_helper
         $config['uri_segment'] = $segment;
         return $config;
     }
-    public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize,$allowedtypes)
+    public static function get_rnd_code($variety)
+    {
+        $CI = & get_instance();
+
+        $rndCode = $variety['crop_code'].'-'.$variety['type_code'].'-'.str_pad($variety['variety_index'],3,'0',STR_PAD_LEFT);
+
+        $varietyConfig = $CI->config->item('variety_type');
+        if($variety['variety_type']==1)
+        {
+            $rndCode = $rndCode.'-'.$variety['principal_code'];
+        }
+        else
+        {
+            $rndCode = $rndCode.'-'.$varietyConfig[$variety['variety_type']];
+        }
+
+        $rndCode = $rndCode.'-'.$variety['year'];
+
+        if($variety['new_status']==1)
+        {
+            $rndCode = $rndCode.'-NEW';
+        }
+        else
+        {
+            $rndCode = $rndCode.'-OLD';
+        }
+
+        if($variety['replica_status']==1)
+        {
+            $rndCode = $rndCode.'-R';
+        }
+        else
+        {
+            $rndCode = $rndCode.'-N';
+        }
+
+        return $rndCode;
+    }
+
+    public static function display_date($date)
+    {
+        return date('Y-m-d',$date);
+    }
+    
+    public static function get_ordered_crops()
+    {
+        $CI = & get_instance();
+        $CI->db->select('rnd_crop.id, rnd_crop.crop_name');
+        $CI->db->from('rnd_crop');
+        $CI->db->order_by('ordering');
+        $CI->db->where('status != ',$CI->config->item('status_delete'));
+        return $CI->db->get()->result_array();
+    }
+    /*public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize,$allowedtypes)
     {
         $CI = & get_instance();
         $ext = explode("/", @$_FILES[$post_file_name]['type']);
@@ -86,138 +139,31 @@ class System_helper
         {
             return '';
         }
-    }
-
-    public static function convert_date($date='', $type='')
-    {
-
-//        $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
-//        echo $dt->format('F j, Y, g:i a');
-
-        date_default_timezone_set('Asia/Dhaka');
-        $strtodate=strtotime($date);
-
-        if(!empty($date) && $type=="OnlyDate")
-        {
-            $convert_date = date('d-m-Y', $strtodate);
-        }
-        elseif(!empty($date) && $type=="OnlyTime")
-        {
-            $convert_date = date('H:i:s', $strtodate);
-        }
-        elseif(!empty($date) && $type=="DateTime")
-        {
-            $convert_date = date('d-m-Y H:i:s', $strtodate);
-        }
-        elseif(!empty($date) && $type=="SqlDate")
-        {
-            $convert_date = date('Y-m-d', $strtodate);
-        }
-        elseif(!empty($date) && $type=="SqlTime")
-        {
-            $convert_date = date('H:i:s', $strtodate);
-        }
-        elseif(!empty($date) && $type=="SqlDateTime")
-        {
-            $convert_date = date('Y-m-d H:i:s', $strtodate);
-        }
-        elseif(!empty($date) && $type=="CurrentDate")
-        {
-            $convert_date = date('d-m-Y');
-        }
-        elseif(!empty($date) && $type=="CurrentTime")
-        {
-            $convert_date = date('H:i:s');
-        }
-        elseif(!empty($date) && $type=="CurrentDateTime")
-        {
-            $convert_date = date('d-m-Y H:i:s');
-        }
-        elseif(!empty($date) && $type=="CurrentSqlDate")
-        {
-            $convert_date = date('Y-m-d');
-        }
-        elseif(!empty($date) && $type=="CurrentSqlTime")
-        {
-            $convert_date = date('H:i:s');
-        }
-        elseif(!empty($date) && $type=="CurrentSqlDateTime")
-        {
-            $convert_date = date('Y-m-d H:i:s');
-        }
-        else
-        {
-            $convert_date='';
-        }
-
-        return $convert_date;
-    }
-
-    public static function get_pdf($html)
-    {
-        include(FCPATH."mpdf/mpdf.php");
-        $mpdf=new mPDF();
-        $mpdf->useAdobeCJK=true;
-        $mpdf->SetAutoFont(AUTOFONT_ALL);
-        $mpdf->WriteHTML(file_get_contents(base_url().'fonts/mpdf.css'),1);
-        $mpdf->WriteHTML($html);
-        $mpdf->Output();
-
-    }
-
-    public static function get_rnd_code($variety)
+    }*/
+    public static function upload_file($save_dir="images")
     {
         $CI = & get_instance();
-        $rndCode = '';
-
-        $rndCode = $variety['crop_code'].'-'.$variety['type_code'].'-'.str_pad($variety['variety_index'],3,'0',STR_PAD_LEFT);
-
-        $varietyConfig = $CI->config->item('variety_type');
-        if($variety['variety_type']==1)
+        /*$CI->load->library('upload');
+        $config=array();
+        $config['upload_path'] = FCPATH.$save_dir;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = $CI->config->item("max_file_size");
+        $config['overwrite'] = false;
+        $config['remove_spaces'] = true;
+        $CI->upload->initialize($config);*/
+        $uploaded_files=array();
+        foreach ($_FILES as $key => $value)
         {
-            $rndCode = $rndCode.'-'.$variety['principal_code'];
-        }
-        else
-        {
-            $rndCode = $rndCode.'-'.$varietyConfig[$variety['variety_type']];
-        }
+            if($value['name'])
+            {
+                $uploaded_files[$key]=$value;
+            }
 
-        $rndCode = $rndCode.'-'.$variety['year'];
-
-        if($variety['new_status']==1)
-        {
-            $rndCode = $rndCode.'-NEW';
         }
-        else
-        {
-            $rndCode = $rndCode.'-OLD';
-        }
+        echo "<pre>";
+        print_r($uploaded_files);
+        echo "</pre>";
 
-        if($variety['replica_status']==1)
-        {
-            $rndCode = $rndCode.'-R';
-        }
-        else
-        {
-            $rndCode = $rndCode.'-N';
-        }
-
-        return $rndCode;
-    }
-
-    public static function display_date($date)
-    {
-        return date('Y-m-d',$date);
-    }
-    
-    public static function get_ordered_crops()
-    {
-        $CI = & get_instance();
-        $CI->db->select('rnd_crop.id, rnd_crop.crop_name');
-        $CI->db->from('rnd_crop');
-        $CI->db->order_by('ordering');
-        $CI->db->where('status != ',$CI->config->item('status_delete'));
-        return $CI->db->get()->result_array();
     }
 
 }
