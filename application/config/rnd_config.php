@@ -29,6 +29,7 @@ $config['variety_type'][3] = 'CKO';
 //15 days report config
 $config['default_number_of_fifteen_days'] = 3;
 $config['max_number_of_fifteen_days'] = 8;
+$config['day_interval_15'] = 15;//hard coded at setup_image_15days need to check controller view and model to fix
 
 
 //config for file upload and directory

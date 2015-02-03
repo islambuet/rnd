@@ -86,7 +86,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DAY_NUMBER');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="number_of_fifteendays" id="number_of_fifteendays" class="form-control validate[required]">
+                <select name="day_number" id="day_number" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
                 </select>
@@ -94,7 +94,7 @@ $this->load->view("action_buttons_edit",$data);
         </div>
 
     </div>
-    <div class="row widget" id="config_15_images">
+    <div class="row widget" id="data_15_images">
 
     </div>
     <div class="clearfix"></div>
@@ -110,57 +110,69 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("change", "#crop_id", function(event)
         {
             var crop_id = $("#crop_id").val();
-            $.ajax({
-                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
-                type: 'POST',
-                dataType: "JSON",
-                data:{crop_id:crop_id},
-                success: function (data, status)
-                {
+            if(crop_id>0)
+            {
+                $.ajax({
+                    url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id},
+                    success: function (data, status)
+                    {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
 
-                }
-            });
+                    }
+                });
+            }
         });
 
         $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $.ajax({
-                url: base_url+"data_image_fifteen_days/get_fifteen_days_for_data_image",
-                type: 'POST',
-                dataType: "JSON",
-                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
-                success: function (data, status)
-                {
-
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
-
-                }
-            });
-        });
-
-        $(document).off("change", ".file_15_days");
-        $(document).on("change", ".file_15_days", function(event)
-        {
-            var id=$(this).attr("data-day");
-            display_browse_image(this,"#image_"+id);
-        });
-        $(document).off("change", "#number_of_fifteendays");
-        $(document).on("change", "#number_of_fifteendays", function(event)
-        {
-            var num_images=$(this).val();
-            $(".container_15_days").hide();
-            for(i=1;i<=num_images;i++)
+            if($(this).val()>0)
             {
-                $("#container_15_days_"+(i*15)).show();
+                $.ajax({
+                    url: base_url+"data_image_fifteen_days/get_fifteen_days_for_data_image",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
+            }
+        });
+        $(document).off("change", "#day_number");
+        $(document).on("change", "#day_number", function(event)
+        {
+            $("#data_15_images").html("");
+            if($(this).val()>0)
+            {
+                $.ajax({
+                    url: base_url+"data_image_fifteen_days/index/list",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),day_number:$("#day_number").val()},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
             }
         });
     });

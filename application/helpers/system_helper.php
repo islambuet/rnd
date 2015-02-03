@@ -31,7 +31,7 @@ class System_helper
         $config['uri_segment'] = $segment;
         return $config;
     }
-    public static function get_rnd_code($variety)
+    public static function get_rnd_code($variety,$display_style=0)
     {
         $CI = & get_instance();
 
@@ -40,24 +40,32 @@ class System_helper
         $varietyConfig = $CI->config->item('variety_type');
         if($variety['variety_type']==1)
         {
-            $rndCode = $rndCode.'-'.$variety['principal_code'];
+            if($display_style==0)
+            {
+                $rndCode = $rndCode.'-'.$variety['principal_code'];
+            }
+            else
+            {
+                $rndCode = $rndCode.'-XXX';
+            }
+
         }
         else
         {
             $rndCode = $rndCode.'-'.$varietyConfig[$variety['variety_type']];
         }
-
-        $rndCode = $rndCode.'-'.$variety['year'];
-
-        if($variety['new_status']==1)
+        if($display_style==0)
         {
-            $rndCode = $rndCode.'-NEW';
+            $rndCode = $rndCode.'-'.$variety['year'];
+            if($variety['new_status']==1)
+            {
+                $rndCode = $rndCode.'-NEW';
+            }
+            else
+            {
+                $rndCode = $rndCode.'-OLD';
+            }
         }
-        else
-        {
-            $rndCode = $rndCode.'-OLD';
-        }
-
         if($variety['replica_status']==1)
         {
             $rndCode = $rndCode.'-R';
