@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+$dir=$this->config->item('dir');
 ?>
 
 
@@ -38,7 +39,8 @@ for($i=1;$i<=$this->config->item('max_number_of_fifteen_days');$i++)
             <input class="file_15_days" id="file_<?php echo $i*15;?>" data-day="<?php echo $i*15;?>" name="file_<?php echo $i*15;?>" type="file">
         </div>
         <div class="col-xs-4">
-            <img class="image_15_days" id="image_<?php echo $i*15;?>" style="max-width: 100px;" src="<?php echo $images[$i*15]; ?>">
+            <img class="image_15_days" id="image_<?php echo $i*15;?>" style="max-width: 100px;" src="<?php echo base_url().$dir['15_days_image_config'].'/'.$images[$i*15]; ?>">
+            <input type="hidden" name="old_<?php echo $i*15;?>" value="<?php echo $images[$i*15];?>">
         </div>
     </div>
     <?php

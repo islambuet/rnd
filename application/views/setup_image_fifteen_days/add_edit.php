@@ -121,7 +121,7 @@ $this->load->view("action_buttons_edit",$data);
                 url: base_url+"setup_image_fifteen_days/index/list",
                 type: 'POST',
                 dataType: "JSON",
-                data:{year:$("#crop_id").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
                 success: function (data, status)
                 {
 
