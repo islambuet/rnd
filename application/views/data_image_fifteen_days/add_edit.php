@@ -5,7 +5,7 @@ $data["hide_back"]="1";
 $this->load->view("action_buttons_edit",$data);
 
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>setup_image_fifteen_days/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_image_fifteen_days/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -51,7 +51,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" style="display: none;" id="crop_id_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -69,7 +69,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" style="display: none;" id="crop_type_id_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -81,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" style="display: none;"  id="day_number_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DAY_NUMBER');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -105,10 +105,34 @@ $this->load->view("action_buttons_edit",$data);
     jQuery(document).ready(function()
     {
 //        $(".form_valid").validationEngine();
+        $(document).off("change", "#year");
+        $(document).on("change", "#year", function(event)
+        {
+            $("#data_15_images").html("");
+            $("#season_id").val("");
+            $("#crop_id_container").hide();
+            $("#crop_type_id_container").hide();
+            $("#day_number_container").hide();
+
+
+        });
+        $(document).off("change", "#season_id");
+        $(document).on("change", "#season_id", function(event)
+        {
+            $("#data_15_images").html("");
+            $("#crop_id").val("");
+            $("#crop_id_container").show();
+            $("#crop_type_id_container").hide();
+            $("#day_number_container").hide();
+        });
 
         $(document).off("change", "#crop_id");
         $(document).on("change", "#crop_id", function(event)
         {
+            $("#data_15_images").html("");
+            $("#crop_type_id").val("");
+            $("#crop_type_id_container").show();
+            $("#day_number_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -133,6 +157,9 @@ $this->load->view("action_buttons_edit",$data);
         $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
+            $("#data_15_images").html("");
+            $("#day_number").val("");
+            $("#day_number_container").show();
             if($(this).val()>0)
             {
                 $.ajax({

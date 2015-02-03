@@ -81,6 +81,9 @@ class Data_image_fifteen_days extends ROOT_Controller
 
     public function rnd_save()
     {
+        echo "<pre>";
+        print_r($this->input->post());
+        echo "</pre>";
 
     }
 
@@ -154,13 +157,13 @@ class Data_image_fifteen_days extends ROOT_Controller
             if(!Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP');
+                $this->message.=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP').'<br>';
 
             }
             if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED');
+                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
 
             }
         }

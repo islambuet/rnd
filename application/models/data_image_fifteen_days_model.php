@@ -31,7 +31,7 @@ class Data_image_fifteen_days_model extends CI_Model
 
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
-        $this->db->select('rdifd.images images');
+        $this->db->select('rdifd.images images,rdifd.remarks');
         $this->db->select('rc.crop_name crop_name, rc.crop_code crop_code');
         $this->db->select('ct.type_name type_name ,ct.type_code type_code');
         $this->db->select('rp.principal_name,rp.principal_code');
