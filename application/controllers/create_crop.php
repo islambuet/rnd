@@ -108,12 +108,12 @@ class Create_crop extends ROOT_Controller
             $status_data['crop_id']=$crop_id;
             $status_data['created_by']=$user->user_id;
             $status_data['creation_date']=$time;
-            Query_helper::add('rnd_status_fifteen_days_report',$status_data);
-            Query_helper::add('rnd_status_flowering_report',$status_data);
-            Query_helper::add('rnd_status_fruit_report',$status_data);
-            Query_helper::add('rnd_status_harvest_compile_report',$status_data);
-            Query_helper::add('rnd_status_harvest_report',$status_data);
-            Query_helper::add('rnd_status_yield_report',$status_data);
+            Query_helper::add('rnd_setup_text_fifteen_days',$status_data);
+            Query_helper::add('rnd_setup_text_flowering',$status_data);
+            Query_helper::add('rnd_setup_text_fruit',$status_data);
+            Query_helper::add('rnd_setup_text_harvest',$status_data);
+            Query_helper::add('rnd_setup_text_harvest_compile',$status_data);
+            Query_helper::add('rnd_setup_text_yield',$status_data);
             $this->db->trans_complete();   //DB Transaction Handle END
 
             if ($this->db->trans_status() === TRUE)

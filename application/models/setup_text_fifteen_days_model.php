@@ -48,7 +48,7 @@ class Setup_text_fifteen_days_model extends CI_Model
     public function get_setup($id)
     {
         $this->db->select('*');
-        $this->db->from('rnd_status_fifteen_days_report');
+        $this->db->from('rnd_setup_text_fifteen_days');
         $this->db->where('crop_id',$id);
 
         $query = $this->db->get();

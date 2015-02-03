@@ -71,8 +71,17 @@ class Setup_image_fifteen_days extends ROOT_Controller
 
     public function rnd_save()
     {
-        $dir=$this->config->item("dir");
-        System_helper::upload_file($dir['15_days_image_config']);
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            $dir=$this->config->item("dir");
+            System_helper::upload_file($dir['15_days_image_config']);
+        }
 
     }
 

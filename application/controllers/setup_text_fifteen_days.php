@@ -102,7 +102,7 @@ class Setup_text_fifteen_days extends ROOT_Controller
         $data['modification_date'] = time();
         $this->db->trans_start();  //DB Transaction Handle START
 
-        Query_helper::update('rnd_status_fifteen_days_report',$data,array("crop_id = ".$crop_id));
+        Query_helper::update('rnd_setup_text_fifteen_days',$data,array("crop_id = ".$crop_id));
 
         $this->db->trans_complete();   //DB Transaction Handle END
 
