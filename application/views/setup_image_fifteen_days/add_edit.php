@@ -139,6 +139,16 @@ $this->load->view("action_buttons_edit",$data);
             var id=$(this).attr("data-day");
             display_browse_image(this,"#image_"+id);
         });
+        $(document).off("change", "#number_of_fifteendays");
+        $(document).on("change", "#number_of_fifteendays", function(event)
+        {
+            var num_images=$(this).val();
+            $(".container_15_days").hide();
+            for(i=1;i<=num_images;i++)
+            {
+                $("#container_15_days_"+(i*15)).show();
+            }
+        });
     });
 
 </script>

@@ -57,6 +57,10 @@ class Setup_image_fifteen_days extends ROOT_Controller
         {
             $data['title']="Upload Images";
             $data['number_of_fifteendays']=$this->config->item("default_number_of_fifteen_days");
+            for($i=0;$i<$this->config->item("max_number_of_fifteen_days");$i++)
+            {
+                $data['images'][$i*15]=base_url().'images/15_days_image_config/no_image.jpg';
+            }
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#config_15_images","html"=>$this->load->view("setup_image_fifteen_days/list",$data,true));
             $this->jsonReturn($ajax);

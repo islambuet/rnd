@@ -29,7 +29,7 @@
 for($i=1;$i<$this->config->item('max_number_of_fifteen_days');$i++)
 {
     ?>
-    <div class="row show-grid">
+    <div class="row show-grid container_15_days" id="container_15_days_<?php echo $i*15;?>" style="display: <?php if($i<=$number_of_fifteendays){echo "block";}else{echo "none";} ?>">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo 'Day '.($i*15);?></label>
         </div>
@@ -37,7 +37,7 @@ for($i=1;$i<$this->config->item('max_number_of_fifteen_days');$i++)
             <input class="file_15_days" id="file_<?php echo $i*15;?>" data-day="<?php echo $i*15;?>" name="file_<?php echo $i*15;?>" type="file">
         </div>
         <div class="col-xs-4">
-            <img class="image_15_days" id="image_<?php echo $i*15;?>" style="max-width: 100px;" src="http://localhost/upmis/images/users/no_photo.jpg">
+            <img class="image_15_days" id="image_<?php echo $i*15;?>" style="max-width: 100px;" src="<?php echo $images[$i*15]; ?>">
         </div>
     </div>
     <?php
