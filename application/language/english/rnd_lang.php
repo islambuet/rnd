@@ -225,4 +225,8 @@ $lang['LABEL_COMPETITOR'] = 'Competitor';
 $lang['LABEL_PRINCIPAL'] = 'Principal';
 $lang['LABEL_ARMALIK_SELF'] = 'Self';
 
+// 15 Days
+$lang['LABEL_DAY_NUMBER']='Day Number';
+$lang['IMAGE_15_DAYS_NOT_SETUP']='You have to setup Number of 15 Days first';
+
 
