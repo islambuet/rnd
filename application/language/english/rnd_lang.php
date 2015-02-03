@@ -158,11 +158,8 @@ $lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
 
 // 15 Days Picture Report
 
-$lang['LABEL_PICTURE_DATE'] = 'Picture Date';
-$lang['LABEL_PICTURE_DAY'] = 'Picture Day';
-$lang['LABEL_ADD_IMAGE'] = 'Add Image';
-$lang['LABEL_ACTUAL_PICTURE_DATE'] = 'Actual Picture Date';
-$lang['LABEL_CHANGE_PICTURE'] = 'Change Picture';
+
+$lang['LABEL_SELECT_NUMBER_15_DAYS'] = 'Select number of 15 days';
 
 
 

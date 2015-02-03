@@ -196,5 +196,23 @@ function animate_message(message)
     //$('#message').toggle("slide",{direction:"right"},500);
 
 }
+//call this function
+//first parameter will be this
+//2nd parameter will be with # for id . for class
+function display_browse_image(brose_bttion,display_id)
+{
+    if (brose_bttion.files && brose_bttion.files[0])
+    {
+        console.log("inside if");
+        var reader = new FileReader();
+
+        reader.onload = function (e)
+        {
+            $(display_id).attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(brose_bttion.files[0]);
+    }
+}
 
 

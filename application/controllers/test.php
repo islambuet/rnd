@@ -6,12 +6,25 @@ class Test extends CI_Controller
 
     public function index()
 	{
-        $fields = $this->db->list_fields('rnd_crop');
-        //$fields = $this->db->field_data('rnd_crop');
+        $this->load->helper('directory');
 
+        $map = directory_map('./application/views/', 1, FALSE);
         echo "<pre>";
-        print_r($fields);
+        print_r($map);
         echo "</pre>";
+        foreach($map as $key=>$m)
+        {
+            if(is_dir('./application/views/'.$m))
+            {
+                unset($map[$key]);
+            }
+        }
+        echo "<pre>";
+        print_r($map);
+        echo "</pre>";
+
+
+
     }
 
 }

@@ -20,12 +20,12 @@ $this->load->view("action_buttons_edit",$data);
             </div>
             <div class="col-xs-4">
 
-                <select name="year" class="form-control validate[required]">
+                <select name="year" id="year" class="form-control validate[required]">
                     <?php
                     $current_year=date("Y",time());
                     for($i=$this->config->item("start_year");$i<=($current_year+$this->config->item("next_year_range"));$i++)
                     {?>
-                        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                        <option value="<?php echo $i;?>" <?php echo ($i==$current_year)?"selected":"";?>><?php echo $i;?></option>
                     <?php
                     }
                     ?>
@@ -82,6 +82,9 @@ $this->load->view("action_buttons_edit",$data);
         </div>
 
     </div>
+    <div class="row widget" id="config_15_images">
+
+    </div>
     <div class="clearfix"></div>
 
 </form>
@@ -110,6 +113,31 @@ $this->load->view("action_buttons_edit",$data);
 
                 }
             });
+        });
+        $(document).off("change", "#crop_type_id");
+        $(document).on("change", "#crop_type_id", function(event)
+        {
+            $.ajax({
+                url: base_url+"setup_image_fifteen_days/index/list",
+                type: 'POST',
+                dataType: "JSON",
+                data:{year:$("#crop_id").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                success: function (data, status)
+                {
+
+                },
+                error: function (xhr, desc, err)
+                {
+                    console.log("error");
+
+                }
+            });
+        });
+        $(document).off("change", ".file_15_days");
+        $(document).on("change", ".file_15_days", function(event)
+        {
+            var id=$(this).attr("data-day");
+            display_browse_image(this,"#image_"+id);
         });
     });
 

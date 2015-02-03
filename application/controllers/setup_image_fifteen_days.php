@@ -19,7 +19,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
         }
         elseif($task=="list")
         {
-            $this->rnd_list($id);
+            $this->rnd_list();
         }
         elseif($task=="save")
         {
@@ -45,14 +45,29 @@ class Setup_image_fifteen_days extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
-    public function rnd_list($id)
+    public function rnd_list()
     {
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            $data['title']="Upload Images";
+            $data['number_of_fifteendays']=$this->config->item("default_number_of_fifteen_days");
+            $ajax['status']=true;
+            $ajax['content'][]=array("id"=>"#config_15_images","html"=>$this->load->view("setup_image_fifteen_days/list",$data,true));
+            $this->jsonReturn($ajax);
+
+        }
 
     }
 
     public function rnd_save()
     {
-        $id = $this->input->post("crop_id");
+        /*$id = $this->input->post("crop_id");
         $user = User_helper::get_user();
 
         $data = Array(
@@ -95,13 +110,36 @@ class Setup_image_fifteen_days extends ROOT_Controller
             }
 
             $this->rnd_add_edit();//this is similar like redirect
-        }
+        }*/
 
     }
 
 
     private function check_validation()
     {
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('year')))
+        {
+            $valid=false;
+            $this->message.="Select a Year<br>";
+        }
+        if(Validation_helper::validate_empty($this->input->post('season_id')))
+        {
+            $valid=false;
+            $this->message.="Select a Season<br>";
+        }
+
+        if(Validation_helper::validate_empty($this->input->post('crop_id')))
+        {
+            $valid=false;
+            $this->message.="Select a Crop<br>";
+        }
+        if(Validation_helper::validate_empty($this->input->post('crop_type_id')))
+        {
+            $valid=false;
+            $this->message.="Select a crop type<br>";
+        }
+        return $valid;
 
     }
 

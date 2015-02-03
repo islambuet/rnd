@@ -26,6 +26,12 @@ $config['variety_type'][1] = 'PRINCIPAL';
 $config['variety_type'][2] = 'CKA';
 $config['variety_type'][3] = 'CKO';
 
+//15 days report config
+$config['default_number_of_fifteen_days'] = 3;
+$config['max_number_of_fifteen_days'] = 8;
+
+
+
 
 //fix bellow config latter
 
