@@ -143,20 +143,29 @@ class System_helper
     public static function upload_file($save_dir="images")
     {
         $CI = & get_instance();
-        /*$CI->load->library('upload');
+        $CI->load->library('upload');
         $config=array();
         $config['upload_path'] = FCPATH.$save_dir;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = $CI->config->item("max_file_size");
         $config['overwrite'] = false;
         $config['remove_spaces'] = true;
-        $CI->upload->initialize($config);*/
+
         $uploaded_files=array();
         foreach ($_FILES as $key => $value)
         {
-            if($value['name'])
+            if(strlen($value['name'])>0)
             {
-                $uploaded_files[$key]=$value;
+                $CI->upload->initialize($config);
+                if (!$CI->upload->do_upload($key))
+                {
+                    $uploaded_files[$key]=array("status"=>false,"message"=>$value['name'].': '.$CI->upload->display_errors());
+                }
+                else
+                {
+                    $uploaded_files[$key]=array("status"=>true,"info"=>$CI->upload->data());
+                }
+
             }
 
         }
