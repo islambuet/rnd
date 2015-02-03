@@ -63,6 +63,10 @@ class Setup_image_fifteen_days extends ROOT_Controller
             }
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#config_15_images","html"=>$this->load->view("setup_image_fifteen_days/list",$data,true));
+            if($this->message)
+            {
+                $ajax['message']=$this->message;
+            }
             $this->jsonReturn($ajax);
 
         }
@@ -80,7 +84,72 @@ class Setup_image_fifteen_days extends ROOT_Controller
         else
         {
             $dir=$this->config->item("dir");
-            System_helper::upload_file($dir['15_days_image_config']);
+            $uploaded_images=System_helper::upload_file($dir['15_days_image_config']);
+
+            $year=$this->input->post("year");
+            $season_id=$this->input->post("season_id");
+            $crop_id=$this->input->post("crop_id");
+            $crop_type_id=$this->input->post("crop_type_id");
+            $number_of_fifteendays=$this->input->post("number_of_fifteendays");
+            $user = User_helper::get_user();
+            $time=time();
+
+            $data['year']=$year;
+            $data['season_id']=$season_id;
+            $data['crop_id']=$crop_id;
+            $data['crop_type_id']=$crop_type_id;
+            $data['number_of_fifteendays']=$number_of_fifteendays;
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = $time;
+
+
+            $image_data['year']=$year;
+            $image_data['season_id']=$season_id;
+            $image_data['crop_id']=$crop_id;
+            $image_data['crop_type_id']=$crop_type_id;
+            $image_data['created_by'] = $user->user_id;
+            $image_data['creation_date'] = $time;
+            $this->db->trans_start();  //DB Transaction Handle START
+            Query_helper::add('rnd_setup_image_fifteen_days_config',$data);
+
+
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = $time;
+            for($i=1;$i<=$number_of_fifteendays;$i++)
+            {
+                $image_data['day']=$i*15;
+                $image_data['image']="";
+                if(array_key_exists('file_'.($i*15),$uploaded_images))
+                {
+
+                    if($uploaded_images['file_'.($i*15)]['status'])
+                    {
+                        $image_data['image']=$uploaded_images['file_'.($i*15)]['info']['file_name'];
+                    }
+                    else
+                    {
+                        $this->message.=$uploaded_images['file_'.($i*15)]['message'];
+
+                    }
+                }
+                else
+                {
+                    //take from hidden value
+                }
+                Query_helper::add('rnd_setup_image_fifteen_days_images',$image_data);
+            }
+            $this->db->trans_complete();   //DB Transaction Handle END
+            if ($this->db->trans_status() === TRUE)
+            {
+                $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");
+            }
+            else
+            {
+                $this->message.=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+            }
+            $this->rnd_list();
+
+
         }
 
     }

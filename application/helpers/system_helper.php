@@ -84,62 +84,6 @@ class System_helper
         $CI->db->where('status != ',$CI->config->item('status_delete'));
         return $CI->db->get()->result_array();
     }
-    /*public static function file_upload($post_file_name,$save_dir,$fileName,$filetype,$filesize,$allowedtypes)
-    {
-        $CI = & get_instance();
-        $ext = explode("/", @$_FILES[$post_file_name]['type']);
-        $size = @$_FILES[$post_file_name]['size'];
-
-
-        if($ext['0'] !='')
-        {
-
-            if($ext['0'] == $filetype)
-            {
-
-                if($size < $filesize){
-
-                    $CI->load->library('upload');
-
-                    $config['upload_path'] = $save_dir;
-                    $config['allowed_types'] = $allowedtypes;
-                    $config['max_size'] = $filesize;
-                    $config['file_name'] = $fileName;
-                    $CI->load->library('upload', $config);
-
-                    foreach ($_FILES as $key => $value) {
-                        $CI->upload->initialize($config);
-                        if (!$CI->upload->do_upload($key)) {
-
-                            $errors[] = $CI->upload->display_errors();
-//                            System_helper::set_system_message($CI->lang->line("IMG_ERROR"),0);
-//                            redirect(base_url());
-                        }
-                        else
-                        {
-                            $temp = array('upload_data' => $CI->upload->data());
-                            $info = $CI->upload->data();
-                            return $fileName;
-                        }
-                    }
-                }
-                else
-                {
-                    System_helper::set_system_message($CI->lang->line("IMG_SIZE_ERROR"),0);
-                    redirect(base_url());
-                }
-            }
-            else
-            {
-                System_helper::set_system_message($CI->lang->line("IMG_TYPE_ERROR"),0);
-                redirect(base_url());
-            }
-        }
-        else
-        {
-            return '';
-        }
-    }*/
     public static function upload_file($save_dir="images")
     {
         $CI = & get_instance();
@@ -169,9 +113,7 @@ class System_helper
             }
 
         }
-        echo "<pre>";
-        print_r($uploaded_files);
-        echo "</pre>";
+        return $uploaded_files;
 
     }
 
