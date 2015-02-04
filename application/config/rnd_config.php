@@ -15,7 +15,19 @@ $config['fruit_type'][3] = 'Root';
 $config['fruit_type'][4] = 'Leaf';
 $config['fruit_type'][5] = 'Head';
 
+//rating config
+$config['rating'][3] = 'Poor';
+$config['rating'][4] = 'Below Average';
+$config['rating'][5] = 'Average';
+$config['rating'][6] = 'Good';
+$config['rating'][7] = 'Excellent';
 
+$config['curd_Type_rating'][1] = 'Dome';
+$config['curd_Type_rating'][1] = 'Semi-Dome';
+
+$config['head_Type_rating'][1] = 'Round';
+$config['head_Type_rating'][2] = 'Semi-Flat';
+$config['head_Type_rating'][3] = 'Flat';
 
 //year config
 $config['start_year']=2014;

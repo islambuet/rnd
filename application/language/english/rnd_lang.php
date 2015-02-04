@@ -228,5 +228,7 @@ $lang['LABEL_ARMALIK_SELF'] = 'Self';
 // 15 Days
 $lang['LABEL_DAY_NUMBER']='Day Number';
 $lang['IMAGE_15_DAYS_NOT_SETUP']='You have to setup Number of 15 Days first';
+$lang['NO_VARIETY_EXIST_FOR_YOUR_SELECTION']='No Variety Exist For Your Selections';
+$lang['LABEL_UPLOAD_BUTTONS']='Upload Buttons';
 
 
