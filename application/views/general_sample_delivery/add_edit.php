@@ -18,8 +18,8 @@
         <div class="col-xs-6">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_YEAR');?></label>
         </div>
-        <div class="col-xs-6">
-            <label class="control-label"><?php echo $sample['year'];?></label>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $sample['year'];?></label>
         </div>
     </div>
 
@@ -27,8 +27,8 @@
         <div class="col-xs-6">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEASON');?></label>
         </div>
-        <div class="col-xs-6">
-            <label class="control-label"><?php echo $sample['season_name'];?></label>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $sample['season_name'];?></label>
         </div>
     </div>
 
@@ -36,8 +36,92 @@
         <div class="col-xs-6">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CROP_NAME');?></label>
         </div>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $sample['crop_name'];?></label>
+        </div>
+    </div>
+    <div class="row show-grid">
         <div class="col-xs-6">
-            <label class="control-label"><?php echo $sample['crop_name'];?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ESTIMATED_DELIVERY_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control">
+                <?php
+                if(($sample['estimated_delivery_date'])>0)
+                {
+                    echo System_helper::display_date($sample['estimated_delivery_date']);
+                }
+                else
+                {
+                    echo $this->lang->line("LABEL_NOT_SET");
+                }
+                ?>
+            </label>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control">
+                <?php
+                if(($sample['delivery_date'])>0)
+                {
+                    echo System_helper::display_date($sample['delivery_date']);
+                }
+                else
+                {
+                    echo $this->lang->line("LABEL_NOT_SET");
+                }
+                ?>
+            </label>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVE_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control">
+                <?php
+                if(($sample['receive_date'])>0)
+                {
+                    echo System_helper::display_date($sample['receive_date']);
+                }
+                else
+                {
+                    echo $this->lang->line("LABEL_NOT_SET");
+                }
+                ?>
+            </label>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control">
+                <?php
+                if(($sample['sowing_status'])==1)
+                {
+                    echo System_helper::display_date($sample['sowing_date']);
+                }
+                else
+                {
+                    echo $this->lang->line("LABEL_NOT_SET");
+                }
+                ?>
+            </label>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SAMPLE_SIZE_RND');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $sample['sample_size'];?></label>
         </div>
     </div>
 </div>

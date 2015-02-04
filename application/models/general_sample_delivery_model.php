@@ -40,7 +40,7 @@ class General_sample_delivery_model extends CI_Model
         $this->db->from('delivery_and_sowing_setup das');
         $this->db->select('das.*');
         $this->db->select('rs.season_name season_name');
-        $this->db->select('rc.crop_name crop_name');
+        $this->db->select('rc.crop_name crop_name,rc.sample_size sample_size');
         $this->db->join('rnd_season rs', 'rs.id = das.season_id', 'INNER');
         $this->db->join('rnd_crop rc', 'rc.id = das.crop_id', 'INNER');
         $this->db->where('das.id',$id);

@@ -74,33 +74,39 @@ class General_sample_delivery extends ROOT_Controller
     {
 
         $id = $this->input->post("sample_id");
-        $sample=$this->general_sample_delivery_model->get_sample_info($id);
-        if($sample['sowing_status']==0)
-        {
-            $user = User_helper::get_user();
-            $varieties=$this->input->post("varieties");
-            $data['sample_delivery_status']=1;
-            $data['modified_by']=$user->user_id;
-            $data['modification_date']=time();
-            $this->db->trans_start();  //DB Transaction Handle START
-            foreach($varieties as $variety_season_id)
-            {
-                Query_helper::update('rnd_variety_season',$data,array("id = ".$variety_season_id));
-            }
-            $this->db->trans_complete();   //DB Transaction Handle END
+        $varieties=$this->input->post("varieties");
 
-            if ($this->db->trans_status() === TRUE)
+        if(is_array($varieties))
+        {
+            $sample=$this->general_sample_delivery_model->get_sample_info($id);
+            if($sample['sowing_status']==0)
             {
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                $user = User_helper::get_user();
+
+                $data['sample_delivery_status']=1;
+                $data['modified_by']=$user->user_id;
+                $data['modification_date']=time();
+                $data['sample_size']=$sample['sample_size'];
+                $this->db->trans_start();  //DB Transaction Handle START
+                foreach($varieties as $variety_season_id)
+                {
+                    Query_helper::update('rnd_variety_season',$data,array("id = ".$variety_season_id));
+                }
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                }
             }
             else
             {
-                $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                $this->message=$this->lang->line("SOWING_STARTED_NO_MORE_DELIVERY");
             }
-        }
-        else
-        {
-            $this->message=$this->lang->line("SOWING_STARTED_NO_MORE_DELIVERY");
         }
         $this->rnd_list();//this is similar like redirect
 
