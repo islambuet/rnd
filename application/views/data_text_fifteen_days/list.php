@@ -9,7 +9,8 @@
     <div class="title">
         <?php echo $title; ?>
     </div>
-
+    <div class="clearfix"></div>
+</div>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
@@ -524,10 +525,6 @@
             <textarea class="form-control" name="remarks" id="remarks"></textarea>
         </div>
     </div>
-
-    <div class="clearfix"></div>
-</div>
-
 
 <script type="text/javascript">
 

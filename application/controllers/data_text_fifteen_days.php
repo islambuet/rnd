@@ -31,7 +31,7 @@ class Data_text_fifteen_days extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Data Text Fifteen Days- Fortnightly";
+        $data['title']="15 Days Interval Report (Fortnightly)";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
@@ -63,7 +63,7 @@ class Data_text_fifteen_days extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $day_number = $this->input->post('day_number');
 
-            $data['title']="Fortnightly Report";
+            $data['title']="Fortnightly Report Fields";
             $data['varieties']=$this->data_text_fifteen_days_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$day_number);
 
             if($this->message)
@@ -128,7 +128,7 @@ class Data_text_fifteen_days extends ROOT_Controller
             foreach($data['varieties'] as $variety)
             {
                 $data['value'][] = $variety['id'];
-                $data['name'][] = System_helper::get_rnd_code($variety);
+                $data['name'][] = System_helper::get_rnd_code($variety,1);
             }
 
             $ajax['status']=true;
