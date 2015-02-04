@@ -64,6 +64,13 @@ class Data_image_fifteen_days extends ROOT_Controller
             $day_number = $this->input->post('day_number');
 
             $data['title']="Upload Image";
+            $image_sample_json=Query_helper::get_info('rnd_setup_image_fifteen_days',array('images'),array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
+
+            $image_sample=json_decode($image_sample_json['images'],true);
+            $data['day_number']=$day_number;
+            $data['sowing_info']=Query_helper::get_info('delivery_and_sowing_setup','*',array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id),1);
+            $data['sample_image']=$image_sample[$day_number];
+
             $data['varieties']=$this->data_image_fifteen_days_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$day_number);
 
             if($this->message)
@@ -96,12 +103,7 @@ class Data_image_fifteen_days extends ROOT_Controller
             $day_number = $this->input->post('day_number');
             $dir=$this->config->item("dir");
             $uploaded_images=System_helper::upload_file($dir['15_days_image_data']);
-//            echo "<pre>";
-//            print_r($uploaded_images);
-//            echo "</pre>";
-//            echo "<pre>";
-//            print_r($this->input->post());
-//            echo "</pre>";
+//
             $user = User_helper::get_user();
             $time=time();
 

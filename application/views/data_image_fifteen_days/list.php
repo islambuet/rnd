@@ -11,6 +11,22 @@ $dir=$this->config->item('dir');
     </div>
     <div class="clearfix"></div>
 </div>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
+    </div>
+    <div class="col-xs-4">
+        <label class="form-control"><?php echo System_helper::display_date($sowing_info['sowing_date']);?></label>
+    </div>
+</div>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $day_number.' DAS';?></label>
+    </div>
+    <div class="col-xs-4">
+        <label class="form-control"><?php echo System_helper::display_date($sowing_info['sowing_date']+$day_number*24 * 60 * 60);?></label>
+    </div>
+</div>
 <div class="col-sm-12" style="overflow-x: auto">
     <table class="table table-hover table-bordered">
         <thead>
@@ -18,8 +34,11 @@ $dir=$this->config->item('dir');
             <th><?php echo $this->lang->line("SERIAL"); ?></th>
             <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
             <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
-            <th><?php echo $this->lang->line("LABEL_UPLOAD"); ?></th>
-            <th><?php echo $this->lang->line("LABEL_SAMPLE_PICTURE"); ?></th>
+            <th><?php echo $this->lang->line("LABEL_UPLOAD_BUTTONS"); ?></th>
+            <th>
+                <img style="max-width: 250px;" src="<?php echo base_url().$dir['15_days_image_config'].'/'.$sample_image; ?>">
+
+            </th>
             <th><?php echo $this->lang->line("LABEL_REMARKS"); ?></th>
 
         </tr>
