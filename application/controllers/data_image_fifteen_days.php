@@ -81,9 +81,88 @@ class Data_image_fifteen_days extends ROOT_Controller
 
     public function rnd_save()
     {
-        echo "<pre>";
-        print_r($this->input->post());
-        echo "</pre>";
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            $year = $this->input->post('year');
+            $season_id = $this->input->post('season_id');
+            $crop_id = $this->input->post('crop_id');
+            $crop_type_id = $this->input->post('crop_type_id');
+            $day_number = $this->input->post('day_number');
+            $dir=$this->config->item("dir");
+            $uploaded_images=System_helper::upload_file($dir['15_days_image_data']);
+//            echo "<pre>";
+//            print_r($uploaded_images);
+//            echo "</pre>";
+//            echo "<pre>";
+//            print_r($this->input->post());
+//            echo "</pre>";
+            $user = User_helper::get_user();
+            $time=time();
+
+
+            $data['year']=$year;
+            $data['season_id']=$season_id;
+            $data['crop_id']=$crop_id;
+            $data['crop_type_id']=$crop_type_id;
+            $data['day_number']=$day_number;
+            $data['day_number']=$day_number;
+            $data['day_number']=$day_number;
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = $time;
+            //Query_helper::add('rnd_setup_image_fifteen_days',$data);
+            $variety_ids=$this->input->post('variety_id');
+            $this->db->trans_start();  //DB Transaction Handle START
+            foreach($variety_ids as $variety_id)
+            {
+                $data['variety_id']=$variety_id;
+                $image_normal=$this->input->post('old_normal_image_'.$variety_id);
+                if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
+                {
+
+                    if($uploaded_images['file_normal_'.$variety_id]['status'])
+                    {
+                        $image_normal=$uploaded_images['file_normal_'.$variety_id]['info']['file_name'];
+                    }
+                    else
+                    {
+                        $this->message.=$uploaded_images['file_normal_'.$variety_id]['message'].'<br>';
+                    }
+                }
+                $image_replica=$this->input->post('old_replica_image_'.$variety_id);
+                if(array_key_exists('file_replica_'.$variety_id,$uploaded_images))
+                {
+
+                    if($uploaded_images['file_replica_'.$variety_id]['status'])
+                    {
+                        $image_replica=$uploaded_images['file_replica_'.$variety_id]['info']['file_name'];
+                    }
+                    else
+                    {
+                        $this->message.=$uploaded_images['file_replica_'.$variety_id]['message'].'<br>';
+                    }
+                }
+                $data['images']=json_encode(array('normal'=>$image_normal,'replica'=>$image_replica));
+                Query_helper::add('rnd_data_image_fifteen_days',$data);
+
+            }
+            $this->db->trans_complete();   //DB Transaction Handle END
+            if ($this->db->trans_status() === TRUE)
+            {
+                $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");
+            }
+            else
+            {
+                $this->message.=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+            }
+            $this->rnd_list();
+
+        }
 
     }
 

@@ -73,7 +73,7 @@ $dir=$this->config->item('dir');
                             $image='no_image.jpg';
                             if(is_array($images))
                             {
-                                $image=$images['normal'];
+                                $image=$images['replica'];
 
                             }
 
