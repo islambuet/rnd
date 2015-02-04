@@ -231,4 +231,46 @@ $lang['IMAGE_15_DAYS_NOT_SETUP']='You have to setup Number of 15 Days first';
 $lang['NO_VARIETY_EXIST_FOR_YOUR_SELECTION']='No Variety Exist For Your Selections';
 $lang['LABEL_UPLOAD_BUTTONS']='Upload Buttons';
 
+// 15 Days Text Report
+$lang['LABEL_FORTNIGHTLY_REPORTING_DATE']='Fortnightly Reporting Date';
+$lang['LABEL_INITIAL_PLANTS_DURING_TRIAL']='Initial Plants During Trial';
+$lang['LABEL_PLANT_TYPE_APPEARANCE']='Plant Type/ Appearance';
+$lang['LABEL_PLANT_TYPE']='Plant Type';
+$lang['LABEL_PLANT_UNIFORMITY']='Plant Uniformity';
+$lang['LABEL_DISTANCE_FROM_GROUND_TO_CURD']='Distance From Ground To Curd';
+$lang['LABEL_DISTANCE_FROM_GROUND_TO_HEAD']='Distance From Ground To Head';
+$lang['LABEL_DISTANCE_FROM_GROUND_TO_ROOT_SHOULDER']='Distance From Ground To Root Shoulder';
+$lang['LABEL_DISTANCE_FROM_GROUND_LEAF_SHOULDER']='Distance From Ground To Leaf Shoulder';
+$lang['LABEL_CURD_TYPE']='Curd Type';
+$lang['LABEL_HEAD_TYPE']='Head Type';
+$lang['LABEL_ROOT_TYPE']='Root Type';
+$lang['LABEL_LEAF_TYPE']='Leaf Type';
+$lang['LABEL_SPINE_TYPE']='Spine Type';
+$lang['LABEL_LEAF_SHAPE']='Leaf Shape';
+$lang['LABEL_ROOT_SHAPE']='Root Shape';
+$lang['LABEL_FRUIT_SHAPE']='Fruit Shape';
+$lang['LABEL_CURD_COLOUR']='Curd Colour';
+$lang['LABEL_HEAD_COLOUR']='Head Colour';
+$lang['LABEL_LEAF_COLOUR']='Leaf Colour';
+$lang['LABEL_FRUIT_COLOUR']='Fruit Colour';
+$lang['LABEL_ROOT_COLOUR']='Root Colour';
+$lang['LABEL_FRUIT_SIZE']='Fruit Size';
+$lang['LABEL_FRUIT_BEARING']='Fruit Bearing';
+$lang['LABEL_CURD_COMPACTNESS']='Curd Compactness';
+$lang['LABEL_HEAD_COMPACTNESS']='Head Compactness';
+$lang['LABEL_CURD_UNIFORMITY']='Curd Uniformity';
+$lang['LABEL_HEAD_UNIFORMITY']='Head Uniformity';
+$lang['LABEL_FRUIT_SIZE_UNIFORMITY']='Fruit Size Uniformity';
+$lang['LABEL_FRUIT_UNIFORMITY']='Fruit Uniformity';
+$lang['LABEL_UNIFORMITY_OF_LEAVES']='Uniformity of Leaves';
+$lang['LABEL_DISEASE_SUSTAINABILITY']='Disease Sustainability';
+$lang['LABEL_INTERNODE_DISTANCE']='Internode Distance';
+$lang['LABEL_HARDNESS_OF_SPINES']='Hardness of Spines';
+$lang['LABEL_LEAF_HEIGHT_FROM_ROOT']='Leaf Height From Roots';
+$lang['LABEL_ADAPTABILITY']='Adaptability';
+$lang['LABEL_RIDGE_QUALITY']='Ridge Quality';
+$lang['LABEL_SPECIAL_CHARACTERS']='Special Characters';
+$lang['LABEL_ACCEPTED']='Accepted';
+$lang['LABEL_REMARKS']='Remarks';
+
 
