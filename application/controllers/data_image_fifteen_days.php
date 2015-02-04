@@ -217,6 +217,7 @@ class Data_image_fifteen_days extends ROOT_Controller
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
+        $day_number = $this->input->post('day_number');
         if(Validation_helper::validate_empty($year))
         {
             $valid=false;
@@ -238,7 +239,7 @@ class Data_image_fifteen_days extends ROOT_Controller
             $valid=false;
             $this->message.="Select a crop type<br>";
         }
-        if(Validation_helper::validate_empty($this->input->post('day_number')))
+        if(Validation_helper::validate_empty($day_number))
         {
             $valid=false;
             $this->message.="Select a Day<br>";

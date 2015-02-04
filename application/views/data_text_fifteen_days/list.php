@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-//echo "<pre>";
-//print_r($varieties[0]);
-//echo "</pre>";
-//echo System_helper::get_rnd_code($varieties[0],1);
+echo "<pre>";
+print_r($variety);
+echo "</pre>";
+
 ?>
 <div class="widget-header">
     <div class="title">

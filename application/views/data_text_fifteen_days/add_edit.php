@@ -5,7 +5,7 @@ $data["hide_back"]="1";
 $this->load->view("action_buttons_edit",$data);
 
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_image_fifteen_days/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_text_fifteen_days/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -81,7 +81,17 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
+        <div class="row show-grid" style="display: none;" id="variety_container">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-xs-4">
+                <select name="variety_id" id="variety_id" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
+                </select>
+            </div>
+        </div>
         <div class="row show-grid" style="display: none;"  id="day_number_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DAY_NUMBER');?><span style="color:#FF0000">*</span></label>
@@ -94,20 +104,10 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid" style="display: none;" id="variety_container">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-xs-4">
-                <select name="variety_id" id="variety_id" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
-                </select>
-            </div>
-        </div>
 
     </div>
-    <div class="row widget" id="data_15_images">
+    <div class="row widget" id="data_15_text">
 
     </div>
     <div class="clearfix"></div>
@@ -121,34 +121,33 @@ $this->load->view("action_buttons_edit",$data);
         $(document).off("change", "#year");
         $(document).on("change", "#year", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_15_text").html("");
             $("#season_id").val("");
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
+            $("#variety_id_container").hide();
             $("#day_number_container").hide();
-            $("#variety_container").hide();
-
 
         });
         $(document).off("change", "#season_id");
         $(document).on("change", "#season_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_15_text").html("");
             $("#crop_id").val("");
             $("#crop_id_container").show();
             $("#crop_type_id_container").hide();
+            $("#variety_id_container").hide();
             $("#day_number_container").hide();
-            $("#variety_container").hide();
         });
 
         $(document).off("change", "#crop_id");
         $(document).on("change", "#crop_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_15_text").html("");
             $("#crop_type_id").val("");
             $("#crop_type_id_container").show();
+            $("#variety_id_container").hide();
             $("#day_number_container").hide();
-            $("#variety_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -173,13 +172,14 @@ $this->load->view("action_buttons_edit",$data);
         $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_15_text").html("");
             $("#day_number").val("");
             $("#day_number_container").show();
+            $("#variety_container").show();
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_fifteen_days/get_fifteen_days_for_data_text",
+                    url: base_url+"data_text_fifteen_days/get_days_varieties_for_data_text",
                     type: 'POST',
                     dataType: "JSON",
                     data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
@@ -195,34 +195,15 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-
-        $(document).off("change", "#day_number");
-        $(document).on("change", "#day_number", function(event)
-        {
-            $("#data_15_images").html("");
-            $("#variety_container").show();
-            if($(this).val()>0)
-            {
-                $.ajax({
-                    url: base_url+"data_text_fifteen_days/get_variety_for_data_text",
-                    type: 'POST',
-                    dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),day_number:$("#day_number").val()},
-                    success: function (data, status)
-                    {
-
-                    },
-                    error: function (xhr, desc, err)
-                    {
-                        console.log("error");
-
-                    }
-                });
-            }
-        });
-
         $(document).off("change", "#variety_id");
         $(document).on("change", "#variety_id", function(event)
+        {
+            $("#data_15_text").html("");
+            $("#day_number").val("");
+
+        });
+        $(document).off("change", "#day_number");
+        $(document).on("change", "#day_number", function(event)
         {
             $("#data_15_images").html("");
             if($(this).val()>0)
@@ -231,7 +212,7 @@ $this->load->view("action_buttons_edit",$data);
                     url: base_url+"data_text_fifteen_days/index/list",
                     type: 'POST',
                     dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),day_number:$("#day_number").val(),variety_id:$("#variety_id").val()},
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val(),day_number:$("#day_number").val()},
                     success: function (data, status)
                     {
 
@@ -243,13 +224,6 @@ $this->load->view("action_buttons_edit",$data);
                     }
                 });
             }
-        });
-
-        $(document).off("change", ".browse_button");
-        $(document).on("change", ".browse_button", function(event)
-        {
-            var id=$(this).attr("data-image-container");
-            display_browse_image(this,"#"+id);
         });
     });
 
