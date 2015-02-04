@@ -51,7 +51,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" id="crop_id_container" style="display: none">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -69,7 +69,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" id="crop_type_id_container" style="display: none">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -92,46 +92,72 @@ $this->load->view("action_buttons_edit",$data);
 
     jQuery(document).ready(function()
     {
-//        $(".form_valid").validationEngine();
+        $(document).off("change", "#year");
+        $(document).on("change", "#year", function(event)
+        {
+            $("#config_15_images").html("");
+            $("#season_id").val("");
+            $("#crop_id_container").hide();
+            $("#crop_type_id_container").hide();
+        });
+        $(document).off("change", "#season_id");
+        $(document).on("change", "#season_id", function(event)
+        {
+            $("#config_15_images").html("");
+            $("#crop_id").val("");
+            $("#crop_id_container").show();
+            $("#crop_type_id_container").hide();
+
+        });
 
         $(document).off("change", "#crop_id");
         $(document).on("change", "#crop_id", function(event)
         {
             var crop_id = $("#crop_id").val();
-            $.ajax({
-                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
-                type: 'POST',
-                dataType: "JSON",
-                data:{crop_id:crop_id},
-                success: function (data, status)
-                {
+            $("#config_15_images").html("");
+            $("#crop_type_id").val("");
+            $("#crop_type_id_container").show();
+            if(crop_id>0)
+            {
+                $.ajax({
+                    url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id},
+                    success: function (data, status)
+                    {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
 
-                }
-            });
+                    }
+                });
+            }
+
         });
         $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $.ajax({
-                url: base_url+"setup_image_fifteen_days/index/list",
-                type: 'POST',
-                dataType: "JSON",
-                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
-                success: function (data, status)
-                {
+            if($(this).val()>0)
+            {
+                $.ajax({
+                    url: base_url+"setup_image_fifteen_days/index/list",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                    success: function (data, status)
+                    {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
 
-                }
-            });
+                    }
+                });
+            }
         });
         $(document).off("change", ".file_15_days");
         $(document).on("change", ".file_15_days", function(event)
