@@ -147,51 +147,6 @@ class Data_text_fifteen_days extends ROOT_Controller
     private function check_validation()
     {
         $valid=true;
-        $year = $this->input->post('year');
-        $season_id = $this->input->post('season_id');
-        $crop_id = $this->input->post('crop_id');
-        $crop_type_id = $this->input->post('crop_type_id');
-        if(Validation_helper::validate_empty($year))
-        {
-            $valid=false;
-            $this->message.="Select a Year<br>";
-        }
-        if(Validation_helper::validate_empty($season_id))
-        {
-            $valid=false;
-            $this->message.="Select a Season<br>";
-        }
-
-        if(Validation_helper::validate_empty($crop_id))
-        {
-            $valid=false;
-            $this->message.="Select a Crop<br>";
-        }
-        if(Validation_helper::validate_empty($crop_type_id))
-        {
-            $valid=false;
-            $this->message.="Select a crop type<br>";
-        }
-        if(Validation_helper::validate_empty($this->input->post('day_number')))
-        {
-            $valid=false;
-            $this->message.="Select a Day<br>";
-        }
-        if($valid)
-        {
-            if(!Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
-            {
-                $valid=false;
-                $this->message.=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP').'<br>';
-
-            }
-            if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
-            {
-                $valid=false;
-                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
-
-            }
-        }
 
         return $valid;
 
