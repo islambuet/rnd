@@ -257,6 +257,17 @@ class Data_image_fifteen_days extends ROOT_Controller
                 $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
 
             }
+            if($valid)
+            {
+                if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
+                {
+                    $valid=false;
+                    $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
+
+                }
+
+            }
+
         }
 
         return $valid;
