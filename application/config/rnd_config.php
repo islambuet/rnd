@@ -22,7 +22,7 @@ $config['rating'][5] = 'Average';
 $config['rating'][6] = 'Good';
 $config['rating'][7] = 'Excellent';
 
-$config['curd_Type_rating'][1] = 'Dome';
+$config['curd_Type_rating'][0] = 'Dome';
 $config['curd_Type_rating'][1] = 'Semi-Dome';
 
 $config['head_Type_rating'][1] = 'Round';

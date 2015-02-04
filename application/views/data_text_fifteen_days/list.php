@@ -53,6 +53,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="plant_type_appearance" id="plant_type_appearance">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -66,6 +67,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="plant_type" id="plant_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -79,6 +81,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="plant_uniformity" id="plant_uniformity">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -92,6 +95,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="distance_from_ground_to_curd" id="distance_from_ground_to_curd">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -105,6 +109,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="distance_from_ground_to_head" id="distance_from_ground_to_head">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -118,6 +123,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="distance_from_ground_to_root_shoulder" id="distance_from_ground_to_root_shoulder">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -131,6 +137,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="distance_from_ground_leaf_shoulder" id="distance_from_ground_leaf_shoulder">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -144,6 +151,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="curd_type" id="curd_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('curd_Type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -157,6 +165,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="head_type" id="head_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('head_Type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -170,6 +179,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="root_type" id="root_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('root_Type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -183,6 +193,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="leaf_type" id="leaf_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('leaf_Type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -196,6 +207,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="spine_type" id="spine_type">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('spine_type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -209,6 +221,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="leaf_shape" id="leaf_shape">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -222,6 +235,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="root_shape" id="root_shape">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -235,6 +249,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_shape" id="fruit_shape">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -248,6 +263,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="curd_colour" id="curd_colour">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -261,6 +277,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="head_colour" id="head_colour">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -274,6 +291,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="leaf_colour" id="leaf_colour">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -287,6 +305,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_colour" id="fruit_colour">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -300,6 +319,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="root_colour" id="root_colour">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -313,6 +333,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_size" id="fruit_size">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -326,6 +347,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_bearing" id="fruit_bearing">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -339,6 +361,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="curd_compactness" id="curd_compactness">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -352,6 +375,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="head_compactness" id="head_compactness">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -365,6 +389,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="curd_uniformity" id="curd_uniformity">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -378,6 +403,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="head_uniformity" id="head_uniformity">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -391,6 +417,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_size_uniformity" id="fruit_size_uniformity">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -404,6 +431,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="fruit_uniformity" id="fruit_uniformity">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -417,6 +445,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="uniformity_of_leaves" id="uniformity_of_leaves">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -430,6 +459,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="disease_sustainability" id="disease_sustainability">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -443,6 +473,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="internode_distance" id="internode_distance">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -456,6 +487,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="hardness_of_spines" id="hardness_of_spines">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -469,6 +501,7 @@
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="leaf_height_from_root" id="leaf_height_from_root">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
@@ -491,6 +524,7 @@
         </div>
         <div class="col-xs-4">
              <select class="form-control" name="ridge_quality" id="ridge_quality">
+                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
