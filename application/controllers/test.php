@@ -6,24 +6,10 @@ class Test extends CI_Controller
 
     public function index()
 	{
-        $this->load->helper('directory');
-
-        $map = directory_map('./application/views/', 1, FALSE);
         echo "<pre>";
-        print_r($map);
+        print_r(System_helper::get_ordered_crops());
         echo "</pre>";
-        foreach($map as $key=>$m)
-        {
-            if(is_dir('./application/views/'.$m))
-            {
-                unset($map[$key]);
-            }
-        }
-        echo "<pre>";
-        print_r($map);
-        echo "</pre>";
-
-
+        echo $this->db->last_query();
 
     }
 

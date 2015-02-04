@@ -88,9 +88,11 @@ class System_helper
         $CI = & get_instance();
         $CI->db->select('rnd_crop.id, rnd_crop.crop_name');
         $CI->db->from('rnd_crop');
-        $CI->db->order_by('ordering');
+        $CI->db->order_by('ordering','ASC');
+        $CI->db->order_by('id','ASC');
         $CI->db->where('status != ',$CI->config->item('status_delete'));
-        return $CI->db->get()->result_array();
+        $result=$CI->db->get()->result_array();
+        return $result;
     }
     public static function upload_file($save_dir="images")
     {

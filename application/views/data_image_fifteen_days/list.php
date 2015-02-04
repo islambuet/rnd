@@ -32,7 +32,6 @@ $dir=$this->config->item('dir');
         <thead>
         <tr>
             <th><?php echo $this->lang->line("SERIAL"); ?></th>
-            <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
             <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
             <th><?php echo $this->lang->line("LABEL_UPLOAD_BUTTONS"); ?></th>
             <th>
@@ -57,7 +56,6 @@ $dir=$this->config->item('dir');
                         <input name="variety_id[]" type="hidden" value="<?php echo $variety['id'];?>">
                         <input name="rdifd_id_<?php echo $variety['id'];?>" type="hidden" value="<?php echo $variety['rdifd_id'];?>">
                     </td>
-                    <td><?php echo $variety['variety_name'];?></td>
                     <td><?php echo System_helper::get_rnd_code($variety,1);?></td>
 
                     <td style="min-width: 200px;">
