@@ -202,6 +202,12 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
+        $(document).off("change", ".browse_button");
+        $(document).on("change", ".browse_button", function(event)
+        {
+            var id=$(this).attr("data-image-container");
+            display_browse_image(this,"#"+id);
+        });
     });
 
 </script>

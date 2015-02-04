@@ -35,6 +35,7 @@ $config['day_interval_15'] = 15;//hard coded at setup_image_15days need to check
 //config for file upload and directory
 $config['max_file_size'] = 1024*10;
 $config['dir']['15_days_image_config'] = 'images/15_days_image_config';
+$config['dir']['15_days_image_data'] = 'images/15_days_image_data';
 
 
 

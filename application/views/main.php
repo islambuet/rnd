@@ -17,6 +17,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 <body>
     <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/bootstrap-filestyle.min.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery-ui.min.js"></script>
 
     <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>

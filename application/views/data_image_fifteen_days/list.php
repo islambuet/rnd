@@ -33,16 +33,63 @@ $dir=$this->config->item('dir');
             {
                 ?>
                 <tr>
-                    <td><?php echo $key+1;?></td>
-                    <td><?php echo $variety['id'];?></td>
+                    <td>
+                        <?php echo $key+1;?>
+                        <input name="variety_id[]" type="hidden" value="<?php echo $variety['id'];?>">
+                    </td>
+                    <td><?php echo $variety['variety_name'];?></td>
                     <td><?php echo System_helper::get_rnd_code($variety);?></td>
 
-                    <td>
+                    <td style="min-width: 200px;">
+
+                        <input type="file" class="browse_button file_style_normal" data-image-container="image_normal_<?php echo $variety['id'];?>" name="file_normal_<?php echo $variety['id'];?>">
                         <?php
-                        echo "browse buttons";
+                           if($variety['replica_status']==1)
+                           {
+                               ?>
+                               <br><input type="file" class="browse_button file_style_replica" data-image-container="image_replica_<?php echo $variety['id'];?>" name="file_replica_<?php echo $variety['id'];?>">
+                               <?php
+                           }
+                        ?>
+
+
+                    </td>
+                    <td style="min-width: 300px;">
+                        <?php
+                        $images=json_decode($variety['images'],true);
+                        $image='no_image.jpg';
+
+                        if(is_array($images))
+                        {
+                            $image=$images['normal'];
+
+                        }
+                        ?>
+                        <img id="image_normal_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['15_days_image_data'].'/'.$image; ?>">
+                        <input type="hidden" name="old_normal_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
+                        <?php
+                        if($variety['replica_status']==1)
+                        {
+                            $image='no_image.jpg';
+                            if(is_array($images))
+                            {
+                                $image=$images['normal'];
+
+                            }
+
+                            ?>
+                            <br><br><img id="image_replica_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['15_days_image_data'].'/'.$image; ?>">
+                            <input type="hidden" name="old_replica_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
+                        <?php
+                        }
+                        else
+                        {
+                            ?>
+                            <input type="hidden" name="old_replica_image_<?php echo $variety['id'];?>" value="no_image.jpg">
+                            <?php
+                        }
                         ?>
                     </td>
-                    <td><?php echo $variety['crop_name'];?></td>
                     <td><textarea name="remarks_<?php echo $variety['id'];?>"><?php $variety['remarks'];?></textarea></td>
 
                 </tr>
@@ -64,3 +111,12 @@ $dir=$this->config->item('dir');
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $(".file_style_normal").filestyle({input: false,icon: false,buttonText: "Image For Normal"});
+        $(".file_style_replica").filestyle({input: false,icon: false,buttonText: "Image For Replica"});
+    });
+
+</script>
