@@ -169,7 +169,33 @@ $dir=$this->config->item('dir');
         </div>
         <div class="col-xs-4">
             <select class="form-control" name="root_type" id="root_type">
-                <?php foreach($this->config->item('head_Type_rating') as $val=>$rating){?>
+                <?php foreach($this->config->item('root_Type_rating') as $val=>$rating){?>
+                    <option value="<?php echo $val;?>"><?php echo $rating;?></option>
+                <?php }?>
+            </select>
+        </div>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_TYPE');?><span style="color:#FF0000">*</span></label>
+        </div>
+        <div class="col-xs-4">
+            <select class="form-control" name="leaf_type" id="leaf_type">
+                <?php foreach($this->config->item('leaf_Type_rating') as $val=>$rating){?>
+                    <option value="<?php echo $val;?>"><?php echo $rating;?></option>
+                <?php }?>
+            </select>
+        </div>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SPINE_TYPE');?><span style="color:#FF0000">*</span></label>
+        </div>
+        <div class="col-xs-4">
+            <select class="form-control" name="spine_type" id="spine_type">
+                <?php foreach($this->config->item('spine_type_rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>"><?php echo $rating;?></option>
                 <?php }?>
             </select>

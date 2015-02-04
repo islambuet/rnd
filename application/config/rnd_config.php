@@ -29,6 +29,18 @@ $config['head_Type_rating'][1] = 'Round';
 $config['head_Type_rating'][2] = 'Semi-Flat';
 $config['head_Type_rating'][3] = 'Flat';
 
+$config['root_Type_rating'][1] = 'Single';
+$config['root_Type_rating'][2] = 'Auxiliary';
+
+$config['leaf_Type_rating'][1] = 'Cherated';
+$config['leaf_Type_rating'][2] = 'Partially Cherated';
+
+$config['spine_type_rating'][1] = 'Blunt';
+$config['spine_type_rating'][2] = 'Semi-Blunt';
+$config['spine_type_rating'][3] = 'Pointed';
+
+
+
 //year config
 $config['start_year']=2014;
 $config['next_year_range']=2;
