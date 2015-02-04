@@ -106,21 +106,14 @@ class Data_image_fifteen_days extends ROOT_Controller
             $time=time();
 
 
-            $data['year']=$year;
-            $data['season_id']=$season_id;
-            $data['crop_id']=$crop_id;
-            $data['crop_type_id']=$crop_type_id;
-            $data['day_number']=$day_number;
-            $data['day_number']=$day_number;
-            $data['day_number']=$day_number;
-            $data['created_by'] = $user->user_id;
-            $data['creation_date'] = $time;
+
             //Query_helper::add('rnd_setup_image_fifteen_days',$data);
             $variety_ids=$this->input->post('variety_id');
             $this->db->trans_start();  //DB Transaction Handle START
             foreach($variety_ids as $variety_id)
             {
-                $data['variety_id']=$variety_id;
+                $data=array();
+                $id=$this->input->post('rdifd_id_'.$variety_id);
                 $image_normal=$this->input->post('old_normal_image_'.$variety_id);
                 if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
                 {
@@ -148,8 +141,25 @@ class Data_image_fifteen_days extends ROOT_Controller
                     }
                 }
                 $data['images']=json_encode(array('normal'=>$image_normal,'replica'=>$image_replica));
-                Query_helper::add('rnd_data_image_fifteen_days',$data);
-
+                $data['remarks']=$this->input->post('remarks_'.$variety_id);
+                if($id>0)
+                {
+                    $data['modified_by'] = $user->user_id;
+                    $data['modification_date'] = $time;
+                    Query_helper::update('rnd_data_image_fifteen_days',$data,array('id = '.$id));
+                }
+                else
+                {
+                    $data['variety_id']=$variety_id;
+                    $data['year']=$year;
+                    $data['season_id']=$season_id;
+                    $data['crop_id']=$crop_id;
+                    $data['crop_type_id']=$crop_type_id;
+                    $data['day_number']=$day_number;
+                    $data['created_by'] = $user->user_id;
+                    $data['creation_date'] = $time;
+                    Query_helper::add('rnd_data_image_fifteen_days',$data);
+                }
             }
             $this->db->trans_complete();   //DB Transaction Handle END
             if ($this->db->trans_status() === TRUE)

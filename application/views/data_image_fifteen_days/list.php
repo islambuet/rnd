@@ -36,9 +36,10 @@ $dir=$this->config->item('dir');
                     <td>
                         <?php echo $key+1;?>
                         <input name="variety_id[]" type="hidden" value="<?php echo $variety['id'];?>">
+                        <input name="rdifd_id_<?php echo $variety['id'];?>" type="hidden" value="<?php echo $variety['rdifd_id'];?>">
                     </td>
                     <td><?php echo $variety['variety_name'];?></td>
-                    <td><?php echo System_helper::get_rnd_code($variety);?></td>
+                    <td><?php echo System_helper::get_rnd_code($variety,1);?></td>
 
                     <td style="min-width: 200px;">
 
@@ -90,7 +91,7 @@ $dir=$this->config->item('dir');
                         }
                         ?>
                     </td>
-                    <td><textarea name="remarks_<?php echo $variety['id'];?>"><?php $variety['remarks'];?></textarea></td>
+                    <td><textarea name="remarks_<?php echo $variety['id'];?>"><?php echo $variety['remarks'];?></textarea></td>
 
                 </tr>
             <?php
@@ -115,8 +116,8 @@ $dir=$this->config->item('dir');
 
     jQuery(document).ready(function()
     {
-        $(".file_style_normal").filestyle({input: false,icon: false,buttonText: "Image For Normal"});
-        $(".file_style_replica").filestyle({input: false,icon: false,buttonText: "Image For Replica"});
+        $(".file_style_normal").filestyle({input: false,icon: false,buttonText: "Image For Normal",buttonName: "btn-primary"});
+        $(".file_style_replica").filestyle({input: false,icon: false,buttonText: "Image For Replica",buttonName: "btn-danger"});
     });
 
 </script>
