@@ -65,7 +65,17 @@ $config['max_file_size'] = 1024*10;
 $config['dir']['15_days_image_config'] = 'images/15_days_image_config';
 $config['dir']['15_days_image_data'] = 'images/15_days_image_data';
 
+$config['dir']['flowering_image_config'] = 'images/flowering_image_config';
+$config['dir']['flowering_image_data'] = 'images/flowering_image_data';
 
+
+// Flowering Config
+$config['flowering_image'][1]='1st Flowering Pic';
+$config['flowering_image'][2]='50% Flowering Pic';
+$config['flowering_image'][3]='1st Fruit Setting Pic';
+$config['flowering_image'][4]='1st Harvested Fruit';
+$config['flowering_image'][5]='Last Harvested Fruit';
+$config['flowering_image'][6]='Special Characters';
 
 
 //fix bellow config latter
