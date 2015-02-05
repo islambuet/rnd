@@ -225,6 +225,9 @@
                 }
             });
         });
+
+        $(document).off("change",'#crop_type_id');
+
         $(document).off("change",'input[name="variety_type"]:radio');
         $(document).on("change",'input[name="variety_type"]:radio',function()
         {

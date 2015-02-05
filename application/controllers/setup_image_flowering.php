@@ -29,7 +29,7 @@ class Setup_image_flowering extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Setup Image Flowering";
+        $data['title']="Setup Flowering Sample Images";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());

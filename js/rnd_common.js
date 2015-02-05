@@ -215,3 +215,11 @@ function display_browse_image(brose_bttion,display_id)
 }
 
 
+function turn_off_triggers()
+{
+    $(document).off("change", "#year");
+    $(document).off("change", "#season_id");
+    $(document).off("change", "#crop_id");
+    $(document).off("change", "#crop_type_id");
+    $(document).off("change", "#flowering_time");
+}
