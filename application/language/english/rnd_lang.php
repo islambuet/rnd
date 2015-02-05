@@ -226,6 +226,10 @@ $lang['LABEL_COMPETITOR'] = 'Competitor';
 $lang['LABEL_PRINCIPAL'] = 'Principal';
 $lang['LABEL_ARMALIK_SELF'] = 'Self';
 
+
+$lang['SOWING_DID_NOT_STARTED']='Sowing Not Started Yet';
+$lang['SEASON_ALREADY_END']='Season Ended Already';
+
 // 15 Days
 $lang['LABEL_DAY_NUMBER']='Day Number';
 $lang['IMAGE_15_DAYS_NOT_SETUP']='You have to setup Number of 15 Days first';
@@ -280,5 +284,6 @@ $lang['LABEL_REMARKS']='Remarks';
 $lang['LABEL_FLOWERING_TIME']='Flowering Time';
 $lang['IMAGE_FLOWERING_SAMPLE_NOT_SETUP']='Please Complete Flowering Image Setup For Your Selections';
 $lang['FLOWERING_NOT_SETUP']='Please Setup Flowering Images';
+
 
 

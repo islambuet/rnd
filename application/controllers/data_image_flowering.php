@@ -99,13 +99,16 @@ class Data_image_flowering extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $flowering_time = $this->input->post('flowering_time');
-            $dir=$this->config->item("dir");
-            $uploaded_images=System_helper::upload_file($dir['15_days_image_data']);
-            $user = User_helper::get_user();
-            $time=time();
 
-            $variety_ids=$this->input->post('variety_id');
+            $dir = $this->config->item("dir");
+            $uploaded_images = System_helper::upload_file($dir['flowering_image_data']);
+            $user = User_helper::get_user();
+            $time = time();
+
+            $variety_ids = $this->input->post('variety_id');
+
             $this->db->trans_start();  //DB Transaction Handle START
+
             foreach($variety_ids as $variety_id)
             {
                 $data=array();
@@ -113,7 +116,6 @@ class Data_image_flowering extends ROOT_Controller
                 $image_normal=$this->input->post('old_normal_image_'.$variety_id);
                 if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
                 {
-
                     if($uploaded_images['file_normal_'.$variety_id]['status'])
                     {
                         $image_normal=$uploaded_images['file_normal_'.$variety_id]['info']['file_name'];
@@ -123,7 +125,9 @@ class Data_image_flowering extends ROOT_Controller
                         $this->message.=$uploaded_images['file_normal_'.$variety_id]['message'].'<br>';
                     }
                 }
+
                 $image_replica=$this->input->post('old_replica_image_'.$variety_id);
+
                 if(array_key_exists('file_replica_'.$variety_id,$uploaded_images))
                 {
 
@@ -136,13 +140,15 @@ class Data_image_flowering extends ROOT_Controller
                         $this->message.=$uploaded_images['file_replica_'.$variety_id]['message'].'<br>';
                     }
                 }
+
                 $data['images']=json_encode(array('normal'=>$image_normal,'replica'=>$image_replica));
                 $data['remarks']=$this->input->post('remarks_'.$variety_id);
+
                 if($id>0)
                 {
                     $data['modified_by'] = $user->user_id;
                     $data['modification_date'] = $time;
-                    Query_helper::update('rnd_data_image_fifteen_days',$data,array('id = '.$id));
+                    Query_helper::update('rnd_data_image_flowering',$data,array('id = '.$id));
                 }
                 else
                 {
@@ -154,9 +160,10 @@ class Data_image_flowering extends ROOT_Controller
                     $data['flowering_time']=$flowering_time;
                     $data['created_by'] = $user->user_id;
                     $data['creation_date'] = $time;
-                    Query_helper::add('rnd_data_image_fifteen_days',$data);
+                    Query_helper::add('rnd_data_image_flowering',$data);
                 }
             }
+
             $this->db->trans_complete();   //DB Transaction Handle END
             if ($this->db->trans_status() === TRUE)
             {
