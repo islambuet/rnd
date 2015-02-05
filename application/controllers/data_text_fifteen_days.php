@@ -67,7 +67,8 @@ class Data_text_fifteen_days extends ROOT_Controller
             $data['title']="Fortnightly Report Fields";
 
             $data['variety_info']=$this->data_text_fifteen_days_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$day_number);
-            //$data['variety']=$this->input->post();
+            $data['options']=Query_helper::get_info('rnd_setup_text_fifteen_days','*',array('crop_id ='.$crop_id),1);
+            $data['day_number']=$day_number;
 
             if($this->message)
             {

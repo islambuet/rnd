@@ -205,7 +205,7 @@ $this->load->view("action_buttons_edit",$data);
         $(document).off("change", "#day_number");
         $(document).on("change", "#day_number", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_15_text").html("");
             if($(this).val()>0)
             {
                 $.ajax({

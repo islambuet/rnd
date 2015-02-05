@@ -4,10 +4,18 @@ $config['status_active']=1;
 $config['status_delete']=0;
 
 
-//pagination
+//pagination config
 $config['view_per_page']=15;
 $config['links_per_page']=5;
+//pagination config end
 
+//15 days common config
+$config['default_number_of_fifteen_days'] = 3;
+$config['max_number_of_fifteen_days'] = 12;
+$config['day_interval_15'] = 15;//hard coded at setup_image_15days need to check controller view and model to fix
+//15 days common config end
+
+//15 days text config
 //crop fruit type config
 $config['fruit_type'][1] = 'Fruit';
 $config['fruit_type'][2] = 'Curd';
@@ -22,8 +30,8 @@ $config['rating'][5] = 'Average';
 $config['rating'][6] = 'Good';
 $config['rating'][7] = 'Excellent';
 
-$config['curd_Type_rating'][0] = 'Dome';
-$config['curd_Type_rating'][1] = 'Semi-Dome';
+$config['curd_Type_rating'][1] = 'Dome';
+$config['curd_Type_rating'][2] = 'Semi-Dome';
 
 $config['head_Type_rating'][1] = 'Round';
 $config['head_Type_rating'][2] = 'Semi-Flat';
@@ -38,7 +46,7 @@ $config['leaf_Type_rating'][2] = 'Partially Cherated';
 $config['spine_type_rating'][1] = 'Blunt';
 $config['spine_type_rating'][2] = 'Semi-Blunt';
 $config['spine_type_rating'][3] = 'Pointed';
-
+//15 days text config end
 
 
 //year config
@@ -50,10 +58,6 @@ $config['variety_type'][1] = 'PRINCIPAL';
 $config['variety_type'][2] = 'CKA';
 $config['variety_type'][3] = 'CKO';
 
-//15 days report config
-$config['default_number_of_fifteen_days'] = 3;
-$config['max_number_of_fifteen_days'] = 12;
-$config['day_interval_15'] = 15;//hard coded at setup_image_15days need to check controller view and model to fix
 
 
 //config for file upload and directory

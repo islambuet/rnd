@@ -104,6 +104,7 @@ $lang['PRINCIPAL'] = 'Principal Variety';
 $lang['CKA'] = 'Check Variety ARM';
 $lang['CKO'] = 'Competitor Variety';
 $lang['LABEL_REPLICA'] = 'Replica';
+$lang['LABEL_NORMAL'] = 'Normal';
 $lang['LABEL_REPLICA_STATUS'] = 'Replica Status';
 
 //General Sample Delivery

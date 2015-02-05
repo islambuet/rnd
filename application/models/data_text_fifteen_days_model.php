@@ -39,8 +39,14 @@ class Data_text_fifteen_days_model extends CI_Model
     }
     public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$day_number)
     {
+        $delivery_info_sub_query='(SELECT * FROM delivery_and_sowing_setup WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.')';
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
+        $this->db->select('dass.sowing_date,dass.transplanting_date');
+        $this->db->select('rc.initial_plants');
+
+        $this->db->join($delivery_info_sub_query.'dass', 'dass.crop_id = rv.crop_id', 'inner');
+        $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'inner');
 
         $this->db->where('rv.id',$variety_id);
         $result = $this->db->get()->row_array();

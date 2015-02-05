@@ -1,8 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-echo "<pre>";
-print_r($variety);
-echo "</pre>";
+//echo "<pre>";
+//print_r($variety_info);
+//echo "</pre>";
+//echo "<pre>";
+//print_r($options);
+//echo "</pre>";
 
 ?>
 <div class="widget-header">
@@ -11,41 +14,177 @@ echo "</pre>";
     </div>
     <div class="clearfix"></div>
 </div>
+<?php
+if($variety_info['replica_status']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-3">
+            <label class="form-control btn-primary"><?php echo $this->lang->line('LABEL_NORMAL');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="form-control btn-danger"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
+        </div>
+        </di
+    </div>
+    <?php
+}
+?>
+<?php
+if($options['sowing_date']==1)
+{
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
         </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="sowing_date" id="sowing_date" value=""/>
-        </div>
-    </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']);?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']);?></label>
+            </div>
+        <?php
+        }
+        ?>
 
+    </div>
+    <?php
+}
+?>
+
+<?php
+if($options['transplanting_date']==1)
+{
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_DATE');?></label>
         </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="transplanting_date" id="transplanting_date" value=""/>
-        </div>
-    </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control">
+                    <?php
+                    if($variety_info['transplanting_date'])
+                    {
+                        echo System_helper::display_date($variety_info['transplanting_date']);
+                    }
+                    else
+                    {
+                        echo $this->lang->line("LABEL_NOT_SET");
+                    }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control">
+                    <?php
+                    if($variety_info['transplanting_date'])
+                    {
+                        echo System_helper::display_date($variety_info['transplanting_date']);
+                    }
+                    else
+                    {
+                        echo $this->lang->line("LABEL_NOT_SET");
+                    }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
 
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fortnightly_reporting_date']==1)
+{
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FORTNIGHTLY_REPORTING_DATE');?></label>
         </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="fortnightly_reporting_date" id="fortnightly_reporting_date" value=""/>
-        </div>
-    </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']+$day_number*24*60*60);?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']+$day_number*24*60*60);?></label>
+            </div>
+        <?php
+        }
+        ?>
 
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['initial_plants_during_trial_started']==1)
+{
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_INITIAL_PLANTS_DURING_TRIAL');?></label>
         </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="initial_plants_during_trial_started" id="initial_plants_during_trial_started" value=""/>
-        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+            </div>
+        <?php
+        }
+        ?>
+
     </div>
+<?php
+}
+?>
+
+
+
 
     <div class="row show-grid">
         <div class="col-xs-4">
