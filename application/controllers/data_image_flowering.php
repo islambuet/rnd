@@ -224,6 +224,7 @@ class Data_image_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a Year<br>";
         }
+
         if(Validation_helper::validate_empty($season_id))
         {
             $valid=false;
@@ -235,41 +236,41 @@ class Data_image_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a Crop<br>";
         }
+
         if(Validation_helper::validate_empty($crop_type_id))
         {
             $valid=false;
-            $this->message.="Select a crop type<br>";
+            $this->message.="Select a Crop Type<br>";
         }
+
         if(Validation_helper::validate_empty($flowering_time))
         {
             $valid=false;
             $this->message.="Select a Flowering Time<br>";
         }
+
         if($valid)
         {
             if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
             {
                 $valid=false;
                 $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
-
             }
+
             if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
             {
                 $valid=false;
                 $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
-
             }
+
             if($valid)
             {
                 if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
                 {
                     $valid=false;
                     $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
-
                 }
-
             }
-
         }
 
         return $valid;
