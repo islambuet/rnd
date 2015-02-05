@@ -186,7 +186,7 @@ $this->load->view("action_buttons_edit",$data);
                     url: base_url+"data_image_flowering/index/list",
                     type: 'POST',
                     dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),day_number:$("#flowering_time").val()},
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),flowering_time:$("#flowering_time").val()},
                     success: function (data, status)
                     {
 

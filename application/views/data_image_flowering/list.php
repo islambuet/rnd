@@ -33,7 +33,6 @@ $dir=$this->config->item('dir');
 
             </th>
             <th><?php echo $this->lang->line("LABEL_REMARKS"); ?></th>
-
         </tr>
         </thead>
 
@@ -63,9 +62,8 @@ $dir=$this->config->item('dir');
                                <?php
                            }
                         ?>
-
-
                     </td>
+
                     <td style="min-width: 300px;">
                         <?php
                         $images=json_decode($variety['images'],true);

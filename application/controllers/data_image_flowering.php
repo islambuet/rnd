@@ -61,17 +61,17 @@ class Data_image_flowering extends ROOT_Controller
             $season_id = $this->input->post('season_id');
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
-            $day_number = $this->input->post('day_number');
+            $flowering_time = $this->input->post('flowering_time');
 
             $data['title']="Upload Image";
             $image_sample_json = Query_helper::get_info('rnd_setup_image_flowering',array('images'),array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
 
             $image_sample = json_decode($image_sample_json['images'],true);
-            $data['day_number'] = $day_number;
+            $data['flowering_time'] = $flowering_time;
             $data['sowing_info'] = Query_helper::get_info('delivery_and_sowing_setup','*',array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id),1);
-            $data['sample_image'] = $image_sample[$day_number];
+            $data['sample_image'] = $image_sample[$flowering_time];
 
-            $data['varieties'] = $this->data_image_flowering_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$day_number);
+            $data['varieties'] = $this->data_image_flowering_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$flowering_time);
 
             if($this->message)
             {
@@ -98,7 +98,7 @@ class Data_image_flowering extends ROOT_Controller
             $season_id = $this->input->post('season_id');
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
-            $day_number = $this->input->post('day_number');
+            $flowering_time = $this->input->post('flowering_time');
             $dir=$this->config->item("dir");
             $uploaded_images=System_helper::upload_file($dir['15_days_image_data']);
             $user = User_helper::get_user();
@@ -151,7 +151,7 @@ class Data_image_flowering extends ROOT_Controller
                     $data['season_id']=$season_id;
                     $data['crop_id']=$crop_id;
                     $data['crop_type_id']=$crop_type_id;
-                    $data['day_number']=$day_number;
+                    $data['flowering_time']=$flowering_time;
                     $data['created_by'] = $user->user_id;
                     $data['creation_date'] = $time;
                     Query_helper::add('rnd_data_image_fifteen_days',$data);
@@ -210,7 +210,7 @@ class Data_image_flowering extends ROOT_Controller
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
-        $day_number = $this->input->post('day_number');
+        $flowering_time = $this->input->post('flowering_time');
 
         if(Validation_helper::validate_empty($year))
         {
@@ -233,17 +233,17 @@ class Data_image_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a crop type<br>";
         }
-        if(Validation_helper::validate_empty($day_number))
+        if(Validation_helper::validate_empty($flowering_time))
         {
             $valid=false;
-            $this->message.="Select a Day<br>";
+            $this->message.="Select a Flowering Time<br>";
         }
         if($valid)
         {
             if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP').'<br>';
+                $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
 
             }
             if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))

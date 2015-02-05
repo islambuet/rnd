@@ -279,5 +279,6 @@ $lang['LABEL_REMARKS']='Remarks';
 
 $lang['LABEL_FLOWERING_TIME']='Flowering Time';
 $lang['IMAGE_FLOWERING_SAMPLE_NOT_SETUP']='Please Complete Flowering Image Setup For Your Selections';
+$lang['FLOWERING_NOT_SETUP']='Please Setup Flowering Images';
 
 
