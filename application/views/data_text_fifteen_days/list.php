@@ -3,10 +3,14 @@
 //echo "<pre>";
 //print_r($variety_info);
 //echo "</pre>";
+////echo "<pre>";
+////print_r($options);
+////echo "</pre>";
+$info=json_decode($variety_info['info'],true);
+//
 //echo "<pre>";
-//print_r($options);
+//print_r($info);
 //echo "</pre>";
-
 ?>
 <div class="widget-header">
     <div class="title">
@@ -14,6 +18,7 @@
     </div>
     <div class="clearfix"></div>
 </div>
+<input type="hidden" name="data_text_id" value="<?php echo $variety_info['data_text_id'];?>">
 <?php
 if($variety_info['replica_status']==1)
 {
@@ -184,35 +189,113 @@ if($options['initial_plants_during_trial_started']==1)
 ?>
 
 
-
-
+<?php
+if($options['plant_type_appearance']==1)
+{
+    $plant_type_appearance_normal="";
+    if(is_array($info)&& !empty($info['normal']['plant_type_appearance']))
+    {
+        $plant_type_appearance_normal=$info['normal']['plant_type_appearance'];
+    }
+    $plant_type_appearance_replica="";
+    if(is_array($info)&& !empty($info['replica']['plant_type_appearance']))
+    {
+        $plant_type_appearance_replica=$info['replica']['plant_type_appearance'];
+    }
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_TYPE_APPEARANCE');?></label>
         </div>
-        <div class="col-xs-4">
-            <select class="form-control" name="plant_type_appearance" id="plant_type_appearance">
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[plant_type_appearance]"">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
-                    <option value="<?php echo $val;?>"><?php echo $rating;?></option>
+                    <option value="<?php echo $val;?>" <?php if($val==$plant_type_appearance_normal){echo 'selected';} ?>><?php echo $val;?></option>
                 <?php }?>
             </select>
         </div>
-    </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[plant_type_appearance]"">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <?php foreach($this->config->item('rating') as $val=>$rating){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$plant_type_appearance_replica){echo 'selected';} ?>><?php echo $val;?></option>
+                <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[plant_type_appearance]" value="<?php echo $plant_type_appearance_replica;?>">
+            <?php
+        }
+        ?>
 
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['plant_type']==1)
+{
+    $plant_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['plant_type']))
+    {
+        $plant_type_normal=$info['normal']['plant_type'];
+    }
+    $plant_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['plant_type']))
+    {
+        $plant_type_replica=$info['replica']['plant_type'];
+    }
+    ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_TYPE');?></label>
         </div>
-        <div class="col-xs-4">
-            <select class="form-control" name="plant_type" id="plant_type">
-                <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                <?php foreach($this->config->item('rating') as $val=>$rating){?>
-                    <option value="<?php echo $val;?>"><?php echo $rating;?></option>
-                <?php }?>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[plant_type]"">
+            <option value=""><?php echo $this->lang->line('SELECT');?></option>
+            <?php foreach($this->config->item('rating') as $val=>$rating){?>
+                <option value="<?php echo $val;?>" <?php if($val==$plant_type_normal){echo 'selected';} ?>><?php echo $val;?></option>
+            <?php }?>
             </select>
         </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[plant_type]"">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <?php foreach($this->config->item('rating') as $val=>$rating){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$plant_type_replica){echo 'selected';} ?>><?php echo $val;?></option>
+                <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[plant_type]" value="<?php echo $plant_type_replica;?>">
+        <?php
+        }
+        ?>
+
     </div>
+<?php
+}
+?>
+
+
 
     <div class="row show-grid">
         <div class="col-xs-4">

@@ -90,11 +90,49 @@ class Data_text_fifteen_days extends ROOT_Controller
         }
         else
         {
-            echo "<pre>";
-            print_r($this->input->post());
-            echo "</pre>";
-        }
+            $inputs=$this->input->post();
+            $year = $inputs['year'];
+            $season_id = $inputs['season_id'];
+            $crop_id = $inputs['crop_id'];
+            $crop_type_id = $inputs['crop_type_id'];
+            $variety_id = $inputs['variety_id'];
+            $day_number = $inputs['day_number'];
 
+            $id=$inputs['data_text_id'];
+            $data=array();
+            $data['info']=json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $user = User_helper::get_user();
+            $time=time();
+            $this->db->trans_start();  //DB Transaction Handle START
+            if($id>0)
+            {
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = $time;
+                Query_helper::update('rnd_data_text_fifteen_days',$data,array('id = '.$id));
+            }
+            else
+            {
+                $data['variety_id']=$variety_id;
+                $data['year']=$year;
+                $data['season_id']=$season_id;
+                $data['crop_id']=$crop_id;
+                $data['crop_type_id']=$crop_type_id;
+                $data['day_number']=$day_number;
+                $data['created_by'] = $user->user_id;
+                $data['creation_date'] = $time;
+                Query_helper::add('rnd_data_text_fifteen_days',$data);
+            }
+            $this->db->trans_complete();   //DB Transaction Handle END
+            if ($this->db->trans_status() === TRUE)
+            {
+                $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");
+            }
+            else
+            {
+                $this->message.=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+            }
+            $this->rnd_list();
+        }
 
     }
     public function get_days_varieties_for_data_text()
