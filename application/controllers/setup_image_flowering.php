@@ -110,7 +110,7 @@ class Setup_image_flowering extends ROOT_Controller
             }
 
             $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#config_15_images","html"=>$this->load->view("setup_image_flowering/list",$data,true));
+            $ajax['content'][]=array("id"=>"#config_flowering_images","html"=>$this->load->view("setup_image_flowering/list",$data,true));
 
             if($this->message)
             {

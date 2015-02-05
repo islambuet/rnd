@@ -9,9 +9,9 @@ class Data_image_flowering_model extends CI_Model
     public function __construct() {
         parent::__construct();
     }
+
     public function get_varieties($year,$season_id,$crop_id,$crop_type_id,$flowering_time)
     {
-
         $sub_query='(SELECT * FROM rnd_data_image_flowering where year="'.$year.'" AND season_id='.$season_id.' AND crop_id='.$crop_id.' AND crop_type_id='.$crop_type_id.' AND flowering_time='.$flowering_time.')';
 
         $this->db->from('rnd_variety rv');
@@ -36,7 +36,6 @@ class Data_image_flowering_model extends CI_Model
         $this->db->where('rvs.sample_delivery_status',1);
 
         $result = $this->db->get()->result_array();
-
         return $result;
     }
 }

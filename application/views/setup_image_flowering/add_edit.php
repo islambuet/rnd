@@ -51,7 +51,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" id="crop_id_container" style="display: none">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -69,7 +69,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid">
+        <div class="row show-grid" id="crop_type_id_container" style="display: none">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_TYPE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -82,7 +82,7 @@ $this->load->view("action_buttons_edit",$data);
         </div>
 
     </div>
-    <div class="row widget" id="config_15_images">
+    <div class="row widget" id="config_flowering_images">
 
     </div>
     <div class="clearfix"></div>
@@ -92,11 +92,31 @@ $this->load->view("action_buttons_edit",$data);
 
     jQuery(document).ready(function()
     {
+        turn_off_triggers();
 //        $(".form_valid").validationEngine();
 
-        $(document).off("change", "#crop_id");
+        $(document).on("change", "#year", function(event)
+        {
+            $("#config_flowering_images").html("");
+            $("#season_id").val("");
+            $("#crop_id_container").hide();
+            $("#crop_type_id_container").hide();
+        });
+
+        $(document).on("change", "#season_id", function(event)
+        {
+            $("#config_flowering_images").html("");
+            $("#crop_id").val("");
+            $("#crop_id_container").show();
+            $("#crop_type_id_container").hide();
+        });
+
         $(document).on("change", "#crop_id", function(event)
         {
+            $("#config_flowering_images").html("");
+            $("#crop_type_id").val("");
+            $("#crop_type_id_container").show();
+
             var crop_id = $("#crop_id").val();
             $.ajax({
                 url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
@@ -110,12 +130,10 @@ $this->load->view("action_buttons_edit",$data);
                 error: function (xhr, desc, err)
                 {
                     console.log("error");
-
                 }
             });
         });
 
-        $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
             $.ajax({
@@ -130,7 +148,6 @@ $this->load->view("action_buttons_edit",$data);
                 error: function (xhr, desc, err)
                 {
                     console.log("error");
-
                 }
             });
         });

@@ -114,6 +114,7 @@ class Data_image_flowering extends ROOT_Controller
                 $data=array();
                 $id=$this->input->post('rdifd_id_'.$variety_id);
                 $image_normal=$this->input->post('old_normal_image_'.$variety_id);
+
                 if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
                 {
                     if($uploaded_images['file_normal_'.$variety_id]['status'])
@@ -130,7 +131,6 @@ class Data_image_flowering extends ROOT_Controller
 
                 if(array_key_exists('file_replica_'.$variety_id,$uploaded_images))
                 {
-
                     if($uploaded_images['file_replica_'.$variety_id]['status'])
                     {
                         $image_replica=$uploaded_images['file_replica_'.$variety_id]['info']['file_name'];
@@ -165,6 +165,7 @@ class Data_image_flowering extends ROOT_Controller
             }
 
             $this->db->trans_complete();   //DB Transaction Handle END
+
             if ($this->db->trans_status() === TRUE)
             {
                 $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");
