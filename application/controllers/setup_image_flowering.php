@@ -147,9 +147,9 @@ class Setup_image_flowering extends ROOT_Controller
 
             foreach($this->config->item('flowering_image') as $val=>$flower)
             {
-                if(array_key_exists('file_'.($val),$uploaded_images))
+                if(array_key_exists('file_'.$val,$uploaded_images))
                 {
-                    if($uploaded_images['file_'.($val)]['status'])
+                    if($uploaded_images['file_'.$val]['status'])
                     {
                         $images[$val]=$uploaded_images['file_'.$val]['info']['file_name'];
                     }
