@@ -12,7 +12,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="col-sm-12" style="overflow-x: auto;">
+    <div class="col-xs-12" style="overflow-x: auto;">
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
@@ -80,7 +80,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-sm-12">
+    <div class="col-xs-12">
         <div class="pagination_container pull-right">
             <?php
                 echo $links;
