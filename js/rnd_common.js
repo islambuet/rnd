@@ -221,5 +221,7 @@ function turn_off_triggers()
     $(document).off("change", "#season_id");
     $(document).off("change", "#crop_id");
     $(document).off("change", "#crop_type_id");
+    $(document).off("change", "#variety_id");
+    $(document).off("change", "#day_number");
     $(document).off("change", "#flowering_time");
 }

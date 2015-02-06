@@ -118,7 +118,8 @@ $this->load->view("action_buttons_edit",$data);
     jQuery(document).ready(function()
     {
 //        $(".form_valid").validationEngine();
-        $(document).off("change", "#year");
+        turn_off_triggers();
+
         $(document).on("change", "#year", function(event)
         {
             $("#data_15_text").html("");
@@ -129,7 +130,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#day_number_container").hide();
 
         });
-        $(document).off("change", "#season_id");
+
         $(document).on("change", "#season_id", function(event)
         {
             $("#data_15_text").html("");
@@ -140,7 +141,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#day_number_container").hide();
         });
 
-        $(document).off("change", "#crop_id");
+
         $(document).on("change", "#crop_id", function(event)
         {
             $("#data_15_text").html("");
@@ -169,7 +170,7 @@ $this->load->view("action_buttons_edit",$data);
             }
         });
 
-        $(document).off("change", "#crop_type_id");
+
         $(document).on("change", "#crop_type_id", function(event)
         {
             $("#data_15_text").html("");
@@ -195,14 +196,14 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-        $(document).off("change", "#variety_id");
+
         $(document).on("change", "#variety_id", function(event)
         {
             $("#data_15_text").html("");
             $("#day_number").val("");
 
         });
-        $(document).off("change", "#day_number");
+
         $(document).on("change", "#day_number", function(event)
         {
             $("#data_15_text").html("");
