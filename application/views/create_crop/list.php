@@ -12,7 +12,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="overflow-x: auto;">
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
@@ -93,7 +93,7 @@
 <div class="clearfix"></div>
 <script type="text/javascript">
 
-    $(document).off("blur",".crop_ordering");
+
     $(document).on("blur",".crop_ordering",function()
     {
         //var crop_ordering=$(this).val();

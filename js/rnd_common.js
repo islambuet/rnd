@@ -224,4 +224,5 @@ function turn_off_triggers()
     $(document).off("change", "#variety_id");
     $(document).off("change", "#day_number");
     $(document).off("change", "#flowering_time");
+    $(document).off("blur",".crop_ordering");//at crop list.
 }
