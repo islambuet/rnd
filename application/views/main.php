@@ -35,14 +35,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     </header>
     <div class="container-fluid">
         <div class="row dashboard-wrapper">
-            <div class="col-sm-9" id="content">
+            <div class="col-sm-12" id="content">
             <?php
                 //$this->load->view("login");
             ?>
             </div>
-            <div class="col-sm-3 hidden-sm hidden-xs" id="right_side">
-
-            </div>
+<!--            <div class="col-sm-3 hidden-sm hidden-xs" id="right_side">-->
+<!---->
+<!--            </div>-->
 
         </div>
 
