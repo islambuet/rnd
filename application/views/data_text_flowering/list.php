@@ -1082,8 +1082,6 @@ if($options['evaluation']==1)
 }
 ?>
 
-
-
 <?php
 if($options['special_characters']==1)
 {
@@ -1191,14 +1189,14 @@ if($options['remarks']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
         </div>
         <div class="col-xs-3">
-            <textarea class="form-control" name="normal[remarks]""><?php echo $remarks_normal; ?></textarea>
+            <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <textarea class="form-control" name="replica[remarks]""><?php echo $remarks_replica; ?></textarea>
+                <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
             </div>
         <?php
         }
