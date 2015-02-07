@@ -151,12 +151,10 @@ $this->load->view("action_buttons_edit",$data);
                 }
             });
         });
-
-        $(document).off("change", ".file_flowering");
-        $(document).on("change", ".file_flowering", function(event)
+        $(document).on("change", ".browse_button", function(event)
         {
-            var id=$(this).attr("data-day");
-            display_browse_image(this,"#image_"+id);
+            var id=$(this).attr("data-image-container");
+            display_browse_image(this,"#"+id);
         });
 
     });

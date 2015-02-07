@@ -19,7 +19,7 @@ foreach($this->config->item('flowering_image') as $val=>$flower)
             <label class="control-label pull-right"><?php echo $flower;?></label>
         </div>
         <div class="col-xs-4">
-            <input class="file_flowering file_style_normal" id="file_<?php echo $val;?>" data-day="<?php echo $val;?>" name="file_<?php echo $val;?>" type="file">
+            <input class="browse_button" id="file_<?php echo $val;?>" data-image-container="image_<?php echo $val;?>" name="file_<?php echo $val;?>" type="file">
         </div>
         <div class="col-xs-4">
             <img class="image_flowering" id="image_<?php echo $val;?>" style="max-width: 100px;" src="<?php echo base_url().$dir['flowering_image_config'].'/'.$images[$val]; ?>">
@@ -34,16 +34,7 @@ foreach($this->config->item('flowering_image') as $val=>$flower)
 
     jQuery(document).ready(function()
     {
-        $(".file_style_normal").filestyle({input: false,icon: false,buttonText: "SELECT IMAGE",buttonName: "btn-primary"});
+        $(".browse_button").filestyle({input: false,icon: false,buttonText: "SELECT IMAGE",buttonName: "btn-primary"});
     });
 
 </script>
-
-<script type="text/javascript">
-    jQuery(document).ready(function()
-    {
-        turn_off_triggers();
-    });
-</script>
-
-
