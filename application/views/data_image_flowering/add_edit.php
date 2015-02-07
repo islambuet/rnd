@@ -109,7 +109,7 @@ $this->load->view("action_buttons_edit",$data);
 //        $(".form_valid").validationEngine();
         $(document).on("change", "#year", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_flowering").html("");
             $("#season_id").val("");
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
@@ -118,7 +118,7 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#season_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_flowering").html("");
             $("#crop_id").val("");
             $("#crop_id_container").show();
             $("#crop_type_id_container").hide();
@@ -127,7 +127,7 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#crop_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_flowering").html("");
             $("#crop_type_id").val("");
             $("#crop_type_id_container").show();
             $("#flowering_time_container").hide();
@@ -154,7 +154,7 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_flowering").html("");
             $("#day_number").val("");
             $("#flowering_time_container").show();
             if($(this).val()>0)
@@ -179,7 +179,7 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#flowering_time", function(event)
         {
-            $("#data_15_images").html("");
+            $("#data_flowerings").html("");
             if($(this).val()>0)
             {
                 $.ajax({
@@ -199,8 +199,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-
-        $(document).off("change", ".browse_button");
         $(document).on("change", ".browse_button", function(event)
         {
             var id=$(this).attr("data-image-container");
