@@ -133,8 +133,8 @@ class Data_text_fifteen_days extends ROOT_Controller
             }
             $this->rnd_list();
         }
-
     }
+
     public function get_days_varieties_for_data_text()
     {
         $year = $this->input->post('year');

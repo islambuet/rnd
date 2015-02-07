@@ -99,14 +99,7 @@ $this->load->view("action_buttons_edit",$data);
             <div class="col-xs-4">
                 <select name="flowering_time" id="flowering_time" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php
-                    foreach($this->config->item('flowering_image') as $val=>$flower)
-                    {
-                        ?>
-                        <option value="<?php echo $val;?>"><?php echo $flower;?></option>
-                    <?php
-                    }
-                    ?>
+
                 </select>
             </div>
         </div>
@@ -186,7 +179,7 @@ $this->load->view("action_buttons_edit",$data);
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_fifteen_days/get_days_varieties_for_data_text",
+                    url: base_url+"data_text_flowering/get_flowering_times_for_data_text",
                     type: 'POST',
                     dataType: "JSON",
                     data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
@@ -216,7 +209,7 @@ $this->load->view("action_buttons_edit",$data);
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_fifteen_days/index/list",
+                    url: base_url+"data_text_flowering/index/list",
                     type: 'POST',
                     dataType: "JSON",
                     data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val(),flowering_time:$("#flowering_time").val()},

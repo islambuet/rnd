@@ -279,11 +279,23 @@ $lang['LABEL_ACCEPTED']='Accepted';
 $lang['LABEL_REMARKS']='Remarks';
 
 
-// Flowering
+// Flowering Report
 
 $lang['LABEL_FLOWERING_TIME']='Flowering Time';
 $lang['IMAGE_FLOWERING_SAMPLE_NOT_SETUP']='Please Complete Flowering Image Setup For Your Selections';
 $lang['FLOWERING_NOT_SETUP']='Please Setup Flowering Images';
+
+$lang['1ST_CURD_FORMATION']='1st Curd Formation';
+$lang['LABEL_1ST_ROOT_FORMATION']='1st Root Formation';
+$lang['LABEL_1ST_HEAD_FORMATION']='1st Head Formation';
+$lang['LABEL_1ST_FLOWERING_DAYS']='1st Flowering Days';
+$lang['LABEL_50PERCENT_FLOWERING_DAYS']='50% Flowering Days';
+$lang['LABEL_FULL_FLOWERING_DAYS']='Full Flowering Days';
+$lang['LABEL_NO_OF_1ST_CURD_FORMATION_PLANTS']='Days between 1st Curd formation to Marketable Curd formation';
+$lang['LABEL_NO_OF_1ST_ROOT_FORMATION_PLANTS']='Days between 1st Root formation to Marketable Root formation';
+$lang['LABEL_NO_OF_1ST_HEAD_FORMATION_PLANTS']='Days between 1st Head formation to Marketable Head formation';
+$lang['LABEL_NO_OF_1ST_FLOWERING_PLANTS']='No. of 1st Flowering Plants';
+$lang['LABEL_1ST_FLOWERING_TO_FULL_FLOWERING']='1st Flowering to Full Flowering';
 
 
 

@@ -62,20 +62,20 @@ class Data_text_flowering extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
-            $day_number = $this->input->post('day_number');
+            $flowering_time = $this->input->post('flowering_time');
 
             $data['title']="Flowering Report Fields";
 
-            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$day_number);
+            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$flowering_time);
             $data['options']=Query_helper::get_info('rnd_setup_text_flowering','*',array('crop_id ='.$crop_id),1);
-            $data['day_number']=$day_number;
+            $data['flowering_time']=$flowering_time;
 
             if($this->message)
             {
                 $ajax['message']=$this->message;
             }
             $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#data_15_text","html"=>$this->load->view("data_text_flowering/list",$data,true));
+            $ajax['content'][]=array("id"=>"#flowering_text","html"=>$this->load->view("data_text_flowering/list",$data,true));
             $this->jsonReturn($ajax);
         }
     }
@@ -96,7 +96,7 @@ class Data_text_flowering extends ROOT_Controller
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
-            $day_number = $inputs['day_number'];
+            $flowering_time = $inputs['flowering_time'];
 
             $id=$inputs['data_text_id'];
             $data=array();
@@ -117,7 +117,7 @@ class Data_text_flowering extends ROOT_Controller
                 $data['season_id']=$season_id;
                 $data['crop_id']=$crop_id;
                 $data['crop_type_id']=$crop_type_id;
-                $data['day_number']=$day_number;
+                $data['flowering_time']=$flowering_time;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
                 Query_helper::add('rnd_setup_text_flowering',$data);
@@ -133,16 +133,15 @@ class Data_text_flowering extends ROOT_Controller
             }
             $this->rnd_list();
         }
-
     }
-    public function get_days_varieties_for_data_text()
+
+    public function get_flowering_times_for_data_text()
     {
         $year = $this->input->post('year');
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $data['varieties']=$this->data_text_flowering_model->get_varieties($year,$season_id,$crop_id,$crop_type_id);
-
 
         if($data['varieties'])
         {
@@ -165,23 +164,23 @@ class Data_text_flowering extends ROOT_Controller
                 $data_dropdown['name']=array();
                 $data_dropdown['selected'] = '';
 
-                for($i=1; $i<=$config['number_of_fifteendays']; $i++)
+                foreach($this->config->item('flowering_image') as $val=>$flower)
                 {
-                    $data_dropdown['value'][] = $i*$this->day_15;
-                    $data_dropdown['name'][] = $i*$this->day_15;
+                    $data_dropdown['value'][] = $val;
+                    $data_dropdown['name'][] = $flower;
                 }
-                $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
+                $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
             }
             else
             {
                 $ajax['status']=false;
-                $ajax['message']=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP');
+                $ajax['message']=$this->lang->line('FLOWERING_NOT_SETUP');
                 $data_dropdown=array();
                 $data_dropdown['value']=array();
                 $data_dropdown['name']=array();
                 $data_dropdown['selected'] = '';
 
-                $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
+                $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
             }
             $this->jsonReturn($ajax);
         }
@@ -190,7 +189,7 @@ class Data_text_flowering extends ROOT_Controller
             $data_dropdown=array();
             $data_dropdown['selected'] = '';
             $ajax['content'][]=array("id"=>"#variety_id","html"=>$this->load->view("dropdown",$data_dropdown,true));
-            $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
+            $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
 
             $ajax['status']=false;
             $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');
@@ -206,7 +205,8 @@ class Data_text_flowering extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $variety_id = $this->input->post('variety_id');
-        $day_number = $this->input->post('day_number');
+        $flowering_time = $this->input->post('flowering_time');
+
         if(Validation_helper::validate_empty($year))
         {
             $valid=false;
@@ -233,17 +233,17 @@ class Data_text_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a RND code<br>";
         }
-        if(Validation_helper::validate_empty($day_number))
+        if(Validation_helper::validate_empty($flowering_time))
         {
             $valid=false;
-            $this->message.="Select a Day<br>";
+            $this->message.="Select a Flowering Time<br>";
         }
         if($valid)
         {
-            if(!Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
+            if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP').'<br>';
+                $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
 
             }
             if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
@@ -258,16 +258,11 @@ class Data_text_flowering extends ROOT_Controller
                 {
                     $valid=false;
                     $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
-
                 }
-
             }
-
         }
 
         return $valid;
-
     }
-
 
 }
