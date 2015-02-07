@@ -74,3 +74,9 @@
 
 </div>
 <div class="clearfix"></div>
+<script type="text/javascript">
+    jQuery(document).ready(function()
+    {
+        turn_off_triggers();
+    });
+</script>

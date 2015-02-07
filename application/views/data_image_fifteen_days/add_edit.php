@@ -105,7 +105,8 @@ $this->load->view("action_buttons_edit",$data);
     jQuery(document).ready(function()
     {
 //        $(".form_valid").validationEngine();
-        $(document).off("change", "#year");
+        turn_off_triggers();
+
         $(document).on("change", "#year", function(event)
         {
             $("#data_15_images").html("");
@@ -116,7 +117,6 @@ $this->load->view("action_buttons_edit",$data);
 
 
         });
-        $(document).off("change", "#season_id");
         $(document).on("change", "#season_id", function(event)
         {
             $("#data_15_images").html("");
@@ -125,8 +125,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id_container").hide();
             $("#day_number_container").hide();
         });
-
-        $(document).off("change", "#crop_id");
         $(document).on("change", "#crop_id", function(event)
         {
             $("#data_15_images").html("");
@@ -153,8 +151,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-
-        $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
             $("#data_15_images").html("");
@@ -179,7 +175,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-        $(document).off("change", "#day_number");
         $(document).on("change", "#day_number", function(event)
         {
             $("#data_15_images").html("");
@@ -202,7 +197,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-        $(document).off("change", ".browse_button");
         $(document).on("change", ".browse_button", function(event)
         {
             var id=$(this).attr("data-image-container");

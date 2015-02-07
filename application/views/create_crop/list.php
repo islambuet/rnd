@@ -93,25 +93,28 @@
 <div class="clearfix"></div>
 <script type="text/javascript">
 
-
-    $(document).on("blur",".crop_ordering",function()
+    jQuery(document).ready(function()
     {
-        //var crop_ordering=$(this).val();
-        //console.log(crop_ordering);
-        $.ajax({
-            url: base_url+"create_crop/index/save_ordering",
-            type: 'POST',
-            dataType: "JSON",
-            data:{crop_id:$(this).attr("data-crop-id"),ordering:$(this).val()},
-            success: function (data, status)
-            {
+        turn_off_triggers();
+        $(document).on("blur",".crop_ordering",function()
+        {
+            //var crop_ordering=$(this).val();
+            //console.log(crop_ordering);
+            $.ajax({
+                url: base_url+"create_crop/index/save_ordering",
+                type: 'POST',
+                dataType: "JSON",
+                data:{crop_id:$(this).attr("data-crop-id"),ordering:$(this).val()},
+                success: function (data, status)
+                {
 
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
+                },
+                error: function (xhr, desc, err)
+                {
+                    console.log("error");
 
-            }
+                }
+            });
         });
     });
 </script>

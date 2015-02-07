@@ -78,6 +78,7 @@
     jQuery(document).ready(function()
     {
         $(".form_valid").validationEngine();
+        turn_off_triggers();
 
     });
 </script>

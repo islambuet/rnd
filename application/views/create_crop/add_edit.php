@@ -103,6 +103,7 @@
 
     jQuery(document).ready(function()
     {
+        turn_off_triggers();
         $(".form_valid").validationEngine();
 
     });

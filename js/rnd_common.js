@@ -226,4 +226,6 @@ function turn_off_triggers()
     $(document).off("change", "#flowering_time");
     $(document).off("blur",".crop_ordering");//at crop list.
     $(document).off("change",'input[name="variety_type"]:radio');//at create_crop_variety
+    $(document).off("change","#select_all_variety");//at general sample delivery
+    $(document).off("change", ".browse_button");//data-15-image
 }

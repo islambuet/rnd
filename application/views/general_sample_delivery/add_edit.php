@@ -258,7 +258,7 @@
 
     jQuery(document).ready(function()
     {
-        $(document).off("change","#select_all_variety");
+        turn_off_triggers();
         $(document).on("change","#select_all_variety",function()
         {
             if($(this).is(':checked'))

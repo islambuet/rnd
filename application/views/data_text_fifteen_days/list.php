@@ -2155,4 +2155,9 @@ if($options['remarks']==1)
 <?php
 }
 ?>
-
+<script type="text/javascript">
+    jQuery(document).ready(function()
+    {
+        turn_off_triggers();
+    });
+</script>

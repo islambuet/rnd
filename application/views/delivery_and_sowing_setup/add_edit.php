@@ -167,6 +167,7 @@
 
     jQuery(document).ready(function()
     {
+        turn_off_triggers();
         $( "#estimated_delivery_date" ).datepicker({dateFormat : display_date_format});
         $( "#delivery_date" ).datepicker({dateFormat : display_date_format});
         $( "#transplanting_date" ).datepicker({dateFormat : display_date_format});
