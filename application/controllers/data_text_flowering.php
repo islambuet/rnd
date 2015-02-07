@@ -4,7 +4,6 @@ require APPPATH.'/libraries/root_controller.php';
 class Data_text_flowering extends ROOT_Controller
 {
     private  $message;
-    private $day_15;
     public function __construct()
     {
         parent::__construct();
