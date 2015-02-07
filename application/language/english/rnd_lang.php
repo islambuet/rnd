@@ -291,11 +291,24 @@ $lang['LABEL_1ST_HEAD_FORMATION']='1st Head Formation';
 $lang['LABEL_1ST_FLOWERING_DAYS']='1st Flowering Days';
 $lang['LABEL_50PERCENT_FLOWERING_DAYS']='50% Flowering Days';
 $lang['LABEL_FULL_FLOWERING_DAYS']='Full Flowering Days';
-$lang['LABEL_NO_OF_1ST_CURD_FORMATION_PLANTS']='Days between 1st Curd formation to Marketable Curd formation';
-$lang['LABEL_NO_OF_1ST_ROOT_FORMATION_PLANTS']='Days between 1st Root formation to Marketable Root formation';
-$lang['LABEL_NO_OF_1ST_HEAD_FORMATION_PLANTS']='Days between 1st Head formation to Marketable Head formation';
+$lang['LABEL_NO_OF_1ST_CURD_FORMATION_PLANTS']='No. of First Curd formation Plants';
+$lang['LABEL_NO_OF_1ST_ROOT_FORMATION_PLANTS']='No. of First Root formation Plants';
+$lang['LABEL_NO_OF_1ST_HEAD_FORMATION_PLANTS']='No. of First Head formation Plants';
 $lang['LABEL_NO_OF_1ST_FLOWERING_PLANTS']='No. of 1st Flowering Plants';
 $lang['LABEL_1ST_FLOWERING_TO_FULL_FLOWERING']='1st Flowering to Full Flowering';
+$lang['LABEL_FIFTY_PERCENT_CURD_FORMATION_DAYS']='50% Curd Formation Days';
+$lang['LABEL_FIFTY_PERCENT_HEAD_FORMATION_DAYS']='50% Head Formation Days';
+$lang['LABEL_FIFTY_PERCENT_ROOT_FORMATION_DAYS']='50% Root Formation Days';
+$lang['LABEL_MARKETABLE_CURD_FORMATION']='Days between 1st Curd formation to Marketable Curd formation';
+$lang['LABEL_MARKETABLE_HEAD_FORMATION']='Days between 1st Head formation to Marketable Head formation';
+$lang['LABEL_MARKETABLE_ROOT_FORMATION']='Days between 1st Root formation to Marketable Root formation';
+$lang['LABEL_1ST_FLOWERING_TO_FIRST_FRUIT_SETTING']='Days between 1st Flow. to 1st Fruit setting';
+$lang['LABEL_1ST_CURD_FORMATION_TO_1ST_HARVEST']='Days between 1st Curd formation to 1st Harv.';
+$lang['LABEL_1ST_HEAD_FORMATION_TO_1ST_HARVEST']='Days between 1st Head formation to 1st Harv.';
+$lang['LABEL_1ST_ROOT_FORMATION_TO_1ST_HARVEST']='Days between 1st Root formation to 1st Harv.';
+$lang['LABEL_1ST_FRUIT_SETTING_TO_1ST_HARVEST']='Days between 1st Fruit setting to 1st Harv.';
+$lang['LABEL_NUMBER_OF_FEMALE_FLOWER']='Number of Female Flowers';
+$lang['LABEL_EVALUATION']='Evaluation';
 
 
 
