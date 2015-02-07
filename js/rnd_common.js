@@ -225,4 +225,5 @@ function turn_off_triggers()
     $(document).off("change", "#day_number");
     $(document).off("change", "#flowering_time");
     $(document).off("blur",".crop_ordering");//at crop list.
+    $(document).off("change",'input[name="variety_type"]:radio');//at create_crop_variety
 }

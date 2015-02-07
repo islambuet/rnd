@@ -189,7 +189,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="checkbox" name="replica_status" class="validate[required]" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>  <?php if($varietyInfo['id']>0){echo "disabled";}?>>
+                <input type="checkbox" name="replica_status" class="" value="1" <?php if($varietyInfo["replica_status"]==1) echo "checked";?>  <?php if($varietyInfo['id']>0){echo "disabled";}?>>
             </div>
         </div>
 
@@ -203,32 +203,34 @@
     jQuery(document).ready(function()
     {
         //$(".form_valid").validationEngine();
-        $(document).off("change","#crop_id");
+        turn_off_triggers();
         $(document).on("change","#crop_id",function()
         {
+            $("#crop_type_id").val("");
             var crop_id=$(this).val();
+            if(crop_id>0)
+            {
+                $.ajax({
+                    url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
+
+            }
 
 
-            $.ajax({
-                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
-                type: 'POST',
-                dataType: "JSON",
-                data:{crop_id:crop_id},
-                success: function (data, status)
-                {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
-
-                }
-            });
         });
-
-        $(document).off("change",'#crop_type_id');
-
-        $(document).off("change",'input[name="variety_type"]:radio');
         $(document).on("change",'input[name="variety_type"]:radio',function()
         {
             var variety_type=$(this).val();
