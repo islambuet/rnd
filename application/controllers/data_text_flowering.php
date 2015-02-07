@@ -9,7 +9,6 @@ class Data_text_flowering extends ROOT_Controller
     {
         parent::__construct();
         $this->message="";
-        //$this->day_15=$this->config->item("day_interval_15");
         $this->load->model("data_text_flowering_model");
     }
 
@@ -90,7 +89,7 @@ class Data_text_flowering extends ROOT_Controller
         }
         else
         {
-            $inputs=$this->input->post();
+            $inputs = $this->input->post();
             $year = $inputs['year'];
             $season_id = $inputs['season_id'];
             $crop_id = $inputs['crop_id'];
@@ -98,31 +97,35 @@ class Data_text_flowering extends ROOT_Controller
             $variety_id = $inputs['variety_id'];
             $flowering_time = $inputs['flowering_time'];
 
-            $id=$inputs['data_text_id'];
-            $data=array();
-            $data['info']=json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $id = $inputs['data_text_id'];
+            $data = array();
+            $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
             $user = User_helper::get_user();
-            $time=time();
+            $time = time();
+
             $this->db->trans_start();  //DB Transaction Handle START
+
             if($id>0)
             {
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = $time;
-                Query_helper::update('rnd_setup_text_flowering',$data,array('id = '.$id));
+                Query_helper::update('rnd_data_text_flowering',$data,array('id = '.$id));
             }
             else
             {
-                $data['variety_id']=$variety_id;
-                $data['year']=$year;
-                $data['season_id']=$season_id;
-                $data['crop_id']=$crop_id;
-                $data['crop_type_id']=$crop_type_id;
-                $data['flowering_time']=$flowering_time;
+                $data['variety_id']= $variety_id;
+                $data['year'] = $year;
+                $data['season_id'] = $season_id;
+                $data['crop_id'] = $crop_id;
+                $data['crop_type_id'] = $crop_type_id;
+                $data['flowering_time'] = $flowering_time;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
-                Query_helper::add('rnd_setup_text_flowering',$data);
+                Query_helper::add('rnd_data_text_flowering',$data);
             }
+
             $this->db->trans_complete();   //DB Transaction Handle END
+
             if ($this->db->trans_status() === TRUE)
             {
                 $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");
