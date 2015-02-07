@@ -133,7 +133,6 @@ $dir=$this->config->item('dir');
 
     jQuery(document).ready(function()
     {
-        turn_off_triggers();
         $(".file_style_normal").filestyle({input: false,icon: false,buttonText: "Image For Normal",buttonName: "btn-primary"});
         $(".file_style_replica").filestyle({input: false,icon: false,buttonText: "Image For Replica",buttonName: "btn-danger"});
     });

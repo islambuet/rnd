@@ -92,7 +92,8 @@ $this->load->view("action_buttons_edit",$data);
 
     jQuery(document).ready(function()
     {
-        $(document).off("change", "#year");
+        turn_off_triggers();
+
         $(document).on("change", "#year", function(event)
         {
             $("#config_15_images").html("");
@@ -100,7 +101,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
         });
-        $(document).off("change", "#season_id");
+
         $(document).on("change", "#season_id", function(event)
         {
             $("#config_15_images").html("");
@@ -110,7 +111,7 @@ $this->load->view("action_buttons_edit",$data);
 
         });
 
-        $(document).off("change", "#crop_id");
+
         $(document).on("change", "#crop_id", function(event)
         {
             var crop_id = $("#crop_id").val();
@@ -137,7 +138,7 @@ $this->load->view("action_buttons_edit",$data);
             }
 
         });
-        $(document).off("change", "#crop_type_id");
+
         $(document).on("change", "#crop_type_id", function(event)
         {
             if($(this).val()>0)
@@ -159,13 +160,13 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-        $(document).off("change", ".file_15_days");
+
         $(document).on("change", ".file_15_days", function(event)
         {
             var id=$(this).attr("data-day");
             display_browse_image(this,"#image_"+id);
         });
-        $(document).off("change", "#number_of_fifteendays");
+
         $(document).on("change", "#number_of_fifteendays", function(event)
         {
             var num_images=$(this).val();
