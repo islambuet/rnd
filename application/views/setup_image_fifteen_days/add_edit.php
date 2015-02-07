@@ -161,10 +161,10 @@ $this->load->view("action_buttons_edit",$data);
             }
         });
 
-        $(document).on("change", ".file_15_days", function(event)
+        $(document).on("change", ".browse_button", function(event)
         {
-            var id=$(this).attr("data-day");
-            display_browse_image(this,"#image_"+id);
+            var id=$(this).attr("data-image-container");
+            display_browse_image(this,"#"+id);
         });
 
         $(document).on("change", "#number_of_fifteendays", function(event)

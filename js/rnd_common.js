@@ -227,7 +227,6 @@ function turn_off_triggers()
     $(document).off("blur",".crop_ordering");//at crop list.
     $(document).off("change",'input[name="variety_type"]:radio');//at create_crop_variety
     $(document).off("change","#select_all_variety");//at general sample delivery
-    $(document).off("change", ".browse_button");//data-15-image
-    $(document).off("change", ".file_15_days");//setup-15-days
+    $(document).off("change", ".browse_button");//data-15-image,setup-15-days
     $(document).off("change", "#number_of_fifteendays");//setup-15-days
 }

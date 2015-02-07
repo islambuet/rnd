@@ -36,7 +36,7 @@ for($i=1;$i<=$this->config->item('max_number_of_fifteen_days');$i++)
             <label class="control-label pull-right"><?php echo 'Day '.($i*15);?></label>
         </div>
         <div class="col-xs-4">
-            <input class="file_15_days" id="file_<?php echo $i*15;?>" data-day="<?php echo $i*15;?>" name="file_<?php echo $i*15;?>" type="file">
+            <input class="browse_button" id="file_<?php echo $i*15;?>" data-image-container="image_<?php echo $i*15;?>" name="file_<?php echo $i*15;?>" type="file">
         </div>
         <div class="col-xs-4">
             <img class="image_15_days" id="image_<?php echo $i*15;?>" style="max-width: 100px;" src="<?php echo base_url().$dir['15_days_image_config'].'/'.$images[$i*15]; ?>">
