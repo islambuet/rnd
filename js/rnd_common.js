@@ -44,11 +44,9 @@ $(document).ready(function()
     $(document).on("submit", "form", function(event)
     {
         event.preventDefault();
-
-        var url=$(this).attr("action");
         $.ajax({
-            url: url,
-            type: 'POST',
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
             dataType: "JSON",
             data: new FormData(this),
             processData: false,
@@ -59,12 +57,10 @@ $(document).ready(function()
             },
             error: function (xhr, desc, err)
             {
-                console.log("error");
+
 
             }
         });
-        return false;
-
     });
     //bind any anchor tag to ajax request
     $(document).on("click", "a", function(event)
