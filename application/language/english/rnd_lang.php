@@ -312,6 +312,7 @@ $lang['LABEL_EVALUATION']='Evaluation';
 
 
 $lang['LABEL_HARVEST_NO']='Harvest No:';
+$lang['IMAGE_HARVEST_CROPWISE_NOT_SETUP']='Harvest cropwise header images did not set';
 
 
 

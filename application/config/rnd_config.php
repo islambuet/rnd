@@ -68,6 +68,10 @@ $config['dir']['15_days_image_data'] = 'images/15_days_image_data';
 $config['dir']['flowering_image_config'] = 'images/flowering_image_config';
 $config['dir']['flowering_image_data'] = 'images/flowering_image_data';
 
+
+$config['dir']['fruit_image_config'] = 'images/fruit_image_config';
+$config['dir']['fruit_image_data'] = 'images/fruit_image_data';
+
 $config['dir']['harvest cropwise_image_config'] = 'images/harvest cropwise_image_config';
 $config['dir']['harvest cropwise_image_data'] = 'images/harvest cropwise_image_data';
 
@@ -78,6 +82,12 @@ $config['flowering_image'][3]='1st Fruit Setting Pic';
 $config['flowering_image'][4]='1st Harvested Fruit';
 $config['flowering_image'][5]='Last Harvested Fruit';
 $config['flowering_image'][6]='Special Characters';
+
+//setup fruit config
+$config['fruit_image'][1]='Plot Picture';
+$config['fruit_image'][2]='Plant Picture';
+$config['fruit_image'][3]='Close %s Picture';
+$config['fruit_image'][4]='Single %s Picture';
 
 // setup hervest cropwise Config
 $config['harvest cropwise_image'][1]='Harvested Normal Fruit';
