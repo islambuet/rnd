@@ -131,21 +131,21 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
         else
         {
             $dir=$this->config->item("dir");
-            $uploaded_images=System_helper::upload_file($dir['flowering_image_config']);
+            $uploaded_images=System_helper::upload_file($dir['harvest cropwise_image_config']);
 
             $year=$this->input->post("year");
             $season_id=$this->input->post("season_id");
             $crop_id=$this->input->post("crop_id");
             $crop_type_id=$this->input->post("crop_type_id");
 
-            $config = Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
+            $config = Query_helper::get_info("rnd_setup_image_harvest_cropwise","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
 
             $user = User_helper::get_user();
             $time = time();
 
             $images = array();
 
-            foreach($this->config->item('flowering_image') as $val=>$flower)
+            foreach($this->config->item('harvest cropwise_image') as $val=>$flower)
             {
                 if(array_key_exists('file_'.$val,$uploaded_images))
                 {
@@ -171,7 +171,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
             {
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = $time;
-                Query_helper::update('rnd_setup_image_flowering',$data,array('id = '.$config['id']));
+                Query_helper::update('rnd_setup_image_harvest_cropwise',$data,array('id = '.$config['id']));
             }
             else
             {
@@ -181,7 +181,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
                 $data['crop_type_id']=$crop_type_id;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
-                Query_helper::add('rnd_setup_image_flowering',$data);
+                Query_helper::add('rnd_setup_image_harvest_cropwise',$data);
             }
 
             $this->db->trans_complete();   //DB Transaction Handle END
