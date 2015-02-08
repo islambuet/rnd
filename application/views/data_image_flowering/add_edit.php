@@ -88,7 +88,14 @@ $this->load->view("action_buttons_edit",$data);
             <div class="col-xs-4">
                 <select name="flowering_time" id="flowering_time" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-
+                    <?php
+                    foreach($this->config->item('flowering_image') as $val=>$flower)
+                    {
+                        ?>
+                        <option value="<?php echo $val;?>"><?php echo $flower;?></option>
+                    <?php
+                    }
+                    ?>
                 </select>
             </div>
         </div>
@@ -155,26 +162,8 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("change", "#crop_type_id", function(event)
         {
             $("#data_flowering").html("");
-            $("#day_number").val("");
+            $("#flowering_time").val("");
             $("#flowering_time_container").show();
-            if($(this).val()>0)
-            {
-                $.ajax({
-                    url: base_url+"data_image_flowering/get_flowerings_for_data_image",
-                    type: 'POST',
-                    dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
-                    success: function (data, status)
-                    {
-
-                    },
-                    error: function (xhr, desc, err)
-                    {
-                        console.log("error");
-
-                    }
-                });
-            }
         });
 
         $(document).on("change", "#flowering_time", function(event)
@@ -194,7 +183,6 @@ $this->load->view("action_buttons_edit",$data);
                     error: function (xhr, desc, err)
                     {
                         console.log("error");
-
                     }
                 });
             }
