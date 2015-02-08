@@ -81,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid" style="display: none;" id="variety_container">
+        <div class="row show-grid" style="display: none;" id="variety_id_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -117,8 +117,8 @@ $this->load->view("action_buttons_edit",$data);
 
     jQuery(document).ready(function()
     {
+        turn_off_triggers();
 //        $(".form_valid").validationEngine();
-        $(document).off("change", "#year");
         $(document).on("change", "#year", function(event)
         {
             $("#flowering_text").html("");
@@ -129,7 +129,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#flowering_container").hide();
 
         });
-        $(document).off("change", "#season_id");
+
         $(document).on("change", "#season_id", function(event)
         {
             $("#flowering_text").html("");
@@ -140,7 +140,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#flowering_container").hide();
         });
 
-        $(document).off("change", "#crop_id");
         $(document).on("change", "#crop_id", function(event)
         {
             $("#flowering_text").html("");
@@ -148,6 +147,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id_container").show();
             $("#variety_id_container").hide();
             $("#flowering_container").hide();
+
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -169,13 +169,13 @@ $this->load->view("action_buttons_edit",$data);
             }
         });
 
-        $(document).off("change", "#crop_type_id");
         $(document).on("change", "#crop_type_id", function(event)
         {
             $("#flowering_text").html("");
             $("#flowering_time").val("");
             $("#flowering_container").show();
-            $("#variety_container").show();
+            $("#variety_id_container").show();
+
             if($(this).val()>0)
             {
                 $.ajax({
@@ -195,14 +195,14 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-        $(document).off("change", "#variety_id");
+
         $(document).on("change", "#variety_id", function(event)
         {
             $("#flowering_text").html("");
             $("#flowering_time").val("");
 
         });
-        $(document).off("change", "#flowering_time");
+
         $(document).on("change", "#flowering_time", function(event)
         {
             $("#flowering_text").html("");
