@@ -114,7 +114,6 @@ class Data_text_flowering extends ROOT_Controller
                 $data['season_id'] = $season_id;
                 $data['crop_id'] = $crop_id;
                 $data['crop_type_id'] = $crop_type_id;
-                $data['flowering_time'] = $flowering_time;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
                 Query_helper::add('rnd_data_text_flowering',$data);
