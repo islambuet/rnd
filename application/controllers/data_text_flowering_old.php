@@ -60,11 +60,13 @@ class Data_text_flowering extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
+            $flowering_time = $this->input->post('flowering_time');
 
             $data['title']="Flowering Report Fields";
 
-            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$flowering_time);
             $data['options']=Query_helper::get_info('rnd_setup_text_flowering','*',array('crop_id ='.$crop_id),1);
+            $data['flowering_time']=$flowering_time;
 
             if($this->message)
             {
@@ -92,6 +94,7 @@ class Data_text_flowering extends ROOT_Controller
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
+            $flowering_time = $inputs['flowering_time'];
 
             $id = $inputs['data_text_id'];
             $data = array();
@@ -134,7 +137,7 @@ class Data_text_flowering extends ROOT_Controller
         }
     }
 
-    public function get_varieties_for_data_text()
+    public function get_flowering_times_for_data_text()
     {
         $year = $this->input->post('year');
         $season_id = $this->input->post('season_id');
@@ -154,6 +157,33 @@ class Data_text_flowering extends ROOT_Controller
 
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#variety_id","html"=>$this->load->view("dropdown",$data_dropdown,true));
+
+            $config = Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
+            if($config)
+            {
+                $data_dropdown=array();
+                $data_dropdown['value']=array();
+                $data_dropdown['name']=array();
+                $data_dropdown['selected'] = '';
+
+                foreach($this->config->item('flowering_image') as $val=>$flower)
+                {
+                    $data_dropdown['value'][] = $val;
+                    $data_dropdown['name'][] = $flower;
+                }
+                $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
+            }
+            else
+            {
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('FLOWERING_NOT_SETUP');
+                $data_dropdown=array();
+                $data_dropdown['value']=array();
+                $data_dropdown['name']=array();
+                $data_dropdown['selected'] = '';
+
+                $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
+            }
             $this->jsonReturn($ajax);
         }
         else
@@ -161,6 +191,7 @@ class Data_text_flowering extends ROOT_Controller
             $data_dropdown=array();
             $data_dropdown['selected'] = '';
             $ajax['content'][]=array("id"=>"#variety_id","html"=>$this->load->view("dropdown",$data_dropdown,true));
+            $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data_dropdown,true));
 
             $ajax['status']=false;
             $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');
@@ -176,6 +207,7 @@ class Data_text_flowering extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $variety_id = $this->input->post('variety_id');
+        $flowering_time = $this->input->post('flowering_time');
 
         if(Validation_helper::validate_empty($year))
         {
@@ -203,7 +235,11 @@ class Data_text_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a RND code<br>";
         }
-
+        if(Validation_helper::validate_empty($flowering_time))
+        {
+            $valid=false;
+            $this->message.="Select a Flowering Time<br>";
+        }
         if($valid)
         {
             if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
