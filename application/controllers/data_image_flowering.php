@@ -180,37 +180,6 @@ class Data_image_flowering extends ROOT_Controller
 
     }
 
-    public function get_flowerings_for_data_image()
-    {
-        $year = $this->input->post('year');
-        $season_id = $this->input->post('season_id');
-        $crop_id = $this->input->post('crop_id');
-        $crop_type_id = $this->input->post('crop_type_id');
-
-        $data['selected'] = '';
-        $config = Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
-
-        if($config)
-        {
-            foreach($this->config->item('flowering_image') as $val=>$flower)
-            {
-                $data['value'][] = $val;
-                $data['name'][] = $flower;
-            }
-
-            $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#flowering_time","html"=>$this->load->view("dropdown",$data,true));
-            $this->jsonReturn($ajax);
-        }
-        else
-        {
-            $ajax['status']=false;
-            $ajax['message']=$this->lang->line('IMAGE_FLOWERING_SAMPLE_NOT_SETUP');
-            $this->jsonReturn($ajax);
-        }
-    }
-
-
     private function check_validation()
     {
         $valid=true;
