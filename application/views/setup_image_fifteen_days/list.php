@@ -51,7 +51,7 @@ for($i=1;$i<=$this->config->item('max_number_of_fifteen_days');$i++)
 
     jQuery(document).ready(function()
     {
-        $(".file_15_days").filestyle({input: false,icon: false,buttonText: "SELECT IMAGE",buttonName: "btn-primary"});
+        $(".browse_button").filestyle({input: false,icon: false,buttonText: "SELECT IMAGE",buttonName: "btn-primary"});
 
     });
 
