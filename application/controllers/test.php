@@ -6,15 +6,52 @@ class Test extends CI_Controller
 
     public function index()
 	{
-        //$this->db->order_by('str_to_date(day, "%d-%b-%Y")', "asc",false);
-        $oBy='day';
-    $this->db->select('str_to_date('.$oBy.', "%d-%b-%Y") day',false);
-    $this->db->select('rnd_test.*');
-    $this->db->order_by('day','ASC');
-    $query = $this->db->get('rnd_test');
-        echo $this->db->last_query();
-        print_r($query->result());
+        $results[]=array('task_id' => "1",
+            'name' => "do dishes",
+            'user' => "bob");
+        $results[]=array('task_id' => "1",
+            'name' => "do dishes",
+            'user' => "bob");
+        $results[]=array('task_id' => "2",
+            'name' => "do dishes",
+            'user' => "liam");
+        $results[]=array('task_id' => "3",
+            'name' => "do dishes",
+            'user' => "bob");
+        $results[]=array('task_id' => "3",
+            'name' => "do dishes",
+            'user' => "liam");
 
+        //print_r($results);
+    $new_result=array();
+    foreach($results as $key=>$result)
+    {
+        $index=$this->get_index($new_result,$result['task_id']);
+        if($index===false)
+        {
+            $new_result[]=array('task_id'=>$result['task_id'],'name'=>$result['name'],'users'=>array($result['user']));
+        }
+        else
+        {
+            $new_result[$index]['users'][]=$result['user'];
+
+        }
+
+    }
+        echo "<pre>";
+        print_r($new_result);
+        echo "</pre>";
+    }
+    public function get_index($array,$task_id)
+    {
+        foreach($array as $index=>$a)
+        {
+            if($a['task_id']==$task_id)
+            {
+                return $index;
+            }
+        }
+        return false;
     }
 
 }

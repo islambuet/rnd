@@ -74,7 +74,7 @@ class Data_image_harvest_cropwise extends ROOT_Controller
 
             $data['head_images']=$head_images;
 
-            $data['varieties']=$this->data_image_harvest_cropwise_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,15);
+            $data['varieties']=$this->data_image_harvest_cropwise_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$harvest_no);
 
             if($this->message)
             {
@@ -82,6 +82,7 @@ class Data_image_harvest_cropwise extends ROOT_Controller
             }
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#harvest_cropwise_images","html"=>$this->load->view("data_image_harvest_cropwise/list",$data,true));
+            $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown($harvest_no));
             $this->jsonReturn($ajax);
 
         }
@@ -103,55 +104,62 @@ class Data_image_harvest_cropwise extends ROOT_Controller
             $season_id = $this->input->post('season_id');
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
-            $day_number = $this->input->post('day_number');
+            $harvest_no = $this->input->post('harvest_no');
             $dir=$this->config->item("dir");
-            $uploaded_images=System_helper::upload_file($dir['15_days_image_data']);
-//
+            $uploaded_images=System_helper::upload_file($dir['harvest cropwise_image_data']);
+
             $user = User_helper::get_user();
             $time=time();
 
-
-
-            //Query_helper::add('rnd_setup_image_fifteen_days',$data);
             $variety_ids=$this->input->post('variety_id');
             $this->db->trans_start();  //DB Transaction Handle START
             foreach($variety_ids as $variety_id)
             {
                 $data=array();
-                $id=$this->input->post('rdifd_id_'.$variety_id);
-                $image_normal=$this->input->post('old_normal_image_'.$variety_id);
-                if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
+                $id=$this->input->post('rdihc_id_'.$variety_id);
+                $image_normal=array();
+                $image_replica=array();
+                $remarks=array();
+                foreach($this->config->item('harvest cropwise_image') as $key=>$harvest_config)
                 {
 
-                    if($uploaded_images['file_normal_'.$variety_id]['status'])
+                    $image_normal[$key]=$this->input->post('old_normal_image_'.$key.'_'.$variety_id);
+                    if(array_key_exists('file_normal_'.$key.'_'.$variety_id,$uploaded_images))
                     {
-                        $image_normal=$uploaded_images['file_normal_'.$variety_id]['info']['file_name'];
-                    }
-                    else
-                    {
-                        $this->message.=$uploaded_images['file_normal_'.$variety_id]['message'].'<br>';
-                    }
-                }
-                $image_replica=$this->input->post('old_replica_image_'.$variety_id);
-                if(array_key_exists('file_replica_'.$variety_id,$uploaded_images))
-                {
 
-                    if($uploaded_images['file_replica_'.$variety_id]['status'])
-                    {
-                        $image_replica=$uploaded_images['file_replica_'.$variety_id]['info']['file_name'];
+                        if($uploaded_images['file_normal_'.$key.'_'.$variety_id]['status'])
+                        {
+                            $image_normal[$key]=$uploaded_images['file_normal_'.$key.'_'.$variety_id]['info']['file_name'];
+                        }
+                        else
+                        {
+                            $this->message.=$uploaded_images['file_normal_'.$key.'_'.$variety_id]['message'].'<br>';
+                        }
                     }
-                    else
+
+                    $image_replica[$key]=$this->input->post('old_replica_image_'.$key.'_'.$variety_id);
+                    if(array_key_exists('file_replica_'.$key.'_'.$variety_id,$uploaded_images))
                     {
-                        $this->message.=$uploaded_images['file_replica_'.$variety_id]['message'].'<br>';
+
+                        if($uploaded_images['file_replica_'.$key.'_'.$variety_id]['status'])
+                        {
+                            $image_replica[$key]=$uploaded_images['file_replica_'.$key.'_'.$variety_id]['info']['file_name'];
+                        }
+                        else
+                        {
+                            $this->message.=$uploaded_images['file_replica_'.$key.'_'.$variety_id]['message'].'<br>';
+                        }
                     }
+
+                    $remarks[$key]=$this->input->post('remarks_'.$key.'_'.$variety_id);
                 }
                 $data['images']=json_encode(array('normal'=>$image_normal,'replica'=>$image_replica));
-                $data['remarks']=$this->input->post('remarks_'.$variety_id);
+                $data['remarks']=json_encode($remarks);
                 if($id>0)
                 {
                     $data['modified_by'] = $user->user_id;
                     $data['modification_date'] = $time;
-                    Query_helper::update('rnd_data_image_fifteen_days',$data,array('id = '.$id));
+                    Query_helper::update('rnd_data_image_harvest_cropwise',$data,array('id = '.$id));
                 }
                 else
                 {
@@ -160,11 +168,12 @@ class Data_image_harvest_cropwise extends ROOT_Controller
                     $data['season_id']=$season_id;
                     $data['crop_id']=$crop_id;
                     $data['crop_type_id']=$crop_type_id;
-                    $data['day_number']=$day_number;
+                    $data['harvest_no']=$harvest_no;
                     $data['created_by'] = $user->user_id;
                     $data['creation_date'] = $time;
-                    Query_helper::add('rnd_data_image_fifteen_days',$data);
+                    Query_helper::add('rnd_data_image_harvest_cropwise',$data);
                 }
+
             }
             $this->db->trans_complete();   //DB Transaction Handle END
             if ($this->db->trans_status() === TRUE)
@@ -180,15 +189,14 @@ class Data_image_harvest_cropwise extends ROOT_Controller
         }
 
     }
-
-    public function get_harvest_no_for_data_image($selected=0)
+    private function get_harvest_no_dropdown($selected)
     {
         $year = $this->input->post('year');
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
 
-        $data['selected'] = '';
+
         $config = Query_helper::get_info("rnd_data_image_harvest_cropwise","max(harvest_no) total_harvest",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
         $max_harvest=1;
 
@@ -203,9 +211,14 @@ class Data_image_harvest_cropwise extends ROOT_Controller
             $data['value'][] = $i;
             $data['name'][] = $i;
         }
+        $html=$this->load->view("dropdown",$data,true);
+        return $html;
+    }
 
+    public function get_harvest_no_for_data_image()
+    {
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->load->view("dropdown",$data,true));
+        $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown(0));
         $this->jsonReturn($ajax);
 
     }

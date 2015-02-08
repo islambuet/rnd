@@ -82,7 +82,7 @@ $config['flowering_image'][6]='Special Characters';
 // setup hervest cropwise Config
 $config['harvest cropwise_image'][1]='Harvested Normal Fruit';
 $config['harvest cropwise_image'][2]='Harvested Abnormal Fruit';
-$config['harvest cropwise_image'][3]='Harvested Abnormal Fruit';
+
 
 
 

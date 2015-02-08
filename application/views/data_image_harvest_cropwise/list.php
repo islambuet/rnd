@@ -69,61 +69,82 @@ $dir=$this->config->item('dir');
                     <td>
                         <?php echo $key+1;?>
                         <input name="variety_id[]" type="hidden" value="<?php echo $variety['id'];?>">
-                        <input name="rdifd_id_<?php echo $variety['id'];?>" type="hidden" value="<?php echo $variety['rdifd_id'];?>">
+                        <input name="rdihc_id_<?php echo $variety['id'];?>" type="hidden" value="<?php echo $variety['rdihc_id'];?>">
                     </td>
                     <td><?php echo System_helper::get_rnd_code($variety,1);?></td>
-
-                    <td style="min-width: 200px;">
-
-                        <input type="file" class="browse_button file_style_normal" data-image-container="image_normal_<?php echo $variety['id'];?>" name="file_normal_<?php echo $variety['id'];?>">
-                        <?php
-                           if($variety['replica_status']==1)
-                           {
-                               ?>
-                               <br><input type="file" class="browse_button file_style_replica" data-image-container="image_replica_<?php echo $variety['id'];?>" name="file_replica_<?php echo $variety['id'];?>">
-                               <?php
-                           }
+                    <?php
+                    foreach($this->config->item('harvest cropwise_image') as $key=>$harvest_config)
+                    {
                         ?>
+                        <td style="min-width: 200px;">
 
-
-                    </td>
-                    <td style="min-width: 300px;">
-                        <?php
-                        $images=json_decode($variety['images'],true);
-                        $image='no_image.jpg';
-
-                        if(is_array($images))
-                        {
-                            $image=$images['normal'];
-
-                        }
-                        ?>
-                        <img id="image_normal_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['15_days_image_data'].'/'.$image; ?>">
-                        <input type="hidden" name="old_normal_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
-                        <?php
-                        if($variety['replica_status']==1)
-                        {
-                            $image='no_image.jpg';
-                            if(is_array($images))
+                            <input type="file" class="browse_button file_style_normal" data-image-container="image_normal_<?php echo $key.'_'.$variety['id'];?>" name="file_normal_<?php echo $key.'_'.$variety['id'];?>">
+                            <?php
+                            if($variety['replica_status']==1)
                             {
-                                $image=$images['replica'];
+                                ?>
+                                <br><input type="file" class="browse_button file_style_replica" data-image-container="image_replica_<?php echo $key.'_'.$variety['id'];?>" name="file_replica_<?php echo $key.'_'.$variety['id'];?>">
+                            <?php
+                            }
+                            ?>
+                        </td>
+                        <td style="min-width: 300px;">
+                            <?php
+                            $images=json_decode($variety['images'],true);
+                            $image='no_image.jpg';
+
+                            if(is_array($images)&&($images['normal'][$key]))
+                            {
+                                $image=$images['normal'][$key];
 
                             }
-
                             ?>
-                            <br><br><img id="image_replica_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['15_days_image_data'].'/'.$image; ?>">
-                            <input type="hidden" name="old_replica_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
-                        <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <input type="hidden" name="old_replica_image_<?php echo $variety['id'];?>" value="no_image.jpg">
+                            <img id="image_normal_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest cropwise_image_data'].'/'.$image; ?>">
+                            <input type="hidden" name="old_normal_image_<?php echo $key.'_'.$variety['id'];?>" value="<?php echo $image; ?>">
                             <?php
-                        }
+                            if($variety['replica_status']==1)
+                            {
+                                $image='no_image.jpg';
+                                if(is_array($images)&&($images['replica'][$key]))
+                                {
+                                    $image=$images['replica'][$key];
+
+                                }
+
+                                ?>
+                                <br><br><img id="image_replica_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest cropwise_image_data'].'/'.$image; ?>">
+                                <input type="hidden" name="old_replica_image_<?php echo $key.'_'.$variety['id'];?>" value="<?php echo $image; ?>">
+                            <?php
+                            }
+                            else
+                            {
+                                ?>
+                                <input type="hidden" name="old_replica_image_<?php echo $key.'_'.$variety['id'];?>" value="no_image.jpg">
+                            <?php
+                            }
+                            ?>
+                        </td>
+                        <?php
+                            $remarks=json_decode($variety['remarks'],true);
+
+                            $remark='';
+
+                            if(is_array($remarks)&&($remarks[$key]))
+                            {
+                                $remark=$remarks[$key];
+
+                            }
                         ?>
-                    </td>
-                    <td><textarea name="remarks_<?php echo $variety['id'];?>"><?php echo $variety['remarks'];?></textarea></td>
+                        <td><textarea name="remarks_<?php echo $key.'_'.$variety['id'];?>"><?php echo $remark;?></textarea></td>
+
+                    <?php
+
+                    }
+                    ?>
+
+
+
+
 
                 </tr>
             <?php
