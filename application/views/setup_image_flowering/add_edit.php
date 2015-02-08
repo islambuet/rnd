@@ -76,7 +76,6 @@ $this->load->view("action_buttons_edit",$data);
             <div class="col-xs-4">
                 <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-
                 </select>
             </div>
         </div>
@@ -118,38 +117,45 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id_container").show();
 
             var crop_id = $("#crop_id").val();
-            $.ajax({
-                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
-                type: 'POST',
-                dataType: "JSON",
-                data:{crop_id:crop_id},
-                success: function (data, status)
-                {
+            if(crop_id>0)
+            {
+                $.ajax({
+                    url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id},
+                    success: function (data, status)
+                    {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
-                }
-            });
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+                    }
+                });
+            }
         });
 
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $.ajax({
-                url: base_url+"setup_image_flowering/index/list",
-                type: 'POST',
-                dataType: "JSON",
-                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
-                success: function (data, status)
-                {
+            $("#config_flowering_images").html("");
+            if($(this).val()>0)
+            {
+                $.ajax({
+                    url: base_url+"setup_image_flowering/index/list",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                    success: function (data, status)
+                    {
 
-                },
-                error: function (xhr, desc, err)
-                {
-                    console.log("error");
-                }
-            });
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+                    }
+                });
+            }
         });
         $(document).on("change", ".browse_button", function(event)
         {
