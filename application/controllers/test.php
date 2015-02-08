@@ -9,6 +9,7 @@ class Test extends CI_Controller
         //$this->db->order_by('str_to_date(day, "%d-%b-%Y")', "asc",false);
         $oBy='day';
     $this->db->select('str_to_date('.$oBy.', "%d-%b-%Y") day',false);
+    $this->db->select('rnd_test.*');
     $this->db->order_by('day','ASC');
     $query = $this->db->get('rnd_test');
         echo $this->db->last_query();
