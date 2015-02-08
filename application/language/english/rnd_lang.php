@@ -311,4 +311,7 @@ $lang['LABEL_NUMBER_OF_FEMALE_FLOWER']='Number of Female Flowers';
 $lang['LABEL_EVALUATION']='Evaluation';
 
 
+$lang['LABEL_HARVEST_NO']='Harvest No:';
+
+
 
