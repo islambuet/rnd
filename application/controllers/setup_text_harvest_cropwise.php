@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Setup_text_fruit extends ROOT_Controller
+class Setup_text_harvest_cropwise extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("setup_text_fruit_model");
+        $this->load->model("setup_text_harvest_cropwise_model");
     }
 
     public function index($task="list",$id=0)
@@ -33,7 +33,7 @@ class Setup_text_fruit extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "setup_text_fruit/index/list/",$this->setup_text_fruit_model->get_total_crops(),4);
+        $config = System_helper::pagination_config(base_url() . "setup_text_harvest_cropwise/index/list/",$this->setup_text_harvest_cropwise_model->get_total_crops(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,16 +42,16 @@ class Setup_text_fruit extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['cropInfo'] = $this->setup_text_fruit_model->get_cropInfo($page);
-        $data['title']="Fruit Text Setup List";
+        $data['cropInfo'] = $this->setup_text_harvest_cropwise_model->get_cropInfo($page);
+        $data['title']="Harvest Text Setup List";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_fruit/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_harvest_cropwise/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
-        $ajax['page_url']=base_url()."setup_text_fruit/index/list/".($page+1);
+        $ajax['page_url']=base_url()."setup_text_harvest_cropwise/index/list/".($page+1);
 
         $this->jsonReturn($ajax);
     }
@@ -59,14 +59,14 @@ class Setup_text_fruit extends ROOT_Controller
     public function rnd_add_edit($id)
     {
         $data = array();
-        $data['typeInfo'] = $this->setup_text_fruit_model->get_crop_info($id);
-        $data['columns'] = $this->setup_text_fruit_model->get_setup($id);
-        $data['title']='Fruit Text Setup ('.$data['typeInfo']['crop_name'].')';
+        $data['typeInfo'] = $this->setup_text_harvest_cropwise_model->get_crop_info($id);
+        $data['columns'] = $this->setup_text_harvest_cropwise_model->get_setup($id);
+        $data['title']='Harvest Text Setup ('.$data['typeInfo']['crop_name'].')';
 
-        $ajax['page_url']=base_url()."setup_text_fruit/index/edit/".$id;
+        $ajax['page_url']=base_url()."setup_text_harvest_cropwise/index/edit/".$id;
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_fruit/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_harvest_cropwise/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
@@ -76,7 +76,7 @@ class Setup_text_fruit extends ROOT_Controller
         $crop_id = $this->input->post("crop_id");
         $columns=$this->input->post("columns");
 
-        $data = $this->setup_text_fruit_model->get_setup($crop_id);
+        $data = $this->setup_text_harvest_cropwise_model->get_setup($crop_id);
         unset($data['id']);
         unset($data['crop_id']);
         unset($data['status']);
@@ -103,7 +103,7 @@ class Setup_text_fruit extends ROOT_Controller
 
         $this->db->trans_start();  //DB Transaction Handle START
 
-        Query_helper::update('rnd_setup_text_fruit',$data,array("crop_id = ".$crop_id));
+        Query_helper::update('rnd_setup_text_harvest',$data,array("crop_id = ".$crop_id));
 
         $this->db->trans_complete();   //DB Transaction Handle END
 
