@@ -315,6 +315,7 @@ $lang['LABEL_HARVEST_NO']='Harvest No:';
 $lang['IMAGE_HARVEST_CROPWISE_NOT_SETUP']='Harvest cropwise header images did not set';
 $lang['LABEL_HARVEST_NUMBER']='Harvest Number';
 $lang['HARVESTING_DATE']='Harvest Date';
+$lang['LABEL_FRUIT_IMAGE_TYPE']='Fruit Image Type';
 
 
 
