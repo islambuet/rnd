@@ -5,7 +5,7 @@ $data["hide_back"]="1";
 $this->load->view("action_buttons_edit",$data);
 
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_text_fruit/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_text_harvest/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -19,6 +19,7 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
+
                 <select name="year" id="year" class="form-control validate[required]">
                     <?php
                     $current_year=date("Y",time());
@@ -80,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid" style="display: none;" id="variety_id_container">
+        <div class="row show-grid" style="display: none;" id="variety_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -91,9 +92,20 @@ $this->load->view("action_buttons_edit",$data);
                 </select>
             </div>
         </div>
+        <div class="row show-grid" style="display: none;"  id="harvest_number_container">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HARVEST_NUMBER');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-xs-4">
+                <select name="harvest_number" id="harvest_number" class="form-control validate[required]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="row widget" id="fruit_text">
+    
+    <div class="row widget" id="harvest_text">
 
     </div>
     <div class="clearfix"></div>
@@ -103,34 +115,38 @@ $this->load->view("action_buttons_edit",$data);
 
     jQuery(document).ready(function()
     {
-        turn_off_triggers();
 //        $(".form_valid").validationEngine();
+        turn_off_triggers();
+
         $(document).on("change", "#year", function(event)
         {
-            $("#fruit_text").html("");
+            $("#harvest_text").html("");
             $("#season_id").val("");
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
+            $("#harvest_number_container").hide();
 
         });
 
         $(document).on("change", "#season_id", function(event)
         {
-            $("#fruit_text").html("");
+            $("#harvest_text").html("");
             $("#crop_id").val("");
             $("#crop_id_container").show();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
+            $("#harvest_number_container").hide();
         });
+
 
         $(document).on("change", "#crop_id", function(event)
         {
-            $("#fruit_text").html("");
+            $("#harvest_text").html("");
             $("#crop_type_id").val("");
             $("#crop_type_id_container").show();
             $("#variety_id_container").hide();
-
+            $("#harvest_number_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -152,15 +168,17 @@ $this->load->view("action_buttons_edit",$data);
             }
         });
 
+
         $(document).on("change", "#crop_type_id", function(event)
         {
-            $("#fruit_text").html("");
-            $("#variety_id_container").show();
-
+            $("#harvest_text").html("");
+            $("#day_number").val("");
+            $("#harvest_number_container").show();
+            $("#variety_container").show();
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_fruit/get_varieties_for_data_text",
+                    url: base_url+"data_text_harvest/get_days_varieties_for_data_text",
                     type: 'POST',
                     dataType: "JSON",
                     data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
@@ -171,6 +189,7 @@ $this->load->view("action_buttons_edit",$data);
                     error: function (xhr, desc, err)
                     {
                         console.log("error");
+
                     }
                 });
             }
@@ -178,15 +197,21 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#variety_id", function(event)
         {
-            $("#fruit_text").html("");
+            $("#harvest_text").html("");
+            $("#harvest_number").val("");
 
+        });
+
+        $(document).on("change", "#harvest_number", function(event)
+        {
+            $("#harvest_text").html("");
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_fruit/index/list",
+                    url: base_url+"data_text_harvest/index/list",
                     type: 'POST',
                     dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val()},
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val(),harvest_number:$("#harvest_number").val()},
                     success: function (data, status)
                     {
 
@@ -199,7 +224,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-
     });
 
 </script>
