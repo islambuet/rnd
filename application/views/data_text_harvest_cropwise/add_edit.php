@@ -5,7 +5,7 @@ $data["hide_back"]="1";
 $this->load->view("action_buttons_edit",$data);
 
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_text_harvest/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>data_text_harvest_cropwise/index/save" method="post">
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -81,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid" style="display: none;" id="variety_container">
+        <div class="row show-grid" style="display: none;" id="variety_id_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -92,12 +92,12 @@ $this->load->view("action_buttons_edit",$data);
                 </select>
             </div>
         </div>
-        <div class="row show-grid" style="display: none;"  id="harvest_number_container">
+        <div class="row show-grid" style="display: none;"  id="harvest_no_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HARVEST_NUMBER');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <select name="harvest_number" id="harvest_number" class="form-control validate[required]">
+                <select name="harvest_no" id="harvest_no" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
                 </select>
@@ -125,7 +125,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
-            $("#harvest_number_container").hide();
+            $("#harvest_no_container").hide();
 
         });
 
@@ -136,7 +136,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_id_container").show();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
-            $("#harvest_number_container").hide();
+            $("#harvest_no_container").hide();
         });
 
 
@@ -146,7 +146,7 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id").val("");
             $("#crop_type_id_container").show();
             $("#variety_id_container").hide();
-            $("#harvest_number_container").hide();
+            $("#harvest_no_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -173,12 +173,12 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#harvest_text").html("");
             $("#day_number").val("");
-            $("#harvest_number_container").show();
-            $("#variety_container").show();
+            $("#harvest_no_container").hide();
+            $("#variety_id_container").show();
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_harvest/get_days_varieties_for_data_text",
+                    url: base_url+"data_text_harvest_cropwise/get_harvest_cropwise_varieties_for_data_text",
                     type: 'POST',
                     dataType: "JSON",
                     data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
@@ -198,20 +198,39 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("change", "#variety_id", function(event)
         {
             $("#harvest_text").html("");
-            $("#harvest_number").val("");
+            $("#harvest_no").val("");
+            $("#harvest_no_container").show();
+            if($(this).val()>0)
+            {
+                $.ajax({
+                    url: base_url+"data_text_harvest_cropwise/get_dropDown_harvest_no",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val()},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
+            }
 
         });
 
-        $(document).on("change", "#harvest_number", function(event)
+        $(document).on("change", "#harvest_no", function(event)
         {
             $("#harvest_text").html("");
             if($(this).val()>0)
             {
                 $.ajax({
-                    url: base_url+"data_text_harvest/index/list",
+                    url: base_url+"data_text_harvest_cropwise/index/list",
                     type: 'POST',
                     dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val(),harvest_number:$("#harvest_number").val()},
+                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val(),harvest_no:$("#harvest_no").val()},
                     success: function (data, status)
                     {
 

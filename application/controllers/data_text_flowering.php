@@ -202,30 +202,36 @@ class Data_text_flowering extends ROOT_Controller
             $valid=false;
             $this->message.="Select a RND code<br>";
         }
-
         if($valid)
         {
-            if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
+            if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
-
-            }
-            if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
-            {
-                $valid=false;
-                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
+                $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
 
             }
             if($valid)
             {
-                if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
+                if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
                 {
                     $valid=false;
-                    $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
+                    $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
+
                 }
+                /*if($valid)
+                {
+                    if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
+                    {
+                        $valid=false;
+                        $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
+
+                    }
+                }*/
+
             }
         }
+
+
 
         return $valid;
     }
