@@ -48,7 +48,7 @@ if($options['harvesting_date']==1)
     {
         $harvesting_date_normal=$info['normal']['harvesting_date'];
     }
-    $$harvesting_date_replica="";
+    $harvesting_date_replica="";
     if(is_array($info)&& !empty($info['replica']['harvesting_date']))
     {
         $harvesting_date_replica=$info['replica']['harvesting_date'];

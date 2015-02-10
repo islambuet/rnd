@@ -75,6 +75,7 @@ class Data_text_harvest_cropwise extends ROOT_Controller
             }
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_cropwise/list",$data,true));
+            $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown($harvest_no));
             $this->jsonReturn($ajax);
         }
     }
@@ -95,7 +96,7 @@ class Data_text_harvest_cropwise extends ROOT_Controller
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
-            $day_number = $inputs['day_number'];
+            $harvest_no = $this->input->post('harvest_no');
 
             $id=$inputs['data_text_id'];
             $data=array();
@@ -107,7 +108,7 @@ class Data_text_harvest_cropwise extends ROOT_Controller
             {
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = $time;
-                Query_helper::update('rnd_data_text_harvest',$data,array('id = '.$id));
+                Query_helper::update('rnd_data_text_harvest_cropwise',$data,array('id = '.$id));
             }
             else
             {
@@ -116,10 +117,10 @@ class Data_text_harvest_cropwise extends ROOT_Controller
                 $data['season_id']=$season_id;
                 $data['crop_id']=$crop_id;
                 $data['crop_type_id']=$crop_type_id;
-                $data['day_number']=$day_number;
+                $data['harvest_no']=$harvest_no;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
-                Query_helper::add('rnd_data_text_harvest',$data);
+                Query_helper::add('rnd_data_text_harvest_cropwise',$data);
             }
             $this->db->trans_complete();   //DB Transaction Handle END
             if ($this->db->trans_status() === TRUE)
