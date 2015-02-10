@@ -48,7 +48,7 @@ class Setup_text_harvest_cropwise_model extends CI_Model
     public function get_setup($id)
     {
         $this->db->select('*');
-        $this->db->from('rnd_setup_text_harvest');
+        $this->db->from('rnd_setup_text_harvest_cropwise');
         $this->db->where('crop_id',$id);
 
         $query = $this->db->get();

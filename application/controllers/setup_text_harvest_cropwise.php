@@ -103,7 +103,7 @@ class Setup_text_harvest_cropwise extends ROOT_Controller
 
         $this->db->trans_start();  //DB Transaction Handle START
 
-        Query_helper::update('rnd_setup_text_harvest',$data,array("crop_id = ".$crop_id));
+        Query_helper::update('rnd_setup_text_harvest_cropwise',$data,array("crop_id = ".$crop_id));
 
         $this->db->trans_complete();   //DB Transaction Handle END
 

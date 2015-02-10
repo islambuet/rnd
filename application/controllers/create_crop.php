@@ -111,7 +111,7 @@ class Create_crop extends ROOT_Controller
             Query_helper::add('rnd_setup_text_fifteen_days',$status_data);
             Query_helper::add('rnd_setup_text_flowering',$status_data);
             Query_helper::add('rnd_setup_text_fruit',$status_data);
-            Query_helper::add('rnd_setup_text_harvest',$status_data);
+            Query_helper::add('rnd_setup_text_harvest_cropwise',$status_data);
             Query_helper::add('rnd_setup_text_harvest_compile',$status_data);
             Query_helper::add('rnd_setup_text_yield',$status_data);
             $this->db->trans_complete();   //DB Transaction Handle END
