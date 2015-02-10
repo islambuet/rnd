@@ -29,7 +29,7 @@ $dir=$this->config->item('dir');
             <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
             <th><?php echo $this->lang->line("LABEL_UPLOAD_BUTTONS"); ?></th>
             <th>
-                <img style="max-width: 250px;" src="<?php echo base_url().$dir['flowering_image_config'].'/'.$sample_image; ?>">
+                <img style="max-width: 250px;" src="<?php echo base_url().$dir['fruit_image_config'].'/'.$sample_image; ?>">
 
             </th>
             <th><?php echo $this->lang->line("LABEL_REMARKS"); ?></th>
@@ -75,7 +75,7 @@ $dir=$this->config->item('dir');
 
                         }
                         ?>
-                        <img id="image_normal_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['flowering_image_data'].'/'.$image; ?>">
+                        <img id="image_normal_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['fruit_image_data'].'/'.$image; ?>">
                         <input type="hidden" name="old_normal_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
                         <?php
                         if($variety['replica_status']==1)
@@ -88,7 +88,7 @@ $dir=$this->config->item('dir');
                             }
 
                             ?>
-                            <br><br><img id="image_replica_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['flowering_image_data'].'/'.$image; ?>">
+                            <br><br><img id="image_replica_<?php echo $variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['fruit_image_data'].'/'.$image; ?>">
                             <input type="hidden" name="old_replica_image_<?php echo $variety['id'];?>" value="<?php echo $image; ?>">
                         <?php
                         }

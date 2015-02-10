@@ -164,6 +164,25 @@ $this->load->view("action_buttons_edit",$data);
             $("#data_fruit").html("");
             $("#fruit_image_type").val("");
             $("#fruit_image_type_container").show();
+            var crop_type_id = $("#crop_type_id").val();
+            if(crop_type_id>0)
+            {
+                $.ajax({
+                    url: base_url+"data_image_fruit/get_dropDown_fruit_image_type",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:$("#crop_id").val()},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
+            }
         });
 
         $(document).on("change", "#fruit_image_type", function(event)

@@ -61,17 +61,17 @@ class Data_image_fruit extends ROOT_Controller
             $season_id = $this->input->post('season_id');
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
-            $flowering_time = $this->input->post('flowering_time');
+            $fruit_image_type = $this->input->post('fruit_image_type');
 
             $data['title']="Upload Image";
-            $image_sample_json = Query_helper::get_info('rnd_setup_image_flowering',array('images'),array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
+            $image_sample_json = Query_helper::get_info('rnd_setup_image_fruit',array('images'),array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
 
             $image_sample = json_decode($image_sample_json['images'],true);
-            $data['flowering_time'] = $flowering_time;
+            $data['fruit_image_type'] = $fruit_image_type;
             $data['sowing_info'] = Query_helper::get_info('delivery_and_sowing_setup','*',array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id),1);
-            $data['sample_image'] = $image_sample[$flowering_time];
+            $data['sample_image'] = $image_sample[$fruit_image_type];
 
-            $data['varieties'] = $this->data_image_flowering_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$flowering_time);
+            $data['varieties'] = $this->data_image_fruit_model->get_varieties($year,$season_id,$crop_id,$crop_type_id,$fruit_image_type);
 
             if($this->message)
             {
@@ -79,9 +79,28 @@ class Data_image_fruit extends ROOT_Controller
             }
 
             $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#data_flowering","html"=>$this->load->view("data_image_flowering/list",$data,true));
+            $ajax['content'][]=array("id"=>"#data_fruit","html"=>$this->load->view("data_image_fruit/list",$data,true));
             $this->jsonReturn($ajax);
         }
+    }
+    public function get_dropDown_fruit_image_type()
+    {
+        $crop_id=$this->input->post('crop_id');
+        $crop_info = Query_helper::get_info("rnd_crop","fruit_type",array('id = '.$crop_id),1);
+        $fruit_type_config=$this->config->item("fruit_type");
+        $fruit_type=$fruit_type_config[$crop_info['fruit_type']];
+        $data['selected'] = '';
+
+
+        foreach($this->config->item('fruit_image') as $val=>$ctype)
+        {
+            $data['value'][] = $val;
+            $data['name'][] = sprintf($ctype,$fruit_type);
+        }
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#fruit_image_type","html"=>$this->load->view("dropdown",$data,true));
+        $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
@@ -98,10 +117,10 @@ class Data_image_fruit extends ROOT_Controller
             $season_id = $this->input->post('season_id');
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
-            $flowering_time = $this->input->post('flowering_time');
+            $fruit_image_type = $this->input->post('fruit_image_type');
 
             $dir = $this->config->item("dir");
-            $uploaded_images = System_helper::upload_file($dir['flowering_image_data']);
+            $uploaded_images = System_helper::upload_file($dir['fruit_image_data']);
             $user = User_helper::get_user();
             $time = time();
 
@@ -148,7 +167,7 @@ class Data_image_fruit extends ROOT_Controller
                 {
                     $data['modified_by'] = $user->user_id;
                     $data['modification_date'] = $time;
-                    Query_helper::update('rnd_data_image_flowering',$data,array('id = '.$id));
+                    Query_helper::update('rnd_data_image_fruit',$data,array('id = '.$id));
                 }
                 else
                 {
@@ -157,10 +176,10 @@ class Data_image_fruit extends ROOT_Controller
                     $data['season_id']=$season_id;
                     $data['crop_id']=$crop_id;
                     $data['crop_type_id']=$crop_type_id;
-                    $data['flowering_time']=$flowering_time;
+                    $data['fruit_image_type']=$fruit_image_type;
                     $data['created_by'] = $user->user_id;
                     $data['creation_date'] = $time;
-                    Query_helper::add('rnd_data_image_flowering',$data);
+                    Query_helper::add('rnd_data_image_fruit',$data);
                 }
             }
 
@@ -187,7 +206,7 @@ class Data_image_fruit extends ROOT_Controller
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
-        $flowering_time = $this->input->post('flowering_time');
+        $fruit_image_type = $this->input->post('fruit_image_type');
 
         if(Validation_helper::validate_empty($year))
         {
@@ -213,35 +232,41 @@ class Data_image_fruit extends ROOT_Controller
             $this->message.="Select a Crop Type<br>";
         }
 
-        if(Validation_helper::validate_empty($flowering_time))
+        if(Validation_helper::validate_empty($fruit_image_type))
         {
             $valid=false;
             $this->message.="Select a Flowering Time<br>";
         }
-
         if($valid)
         {
-            if(!Query_helper::get_info("rnd_setup_image_flowering","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
+            if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('FLOWERING_NOT_SETUP').'<br>';
-            }
+                $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
 
-            if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
-            {
-                $valid=false;
-                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
             }
-
             if($valid)
             {
-                if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
+                if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
                 {
                     $valid=false;
-                    $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
+                    $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
+
                 }
+                if($valid)
+                {
+                    if(!Query_helper::get_info("rnd_setup_image_fruit","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1))
+                    {
+                        $valid=false;
+                        $this->message.=$this->lang->line('IMAGE_FRUIT_NOT_SETUP').'<br>';
+
+                    }
+                }
+
             }
         }
+
+
 
         return $valid;
 

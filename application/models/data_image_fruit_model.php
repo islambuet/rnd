@@ -10,9 +10,9 @@ class Data_image_fruit_model extends CI_Model
         parent::__construct();
     }
 
-    /*public function get_varieties($year,$season_id,$crop_id,$crop_type_id,$flowering_time)
+    public function get_varieties($year,$season_id,$crop_id,$crop_type_id,$fruit_image_type)
     {
-        $sub_query='(SELECT * FROM rnd_data_image_flowering where year="'.$year.'" AND season_id='.$season_id.' AND crop_id='.$crop_id.' AND crop_type_id='.$crop_type_id.' AND flowering_time='.$flowering_time.')';
+        $sub_query='(SELECT * FROM rnd_data_image_fruit where year="'.$year.'" AND season_id='.$season_id.' AND crop_id='.$crop_id.' AND crop_type_id='.$crop_type_id.' AND fruit_image_type='.$fruit_image_type.')';
 
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
@@ -37,5 +37,5 @@ class Data_image_fruit_model extends CI_Model
 
         $result = $this->db->get()->result_array();
         return $result;
-    }*/
+    }
 }
