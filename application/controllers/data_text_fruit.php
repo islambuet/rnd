@@ -43,7 +43,7 @@ class Data_text_fruit extends ROOT_Controller
             $ajax['message']=$this->message;
         }
 
-        $ajax['page_url']=base_url()."data_text_flowering/index/add_edit";
+        $ajax['page_url']=base_url()."data_text_fruit/index/add_edit";
         $this->jsonReturn($ajax);
     }
 
