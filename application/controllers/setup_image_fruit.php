@@ -69,7 +69,7 @@ class Setup_image_fruit extends ROOT_Controller
 
                 foreach($this->config->item("fruit_image") as $val=>$flowering)
                 {
-                    if($images[$val])
+                    if(isset($images[$val]))
                     {
                         $data['images'][$val] = $images[$val];
                     }
@@ -90,7 +90,7 @@ class Setup_image_fruit extends ROOT_Controller
 
                     foreach($this->config->item("fruit_image") as $val=>$flowering)
                     {
-                        if($images[$val])
+                        if(isset($images[$val]))
                         {
                             $data['images'][$val] = $images[$val];
                         }

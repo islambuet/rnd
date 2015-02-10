@@ -87,7 +87,13 @@ $config['flowering_image'][6]='Special Characters';
 $config['fruit_image'][1]='Plot Picture';
 $config['fruit_image'][2]='Plant Picture';
 $config['fruit_image'][3]='Close %s Picture';
-$config['fruit_image'][4]='Single %s Picture';
+$config['fruit_image'][4]='Single %s Picture 1';
+$config['fruit_image'][5]='Single %s Picture 2';
+$config['fruit_image'][6]='Several %s Picture 1';
+$config['fruit_image'][7]='Several %s Picture 2';
+$config['fruit_image'][8]='cut %s Picture 1';
+$config['fruit_image'][9]='cut %s Picture 2';
+$config['fruit_image'][10]='cut %s Picture 3';
 
 // setup hervest cropwise Config
 $config['harvest cropwise_image'][1]='Harvested Normal Fruit';
