@@ -54,4 +54,38 @@ class Data_text_fruit_model extends CI_Model
         $result = $this->db->get()->row_array();
         return $result;
     }
+
+    public function get_targeted_weight($crop_id, $crop_type_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('id',$crop_type_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result['terget_weight'];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function get_targeted_height($crop_id, $crop_type_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('id',$crop_type_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result['terget_length'];
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
