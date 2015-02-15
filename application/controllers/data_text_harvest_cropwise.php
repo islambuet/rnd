@@ -10,6 +10,8 @@ class Data_text_harvest_cropwise extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("data_text_harvest_cropwise_model");
+        $this->config->load('harvest_config');
+        $this->lang->load('rnd_harvest');
     }
 
     public function index($task="add_edit",$id=0)
@@ -65,9 +67,10 @@ class Data_text_harvest_cropwise extends ROOT_Controller
 
             $data['title']="Data Entry";
 
-            $data['variety_info']=$this->data_text_harvest_cropwise_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no);
-            $data['options']=Query_helper::get_info('rnd_setup_text_harvest_cropwise','*',array('crop_id ='.$crop_id),1);
-            $data['harvest_no']=$harvest_no;
+            $data['variety_info'] = $this->data_text_harvest_cropwise_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no);
+            $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_cropwise','*',array('crop_id ='.$crop_id),1);
+            $data['harvest_no'] = $harvest_no;
+            $data['initial_plants'] = $this->data_text_harvest_cropwise_model->get_initial_plants($crop_id);
 
             if($this->message)
             {

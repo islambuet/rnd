@@ -37,6 +37,7 @@ class Data_text_harvest_cropwise_model extends CI_Model
 
         return $result;
     }
+
     public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no)
     {
         $delivery_info_sub_query='(SELECT * FROM delivery_and_sowing_setup WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.')';
@@ -54,5 +55,21 @@ class Data_text_harvest_cropwise_model extends CI_Model
         $this->db->where('rv.id',$variety_id);
         $result = $this->db->get()->row_array();
         return $result;
+    }
+
+    public function get_initial_plants($crop_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_crop');
+        $this->db->where('id',$crop_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result['initial_plants'];
+        }
+        else
+        {
+            return null;
+        }
     }
 }
