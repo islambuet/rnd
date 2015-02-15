@@ -60,7 +60,7 @@ if($options['fruit_size']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_size]">
-                <?php foreach($this->config->item('fruit_size') as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_size') as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_size_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -71,7 +71,7 @@ if($options['fruit_size']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_size]">
-                    <?php foreach($this->config->item('fruit_size') as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_size') as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_size_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -162,7 +162,7 @@ if($options['fruit_shape']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_shape]">
-                <?php foreach($this->config->item('fruit_shape_'.$crop_id) as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_shape_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -173,7 +173,7 @@ if($options['fruit_shape']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_shape]">
-                    <?php foreach($this->config->item('fruit_shape_'.$crop_id) as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_shape_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -264,7 +264,7 @@ if($options['fruit_colour']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_colour]">
-                <?php foreach($this->config->item('fruit_colour_'.$crop_id) as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -275,7 +275,7 @@ if($options['fruit_colour']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_colour]">
-                    <?php foreach($this->config->item('fruit_colour_'.$crop_id) as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -699,7 +699,7 @@ if($options['fruit_taste']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_taste]">
-                <?php foreach($this->config->item('fruit_taste') as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_taste') as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_taste_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -710,7 +710,7 @@ if($options['fruit_taste']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_taste]">
-                    <?php foreach($this->config->item('fruit_taste') as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_taste') as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_taste_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -750,7 +750,7 @@ if($options['fruit_type']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_type]">
-                <?php foreach($this->config->item('fruit_type') as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_type') as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_type_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -761,7 +761,7 @@ if($options['fruit_type']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_type]">
-                    <?php foreach($this->config->item('fruit_type') as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_type') as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_type_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -852,7 +852,7 @@ if($options['fruit_bearing_type']==1)
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_bearing_type]">
-                <?php foreach($this->config->item('fruit_bearing_type') as $val=>$name){?>
+                <?php foreach($this->config->item('fc_fruit_bearing_type') as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$fruit_bearing_type_normal){echo 'selected';}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -863,7 +863,7 @@ if($options['fruit_bearing_type']==1)
             ?>
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_bearing_type]">
-                    <?php foreach($this->config->item('fruit_bearing_type') as $val=>$name){?>
+                    <?php foreach($this->config->item('fc_fruit_bearing_type') as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$fruit_bearing_type_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -915,7 +915,7 @@ if($options['fruit_bearing_type_evaluation']==1)
             <div class="col-xs-3">
                 <select class="form-control" name="replica[fruit_bearing_type_evaluation]">
                     <?php foreach($this->config->item('rating') as $val=>$name){?>
-                        <option value="<?php echo $val;?>" <?php if($val==$fruit_bearing_type_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                        <option value="<?php echo $val;?>" <?php if($val==$fruit_bearing_type_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
             </div>
@@ -933,6 +933,3362 @@ if($options['fruit_bearing_type_evaluation']==1)
 <?php
 }
 ?>
+
+<?php
+if($options['curd_type']==1)
+{
+    $curd_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_type']))
+    {
+        $curd_type_normal=$info['normal']['curd_type'];
+    }
+    $curd_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_type']))
+    {
+        $curd_type_replica=$info['replica']['curd_type'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_TYPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_type]">
+                <?php foreach($this->config->item('fc_curd_type') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_type_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_type]">
+                    <?php foreach($this->config->item('fc_curd_type') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_type_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_type]" value="<?php echo $curd_type_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_type_evaluation']==1)
+{
+    $curd_type_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_type_evaluation']))
+    {
+        $curd_type_evaluation_normal=$info['normal']['curd_type_evaluation'];
+    }
+    $curd_type_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_type_evaluation']))
+    {
+        $curd_type_evaluation_replica=$info['replica']['curd_type_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_type_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_type_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_type_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_type_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_type_evaluation]" value="<?php echo $curd_type_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_colour']==1)
+{
+    $curd_colour_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_colour']))
+    {
+        $curd_colour_normal=$info['normal']['curd_colour'];
+    }
+    $curd_colour_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_colour']))
+    {
+        $curd_colour_replica=$info['replica']['curd_colour'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_colour]">
+                <?php foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_colour]">
+                    <?php foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_colour]" value="<?php echo $curd_colour_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_colour_evaluation']==1)
+{
+    $curd_colour_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_colour_evaluation']))
+    {
+        $curd_colour_evaluation_normal=$info['normal']['curd_colour_evaluation'];
+    }
+    $curd_colour_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_colour_evaluation']))
+    {
+        $curd_colour_evaluation_replica=$info['replica']['curd_colour_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_colour_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_colour_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_colour_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_colour_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_colour_evaluation]" value="<?php echo $curd_colour_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_weight']==1)
+{
+    $curd_weight_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_weight']))
+    {
+        $curd_weight_normal=$info['normal']['curd_weight'];
+    }
+    $curd_weight_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_weight']))
+    {
+        $curd_weight_replica=$info['replica']['curd_weight'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_WEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[curd_weight]" class="form-control" value="<?php echo $curd_weight_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[curd_weight]" class="form-control" value="<?php echo $curd_weight_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_weight]" value="<?php echo $curd_weight_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_weight_evaluation']==1)
+{
+    $curd_weight_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_weight_evaluation']))
+    {
+        $curd_weight_evaluation_normal=$info['normal']['curd_weight_evaluation'];
+    }
+    $curd_weight_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_weight_evaluation']))
+    {
+        $curd_weight_evaluation_replica=$info['replica']['curd_weight_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_weight_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_weight_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_weight_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_weight_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_weight_evaluation]" value="<?php echo $curd_weight_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_diameter']==1)
+{
+    $curd_diameter_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_diameter']))
+    {
+        $curd_diameter_normal=$info['normal']['curd_diameter'];
+    }
+    $curd_diameter_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_diameter']))
+    {
+        $curd_diameter_replica=$info['replica']['curd_diameter'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAMETER');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[curd_diameter]" class="form-control" value="<?php echo $curd_diameter_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[curd_diameter]" class="form-control" value="<?php echo $curd_diameter_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_diameter]" value="<?php echo $curd_diameter_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_diameter_evaluation']==1)
+{
+    $curd_diameter_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_diameter_evaluation']))
+    {
+        $curd_diameter_evaluation_normal=$info['normal']['curd_diameter_evaluation'];
+    }
+    $curd_diameter_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_diameter_evaluation']))
+    {
+        $curd_diameter_evaluation_replica=$info['replica']['curd_diameter_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_diameter_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_diameter_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_diameter_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_diameter_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_diameter_evaluation]" value="<?php echo $curd_diameter_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_height']==1)
+{
+    $curd_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_height']))
+    {
+        $curd_height_normal=$info['normal']['curd_height'];
+    }
+    $curd_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_height']))
+    {
+        $curd_height_replica=$info['replica']['curd_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[curd_height]" class="form-control" value="<?php echo $curd_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[curd_height]" class="form-control" value="<?php echo $curd_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_height]" value="<?php echo $curd_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_height_evaluation']==1)
+{
+    $curd_height_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_height_evaluation']))
+    {
+        $curd_height_evaluation_normal=$info['normal']['curd_height_evaluation'];
+    }
+    $curd_height_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_height_evaluation']))
+    {
+        $curd_height_evaluation_replica=$info['replica']['curd_height_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_height_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_height_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_height_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_height_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_height_evaluation]" value="<?php echo $curd_height_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['curd_compactness']==1)
+{
+    $curd_compactness_normal="";
+    if(is_array($info)&& !empty($info['normal']['curd_compactness']))
+    {
+        $curd_compactness_normal=$info['normal']['curd_compactness'];
+    }
+    $curd_compactness_replica="";
+    if(is_array($info)&& !empty($info['replica']['curd_compactness']))
+    {
+        $curd_compactness_replica=$info['replica']['curd_compactness'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COMPACTNESS');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[curd_compactness]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$curd_compactness_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[curd_compactness]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$curd_compactness_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[curd_compactness]" value="<?php echo $curd_compactness_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_type']==1)
+{
+    $head_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_type']))
+    {
+        $head_type_normal=$info['normal']['head_type'];
+    }
+    $head_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_type']))
+    {
+        $head_type_replica=$info['replica']['head_type'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_TYPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_type]">
+                <?php foreach($this->config->item('fc_head_type') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_type_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_type]">
+                    <?php foreach($this->config->item('fc_head_type') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_type_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_type]" value="<?php echo $head_type_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_type_evaluation']==1)
+{
+    $head_type_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_type_evaluation']))
+    {
+        $head_type_evaluation_normal=$info['normal']['head_type_evaluation'];
+    }
+    $head_type_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_type_evaluation']))
+    {
+        $head_type_evaluation_replica=$info['replica']['head_type_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_type_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_type_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_type_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_type_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_type_evaluation]" value="<?php echo $head_type_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_colour']==1)
+{
+    $head_colour_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_colour']))
+    {
+        $head_colour_normal=$info['normal']['head_colour'];
+    }
+    $head_colour_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_colour']))
+    {
+        $head_colour_replica=$info['replica']['head_colour'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_colour]">
+                <?php foreach($this->config->item('fc_head_colour') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_colour]">
+                    <?php foreach($this->config->item('fc_head_colour') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_colour]" value="<?php echo $head_colour_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_colour_evaluation']==1)
+{
+    $head_colour_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_colour_evaluation']))
+    {
+        $head_colour_evaluation_normal=$info['normal']['head_colour_evaluation'];
+    }
+    $head_colour_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_colour_evaluation']))
+    {
+        $head_colour_evaluation_replica=$info['replica']['head_colour_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_colour_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_colour_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_colour_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_colour_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_colour_evaluation]" value="<?php echo $head_colour_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_weight']==1)
+{
+    $head_weight_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_weight']))
+    {
+        $head_weight_normal=$info['normal']['head_weight'];
+    }
+    $head_weight_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_weight']))
+    {
+        $head_weight_replica=$info['replica']['head_weight'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_WEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[head_weight]" class="form-control" value="<?php echo $head_weight_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[head_weight]" class="form-control" value="<?php echo $head_weight_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_weight]" value="<?php echo $head_weight_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_weight_evaluation']==1)
+{
+    $head_weight_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_weight_evaluation']))
+    {
+        $head_weight_evaluation_normal=$info['normal']['head_weight_evaluation'];
+    }
+    $head_weight_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_weight_evaluation']))
+    {
+        $head_weight_evaluation_replica=$info['replica']['head_weight_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_weight_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_weight_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_weight_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_weight_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_weight_evaluation]" value="<?php echo $head_weight_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_diameter']==1)
+{
+    $head_diameter_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_diameter']))
+    {
+        $head_diameter_normal=$info['normal']['head_diameter'];
+    }
+    $head_diameter_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_diameter']))
+    {
+        $head_diameter_replica=$info['replica']['head_diameter'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAMETER');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[head_diameter]" class="form-control" value="<?php echo $head_diameter_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[head_diameter]" class="form-control" value="<?php echo $head_diameter_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_diameter]" value="<?php echo $head_diameter_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_diameter_evaluation']==1)
+{
+    $head_diameter_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_diameter_evaluation']))
+    {
+        $head_diameter_evaluation_normal=$info['normal']['head_diameter_evaluation'];
+    }
+    $head_diameter_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_diameter_evaluation']))
+    {
+        $head_diameter_evaluation_replica=$info['replica']['head_diameter_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_diameter_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_diameter_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_diameter_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_diameter_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_diameter_evaluation]" value="<?php echo $head_diameter_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_height']==1)
+{
+    $head_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_height']))
+    {
+        $head_height_normal=$info['normal']['head_height'];
+    }
+    $head_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_height']))
+    {
+        $head_height_replica=$info['replica']['head_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[head_height]" class="form-control" value="<?php echo $head_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[head_height]" class="form-control" value="<?php echo $head_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_height]" value="<?php echo $head_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_height_evaluation']==1)
+{
+    $head_height_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_height_evaluation']))
+    {
+        $head_height_evaluation_normal=$info['normal']['head_height_evaluation'];
+    }
+    $head_height_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_height_evaluation']))
+    {
+        $head_height_evaluation_replica=$info['replica']['head_height_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_height_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_height_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_height_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_height_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_height_evaluation]" value="<?php echo $head_height_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['targeted_weight']==1)
+{
+    $targeted_weight_normal="";
+    if(is_array($info)&& !empty($info['normal']['targeted_weight']))
+    {
+        $targeted_weight_normal=$info['normal']['targeted_weight'];
+    }
+    $targeted_weight_replica="";
+    if(is_array($info)&& !empty($info['replica']['targeted_weight']))
+    {
+        $targeted_weight_replica=$info['replica']['targeted_weight'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_WEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[targeted_weight]" class="form-control" value="<?php echo $targeted_weight_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[targeted_weight]" class="form-control" value="<?php echo $targeted_weight_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[targeted_weight]" value="<?php echo $targeted_weight_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['targeted_height']==1)
+{
+    $targeted_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['targeted_height']))
+    {
+        $targeted_height_normal=$info['normal']['targeted_height'];
+    }
+    $targeted_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['targeted_height']))
+    {
+        $targeted_height_replica=$info['replica']['targeted_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_WEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[targeted_height]" class="form-control" value="<?php echo $targeted_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[targeted_height]" class="form-control" value="<?php echo $targeted_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[targeted_height]" value="<?php echo $targeted_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_compactness']==1)
+{
+    $head_compactness_normal="";
+    if(is_array($info)&& !empty($info['normal']['head_compactness']))
+    {
+        $head_compactness_normal=$info['normal']['head_compactness'];
+    }
+    $head_compactness_replica="";
+    if(is_array($info)&& !empty($info['replica']['head_compactness']))
+    {
+        $head_compactness_replica=$info['replica']['head_compactness'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COMPACTNESS');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[head_compactness]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$head_compactness_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[head_compactness]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$head_compactness_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[head_compactness]" value="<?php echo $head_compactness_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_length']==1)
+{
+    $leaf_length_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_length']))
+    {
+        $leaf_length_normal=$info['normal']['leaf_length'];
+    }
+    $leaf_length_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_length']))
+    {
+        $leaf_length_replica=$info['replica']['leaf_length'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[leaf_length]" class="form-control" value="<?php echo $leaf_length_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[leaf_length]" class="form-control" value="<?php echo $leaf_length_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_length]" value="<?php echo $leaf_length_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_length_evaluation']==1)
+{
+    $leaf_length_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_length_evaluation']))
+    {
+        $leaf_length_evaluation_normal=$info['normal']['leaf_length_evaluation'];
+    }
+    $leaf_length_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_length_evaluation']))
+    {
+        $leaf_length_evaluation_replica=$info['replica']['leaf_length_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[leaf_length_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$leaf_length_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[leaf_length_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$leaf_length_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_length_evaluation]" value="<?php echo $leaf_length_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_type']==1)
+{
+    $leaf_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_type']))
+    {
+        $leaf_type_normal=$info['normal']['leaf_type'];
+    }
+    $leaf_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_type']))
+    {
+        $leaf_type_replica=$info['replica']['leaf_type'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[leaf_type]">
+                <?php foreach($this->config->item('fc_leaf_type') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$leaf_type_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[leaf_type]">
+                    <?php foreach($this->config->item('fc_leaf_type') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$leaf_type_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_type]" value="<?php echo $leaf_type_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_type_evaluation']==1)
+{
+    $leaf_type_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_type_evaluation']))
+    {
+        $leaf_type_evaluation_normal=$info['normal']['leaf_type_evaluation'];
+    }
+    $leaf_type_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_type_evaluation']))
+    {
+        $leaf_type_evaluation_replica=$info['replica']['leaf_type_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[leaf_type_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$leaf_type_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[leaf_type_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$leaf_type_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_type_evaluation]" value="<?php echo $leaf_type_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_colour']==1)
+{
+    $leaf_colour_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_colour']))
+    {
+        $leaf_colour_normal=$info['normal']['leaf_colour'];
+    }
+    $leaf_colour_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_colour']))
+    {
+        $leaf_colour_replica=$info['replica']['leaf_colour'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('leaf_colour');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[leaf_colour]">
+                <?php foreach($this->config->item('fc_leaf_colour') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$leaf_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[leaf_colour]">
+                    <?php foreach($this->config->item('fc_leaf_colour') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$leaf_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_colour]" value="<?php echo $leaf_colour_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['leaf_colour_evaluation']==1)
+{
+    $leaf_colour_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['leaf_colour_evaluation']))
+    {
+        $leaf_colour_evaluation_normal=$info['normal']['leaf_colour_evaluation'];
+    }
+    $leaf_colour_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['leaf_colour_evaluation']))
+    {
+        $leaf_colour_evaluation_replica=$info['replica']['leaf_colour_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[leaf_colour_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$leaf_colour_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[leaf_colour_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$leaf_colour_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[leaf_colour_evaluation]" value="<?php echo $leaf_colour_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_above_ground']==1)
+{
+    $root_above_ground_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_above_ground']))
+    {
+        $root_above_ground_normal=$info['normal']['root_above_ground'];
+    }
+    $root_above_ground_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_above_ground']))
+    {
+        $root_above_ground_replica=$info['replica']['root_above_ground'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_ABOVE_GROUND');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[root_above_ground]" class="form-control" value="<?php echo $root_above_ground_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[root_above_ground]" class="form-control" value="<?php echo $root_above_ground_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_above_ground]" value="<?php echo $root_above_ground_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_above_ground_evaluation']==1)
+{
+    $root_above_ground_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_above_ground_evaluation']))
+    {
+        $root_above_ground_evaluation_normal=$info['normal']['root_above_ground_evaluation'];
+    }
+    $root_above_ground_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_above_ground_evaluation']))
+    {
+        $root_above_ground_evaluation_replica=$info['replica']['root_above_ground_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_above_ground_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_above_ground_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_above_ground_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_above_ground_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_above_ground_evaluation]" value="<?php echo $root_above_ground_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_colour']==1)
+{
+    $root_colour_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_colour']))
+    {
+        $root_colour_normal=$info['normal']['root_colour'];
+    }
+    $root_colour_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_colour']))
+    {
+        $root_colour_replica=$info['replica']['root_colour'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_colour]">
+                <?php foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_colour]">
+                    <?php foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_colour]" value="<?php echo $root_colour_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_colour_evaluation']==1)
+{
+    $root_colour_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_colour_evaluation']))
+    {
+        $root_colour_evaluation_normal=$info['normal']['root_colour_evaluation'];
+    }
+    $root_colour_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_colour_evaluation']))
+    {
+        $root_colour_evaluation_replica=$info['replica']['root_colour_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_colour_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_colour_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_colour_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_colour_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_colour_evaluation]" value="<?php echo $root_colour_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_weight']==1)
+{
+    $root_weight_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_weight']))
+    {
+        $root_weight_normal=$info['normal']['root_weight'];
+    }
+    $root_weight_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_weight']))
+    {
+        $root_weight_replica=$info['replica']['root_weight'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_WEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[root_weight]" class="form-control" value="<?php echo $root_weight_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[root_weight]" class="form-control" value="<?php echo $root_weight_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_weight]" value="<?php echo $root_weight_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_weight_evaluation']==1)
+{
+    $root_weight_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_weight_evaluation']))
+    {
+        $root_weight_evaluation_normal=$info['normal']['root_weight_evaluation'];
+    }
+    $root_weight_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_weight_evaluation']))
+    {
+        $root_weight_evaluation_replica=$info['replica']['root_weight_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_weight_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_weight_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_weight_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_weight_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_weight_evaluation]" value="<?php echo $root_weight_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_diameter']==1)
+{
+    $root_diameter_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_diameter']))
+    {
+        $root_diameter_normal=$info['normal']['root_diameter'];
+    }
+    $root_diameter_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_diameter']))
+    {
+        $root_diameter_replica=$info['replica']['root_diameter'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_DIAMETER');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[root_diameter]" class="form-control" value="<?php echo $root_diameter_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[root_diameter]" class="form-control" value="<?php echo $root_diameter_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_diameter]" value="<?php echo $root_diameter_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_diameter_evaluation']==1)
+{
+    $root_diameter_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_diameter_evaluation']))
+    {
+        $root_diameter_evaluation_normal=$info['normal']['root_diameter_evaluation'];
+    }
+    $root_diameter_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_diameter_evaluation']))
+    {
+        $root_diameter_evaluation_replica=$info['replica']['root_diameter_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_diameter_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_diameter_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_diameter_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_diameter_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_diameter_evaluation]" value="<?php echo $root_diameter_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_height']==1)
+{
+    $root_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_height']))
+    {
+        $root_height_normal=$info['normal']['root_height'];
+    }
+    $root_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_height']))
+    {
+        $root_height_replica=$info['replica']['root_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[root_height]" class="form-control" value="<?php echo $root_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[root_height]" class="form-control" value="<?php echo $root_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_height]" value="<?php echo $root_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['root_height_evaluation']==1)
+{
+    $root_height_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_height_evaluation']))
+    {
+        $root_height_evaluation_normal=$info['normal']['root_height_evaluation'];
+    }
+    $root_height_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_height_evaluation']))
+    {
+        $root_height_evaluation_replica=$info['replica']['root_height_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_height_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_height_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_height_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_height_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_height_evaluation]" value="<?php echo $root_height_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['root_taste']==1)
+{
+    $root_taste_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_taste']))
+    {
+        $root_taste_normal=$info['normal']['root_taste'];
+    }
+    $root_taste_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_taste']))
+    {
+        $root_taste_replica=$info['replica']['root_taste'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_TASTE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_taste]">
+                <?php foreach($this->config->item('fc_root_taste') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_taste_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_taste]">
+                    <?php foreach($this->config->item('fc_root_taste') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_taste_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_taste]" value="<?php echo $root_taste_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['root_shape']==1)
+{
+    $root_shape_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_shape']))
+    {
+        $root_shape_normal=$info['normal']['root_shape'];
+    }
+    $root_shape_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_shape']))
+    {
+        $root_shape_replica=$info['replica']['root_shape'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_shape]">
+                <?php foreach($this->config->item('fc_root_shape') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_shape_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_shape]">
+                    <?php foreach($this->config->item('fc_root_shape') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_shape_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_shape]" value="<?php echo $root_shape_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['root_shape_evaluation']==1)
+{
+    $root_shape_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['root_shape_evaluation']))
+    {
+        $root_shape_evaluation_normal=$info['normal']['root_shape_evaluation'];
+    }
+    $root_shape_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['root_shape_evaluation']))
+    {
+        $root_shape_evaluation_replica=$info['replica']['root_shape_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[root_shape_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$root_shape_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[root_shape_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$root_shape_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[root_shape_evaluation]" value="<?php echo $root_shape_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['targeted_root_height']==1)
+{
+    $targeted_root_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['targeted_root_height']))
+    {
+        $targeted_root_height_normal=$info['normal']['targeted_root_height'];
+    }
+    $targeted_root_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['targeted_root_height']))
+    {
+        $targeted_root_height_replica=$info['replica']['targeted_root_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_ROOT_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[targeted_root_height]" class="form-control" value="<?php echo $targeted_root_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[targeted_root_height]" class="form-control" value="<?php echo $targeted_root_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[targeted_root_height]" value="<?php echo $targeted_root_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['taste']==1)
+{
+    $taste_normal="";
+    if(is_array($info)&& !empty($info['normal']['taste']))
+    {
+        $taste_normal=$info['normal']['taste'];
+    }
+    $taste_replica="";
+    if(is_array($info)&& !empty($info['replica']['taste']))
+    {
+        $taste_replica=$info['replica']['taste'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TASTE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <textarea name="normal[taste]" class="form-control"><?php echo $taste_normal;?></textarea>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <textarea name="replica[taste]" class="form-control"><?php echo $taste_replica;?></textarea>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[taste]" value="<?php echo $taste_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['keeping_quality']==1)
+{
+    $keeping_quality_normal="";
+    if(is_array($info)&& !empty($info['normal']['keeping_quality']))
+    {
+        $keeping_quality_normal=$info['normal']['keeping_quality'];
+    }
+    $keeping_quality_replica="";
+    if(is_array($info)&& !empty($info['replica']['keeping_quality']))
+    {
+        $keeping_quality_replica=$info['replica']['keeping_quality'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('KEEPING_QUALITY');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[keeping_quality]" class="form-control" value="<?php echo $keeping_quality_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[keeping_quality]" class="form-control" value="<?php echo $keeping_quality_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[keeping_quality]" value="<?php echo $keeping_quality_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['pungency']==1)
+{
+    $pungency_normal="";
+    if(is_array($info)&& !empty($info['normal']['pungency']))
+    {
+        $pungency_normal=$info['normal']['pungency'];
+    }
+    $pungency_replica="";
+    if(is_array($info)&& !empty($info['replica']['pungency']))
+    {
+        $pungency_replica=$info['replica']['pungency'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('PUNGENCY');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[pungency]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$pungency_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[pungency]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$pungency_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[pungency]" value="<?php echo $pungency_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['seed_maturity_during_harvest']==1)
+{
+    $seed_maturity_during_harvest_normal="";
+    if(is_array($info)&& !empty($info['normal']['seed_maturity_during_harvest']))
+    {
+        $seed_maturity_during_harvest_normal=$info['normal']['seed_maturity_during_harvest'];
+    }
+    $seed_maturity_during_harvest_replica="";
+    if(is_array($info)&& !empty($info['replica']['seed_maturity_during_harvest']))
+    {
+        $seed_maturity_during_harvest_replica=$info['replica']['seed_maturity_during_harvest'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_MATURITY_DURING_HARVEST');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[seed_maturity_during_harvest]">
+                <?php foreach($this->config->item('fc_seed_maturity_during_harvest') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$seed_maturity_during_harvest_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[seed_maturity_during_harvest]">
+                    <?php foreach($this->config->item('fc_seed_maturity_during_harvest') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$seed_maturity_during_harvest_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[seed_maturity_during_harvest]" value="<?php echo $seed_maturity_during_harvest_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['seed_density']==1)
+{
+    $seed_density_normal="";
+    if(is_array($info)&& !empty($info['normal']['seed_density']))
+    {
+        $seed_density_normal=$info['normal']['seed_density'];
+    }
+    $seed_density_replica="";
+    if(is_array($info)&& !empty($info['replica']['seed_density']))
+    {
+        $seed_density_replica=$info['replica']['seed_density'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_DENSITY');?></label>
+        </div>
+        <div class="col-xs-3">
+            <textarea name="normal[seed_density]" class="form-control"><?php echo $seed_density_normal;?></textarea>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <textarea name="replica[seed_density]" class="form-control"><?php echo $seed_density_replica;?></textarea>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[seed_density]" value="<?php echo $seed_density_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['spine_type']==1)
+{
+    $spine_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['spine_type']))
+    {
+        $spine_type_normal=$info['normal']['spine_type'];
+    }
+    $spine_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['spine_type']))
+    {
+        $spine_type_replica=$info['replica']['spine_type'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('SPINE_TYPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[spine_type]">
+                <?php foreach($this->config->item('fc_spine_type') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$spine_type_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[spine_type]">
+                    <?php foreach($this->config->item('fc_spine_type') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$spine_type_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[spine_type]" value="<?php echo $spine_type_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['spine_type_evaluation']==1)
+{
+    $spine_type_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['spine_type_evaluation']))
+    {
+        $spine_type_evaluation_normal=$info['normal']['spine_type_evaluation'];
+    }
+    $spine_type_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['spine_type_evaluation']))
+    {
+        $spine_type_evaluation_replica=$info['replica']['spine_type_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[spine_type_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$spine_type_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[spine_type_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$spine_type_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[spine_type_evaluation]" value="<?php echo $spine_type_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['hardness_of_spines']==1)
+{
+    $hardness_of_spines_normal="";
+    if(is_array($info)&& !empty($info['normal']['hardness_of_spines']))
+    {
+        $hardness_of_spines_normal=$info['normal']['hardness_of_spines'];
+    }
+    $hardness_of_spines_replica="";
+    if(is_array($info)&& !empty($info['replica']['hardness_of_spines']))
+    {
+        $hardness_of_spines_replica=$info['replica']['hardness_of_spines'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('hardness_of_spines');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[hardness_of_spines]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$hardness_of_spines_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[hardness_of_spines]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$hardness_of_spines_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[hardness_of_spines]" value="<?php echo $hardness_of_spines_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['core_diameter']==1)
+{
+    $core_diameter_normal="";
+    if(is_array($info)&& !empty($info['normal']['core_diameter']))
+    {
+        $core_diameter_normal=$info['normal']['core_diameter'];
+    }
+    $core_diameter_replica="";
+    if(is_array($info)&& !empty($info['replica']['core_diameter']))
+    {
+        $core_diameter_replica=$info['replica']['core_diameter'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CORE_DIAMETER');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[core_diameter]" class="form-control" value="<?php echo $core_diameter_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[core_diameter]" class="form-control" value="<?php echo $core_diameter_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[core_diameter]" value="<?php echo $core_diameter_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['core_diameter_evaluation']==1)
+{
+    $core_diameter_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['core_diameter_evaluation']))
+    {
+        $core_diameter_evaluation_normal=$info['normal']['core_diameter_evaluation'];
+    }
+    $core_diameter_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['core_diameter_evaluation']))
+    {
+        $core_diameter_evaluation_replica=$info['replica']['core_diameter_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[core_diameter_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$core_diameter_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[core_diameter_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$core_diameter_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[core_diameter_evaluation]" value="<?php echo $core_diameter_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['flesh_colour']==1)
+{
+    $flesh_colour_normal="";
+    if(is_array($info)&& !empty($info['normal']['flesh_colour']))
+    {
+        $flesh_colour_normal=$info['normal']['flesh_colour'];
+    }
+    $flesh_colour_replica="";
+    if(is_array($info)&& !empty($info['replica']['flesh_colour']))
+    {
+        $flesh_colour_replica=$info['replica']['flesh_colour'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FLESH_COLOUR');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[flesh_colour]">
+                <?php foreach($this->config->item('fc_flesh_colour_'.$crop_id) as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$flesh_colour_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[flesh_colour]">
+                    <?php foreach($this->config->item('fc_flesh_colour_'.$crop_id) as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$flesh_colour_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[flesh_colour]" value="<?php echo $flesh_colour_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['flesh_colour_evaluation']==1)
+{
+    $flesh_colour_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['flesh_colour_evaluation']))
+    {
+        $flesh_colour_evaluation_normal=$info['normal']['flesh_colour_evaluation'];
+    }
+    $flesh_colour_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['flesh_colour_evaluation']))
+    {
+        $flesh_colour_evaluation_replica=$info['replica']['flesh_colour_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[flesh_colour_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$flesh_colour_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[flesh_colour_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$flesh_colour_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[flesh_colour_evaluation]" value="<?php echo $flesh_colour_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['smoothness_of_skin']==1)
+{
+    $smoothness_of_skin_normal="";
+    if(is_array($info)&& !empty($info['normal']['smoothness_of_skin']))
+    {
+        $smoothness_of_skin_normal=$info['normal']['smoothness_of_skin'];
+    }
+    $smoothness_of_skin_replica="";
+    if(is_array($info)&& !empty($info['replica']['smoothness_of_skin']))
+    {
+        $smoothness_of_skin_replica=$info['replica']['smoothness_of_skin'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('SMOOTHNESS_OF_SKIN');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[smoothness_of_skin]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$smoothness_of_skin_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[smoothness_of_skin]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$smoothness_of_skin_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[smoothness_of_skin]" value="<?php echo $smoothness_of_skin_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['ridge_type']==1)
+{
+    $ridge_type_normal="";
+    if(is_array($info)&& !empty($info['normal']['ridge_type']))
+    {
+        $ridge_type_normal=$info['normal']['ridge_type'];
+    }
+    $ridge_type_replica="";
+    if(is_array($info)&& !empty($info['replica']['ridge_type']))
+    {
+        $ridge_type_replica=$info['replica']['ridge_type'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('RIDGE_TYPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[ridge_type]">
+                <?php foreach($this->config->item('fc_ridge_type') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$ridge_type_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[ridge_type]">
+                    <?php foreach($this->config->item('fc_ridge_type') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$ridge_type_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[ridge_type]" value="<?php echo $ridge_type_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['ridge_strength']==1)
+{
+    $ridge_strength_normal="";
+    if(is_array($info)&& !empty($info['normal']['ridge_strength']))
+    {
+        $ridge_strength_normal=$info['normal']['ridge_strength'];
+    }
+    $ridge_strength_replica="";
+    if(is_array($info)&& !empty($info['replica']['ridge_strength']))
+    {
+        $ridge_strength_replica=$info['replica']['ridge_strength'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('RIDGE_STRENGTH');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[ridge_strength]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$ridge_strength_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[ridge_strength]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$ridge_strength_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[ridge_strength]" value="<?php echo $ridge_strength_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['waxiness_of_skin']==1)
+{
+    $waxiness_of_skin_normal="";
+    if(is_array($info)&& !empty($info['normal']['waxiness_of_skin']))
+    {
+        $waxiness_of_skin_normal=$info['normal']['waxiness_of_skin'];
+    }
+    $waxiness_of_skin_replica="";
+    if(is_array($info)&& !empty($info['replica']['waxiness_of_skin']))
+    {
+        $waxiness_of_skin_replica=$info['replica']['waxiness_of_skin'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('WAXINESS_OF_SKIN');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[waxiness_of_skin]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$waxiness_of_skin_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[waxiness_of_skin]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$waxiness_of_skin_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[waxiness_of_skin]" value="<?php echo $waxiness_of_skin_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['no_of_edges_in_fruit']==1)
+{
+    $no_of_edges_in_fruit_normal="";
+    if(is_array($info)&& !empty($info['normal']['no_of_edges_in_fruit']))
+    {
+        $no_of_edges_in_fruit_normal=$info['normal']['no_of_edges_in_fruit'];
+    }
+    $no_of_edges_in_fruit_replica="";
+    if(is_array($info)&& !empty($info['replica']['no_of_edges_in_fruit']))
+    {
+        $no_of_edges_in_fruit_replica=$info['replica']['no_of_edges_in_fruit'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('no_of_edges_in_fruit');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[no_of_edges_in_fruit]" value="<?php echo $no_of_edges_in_fruit_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[no_of_edges_in_fruit]" value="<?php echo $no_of_edges_in_fruit_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[no_of_edges_in_fruit]" value="<?php echo $no_of_edges_in_fruit_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['no_of_edges_in_fruit_evaluation']==1)
+{
+    $no_of_edges_in_fruit_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['no_of_edges_in_fruit_evaluation']))
+    {
+        $no_of_edges_in_fruit_evaluation_normal=$info['normal']['no_of_edges_in_fruit_evaluation'];
+    }
+    $no_of_edges_in_fruit_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['no_of_edges_in_fruit_evaluation']))
+    {
+        $no_of_edges_in_fruit_evaluation_replica=$info['replica']['no_of_edges_in_fruit_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[no_of_edges_in_fruit_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$no_of_edges_in_fruit_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[no_of_edges_in_fruit_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$no_of_edges_in_fruit_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[no_of_edges_in_fruit_evaluation]" value="<?php echo $no_of_edges_in_fruit_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['tenderness_of_fruit']==1)
+{
+    $tenderness_of_fruit_normal="";
+    if(is_array($info)&& !empty($info['normal']['tenderness_of_fruit']))
+    {
+        $tenderness_of_fruit_normal=$info['normal']['tenderness_of_fruit'];
+    }
+    $tenderness_of_fruit_replica="";
+    if(is_array($info)&& !empty($info['replica']['tenderness_of_fruit']))
+    {
+        $tenderness_of_fruit_replica=$info['replica']['tenderness_of_fruit'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TENDERNESS_OF_FRUIT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[tenderness_of_fruit]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$tenderness_of_fruit_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[tenderness_of_fruit]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$tenderness_of_fruit_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[tenderness_of_fruit]" value="<?php echo $tenderness_of_fruit_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['plant_height']==1)
+{
+    $plant_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['plant_height']))
+    {
+        $plant_height_normal=$info['normal']['plant_height'];
+    }
+    $plant_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['plant_height']))
+    {
+        $plant_height_replica=$info['replica']['plant_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[plant_height]" value="<?php echo $plant_height_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[plant_height]" value="<?php echo $plant_height_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[plant_height]" value="<?php echo $plant_height_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['plant_height_evaluation']==1)
+{
+    $plant_height_evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['plant_height_evaluation']))
+    {
+        $plant_height_evaluation_normal=$info['normal']['plant_height_evaluation'];
+    }
+    $plant_height_evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['plant_height_evaluation']))
+    {
+        $plant_height_evaluation_replica=$info['replica']['plant_height_evaluation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('plant_height_evaluation');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[plant_height_evaluation]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$plant_height_evaluation_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[plant_height_evaluation]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$plant_height_evaluation_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[plant_height_evaluation]" value="<?php echo $plant_height_evaluation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['brix_percent']==1)
+{
+    $brix_percent_normal="";
+    if(is_array($info)&& !empty($info['normal']['brix_percent']))
+    {
+        $brix_percent_normal=$info['normal']['brix_percent'];
+    }
+    $brix_percent_replica="";
+    if(is_array($info)&& !empty($info['replica']['brix_percent']))
+    {
+        $brix_percent_replica=$info['replica']['brix_percent'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('BRIX_PERCENT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[brix_percent]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$brix_percent_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[brix_percent]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$brix_percent_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[brix_percent]" value="<?php echo $brix_percent_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['flavor']==1)
+{
+    $flavor_normal="";
+    if(is_array($info)&& !empty($info['normal']['flavor']))
+    {
+        $flavor_normal=$info['normal']['flavor'];
+    }
+    $flavor_replica="";
+    if(is_array($info)&& !empty($info['replica']['flavor']))
+    {
+        $flavor_replica=$info['replica']['flavor'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FLAVOR');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[flavor]">
+                <?php foreach($this->config->item('rating') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$flavor_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[flavor]">
+                    <?php foreach($this->config->item('rating') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$flavor_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[flavor]" value="<?php echo $flavor_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if($options['seed_percentage']==1)
+{
+    $seed_percentage_normal="";
+    if(is_array($info)&& !empty($info['normal']['seed_percentage']))
+    {
+        $seed_percentage_normal=$info['normal']['seed_percentage'];
+    }
+    $seed_percentage_replica="";
+    if(is_array($info)&& !empty($info['replica']['seed_percentage']))
+    {
+        $seed_percentage_replica=$info['replica']['seed_percentage'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_PERCENTAGE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="normal[seed_percentage]">
+                <?php foreach($this->config->item('fc_seed_percentage') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$seed_percentage_normal){echo 'selected';}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <select class="form-control" name="replica[seed_percentage]">
+                    <?php foreach($this->config->item('fc_seed_percentage') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$seed_percentage_replica){echo 'selected';}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[seed_percentage]" value="<?php echo $seed_percentage_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
