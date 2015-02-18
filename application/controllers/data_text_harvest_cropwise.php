@@ -93,7 +93,7 @@ class Data_text_harvest_cropwise extends ROOT_Controller
         }
         else
         {
-            $inputs=$this->input->post();
+            $inputs = $this->input->post();
             $year = $inputs['year'];
             $season_id = $inputs['season_id'];
             $crop_id = $inputs['crop_id'];
@@ -106,7 +106,9 @@ class Data_text_harvest_cropwise extends ROOT_Controller
             $data['info']=json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
             $user = User_helper::get_user();
             $time=time();
+
             $this->db->trans_start();  //DB Transaction Handle START
+
             if($id>0)
             {
                 $data['modified_by'] = $user->user_id;
@@ -125,7 +127,9 @@ class Data_text_harvest_cropwise extends ROOT_Controller
                 $data['creation_date'] = $time;
                 Query_helper::add('rnd_data_text_harvest_cropwise',$data);
             }
+
             $this->db->trans_complete();   //DB Transaction Handle END
+
             if ($this->db->trans_status() === TRUE)
             {
                 $this->message.=$this->lang->line("MSG_CREATE_SUCCESS");

@@ -1,7 +1,78 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $info=json_decode($variety_info['info'],true);
-?>
 
+    $info=json_decode($variety_info['info'],true);
+    $total_harvest = sizeof($harvest_data);
+
+    function get_specific_array($harvest_data, $num)
+    {
+        foreach($harvest_data as $harvest)
+        {
+            if($harvest['harvest_no']==$num)
+            {
+                return $harvest;
+            }
+        }
+        return null;
+    }
+
+    $first_harvest_array = get_specific_array($harvest_data, 1);
+    $last_harvest_array = get_specific_array($harvest_data, $total_harvest);
+
+    $first_harvest_data = json_decode($first_harvest_array['info'],true);
+    $last_harvest_data = json_decode($last_harvest_array['info'],true);
+
+    $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
+    $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
+
+    $last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
+    $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
+
+    $interval_of_harvest_normal = abs((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
+    $interval_of_harvest_replica = abs((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
+
+    $sum_no_of_plants_normal = '';
+    $sum_no_of_plants_replica = '';
+
+    $sum_total_harvested_wt_normal = '';
+    $sum_total_harvested_wt_replica = '';
+
+    $sum_total_mrkt_curds_normal = '';
+    $sum_total_mrkt_curds_replica = '';
+
+    $sum_total_mrkt_curd_wt_normal = '';
+    $sum_total_mrkt_curd_wt_replica = '';
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_normal += $no_of_plants_normal;
+        $sum_no_of_plants_replica += $no_of_plants_replica;
+
+        $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
+        $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
+
+        $total_mrkt_curds_normal = $detail['normal']['total_mrkt_curds'];
+        $total_mrkt_curds_replica = $detail['replica']['total_mrkt_curds'];
+        $sum_total_mrkt_curds_normal += $total_mrkt_curds_normal;
+        $sum_total_mrkt_curds_replica += $total_mrkt_curds_replica;
+
+        $total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
+        $total_mrkt_curd_wt_replica = $detail['replica']['total_mrkt_curd_wt'];
+        $sum_total_mrkt_curd_wt_normal += $total_mrkt_curd_wt_normal;
+        $sum_total_mrkt_curd_wt_replica += $total_mrkt_curd_wt_replica;
+    }
+
+    $percentage_of_marketed_curds_normal = ($sum_total_mrkt_curds_normal/$sum_no_of_plants_normal)*100;
+    $percentage_of_marketed_curds_replica = ($sum_total_mrkt_curds_replica/$sum_no_of_plants_replica)*100;
+
+    $percentage_of_marketed_curd_weight_normal = ($sum_total_mrkt_curd_wt_normal/$sum_total_harvested_wt_normal)*100;
+    $percentage_of_marketed_curds_weight_replica = ($sum_total_mrkt_curd_wt_replica/$sum_total_harvested_wt_replica)*100;
+
+?>
 
 <div class="widget-header">
     <div class="title">
@@ -32,244 +103,107 @@ if($variety_info['replica_status']==1)
 ?>
 
 
-<?php
-if($options['initial_plants']==1)
-{
-    $initial_plants_normal="";
-    if(is_array($info)&& !empty($info['normal']['initial_plants']))
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
+    </div>
+
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $initial_plants;?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
     {
-        $initial_plants_normal=$info['normal']['initial_plants'];
-    }
-    $initial_plants_replica="";
-    if(is_array($info)&& !empty($info['replica']['initial_plants']))
-    {
-        $initial_plants_replica=$info['replica']['initial_plants'];
+        ?>
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $initial_plants;?></label>
+        </div>
+    <?php
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
-        </div>
+</div>
 
-        <div class="col-xs-3">
-            <input type="text" id="initial_plants" name="normal[initial_plants]" class="form-control" value="<?php echo $initial_plants;?>" />
-        </div>
 
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[initial_plants]" class="form-control" value="<?php echo $initial_plants;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[initial_plants]" value="<?php echo $initial_plants;?>">
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST_DAYS');?></label>
     </div>
-<?php
-}
-?>
 
-<?php
-if($options['first_harvest_days']==1)
-{
-    $first_harvest_days_normal="";
-    if(is_array($info)&& !empty($info['normal']['first_harvest_days']))
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $first_harvesting_date_normal;?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
     {
-        $first_harvest_days_normal=$info['normal']['first_harvest_days'];
-    }
-    $first_harvest_days_replica="";
-    if(is_array($info)&& !empty($info['replica']['first_harvest_days']))
-    {
-        $first_harvest_days_replica=$info['replica']['first_harvest_days'];
+        ?>
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $first_harvesting_date_replica;?></label>
+        </div>
+    <?php
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST_DAYS');?></label>
-        </div>
+</div>
 
-        <div class="col-xs-3">
-            <input type="text" id="first_harvest_days" name="normal[first_harvest_days]" class="form-control" value="<?php echo $first_harvest_days_normal;?>" />
-        </div>
-
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[first_harvest_days]" class="form-control" value="<?php echo $first_harvest_days_replica;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[first_harvest_days]" value="<?php echo $first_harvest_days_replica;?>">
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST_DAYS');?></label>
     </div>
-<?php
-}
-?>
 
-<?php
-if($options['last_harvest_days']==1)
-{
-    $last_harvest_days_normal="";
-    if(is_array($info)&& !empty($info['normal']['last_harvest_days']))
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $last_harvesting_date_normal;?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
     {
-        $last_harvest_days_normal=$info['normal']['last_harvest_days'];
-    }
-    $last_harvest_days_replica="";
-    if(is_array($info)&& !empty($info['replica']['last_harvest_days']))
-    {
-        $last_harvest_days_replica=$info['replica']['last_harvest_days'];
+        ?>
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $last_harvesting_date_replica;?></label>
+        </div>
+    <?php
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST_DAYS');?></label>
-        </div>
 
-        <div class="col-xs-3">
-            <input type="text" id="last_harvest_days" name="normal[last_harvest_days]" class="form-control" value="<?php echo $last_harvest_days_normal;?>" />
-        </div>
+</div>
 
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[last_harvest_days]" class="form-control" value="<?php echo $last_harvest_days_replica;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[last_harvest_days]" value="<?php echo $last_harvest_days_replica;?>">
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('INTERVAL_FIRST_AND_LAST_HARVEST');?></label>
     </div>
-<?php
-}
-?>
 
-<?php
-if($options['interval_first_and_last_harvest']==1)
-{
-    $interval_first_and_last_harvest_normal="";
-    if(is_array($info)&& !empty($info['normal']['interval_first_and_last_harvest']))
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $interval_of_harvest_normal;?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
     {
-        $interval_first_and_last_harvest_normal=$info['normal']['interval_first_and_last_harvest'];
-    }
-    $interval_first_and_last_harvest_replica="";
-    if(is_array($info)&& !empty($info['replica']['interval_first_and_last_harvest']))
-    {
-        $interval_first_and_last_harvest_replica=$info['replica']['interval_first_and_last_harvest'];
+        ?>
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $interval_of_harvest_replica;?></label>
+        </div>
+    <?php
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('INTERVAL_FIRST_AND_LAST_HARVEST');?></label>
-        </div>
+</div>
 
-        <div class="col-xs-3">
-            <input type="text" id="interval_first_and_last_harvest" name="normal[interval_first_and_last_harvest]" class="form-control" value="<?php echo $interval_first_and_last_harvest_normal;?>" />
-        </div>
 
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[interval_first_and_last_harvest]" class="form-control" value="<?php echo $interval_first_and_last_harvest_replica;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[interval_first_and_last_harvest]" value="<?php echo $interval_first_and_last_harvest_replica;?>">
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_HARVEST');?></label>
     </div>
-<?php
-}
-?>
 
-<?php
-if($options['total_no_of_harvest']==1)
-{
-    $total_no_of_harvest_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_no_of_harvest']))
-    {
-        $total_no_of_harvest_normal=$info['normal']['total_no_of_harvest'];
-    }
-    $total_no_of_harvest_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_no_of_harvest']))
-    {
-        $total_no_of_harvest_replica=$info['replica']['total_no_of_harvest'];
-    }
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_HARVEST');?></label>
-        </div>
-
-        <div class="col-xs-3">
-            <input type="text" id="total_no_of_harvest" name="normal[total_no_of_harvest]" class="form-control" value="<?php echo $total_no_of_harvest_normal;?>" />
-        </div>
-
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[total_no_of_harvest]" class="form-control" value="<?php echo $total_no_of_harvest_replica;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_no_of_harvest]" value="<?php echo $total_no_of_harvest_replica;?>">
-        <?php
-        }
-        ?>
-
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $total_harvest;?></label>
     </div>
-<?php
-}
-?>
+</div>
+
 
 <?php
 if($options['total_harv_curds']==1)
 {
-    $total_harv_curds_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_harv_curds']))
-    {
-        $total_harv_curds_normal=$info['normal']['total_harv_curds'];
-    }
-    $total_harv_curds_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_harv_curds']))
-    {
-        $total_harv_curds_replica=$info['replica']['total_harv_curds'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -277,7 +211,7 @@ if($options['total_harv_curds']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="total_harv_curds" name="normal[total_harv_curds]" class="form-control" value="<?php echo $total_harv_curds_normal;?>" />
+            <label class="control-label"><?php echo $sum_no_of_plants_normal;?></label>
         </div>
 
         <?php
@@ -285,14 +219,8 @@ if($options['total_harv_curds']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[total_harv_curds]" class="form-control" value="<?php echo $total_harv_curds_replica;?>" />
+                <label class="control-label"><?php echo $sum_no_of_plants_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_harv_curds]" value="<?php echo $total_harv_curds_replica;?>">
         <?php
         }
         ?>
@@ -305,16 +233,6 @@ if($options['total_harv_curds']==1)
 <?php
 if($options['total_curd_wt']==1)
 {
-    $total_curd_wt_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_curd_wt']))
-    {
-        $total_curd_wt_normal=$info['normal']['total_curd_wt'];
-    }
-    $total_curd_wt_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_curd_wt']))
-    {
-        $total_curd_wt_replica=$info['replica']['total_curd_wt'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -322,7 +240,7 @@ if($options['total_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="total_curd_wt" name="normal[total_curd_wt]" class="form-control" value="<?php echo $total_curd_wt_normal;?>" />
+            <label class="control-label"><?php echo $sum_total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -330,18 +248,11 @@ if($options['total_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[total_curd_wt]" class="form-control" value="<?php echo $total_curd_wt_replica;?>" />
+                <label class="control-label"><?php echo $sum_total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_curd_wt]" value="<?php echo $total_curd_wt_replica;?>">
-        <?php
-        }
         ?>
-
     </div>
 <?php
 }
@@ -350,16 +261,6 @@ if($options['total_curd_wt']==1)
 <?php
 if($options['total_market_curds']==1)
 {
-    $total_market_curds_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_market_curds']))
-    {
-        $total_market_curds_normal=$info['normal']['total_market_curds'];
-    }
-    $total_market_curds_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_market_curds']))
-    {
-        $total_market_curds_replica=$info['replica']['total_market_curds'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -367,7 +268,7 @@ if($options['total_market_curds']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="total_market_curds" name="normal[total_market_curds]" class="form-control" value="<?php echo $total_market_curds_normal;?>" />
+            <label class="control-label"><?php echo $sum_total_mrkt_curds_normal;?></label>
         </div>
 
         <?php
@@ -375,18 +276,11 @@ if($options['total_market_curds']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[total_market_curds]" class="form-control" value="<?php echo $total_market_curds_replica;?>" />
+                <label class="control-label"><?php echo $sum_total_mrkt_curds_replica;?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_market_curds]" value="<?php echo $total_market_curds_replica;?>">
-        <?php
-        }
         ?>
-
     </div>
 <?php
 }
@@ -395,16 +289,6 @@ if($options['total_market_curds']==1)
 <?php
 if($options['total_market_curd_wt']==1)
 {
-    $total_market_curd_wt_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_market_curd_wt']))
-    {
-        $total_market_curd_wt_normal=$info['normal']['total_market_curd_wt'];
-    }
-    $total_market_curd_wt_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_market_curd_wt']))
-    {
-        $total_market_curd_wt_replica=$info['replica']['total_market_curd_wt'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -412,7 +296,7 @@ if($options['total_market_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="total_market_curd_wt" name="normal[total_market_curd_wt]" class="form-control" value="<?php echo $total_market_curd_wt_normal;?>" />
+            <label class="control-label"><?php echo $sum_total_mrkt_curd_wt_normal;?></label>
         </div>
 
         <?php
@@ -420,18 +304,11 @@ if($options['total_market_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[total_market_curd_wt]" class="form-control" value="<?php echo $total_market_curd_wt_replica;?>" />
+                <label class="control-label"><?php echo $sum_total_mrkt_curd_wt_replica;?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_market_curd_wt]" value="<?php echo $total_market_curd_wt_replica;?>">
-        <?php
-        }
         ?>
-
     </div>
 <?php
 }

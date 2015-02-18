@@ -85,50 +85,27 @@ if($options['harvesting_date']==1)
 }
 ?>
 
-<?php
-if($options['initial_plants_during_trial_started']==1)
-{
-    $initial_plants_normal="";
-    if(is_array($info)&& !empty($info['normal']['initial_plants_during_trial_started']))
+
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
+    </div>
+
+    <div class="col-xs-3">
+        <label class="control-label"><?php echo $initial_plants;?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
     {
-        $initial_plants_normal=$info['normal']['initial_plants_during_trial_started'];
-    }
-    $initial_plants_replica="";
-    if(is_array($info)&& !empty($info['replica']['initial_plants_during_trial_started']))
-    {
-        $initial_plants_replica=$info['replica']['initial_plants_during_trial_started'];
+        ?>
+        <div class="col-xs-3">
+            <input type="text" name="replica[initial_plants_during_trial_started]" class="form-control" value="<?php echo $initial_plants;?>" />
+        </div>
+    <?php
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
-        </div>
-
-        <div class="col-xs-3">
-            <input type="text" name="normal[initial_plants_during_trial_started]" class="form-control" value="<?php echo $initial_plants;?>" />
-        </div>
-
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[initial_plants_during_trial_started]" class="form-control" value="<?php echo $initial_plants;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[initial_plants_during_trial_started]" value="<?php echo $initial_plants;?>">
-        <?php
-        }
-        ?>
-
-    </div>
-<?php
-}
-?>
+</div>
 
 
 <?php
@@ -147,7 +124,7 @@ if($options['no_of_plants_harvested']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('no_of_plants_harvested');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_PLANTS_HARVESTED');?></label>
         </div>
 
         <div class="col-xs-3">

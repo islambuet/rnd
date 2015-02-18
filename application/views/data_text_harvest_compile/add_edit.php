@@ -19,12 +19,12 @@ $this->load->view("action_buttons_edit",$data);
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-
                 <select name="year" id="year" class="form-control validate[required]">
                     <?php
                     $current_year=date("Y",time());
                     for($i=$this->config->item("start_year");$i<=($current_year+$this->config->item("next_year_range"));$i++)
-                    {?>
+                    {
+                        ?>
                         <option value="<?php echo $i;?>" <?php echo ($i==$current_year)?"selected":"";?>><?php echo $i;?></option>
                     <?php
                     }

@@ -72,4 +72,25 @@ class Data_text_harvest_compile_model extends CI_Model
             return null;
         }
     }
+
+
+    public function get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_data_text_harvest_cropwise');
+        $this->db->where('season_id',$season_id);
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('crop_type_id',$crop_type_id);
+        $this->db->where('variety_id',$variety_id);
+        $result = $this->db->get()->result_array();
+
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

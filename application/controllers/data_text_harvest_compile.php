@@ -71,11 +71,14 @@ class Data_text_harvest_compile extends ROOT_Controller
             $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
             $data['harvest_no'] = $harvest_no;
             $data['initial_plants'] = $this->data_text_harvest_compile_model->get_initial_plants($crop_id);
+//            $data['first_harvest_date'] = $this->data_text_harvest_compile_model->get_first_harvest_date($season_id, $crop_id, $crop_type_id, $variety_id);
+            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
 
             if($this->message)
             {
                 $ajax['message']=$this->message;
             }
+
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_compile/list",$data,true));
             $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown($harvest_no));

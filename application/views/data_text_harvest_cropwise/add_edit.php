@@ -126,7 +126,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
             $("#harvest_no_container").hide();
-
         });
 
         $(document).on("change", "#season_id", function(event)

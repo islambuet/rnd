@@ -61,4 +61,5 @@ $lang['PERCENTAGE_OF_MRKT_LEAF_WT'] = 'Percentage Of Marketed Leaf Weight';
 $lang['UNIFORMITY'] = 'Uniformity';
 $lang['EVALUATION'] = 'Evaluation';
 $lang['F_HOLDING_CAPACITY'] = 'F. Holding Capacity';
+$lang['NO_OF_PLANTS_HARVESTED'] = 'No. Of Plants Harvested';
 
