@@ -47,6 +47,7 @@
         $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
         $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
 
+        // code below will be modified
         @$uniformity_normal = $detail['normal']['curd_uniformity']+$detail['normal']['head_uniformity']+$detail['normal']['fruit_uniformity']+$detail['normal']['roots_uniformity']+$detail['normal']['leaf_uniformity'];
         @$uniformity_replica = $detail['replica']['curd_uniformity']+$detail['replica']['head_uniformity']+$detail['replica']['fruit_uniformity']+$detail['replica']['roots_uniformity']+$detail['replica']['leaf_uniformity'];
         $sum_uniformity_normal += $uniformity_normal;
