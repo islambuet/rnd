@@ -32,6 +32,10 @@
 
     $sum_uniformity_normal = '';
     $sum_uniformity_replica = '';
+    $sum_no_of_plants_normal = '';
+    $sum_no_of_plants_replica = '';
+    $sum_total_harvested_wt_normal = '';
+    $sum_total_harvested_wt_replica = '';
 
     foreach($harvest_data as $harvest)
     {
