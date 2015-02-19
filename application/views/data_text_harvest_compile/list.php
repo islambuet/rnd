@@ -30,34 +30,6 @@
     $interval_of_harvest_normal = abs((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
     $interval_of_harvest_replica = abs((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
 
-    $sum_no_of_plants_normal = '';
-    $sum_no_of_plants_replica = '';
-
-    $sum_total_harvested_wt_normal = '';
-    $sum_total_harvested_wt_replica = '';
-
-    $sum_total_mrkt_curds_normal = '';
-    $sum_total_mrkt_curds_replica = '';
-    $sum_total_mrkt_heads_normal = '';
-    $sum_total_mrkt_heads_replica = '';
-    $sum_total_mrkt_fruits_normal = '';
-    $sum_total_mrkt_fruits_replica = '';
-    $sum_total_mrkt_roots_normal = '';
-    $sum_total_mrkt_roots_replica = '';
-    $sum_total_mrkt_leafs_normal = '';
-    $sum_total_mrkt_leafs_replica = '';
-
-    $sum_total_mrkt_curd_wt_normal = '';
-    $sum_total_mrkt_curd_wt_replica = '';
-    $sum_total_mrkt_fruit_wt_normal = '';
-    $sum_total_mrkt_fruit_wt_replica = '';
-    $sum_total_mrkt_head_wt_normal = '';
-    $sum_total_mrkt_head_wt_replica = '';
-    $sum_total_mrkt_roots_wt_normal = '';
-    $sum_total_mrkt_roots_wt_replica = '';
-    $sum_total_mrkt_leaf_wt_normal = '';
-    $sum_total_mrkt_leaf_wt_replica = '';
-
     $sum_uniformity_normal = '';
     $sum_uniformity_replica = '';
 
@@ -70,104 +42,16 @@
         $sum_no_of_plants_normal += $no_of_plants_normal;
         $sum_no_of_plants_replica += $no_of_plants_replica;
 
-//        @$no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
-//        @$no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
-//        @$sum_no_of_roots_normal += $no_of_roots_normal;
-//        @$sum_no_of_roots_replica += $no_of_roots_replica;
-//
-//        @$no_of_fruits_normal = $detail['normal']['no_of_fruits'];
-//        @$no_of_fruits_replica = $detail['replica']['no_of_fruits'];
-//        @$sum_no_of_fruits_normal += $no_of_fruits_normal;
-//        @$sum_no_of_fruits_replica += $no_of_fruits_replica;
-
         $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
         $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
         $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
         $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
-
-//        @$total_mrkt_curds_normal = $detail['normal']['total_mrkt_curds'];
-//        @$total_mrkt_curds_replica = $detail['replica']['total_mrkt_curds'];
-//        $sum_total_mrkt_curds_normal += $total_mrkt_curds_normal;
-//        $sum_total_mrkt_curds_replica += $total_mrkt_curds_replica;
-//
-//        @$total_mrkt_heads_normal = $detail['normal']['total_mrkt_heads'];
-//        @$total_mrkt_heads_replica = $detail['replica']['total_mrkt_heads'];
-//        $sum_total_mrkt_heads_normal += $total_mrkt_heads_normal;
-//        $sum_total_mrkt_heads_replica += $total_mrkt_heads_replica;
-//
-//        @$total_mrkt_fruits_normal = $detail['normal']['total_mrkt_fruits'];
-//        @$total_mrkt_fruits_replica = $detail['replica']['total_mrkt_fruits'];
-//        $sum_total_mrkt_fruits_normal += $total_mrkt_fruits_normal;
-//        $sum_total_mrkt_fruits_replica += $total_mrkt_fruits_replica;
-
-//        @$total_mrkt_roots_normal = $detail['normal']['total_mrkt_roots'];
-//        @$total_mrkt_roots_replica = $detail['replica']['total_mrkt_roots'];
-//        $sum_total_mrkt_roots_normal += $total_mrkt_roots_normal;
-//        $sum_total_mrkt_roots_replica += $total_mrkt_roots_replica;
-
-        @$total_mrkt_leafs_normal = $detail['normal']['total_mrkt_leaf'];
-        @$total_mrkt_leafs_replica = $detail['replica']['total_mrkt_leaf'];
-        $sum_total_mrkt_leafs_normal += $total_mrkt_leafs_normal;
-        $sum_total_mrkt_leafs_replica += $total_mrkt_leafs_replica;
-
-
-        @$total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
-        @$total_mrkt_curd_wt_replica = $detail['replica']['total_mrkt_curd_wt'];
-        $sum_total_mrkt_curd_wt_normal += $total_mrkt_curd_wt_normal;
-        $sum_total_mrkt_curd_wt_replica += $total_mrkt_curd_wt_replica;
-
-        @$total_mrkt_head_wt_normal = $detail['normal']['total_mrkt_head_wt'];
-        @$total_mrkt_head_wt_replica = $detail['replica']['total_mrkt_head_wt'];
-        $sum_total_mrkt_head_wt_normal += $total_mrkt_head_wt_normal;
-        $sum_total_mrkt_head_wt_replica += $total_mrkt_head_wt_replica;
-
-        @$total_mrkt_fruit_wt_normal = $detail['normal']['total_mrkt_fruit_wt'];
-        @$total_mrkt_fruit_wt_replica = $detail['replica']['total_mrkt_fruit_wt'];
-        $sum_total_mrkt_fruit_wt_normal += $total_mrkt_fruit_wt_normal;
-        $sum_total_mrkt_fruit_wt_replica += $total_mrkt_fruit_wt_replica;
-
-//        @$total_mrkt_roots_wt_normal = $detail['normal']['total_mrkt_roots_wt'];
-//        @$total_mrkt_roots_wt_replica = $detail['replica']['total_mrkt_roots_wt'];
-//        $sum_total_mrkt_roots_wt_normal += $total_mrkt_roots_wt_normal;
-//        $sum_total_mrkt_roots_wt_replica += $total_mrkt_roots_wt_replica;
-
-//        @$total_mrkt_leaf_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
-//        @$total_mrkt_leaf_wt_replica = $detail['replica']['total_mrkt_leaf_wt'];
-//        $sum_total_mrkt_leaf_wt_normal += $total_mrkt_leaf_wt_normal;
-//        $sum_total_mrkt_leaf_wt_replica += $total_mrkt_leaf_wt_replica;
 
         @$uniformity_normal = $detail['normal']['curd_uniformity']+$detail['normal']['head_uniformity']+$detail['normal']['fruit_uniformity']+$detail['normal']['roots_uniformity']+$detail['normal']['leaf_uniformity'];
         @$uniformity_replica = $detail['replica']['curd_uniformity']+$detail['replica']['head_uniformity']+$detail['replica']['fruit_uniformity']+$detail['replica']['roots_uniformity']+$detail['replica']['leaf_uniformity'];
         $sum_uniformity_normal += $uniformity_normal;
         $sum_uniformity_replica += $uniformity_replica;
     }
-
-//    @$percentage_of_marketed_curds_normal = round(($sum_total_mrkt_curds_normal/$sum_no_of_plants_normal)*100, 2);
-//    @$percentage_of_marketed_curds_replica = round(($sum_total_mrkt_curds_replica/$sum_no_of_plants_replica)*100, 2);
-//
-//    @$percentage_of_marketed_heads_normal = round(($sum_total_mrkt_heads_normal/$sum_no_of_plants_normal)*100, 2);
-//    @$percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_replica)*100, 2);
-//
-//    $percentage_of_marketed_fruits_normal = round(($sum_total_mrkt_fruits_normal/$sum_no_of_plants_normal)*100, 2);
-//    @$percentage_of_marketed_fruits_replica = round(($sum_total_mrkt_fruits_replica/$sum_no_of_plants_replica)*100, 2);
-
-
-
-
-//    @$percentage_of_marketed_curds_weight_normal = round(($sum_total_mrkt_curd_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-//    @$percentage_of_marketed_curds_weight_replica = round(($sum_total_mrkt_curd_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
-//
-//    @$percentage_of_marketed_heads_weight_normal = round(($sum_total_mrkt_head_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-//    @$percentage_of_marketed_heads_weight_replica = round(($sum_total_mrkt_head_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
-//
-//    @$percentage_of_marketed_fruits_weight_normal = round(($sum_total_mrkt_fruit_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-//    @$percentage_of_marketed_fruits_weight_replica = round(($sum_total_mrkt_fruit_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
-//
-//    @$percentage_of_marketed_roots_weight_normal = round(($sum_total_mrkt_roots_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-//    @$percentage_of_marketed_roots_weight_replica = round(($sum_total_mrkt_roots_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
-
-
-
 
 ?>
 

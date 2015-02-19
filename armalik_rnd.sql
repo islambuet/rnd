@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-02-16 18:05:37
+Date: 2015-02-19 20:36:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -184,6 +184,8 @@ INSERT INTO `ait_system_task` VALUES ('ST-000112', 'SM-000009', '', '12', 'Fruit
 INSERT INTO `ait_system_task` VALUES ('ST-000113', 'SM-000009', '', '18', 'Harvest Compile Text Entry', 'data_text_harvest_compile', '', null, '', '', '', '', '2015-02-10 18:38:32', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000114', 'SM-000009', '', '19', 'Yield Cropwise Text Setup', 'setup_text_yield_cropwise', '', null, '', '', '', '', '2015-02-10 18:41:29', 'Active');
 INSERT INTO `ait_system_task` VALUES ('ST-000115', 'SM-000009', '', '20', 'Yield Cropwise Text Entry', 'data_text_yield_cropwise', '', null, '', '', '', '', '2015-02-10 18:42:29', 'Active');
+INSERT INTO `ait_system_task` VALUES ('ST-000116', 'SM-000009', '', '21', 'Veg Fruit Text Setup', 'setup_text_veg_fruit_cropwise', '', null, '', '', '', '', '2015-02-19 15:30:20', 'Active');
+INSERT INTO `ait_system_task` VALUES ('ST-000117', 'SM-000009', '', '22', 'Veg Fruit Text Entry', 'data_text_veg_fruit_cropwise', '', null, '', '', '', '', '2015-02-19 15:30:37', 'Active');
 
 -- ----------------------------
 -- Table structure for `ait_user_group`
@@ -207,7 +209,7 @@ CREATE TABLE `ait_user_group` (
   KEY `up_sm_id` (`up_sm_id`),
   KEY `up_st_id` (`up_st_id`),
   KEY `ug_id` (`ug_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11224 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11226 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ait_user_group
@@ -516,6 +518,8 @@ INSERT INTO `ait_user_group` VALUES ('11220', 'UG-000012', 'R&D - Admin', 'SM-00
 INSERT INTO `ait_user_group` VALUES ('11221', 'UG-000012', 'R&D - Admin', 'SM-000009', 'ST-000113', 'add', 'save', 'edit', 'delete', 'details', 'report', '', '0000-00-00 00:00:00');
 INSERT INTO `ait_user_group` VALUES ('11222', 'UG-000012', 'R&D - Admin', 'SM-000009', 'ST-000114', 'add', 'save', 'edit', 'delete', 'details', 'report', '', '0000-00-00 00:00:00');
 INSERT INTO `ait_user_group` VALUES ('11223', 'UG-000012', 'R&D - Admin', 'SM-000009', 'ST-000115', 'add', 'save', 'edit', 'delete', 'details', 'report', '', '0000-00-00 00:00:00');
+INSERT INTO `ait_user_group` VALUES ('11224', 'UG-000012', 'R&D - Admin', 'SM-000009', 'ST-000116', 'add', 'save', 'edit', 'delete', 'details', 'report', '', '0000-00-00 00:00:00');
+INSERT INTO `ait_user_group` VALUES ('11225', 'UG-000012', 'R&D - Admin', 'SM-000009', 'ST-000117', 'add', 'save', 'edit', 'delete', 'details', 'report', '', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `ait_user_login`
@@ -961,11 +965,14 @@ CREATE TABLE `rnd_data_text_harvest_cropwise` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_data_text_harvest_cropwise
 -- ----------------------------
+INSERT INTO `rnd_data_text_harvest_cropwise` VALUES ('1', '2014', '1', '1', '2', '1', '1', '{\"normal\":{\"harvesting_date\":\"2015-01-02\",\"no_of_plants_harvested\":\"34\",\"total_harvested_wt\":\"56\",\"total_mrkt_curds\":\"43\",\"total_mrkt_curd_wt\":\"76\",\"curd_uniformity\":\"3\",\"remarks\":\" Remarks \"},\"replica\":{\"harvesting_date\":\"\",\"no_of_plants_harvested\":\"\",\"total_harvested_wt\":\"\",\"total_mrkt_curds\":\"\",\"total_mrkt_curd_wt\":\"\",\"curd_uniformity\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424172006', 'UI-000037', '1424324039');
+INSERT INTO `rnd_data_text_harvest_cropwise` VALUES ('2', '2014', '1', '1', '2', '1', '2', '{\"normal\":{\"harvesting_date\":\"2015-02-04\",\"no_of_plants_harvested\":\"34\",\"total_harvested_wt\":\"98\",\"total_mrkt_curds\":\"76\",\"total_mrkt_curd_wt\":\"23\",\"curd_uniformity\":\"5\",\"remarks\":\" Remarks  Remarks  Remarks \"},\"replica\":{\"harvesting_date\":\"\",\"no_of_plants_harvested\":\"\",\"total_harvested_wt\":\"\",\"total_mrkt_curds\":\"\",\"total_mrkt_curd_wt\":\"\",\"curd_uniformity\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424255343', 'UI-000037', '1424324050');
+INSERT INTO `rnd_data_text_harvest_cropwise` VALUES ('3', '2014', '1', '1', '2', '1', '3', '{\"normal\":{\"harvesting_date\":\"2015-02-20\",\"no_of_plants_harvested\":\"78\",\"total_harvested_wt\":\"34\",\"total_mrkt_curds\":\"565\",\"total_mrkt_curd_wt\":\"6565\",\"curd_uniformity\":\"4\",\"remarks\":\" Remarks  Remarks \"},\"replica\":{\"harvesting_date\":\"\",\"no_of_plants_harvested\":\"\",\"total_harvested_wt\":\"\",\"total_mrkt_curds\":\"\",\"total_mrkt_curd_wt\":\"\",\"curd_uniformity\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424255459', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_history`
@@ -980,7 +987,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=685 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=733 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -1669,6 +1676,54 @@ INSERT INTO `rnd_history` VALUES ('681', '17', 'rnd_setup_text_harvest_compile',
 INSERT INTO `rnd_history` VALUES ('682', '18', 'rnd_setup_text_harvest_compile', '{\"initial_plants\":1,\"first_harvest_days\":1,\"last_harvest_days\":1,\"interval_first_and_last_harvest\":1,\"total_no_of_harvest\":1,\"total_harv_curds\":0,\"total_curd_wt\":0,\"total_market_curds\":0,\"total_market_curd_wt\":0,\"percentage_of_mrkt_curd\":0,\"percentage_of_', 'UI-000037', 'UPDATE', '1424062363');
 INSERT INTO `rnd_history` VALUES ('683', '19', 'rnd_setup_text_harvest_compile', '{\"initial_plants\":1,\"first_harvest_days\":1,\"last_harvest_days\":1,\"interval_first_and_last_harvest\":0,\"total_no_of_harvest\":1,\"total_harv_curds\":0,\"total_curd_wt\":0,\"total_market_curds\":0,\"total_market_curd_wt\":0,\"percentage_of_mrkt_curd\":0,\"percentage_of_', 'UI-000037', 'UPDATE', '1424062406');
 INSERT INTO `rnd_history` VALUES ('684', '24', 'rnd_setup_text_harvest_compile', '{\"initial_plants\":1,\"first_harvest_days\":1,\"last_harvest_days\":1,\"interval_first_and_last_harvest\":1,\"total_no_of_harvest\":1,\"total_harv_curds\":0,\"total_curd_wt\":0,\"total_market_curds\":0,\"total_market_curd_wt\":0,\"percentage_of_mrkt_curd\":0,\"percentage_of_', 'UI-000037', 'UPDATE', '1424062439');
+INSERT INTO `rnd_history` VALUES ('685', '1', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-02-02\\\",\\\"initial_plants_during_trial_started\\\":\\\"30\\\",\\\"no_of_plants_harvested\\\":\\\"34\\\",\\\"total_harvested_wt\\\":\\\"56\\\",\\\"total_mrkt_curds\\\":\\\"43\\\",\\\"total_mrkt_curd_wt\\\":\\\"76\\\",\\\"curd_uniformity\\\":\\\"3\\\",\\\"r', 'UI-000037', 'INSERT', '1424172006');
+INSERT INTO `rnd_history` VALUES ('686', '2', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-02-04\\\",\\\"no_of_plants_harvested\\\":\\\"34\\\",\\\"total_harvested_wt\\\":\\\"98\\\",\\\"total_mrkt_curds\\\":\\\"76\\\",\\\"total_mrkt_curd_wt\\\":\\\"23\\\",\\\"curd_uniformity\\\":\\\"5\\\",\\\"remarks\\\":\\\" Remarks  Remarks  Remarks \\\"},\\\"rep', 'UI-000037', 'INSERT', '1424255343');
+INSERT INTO `rnd_history` VALUES ('687', '2', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-02-04\\\",\\\"no_of_plants_harvested\\\":\\\"34\\\",\\\"total_harvested_wt\\\":\\\"98\\\",\\\"total_mrkt_curds\\\":\\\"76\\\",\\\"total_mrkt_curd_wt\\\":\\\"23\\\",\\\"curd_uniformity\\\":\\\"5\\\",\\\"remarks\\\":\\\" Remarks  Remarks  Remarks \\\"},\\\"rep', 'UI-000037', 'UPDATE', '1424255364');
+INSERT INTO `rnd_history` VALUES ('688', '3', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-02-20\\\",\\\"no_of_plants_harvested\\\":\\\"78\\\",\\\"total_harvested_wt\\\":\\\"34\\\",\\\"total_mrkt_curds\\\":\\\"565\\\",\\\"total_mrkt_curd_wt\\\":\\\"6565\\\",\\\"curd_uniformity\\\":\\\"4\\\",\\\"remarks\\\":\\\" Remarks  Remarks \\\"},\\\"replica\\\"', 'UI-000037', 'INSERT', '1424255459');
+INSERT INTO `rnd_history` VALUES ('689', '1', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-01-02\\\",\\\"no_of_plants_harvested\\\":\\\"34\\\",\\\"total_harvested_wt\\\":\\\"56\\\",\\\"total_mrkt_curds\\\":\\\"43\\\",\\\"total_mrkt_curd_wt\\\":\\\"76\\\",\\\"curd_uniformity\\\":\\\"3\\\",\\\"remarks\\\":\\\" Remarks \\\"},\\\"replica\\\":{\\\"harvesti', 'UI-000037', 'UPDATE', '1424324039');
+INSERT INTO `rnd_history` VALUES ('690', '2', 'rnd_data_text_harvest_cropwise', '{\"info\":\"{\\\"normal\\\":{\\\"harvesting_date\\\":\\\"2015-02-04\\\",\\\"no_of_plants_harvested\\\":\\\"34\\\",\\\"total_harvested_wt\\\":\\\"98\\\",\\\"total_mrkt_curds\\\":\\\"76\\\",\\\"total_mrkt_curd_wt\\\":\\\"23\\\",\\\"curd_uniformity\\\":\\\"5\\\",\\\"remarks\\\":\\\" Remarks  Remarks  Remarks \\\"},\\\"rep', 'UI-000037', 'UPDATE', '1424324050');
+INSERT INTO `rnd_history` VALUES ('691', '1', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":1,\"first_head_formation\":0,\"first_flow\":0,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":1,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":0,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424342513');
+INSERT INTO `rnd_history` VALUES ('692', '2', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":1,\"first_flow\":0,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":1,\"fifty_percent_flow\":0,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424342802');
+INSERT INTO `rnd_history` VALUES ('693', '3', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":1,\"first_flow\":0,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":1,\"fifty_percent_flow\":0,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424342982');
+INSERT INTO `rnd_history` VALUES ('694', '2', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":1,\"first_flow\":0,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":1,\"fifty_percent_flow\":0,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424342998');
+INSERT INTO `rnd_history` VALUES ('695', '4', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424343413');
+INSERT INTO `rnd_history` VALUES ('696', '5', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424343560');
+INSERT INTO `rnd_history` VALUES ('697', '6', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424343724');
+INSERT INTO `rnd_history` VALUES ('698', '7', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424343873');
+INSERT INTO `rnd_history` VALUES ('699', '8', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344038');
+INSERT INTO `rnd_history` VALUES ('700', '9', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344227');
+INSERT INTO `rnd_history` VALUES ('701', '10', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344470');
+INSERT INTO `rnd_history` VALUES ('702', '11', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344558');
+INSERT INTO `rnd_history` VALUES ('703', '12', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344638');
+INSERT INTO `rnd_history` VALUES ('704', '13', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344796');
+INSERT INTO `rnd_history` VALUES ('705', '14', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344863');
+INSERT INTO `rnd_history` VALUES ('706', '15', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":0,\"first_root\":1,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":0,\"fifty_percent_root\":1,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424344992');
+INSERT INTO `rnd_history` VALUES ('707', '16', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":0,\"first_root\":1,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":0,\"fifty_percent_root\":1,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424345059');
+INSERT INTO `rnd_history` VALUES ('708', '17', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424345148');
+INSERT INTO `rnd_history` VALUES ('709', '18', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":1,\"first_root\":0,\"first_cutting\":0,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":1,\"fifty_percent_root\":0,\"last_cutting\":0,\"first_harvest\":1,\"no_of_cu', 'UI-000037', 'UPDATE', '1424345228');
+INSERT INTO `rnd_history` VALUES ('710', '19', 'rnd_setup_text_veg_fruit', '{\"first_curd_formation\":0,\"first_head_formation\":0,\"first_flow\":0,\"first_root\":0,\"first_cutting\":1,\"fifty_percent_curd_formation\":0,\"fifty_percent_head_formation\":0,\"fifty_percent_flow\":0,\"fifty_percent_root\":0,\"last_cutting\":1,\"first_harvest\":0,\"no_of_cu', 'UI-000037', 'UPDATE', '1424345304');
+INSERT INTO `rnd_history` VALUES ('711', '1', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":1,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424345769');
+INSERT INTO `rnd_history` VALUES ('712', '20', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":1,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424345878');
+INSERT INTO `rnd_history` VALUES ('713', '2', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":1,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424345940');
+INSERT INTO `rnd_history` VALUES ('714', '21', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":1,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424345980');
+INSERT INTO `rnd_history` VALUES ('715', '3', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":1,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346002');
+INSERT INTO `rnd_history` VALUES ('716', '22', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":1,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346087');
+INSERT INTO `rnd_history` VALUES ('717', '4', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346226');
+INSERT INTO `rnd_history` VALUES ('718', '6', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346307');
+INSERT INTO `rnd_history` VALUES ('719', '7', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346346');
+INSERT INTO `rnd_history` VALUES ('720', '8', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346370');
+INSERT INTO `rnd_history` VALUES ('721', '9', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346398');
+INSERT INTO `rnd_history` VALUES ('722', '10', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346559');
+INSERT INTO `rnd_history` VALUES ('723', '11', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346583');
+INSERT INTO `rnd_history` VALUES ('724', '12', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346602');
+INSERT INTO `rnd_history` VALUES ('725', '13', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346617');
+INSERT INTO `rnd_history` VALUES ('726', '14', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346642');
+INSERT INTO `rnd_history` VALUES ('727', '15', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":1,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346667');
+INSERT INTO `rnd_history` VALUES ('728', '16', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":1,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346693');
+INSERT INTO `rnd_history` VALUES ('729', '17', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346712');
+INSERT INTO `rnd_history` VALUES ('730', '18', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346741');
+INSERT INTO `rnd_history` VALUES ('731', '19', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":1,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346773');
+INSERT INTO `rnd_history` VALUES ('732', '24', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":1,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346796');
 
 -- ----------------------------
 -- Table structure for `rnd_principal`
@@ -2252,6 +2307,90 @@ INSERT INTO `rnd_setup_text_harvest_cropwise` VALUES ('23', '23', '1', '1', '0',
 INSERT INTO `rnd_setup_text_harvest_cropwise` VALUES ('24', '24', '1', '1', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', 'UI-000037', '1422522345', 'UI-000037', '1423485428');
 
 -- ----------------------------
+-- Table structure for `rnd_setup_text_veg_fruit`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_setup_text_veg_fruit`;
+CREATE TABLE `rnd_setup_text_veg_fruit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crop_id` int(11) NOT NULL,
+  `first_curd_formation` tinyint(4) NOT NULL DEFAULT '0',
+  `first_head_formation` tinyint(4) NOT NULL DEFAULT '0',
+  `first_flow` tinyint(4) NOT NULL DEFAULT '0',
+  `first_root` tinyint(4) NOT NULL DEFAULT '0',
+  `first_cutting` tinyint(4) NOT NULL DEFAULT '0',
+  `fifty_percent_curd_formation` tinyint(4) NOT NULL DEFAULT '0',
+  `fifty_percent_head_formation` tinyint(4) NOT NULL DEFAULT '0',
+  `fifty_percent_flow` tinyint(4) NOT NULL DEFAULT '0',
+  `fifty_percent_root` tinyint(4) NOT NULL DEFAULT '0',
+  `last_cutting` tinyint(4) NOT NULL DEFAULT '0',
+  `first_harvest` tinyint(4) NOT NULL DEFAULT '0',
+  `no_of_cutting` tinyint(4) NOT NULL DEFAULT '0',
+  `last_harvest` tinyint(4) NOT NULL DEFAULT '0',
+  `no_of_harvest` tinyint(4) NOT NULL DEFAULT '0',
+  `curd_colour` tinyint(4) NOT NULL DEFAULT '0',
+  `head_colour` tinyint(4) NOT NULL DEFAULT '0',
+  `fruit_colour` tinyint(4) NOT NULL DEFAULT '0',
+  `root_colour` tinyint(4) NOT NULL DEFAULT '0',
+  `leaf_colour` tinyint(4) NOT NULL DEFAULT '0',
+  `leaf_length` tinyint(4) NOT NULL DEFAULT '0',
+  `leaf_type` tinyint(4) NOT NULL DEFAULT '0',
+  `fruit_size` tinyint(4) NOT NULL DEFAULT '0',
+  `root_size` tinyint(4) NOT NULL DEFAULT '0',
+  `curd_shape` tinyint(4) NOT NULL DEFAULT '0',
+  `head_shape` tinyint(4) NOT NULL DEFAULT '0',
+  `fruit_shape` tinyint(4) NOT NULL DEFAULT '0',
+  `root_shape` tinyint(4) NOT NULL DEFAULT '0',
+  `curd_diam` tinyint(4) NOT NULL DEFAULT '0',
+  `head_diam` tinyint(4) NOT NULL DEFAULT '0',
+  `avg_curd_wt` tinyint(4) NOT NULL DEFAULT '0',
+  `avg_leaf_wt` tinyint(4) NOT NULL DEFAULT '0',
+  `avg_head_wt` tinyint(4) NOT NULL DEFAULT '0',
+  `avg_fruit_wt` tinyint(4) NOT NULL DEFAULT '0',
+  `plant_height` tinyint(4) NOT NULL DEFAULT '0',
+  `harvest_unif` tinyint(4) NOT NULL DEFAULT '0',
+  `cluster_per_plant` tinyint(4) NOT NULL DEFAULT '0',
+  `fruit_per_cluster` tinyint(4) NOT NULL DEFAULT '0',
+  `fruit_pungency` tinyint(4) NOT NULL DEFAULT '0',
+  `no_of_plants_per_plot` tinyint(4) NOT NULL DEFAULT '0',
+  `avg_fruit_wt_per_plant` tinyint(4) NOT NULL DEFAULT '0',
+  `average_harvested_plant` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_setup_text_veg_fruit
+-- ----------------------------
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('1', '1', '1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422438965', 'UI-000037', '1424342513');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('2', '2', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '1', '1', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422519707', 'UI-000037', '1424342998');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('3', '3', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '1', '1', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422519814', 'UI-000037', '1424342982');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('4', '4', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', 'UI-000037', '1422519944', 'UI-000037', '1424343413');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('5', '5', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '1', '1', '1', '1', '1', 'UI-000037', '1422520142', 'UI-000037', '1424343560');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('6', '6', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', 'UI-000037', '1422520372', 'UI-000037', '1424343724');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('7', '7', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422520575', 'UI-000037', '1424343873');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('8', '8', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422520894', 'UI-000037', '1424344038');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('9', '9', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422520986', 'UI-000037', '1424344227');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('10', '10', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422521115', 'UI-000037', '1424344470');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('11', '11', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422521223', 'UI-000037', '1424344558');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('12', '12', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422521322', 'UI-000037', '1424344638');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('13', '13', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422521406', 'UI-000037', '1424344796');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('14', '14', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422521505', 'UI-000037', '1424344863');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('15', '15', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422521677', 'UI-000037', '1424344992');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('16', '16', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422521876', 'UI-000037', '1424345059');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('17', '17', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422522060', 'UI-000037', '1424345148');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('18', '18', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '1', '0', '1', '1', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', 'UI-000037', '1422522202', 'UI-000037', '1424345228');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('19', '19', '0', '0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '1', 'UI-000037', '1422522345', 'UI-000037', '1424345304');
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('20', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284645', null, null);
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('21', '21', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284759', null, null);
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('22', '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284842', null, null);
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('23', '23', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284986', null, null);
+INSERT INTO `rnd_setup_text_veg_fruit` VALUES ('24', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423285115', null, null);
+
+-- ----------------------------
 -- Table structure for `rnd_setup_text_yield`
 -- ----------------------------
 DROP TABLE IF EXISTS `rnd_setup_text_yield`;
@@ -2283,30 +2422,30 @@ CREATE TABLE `rnd_setup_text_yield` (
 -- ----------------------------
 -- Records of rnd_setup_text_yield
 -- ----------------------------
-INSERT INTO `rnd_setup_text_yield` VALUES ('1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422438965', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('2', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422519707', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('3', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422519814', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('4', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422519944', null, null);
+INSERT INTO `rnd_setup_text_yield` VALUES ('1', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422438965', 'UI-000037', '1424345769');
+INSERT INTO `rnd_setup_text_yield` VALUES ('2', '2', '1', '1', '1', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422519707', 'UI-000037', '1424345940');
+INSERT INTO `rnd_setup_text_yield` VALUES ('3', '3', '1', '1', '1', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422519814', 'UI-000037', '1424346002');
+INSERT INTO `rnd_setup_text_yield` VALUES ('4', '4', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422519944', 'UI-000037', '1424346226');
 INSERT INTO `rnd_setup_text_yield` VALUES ('5', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422520142', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('6', '6', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422520372', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('7', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422520575', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('8', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422520894', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('9', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422520986', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('10', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521115', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('11', '11', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521223', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('12', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521322', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('13', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521406', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('14', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521505', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('15', '15', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521677', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('16', '16', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422521876', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('17', '17', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422522060', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('18', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422522202', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('19', '19', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1422522345', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('20', '20', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284645', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('21', '21', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284759', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('22', '22', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284842', null, null);
+INSERT INTO `rnd_setup_text_yield` VALUES ('6', '6', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422520372', 'UI-000037', '1424346307');
+INSERT INTO `rnd_setup_text_yield` VALUES ('7', '7', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422520575', 'UI-000037', '1424346346');
+INSERT INTO `rnd_setup_text_yield` VALUES ('8', '8', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422520894', 'UI-000037', '1424346370');
+INSERT INTO `rnd_setup_text_yield` VALUES ('9', '9', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422520986', 'UI-000037', '1424346398');
+INSERT INTO `rnd_setup_text_yield` VALUES ('10', '10', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521115', 'UI-000037', '1424346559');
+INSERT INTO `rnd_setup_text_yield` VALUES ('11', '11', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521223', 'UI-000037', '1424346583');
+INSERT INTO `rnd_setup_text_yield` VALUES ('12', '12', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521322', 'UI-000037', '1424346602');
+INSERT INTO `rnd_setup_text_yield` VALUES ('13', '13', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521406', 'UI-000037', '1424346617');
+INSERT INTO `rnd_setup_text_yield` VALUES ('14', '14', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521505', 'UI-000037', '1424346642');
+INSERT INTO `rnd_setup_text_yield` VALUES ('15', '15', '1', '1', '1', '1', '0', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521677', 'UI-000037', '1424346667');
+INSERT INTO `rnd_setup_text_yield` VALUES ('16', '16', '1', '1', '1', '1', '0', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422521876', 'UI-000037', '1424346693');
+INSERT INTO `rnd_setup_text_yield` VALUES ('17', '17', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422522060', 'UI-000037', '1424346712');
+INSERT INTO `rnd_setup_text_yield` VALUES ('18', '18', '1', '1', '1', '1', '0', '0', '1', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422522202', 'UI-000037', '1424346741');
+INSERT INTO `rnd_setup_text_yield` VALUES ('19', '19', '1', '1', '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', 'UI-000037', '1422522345', 'UI-000037', '1424346773');
+INSERT INTO `rnd_setup_text_yield` VALUES ('20', '20', '1', '1', '1', '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1423284645', 'UI-000037', '1424345878');
+INSERT INTO `rnd_setup_text_yield` VALUES ('21', '21', '1', '1', '1', '1', '0', '1', '0', '0', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1423284759', 'UI-000037', '1424345980');
+INSERT INTO `rnd_setup_text_yield` VALUES ('22', '22', '1', '1', '1', '1', '0', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1', 'UI-000037', '1423284842', 'UI-000037', '1424346087');
 INSERT INTO `rnd_setup_text_yield` VALUES ('23', '23', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423284986', null, null);
-INSERT INTO `rnd_setup_text_yield` VALUES ('24', '24', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', 'UI-000037', '1423285115', null, null);
+INSERT INTO `rnd_setup_text_yield` VALUES ('24', '24', '1', '1', '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', 'UI-000037', '1423285115', 'UI-000037', '1424346796');
 
 -- ----------------------------
 -- Table structure for `rnd_variety`
