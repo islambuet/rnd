@@ -100,7 +100,7 @@ if($options['harvesting_date']==1)
     {
         ?>
         <div class="col-xs-3">
-            <input type="text" name="replica[initial_plants_during_trial_started]" class="form-control" value="<?php echo $initial_plants;?>" />
+            <label class="control-label"><?php echo $initial_plants;?></label>
         </div>
     <?php
     }

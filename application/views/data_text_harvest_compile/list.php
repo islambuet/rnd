@@ -30,8 +30,6 @@
     $interval_of_harvest_normal = abs((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
     $interval_of_harvest_replica = abs((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
 
-    $sum_uniformity_normal = '';
-    $sum_uniformity_replica = '';
     $sum_no_of_plants_normal = '';
     $sum_no_of_plants_replica = '';
     $sum_total_harvested_wt_normal = '';
@@ -50,12 +48,6 @@
         $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
         $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
         $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
-
-        // code below will be modified
-        @$uniformity_normal = $detail['normal']['curd_uniformity']+$detail['normal']['head_uniformity']+$detail['normal']['fruit_uniformity']+$detail['normal']['roots_uniformity']+$detail['normal']['leaf_uniformity'];
-        @$uniformity_replica = $detail['replica']['curd_uniformity']+$detail['replica']['head_uniformity']+$detail['replica']['fruit_uniformity']+$detail['replica']['roots_uniformity']+$detail['replica']['leaf_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
     }
 
 ?>
@@ -1348,6 +1340,9 @@ if($options['total_market_leaf_wt']==1)
 }
 ?>
 
+
+<!--Total Market leaf not exist in the excel sheet, how percentage will be calculated??-->
+
 <?php
 //if($options['percentage_of_mrkt_leaf']==1)
 //{
@@ -1472,7 +1467,51 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     ?>
 </div>
 
+<?php
 
+$sum_uniformity_normal = '';
+$sum_uniformity_replica = '';
+
+foreach($harvest_data as $harvest)
+{
+    $detail = json_decode($harvest['info'],true);
+    if($detail['normal']['curd_uniformity'])
+    {
+        $uniformity_normal = $detail['normal']['curd_uniformity'];
+        $uniformity_replica = $detail['replica']['curd_uniformity'];
+        $sum_uniformity_normal += $uniformity_normal;
+        $sum_uniformity_replica += $uniformity_replica;
+    }
+    elseif($detail['normal']['head_uniformity'])
+    {
+        $uniformity_normal = $detail['normal']['head_uniformity'];
+        $uniformity_replica = $detail['replica']['head_uniformity'];
+        $sum_uniformity_normal += $uniformity_normal;
+        $sum_uniformity_replica += $uniformity_replica;
+    }
+    elseif($detail['normal']['fruit_uniformity'])
+    {
+        $uniformity_normal = $detail['normal']['fruit_uniformity'];
+        $uniformity_replica = $detail['replica']['fruit_uniformity'];
+        $sum_uniformity_normal += $uniformity_normal;
+        $sum_uniformity_replica += $uniformity_replica;
+    }
+    elseif($detail['normal']['roots_uniformity'])
+    {
+        $uniformity_normal = $detail['normal']['roots_uniformity'];
+        $uniformity_replica = $detail['replica']['roots_uniformity'];
+        $sum_uniformity_normal += $uniformity_normal;
+        $sum_uniformity_replica += $uniformity_replica;
+    }
+    elseif($detail['normal']['leaf_uniformity'])
+    {
+        $uniformity_normal = $detail['normal']['leaf_uniformity'];
+        $uniformity_replica = $detail['replica']['leaf_uniformity'];
+        $sum_uniformity_normal += $uniformity_normal;
+        $sum_uniformity_replica += $uniformity_replica;
+    }
+}
+?>
 
 <div class="row show-grid">
     <div class="col-xs-4">

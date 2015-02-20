@@ -1,17 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Data_text_harvest_compile extends ROOT_Controller
+class Data_text_yield_cropwise extends ROOT_Controller
 {
     private  $message;
-    private $day_15;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("data_text_harvest_compile_model");
-        $this->config->load('harvest_config');
-        $this->lang->load('rnd_harvest');
+        $this->load->model("data_text_yield_model");
+        $this->lang->load('rnd_yield');
     }
 
     public function index($task="add_edit",$id=0)
@@ -32,19 +30,19 @@ class Data_text_harvest_compile extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Harvest Compile Text Data Entry";
+        $data['title']="Yield Text Report";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("data_text_harvest_compile/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("data_text_yield_cropwise/add_edit",$data,true));
 
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
 
-        $ajax['page_url']=base_url()."data_text_harvest_compile/index/add_edit";
+        $ajax['page_url']=base_url()."data_text_yield_cropwise/index/add_edit";
         $this->jsonReturn($ajax);
     }
 
@@ -63,15 +61,26 @@ class Data_text_harvest_compile extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
-            $harvest_no = $this->input->post('harvest_no');
 
-            $data['title']="Data Entry";
+            $data['title']="Yield Text Report Fields";
+            $data['initial_plants'] = $this->data_text_yield_model->get_initial_plants($crop_id);
+            $data['variety_info']=$this->data_text_yield_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['options']=Query_helper::get_info('rnd_setup_text_yield','*',array('crop_id ='.$crop_id),1);
+            $data['targeted_yield'] = $this->data_text_yield_model->get_targeted_yield($crop_id, $crop_type_id);
 
-            $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no);
-            $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
-            $data['harvest_no'] = $harvest_no;
-            $data['initial_plants'] = $this->data_text_harvest_compile_model->get_initial_plants($crop_id);
-            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
+            $harvestInfo = $this->data_text_yield_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
+
+            if($harvestInfo)
+            {
+                $data['harvest_data'] = $harvestInfo;
+            }
+            else
+            {
+                $data['harvest_data'] = array();
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('NOT_HARVESTED_YET');
+                $this->jsonReturn($ajax);
+            }
 
             if($this->message)
             {
@@ -79,8 +88,7 @@ class Data_text_harvest_compile extends ROOT_Controller
             }
 
             $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_compile/list",$data,true));
-            $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown($harvest_no));
+            $ajax['content'][]=array("id"=>"#yield_text","html"=>$this->load->view("data_text_yield_cropwise/list",$data,true));
             $this->jsonReturn($ajax);
         }
     }
@@ -95,19 +103,18 @@ class Data_text_harvest_compile extends ROOT_Controller
         }
         else
         {
-            $inputs=$this->input->post();
+            $inputs = $this->input->post();
             $year = $inputs['year'];
             $season_id = $inputs['season_id'];
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
-            $harvest_no = $this->input->post('harvest_no');
 
-            $id=$inputs['data_text_id'];
-            $data=array();
-            $data['info']=json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $id = $inputs['data_text_id'];
+            $data = array();
+            $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
             $user = User_helper::get_user();
-            $time=time();
+            $time = time();
 
             $this->db->trans_start();  //DB Transaction Handle START
 
@@ -115,19 +122,18 @@ class Data_text_harvest_compile extends ROOT_Controller
             {
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = $time;
-                Query_helper::update('rnd_data_text_harvest_compile',$data,array('id = '.$id));
+                Query_helper::update('rnd_data_text_yield',$data,array('id = '.$id));
             }
             else
             {
-                $data['variety_id']=$variety_id;
-                $data['year']=$year;
-                $data['season_id']=$season_id;
-                $data['crop_id']=$crop_id;
-                $data['crop_type_id']=$crop_type_id;
-                $data['harvest_no']=$harvest_no;
+                $data['variety_id']= $variety_id;
+                $data['year'] = $year;
+                $data['season_id'] = $season_id;
+                $data['crop_id'] = $crop_id;
+                $data['crop_type_id'] = $crop_type_id;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
-                Query_helper::add('rnd_data_text_harvest_compile',$data);
+                Query_helper::add('rnd_data_text_yield',$data);
             }
 
             $this->db->trans_complete();   //DB Transaction Handle END
@@ -144,13 +150,13 @@ class Data_text_harvest_compile extends ROOT_Controller
         }
     }
 
-    public function get_harvest_compile_varieties_for_data_text()
+    public function get_varieties_for_data_text()
     {
         $year = $this->input->post('year');
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
-        $data['varieties']=$this->data_text_harvest_compile_model->get_varieties($year,$season_id,$crop_id,$crop_type_id);
+        $data['varieties']=$this->data_text_yield_model->get_varieties($year,$season_id,$crop_id,$crop_type_id);
 
         if($data['varieties'])
         {
@@ -178,40 +184,6 @@ class Data_text_harvest_compile extends ROOT_Controller
         }
     }
 
-    private function get_harvest_no_dropdown($selected)
-    {
-        $year = $this->input->post('year');
-        $season_id = $this->input->post('season_id');
-        $crop_id = $this->input->post('crop_id');
-        $crop_type_id = $this->input->post('crop_type_id');
-        $variety_id = $this->input->post('variety_id');
-
-        $config = Query_helper::get_info("rnd_data_text_harvest_compile","max(harvest_no) total_harvest",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id,'variety_id = '.$variety_id),1);
-        $max_harvest=1;
-
-        if($config && $config['total_harvest'])
-        {
-            $max_harvest=($config['total_harvest']>0)?($config['total_harvest']+1):1;
-        }
-        $data['selected']=$selected;
-
-        for($i=1; $i<=$max_harvest; $i++)
-        {
-            $data['value'][] = $i;
-            $data['name'][] = $i;
-        }
-        $html=$this->load->view("dropdown",$data,true);
-        return $html;
-    }
-
-    public function get_dropDown_harvest_no()
-    {
-        $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown(0));
-        $this->jsonReturn($ajax);
-    }
-
-
     private function check_validation()
     {
         $valid=true;
@@ -220,7 +192,7 @@ class Data_text_harvest_compile extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $variety_id = $this->input->post('variety_id');
-        $harvest_no = $this->input->post('harvest_no');
+
         if(Validation_helper::validate_empty($year))
         {
             $valid=false;
@@ -247,34 +219,26 @@ class Data_text_harvest_compile extends ROOT_Controller
             $valid=false;
             $this->message.="Select a RND code<br>";
         }
-        if(Validation_helper::validate_empty($harvest_no))
-        {
-            $valid=false;
-            $this->message.="Select a harvest no.<br>";
-        }
+
         if($valid)
         {
-            if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
+            if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
             {
                 $valid=false;
-                $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
+                $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
 
             }
             if($valid)
             {
-                if(!Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'sowing_status = 1'),1))
+                if(Query_helper::get_info("delivery_and_sowing_setup","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'season_end_status = 1'),1))
                 {
                     $valid=false;
-                    $this->message.=$this->lang->line('SOWING_DID_NOT_STARTED').'<br>';
-
+                    $this->message.=$this->lang->line('SEASON_ALREADY_END').'<br>';
                 }
-
             }
         }
 
         return $valid;
-
     }
-
 
 }
