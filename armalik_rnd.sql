@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2015-02-19 20:36:26
+Date: 2015-02-21 02:04:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -941,11 +941,12 @@ CREATE TABLE `rnd_data_text_harvest_compile` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modification_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_data_text_harvest_compile
 -- ----------------------------
+INSERT INTO `rnd_data_text_harvest_compile` VALUES ('1', '2014', '1', '1', '2', '1', '1', '{\"normal\":{\"f_holding_capacity\":\"34\",\"evaluation\":\"5\",\"accepted\":\"1\",\"remarks\":\" Remarks \"},\"replica\":{\"f_holding_capacity\":\"\",\"evaluation\":\"\",\"accepted\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424356950', null, null);
 
 -- ----------------------------
 -- Table structure for `rnd_data_text_harvest_cropwise`
@@ -975,6 +976,30 @@ INSERT INTO `rnd_data_text_harvest_cropwise` VALUES ('2', '2014', '1', '1', '2',
 INSERT INTO `rnd_data_text_harvest_cropwise` VALUES ('3', '2014', '1', '1', '2', '1', '3', '{\"normal\":{\"harvesting_date\":\"2015-02-20\",\"no_of_plants_harvested\":\"78\",\"total_harvested_wt\":\"34\",\"total_mrkt_curds\":\"565\",\"total_mrkt_curd_wt\":\"6565\",\"curd_uniformity\":\"4\",\"remarks\":\" Remarks  Remarks \"},\"replica\":{\"harvesting_date\":\"\",\"no_of_plants_harvested\":\"\",\"total_harvested_wt\":\"\",\"total_mrkt_curds\":\"\",\"total_mrkt_curd_wt\":\"\",\"curd_uniformity\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424255459', null, null);
 
 -- ----------------------------
+-- Table structure for `rnd_data_text_yield`
+-- ----------------------------
+DROP TABLE IF EXISTS `rnd_data_text_yield`;
+CREATE TABLE `rnd_data_text_yield` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` varchar(255) NOT NULL,
+  `season_id` int(11) NOT NULL,
+  `crop_id` int(11) NOT NULL,
+  `crop_type_id` int(11) NOT NULL,
+  `variety_id` int(11) NOT NULL,
+  `info` text,
+  `created_by` varchar(255) NOT NULL,
+  `creation_date` int(11) NOT NULL,
+  `modified_by` varchar(255) DEFAULT NULL,
+  `modification_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rnd_data_text_yield
+-- ----------------------------
+INSERT INTO `rnd_data_text_yield` VALUES ('1', '2014', '1', '1', '2', '1', '{\"normal\":{\"no_of_plants_survived\":\"16\",\"survival_percentage\":\"53.33\",\"total_plant_per_ha\":\"1231\",\"max_estimated_yield_per_ha\":\"1.231\",\"max_estimated_yield_evaluation\":\"5\",\"actual_yield_per_ha\":\"53\",\"actual_yield_per_ha_evaluation\":\"6\",\"accepted\":\"1\",\"remarks\":\"Remarks\"},\"replica\":{\"no_of_plants_survived\":\"\",\"survival_percentage\":\"\",\"total_plant_per_ha\":\"\",\"max_estimated_yield_evaluation\":\"\",\"actual_yield_per_ha_evaluation\":\"\",\"accepted\":\"\",\"remarks\":\"\"}}', 'UI-000037', '1424462230', null, null);
+
+-- ----------------------------
 -- Table structure for `rnd_history`
 -- ----------------------------
 DROP TABLE IF EXISTS `rnd_history`;
@@ -987,7 +1012,7 @@ CREATE TABLE `rnd_history` (
   `action` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=733 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=735 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rnd_history
@@ -1724,6 +1749,8 @@ INSERT INTO `rnd_history` VALUES ('729', '17', 'rnd_setup_text_yield', '{\"initi
 INSERT INTO `rnd_history` VALUES ('730', '18', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":1,\"avg_root_wt\":0,\"avg_leaf_wt\":0,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346741');
 INSERT INTO `rnd_history` VALUES ('731', '19', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":1,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346773');
 INSERT INTO `rnd_history` VALUES ('732', '24', 'rnd_setup_text_yield', '{\"initial_plants\":1,\"no_of_plants_survived\":1,\"survival_percentage\":1,\"total_plant_per_ha\":1,\"avg_curd_wt\":0,\"avg_head_wt\":0,\"avg_fruit_wt\":0,\"avg_root_wt\":0,\"avg_leaf_wt\":1,\"max_estimated_yield_per_ha\":1,\"max_estimated_yield_evaluation\":1,\"actual_yield_p', 'UI-000037', 'UPDATE', '1424346796');
+INSERT INTO `rnd_history` VALUES ('733', '1', 'rnd_data_text_harvest_compile', '{\"info\":\"{\\\"normal\\\":{\\\"f_holding_capacity\\\":\\\"34\\\",\\\"evaluation\\\":\\\"5\\\",\\\"accepted\\\":\\\"1\\\",\\\"remarks\\\":\\\" Remarks \\\"},\\\"replica\\\":{\\\"f_holding_capacity\\\":\\\"\\\",\\\"evaluation\\\":\\\"\\\",\\\"accepted\\\":\\\"\\\",\\\"remarks\\\":\\\"\\\"}}\",\"variety_id\":\"1\",\"year\":\"2014\",\"seaso', 'UI-000037', 'INSERT', '1424356950');
+INSERT INTO `rnd_history` VALUES ('734', '1', 'rnd_data_text_yield', '{\"info\":\"{\\\"normal\\\":{\\\"no_of_plants_survived\\\":\\\"16\\\",\\\"survival_percentage\\\":\\\"53.33\\\",\\\"total_plant_per_ha\\\":\\\"1231\\\",\\\"max_estimated_yield_per_ha\\\":\\\"1.231\\\",\\\"max_estimated_yield_evaluation\\\":\\\"5\\\",\\\"actual_yield_per_ha\\\":\\\"53\\\",\\\"actual_yield_per_ha', 'UI-000037', 'INSERT', '1424462230');
 
 -- ----------------------------
 -- Table structure for `rnd_principal`
