@@ -103,7 +103,7 @@ class Data_text_harvest_compile extends ROOT_Controller
 
     public function rnd_save()
     {
-        /*if(!$this->check_validation())
+        if(!$this->check_validation())
         {
             $ajax['status']=false;
             $ajax['message']=$this->message;
@@ -117,7 +117,7 @@ class Data_text_harvest_compile extends ROOT_Controller
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
-            $harvest_no = $this->input->post('harvest_no');
+
 
             $id=$inputs['data_text_id'];
             $data=array();
@@ -140,7 +140,7 @@ class Data_text_harvest_compile extends ROOT_Controller
                 $data['season_id']=$season_id;
                 $data['crop_id']=$crop_id;
                 $data['crop_type_id']=$crop_type_id;
-                $data['harvest_no']=$harvest_no;
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
                 Query_helper::add('rnd_data_text_harvest_compile',$data);
@@ -157,7 +157,7 @@ class Data_text_harvest_compile extends ROOT_Controller
                 $this->message.=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
             }
             $this->rnd_list();
-        }*/
+        }
     }
 
     public function get_harvest_compile_varieties_for_data_text()
