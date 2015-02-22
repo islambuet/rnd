@@ -1,44 +1,44 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$info=json_decode($variety_info['info'],true);
+    $info=json_decode($variety_info['info'],true);
 
-$sum_no_of_plants_normal = '';
-$sum_no_of_plants_replica = '';
-$sum_total_harvested_wt_normal = '';
-$sum_total_harvested_wt_replica = '';
+    $sum_no_of_plants_normal = '';
+    $sum_no_of_plants_replica = '';
+    $sum_total_harvested_wt_normal = '';
+    $sum_total_harvested_wt_replica = '';
 
-foreach($harvest_data as $harvest)
-{
-    $detail = json_decode($harvest['info'],true);
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
 
-    $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
-    $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
-    $sum_no_of_plants_normal += $no_of_plants_normal;
-    $sum_no_of_plants_replica += $no_of_plants_replica;
+        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_normal += $no_of_plants_normal;
+        $sum_no_of_plants_replica += $no_of_plants_replica;
 
-    $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
-    $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
-    $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
-    $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
-}
+        $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
+        $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
+    }
 
-if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
-{
-    $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
-}
-else
-{
-    $average_plant_weight_normal = '';
-}
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
 
-if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
-{
-    $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
-}
-else
-{
-    $average_plant_weight_replica = '';
-}
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
 
 ?>
 <div class="widget-header">
@@ -219,6 +219,7 @@ if($options['total_plant_per_ha']==1)
 
 <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
 <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
 <?php
 if($options['avg_curd_wt']==1)
 {
