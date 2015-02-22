@@ -60,7 +60,7 @@ if($options['harvesting_date']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="harvesting_date" name="normal[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_normal;?>" />
+            <input type="text" id="harvesting_date_normal" name="normal[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_normal;?>" />
         </div>
 
         <?php
@@ -68,7 +68,7 @@ if($options['harvesting_date']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_replica;?>" />
+                <input type="text" id="harvesting_date_replica" name="replica[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_replica;?>" />
             </div>
         <?php
         }
@@ -1054,7 +1054,8 @@ if($options['remarks']==1)
     jQuery(document).ready(function()
     {
         //turn_off_triggers();
-        $( "#harvesting_date" ).datepicker({dateFormat : display_date_format});
+        $( "#harvesting_date_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#harvesting_date_replica" ).datepicker({dateFormat : display_date_format});
     });
 
 
