@@ -484,7 +484,6 @@ if($options['actual_yield_per_ha']==1)
         $survival_percentage_replica = '';
     }
 
-    $no_of_plants_survived_normal="";
     if(is_array($info)&& !empty($info['normal']['total_plant_per_ha']))
     {
         $total_plant_per_ha_normal = $info['normal']['total_plant_per_ha'];
@@ -496,7 +495,6 @@ if($options['actual_yield_per_ha']==1)
         $actual_estimated_yield_normal = '';
     }
 
-    $no_of_plants_survived_replica="";
     if(is_array($info)&& !empty($info['replica']['total_plant_per_ha']))
     {
         $total_plant_per_ha_replica = $info['replica']['total_plant_per_ha'];
@@ -735,7 +733,7 @@ if($options['targeted_yield_per_ha']==1)
 
             var average_plant_weight_normal = $(".average_plant_weight_normal").val();
             var total_plant_per_ha_normal = $(".total_plant_per_ha_normal").val();
-            var max_estimated_yield = (parseInt(average_plant_weight_normal)*parseInt(total_plant_per_ha_normal))/1000;
+            var max_estimated_yield = ((average_plant_weight_normal*parseInt(total_plant_per_ha_normal))/1000).toFixed(2);
             var actual_yield_normal = (percentage_normal*max_estimated_yield).toFixed(2);
 
             if(max_estimated_yield)
@@ -756,7 +754,7 @@ if($options['targeted_yield_per_ha']==1)
 
             var average_plant_weight_replica = $(".average_plant_weight_replica").val();
             var total_plant_per_ha_replica = $(".total_plant_per_ha_replica").val();
-            var max_estimated_yield = (parseInt(average_plant_weight_replica)*parseInt(total_plant_per_ha_replica))/1000;
+            var max_estimated_yield = ((average_plant_weight_replica*parseInt(total_plant_per_ha_replica))/1000).toFixed(2);
             var actual_yield_replica = (percentage_replica*max_estimated_yield).toFixed(2);
 
             if(max_estimated_yield)
