@@ -63,15 +63,26 @@ class Data_text_harvest_compile extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
-            $harvest_no = $this->input->post('harvest_no');
 
-            $data['title']="Data Entry";
-
-            $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no);
+            $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
+            if($data['variety_info']['data_text_id']>0)
+            {
+                $data['title']="Edit Data";
+            }
+            else
+            {
+                $data['title']="Add Data";
+            }
             $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
+
+
+
+
+            /*$data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
             $data['harvest_no'] = $harvest_no;
             $data['initial_plants'] = $this->data_text_harvest_compile_model->get_initial_plants($crop_id);
-            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
+            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);*/
 
             if($this->message)
             {
@@ -80,14 +91,14 @@ class Data_text_harvest_compile extends ROOT_Controller
 
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_compile/list",$data,true));
-            $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown($harvest_no));
+
             $this->jsonReturn($ajax);
         }
     }
 
     public function rnd_save()
     {
-        if(!$this->check_validation())
+        /*if(!$this->check_validation())
         {
             $ajax['status']=false;
             $ajax['message']=$this->message;
@@ -141,7 +152,7 @@ class Data_text_harvest_compile extends ROOT_Controller
                 $this->message.=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
             }
             $this->rnd_list();
-        }
+        }*/
     }
 
     public function get_harvest_compile_varieties_for_data_text()
@@ -177,41 +188,6 @@ class Data_text_harvest_compile extends ROOT_Controller
             $this->jsonReturn($ajax);
         }
     }
-
-    private function get_harvest_no_dropdown($selected)
-    {
-        $year = $this->input->post('year');
-        $season_id = $this->input->post('season_id');
-        $crop_id = $this->input->post('crop_id');
-        $crop_type_id = $this->input->post('crop_type_id');
-        $variety_id = $this->input->post('variety_id');
-
-        $config = Query_helper::get_info("rnd_data_text_harvest_compile","max(harvest_no) total_harvest",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id,'variety_id = '.$variety_id),1);
-        $max_harvest=1;
-
-        if($config && $config['total_harvest'])
-        {
-            $max_harvest=($config['total_harvest']>0)?($config['total_harvest']+1):1;
-        }
-        $data['selected']=$selected;
-
-        for($i=1; $i<=$max_harvest; $i++)
-        {
-            $data['value'][] = $i;
-            $data['name'][] = $i;
-        }
-        $html=$this->load->view("dropdown",$data,true);
-        return $html;
-    }
-
-    public function get_dropDown_harvest_no()
-    {
-        $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#harvest_no","html"=>$this->get_harvest_no_dropdown(0));
-        $this->jsonReturn($ajax);
-    }
-
-
     private function check_validation()
     {
         $valid=true;
@@ -220,7 +196,7 @@ class Data_text_harvest_compile extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $variety_id = $this->input->post('variety_id');
-        $harvest_no = $this->input->post('harvest_no');
+
         if(Validation_helper::validate_empty($year))
         {
             $valid=false;
@@ -246,11 +222,6 @@ class Data_text_harvest_compile extends ROOT_Controller
         {
             $valid=false;
             $this->message.="Select a RND code<br>";
-        }
-        if(Validation_helper::validate_empty($harvest_no))
-        {
-            $valid=false;
-            $this->message.="Select a harvest no.<br>";
         }
         if($valid)
         {

@@ -38,10 +38,10 @@ class Data_text_harvest_compile_model extends CI_Model
         return $result;
     }
 
-    public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$harvest_no)
+    public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id)
     {
         $delivery_info_sub_query='(SELECT * FROM delivery_and_sowing_setup WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.')';
-        $text_sub_query='(SELECT id,info,variety_id FROM rnd_data_text_harvest_compile WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.' AND crop_type_id ='.$crop_type_id.' AND variety_id ='.$variety_id.' AND harvest_no ='.$harvest_no.')';
+        $text_sub_query='(SELECT id,info,variety_id FROM rnd_data_text_harvest_compile WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.' AND crop_type_id ='.$crop_type_id.' AND variety_id ='.$variety_id.')';
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
         $this->db->select('dass.sowing_date,dass.transplanting_date');
@@ -57,7 +57,7 @@ class Data_text_harvest_compile_model extends CI_Model
         return $result;
     }
 
-    public function get_initial_plants($crop_id)
+    /*public function get_initial_plants($crop_id)
     {
         $this->db->select('*');
         $this->db->from('rnd_crop');
@@ -71,7 +71,7 @@ class Data_text_harvest_compile_model extends CI_Model
         {
             return null;
         }
-    }
+    }*/
 
 
     public function get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id)

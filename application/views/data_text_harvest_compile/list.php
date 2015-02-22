@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-    $info = json_decode($variety_info['info'],true);
-    $total_harvest = sizeof($harvest_data);
-
     function get_specific_array($harvest_data, $num)
     {
         foreach($harvest_data as $harvest)
@@ -15,20 +12,7 @@
         return null;
     }
 
-    $first_harvest_array = get_specific_array($harvest_data, 1);
-    $last_harvest_array = get_specific_array($harvest_data, $total_harvest);
-
-    $first_harvest_data = json_decode($first_harvest_array['info'],true);
-    $last_harvest_data = json_decode($last_harvest_array['info'],true);
-
-    $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
-    $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
-
-    $last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
-    $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
-
-    $interval_of_harvest_normal = abs((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
-    $interval_of_harvest_replica = abs((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
+    $info = json_decode($variety_info['info'],true);//info of this variety
 
     $sum_no_of_plants_normal = '';
     $sum_no_of_plants_replica = '';
@@ -74,12 +58,10 @@ if($variety_info['replica_status']==1)
         <div class="col-xs-3">
             <label class="form-control btn-danger"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
         </div>
-        </di
     </div>
-    <?php
+<?php
 }
 ?>
-
 
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -87,7 +69,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $initial_plants;?></label>
+        <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
     </div>
 
     <?php
@@ -95,7 +77,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $initial_plants;?></label>
+            <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
     }
@@ -103,6 +85,12 @@ if($variety_info['replica_status']==1)
 </div>
 
 
+<?php
+$first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harverst
+$first_harvest_data = json_decode($first_harvest_array['info'],true);
+$first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
+$first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
+?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST_DAYS');?></label>
@@ -123,7 +111,14 @@ if($variety_info['replica_status']==1)
     }
     ?>
 </div>
+<?php
+$total_harvest = sizeof($harvest_data);//check needed
+$last_harvest_array = get_specific_array($harvest_data, $total_harvest);
+$last_harvest_data = json_decode($last_harvest_array['info'],true);
+$last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
+$last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
 
+?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST_DAYS');?></label>
@@ -145,7 +140,10 @@ if($variety_info['replica_status']==1)
     ?>
 
 </div>
-
+<?php
+$interval_of_harvest_normal = ((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
+$interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
+?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('INTERVAL_FIRST_AND_LAST_HARVEST');?></label>
@@ -167,7 +165,6 @@ if($variety_info['replica_status']==1)
     ?>
 </div>
 
-
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_HARVEST');?></label>
@@ -177,7 +174,6 @@ if($variety_info['replica_status']==1)
         <label class="control-label"><?php echo $total_harvest;?></label>
     </div>
 </div>
-
 
 <?php
 if($options['total_harv_curds']==1)
@@ -932,6 +928,8 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
 <?php
 if($options['no_of_fruit_plant']==1)
 {
+    $sum_no_of_fruits_normal=0;
+    $sum_no_of_fruits_replica=0;
     foreach($harvest_data as $harvest)
     {
         $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
@@ -1429,16 +1427,16 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 ?>
 
 <?php
-    $f_holding_capacity_normal="";
-    if(is_array($info)&& !empty($info['normal']['f_holding_capacity']))
-    {
-        $f_holding_capacity_normal=$info['normal']['f_holding_capacity'];
-    }
-    $f_holding_capacity_replica="";
-    if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
-    {
-        $f_holding_capacity_replica=$info['replica']['f_holding_capacity'];
-    }
+$f_holding_capacity_normal="";
+if(is_array($info)&& !empty($info['normal']['f_holding_capacity']))
+{
+    $f_holding_capacity_normal=$info['normal']['f_holding_capacity'];
+}
+$f_holding_capacity_replica="";
+if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
+{
+    $f_holding_capacity_replica=$info['replica']['f_holding_capacity'];
+}
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1536,16 +1534,16 @@ foreach($harvest_data as $harvest)
 
 
 <?php
-    $evaluation_normal="";
-    if(is_array($info)&& !empty($info['normal']['evaluation']))
-    {
-        $evaluation_normal=$info['normal']['evaluation'];
-    }
-    $evaluation_replica="";
-    if(is_array($info)&& !empty($info['replica']['evaluation']))
-    {
-        $evaluation_replica=$info['replica']['evaluation'];
-    }
+$evaluation_normal="";
+if(is_array($info)&& !empty($info['normal']['evaluation']))
+{
+    $evaluation_normal=$info['normal']['evaluation'];
+}
+$evaluation_replica="";
+if(is_array($info)&& !empty($info['replica']['evaluation']))
+{
+    $evaluation_replica=$info['replica']['evaluation'];
+}
 ?>
 
 <div class="row show-grid">
@@ -1585,16 +1583,16 @@ foreach($harvest_data as $harvest)
 
 
 <?php
-    $accepted_normal="";
-    if(is_array($info)&& !empty($info['normal']['accepted']))
-    {
-        $accepted_normal=$info['normal']['accepted'];
-    }
-    $accepted_replica="";
-    if(is_array($info)&& !empty($info['replica']['accepted']))
-    {
-        $accepted_replica=$info['replica']['accepted'];
-    }
+$accepted_normal="";
+if(is_array($info)&& !empty($info['normal']['accepted']))
+{
+    $accepted_normal=$info['normal']['accepted'];
+}
+$accepted_replica="";
+if(is_array($info)&& !empty($info['replica']['accepted']))
+{
+    $accepted_replica=$info['replica']['accepted'];
+}
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1626,16 +1624,16 @@ foreach($harvest_data as $harvest)
 
 
 <?php
-    $remarks_normal="";
-    if(is_array($info)&& !empty($info['normal']['remarks']))
-    {
-        $remarks_normal=$info['normal']['remarks'];
-    }
-    $remarks_replica="";
-    if(is_array($info)&& !empty($info['replica']['remarks']))
-    {
-        $remarks_replica=$info['replica']['remarks'];
-    }
+$remarks_normal="";
+if(is_array($info)&& !empty($info['normal']['remarks']))
+{
+    $remarks_normal=$info['normal']['remarks'];
+}
+$remarks_replica="";
+if(is_array($info)&& !empty($info['replica']['remarks']))
+{
+    $remarks_replica=$info['replica']['remarks'];
+}
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1661,5 +1659,3 @@ foreach($harvest_data as $harvest)
     }
     ?>
 </div>
-
-
