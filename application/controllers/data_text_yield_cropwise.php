@@ -62,7 +62,6 @@ class Data_text_yield_cropwise extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
 
-
             $data['initial_plants'] = $this->data_text_yield_model->get_initial_plants($crop_id);
             $data['variety_info'] = $this->data_text_yield_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options'] = Query_helper::get_info('rnd_setup_text_yield','*',array('crop_id ='.$crop_id),1);
@@ -206,6 +205,7 @@ class Data_text_yield_cropwise extends ROOT_Controller
             $valid=false;
             $this->message.="Select a Year<br>";
         }
+
         if(Validation_helper::validate_empty($season_id))
         {
             $valid=false;
@@ -217,11 +217,13 @@ class Data_text_yield_cropwise extends ROOT_Controller
             $valid=false;
             $this->message.="Select a Crop<br>";
         }
+
         if(Validation_helper::validate_empty($crop_type_id))
         {
             $valid=false;
             $this->message.="Select a crop type<br>";
         }
+
         if(Validation_helper::validate_empty($variety_id))
         {
             $valid=false;
