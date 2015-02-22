@@ -62,17 +62,34 @@ class Data_text_yield_cropwise extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
 
-            $data['title']="Yield Text Report Fields";
+
             $data['initial_plants'] = $this->data_text_yield_model->get_initial_plants($crop_id);
-            $data['variety_info']=$this->data_text_yield_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
-            $data['options']=Query_helper::get_info('rnd_setup_text_yield','*',array('crop_id ='.$crop_id),1);
+            $data['variety_info'] = $this->data_text_yield_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['options'] = Query_helper::get_info('rnd_setup_text_yield','*',array('crop_id ='.$crop_id),1);
             $data['targeted_yield'] = $this->data_text_yield_model->get_targeted_yield($crop_id, $crop_type_id);
 
             $harvestInfo = $this->data_text_yield_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
 
+            if($data['variety_info']['data_text_id']>0)
+            {
+                $data['title']="Edit Yield Text Data";
+            }
+            else
+            {
+                $data['title']="Add Yield Text Data";
+            }
+
             if($harvestInfo)
             {
                 $data['harvest_data'] = $harvestInfo;
+                if($this->message)
+                {
+                    $ajax['message']=$this->message;
+                }
+
+                $ajax['status']=true;
+                $ajax['content'][]=array("id"=>"#yield_text","html"=>$this->load->view("data_text_yield_cropwise/list",$data,true));
+                $this->jsonReturn($ajax);
             }
             else
             {
@@ -81,15 +98,6 @@ class Data_text_yield_cropwise extends ROOT_Controller
                 $ajax['message']=$this->lang->line('NOT_HARVESTED_YET');
                 $this->jsonReturn($ajax);
             }
-
-            if($this->message)
-            {
-                $ajax['message']=$this->message;
-            }
-
-            $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#yield_text","html"=>$this->load->view("data_text_yield_cropwise/list",$data,true));
-            $this->jsonReturn($ajax);
         }
     }
 
