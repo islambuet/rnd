@@ -62,7 +62,6 @@ if($variety_info['replica_status']==1)
         <div class="col-xs-3">
             <label class="form-control btn-danger"><?php echo $this->lang->line('LABEL_REPLICA');?></label>
         </div>
-        </di
     </div>
 <?php
 }
@@ -691,13 +690,13 @@ if($options['targeted_yield_per_ha']==1)
 
 <script>
 
-    $(document).off("keyup", ".no_of_plants_survived_normal");
-    $(document).off("keyup", ".no_of_plants_survived_replica");
-    $(document).off("keyup", ".total_plant_per_ha_normal");
-    $(document).off("keyup", ".total_plant_per_ha_replica");
-
     jQuery(document).ready(function()
     {
+        $(document).off("keyup", ".no_of_plants_survived_normal");
+        $(document).off("keyup", ".no_of_plants_survived_replica");
+        $(document).off("keyup", ".total_plant_per_ha_normal");
+        $(document).off("keyup", ".total_plant_per_ha_replica");
+
         $(document).on("keyup", ".no_of_plants_survived_normal", function(event)
         {
             var hidden_initial = $(".hidden_initial").val();
