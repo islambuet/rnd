@@ -66,7 +66,7 @@ class Data_text_harvest_compile extends ROOT_Controller
 
             $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
 
-            if(is_array($data['harvest_data']) && sizeof($data['harvest_data']))
+            if(is_array($data['harvest_data']) && sizeof($data['harvest_data'])>0)
             {
                 $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
 

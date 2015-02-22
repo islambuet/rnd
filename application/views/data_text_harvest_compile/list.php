@@ -84,7 +84,6 @@ if($variety_info['replica_status']==1)
     ?>
 </div>
 
-
 <?php
     $first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harverst
     $first_harvest_data = json_decode($first_harvest_array['info'],true);
@@ -111,6 +110,7 @@ if($variety_info['replica_status']==1)
     }
     ?>
 </div>
+
 <?php
     $total_harvest = sizeof($harvest_data);//check needed
     $last_harvest_array = get_specific_array($harvest_data, $total_harvest);
