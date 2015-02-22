@@ -418,6 +418,349 @@ if($options['fifty_percent_curd_formation']==1)
 }
 ?>
 
+<?php
+if($options['fifty_percent_head_formation']==1)
+{
+    $fifty_percent_head_formation_normal="";
+    if(is_array($info)&& !empty($info['normal']['fifty_percent_head_formation']))
+    {
+        $fifty_percent_head_formation_normal=$info['normal']['fifty_percent_head_formation'];
+    }
+    $fifty_percent_head_formation_replica="";
+    if(is_array($info)&& !empty($info['replica']['fifty_percent_head_formation']))
+    {
+        $fifty_percent_head_formation_replica=$info['replica']['fifty_percent_head_formation'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_HEAD_FORMATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="fifty_percent_head_formation_normal" class="form-control" name="normal[fifty_percent_head_formation]" value="<?php echo $fifty_percent_head_formation_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="fifty_percent_head_formation_replica" class="form-control" name="replica[fifty_percent_head_formation]" value="<?php echo $fifty_percent_head_formation_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fifty_percent_head_formation]" value="<?php echo $fifty_percent_head_formation_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fifty_percent_flow']==1)
+{
+    $fifty_percent_flow_normal="";
+    if(is_array($info)&& !empty($info['normal']['fifty_percent_flow']))
+    {
+        $fifty_percent_flow_normal=$info['normal']['fifty_percent_flow'];
+    }
+    $fifty_percent_flow_replica="";
+    if(is_array($info)&& !empty($info['replica']['fifty_percent_flow']))
+    {
+        $fifty_percent_flow_replica=$info['replica']['fifty_percent_flow'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_FLOW');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="fifty_percent_flow_normal" class="form-control" name="normal[fifty_percent_flow]" value="<?php echo $fifty_percent_flow_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="fifty_percent_flow_replica" class="form-control" name="replica[fifty_percent_flow]" value="<?php echo $fifty_percent_flow_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fifty_percent_flow]" value="<?php echo $fifty_percent_flow_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fifty_percent_root']==1)
+{
+    $fifty_percent_root_normal="";
+    if(is_array($info)&& !empty($info['normal']['fifty_percent_root']))
+    {
+        $fifty_percent_root_normal=$info['normal']['fifty_percent_root'];
+    }
+    $fifty_percent_root_replica="";
+    if(is_array($info)&& !empty($info['replica']['fifty_percent_root']))
+    {
+        $fifty_percent_root_replica=$info['replica']['fifty_percent_root'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_ROOT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="fifty_percent_root_normal" class="form-control" name="normal[fifty_percent_root]" value="<?php echo $fifty_percent_root_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="fifty_percent_root_replica" class="form-control" name="replica[fifty_percent_root]" value="<?php echo $fifty_percent_root_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fifty_percent_root]" value="<?php echo $fifty_percent_root_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['last_cutting']==1)
+{
+    $last_cutting_normal="";
+    if(is_array($info)&& !empty($info['normal']['last_cutting']))
+    {
+        $last_cutting_normal=$info['normal']['last_cutting'];
+    }
+    $last_cutting_replica="";
+    if(is_array($info)&& !empty($info['replica']['last_cutting']))
+    {
+        $last_cutting_replica=$info['replica']['last_cutting'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LAST_CUTTING');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="last_cutting_normal" class="form-control" name="normal[last_cutting]" value="<?php echo $last_cutting_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="last_cutting_replica" class="form-control" name="replica[last_cutting]" value="<?php echo $last_cutting_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[last_cutting]" value="<?php echo $last_cutting_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['first_harvest']==1)
+{
+    $first_harvest_normal="";
+    if(is_array($info)&& !empty($info['normal']['first_harvest']))
+    {
+        $first_harvest_normal=$info['normal']['first_harvest'];
+    }
+    $first_harvest_replica="";
+    if(is_array($info)&& !empty($info['replica']['first_harvest']))
+    {
+        $first_harvest_replica=$info['replica']['first_harvest'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="first_harvest_normal" class="form-control" name="normal[first_harvest]" value="<?php echo $first_harvest_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="first_harvest_replica" class="form-control" name="replica[first_harvest]" value="<?php echo $first_harvest_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[first_harvest]" value="<?php echo $first_harvest_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['no_of_cutting']==1)
+{
+    $no_of_cutting_normal="";
+    if(is_array($info)&& !empty($info['normal']['no_of_cutting']))
+    {
+        $no_of_cutting_normal=$info['normal']['no_of_cutting'];
+    }
+    $no_of_cutting_replica="";
+    if(is_array($info)&& !empty($info['replica']['no_of_cutting']))
+    {
+        $no_of_cutting_replica=$info['replica']['no_of_cutting'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_CUTTING');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[no_of_cutting]" value="<?php echo $no_of_cutting_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[no_of_cutting]" value="<?php echo $no_of_cutting_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[no_of_cutting]" value="<?php echo $no_of_cutting_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['last_harvest']==1)
+{
+    $last_harvest_normal="";
+    if(is_array($info)&& !empty($info['normal']['last_harvest']))
+    {
+        $last_harvest_normal=$info['normal']['last_harvest'];
+    }
+    $last_harvest_replica="";
+    if(is_array($info)&& !empty($info['replica']['last_harvest']))
+    {
+        $last_harvest_replica=$info['replica']['last_harvest'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" id="last_harvest_normal" class="form-control" name="normal[last_harvest]" value="<?php echo $last_harvest_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" id="last_harvest_replica" class="form-control" name="replica[last_harvest]" value="<?php echo $last_harvest_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[last_harvest]" value="<?php echo $last_harvest_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['no_of_harvest']==1)
+{
+    $no_of_harvest_normal="";
+    if(is_array($info)&& !empty($info['normal']['no_of_harvest']))
+    {
+        $no_of_harvest_normal=$info['normal']['no_of_harvest'];
+    }
+    $no_of_harvest_replica="";
+    if(is_array($info)&& !empty($info['replica']['no_of_harvest']))
+    {
+        $no_of_harvest_replica=$info['replica']['no_of_harvest'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_HARVEST');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[no_of_harvest]" value="<?php echo $no_of_harvest_normal; ?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[no_of_harvest]" value="<?php echo $no_of_harvest_replica; ?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[no_of_harvest]" value="<?php echo $no_of_harvest_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
 
 
 
@@ -426,7 +769,6 @@ if($options['fifty_percent_curd_formation']==1)
 
     jQuery(document).ready(function()
     {
-        turn_off_triggers();
         $( "#first_curd_formation_normal" ).datepicker({dateFormat : display_date_format});
         $( "#first_curd_formation_replica" ).datepicker({dateFormat : display_date_format});
 
@@ -441,6 +783,24 @@ if($options['fifty_percent_curd_formation']==1)
 
         $( "#fifty_percent_curd_formation_normal" ).datepicker({dateFormat : display_date_format});
         $( "#fifty_percent_curd_formation_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#fifty_percent_head_formation_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#fifty_percent_head_formation_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#fifty_percent_flow_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#fifty_percent_flow_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#fifty_percent_root_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#fifty_percent_root_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#last_cutting_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#last_cutting_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#first_harvest_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#first_harvest_replica" ).datepicker({dateFormat : display_date_format});
+
+        $( "#last_harvest_normal" ).datepicker({dateFormat : display_date_format});
+        $( "#last_harvest_replica" ).datepicker({dateFormat : display_date_format});
     });
 
 

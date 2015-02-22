@@ -1053,7 +1053,7 @@ if($options['remarks']==1)
 
     jQuery(document).ready(function()
     {
-        turn_off_triggers();
+        //turn_off_triggers();
         $( "#harvesting_date" ).datepicker({dateFormat : display_date_format});
     });
 
