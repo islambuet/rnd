@@ -14,10 +14,10 @@
 
     $info = json_decode($variety_info['info'],true);//info of this variety
 
-    $sum_no_of_plants_normal = '';
-    $sum_no_of_plants_replica = '';
-    $sum_total_harvested_wt_normal = '';
-    $sum_total_harvested_wt_replica = '';
+    $sum_no_of_plants_normal = 0;
+    $sum_no_of_plants_replica = 0;
+    $sum_total_harvested_wt_normal = 0;
+    $sum_total_harvested_wt_replica = 0;
 
     foreach($harvest_data as $harvest)
     {
@@ -86,10 +86,10 @@ if($variety_info['replica_status']==1)
 
 
 <?php
-$first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harverst
-$first_harvest_data = json_decode($first_harvest_array['info'],true);
-$first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
-$first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
+    $first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harverst
+    $first_harvest_data = json_decode($first_harvest_array['info'],true);
+    $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
+    $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -112,11 +112,11 @@ $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date
     ?>
 </div>
 <?php
-$total_harvest = sizeof($harvest_data);//check needed
-$last_harvest_array = get_specific_array($harvest_data, $total_harvest);
-$last_harvest_data = json_decode($last_harvest_array['info'],true);
-$last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
-$last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
+    $total_harvest = sizeof($harvest_data);//check needed
+    $last_harvest_array = get_specific_array($harvest_data, $total_harvest);
+    $last_harvest_data = json_decode($last_harvest_array['info'],true);
+    $last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
+    $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
 
 ?>
 <div class="row show-grid">
@@ -140,9 +140,10 @@ $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date']
     ?>
 
 </div>
+
 <?php
-$interval_of_harvest_normal = ((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
-$interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
+    $interval_of_harvest_normal = ((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
+    $interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -234,8 +235,8 @@ if($options['total_curd_wt']==1)
 <?php
 if($options['total_market_curds']==1)
 {
-    $sum_total_mrkt_curds_normal = '';
-    $sum_total_mrkt_curds_replica = '';
+    $sum_total_mrkt_curds_normal = 0;
+    $sum_total_mrkt_curds_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -272,8 +273,8 @@ if($options['total_market_curds']==1)
 <?php
 if($options['total_market_curd_wt']==1)
 {
-    $sum_total_mrkt_curd_wt_normal = '';
-    $sum_total_mrkt_curd_wt_replica = '';
+    $sum_total_mrkt_curd_wt_normal = 0;
+    $sum_total_mrkt_curd_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
@@ -309,8 +310,8 @@ if($options['total_market_curd_wt']==1)
 <?php
 if($options['percentage_of_mrkt_curd']==1)
 {
-    $sum_total_mrkt_curds_normal = '';
-    $sum_total_mrkt_curds_replica = '';
+    $sum_total_mrkt_curds_normal = 0;
+    $sum_total_mrkt_curds_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -366,8 +367,8 @@ if($options['percentage_of_mrkt_curd']==1)
 <?php
 if($options['percentage_of_mrkt_curd_wt']==1)
 {
-    $sum_total_mrkt_curd_wt_normal = '';
-    $sum_total_mrkt_curd_wt_replica = '';
+    $sum_total_mrkt_curd_wt_normal = 0;
+    $sum_total_mrkt_curd_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
@@ -528,8 +529,8 @@ if($options['total_head_wt']==1)
 <?php
 if($options['total_market_heads']==1)
 {
-    $sum_total_mrkt_heads_normal = '';
-    $sum_total_mrkt_heads_replica = '';
+    $sum_total_mrkt_heads_normal = 0;
+    $sum_total_mrkt_heads_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -567,8 +568,8 @@ if($options['total_market_heads']==1)
 <?php
 if($options['total_market_head_wt']==1)
 {
-    $sum_total_mrkt_head_wt_normal = '';
-    $sum_total_mrkt_head_wt_replica = '';
+    $sum_total_mrkt_head_wt_normal = 0;
+    $sum_total_mrkt_head_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_head_wt_normal = $detail['normal']['total_mrkt_head_wt'];
@@ -605,8 +606,8 @@ if($options['total_market_head_wt']==1)
 <?php
 if($options['percentage_of_mrkt_head']==1)
 {
-    $sum_total_mrkt_heads_normal = '';
-    $sum_total_mrkt_heads_replica = '';
+    $sum_total_mrkt_heads_normal = 0;
+    $sum_total_mrkt_heads_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -647,8 +648,8 @@ if($options['percentage_of_mrkt_head']==1)
 <?php
 if($options['percentage_of_mrkt_head_wt']==1)
 {
-    $sum_total_mrkt_head_wt_normal = '';
-    $sum_total_mrkt_head_wt_replica = '';
+    $sum_total_mrkt_head_wt_normal = 0;
+    $sum_total_mrkt_head_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_head_wt_normal = $detail['normal']['total_mrkt_head_wt'];
@@ -774,8 +775,8 @@ if($options['total_fruit_wt']==1)
 <?php
 if($options['total_market_fruits']==1)
 {
-    $sum_total_mrkt_fruits_normal = '';
-    $sum_total_mrkt_fruits_replica = '';
+    $sum_total_mrkt_fruits_normal = 0;
+    $sum_total_mrkt_fruits_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_fruits_normal = $detail['normal']['total_mrkt_fruits'];
@@ -811,8 +812,8 @@ if($options['total_market_fruits']==1)
 <?php
 if($options['total_market_fruit_wt']==1)
 {
-    $sum_total_mrkt_fruit_wt_normal = '';
-    $sum_total_mrkt_fruit_wt_replica = '';
+    $sum_total_mrkt_fruit_wt_normal = 0;
+    $sum_total_mrkt_fruit_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_fruit_wt_normal = $detail['normal']['total_mrkt_fruit_wt'];
@@ -848,8 +849,8 @@ if($options['total_market_fruit_wt']==1)
 <?php
 if($options['percentage_of_mrkt_fruit']==1)
 {
-    $sum_total_mrkt_fruits_normal = '';
-    $sum_total_mrkt_fruits_replica = '';
+    $sum_total_mrkt_fruits_normal = 0;
+    $sum_total_mrkt_fruits_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_fruits_normal = $detail['normal']['total_mrkt_fruits'];
@@ -888,8 +889,8 @@ if($options['percentage_of_mrkt_fruit']==1)
 <?php
 if($options['percentage_of_mrkt_fruit_wt']==1)
 {
-    $sum_total_mrkt_fruit_wt_normal = '';
-    $sum_total_mrkt_fruit_wt_replica = '';
+    $sum_total_mrkt_fruit_wt_normal = 0;
+    $sum_total_mrkt_fruit_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_fruit_wt_normal = $detail['normal']['total_mrkt_fruit_wt'];
@@ -1025,8 +1026,8 @@ if($options['fr_wt_plant']==1)
 <?php
 if($options['total_harv_roots']==1)
 {
-    $sum_no_of_roots_normal = '';
-    $sum_no_of_roots_replica = '';
+    $sum_no_of_roots_normal = 0;
+    $sum_no_of_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
@@ -1090,8 +1091,8 @@ if($options['total_root_wt']==1)
 <?php
 if($options['total_market_roots']==1)
 {
-    $sum_total_mrkt_roots_normal = '';
-    $sum_total_mrkt_roots_replica = '';
+    $sum_total_mrkt_roots_normal = 0;
+    $sum_total_mrkt_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_roots_normal = $detail['normal']['total_mrkt_roots'];
@@ -1127,8 +1128,8 @@ if($options['total_market_roots']==1)
 <?php
 if($options['total_market_root_wt']==1)
 {
-    $sum_total_mrkt_roots_wt_normal = '';
-    $sum_total_mrkt_roots_wt_replica = '';
+    $sum_total_mrkt_roots_wt_normal = 0;
+    $sum_total_mrkt_roots_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_roots_wt_normal = $detail['normal']['total_mrkt_roots_wt'];
@@ -1164,8 +1165,8 @@ if($options['total_market_root_wt']==1)
 <?php
 if($options['percentage_of_mrkt_root']==1)
 {
-    $sum_total_mrkt_roots_normal = '';
-    $sum_total_mrkt_roots_replica = '';
+    $sum_total_mrkt_roots_normal = 0;
+    $sum_total_mrkt_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_roots_normal = $detail['normal']['total_mrkt_roots'];
@@ -1204,8 +1205,8 @@ if($options['percentage_of_mrkt_root']==1)
 <?php
 if($options['percentage_of_mrkt_root_wt']==1)
 {
-    $sum_total_mrkt_roots_wt_normal = '';
-    $sum_total_mrkt_roots_wt_replica = '';
+    $sum_total_mrkt_roots_wt_normal = 0;
+    $sum_total_mrkt_roots_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_roots_wt_normal = $detail['normal']['total_mrkt_roots_wt'];
@@ -1303,8 +1304,8 @@ if($options['total_leaf_wt']==1)
 <?php
 if($options['total_market_leaf_wt']==1)
 {
-    $sum_total_mrkt_leaf_wt_normal = '';
-    $sum_total_mrkt_leaf_wt_replica = '';
+    $sum_total_mrkt_leaf_wt_normal = 0;
+    $sum_total_mrkt_leaf_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_leaf_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
@@ -1388,8 +1389,8 @@ if($options['total_market_leaf_wt']==1)
 <?php
 if($options['percentage_of_mrkt_leaf_wt']==1)
 {
-    $sum_total_mrkt_leaf_wt_normal = '';
-    $sum_total_mrkt_leaf_wt_replica = '';
+    $sum_total_mrkt_leaf_wt_normal = 0;
+    $sum_total_mrkt_leaf_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_leaf_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
@@ -1427,16 +1428,16 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 ?>
 
 <?php
-$f_holding_capacity_normal="";
-if(is_array($info)&& !empty($info['normal']['f_holding_capacity']))
-{
-    $f_holding_capacity_normal=$info['normal']['f_holding_capacity'];
-}
-$f_holding_capacity_replica="";
-if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
-{
-    $f_holding_capacity_replica=$info['replica']['f_holding_capacity'];
-}
+    $f_holding_capacity_normal="";
+    if(is_array($info)&& !empty($info['normal']['f_holding_capacity']))
+    {
+        $f_holding_capacity_normal=$info['normal']['f_holding_capacity'];
+    }
+    $f_holding_capacity_replica="";
+    if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
+    {
+        $f_holding_capacity_replica=$info['replica']['f_holding_capacity'];
+    }
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1467,48 +1468,49 @@ if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
 
 <?php
 
-$sum_uniformity_normal = '';
-$sum_uniformity_replica = '';
+    $sum_uniformity_normal = 0;
+    $sum_uniformity_replica = 0;
 
-foreach($harvest_data as $harvest)
-{
-    $detail = json_decode($harvest['info'],true);
-    if($detail['normal']['curd_uniformity'])
+    foreach($harvest_data as $harvest)
     {
-        $uniformity_normal = $detail['normal']['curd_uniformity'];
-        $uniformity_replica = $detail['replica']['curd_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
+        $detail = json_decode($harvest['info'],true);
+
+        if(isset($detail['normal']['curd_uniformity']))
+        {
+            $uniformity_normal = $detail['normal']['curd_uniformity'];
+            $uniformity_replica = $detail['replica']['curd_uniformity'];
+            $sum_uniformity_normal += $uniformity_normal;
+            $sum_uniformity_replica += $uniformity_replica;
+        }
+        elseif(isset($detail['normal']['head_uniformity']))
+        {
+            $uniformity_normal = $detail['normal']['head_uniformity'];
+            $uniformity_replica = $detail['replica']['head_uniformity'];
+            $sum_uniformity_normal += $uniformity_normal;
+            $sum_uniformity_replica += $uniformity_replica;
+        }
+        elseif(isset($detail['normal']['fruit_uniformity']))
+        {
+            $uniformity_normal = $detail['normal']['fruit_uniformity'];
+            $uniformity_replica = $detail['replica']['fruit_uniformity'];
+            $sum_uniformity_normal += $uniformity_normal;
+            $sum_uniformity_replica += $uniformity_replica;
+        }
+        elseif(isset($detail['normal']['roots_uniformity']))
+        {
+            $uniformity_normal = $detail['normal']['roots_uniformity'];
+            $uniformity_replica = $detail['replica']['roots_uniformity'];
+            $sum_uniformity_normal += $uniformity_normal;
+            $sum_uniformity_replica += $uniformity_replica;
+        }
+        elseif(isset($detail['normal']['leaf_uniformity']))
+        {
+            $uniformity_normal = $detail['normal']['leaf_uniformity'];
+            $uniformity_replica = $detail['replica']['leaf_uniformity'];
+            $sum_uniformity_normal += $uniformity_normal;
+            $sum_uniformity_replica += $uniformity_replica;
+        }
     }
-    elseif($detail['normal']['head_uniformity'])
-    {
-        $uniformity_normal = $detail['normal']['head_uniformity'];
-        $uniformity_replica = $detail['replica']['head_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
-    }
-    elseif($detail['normal']['fruit_uniformity'])
-    {
-        $uniformity_normal = $detail['normal']['fruit_uniformity'];
-        $uniformity_replica = $detail['replica']['fruit_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
-    }
-    elseif($detail['normal']['roots_uniformity'])
-    {
-        $uniformity_normal = $detail['normal']['roots_uniformity'];
-        $uniformity_replica = $detail['replica']['roots_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
-    }
-    elseif($detail['normal']['leaf_uniformity'])
-    {
-        $uniformity_normal = $detail['normal']['leaf_uniformity'];
-        $uniformity_replica = $detail['replica']['leaf_uniformity'];
-        $sum_uniformity_normal += $uniformity_normal;
-        $sum_uniformity_replica += $uniformity_replica;
-    }
-}
 ?>
 
 <div class="row show-grid">
@@ -1534,16 +1536,16 @@ foreach($harvest_data as $harvest)
 
 
 <?php
-$evaluation_normal="";
-if(is_array($info)&& !empty($info['normal']['evaluation']))
-{
-    $evaluation_normal=$info['normal']['evaluation'];
-}
-$evaluation_replica="";
-if(is_array($info)&& !empty($info['replica']['evaluation']))
-{
-    $evaluation_replica=$info['replica']['evaluation'];
-}
+    $evaluation_normal="";
+    if(is_array($info)&& !empty($info['normal']['evaluation']))
+    {
+        $evaluation_normal=$info['normal']['evaluation'];
+    }
+    $evaluation_replica="";
+    if(is_array($info)&& !empty($info['replica']['evaluation']))
+    {
+        $evaluation_replica=$info['replica']['evaluation'];
+    }
 ?>
 
 <div class="row show-grid">
@@ -1583,16 +1585,16 @@ if(is_array($info)&& !empty($info['replica']['evaluation']))
 
 
 <?php
-$accepted_normal="";
-if(is_array($info)&& !empty($info['normal']['accepted']))
-{
-    $accepted_normal=$info['normal']['accepted'];
-}
-$accepted_replica="";
-if(is_array($info)&& !empty($info['replica']['accepted']))
-{
-    $accepted_replica=$info['replica']['accepted'];
-}
+    $accepted_normal="";
+    if(is_array($info)&& !empty($info['normal']['accepted']))
+    {
+        $accepted_normal=$info['normal']['accepted'];
+    }
+    $accepted_replica="";
+    if(is_array($info)&& !empty($info['replica']['accepted']))
+    {
+        $accepted_replica=$info['replica']['accepted'];
+    }
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1624,16 +1626,16 @@ if(is_array($info)&& !empty($info['replica']['accepted']))
 
 
 <?php
-$remarks_normal="";
-if(is_array($info)&& !empty($info['normal']['remarks']))
-{
-    $remarks_normal=$info['normal']['remarks'];
-}
-$remarks_replica="";
-if(is_array($info)&& !empty($info['replica']['remarks']))
-{
-    $remarks_replica=$info['replica']['remarks'];
-}
+    $remarks_normal="";
+    if(is_array($info)&& !empty($info['normal']['remarks']))
+    {
+        $remarks_normal=$info['normal']['remarks'];
+    }
+    $remarks_replica="";
+    if(is_array($info)&& !empty($info['replica']['remarks']))
+    {
+        $remarks_replica=$info['replica']['remarks'];
+    }
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">

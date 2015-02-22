@@ -62,4 +62,5 @@ $lang['UNIFORMITY'] = 'Uniformity';
 $lang['EVALUATION'] = 'Evaluation';
 $lang['F_HOLDING_CAPACITY'] = 'F. Holding Capacity';
 $lang['NO_OF_PLANTS_HARVESTED'] = 'No. Of Plants Harvested';
+$lang['THIS_VARIETY_IS_NOT_HARVESTED_YET'] = 'This Variety is Not Harvested Yet';
 

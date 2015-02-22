@@ -64,35 +64,40 @@ class Data_text_harvest_compile extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
 
-            $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
-            if($data['variety_info']['data_text_id']>0)
+
+            if(is_array($data['harvest_data']) && sizeof($data['harvest_data']))
             {
-                $data['title']="Edit Data";
+                $data['variety_info'] = $this->data_text_harvest_compile_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+
+                if($data['variety_info']['data_text_id']>0)
+                {
+                    $data['title']="Edit Data";
+                }
+                else
+                {
+                    $data['title']="Add Data";
+                }
+
+                $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
+
+                if($this->message)
+                {
+                    $ajax['message']=$this->message;
+                }
+
+                $ajax['status']=true;
+                $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_compile/list",$data,true));
+
+                $this->jsonReturn($ajax);
             }
             else
             {
-                $data['title']="Add Data";
-            }
-            $data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
-
-
-
-
-            /*$data['options'] = Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
-            $data['harvest_no'] = $harvest_no;
-            $data['initial_plants'] = $this->data_text_harvest_compile_model->get_initial_plants($crop_id);
-            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);*/
-
-            if($this->message)
-            {
-                $ajax['message']=$this->message;
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('THIS_VARIETY_IS_NOT_HARVESTED_YET');
+                $this->jsonReturn($ajax);
             }
 
-            $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#harvest_text","html"=>$this->load->view("data_text_harvest_compile/list",$data,true));
-
-            $this->jsonReturn($ajax);
         }
     }
 
