@@ -6,9 +6,9 @@ $flowering_data = json_decode($flowering_data['info'], true);
 $fruit_data = json_decode($fruit_data['info'], true);
 $compile_data = json_decode($compile_data['info'], true);
 
-echo '<pre>';
-print_r($fruit_data);
-echo '</pre>';
+//echo '<pre>';
+//print_r($fruit_data);
+//echo '</pre>';
 
 function get_specific_array($harvest_data, $num)
 {
@@ -1200,6 +1200,8 @@ if($options['leaf_type']==1)
 }
 ?>
 
+
+<!-- BOTTLE GOURD DON'T HAVE FRUIT SIZE IN FRUIT REPORT-->
 <?php
 if($options['fruit_size']==1)
 {
@@ -1210,10 +1212,260 @@ if($options['fruit_size']==1)
         </div>
         <div class="col-xs-3">
             <label class="control-label">
+<!--                --><?php
+//                    foreach($this->config->item('fc_fruit_size') as $val=>$name)
+//                    {
+//                        if($val==$fruit_data['normal']['fruit_size'])
+//                        {
+//                            echo $name;
+//                        }
+//                    }
+//                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+<!--                    --><?php
+//                        foreach($this->config->item('fc_fruit_size') as $val=>$name)
+//                        {
+//                            if($val==$fruit_data['replica']['fruit_size'])
+//                            {
+//                                echo $name;
+//                            }
+//                        }
+//                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+<!--                --><?php
+//                    foreach($this->config->item('rating') as $val=>$name)
+//                    {
+//                        if($val==$fruit_data['normal']['fruit_size_evaluation'])
+//                        {
+//                            echo $name;
+//                        }
+//                    }
+//                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+<!--                    --><?php
+//                        foreach($this->config->item('rating') as $val=>$name)
+//                        {
+//                            if($val==$fruit_data['replica']['fruit_size_evaluation'])
+//                            {
+//                                echo $name;
+//                            }
+//                        }
+//                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+
+<!-- THERE IS NO ROOT SIZE IN FRUIT WHAT IT SHOULD BE???????????????????????????????????????????????????????????????/ -->
+<?php
+if($options['root_size']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SIZE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SIZE_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+
+<!-- THERE IS NO CURD SHAPE IN FRUIT REPORTING HEADS -->
+<?php
+if($options['curd_shape']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_SHAPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_SHAPE_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<!-- THERE IS NO HEAD SHAPE IN FRUIT REPORTING HEADS -->
+<?php
+if($options['head_shape']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_SHAPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_SHAPE_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fruit_shape']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
                 <?php
-                    foreach($this->config->item('fc_fruit_size') as $val=>$name)
+                    foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
                     {
-                        if($val==$fruit_data['normal']['fruit_size'])
+                        if($val==$fruit_data['normal']['fruit_shape'])
                         {
                             echo $name;
                         }
@@ -1228,9 +1480,9 @@ if($options['fruit_size']==1)
             <div class="col-xs-3">
                 <label class="control-label">
                     <?php
-                        foreach($this->config->item('fc_fruit_size') as $val=>$name)
+                        foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
                         {
-                            if($val==$fruit_data['replica']['fruit_size'])
+                            if($val==$fruit_data['replica']['fruit_shape'])
                             {
                                 echo $name;
                             }
@@ -1245,14 +1497,14 @@ if($options['fruit_size']==1)
 
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <label class="control-label">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
-                        if($val==$fruit_data['normal']['fruit_size_evaluation'])
+                        if($val==$fruit_data['normal']['fruit_shape_evaluation'])
                         {
                             echo $name;
                         }
@@ -1269,7 +1521,7 @@ if($options['fruit_size']==1)
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
-                            if($val==$fruit_data['replica']['fruit_size_evaluation'])
+                            if($val==$fruit_data['replica']['fruit_shape_evaluation'])
                             {
                                 echo $name;
                             }
@@ -1285,8 +1537,228 @@ if($options['fruit_size']==1)
 }
 ?>
 
+<?php
+if($options['root_shape']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php
+                    foreach($this->config->item('fc_root_shape') as $val=>$name)
+                    {
+                        if($val==$fruit_data['normal']['root_shape'])
+                        {
+                            echo $name;
+                        }
+                    }
+                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php
+                        foreach($this->config->item('fc_root_shape') as $val=>$name)
+                        {
+                            if($val==$fruit_data['replica']['root_shape'])
+                            {
+                                echo $name;
+                            }
+                        }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
 
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php
+                    foreach($this->config->item('rating') as $val=>$name)
+                    {
+                        if($val==$fruit_data['normal']['root_shape_evaluation'])
+                        {
+                            echo $name;
+                        }
+                    }
+                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php
+                        foreach($this->config->item('rating') as $val=>$name)
+                        {
+                            if($val==$fruit_data['replica']['root_shape_evaluation'])
+                            {
+                                echo $name;
+                            }
+                        }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
+<?php
+if($options['curd_diam']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAM');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $fruit_data['normal']['curd_diameter']; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $fruit_data['replica']['curd_diameter']; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAM_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php
+                    foreach($this->config->item('rating') as $val=>$name)
+                    {
+                        if($val==$fruit_data['normal']['curd_diameter_evaluation'])
+                        {
+                            echo $name;
+                        }
+                    }
+                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php
+                        foreach($this->config->item('rating') as $val=>$name)
+                        {
+                            if($val==$fruit_data['replica']['curd_diameter_evaluation'])
+                            {
+                                echo $name;
+                            }
+                        }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['head_diam']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAM');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $fruit_data['normal']['head_diameter']; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $fruit_data['replica']['head_diameter']; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAM_EVALUATION');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php
+                    foreach($this->config->item('rating') as $val=>$name)
+                    {
+                        if($val==$fruit_data['normal']['head_diameter_evaluation'])
+                        {
+                            echo $name;
+                        }
+                    }
+                ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php
+                        foreach($this->config->item('rating') as $val=>$name)
+                        {
+                            if($val==$fruit_data['replica']['head_diameter_evaluation'])
+                            {
+                                echo $name;
+                            }
+                        }
+                    ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
 
 <script type="text/javascript">

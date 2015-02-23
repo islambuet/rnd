@@ -33,4 +33,16 @@ $lang['LEAF_TYPE'] = 'Leaf Type';
 $lang['LEAF_TYPE_EVALUATION'] = 'Leaf Type Evaluation';
 $lang['FRUIT_SIZE'] = 'Fruit Size';
 $lang['FRUIT_SIZE_EVALUATION'] = 'Fruit Size Evaluation';
+$lang['ROOT_SIZE'] = 'Root Size';
+$lang['ROOT_SIZE_EVALUATION'] = 'Root Size Evaluation';
+$lang['CURD_SHAPE'] = 'Curd Shape';
+$lang['CURD_SHAPE_EVALUATION'] = 'Curd Shape Evaluation';
+$lang['HEAD_SHAPE'] = 'Head Shape';
+$lang['HEAD_SHAPE_EVALUATION'] = 'Head Shape Evaluation';
+$lang['FRUIT_SHAPE'] = 'Fruit Shape';
+$lang['FRUIT_SHAPE_EVALUATION'] = 'Fruit Shape Evaluation';
+$lang['CURD_DIAM'] = 'Curd Diameter';
+$lang['CURD_DIAM_EVALUATION'] = 'Curd Diameter Evaluation';
+$lang['HEAD_DIAM'] = 'Head Diameter';
+$lang['HEAD_DIAM_EVALUATION'] = 'Head Diameter Evaluation';
 
