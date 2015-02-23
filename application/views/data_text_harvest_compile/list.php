@@ -1178,7 +1178,7 @@ if($options['percentage_of_mrkt_root']==1)
     }
 
     $percentage_of_marketed_roots_normal = round(($sum_total_mrkt_roots_normal/$sum_no_of_roots_normal)*100, 2);
-    $percentage_of_marketed_roots_replica = round(($sum_total_mrkt_roots_replica/$sum_no_of_roots_replica)*100, 2);
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -1192,6 +1192,8 @@ if($options['percentage_of_mrkt_root']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_roots_replica = round(($sum_total_mrkt_roots_replica/$sum_no_of_roots_replica)*100, 2);
+
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_roots_replica;?></label>
@@ -1218,7 +1220,7 @@ if($options['percentage_of_mrkt_root_wt']==1)
     }
 
     $percentage_of_marketed_roots_weight_normal = round(($sum_total_mrkt_roots_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-    $percentage_of_marketed_roots_weight_replica = round(($sum_total_mrkt_roots_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -1232,6 +1234,7 @@ if($options['percentage_of_mrkt_root_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_roots_weight_replica = round(($sum_total_mrkt_roots_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_roots_weight_replica;?></label>
@@ -1248,7 +1251,6 @@ if($options['percentage_of_mrkt_root_wt']==1)
 if($options['avg_root_wt']==1)
 {
     $average_root_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_roots_normal, 2);
-    $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
 
     ?>
     <div class="row show-grid">
@@ -1263,6 +1265,7 @@ if($options['avg_root_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_root_weight_replica;?></label>
@@ -1402,7 +1405,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     }
 
     $percentage_of_marketed_leafs_weight_normal = round(($sum_total_mrkt_leaf_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-    $percentage_of_marketed_leafs_weight_replica = round(($sum_total_mrkt_leaf_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
+
 
     ?>
     <div class="row show-grid">
@@ -1417,6 +1420,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_leafs_weight_replica = round(($sum_total_mrkt_leaf_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_leafs_weight_replica;?></label>
@@ -1435,6 +1439,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     {
         $f_holding_capacity_normal=$info['normal']['f_holding_capacity'];
     }
+
     $f_holding_capacity_replica="";
     if(is_array($info)&& !empty($info['replica']['f_holding_capacity']))
     {
