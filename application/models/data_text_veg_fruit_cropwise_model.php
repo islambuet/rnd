@@ -55,6 +55,86 @@ class Data_text_veg_fruit_cropwise_model extends CI_Model
         return $result;
     }
 
+    public function get_flowering_data($year,$season_id,$crop_id,$crop_type_id,$variety_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_data_text_flowering');
+        $this->db->where('year',$year);
+        $this->db->where('season_id',$season_id);
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('crop_type_id',$crop_type_id);
+        $this->db->where('variety_id',$variety_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function get_fruit_data($year,$season_id,$crop_id,$crop_type_id,$variety_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_data_text_fruit');
+        $this->db->where('year',$year);
+        $this->db->where('season_id',$season_id);
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('crop_type_id',$crop_type_id);
+        $this->db->where('variety_id',$variety_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function get_harvest_data($year,$season_id,$crop_id,$crop_type_id,$variety_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_data_text_harvest_cropwise');
+        $this->db->where('year',$year);
+        $this->db->where('season_id',$season_id);
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('crop_type_id',$crop_type_id);
+        $this->db->where('variety_id',$variety_id);
+        $result = $this->db->get()->result_array();
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function get_harvest_compile_data($year,$season_id,$crop_id,$crop_type_id,$variety_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_data_text_harvest_compile');
+        $this->db->where('year',$year);
+        $this->db->where('season_id',$season_id);
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('crop_type_id',$crop_type_id);
+        $this->db->where('variety_id',$variety_id);
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public function get_initial_plants($crop_id)
     {
         $this->db->select('*');

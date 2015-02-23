@@ -1,6 +1,5 @@
 <?php
 
-
 $lang['SAMPLE_CODE'] = 'Sample Code';
 $lang['GERMINATION'] = 'Germination (%)';
 $lang['PLANT_VIGOR'] = 'Plant Vigor';
@@ -18,4 +17,20 @@ $lang['FIRST_HARVEST'] = '1st Harvest';
 $lang['NO_OF_CUTTING'] = 'No. of Cutting';
 $lang['LAST_HARVEST'] = 'Last Harvest';
 $lang['NO_OF_HARVEST'] = 'No. of Harvest';
+$lang['CURD_COLOUR'] = 'Curd Colour';
+$lang['CURD_COLOUR_EVALUATION'] = 'Curd Colour Evaluation';
+$lang['HEAD_COLOUR'] = 'Head Colour';
+$lang['HEAD_COLOUR_EVALUATION'] = 'Head Colour Evaluation';
+$lang['FRUIT_COLOUR'] = 'Fruit Colour';
+$lang['FRUIT_COLOUR_EVALUATION'] = 'Fruit Colour Evaluation';
+$lang['ROOT_COLOUR'] = 'Root Colour';
+$lang['ROOT_COLOUR_EVALUATION'] = 'Root Colour Evaluation';
+$lang['LEAF_COLOUR'] = 'Leaf Colour';
+$lang['LEAF_COLOUR_EVALUATION'] = 'Leaf Colour Evaluation';
+$lang['LEAF_LENGTH'] = 'Leaf Length';
+$lang['LEAF_LENGTH_EVALUATION'] = 'Leaf Length Evaluation';
+$lang['LEAF_TYPE'] = 'Leaf Type';
+$lang['LEAF_TYPE_EVALUATION'] = 'Leaf Type Evaluation';
+$lang['FRUIT_SIZE'] = 'Fruit Size';
+$lang['FRUIT_SIZE_EVALUATION'] = 'Fruit Size Evaluation';
 

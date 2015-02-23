@@ -2849,6 +2849,49 @@ if($options['root_diameter_evaluation']==1)
 ?>
 
 <?php
+if($options['targeted_root_height']==1)
+{
+    $targeted_root_height_normal="";
+    if(is_array($info)&& !empty($info['normal']['targeted_root_height']))
+    {
+        $targeted_root_height_normal=$info['normal']['targeted_root_height'];
+    }
+    $targeted_root_height_replica="";
+    if(is_array($info)&& !empty($info['replica']['targeted_root_height']))
+    {
+        $targeted_root_height_replica=$info['replica']['targeted_root_height'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_ROOT_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" name="normal[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[targeted_root_height]" value="<?php echo $targeted_height;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
 if($options['root_height']==1)
 {
     $root_height_normal="";
@@ -3105,51 +3148,6 @@ if($options['root_shape_evaluation']==1)
 <?php
 }
 ?>
-
-
-<?php
-if($options['targeted_root_height']==1)
-{
-    $targeted_root_height_normal="";
-    if(is_array($info)&& !empty($info['normal']['targeted_root_height']))
-    {
-        $targeted_root_height_normal=$info['normal']['targeted_root_height'];
-    }
-    $targeted_root_height_replica="";
-    if(is_array($info)&& !empty($info['replica']['targeted_root_height']))
-    {
-        $targeted_root_height_replica=$info['replica']['targeted_root_height'];
-    }
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_ROOT_HEIGHT');?></label>
-        </div>
-        <div class="col-xs-3">
-            <input type="text" name="normal[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="text" name="replica[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[targeted_root_height]" value="<?php echo $targeted_height;?>">
-        <?php
-        }
-        ?>
-
-    </div>
-<?php
-}
-?>
-
 
 <?php
 if($options['taste']==1)

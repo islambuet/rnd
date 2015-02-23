@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-echo '<pre>';
-print_r($harvest_data);
-echo '</pre>';
+//echo '<pre>';
+//print_r($harvest_data);
+//echo '</pre>';
 
     function get_specific_array($harvest_data, $num)
+{
+    foreach($harvest_data as $harvest)
     {
-        foreach($harvest_data as $harvest)
+        if($harvest['harvest_no']==$num)
         {
-            if($harvest['harvest_no']==$num)
-            {
-                return $harvest;
-            }
+            return $harvest;
         }
-        return null;
     }
+    return null;
+}
 
     $info = json_decode($variety_info['info'],true);//info of this variety
 
@@ -90,7 +90,7 @@ if($variety_info['replica_status']==1)
 </div>
 
 <?php
-    $first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harverst
+    $first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harvest
     $first_harvest_data = json_decode($first_harvest_array['info'],true);
     $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
     $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];

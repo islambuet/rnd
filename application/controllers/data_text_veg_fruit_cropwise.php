@@ -10,6 +10,7 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
         $this->message="";
         $this->load->model("data_text_veg_fruit_cropwise_model");
         $this->config->load('veg_config');
+        $this->config->load('fruit_config');
         $this->lang->load('rnd_veg');
     }
 
@@ -64,9 +65,15 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
             $variety_id = $this->input->post('variety_id');
 
             $data['title']="Veg Fruit Text Report Fields";
+            $data['crop_id'] = $crop_id;
             $data['initial_plants'] = $this->data_text_veg_fruit_cropwise_model->get_initial_plants($crop_id);
             $data['variety_info']=$this->data_text_veg_fruit_cropwise_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options']=Query_helper::get_info('rnd_setup_text_veg_fruit','*',array('crop_id ='.$crop_id),1);
+
+            $data['flowering_data'] = $this->data_text_veg_fruit_cropwise_model->get_flowering_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['fruit_data'] = $this->data_text_veg_fruit_cropwise_model->get_fruit_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['compile_data'] = $this->data_text_veg_fruit_cropwise_model->get_harvest_compile_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['harvest_data'] = $this->data_text_veg_fruit_cropwise_model->get_harvest_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
 
             if($this->message)
             {
