@@ -860,7 +860,7 @@ if($options['percentage_of_mrkt_fruit']==1)
     }
 
     $percentage_of_marketed_fruits_normal = round(($sum_total_mrkt_fruits_normal/$sum_no_of_plants_normal)*100, 2);
-    $percentage_of_marketed_fruits_replica = round(($sum_total_mrkt_fruits_replica/$sum_no_of_plants_replica)*100, 2);
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -874,6 +874,8 @@ if($options['percentage_of_mrkt_fruit']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_fruits_replica = round(($sum_total_mrkt_fruits_replica/$sum_no_of_plants_replica)*100, 2);
+
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_fruits_replica;?></label>
@@ -900,7 +902,6 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
     }
 
     $percentage_of_marketed_fruits_weight_normal = round(($sum_total_mrkt_fruit_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-    $percentage_of_marketed_fruits_weight_replica = round(($sum_total_mrkt_fruit_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -914,6 +915,7 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_fruits_weight_replica = round(($sum_total_mrkt_fruit_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_fruits_weight_replica;?></label>
@@ -967,7 +969,6 @@ if($options['no_of_fruit_plant']==1)
 if($options['avg_fruit_wt']==1)
 {
     $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
-    $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -981,6 +982,7 @@ if($options['avg_fruit_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_fruit_weight_replica;?></label>
@@ -997,7 +999,6 @@ if($options['avg_fruit_wt']==1)
 if($options['fr_wt_plant']==1)
 {
     $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
-    $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -1011,6 +1012,7 @@ if($options['fr_wt_plant']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_fruit_weight_replica;?></label>
