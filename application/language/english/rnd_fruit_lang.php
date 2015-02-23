@@ -62,4 +62,39 @@ $lang['BRIX_PERCENT'] = 'Brix %';
 $lang['SEED_PERCENTAGE'] = 'Seed %';
 $lang['FLAVOR'] = 'Flavor';
 
+$lang['FRUIT_SIZE_EVALUATION'] = 'Fruit Size Evaluation';
+$lang['FRUIT_SHAPE_EVALUATION'] = 'Fruit Shape Evaluation';
+$lang['FRUIT_COLOUR_EVALUATION'] = 'Fruit Colour Evaluation';
+$lang['FRUIT_WEIGHT_EVALUATION'] = 'Fruit Weight Evaluation';
+$lang['FRUIT_DIAMETER_EVALUATION'] = 'Fruit Diameter Evaluation';
+$lang['FRUIT_HEIGHT_EVALUATION'] = 'Fruit Height Evaluation';
+$lang['FRUIT_TYPE_EVALUATION'] = 'Fruit Type Evaluation';
+$lang['FRUIT_BEARING_TYPE_EVALUATION'] = 'Fruit Bearing Type Evaluation';
+$lang['CURD_TYPE_EVALUATION'] = 'Curd Type Evaluation';
+$lang['CURD_COLOUR_EVALUATION'] = 'Curd Colour Evaluation';
+$lang['CURD_WEIGHT_EVALUATION'] = 'Curd Weight Evaluation';
+$lang['CURD_DIAMETER_EVALUATION'] = 'Curd Diameter Evaluation';
+$lang['CURD_HEIGHT_EVALUATION'] = 'Curd Height Evaluation';
+$lang['HEAD_TYPE_EVALUATION'] = 'Head Type Evaluation';
+$lang['HEAD_COLOUR_EVALUATION'] = 'Head Colour Evaluation';
+$lang['HEAD_WEIGHT_EVALUATION'] = 'Head Weight Evaluation';
+$lang['HEAD_DIAMETER_EVALUATION'] = 'Head Diameter Evaluation';
+$lang['HEAD_HEIGHT_EVALUATION'] = 'Head Height Evaluation';
+$lang['LEAF_LENGTH_EVALUATION'] = 'Leaf Length Evaluation';
+$lang['LEAF_TYPE_EVALUATION'] = 'Leaf Type Evaluation';
+$lang['LEAF_COLOUR_EVALUATION'] = 'Leaf Colour Evaluation';
+$lang['ROOT_ABOVE_GROUND_EVALUATION'] = 'Root Above Ground Evaluation';
+$lang['ROOT_COLOUR_EVALUATION'] = 'Root Colour Evaluation';
+$lang['ROOT_WEIGHT_EVALUATION'] = 'Root Weight Evaluation';
+$lang['ROOT_DIAMETER_EVALUATION'] = 'Root Diameter Evaluation';
+$lang['ROOT_HEIGHT_EVALUATION'] = 'Root Height Evaluation';
+$lang['ROOT_SHAPE_EVALUATION'] = 'Root Shape Evaluation';
+$lang['SPINE_TYPE_EVALUATION'] = 'Spine Type Evaluation';
+$lang['CORE_DIAMETER_EVALUATION'] = 'Core Diameter Evaluation';
+$lang['FLESH_COLOUR_EVALUATION'] = 'Flesh Colour Evaluation';
+$lang['NO_OF_EDGES_IN_FRUIT_EVALUATION'] = 'No. of Edges in Fruit Evaluation';
+$lang['PLANT_HEIGHT_EVALUATION'] = 'Plant Height Evaluation';
+$lang['SEED_PERCENTAGE_EVALUATION'] = 'Seed Percentage Evaluation';
+
+
 
