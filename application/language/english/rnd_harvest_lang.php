@@ -38,7 +38,7 @@ $lang['TOTAL_MARKET_HEAD_WT'] = 'Total Marketed Head Weight';
 $lang['PERCENTAGE_OF_MRKT_HEAD'] = 'Percentage Of Marketed Head';
 $lang['PERCENTAGE_OF_MRKT_HEAD_WT'] = 'Percentage Of Marketed Head Weight';
 $lang['AVG_HEAD_WT'] = 'Average Head Weight';
-$lang['TOTAL_HARV_FRUITS'] = 'Average Harvested Fruit';
+$lang['TOTAL_HARV_FRUITS'] = 'Total Harvested Fruit';
 $lang['TOTAL_FRUIT_WT'] = 'Total Fruit Weight';
 $lang['TOTAL_MARKET_FRUITS'] = 'Total Marketed Fruits';
 $lang['TOTAL_MARKET_FRUIT_WT'] = 'Total Marketed Fruit Weight';
@@ -63,4 +63,5 @@ $lang['EVALUATION'] = 'Evaluation';
 $lang['F_HOLDING_CAPACITY'] = 'F. Holding Capacity';
 $lang['NO_OF_PLANTS_HARVESTED'] = 'No. Of Plants Harvested';
 $lang['THIS_VARIETY_IS_NOT_HARVESTED_YET'] = 'This Variety is Not Harvested Yet';
+$lang['AVERAGE_UNIFORMITY'] = 'Average Uniformity';
 

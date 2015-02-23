@@ -15,3 +15,5 @@ $lang['EVALUATION'] = 'Evaluation';
 $lang['NOT_HARVESTED_YET'] = 'This variety is not harvested yet';
 $lang['ACTUAL_YIELD_PER_HA'] = 'Actual Yield/ha';
 $lang['TARGETED_YIELD_PER_HA'] = 'Targeted Yield/ha';
+$lang['ACTUAL_YIELD_PER_HA_EVALUATION'] = 'Actual Yield/ha Evaluation';
+$lang['MAX_ESTIMATED_YIELD_EVALUATION'] = 'Maximum Estimated Yield Evaluation';

@@ -73,8 +73,8 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $initial_plants;?></label>
-        <input type="hidden" class="hidden_initial" value="<?php echo $initial_plants;?>"/>
+        <label class="control-label"><?php echo $crop_info['initial_plants'];?></label>
+        <input type="hidden" class="hidden_initial" value="<?php echo $crop_info['initial_plants'];?>"/>
     </div>
 
     <?php
@@ -82,7 +82,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $initial_plants;?></label>
+            <label class="control-label"><?php echo $crop_info['initial_plants'];?></label>
         </div>
     <?php
     }
@@ -138,7 +138,7 @@ if($options['survival_percentage']==1)
     if(is_array($info)&& !empty($info['normal']['no_of_plants_survived']))
     {
         $no_of_plants_survived_normal=$info['normal']['no_of_plants_survived'];
-        $survival_percentage_normal = round(($no_of_plants_survived_normal/$initial_plants)*100, 2);
+        $survival_percentage_normal = round(($no_of_plants_survived_normal/$crop_info['initial_plants'])*100, 2);
     }
     else
     {
@@ -149,13 +149,12 @@ if($options['survival_percentage']==1)
     if(is_array($info)&& !empty($info['replica']['no_of_plants_survived']))
     {
         $no_of_plants_survived_replica=$info['replica']['no_of_plants_survived'];
-        $survival_percentage_replica = round(($no_of_plants_survived_replica/$initial_plants)*100, 2);
+        $survival_percentage_replica = round(($no_of_plants_survived_replica/$crop_info['initial_plants'])*100, 2);
     }
     else
     {
         $survival_percentage_replica = '';
     }
-
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -182,37 +181,23 @@ if($options['survival_percentage']==1)
 <?php
 if($options['total_plant_per_ha']==1)
 {
-    $total_plant_per_ha_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_normal=$info['normal']['total_plant_per_ha'];
-    }
-    $total_plant_per_ha_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_replica=$info['replica']['total_plant_per_ha'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_PLANT_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" class="total_plant_per_ha_normal form-control" name="normal[total_plant_per_ha]" value="<?php echo $total_plant_per_ha_normal;?>" />
+            <label class="control-label"><?php echo $crop_info['plants_per_hectare'];?></label>
+            <input type="hidden" class="total_plant_per_ha_normal form-control" name="normal[total_plant_per_ha]" value="<?php echo $crop_info['plants_per_hectare'];?>" />
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" class="total_plant_per_ha_replica form-control" name="replica[total_plant_per_ha]" value="<?php echo $total_plant_per_ha_replica;?>" />
+                <label class="control-label"><?php echo $crop_info['plants_per_hectare'];?></label>
+                <input type="hidden" class="total_plant_per_ha_replica form-control" name="replica[total_plant_per_ha]" value="<?php echo $crop_info['plants_per_hectare'];?>" />
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[total_plant_per_ha]" value="<?php echo $total_plant_per_ha_replica;?>">
         <?php
         }
         ?>
@@ -220,7 +205,6 @@ if($options['total_plant_per_ha']==1)
 <?php
 }
 ?>
-
 
 <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
 <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
@@ -359,29 +343,36 @@ if($options['avg_leaf_wt']==1)
 ?>
 
 <?php
+if($options['targeted_yield_per_ha']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_YIELD_PER_HA');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $targeted_yield;?></label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label"><?php echo $targeted_yield;?></label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
 if($options['max_estimated_yield_per_ha']==1)
 {
-    $no_of_plants_survived_normal="";
-    if(is_array($info)&& !empty($info['normal']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_normal = $info['normal']['total_plant_per_ha'];
-        $max_estimated_yield_normal = round(($total_plant_per_ha_normal*$average_plant_weight_normal)/1000, 2);
-    }
-    else
-    {
-        $max_estimated_yield_normal = '';
-    }
+    $max_estimated_yield_normal = round(($crop_info['plants_per_hectare']*$average_plant_weight_normal)/1000, 2);
 
-    $no_of_plants_survived_replica="";
-    if(is_array($info)&& !empty($info['replica']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_replica = $info['replica']['total_plant_per_ha'];
-        $max_estimated_yield_replica = round(($total_plant_per_ha_replica*$average_plant_weight_normal)/1000, 2);
-    }
-    else
-    {
-        $max_estimated_yield_replica = '';
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -393,6 +384,7 @@ if($options['max_estimated_yield_per_ha']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $max_estimated_yield_replica = round(($crop_info['plants_per_hectare']*$average_plant_weight_normal)/1000, 2);
             ?>
             <div class="col-xs-3">
                 <label class="max_estimated_replica"><?php echo $max_estimated_yield_replica;?></label>
@@ -404,6 +396,7 @@ if($options['max_estimated_yield_per_ha']==1)
 <?php
 }
 ?>
+
 
 <?php
 if($options['max_estimated_yield_evaluation']==1)
@@ -421,7 +414,7 @@ if($options['max_estimated_yield_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('MAX_ESTIMATED_YIELD_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[max_estimated_yield_evaluation]">
@@ -465,7 +458,7 @@ if($options['actual_yield_per_ha']==1)
     if(is_array($info)&& !empty($info['normal']['no_of_plants_survived']))
     {
         $no_of_plants_survived_normal=$info['normal']['no_of_plants_survived'];
-        $survival_percentage_normal = round(($no_of_plants_survived_normal/$initial_plants)*100, 2);
+        $survival_percentage_normal = round(($no_of_plants_survived_normal/$crop_info['initial_plants'])*100, 2);
     }
     else
     {
@@ -476,7 +469,7 @@ if($options['actual_yield_per_ha']==1)
     if(is_array($info)&& !empty($info['replica']['no_of_plants_survived']))
     {
         $no_of_plants_survived_replica=$info['replica']['no_of_plants_survived'];
-        $survival_percentage_replica = round(($no_of_plants_survived_replica/$initial_plants)*100, 2);
+        $survival_percentage_replica = round(($no_of_plants_survived_replica/$crop_info['initial_plants'])*100, 2);
     }
     else
     {
@@ -487,7 +480,7 @@ if($options['actual_yield_per_ha']==1)
     {
         $total_plant_per_ha_normal = $info['normal']['total_plant_per_ha'];
         $max_estimated_yield_normal = round(($total_plant_per_ha_normal*$average_plant_weight_normal)/1000, 2);
-        $actual_estimated_yield_normal = round($max_estimated_yield_normal*$survival_percentage_normal, 2);
+        $actual_estimated_yield_normal = round($max_estimated_yield_normal*($survival_percentage_normal/100), 2);
     }
     else
     {
@@ -498,7 +491,7 @@ if($options['actual_yield_per_ha']==1)
     {
         $total_plant_per_ha_replica = $info['replica']['total_plant_per_ha'];
         $max_estimated_yield_replica = round(($total_plant_per_ha_replica*$average_plant_weight_normal)/1000, 2);
-        $actual_estimated_yield_replica = round($max_estimated_yield_replica*$survival_percentage_replica, 2);
+        $actual_estimated_yield_replica = round($max_estimated_yield_replica*($survival_percentage_replica/100), 2);
     }
     else
     {
@@ -543,7 +536,7 @@ if($options['actual_yield_per_ha_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('ACTUAL_YIELD_PER_HA_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[actual_yield_per_ha_evaluation]">
@@ -580,31 +573,6 @@ if($options['actual_yield_per_ha_evaluation']==1)
 }
 ?>
 
-<?php
-if($options['targeted_yield_per_ha']==1)
-{
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_YIELD_PER_HA');?></label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label"><?php echo $targeted_yield;?></label>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="control-label"><?php echo $targeted_yield;?></label>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
-<?php
-}
-?>
 
 <?php
 
@@ -694,8 +662,6 @@ if($options['targeted_yield_per_ha']==1)
     {
         $(document).off("keyup", ".no_of_plants_survived_normal");
         $(document).off("keyup", ".no_of_plants_survived_replica");
-        $(document).off("keyup", ".total_plant_per_ha_normal");
-        $(document).off("keyup", ".total_plant_per_ha_replica");
 
         $(document).on("keyup", ".no_of_plants_survived_normal", function(event)
         {
@@ -707,6 +673,20 @@ if($options['targeted_yield_per_ha']==1)
             if(percentage_normal)
             {
                 $(".survival_percentage_normal").html(percentage_normal);
+            }
+
+            var average_plant_weight_normal = $(".average_plant_weight_normal").val();
+            var total_plant_per_ha_normal = $(".total_plant_per_ha_normal").val();
+            var max_estimated_yield = ((average_plant_weight_normal*parseInt(total_plant_per_ha_normal))/1000).toFixed(2);
+            var actual_yield_normal = ((percentage_normal/100)*max_estimated_yield).toFixed(2);
+
+            if(max_estimated_yield)
+            {
+                $(".max_estimated_normal").html(max_estimated_yield);
+            }
+            if(actual_yield_normal)
+            {
+                $(".actual_yield_per_ha_normal").html(actual_yield_normal);
             }
         });
 
@@ -722,39 +702,10 @@ if($options['targeted_yield_per_ha']==1)
                 $(".survival_percentage_replica").html(percentage_replica);
             }
 
-        });
-
-        $(document).on("keyup", ".total_plant_per_ha_normal", function(event)
-        {
-            var hidden_initial = $(".hidden_initial").val();
-            var no_of_plants_survived_normal = $(".no_of_plants_survived_normal").val();
-            var percentage_normal = ((parseInt(no_of_plants_survived_normal)/parseInt(hidden_initial))*100).toFixed(2);
-
-            var average_plant_weight_normal = $(".average_plant_weight_normal").val();
-            var total_plant_per_ha_normal = $(".total_plant_per_ha_normal").val();
-            var max_estimated_yield = ((average_plant_weight_normal*parseInt(total_plant_per_ha_normal))/1000).toFixed(2);
-            var actual_yield_normal = (percentage_normal*max_estimated_yield).toFixed(2);
-
-            if(max_estimated_yield)
-            {
-                $(".max_estimated_normal").html(max_estimated_yield);
-            }
-            if(actual_yield_normal)
-            {
-                $(".actual_yield_per_ha_normal").html(actual_yield_normal);
-            }
-        });
-
-        $(document).on("keyup", ".total_plant_per_ha_replica", function(event)
-        {
-            var hidden_initial = $(".hidden_initial").val();
-            var no_of_plants_survived_replica = $(".no_of_plants_survived_replica").val();
-            var percentage_replica = ((parseInt(no_of_plants_survived_replica)/parseInt(hidden_initial))*100).toFixed(2);
-
             var average_plant_weight_replica = $(".average_plant_weight_replica").val();
             var total_plant_per_ha_replica = $(".total_plant_per_ha_replica").val();
             var max_estimated_yield = ((average_plant_weight_replica*parseInt(total_plant_per_ha_replica))/1000).toFixed(2);
-            var actual_yield_replica = (percentage_replica*max_estimated_yield).toFixed(2);
+            var actual_yield_replica = ((percentage_replica/100)*max_estimated_yield).toFixed(2);
 
             if(max_estimated_yield)
             {
@@ -764,6 +715,7 @@ if($options['targeted_yield_per_ha']==1)
             {
                 $(".actual_yield_per_ha_replica").html(actual_yield_replica);
             }
+
         });
 
     });

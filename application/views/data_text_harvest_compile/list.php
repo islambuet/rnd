@@ -1,5 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+echo '<pre>';
+print_r($harvest_data);
+echo '</pre>';
+
     function get_specific_array($harvest_data, $num)
     {
         foreach($harvest_data as $harvest)
@@ -143,7 +148,6 @@ if($variety_info['replica_status']==1)
 
 <?php
     $interval_of_harvest_normal = ((strtotime($last_harvesting_date_normal) - strtotime($first_harvesting_date_normal))/(60*60*24));
-    $interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -157,6 +161,7 @@ if($variety_info['replica_status']==1)
     <?php
     if($variety_info['replica_status']==1)
     {
+        $interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
         ?>
         <div class="col-xs-3">
             <label class="control-label"><?php echo $interval_of_harvest_replica;?></label>
@@ -618,7 +623,6 @@ if($options['percentage_of_mrkt_head']==1)
     }
 
     $percentage_of_marketed_heads_normal = round(($sum_total_mrkt_heads_normal/$sum_no_of_plants_normal)*100, 2);
-    $percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_replica)*100, 2);
 
     ?>
     <div class="row show-grid">
@@ -633,6 +637,7 @@ if($options['percentage_of_mrkt_head']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_heads_replica;?></label>
@@ -659,7 +664,7 @@ if($options['percentage_of_mrkt_head_wt']==1)
     }
 
     $percentage_of_marketed_heads_weight_normal = round(($sum_total_mrkt_head_wt_normal/$sum_total_harvested_wt_normal)*100, 2);
-    $percentage_of_marketed_heads_weight_replica = round(($sum_total_mrkt_head_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
+
 
     ?>
     <div class="row show-grid">
@@ -674,6 +679,7 @@ if($options['percentage_of_mrkt_head_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_heads_weight_replica = round(($sum_total_mrkt_head_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_heads_weight_replica;?></label>
@@ -690,7 +696,6 @@ if($options['percentage_of_mrkt_head_wt']==1)
 if($options['avg_head_wt']==1)
 {
     $average_head_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
-    $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -704,6 +709,7 @@ if($options['avg_head_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_head_weight_replica;?></label>
@@ -1522,11 +1528,11 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 
 <div class="row show-grid">
     <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('UNIFORMITY');?></label>
+        <label class="control-label pull-right"><?php echo $this->lang->line('AVERAGE_UNIFORMITY');?></label>
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $sum_uniformity_normal;?></label>
+        <label class="control-label"><?php echo round($sum_uniformity_normal/$total_harvest, 2);?></label>
     </div>
 
     <?php
@@ -1534,7 +1540,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_uniformity_replica;?></label>
+            <label class="control-label"><?php echo round($sum_uniformity_replica/$total_harvest, 2);?></label>
         </div>
     <?php
     }

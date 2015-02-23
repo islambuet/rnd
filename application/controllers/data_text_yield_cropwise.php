@@ -62,7 +62,7 @@ class Data_text_yield_cropwise extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
 
-            $data['initial_plants'] = $this->data_text_yield_model->get_initial_plants($crop_id);
+            $data['crop_info'] = $this->data_text_yield_model->get_crop_info($crop_id);
             $data['variety_info'] = $this->data_text_yield_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options'] = Query_helper::get_info('rnd_setup_text_yield','*',array('crop_id ='.$crop_id),1);
             $data['targeted_yield'] = $this->data_text_yield_model->get_targeted_yield($crop_id, $crop_type_id);

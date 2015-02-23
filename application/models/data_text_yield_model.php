@@ -55,7 +55,7 @@ class Data_text_yield_model extends CI_Model
         return $result;
     }
 
-    public function get_initial_plants($crop_id)
+    public function get_crop_info($crop_id)
     {
         $this->db->select('*');
         $this->db->from('rnd_crop');
@@ -63,7 +63,7 @@ class Data_text_yield_model extends CI_Model
         $result = $this->db->get()->row_array();
         if($result)
         {
-            return $result['initial_plants'];
+            return $result;
         }
         else
         {
