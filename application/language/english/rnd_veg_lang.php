@@ -45,4 +45,17 @@ $lang['CURD_DIAM'] = 'Curd Diameter';
 $lang['CURD_DIAM_EVALUATION'] = 'Curd Diameter Evaluation';
 $lang['HEAD_DIAM'] = 'Head Diameter';
 $lang['HEAD_DIAM_EVALUATION'] = 'Head Diameter Evaluation';
+$lang['AVG_CURD_WT'] = 'Average Curd Weight';
+$lang['AVG_LEAF_WT'] = 'Average Leaf Weight';
+$lang['AVG_HEAD_WT'] = 'Average Head Weight';
+$lang['AVG_ROOT_WT'] = 'Average Root Weight';
+$lang['AVG_FRUIT_WT'] = 'Average Fruit Weight';
+$lang['PLANT_HEIGHT'] = 'Plant Height';
+$lang['HARVEST_UNIF'] = 'Harvest Uniformity (%)';
+$lang['CLUSTER_PER_PLANT'] = 'Cluster/ Plant';
+$lang['FRUIT_PER_CLUSTER'] = 'Fruit/ Cluster';
+$lang['FRUIT_PUNGENCY'] = 'Fruit Pungency';
+$lang['NO_OF_PLANTS_PER_PLOT'] = 'No. Of Plants/ Plot';
+$lang['AVG_FRUIT_WT_PER_PLANT'] = 'Average Fruit Weight/ Plant';
+$lang['AVERAGE_HARVESTED_PLANT'] = 'Average Harvested Plant';
 

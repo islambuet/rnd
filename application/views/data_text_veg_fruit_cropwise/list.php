@@ -5,9 +5,10 @@ $info=json_decode($variety_info['info'],true);
 $flowering_data = json_decode($flowering_data['info'], true);
 $fruit_data = json_decode($fruit_data['info'], true);
 $compile_data = json_decode($compile_data['info'], true);
+//$harvest_data = json_decode($harvest_data['info'], true);
 
 //echo '<pre>';
-//print_r($fruit_data);
+//print_r($harvest_data);
 //echo '</pre>';
 
 function get_specific_array($harvest_data, $num)
@@ -21,6 +22,7 @@ function get_specific_array($harvest_data, $num)
     }
     return null;
 }
+
 
 ?>
 <div class="widget-header">
@@ -385,32 +387,37 @@ if($options['fifty_percent_head_formation']==1)
 }
 ?>
 
-<?php
-if($options['fifty_percent_flow']==1)
-{
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_FLOW');?></label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['50_percent_flowering_days']; ?></label>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['50_percent_flowering_days']; ?></label>
-            </div>
-        <?php
-        }
-        ?>
+<!--THERE IS NOTHING LIKE THAT IN FLOWERING REPORT EX. TOMATO-->
 
-    </div>
 <?php
-}
-?>
+//if($options['fifty_percent_flow']==1)
+//{
+//    echo "<pre>";
+//    print_r($flowering_data);
+//    echo "</pre>";
+//    ?>
+<!--    <div class="row show-grid">-->
+<!--        <div class="col-xs-4">-->
+<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('FIFTY_PERCENT_FLOW');?><!--</label>-->
+<!--        </div>-->
+<!--        <div class="col-xs-3">-->
+<!--            <label class="control-label">--><?php //echo $flowering_data['normal']['50_percent_flowering_days']; ?><!--</label>-->
+<!--        </div>-->
+<!--        --><?php
+//        if($variety_info['replica_status']==1)
+//        {
+//            ?>
+<!--            <div class="col-xs-3">-->
+<!--                <label class="control-label">--><?php //echo $flowering_data['replica']['50_percent_flowering_days']; ?><!--</label>-->
+<!--            </div>-->
+<!--        --><?php
+//        }
+//        ?>
+<!---->
+<!--    </div>-->
+<?php
+//}
+//?>
 
 <?php
 if($options['fifty_percent_root']==1)
@@ -1760,44 +1767,598 @@ if($options['head_diam']==1)
 }
 ?>
 
+<?php
+if($options['avg_curd_wt']==1)
+{
+    $sum_of_no_of_plants_harvested_normal = 0;
+    $sum_of_no_of_plants_harvested_replica = 0;
+    $sum_of_total_marketed_curds_wt_normal = 0;
+    $sum_of_total_marketed_curds_wt_replica = 0;
 
-<script type="text/javascript">
-
-    jQuery(document).ready(function()
+    foreach($harvest_data as $harvest)
     {
-        $( "#first_curd_formation_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#first_curd_formation_replica" ).datepicker({dateFormat : display_date_format});
+        $detail = json_decode($harvest['info'],true);
 
-        $( "#first_head_formation_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#first_head_formation_replica" ).datepicker({dateFormat : display_date_format});
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_of_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_of_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
 
-        $( "#first_root_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#first_root_replica" ).datepicker({dateFormat : display_date_format});
+        $total_marketed_curds_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_marketed_curds_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_of_total_marketed_curds_wt_normal += $total_marketed_curds_wt_normal;
+        $sum_of_total_marketed_curds_wt_replica += $total_marketed_curds_wt_replica;
+    }
 
-        $( "#first_cutting_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#first_cutting_replica" ).datepicker({dateFormat : display_date_format});
+    $avg_curd_wt_normal = round($sum_of_total_marketed_curds_wt_normal/$sum_of_no_of_plants_harvested_normal, 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_curd_wt_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_curd_wt_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
-        $( "#fifty_percent_curd_formation_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#fifty_percent_curd_formation_replica" ).datepicker({dateFormat : display_date_format});
+<?php
+if($options['avg_leaf_wt']==1)
+{
+    $sum_of_total_marketed_leafs_normal = 0;
+    $sum_of_total_marketed_leafs_replica = 0;
+    $sum_of_total_marketed_leafs_wt_normal = 0;
+    $sum_of_total_marketed_leafs_wt_replica = 0;
 
-        $( "#fifty_percent_head_formation_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#fifty_percent_head_formation_replica" ).datepicker({dateFormat : display_date_format});
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
 
-        $( "#fifty_percent_flow_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#fifty_percent_flow_replica" ).datepicker({dateFormat : display_date_format});
+        $total_marketed_leafs_normal = $detail['normal']['total_mrkt_leaf'];
+        $total_marketed_leafs_replica = $detail['replica']['total_mrkt_leaf'];
+        $sum_of_total_marketed_leafs_normal += $total_marketed_leafs_normal;
+        $sum_of_total_marketed_leafs_replica += $total_marketed_leafs_replica;
 
-        $( "#fifty_percent_root_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#fifty_percent_root_replica" ).datepicker({dateFormat : display_date_format});
+        $total_marketed_leafs_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
+        $total_marketed_leafs_wt_replica = $detail['replica']['total_mrkt_leaf_wt'];
+        $sum_of_total_marketed_leafs_wt_normal += $total_marketed_leafs_wt_normal;
+        $sum_of_total_marketed_leafs_wt_replica += $total_marketed_leafs_wt_replica;
+    }
 
-        $( "#last_cutting_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#last_cutting_replica" ).datepicker({dateFormat : display_date_format});
+    $avg_leaf_wt_normal = round($sum_of_total_marketed_leafs_wt_normal/$sum_of_total_marketed_leafs_normal, 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_LEAF_WT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_leaf_wt_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_leaf_wt_replica = round($sum_of_total_marketed_leafs_wt_replica/$sum_of_total_marketed_leafs_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_leaf_wt_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
-        $( "#first_harvest_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#first_harvest_replica" ).datepicker({dateFormat : display_date_format});
 
-        $( "#last_harvest_normal" ).datepicker({dateFormat : display_date_format});
-        $( "#last_harvest_replica" ).datepicker({dateFormat : display_date_format});
-    });
+<?php
+if($options['avg_head_wt']==1)
+{
+    $sum_of_total_marketed_heads_normal = 0;
+    $sum_of_total_marketed_heads_replica = 0;
+    $sum_of_total_marketed_heads_wt_normal = 0;
+    $sum_of_total_marketed_heads_wt_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $total_marketed_heads_normal = $detail['normal']['no_of_plants_harvested'];
+        $total_marketed_heads_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_of_total_marketed_heads_normal += $total_marketed_heads_normal;
+        $sum_of_total_marketed_heads_replica += $total_marketed_heads_replica;
+
+        $total_marketed_heads_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_marketed_heads_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_of_total_marketed_heads_wt_normal += $total_marketed_heads_wt_normal;
+        $sum_of_total_marketed_heads_wt_replica += $total_marketed_heads_wt_replica;
+    }
+
+    $avg_head_wt_normal = round($sum_of_total_marketed_heads_wt_normal/$sum_of_total_marketed_heads_normal, 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_head_wt_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_head_wt_replica = round($sum_of_total_marketed_heads_wt_replica/$sum_of_total_marketed_heads_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_head_wt_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['avg_root_wt']==1)
+{
+    $sum_of_total_marketed_roots_normal = 0;
+    $sum_of_total_marketed_roots_replica = 0;
+    $sum_of_total_marketed_roots_wt_normal = 0;
+    $sum_of_total_marketed_roots_wt_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $total_marketed_roots_normal = $detail['normal']['no_of_roots_harvested'];
+        $total_marketed_roots_replica = $detail['replica']['no_of_roots_harvested'];
+        $sum_of_total_marketed_roots_normal += $total_marketed_roots_normal;
+        $sum_of_total_marketed_roots_replica += $total_marketed_roots_replica;
+
+        $total_marketed_roots_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_marketed_roots_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_of_total_marketed_roots_wt_normal += $total_marketed_roots_wt_normal;
+        $sum_of_total_marketed_roots_wt_replica += $total_marketed_roots_wt_replica;
+    }
+
+    $avg_root_wt_normal = round($sum_of_total_marketed_roots_wt_normal/$sum_of_total_marketed_roots_normal, 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_root_wt_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_root_wt_replica = round($sum_of_total_marketed_roots_wt_replica/$sum_of_total_marketed_roots_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_root_wt_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['avg_fruit_wt']==1)
+{
+    $sum_of_total_marketed_fruits_normal = 0;
+    $sum_of_total_marketed_fruits_replica = 0;
+    $sum_of_total_marketed_fruits_wt_normal = 0;
+    $sum_of_total_marketed_fruits_wt_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $total_marketed_fruits_normal = $detail['normal']['no_of_fruits'];
+        $total_marketed_fruits_replica = $detail['replica']['no_of_fruits'];
+        $sum_of_total_marketed_fruits_normal += $total_marketed_fruits_normal;
+        $sum_of_total_marketed_fruits_replica += $total_marketed_fruits_replica;
+
+        $total_marketed_fruits_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_marketed_fruits_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_of_total_marketed_fruits_wt_normal += $total_marketed_fruits_wt_normal;
+        $sum_of_total_marketed_fruits_wt_replica += $total_marketed_fruits_wt_replica;
+    }
+
+    $avg_fruit_wt_normal = round($sum_of_total_marketed_fruits_wt_normal/$sum_of_total_marketed_fruits_normal, 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_fruit_wt_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_fruit_wt_replica = round($sum_of_total_marketed_fruits_wt_replica/$sum_of_total_marketed_fruits_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_fruit_wt_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
 
-</script>
+<!--ONLY CORIANDER & HYBRID SPINACH HAVE PLANT HEIGHT-->
+<?php
+//if($options['plant_height']==1)
+//{
+//    ?>
+<!--    <div class="row show-grid">-->
+<!--        <div class="col-xs-4">-->
+<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('PLANT_HEIGHT');?><!--</label>-->
+<!--        </div>-->
+<!--        <div class="col-xs-3">-->
+<!--            <label class="control-label">-->
+<!--                --><?php //echo $fruit_data['normal']['plant_height']; ?>
+<!--            </label>-->
+<!--        </div>-->
+<!--        --><?php
+//        if($variety_info['replica_status']==1)
+//        {
+//            ?>
+<!--            <div class="col-xs-3">-->
+<!--                <label class="control-label">-->
+<!--                    --><?php //echo $fruit_data['replica']['plant_height']; ?>
+<!--                </label>-->
+<!--            </div>-->
+<!--        --><?php
+//        }
+//        ?>
+<!--    </div>-->
+<?php
+//}
+//?>
+
+<?php
+if($options['harvest_unif']==1)
+{
+    $harvest_unif_normal="";
+    if(is_array($info)&& !empty($info['normal']['harvest_unif']))
+    {
+        $harvest_unif_normal = $info['normal']['harvest_unif'];
+    }
+    $harvest_unif_replica="";
+        if(is_array($info)&& !empty($info['replica']['harvest_unif']))
+    {
+        $harvest_unif_replica = $info['replica']['harvest_unif'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('HARVEST_UNIF');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[harvest_unif]" value="<?php echo $harvest_unif_normal;?>">
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[harvest_unif]" value="<?php echo $harvest_unif_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[harvest_unif]" value="<?php echo $harvest_unif_replica;?>">
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['cluster_per_plant']==1)
+{
+    $cluster_per_plant_normal = "";
+    if(is_array($info)&& !empty($info['normal']['cluster_per_plant']))
+    {
+        $cluster_per_plant_normal = $info['normal']['cluster_per_plant'];
+    }
+    $cluster_per_plant_replica = "";
+    if(is_array($info)&& !empty($info['replica']['cluster_per_plant']))
+    {
+        $cluster_per_plant_replica = $info['replica']['cluster_per_plant'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('CLUSTER_PER_PLANT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[cluster_per_plant]" value="<?php echo $cluster_per_plant_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[cluster_per_plant]" value="<?php echo $cluster_per_plant_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[cluster_per_plant]" value="<?php echo $cluster_per_plant_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fruit_per_cluster']==1)
+{
+    $fruit_per_cluster_normal = "";
+    if(is_array($info)&& !empty($info['normal']['fruit_per_cluster']))
+    {
+        $fruit_per_cluster_normal = $info['normal']['fruit_per_cluster'];
+    }
+    $fruit_per_cluster_replica = "";
+    if(is_array($info)&& !empty($info['replica']['fruit_per_cluster']))
+    {
+        $fruit_per_cluster_replica = $info['replica']['fruit_per_cluster'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_PER_CLUSTER');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[fruit_per_cluster]" value="<?php echo $fruit_per_cluster_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[fruit_per_cluster]" value="<?php echo $fruit_per_cluster_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fruit_per_cluster]" value="<?php echo $fruit_per_cluster_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['fruit_pungency']==1)
+{
+    $fruit_pungency_normal = "";
+    if(is_array($info)&& !empty($info['normal']['fruit_pungency']))
+    {
+        $fruit_pungency_normal = $info['normal']['fruit_pungency'];
+    }
+    $fruit_pungency_replica = "";
+    if(is_array($info)&& !empty($info['replica']['fruit_pungency']))
+    {
+        $fruit_pungency_replica = $info['replica']['fruit_pungency'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_PUNGENCY');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[fruit_pungency]" value="<?php echo $fruit_pungency_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[fruit_pungency]" value="<?php echo $fruit_pungency_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fruit_pungency]" value="<?php echo $fruit_pungency_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['no_of_plants_per_plot']==1)
+{
+    $no_of_plants_per_plot_normal = "";
+    if(is_array($info)&& !empty($info['normal']['no_of_plants_per_plot']))
+    {
+        $no_of_plants_per_plot_normal = $info['normal']['no_of_plants_per_plot'];
+    }
+    $no_of_plants_per_plot_replica = "";
+    if(is_array($info)&& !empty($info['replica']['no_of_plants_per_plot']))
+    {
+        $no_of_plants_per_plot_replica = $info['replica']['no_of_plants_per_plot'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_PLANTS_PER_PLOT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[no_of_plants_per_plot]" value="<?php echo $no_of_plants_per_plot_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[no_of_plants_per_plot]" value="<?php echo $no_of_plants_per_plot_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[no_of_plants_per_plot]" value="<?php echo $no_of_plants_per_plot_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['avg_fruit_wt_per_plant']==1)
+{
+    $avg_fruit_wt_per_plant_normal = "";
+    if(is_array($info)&& !empty($info['normal']['avg_fruit_wt_per_plant']))
+    {
+        $avg_fruit_wt_per_plant_normal = $info['normal']['avg_fruit_wt_per_plant'];
+    }
+    $avg_fruit_wt_per_plant_replica = "";
+    if(is_array($info)&& !empty($info['replica']['avg_fruit_wt_per_plant']))
+    {
+        $avg_fruit_wt_per_plant_replica = $info['replica']['avg_fruit_wt_per_plant'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT_PER_PLANT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['average_harvested_plant']==1)
+{
+    $sum_of_no_of_plants_harvested_normal = 0;
+    $sum_of_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_of_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_of_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+
+    $avg_harvested_plant_normal = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVERAGE_HARVESTED_PLANT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $avg_harvested_plant_normal; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $avg_harvested_plant_replica = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $avg_harvested_plant_replica; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+

@@ -32,7 +32,7 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Veg Fruit Text Report";
+        $data['title']="Final Text Report";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
@@ -64,7 +64,7 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
 
-            $data['title']="Veg Fruit Text Report Fields";
+            $data['title']="Final Text Report Fields";
             $data['crop_id'] = $crop_id;
             $data['initial_plants'] = $this->data_text_veg_fruit_cropwise_model->get_initial_plants($crop_id);
             $data['variety_info']=$this->data_text_veg_fruit_cropwise_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
