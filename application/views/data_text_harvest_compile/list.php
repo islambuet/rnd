@@ -1680,7 +1680,6 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 </div>
 
 
-
 <?php
     $remarks_normal="";
     if(is_array($info)&& !empty($info['normal']['remarks']))

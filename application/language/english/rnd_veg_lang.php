@@ -1,5 +1,7 @@
 <?php
 
+$lang['YOU_MUST_SETUP_REQUIRED_DATA'] = 'You Have To Setup Flowering, Fruit and Harvest Data First!';
+
 $lang['SAMPLE_CODE'] = 'Sample Code';
 $lang['GERMINATION'] = 'Germination (%)';
 $lang['PLANT_VIGOR'] = 'Plant Vigor';

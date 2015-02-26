@@ -75,14 +75,24 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
             $data['compile_data'] = $this->data_text_veg_fruit_cropwise_model->get_harvest_compile_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['harvest_data'] = $this->data_text_veg_fruit_cropwise_model->get_harvest_data($year,$season_id,$crop_id,$crop_type_id,$variety_id);
 
-            if($this->message)
+            if(is_array($data['flowering_data']) && sizeof($data['flowering_data'])>0 && is_array($data['fruit_data']) && sizeof($data['fruit_data'])>0 && is_array($data['harvest_data']) && sizeof($data['harvest_data'])>0)
             {
-                $ajax['message']=$this->message;
+                if($this->message)
+                {
+                    $ajax['message']=$this->message;
+                }
+
+                $ajax['status']=true;
+                $ajax['content'][]=array("id"=>"#veg_fruit_text","html"=>$this->load->view("data_text_veg_fruit_cropwise/list",$data,true));
+                $this->jsonReturn($ajax);
+            }
+            else
+            {
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('YOU_MUST_SETUP_REQUIRED_DATA');
+                $this->jsonReturn($ajax);
             }
 
-            $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#veg_fruit_text","html"=>$this->load->view("data_text_veg_fruit_cropwise/list",$data,true));
-            $this->jsonReturn($ajax);
         }
     }
 
