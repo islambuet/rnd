@@ -1681,6 +1681,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 
 
 <?php
+
     $remarks_normal="";
     if(is_array($info)&& !empty($info['normal']['remarks']))
     {
@@ -1696,14 +1697,12 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
     </div>
-    <div class="col-xs-3">
-        <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
-    </div>
+
     <?php
     if($variety_info['replica_status']==1)
     {
         ?>
-        <div class="col-xs-3">
+        <div class="col-xs-6">
             <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
         </div>
     <?php
@@ -1711,7 +1710,9 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     else
     {
         ?>
-        <input type="hidden" name="replica[remarks]" value="<?php echo $remarks_replica;?>">
+        <div class="col-xs-3">
+            <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
+        </div>
     <?php
     }
     ?>

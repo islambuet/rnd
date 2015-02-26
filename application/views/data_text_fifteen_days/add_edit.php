@@ -103,9 +103,6 @@ $this->load->view("action_buttons_edit",$data);
                 </select>
             </div>
         </div>
-
-
-
     </div>
     <div class="row widget" id="data_15_text">
 
