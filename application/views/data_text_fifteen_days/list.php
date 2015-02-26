@@ -154,6 +154,8 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 }
 ?>
 
+<!--///////////////////////////////////////////// NEED TO DISCUSS ABOUT DAY NUMBER!!! -->
+
 <?php
 if($options['fortnightly_reporting_date']==1)
 {
@@ -180,7 +182,6 @@ if($options['fortnightly_reporting_date']==1)
         <?php
         }
         ?>
-
     </div>
 <?php
 }
@@ -250,7 +251,6 @@ if($options['initial_plants_during_trial_started']==1)
         <?php
         }
         ?>
-
     </div>
 <?php
 }

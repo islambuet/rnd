@@ -62,13 +62,11 @@ class Data_text_fifteen_days extends ROOT_Controller
             $crop_id = $this->input->post('crop_id');
             $crop_type_id = $this->input->post('crop_type_id');
             $variety_id = $this->input->post('variety_id');
-            $day_number = $this->input->post('day_number');
 
             $data['title']="Fortnightly Report Fields";
 
-            $data['variety_info']=$this->data_text_fifteen_days_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$day_number);
+            $data['variety_info']=$this->data_text_fifteen_days_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options']=Query_helper::get_info('rnd_setup_text_fifteen_days','*',array('crop_id ='.$crop_id),1);
-            $data['day_number']=$day_number;
 
             if($this->message)
             {
@@ -96,13 +94,13 @@ class Data_text_fifteen_days extends ROOT_Controller
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
-            $day_number = $inputs['day_number'];
 
-            $id=$inputs['data_text_id'];
-            $data=array();
-            $data['info']=json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $id = $inputs['data_text_id'];
+            $data = array();
+            $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
             $user = User_helper::get_user();
-            $time=time();
+            $time = time();
+
             $this->db->trans_start();  //DB Transaction Handle START
             if($id>0)
             {
@@ -117,11 +115,11 @@ class Data_text_fifteen_days extends ROOT_Controller
                 $data['season_id']=$season_id;
                 $data['crop_id']=$crop_id;
                 $data['crop_type_id']=$crop_type_id;
-                $data['day_number']=$day_number;
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
                 Query_helper::add('rnd_data_text_fifteen_days',$data);
             }
+
             $this->db->trans_complete();   //DB Transaction Handle END
             if ($this->db->trans_status() === TRUE)
             {
@@ -155,33 +153,6 @@ class Data_text_fifteen_days extends ROOT_Controller
 
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#variety_id","html"=>$this->load->view("dropdown",$data_dropdown,true));
-
-            $config = Query_helper::get_info("rnd_setup_image_fifteen_days","*",array('year = '.$year,'season_id = '.$season_id,'crop_id = '.$crop_id,'crop_type_id = '.$crop_type_id),1);
-            if($config)
-            {
-                $data_dropdown=array();
-                $data_dropdown['value']=array();
-                $data_dropdown['name']=array();
-                $data_dropdown['selected'] = '';
-
-                for($i=1; $i<=$config['number_of_fifteendays']; $i++)
-                {
-                    $data_dropdown['value'][] = $i*$this->day_15;
-                    $data_dropdown['name'][] = $i*$this->day_15;
-                }
-                $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
-            }
-            else
-            {
-                $ajax['status']=false;
-                $ajax['message']=$this->lang->line('IMAGE_15_DAYS_NOT_SETUP');
-                $data_dropdown=array();
-                $data_dropdown['value']=array();
-                $data_dropdown['name']=array();
-                $data_dropdown['selected'] = '';
-
-                $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
-            }
             $this->jsonReturn($ajax);
         }
         else
@@ -189,7 +160,6 @@ class Data_text_fifteen_days extends ROOT_Controller
             $data_dropdown=array();
             $data_dropdown['selected'] = '';
             $ajax['content'][]=array("id"=>"#variety_id","html"=>$this->load->view("dropdown",$data_dropdown,true));
-            $ajax['content'][]=array("id"=>"#day_number","html"=>$this->load->view("dropdown",$data_dropdown,true));
 
             $ajax['status']=false;
             $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');
@@ -208,7 +178,6 @@ class Data_text_fifteen_days extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $variety_id = $this->input->post('variety_id');
-        $day_number = $this->input->post('day_number');
         if(Validation_helper::validate_empty($year))
         {
             $valid=false;
@@ -234,11 +203,6 @@ class Data_text_fifteen_days extends ROOT_Controller
         {
             $valid=false;
             $this->message.="Select a RND code<br>";
-        }
-        if(Validation_helper::validate_empty($day_number))
-        {
-            $valid=false;
-            $this->message.="Select a Day<br>";
         }
         if($valid)
         {

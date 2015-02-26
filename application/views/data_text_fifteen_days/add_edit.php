@@ -92,17 +92,7 @@ $this->load->view("action_buttons_edit",$data);
                 </select>
             </div>
         </div>
-        <div class="row show-grid" style="display: none;"  id="day_number_container">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DAY_NUMBER');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-xs-4">
-                <select name="day_number" id="day_number" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
-                </select>
-            </div>
-        </div>
     </div>
     <div class="row widget" id="data_15_text">
 
@@ -124,7 +114,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
-            $("#day_number_container").hide();
 
         });
 
@@ -135,7 +124,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_id_container").show();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
-            $("#day_number_container").hide();
         });
 
 
@@ -145,7 +133,6 @@ $this->load->view("action_buttons_edit",$data);
             $("#crop_type_id").val("");
             $("#crop_type_id_container").show();
             $("#variety_id_container").hide();
-            $("#day_number_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
@@ -172,7 +159,6 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#data_15_text").html("");
             $("#day_number").val("");
-            $("#day_number_container").show();
             $("#variety_container").show();
             if($(this).val()>0)
             {
@@ -197,13 +183,6 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("change", "#variety_id", function(event)
         {
             $("#data_15_text").html("");
-            $("#day_number").val("");
-
-        });
-
-        $(document).on("change", "#day_number", function(event)
-        {
-            $("#data_15_text").html("");
             if($(this).val()>0)
             {
                 $.ajax({
@@ -222,7 +201,9 @@ $this->load->view("action_buttons_edit",$data);
                     }
                 });
             }
+
         });
+
     });
 
 </script>
