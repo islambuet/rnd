@@ -71,7 +71,7 @@ if($options['sowing_date']==1)
 ?>
 
 <?php
-if($options['transplanting_date']==1)
+if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 {
     ?>
     <div class="row show-grid">
