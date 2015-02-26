@@ -367,14 +367,14 @@ if($options['fruit_weight']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[fruit_weight]" class="form-control" value=""/>
+            <input type="text" name="normal[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_normal;?>"/>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[fruit_weight]" class="form-control" value=""/>
+                <input type="text" name="replica[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_replica;?>"/>
             </div>
         <?php
         }
@@ -559,7 +559,7 @@ if($options['fruit_height']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="normal[fruit_height]" value="<?php echo $fruit_height_replica;?>" />
+            <input type="text" class="form-control" name="normal[fruit_height]" value="<?php echo $fruit_height_normal;?>" />
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -3168,14 +3168,24 @@ if($options['taste']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('TASTE');?></label>
         </div>
         <div class="col-xs-3">
-            <textarea name="normal[taste]" class="form-control"><?php echo $taste_normal;?></textarea>
+            <select class="form-control" name="normal[taste]">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$taste_normal){echo "selected";}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <textarea name="replica[taste]" class="form-control"><?php echo $taste_replica;?></textarea>
+                <select class="form-control" name="replica[taste]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$taste_replica){echo "selected";}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
             </div>
         <?php
         }
@@ -3212,14 +3222,24 @@ if($options['keeping_quality']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('KEEPING_QUALITY');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[keeping_quality]" class="form-control" value="<?php echo $keeping_quality_normal;?>" />
+            <select class="form-control" name="normal[keeping_quality]">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                    <option value="<?php echo $val;?>" <?php if($val==$keeping_quality_normal){echo "selected";}?>><?php echo $name;?></option>
+                <?php }?>
+            </select>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[keeping_quality]" class="form-control" value="<?php echo $keeping_quality_replica;?>" />
+                <select class="form-control" name="replica[keeping_quality]">
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                        <option value="<?php echo $val;?>" <?php if($val==$keeping_quality_replica){echo "selected";}?>><?php echo $name;?></option>
+                    <?php }?>
+                </select>
             </div>
         <?php
         }
@@ -4545,14 +4565,12 @@ if($options['remarks']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
         </div>
-        <div class="col-xs-3">
-            <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
                 <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
             </div>
         <?php
@@ -4560,7 +4578,9 @@ if($options['remarks']==1)
         else
         {
             ?>
-            <input type="hidden" name="replica[remarks]" value="<?php echo $remarks_replica;?>">
+            <div class="col-xs-3">
+                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
+            </div>
         <?php
         }
         ?>
@@ -4569,36 +4589,4 @@ if($options['remarks']==1)
 <?php
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

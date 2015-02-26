@@ -208,7 +208,7 @@ if($options['fortnightly_reporting_date']==1)
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="form-control actual_reporting_date" name="normal[actual_reporting_date]" value="<?php echo $actual_reporting_date_normal;?>" />
+            <input type="text" class="form-control actual_reporting_date" name="replica[actual_reporting_date]" value="<?php echo $actual_reporting_date_replica;?>" />
         </div>
     <?php
     }
@@ -216,7 +216,7 @@ if($options['fortnightly_reporting_date']==1)
     {
         ?>
         <div class="col-xs-3">
-            <input type="text" class="form-control actual_reporting_date" name="replica[actual_reporting_date]" value="<?php echo $actual_reporting_date_replica;?>" />
+            <input type="text" class="form-control actual_reporting_date" name="normal[actual_reporting_date]" value="<?php echo $actual_reporting_date_normal;?>" />
         </div>
     <?php
     }
