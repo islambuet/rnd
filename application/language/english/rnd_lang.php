@@ -160,7 +160,7 @@ $lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
 // 15 Days Picture Report
 
 
-$lang['LABEL_SELECT_NUMBER_15_DAYS'] = 'Select number of 15 days';
+$lang['LABEL_SELECT_NUMBER_15_DAYS'] = 'Select number of Fortnightly Reports';
 
 
 

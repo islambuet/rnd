@@ -31,7 +31,7 @@ class Data_image_fifteen_days extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Data Image Fifteen Days";
+        $data['title']="Data Image Fortnightly";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
@@ -77,12 +77,11 @@ class Data_image_fifteen_days extends ROOT_Controller
             {
                 $ajax['message']=$this->message;
             }
+
             $ajax['status']=true;
             $ajax['content'][]=array("id"=>"#data_15_images","html"=>$this->load->view("data_image_fifteen_days/list",$data,true));
             $this->jsonReturn($ajax);
-
         }
-
 
     }
 
@@ -107,8 +106,6 @@ class Data_image_fifteen_days extends ROOT_Controller
             $user = User_helper::get_user();
             $time=time();
 
-
-
             //Query_helper::add('rnd_setup_image_fifteen_days',$data);
             $variety_ids=$this->input->post('variety_id');
             $this->db->trans_start();  //DB Transaction Handle START
@@ -117,9 +114,9 @@ class Data_image_fifteen_days extends ROOT_Controller
                 $data=array();
                 $id=$this->input->post('rdifd_id_'.$variety_id);
                 $image_normal=$this->input->post('old_normal_image_'.$variety_id);
+
                 if(array_key_exists('file_normal_'.$variety_id,$uploaded_images))
                 {
-
                     if($uploaded_images['file_normal_'.$variety_id]['status'])
                     {
                         $image_normal=$uploaded_images['file_normal_'.$variety_id]['info']['file_name'];
@@ -129,6 +126,7 @@ class Data_image_fifteen_days extends ROOT_Controller
                         $this->message.=$uploaded_images['file_normal_'.$variety_id]['message'].'<br>';
                     }
                 }
+
                 $image_replica=$this->input->post('old_replica_image_'.$variety_id);
                 if(array_key_exists('file_replica_'.$variety_id,$uploaded_images))
                 {
@@ -142,6 +140,7 @@ class Data_image_fifteen_days extends ROOT_Controller
                         $this->message.=$uploaded_images['file_replica_'.$variety_id]['message'].'<br>';
                     }
                 }
+
                 $data['images']=json_encode(array('normal'=>$image_normal,'replica'=>$image_replica));
                 $data['remarks']=$this->input->post('remarks_'.$variety_id);
                 if($id>0)

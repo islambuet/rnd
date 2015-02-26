@@ -43,7 +43,7 @@ class Setup_text_fifteen_days extends ROOT_Controller
         }
 
         $data['cropInfo'] = $this->setup_text_fifteen_days_model->get_cropInfo($page);
-        $data['title']="Fifteen Days Status Setup List";
+        $data['title']="Fortnightly Status Setup List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_fifteen_days/list",$data,true));
@@ -61,7 +61,7 @@ class Setup_text_fifteen_days extends ROOT_Controller
         $data = array();
         $data['typeInfo'] = $this->setup_text_fifteen_days_model->get_crop_info($id);
         $data['columns'] = $this->setup_text_fifteen_days_model->get_setup($id);
-        $data['title']='15 Days Fortnightly Setup For ('.$data['typeInfo']['crop_name'].')';
+        $data['title']='Fortnightly Setup For ('.$data['typeInfo']['crop_name'].')';
 
         $ajax['page_url']=base_url()."setup_text_fifteen_days/index/edit/".$id;
 
@@ -115,11 +115,6 @@ class Setup_text_fifteen_days extends ROOT_Controller
             $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
         }
         $this->rnd_list();//this is similar like redirect
-
-
-
     }
-
-
 
 }

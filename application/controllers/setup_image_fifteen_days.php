@@ -29,7 +29,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Setup Image Fifteen Days";
+        $data['title']="Setup Image Fortnightly";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
@@ -76,9 +76,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
                     {
                         $data['images'][$i*15]='no_image.jpg';
                     }
-
                 }
-
             }
             else
             {
@@ -98,9 +96,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
                         {
                             $data['images'][$i*15]='no_image.jpg';
                         }
-
                     }
-
                 }
                 else
                 {
@@ -110,7 +106,6 @@ class Setup_image_fifteen_days extends ROOT_Controller
                         $data['images'][$i*15]='no_image.jpg';
                     }
                 }
-
             }
 
             $ajax['status']=true;
@@ -120,9 +115,7 @@ class Setup_image_fifteen_days extends ROOT_Controller
                 $ajax['message']=$this->message;
             }
             $this->jsonReturn($ajax);
-
         }
-
     }
 
     public function rnd_save()
