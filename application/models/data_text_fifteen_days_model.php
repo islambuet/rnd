@@ -37,6 +37,7 @@ class Data_text_fifteen_days_model extends CI_Model
 
         return $result;
     }
+
     public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$day_number)
     {
         $delivery_info_sub_query='(SELECT * FROM delivery_and_sowing_setup WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.')';
@@ -44,7 +45,7 @@ class Data_text_fifteen_days_model extends CI_Model
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
         $this->db->select('dass.sowing_date,dass.transplanting_date');
-        $this->db->select('rc.initial_plants');
+        $this->db->select('rc.initial_plants, , rc.optimum_transplanting_days optimum_transplanting_days');
         $this->db->select('rdtfd.info,rdtfd.id data_text_id');
 
         $this->db->join($delivery_info_sub_query.' dass', 'dass.crop_id = rv.crop_id', 'INNER');

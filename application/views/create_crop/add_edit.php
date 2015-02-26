@@ -85,6 +85,7 @@
                 <input type="text" name="initial_plants" id="initial_plants" class="form-control validate[required, custom[number]]" value="" />
             </div>
         </div>
+
         <div style="" class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANTS_PER_HECTARE');?><span style="color:#FF0000">*</span></label>
@@ -94,7 +95,14 @@
             </div>
         </div>
 
-
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_OPTIMUM_TRANSPLANTING_DATE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="optimum_transplanting_days" id="optimum_transplanting_days" class="form-control validate[required, custom[number]]" value="" />
+            </div>
+        </div>
     </div>
 
     <div class="clearfix"></div>

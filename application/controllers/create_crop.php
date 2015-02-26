@@ -73,7 +73,6 @@ class Create_crop extends ROOT_Controller
 
     public function rnd_save()
     {
-
         $id = $this->input->post("crop_id");
         $user = User_helper::get_user();
 
@@ -86,6 +85,7 @@ class Create_crop extends ROOT_Controller
             'sample_size'=>$this->input->post('sample_size'),
             'initial_plants'=>$this->input->post('initial_plants'),
             'plants_per_hectare'=>$this->input->post('plants_per_hectare'),
+            'optimum_transplanting_days'=>$this->input->post('optimum_transplanting_days'),
             'status'=>$this->config->item('status_active')
         );
 
@@ -108,6 +108,7 @@ class Create_crop extends ROOT_Controller
             $status_data['crop_id']=$crop_id;
             $status_data['created_by']=$user->user_id;
             $status_data['creation_date']=$time;
+
             Query_helper::add('rnd_setup_text_fifteen_days',$status_data);
             Query_helper::add('rnd_setup_text_flowering',$status_data);
             Query_helper::add('rnd_setup_text_fruit',$status_data);
@@ -115,6 +116,7 @@ class Create_crop extends ROOT_Controller
             Query_helper::add('rnd_setup_text_harvest_compile',$status_data);
             Query_helper::add('rnd_setup_text_yield',$status_data);
             Query_helper::add('rnd_setup_text_veg_fruit',$status_data);
+
             $this->db->trans_complete();   //DB Transaction Handle END
 
             if ($this->db->trans_status() === TRUE)

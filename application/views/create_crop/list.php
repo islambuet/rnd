@@ -25,6 +25,7 @@
                 <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_INITIAL_PLANTS"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PLANTS_PER_HECTARE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_OPTIMUM_TRANSPLANTING_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_ORDERING"); ?></th>
 
             </tr>
@@ -53,6 +54,7 @@
                             <td><?php echo $crop['sample_size'];?></td>
                             <td><?php echo $crop['initial_plants'];?></td>
                             <td><?php echo $crop['plants_per_hectare'];?></td>
+                            <td><?php echo $crop['optimum_transplanting_days'];?></td>
                             <td>
                                 <?php
                                     ?>

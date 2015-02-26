@@ -38,6 +38,7 @@ if($variety_info['replica_status']==1)
     <?php
 }
 ?>
+
 <?php
 if($options['sowing_date']==1)
 {
@@ -73,7 +74,37 @@ if($options['sowing_date']==1)
 <?php
 if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 {
+    if($variety_info['sowing_date'] && $variety_info['optimum_transplanting_days'])
+    {
     ?>
+
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_TRANSPLANTING_DATE');?></label>
+            </div>
+            <?php
+            if($variety_info['replica_status']==1)
+            {
+                ?>
+                <div class="col-xs-6">
+                    <label class="form-control"><?php echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);?></label>
+                </div>
+            <?php
+            }
+            else
+            {
+                ?>
+                <div class="col-xs-3">
+                    <label class="form-control"><?php echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);?></label>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+    ?>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_DATE');?></label>
@@ -118,7 +149,6 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
         <?php
         }
         ?>
-
     </div>
 <?php
 }
@@ -130,7 +160,7 @@ if($options['fortnightly_reporting_date']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FORTNIGHTLY_REPORTING_DATE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_REPORTING_DATE');?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -155,6 +185,44 @@ if($options['fortnightly_reporting_date']==1)
 <?php
 }
 ?>
+
+<?php
+    $actual_reporting_date_normal="";
+    if(is_array($info)&& !empty($info['normal']['actual_reporting_date']))
+    {
+        $actual_reporting_date_normal=$info['normal']['actual_reporting_date'];
+    }
+    $actual_reporting_date_replica="";
+    if(is_array($info)&& !empty($info['replica']['actual_reporting_date']))
+    {
+        $actual_reporting_date_replica=$info['replica']['actual_reporting_date'];
+    }
+?>
+
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACTUAL_REPORTING_DATE');?></label>
+    </div>
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-6">
+            <input type="text" class="form-control actual_reporting_date" name="normal[actual_reporting_date]" value="<?php echo $actual_reporting_date_normal;?>" />
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <input type="text" class="form-control actual_reporting_date" name="replica[actual_reporting_date]" value="<?php echo $actual_reporting_date_replica;?>" />
+        </div>
+    <?php
+    }
+    ?>
+</div>
+
 
 <?php
 if($options['initial_plants_during_trial_started']==1)
@@ -208,7 +276,7 @@ if($options['plant_type_appearance']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_TYPE_APPEARANCE');?></label>
         </div>
         <div class="col-xs-3">
-            <select class="form-control" name="normal[plant_type_appearance]"">
+            <select class="form-control" name="normal[plant_type_appearance]">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>" <?php if($val==$plant_type_appearance_normal){echo 'selected';} ?>><?php echo $val;?></option>
@@ -220,7 +288,7 @@ if($options['plant_type_appearance']==1)
         {
             ?>
             <div class="col-xs-3">
-                <select class="form-control" name="replica[plant_type_appearance]"">
+                <select class="form-control" name="replica[plant_type_appearance]">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php foreach($this->config->item('rating') as $val=>$rating){?>
                     <option value="<?php echo $val;?>" <?php if($val==$plant_type_appearance_replica){echo 'selected';} ?>><?php echo $val;?></option>
@@ -2156,3 +2224,13 @@ if($options['remarks']==1)
 }
 ?>
 
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $( ".actual_reporting_date" ).datepicker({dateFormat : display_date_format});
+
+    });
+
+
+</script>
