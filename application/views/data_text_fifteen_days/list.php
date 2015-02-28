@@ -2273,7 +2273,6 @@ if($options['remarks']==1)
         {
             return isNumberKey(event);
         });
-
     });
 
 </script>

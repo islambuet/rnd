@@ -31,13 +31,14 @@ class System_helper
         $config['uri_segment'] = $segment;
         return $config;
     }
+
     public static function get_rnd_code($variety,$display_style=0)
     {
         $CI = & get_instance();
 
         $rndCode = $variety['crop_code'].'-'.$variety['type_code'].'-'.str_pad($variety['variety_index'],3,'0',STR_PAD_LEFT);
-
         $varietyConfig = $CI->config->item('variety_type');
+
         if($variety['variety_type']==1)
         {
             if($display_style==0)
@@ -48,12 +49,12 @@ class System_helper
             {
                 $rndCode = $rndCode.'-XXX';
             }
-
         }
         else
         {
             $rndCode = $rndCode.'-'.$varietyConfig[$variety['variety_type']];
         }
+
         if($display_style==0)
         {
             $rndCode = $rndCode.'-'.$variety['year'];
@@ -66,6 +67,7 @@ class System_helper
                 $rndCode = $rndCode.'-OLD';
             }
         }
+
         if($variety['replica_status']==1)
         {
             $rndCode = $rndCode.'-R';
