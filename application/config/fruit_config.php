@@ -205,7 +205,7 @@ $config['fc_seed_percentage'][1]='High';
 $config['fc_seed_percentage'][2]='Medium';
 $config['fc_seed_percentage'][3]='Low';
 
-// Tatse
+// Taste
 $config['fc_taste'][1]='Good';
 $config['fc_taste'][2]='Average';
 $config['fc_taste'][3]='Poor';

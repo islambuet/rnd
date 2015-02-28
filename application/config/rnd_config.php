@@ -100,7 +100,10 @@ $config['harvest cropwise_image'][1]='Harvested Normal Fruit';
 $config['harvest cropwise_image'][2]='Harvested Abnormal Fruit';
 
 
-
+// Keeping Quality
+$config['keeping_quality'][1]='Good';
+$config['keeping_quality'][2]='Average';
+$config['keeping_quality'][3]='Poor';
 
 //fix bellow config latter
 

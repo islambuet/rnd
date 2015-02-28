@@ -3224,7 +3224,7 @@ if($options['keeping_quality']==1)
         <div class="col-xs-3">
             <select class="form-control" name="normal[keeping_quality]">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                <?php foreach($this->config->item('keeping_quality') as $val=>$name){?>
                     <option value="<?php echo $val;?>" <?php if($val==$keeping_quality_normal){echo "selected";}?>><?php echo $name;?></option>
                 <?php }?>
             </select>
@@ -3236,7 +3236,7 @@ if($options['keeping_quality']==1)
             <div class="col-xs-3">
                 <select class="form-control" name="replica[keeping_quality]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
-                    <?php foreach($this->config->item('fc_taste') as $val=>$name){?>
+                    <?php foreach($this->config->item('keeping_quality') as $val=>$name){?>
                         <option value="<?php echo $val;?>" <?php if($val==$keeping_quality_replica){echo "selected";}?>><?php echo $name;?></option>
                     <?php }?>
                 </select>
@@ -4639,14 +4639,5 @@ if($options['remarks']==1)
         });
 
     });
-
-    function isNumberKey(evt)
-    {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-
-        return true;
-    }
 
 </script>

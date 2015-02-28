@@ -1101,13 +1101,4 @@ if(is_array($info)&& !empty($info['replica']['ranking']))
         $( "#harvesting_date_replica" ).datepicker({dateFormat : display_date_format});
     });
 
-    function isNumberKey(evt)
-    {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-
-        return true;
-    }
-
 </script>

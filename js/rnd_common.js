@@ -227,3 +227,12 @@ function turn_off_triggers()
     $(document).off("change", "#number_of_fifteendays");//setup-15-days
     $(document).off("change", "#harvest_no");//setup-15-days
 }
+
+function isNumberKey(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}
