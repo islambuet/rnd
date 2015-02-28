@@ -96,6 +96,7 @@ class System_helper
         $result=$CI->db->get()->result_array();
         return $result;
     }
+
     public static function upload_file($save_dir="images")
     {
         $CI = & get_instance();
@@ -123,10 +124,9 @@ class System_helper
                 }
 
             }
-
         }
-        return $uploaded_files;
 
+        return $uploaded_files;
     }
 
 }
