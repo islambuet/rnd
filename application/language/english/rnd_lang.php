@@ -21,6 +21,7 @@ $lang['LABEL_NO'] = 'No';
 $lang['LABEL_DAYS'] = 'Days';
 $lang['LABEL_TYPE_RND_CODE'] = 'Type R&D Code';
 $lang['LABEL_SELECT_YEAR'] = 'Select Year';
+$lang['LABEL_RANKING'] = 'Ranking';
 
 // CREATE BY MARAJ MASSAGE CAPTION
 ////////////////////////// FERTILISER

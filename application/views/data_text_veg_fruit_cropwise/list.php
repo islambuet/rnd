@@ -1,15 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$info=json_decode($variety_info['info'],true);
+$info = json_decode($variety_info['info'],true);
 
 $flowering_data = json_decode($flowering_data['info'], true);
 $fruit_data = json_decode($fruit_data['info'], true);
 $compile_data = json_decode($compile_data['info'], true);
-//$harvest_data = json_decode($harvest_data['info'], true);
-
-//echo '<pre>';
-//print_r($harvest_data);
-//echo '</pre>';
 
 function get_specific_array($harvest_data, $num)
 {
@@ -22,7 +17,6 @@ function get_specific_array($harvest_data, $num)
     }
     return null;
 }
-
 
 ?>
 <div class="widget-header">
@@ -2362,3 +2356,63 @@ if($options['average_harvested_plant']==1)
 }
 ?>
 
+<?php
+
+    $ranking_normal="";
+    if(is_array($info)&& !empty($info['normal']['ranking']))
+    {
+        $ranking_normal=$info['normal']['ranking'];
+    }
+    $ranking_replica="";
+    if(is_array($info)&& !empty($info['replica']['ranking']))
+    {
+        $ranking_replica=$info['replica']['ranking'];
+    }
+?>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-6">
+            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
+        </div>
+    <?php
+    }
+    ?>
+</div>
+
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $(document).on("keypress", ".ranking", function(event)
+        {
+            return isNumberKey(event);
+        });
+
+    });
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+</script>

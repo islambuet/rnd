@@ -154,7 +154,7 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 }
 ?>
 
-<!--///////////////////////////////////////////// NEED TO DISCUSS ABOUT DAY NUMBER!!! -->
+<!-- ///////////////////////////////////////////// NEED TO DISCUSS ABOUT DAY NUMBER!!! -->
 
 <?php
 if($options['fortnightly_reporting_date']==1)
@@ -169,7 +169,7 @@ if($options['fortnightly_reporting_date']==1)
         {
             ?>
             <div class="col-xs-6">
-                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']+$day_number*24*60*60);?></label>
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['transplanting_date']);?></label>
             </div>
         <?php
         }
@@ -177,7 +177,7 @@ if($options['fortnightly_reporting_date']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo System_helper::display_date($variety_info['sowing_date']+$day_number*24*60*60);?></label>
+                <label class="form-control"><?php echo System_helper::display_date($variety_info['transplanting_date']);?></label>
             </div>
         <?php
         }
@@ -2224,13 +2224,65 @@ if($options['remarks']==1)
 }
 ?>
 
+<?php
+
+    $ranking_normal="";
+    if(is_array($info)&& !empty($info['normal']['ranking']))
+    {
+        $ranking_normal=$info['normal']['ranking'];
+    }
+    $ranking_replica="";
+    if(is_array($info)&& !empty($info['replica']['ranking']))
+    {
+        $ranking_replica=$info['replica']['ranking'];
+    }
+?>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>
+    </div>
+
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-6">
+            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
+        </div>
+    <?php
+    }
+    ?>
+</div>
+
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()
     {
         $( ".actual_reporting_date" ).datepicker({dateFormat : display_date_format});
 
+        $(document).on("keypress", ".ranking", function(event)
+        {
+            return isNumberKey(event);
+        });
+
     });
 
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
 
 </script>
