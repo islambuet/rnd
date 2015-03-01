@@ -864,6 +864,51 @@ if($options['roots_uniformity']==1)
 ?>
 
 <?php
+if($options['total_no_of_leaves']==1)
+{
+    $total_no_of_leaves_normal="";
+    if(is_array($info)&& !empty($info['normal']['total_no_of_leaves']))
+    {
+        $total_no_of_leaves_normal=$info['normal']['total_no_of_leaves'];
+    }
+    $total_no_of_leaves_replica="";
+    if(is_array($info)&& !empty($info['replica']['total_no_of_leaves']))
+    {
+        $total_no_of_leaves_replica=$info['replica']['total_no_of_leaves'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_LEAVES');?></label>
+        </div>
+
+        <div class="col-xs-3">
+            <input type="text" name="normal[total_no_of_leaves]" class="form-control" value="<?php echo $total_no_of_leaves_normal;?>" />
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[total_no_of_leaves]" class="form-control" value="<?php echo $total_no_of_leaves_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[total_no_of_leaves]" value="<?php echo $total_no_of_leaves_replica;?>">
+        <?php
+        }
+        ?>
+
+    </div>
+<?php
+}
+?>
+
+<?php
 if($options['total_mrkt_leaf']==1)
 {
     $total_mrkt_leaf_normal="";
@@ -1051,17 +1096,17 @@ if($options['remarks']==1)
 
 <?php
 
-$ranking_normal="";
-if(is_array($info)&& !empty($info['normal']['ranking']))
-{
-    $ranking_normal=$info['normal']['ranking'];
-}
-$ranking_replica="";
-if(is_array($info)&& !empty($info['replica']['ranking']))
-{
-    $ranking_replica=$info['replica']['ranking'];
-}
-?>
+    $ranking_normal="";
+    if(is_array($info)&& !empty($info['normal']['ranking']))
+    {
+        $ranking_normal=$info['normal']['ranking'];
+    }
+    $ranking_replica="";
+    if(is_array($info)&& !empty($info['replica']['ranking']))
+    {
+        $ranking_replica=$info['replica']['ranking'];
+    }
+    ?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>

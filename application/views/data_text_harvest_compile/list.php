@@ -19,19 +19,12 @@
 
     $info = json_decode($variety_info['info'],true);//info of this variety
 
-    $sum_no_of_plants_normal = 0;
-    $sum_no_of_plants_replica = 0;
     $sum_total_harvested_wt_normal = 0;
     $sum_total_harvested_wt_replica = 0;
 
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
-
-        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
-        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
-        $sum_no_of_plants_normal += $no_of_plants_normal;
-        $sum_no_of_plants_replica += $no_of_plants_replica;
 
         $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
         $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
@@ -1330,17 +1323,16 @@ if($options['avg_root_wt']==1)
 <?php
 if($options['total_no_of_leaves']==1)
 {
-    $sum_no_of_roots_normal = 0;
-    $sum_no_of_roots_replica = 0;
+    $sum_total_no_of_leaves_normal = 0;
+    $sum_total_no_of_leaves_replica = 0;
+
     foreach($harvest_data as $harvest)
     {
         $total_no_of_leaves_normal = $detail['normal']['total_no_of_leaves'];
         $total_no_of_leaves_replica = $detail['replica']['total_no_of_leaves'];
-        $sum_no_of_roots_normal += $total_no_of_leaves_normal;
-        $sum_no_of_roots_replica += $total_no_of_leaves_replica;
+        $sum_total_no_of_leaves_normal += $total_no_of_leaves_normal;
+        $sum_total_no_of_leaves_replica += $total_no_of_leaves_replica;
     }
-
-    $average_root_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_roots_normal, 2);
 
     ?>
     <div class="row show-grid">
@@ -1349,16 +1341,15 @@ if($options['total_no_of_leaves']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_root_weight_normal;?></label>
+            <label class="control-label"><?php echo $sum_total_no_of_leaves_normal;?></label>
         </div>
 
         <?php
         if($variety_info['replica_status']==1)
         {
-            $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_root_weight_replica;?></label>
+                <label class="control-label"><?php echo $sum_total_no_of_leaves_replica;?></label>
             </div>
         <?php
         }
@@ -1478,14 +1469,23 @@ if($options['percentage_of_mrkt_leaf']==1)
 
     $sum_total_mrkt_leaf_normal = 0;
     $sum_total_mrkt_leaf_replica = 0;
+    $sum_total_no_of_leaves_normal = 0;
+    $sum_total_no_of_leaves_replica = 0;
+
     foreach($harvest_data as $harvest)
     {
         $total_mrkt_leaf_normal = $detail['normal']['total_mrkt_leaf'];
         $total_mrkt_leaf_replica = $detail['replica']['total_mrkt_leaf'];
         $sum_total_mrkt_leaf_normal += $total_mrkt_leaf_normal;
         $sum_total_mrkt_leaf_replica += $total_mrkt_leaf_replica;
+
+        $total_no_of_leaves_normal = $detail['normal']['total_no_of_leaves'];
+        $total_no_of_leaves_replica = $detail['replica']['total_no_of_leaves'];
+        $sum_total_no_of_leaves_normal += $total_no_of_leaves_normal;
+        $sum_total_no_of_leaves_replica += $total_no_of_leaves_replica;
     }
 
+    $percentage_of_marketed_leafs_normal = round(($sum_total_mrkt_leaf_normal/$sum_total_no_of_leaves_normal)*100, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -1493,22 +1493,17 @@ if($options['percentage_of_mrkt_leaf']==1)
         </div>
 
         <div class="col-xs-3">
-            <input type="text" id="percentage_of_mrkt_leaf" name="normal[percentage_of_mrkt_leaf]" class="form-control" value="<?php echo $percentage_of_mrkt_leaf_normal;?>" />
+            <label class="control-label"><?php echo $percentage_of_marketed_leafs_normal;?></label>
         </div>
 
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage_of_marketed_leafs_replica = ($sum_total_mrkt_leaf_replica/$sum_total_no_of_leaves_replica)*100;
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[percentage_of_mrkt_leaf]" class="form-control" value="<?php echo $percentage_of_mrkt_leaf_replica;?>" />
+                <label class="control-label"><?php echo $percentage_of_marketed_leafs_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[percentage_of_mrkt_leaf]" value="<?php echo $percentage_of_mrkt_leaf_replica;?>">
         <?php
         }
         ?>
