@@ -386,7 +386,6 @@ if($options['total_mrkt_heads']==1)
 }
 ?>
 
-
 <?php
 if($options['total_mrkt_head_wt']==1)
 {
@@ -530,6 +529,7 @@ if($options['no_of_fruits']==1)
 <?php
 }
 ?>
+
 
 <?php
 if($options['total_mrkt_fruits']==1)

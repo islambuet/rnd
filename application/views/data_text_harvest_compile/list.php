@@ -6,16 +6,16 @@
 //echo '</pre>';
 
     function get_specific_array($harvest_data, $num)
-{
-    foreach($harvest_data as $harvest)
     {
-        if($harvest['harvest_no']==$num)
+        foreach($harvest_data as $harvest)
         {
-            return $harvest;
+            if($harvest['harvest_no']==$num)
+            {
+                return $harvest;
+            }
         }
+        return null;
     }
-    return null;
-}
 
     $info = json_decode($variety_info['info'],true);//info of this variety
 
@@ -177,6 +177,17 @@ if($variety_info['replica_status']==1)
 <?php
 if($options['total_harv_curds']==1)
 {
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -184,7 +195,7 @@ if($options['total_harv_curds']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_plants_normal;?></label>
+            <label class="control-label"><?php echo $sum_no_of_plants_harvested_normal;?></label>
         </div>
 
         <?php
@@ -192,7 +203,7 @@ if($options['total_harv_curds']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_plants_replica;?></label>
+                <label class="control-label"><?php echo $sum_no_of_plants_harvested_replica;?></label>
             </div>
         <?php
         }
@@ -308,8 +319,12 @@ if($options['total_market_curd_wt']==1)
 <?php
 if($options['percentage_of_mrkt_curd']==1)
 {
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
     $sum_total_mrkt_curds_normal = 0;
     $sum_total_mrkt_curds_replica = 0;
+
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -317,20 +332,25 @@ if($options['percentage_of_mrkt_curd']==1)
         $total_mrkt_curds_replica = $detail['replica']['total_mrkt_curds'];
         $sum_total_mrkt_curds_normal += $total_mrkt_curds_normal;
         $sum_total_mrkt_curds_replica += $total_mrkt_curds_replica;
+
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
     }
 
-    if(!empty($sum_no_of_plants_normal) && !empty($sum_total_mrkt_curds_normal))
+    if(!empty($sum_no_of_plants_harvested_normal) && !empty($sum_total_mrkt_curds_normal))
     {
-        $percentage_of_marketed_curds_normal = round(($sum_total_mrkt_curds_normal/$sum_no_of_plants_normal)*100, 2);
+        $percentage_of_marketed_curds_normal = round(($sum_total_mrkt_curds_normal/$sum_no_of_plants_harvested_normal)*100, 2);
     }
     else
     {
         $percentage_of_marketed_curds_normal = '';
     }
 
-    if(!empty($sum_total_mrkt_curds_replica) && !empty($sum_no_of_plants_replica))
+    if(!empty($sum_total_mrkt_curds_replica) && !empty($sum_no_of_plants_harvested_replica))
     {
-        $percentage_of_marketed_curds_replica = round(($sum_total_mrkt_curds_replica/$sum_no_of_plants_replica)*100, 2);
+        $percentage_of_marketed_curds_replica = round(($sum_total_mrkt_curds_replica/$sum_no_of_plants_harvested_replica)*100, 2);
     }
     else
     {
@@ -422,18 +442,29 @@ if($options['percentage_of_mrkt_curd_wt']==1)
 <?php
 if($options['avg_curd_wt']==1)
 {
-    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
     {
-        $average_curd_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_harvested_normal))
+    {
+        $average_curd_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
     }
     else
     {
         $average_curd_weight_normal = '';
     }
 
-    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_harvested_replica))
     {
-        $average_curd_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+        $average_curd_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
     }
     else
     {
@@ -469,6 +500,17 @@ if($options['avg_curd_wt']==1)
 <?php
 if($options['total_harv_heads']==1)
 {
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -476,7 +518,7 @@ if($options['total_harv_heads']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_plants_normal;?></label>
+            <label class="control-label"><?php echo $sum_no_of_plants_harvested_normal;?></label>
         </div>
 
         <?php
@@ -484,7 +526,7 @@ if($options['total_harv_heads']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_plants_replica;?></label>
+                <label class="control-label"><?php echo $sum_no_of_plants_harvested_replica;?></label>
             </div>
         <?php
         }
@@ -604,8 +646,12 @@ if($options['total_market_head_wt']==1)
 <?php
 if($options['percentage_of_mrkt_head']==1)
 {
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
     $sum_total_mrkt_heads_normal = 0;
     $sum_total_mrkt_heads_replica = 0;
+
     foreach($harvest_data as $harvest)
     {
         $detail = json_decode($harvest['info'],true);
@@ -613,9 +659,14 @@ if($options['percentage_of_mrkt_head']==1)
         $total_mrkt_heads_replica = $detail['replica']['total_mrkt_heads'];
         $sum_total_mrkt_heads_normal += $total_mrkt_heads_normal;
         $sum_total_mrkt_heads_replica += $total_mrkt_heads_replica;
+
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
     }
 
-    $percentage_of_marketed_heads_normal = round(($sum_total_mrkt_heads_normal/$sum_no_of_plants_normal)*100, 2);
+    $percentage_of_marketed_heads_normal = round(($sum_total_mrkt_heads_normal/$sum_no_of_plants_harvested_normal)*100, 2);
 
     ?>
     <div class="row show-grid">
@@ -630,7 +681,7 @@ if($options['percentage_of_mrkt_head']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_replica)*100, 2);
+            $percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_harvested_replica)*100, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $percentage_of_marketed_heads_replica;?></label>
@@ -688,7 +739,18 @@ if($options['percentage_of_mrkt_head_wt']==1)
 <?php
 if($options['avg_head_wt']==1)
 {
-    $average_head_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+
+    $average_head_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -702,7 +764,7 @@ if($options['avg_head_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+            $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_head_weight_replica;?></label>
@@ -946,28 +1008,36 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
 }
 ?>
 
-<!-- What is no_of_fruit_plant?? not sure!!-->
 
 <?php
-if($options['no_of_fruit_plant']==1)
+if($options['no_of_fruits_per_plant']==1)
 {
+    $sum_no_of_plants_harvested_normal=0;
+    $sum_no_of_plants_harvested_replica=0;
     $sum_no_of_fruits_normal=0;
     $sum_no_of_fruits_replica=0;
+
     foreach($harvest_data as $harvest)
     {
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+
         $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
         $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
         $sum_no_of_fruits_normal += $no_of_fruits_normal;
         $sum_no_of_fruits_replica += $no_of_fruits_replica;
     }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_FRUIT_PLANT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_FRUITS_PER_PLANT');?></label>
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_fruits_normal;?></label>
+            <label class="control-label"><?php echo round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);?></label>
         </div>
 
         <?php
@@ -975,7 +1045,7 @@ if($options['no_of_fruit_plant']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_fruits_replica;?></label>
+                <label class="control-label"><?php echo round($sum_no_of_fruits_replica/$sum_no_of_plants_harvested_replica, 2);?></label>
             </div>
         <?php
         }
@@ -1026,15 +1096,26 @@ if($options['avg_fruit_wt']==1)
 }
 ?>
 
-<!--////////////////////////////////////NOT SURE ABOUT THIS///////////////////////////////////////////////////////-->
+
 <?php
-if($options['fr_wt_plant']==1)
+if($options['fr_wt_per_plant']==1)
 {
-    $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+    $sum_fr_wt_per_plant_normal = 0;
+    $sum_fr_wt_per_plant_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $fr_wt_per_plant_normal = $detail['normal']['no_of_plants_harvested'];
+        $fr_wt_per_plant_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_fr_wt_per_plant_normal += $fr_wt_per_plant_normal;
+        $sum_fr_wt_per_plant_replica += $fr_wt_per_plant_replica;
+    }
+
+    $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FR_WT_PLANT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('FR_WT_PER_PLANT');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1044,7 +1125,7 @@ if($options['fr_wt_plant']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+            $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $average_fruit_weight_replica;?></label>
@@ -1466,7 +1547,6 @@ if($options['total_market_leaf_wt']==1)
 <?php
 if($options['percentage_of_mrkt_leaf']==1)
 {
-
     $sum_total_mrkt_leaf_normal = 0;
     $sum_total_mrkt_leaf_replica = 0;
     $sum_total_no_of_leaves_normal = 0;
@@ -1674,7 +1754,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     {
         $evaluation_replica=$info['replica']['evaluation'];
     }
-?>
+    ?>
 
 <div class="row show-grid">
     <div class="col-xs-4">
