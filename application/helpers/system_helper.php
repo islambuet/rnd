@@ -58,14 +58,8 @@ class System_helper
         if($display_style==0)
         {
             $rndCode = $rndCode.'-'.$variety['year'];
-            if($variety['new_status']==1)
-            {
-                $rndCode = $rndCode.'-NEW';
-            }
-            else
-            {
-                $rndCode = $rndCode.'-OLD';
-            }
+            $rndCode = $rndCode.'-'.str_pad($variety['variety_no'],3,'0',STR_PAD_LEFT);
+
         }
 
         if($variety['replica_status']==1)
@@ -74,7 +68,7 @@ class System_helper
         }
         else
         {
-            $rndCode = $rndCode.'-N';
+            $rndCode = $rndCode.'-S';
         }
 
         return $rndCode;

@@ -64,4 +64,6 @@ $lang['F_HOLDING_CAPACITY'] = 'F. Holding Capacity';
 $lang['NO_OF_PLANTS_HARVESTED'] = 'No. Of Plants Harvested';
 $lang['THIS_VARIETY_IS_NOT_HARVESTED_YET'] = 'This Variety is Not Harvested Yet';
 $lang['AVERAGE_UNIFORMITY'] = 'Average Uniformity';
+$lang['TOTAL_NO_OF_LEAVES'] = 'Total No. Of leaves';
+
 

@@ -183,7 +183,7 @@ class Create_crop_variety extends ROOT_Controller
                 $data['quantity']=$this->input->post("quantity");
                 $data['characteristics']=$this->input->post("characteristics");
                 $data['replica_status']=$this->input->post("replica_status");
-                $data['new_status']=($this->create_crop_variety_model->check_new_status($data['crop_id'],$data['variety_name'],0))?1:0;
+                $data['variety_no'] = $this->create_crop_variety_model->get_variety_no($data['crop_id'],$data['variety_name'],0);
                 $data['status']=$this->config->item("status_active");
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;

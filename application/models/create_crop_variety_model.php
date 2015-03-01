@@ -81,21 +81,26 @@ class Create_crop_variety_model extends CI_Model
             return false;
         }
     }
-    public function check_new_status($crop_id,$variety_name,$variety_id=0)
+
+    public function get_variety_no($crop_id,$variety_name)
     {
         $this->db->from("rnd_variety");
-        $this->db->where("id !=",$variety_id);
+        $this->db->select_max('variety_no', 'variety_no_max');
         $this->db->where("crop_id",$crop_id);
         $this->db->where("variety_name",$variety_name);
-        if($this->db->count_all_results()>0)
+
+        $result=$this->db->get()->row_array();
+
+        if($result)
         {
-            return false;
+            return $result['variety_no_max']?$result['variety_no_max']+1:1;
         }
         else
         {
-            return true;
+            return 1;
         }
     }
+
     public function get_variety_info($id)
     {
         $this->db->from("rnd_variety rv");

@@ -138,14 +138,23 @@
                     $show=true;
                     if($varietyInfo['id']>0)
                     {
-                        if($seasonInfo[$season['id']]['season_status']==1)
+                        if(isset($seasonInfo[$season['id']]))
                         {
-                            $checked=" checked";
+                            if($seasonInfo[$season['id']]['season_status']==1)
+                            {
+                                $checked=" checked";
+                            }
+                            if($seasonInfo[$season['id']]['sample_delivery_status']==1)
+                            {
+                                $show=false;
+                            }
+
                         }
-                        if($seasonInfo[$season['id']]['sample_delivery_status']==1)
+                        else
                         {
-                            $show=false;
+                            $show = false;
                         }
+
                     }
                     if($show)
                     {

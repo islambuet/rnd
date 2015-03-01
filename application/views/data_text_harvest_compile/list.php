@@ -1328,6 +1328,47 @@ if($options['avg_root_wt']==1)
 ?>
 
 <?php
+if($options['total_no_of_leaves']==1)
+{
+    $sum_no_of_roots_normal = 0;
+    $sum_no_of_roots_replica = 0;
+    foreach($harvest_data as $harvest)
+    {
+        $total_no_of_leaves_normal = $detail['normal']['total_no_of_leaves'];
+        $total_no_of_leaves_replica = $detail['replica']['total_no_of_leaves'];
+        $sum_no_of_roots_normal += $total_no_of_leaves_normal;
+        $sum_no_of_roots_replica += $total_no_of_leaves_replica;
+    }
+
+    $average_root_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_roots_normal, 2);
+
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_LEAVES');?></label>
+        </div>
+
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $average_root_weight_normal;?></label>
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label"><?php echo $average_root_weight_replica;?></label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
 if($options['total_leaf_wt']==1)
 {
     ?>
@@ -1346,6 +1387,44 @@ if($options['total_leaf_wt']==1)
             ?>
             <div class="col-xs-3">
                 <label class="control-label"><?php echo $total_harvested_wt_replica;?></label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['total_mrkt_leaf']==1)
+{
+    $sum_total_mrkt_leaf_normal = 0;
+    $sum_total_mrkt_leaf_replica = 0;
+    foreach($harvest_data as $harvest)
+    {
+        $total_mrkt_leaf_normal = $detail['normal']['total_mrkt_leaf'];
+        $total_mrkt_leaf_replica = $detail['replica']['total_mrkt_leaf'];
+        $sum_total_mrkt_leaf_normal += $total_mrkt_leaf_normal;
+        $sum_total_mrkt_leaf_replica += $total_mrkt_leaf_replica;
+    }
+
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_LEAF_WT');?></label>
+        </div>
+
+        <div class="col-xs-3">
+            <label class="control-label"><?php echo $sum_total_mrkt_leaf_normal;?></label>
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label"><?php echo $sum_total_mrkt_leaf_replica;?></label>
             </div>
         <?php
         }
@@ -1393,52 +1472,50 @@ if($options['total_market_leaf_wt']==1)
 }
 ?>
 
-
-<!--Total Market leaf not exist in the excel sheet, how percentage will be calculated??-->
-
 <?php
-//if($options['percentage_of_mrkt_leaf']==1)
-//{
-//    $percentage_of_mrkt_leaf_normal="";
-//    if(is_array($info)&& !empty($info['normal']['percentage_of_mrkt_leaf']))
-//    {
-//        $percentage_of_mrkt_leaf_normal=$info['normal']['percentage_of_mrkt_leaf'];
-//    }
-//    $percentage_of_mrkt_leaf_replica="";
-//    if(is_array($info)&& !empty($info['replica']['percentage_of_mrkt_leaf']))
-//    {
-//        $percentage_of_mrkt_leaf_replica=$info['replica']['percentage_of_mrkt_leaf'];
-//    }
-//    ?>
-<!--    <div class="row show-grid">-->
-<!--        <div class="col-xs-4">-->
-<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('PERCENTAGE_OF_MRKT_LEAF');?><!--</label>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="col-xs-3">-->
-<!--            <input type="text" id="percentage_of_mrkt_leaf" name="normal[percentage_of_mrkt_leaf]" class="form-control" value="--><?php //echo $percentage_of_mrkt_leaf_normal;?><!--" />-->
-<!--        </div>-->
-<!---->
-<!--        --><?php
-//        if($variety_info['replica_status']==1)
-//        {
-//            ?>
-<!--            <div class="col-xs-3">-->
-<!--                <input type="text" name="replica[percentage_of_mrkt_leaf]" class="form-control" value="--><?php //echo $percentage_of_mrkt_leaf_replica;?><!--" />-->
-<!--            </div>-->
-<!--        --><?php
-//        }
-//        else
-//        {
-//            ?>
-<!--            <input type="hidden" name="replica[percentage_of_mrkt_leaf]" value="--><?php //echo $percentage_of_mrkt_leaf_replica;?><!--">-->
-<!--        --><?php
-//        }
-//        ?>
-<!--    </div>-->
+if($options['percentage_of_mrkt_leaf']==1)
+{
+
+    $sum_total_mrkt_leaf_normal = 0;
+    $sum_total_mrkt_leaf_replica = 0;
+    foreach($harvest_data as $harvest)
+    {
+        $total_mrkt_leaf_normal = $detail['normal']['total_mrkt_leaf'];
+        $total_mrkt_leaf_replica = $detail['replica']['total_mrkt_leaf'];
+        $sum_total_mrkt_leaf_normal += $total_mrkt_leaf_normal;
+        $sum_total_mrkt_leaf_replica += $total_mrkt_leaf_replica;
+    }
+
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('PERCENTAGE_OF_MRKT_LEAF');?></label>
+        </div>
+
+        <div class="col-xs-3">
+            <input type="text" id="percentage_of_mrkt_leaf" name="normal[percentage_of_mrkt_leaf]" class="form-control" value="<?php echo $percentage_of_mrkt_leaf_normal;?>" />
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[percentage_of_mrkt_leaf]" class="form-control" value="<?php echo $percentage_of_mrkt_leaf_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[percentage_of_mrkt_leaf]" value="<?php echo $percentage_of_mrkt_leaf_replica;?>">
+        <?php
+        }
+        ?>
+    </div>
 <?php
-//}
-//?>
+}
+?>
 
 <?php
 if($options['percentage_of_mrkt_leaf_wt']==1)

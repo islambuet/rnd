@@ -167,9 +167,6 @@ class Data_text_fifteen_days extends ROOT_Controller
         }
     }
 
-
-
-
     private function check_validation()
     {
         $valid=true;
