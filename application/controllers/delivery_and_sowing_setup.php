@@ -137,7 +137,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                     {
                         $data['estimated_delivery_date'] = strtotime($this->input->post('estimated_delivery_date'));
                         $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
-                        $data['receive_date'] = strtotime($this->input->post('receive_date'));
                     }
                 }
 
@@ -168,7 +167,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 $data['crop_id'] = $this->input->post('crop_id');
                 $data['estimated_delivery_date'] = strtotime($this->input->post('estimated_delivery_date'));
                 $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
-                $data['receive_date'] = strtotime($this->input->post('receive_date'));
 
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();

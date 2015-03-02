@@ -95,7 +95,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVE_DATE');?></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="receive_date" id="receive_date" class="form-control" <?php if($deliveryInfo['sowing_status']==1){echo 'disabled';}?> value="<?php if(!empty($deliveryInfo['receive_date'])){echo System_helper::display_date($deliveryInfo['receive_date']);}?>">
+                <label class="form-control"><?php if(!empty($deliveryInfo['receive_date'])){echo System_helper::display_date($deliveryInfo['receive_date']);}?></label>
             </div>
         </div>
 

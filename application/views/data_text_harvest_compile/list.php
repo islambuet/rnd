@@ -1138,6 +1138,7 @@ if($options['fr_wt_per_plant']==1)
 }
 ?>
 
+
 <?php
 if($options['total_harv_roots']==1)
 {

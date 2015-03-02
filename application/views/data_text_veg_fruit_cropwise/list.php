@@ -2023,36 +2023,36 @@ if($options['avg_fruit_wt']==1)
 ?>
 
 
-<!--ONLY CORIANDER & HYBRID SPINACH HAVE PLANT HEIGHT-->
+
 <?php
-//if($options['plant_height']==1)
-//{
-//    ?>
-<!--    <div class="row show-grid">-->
-<!--        <div class="col-xs-4">-->
-<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('PLANT_HEIGHT');?><!--</label>-->
-<!--        </div>-->
-<!--        <div class="col-xs-3">-->
-<!--            <label class="control-label">-->
-<!--                --><?php //echo $fruit_data['normal']['plant_height']; ?>
-<!--            </label>-->
-<!--        </div>-->
-<!--        --><?php
-//        if($variety_info['replica_status']==1)
-//        {
-//            ?>
-<!--            <div class="col-xs-3">-->
-<!--                <label class="control-label">-->
-<!--                    --><?php //echo $fruit_data['replica']['plant_height']; ?>
-<!--                </label>-->
-<!--            </div>-->
-<!--        --><?php
-//        }
-//        ?>
-<!--    </div>-->
+if($options['plant_height']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT');?></label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                <?php echo $fruit_data['normal']['plant_height']; ?>
+            </label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="control-label">
+                    <?php echo $fruit_data['replica']['plant_height']; ?>
+                </label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
 <?php
-//}
-//?>
+}
+?>
 
 <?php
 if($options['harvest_unif']==1)
