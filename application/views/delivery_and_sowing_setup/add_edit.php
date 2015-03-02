@@ -83,7 +83,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
                 <input type="text" name="delivery_date" id="delivery_date" class="form-control" <?php if($deliveryInfo['sowing_status']==1){echo 'disabled';}?> value="<?php if($deliveryInfo['delivery_date']){ echo System_helper::display_date($deliveryInfo['delivery_date']);}?>">
@@ -171,7 +171,6 @@
         $( "#estimated_delivery_date" ).datepicker({dateFormat : display_date_format});
         $( "#delivery_date" ).datepicker({dateFormat : display_date_format});
         $( "#transplanting_date" ).datepicker({dateFormat : display_date_format});
-        $( "#receive_date" ).datepicker({dateFormat : display_date_format});
         $( "#sowing_date" ).datepicker({dateFormat : display_date_format});
         $( "#season_end_date" ).datepicker({dateFormat : display_date_format});
 

@@ -18,7 +18,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?></label>
             </div>
             <div class="col-xs-4">
 
@@ -37,7 +37,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?></label>
             </div>
             <div class="col-xs-4">
                 <select name="season_id" id="season_id" class="form-control validate[required]" disabled>
@@ -55,7 +55,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?></label>
             </div>
             <div class="col-xs-4">
                 <select name="crop_id" id="crop_id" class="form-control validate[required]" disabled>
@@ -73,7 +73,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ESTIMATED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ESTIMATED_DELIVERY_DATE');?></label>
             </div>
             <div class="col-xs-4">
                 <input type="text" name="estimated_delivery_date" id="estimated_delivery_date" class="form-control" disabled value="<?php if(!empty($deliveryInfo['estimated_delivery_date'])){echo System_helper::display_date($deliveryInfo['estimated_delivery_date']);}?>">
@@ -91,13 +91,12 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVE_DATE');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RECEIVE_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
                 <input type="text" name="receive_date" id="receive_date" class="form-control" <?php if($deliveryInfo['sowing_status']==1){echo 'disabled';}?> value="<?php if(!empty($deliveryInfo['receive_date'])){echo System_helper::display_date($deliveryInfo['receive_date']);}?>">
             </div>
         </div>
-
     </div>
 
     <div class="clearfix"></div>

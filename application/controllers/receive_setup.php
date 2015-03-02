@@ -101,25 +101,31 @@ class Receive_setup extends ROOT_Controller
                 if($deliveryInfo['delivery_date'])
                 {
                     $data['receive_date'] = strtotime($this->input->post('receive_date'));
-                }
 
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
+                    $data['modified_by'] = $user->user_id;
+                    $data['modification_date'] = time();
 
-                Query_helper::update('delivery_and_sowing_setup',$data,array("id = ".$id));
+                    Query_helper::update('delivery_and_sowing_setup',$data,array("id = ".$id));
 
-                $this->db->trans_complete();   //DB Transaction Handle END
+                    $this->db->trans_complete();   //DB Transaction Handle END
 
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                    if ($this->db->trans_status() === TRUE)
+                    {
+                        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                    }
+                    else
+                    {
+                        $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                    }
+
+                    $this->rnd_list();//this is similar like redirect
                 }
                 else
                 {
-                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                    $ajax['status']=false;
+                    $ajax['message']='Delivery Date Not Set!';
+                    $this->jsonReturn($ajax);
                 }
-
-                $this->rnd_list();//this is similar like redirect
             }
             else
             {
@@ -128,7 +134,6 @@ class Receive_setup extends ROOT_Controller
         }
 
     }
-
 
     private function check_validation()
     {
