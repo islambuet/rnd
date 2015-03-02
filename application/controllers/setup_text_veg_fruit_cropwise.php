@@ -43,7 +43,7 @@ class Setup_text_veg_fruit_cropwise extends ROOT_Controller
         }
 
         $data['cropInfo'] = $this->setup_text_veg_fruit_cropwise_model->get_cropInfo($page);
-        $data['title']="Veg Fruit Text Setup List";
+        $data['title']="Final Report Text Setup List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_text_veg_fruit_cropwise/list",$data,true));
@@ -61,7 +61,7 @@ class Setup_text_veg_fruit_cropwise extends ROOT_Controller
         $data = array();
         $data['typeInfo'] = $this->setup_text_veg_fruit_cropwise_model->get_crop_info($id);
         $data['columns'] = $this->setup_text_veg_fruit_cropwise_model->get_setup($id);
-        $data['title']='Veg Fruit Text Setup ('.$data['typeInfo']['crop_name'].')';
+        $data['title']='Final Report Text Setup ('.$data['typeInfo']['crop_name'].')';
 
         $ajax['page_url'] = base_url()."setup_text_veg_fruit_cropwise/index/edit/".$id;
 
