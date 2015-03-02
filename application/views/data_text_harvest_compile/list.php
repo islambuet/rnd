@@ -67,7 +67,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
+        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
     </div>
 
     <?php
@@ -75,7 +75,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
     }
@@ -94,7 +94,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $first_harvesting_date_normal;?></label>
+        <label class="form-control"><?php echo $first_harvesting_date_normal;?></label>
     </div>
 
     <?php
@@ -102,7 +102,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $first_harvesting_date_replica;?></label>
+            <label class="form-control"><?php echo $first_harvesting_date_replica;?></label>
         </div>
     <?php
     }
@@ -123,7 +123,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $last_harvesting_date_normal;?></label>
+        <label class="form-control"><?php echo $last_harvesting_date_normal;?></label>
     </div>
 
     <?php
@@ -131,7 +131,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $last_harvesting_date_replica;?></label>
+            <label class="form-control"><?php echo $last_harvesting_date_replica;?></label>
         </div>
     <?php
     }
@@ -148,7 +148,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $interval_of_harvest_normal;?></label>
+        <label class="form-control"><?php echo $interval_of_harvest_normal;?></label>
     </div>
 
     <?php
@@ -157,7 +157,7 @@ if($variety_info['replica_status']==1)
         $interval_of_harvest_replica = ((strtotime($last_harvesting_date_replica) - strtotime($first_harvesting_date_replica))/(60*60*24));
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $interval_of_harvest_replica;?></label>
+            <label class="form-control"><?php echo $interval_of_harvest_replica;?></label>
         </div>
     <?php
     }
@@ -170,7 +170,7 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $total_harvest;?></label>
+        <label class="form-control"><?php echo $total_harvest;?></label>
     </div>
 </div>
 
@@ -195,7 +195,7 @@ if($options['total_harv_curds']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_plants_harvested_normal;?></label>
+            <label class="form-control"><?php echo $sum_no_of_plants_harvested_normal;?></label>
         </div>
 
         <?php
@@ -203,7 +203,7 @@ if($options['total_harv_curds']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_plants_harvested_replica;?></label>
+                <label class="form-control"><?php echo $sum_no_of_plants_harvested_replica;?></label>
             </div>
         <?php
         }
@@ -223,7 +223,7 @@ if($options['total_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_harvested_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -231,7 +231,7 @@ if($options['total_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_harvested_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
@@ -261,7 +261,7 @@ if($options['total_market_curds']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_curds_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_curds_normal;?></label>
         </div>
 
         <?php
@@ -269,7 +269,7 @@ if($options['total_market_curds']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_curds_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_curds_replica;?></label>
             </div>
         <?php
         }
@@ -298,7 +298,7 @@ if($options['total_market_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_curd_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_curd_wt_normal;?></label>
         </div>
 
         <?php
@@ -306,7 +306,7 @@ if($options['total_market_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_curd_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_curd_wt_replica;?></label>
             </div>
         <?php
         }
@@ -364,7 +364,7 @@ if($options['percentage_of_mrkt_curd']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_curds_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_curds_normal;?></label>
         </div>
 
         <?php
@@ -372,7 +372,7 @@ if($options['percentage_of_mrkt_curd']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_curds_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_curds_replica;?></label>
             </div>
         <?php
         }
@@ -420,7 +420,7 @@ if($options['percentage_of_mrkt_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_curds_weight_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_curds_weight_normal;?></label>
         </div>
 
         <?php
@@ -428,7 +428,7 @@ if($options['percentage_of_mrkt_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_curds_weight_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_curds_weight_replica;?></label>
             </div>
         <?php
         }
@@ -478,7 +478,7 @@ if($options['avg_curd_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_curd_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_curd_weight_normal;?></label>
         </div>
 
         <?php
@@ -486,7 +486,7 @@ if($options['avg_curd_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_curd_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_curd_weight_replica;?></label>
             </div>
         <?php
         }
@@ -518,7 +518,7 @@ if($options['total_harv_heads']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_plants_harvested_normal;?></label>
+            <label class="form-control"><?php echo $sum_no_of_plants_harvested_normal;?></label>
         </div>
 
         <?php
@@ -526,7 +526,7 @@ if($options['total_harv_heads']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_plants_harvested_replica;?></label>
+                <label class="form-control"><?php echo $sum_no_of_plants_harvested_replica;?></label>
             </div>
         <?php
         }
@@ -547,7 +547,7 @@ if($options['total_head_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_harvested_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -555,7 +555,7 @@ if($options['total_head_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_harvested_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
@@ -586,7 +586,7 @@ if($options['total_market_heads']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_heads_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_heads_normal;?></label>
         </div>
 
         <?php
@@ -594,7 +594,7 @@ if($options['total_market_heads']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_heads_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_heads_replica;?></label>
             </div>
         <?php
         }
@@ -624,7 +624,7 @@ if($options['total_market_head_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_head_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_head_wt_normal;?></label>
         </div>
 
         <?php
@@ -632,7 +632,7 @@ if($options['total_market_head_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_head_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_head_wt_replica;?></label>
             </div>
         <?php
         }
@@ -675,7 +675,7 @@ if($options['percentage_of_mrkt_head']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_heads_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_heads_normal;?></label>
         </div>
 
         <?php
@@ -684,7 +684,7 @@ if($options['percentage_of_mrkt_head']==1)
             $percentage_of_marketed_heads_replica = round(($sum_total_mrkt_heads_replica/$sum_no_of_plants_harvested_replica)*100, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_heads_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_heads_replica;?></label>
             </div>
         <?php
         }
@@ -717,7 +717,7 @@ if($options['percentage_of_mrkt_head_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_heads_weight_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_heads_weight_normal;?></label>
         </div>
 
         <?php
@@ -726,7 +726,7 @@ if($options['percentage_of_mrkt_head_wt']==1)
             $percentage_of_marketed_heads_weight_replica = round(($sum_total_mrkt_head_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_heads_weight_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_heads_weight_replica;?></label>
             </div>
         <?php
         }
@@ -758,7 +758,7 @@ if($options['avg_head_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_head_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_head_weight_normal;?></label>
         </div>
 
         <?php
@@ -767,7 +767,7 @@ if($options['avg_head_wt']==1)
             $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_head_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_head_weight_replica;?></label>
             </div>
         <?php
         }
@@ -797,7 +797,7 @@ if($options['total_harv_fruits']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_fruits_normal;?></label>
+            <label class="form-control"><?php echo $sum_no_of_fruits_normal;?></label>
         </div>
 
         <?php
@@ -805,7 +805,7 @@ if($options['total_harv_fruits']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_fruits_replica;?></label>
+                <label class="form-control"><?php echo $sum_no_of_fruits_replica;?></label>
             </div>
         <?php
         }
@@ -825,7 +825,7 @@ if($options['total_fruit_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $total_harvested_wt_normal;?></label>
+            <label class="form-control"><?php echo $total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -833,7 +833,7 @@ if($options['total_fruit_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $total_harvested_wt_replica;?></label>
+                <label class="form-control"><?php echo $total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
@@ -862,7 +862,7 @@ if($options['total_market_fruits']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_fruits_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_fruits_normal;?></label>
         </div>
 
         <?php
@@ -870,7 +870,7 @@ if($options['total_market_fruits']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_fruits_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_fruits_replica;?></label>
             </div>
         <?php
         }
@@ -899,7 +899,7 @@ if($options['total_market_fruit_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_fruit_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_fruit_wt_normal;?></label>
         </div>
 
         <?php
@@ -907,7 +907,7 @@ if($options['total_market_fruit_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_fruit_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_fruit_wt_replica;?></label>
             </div>
         <?php
         }
@@ -947,7 +947,7 @@ if($options['percentage_of_mrkt_fruit']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_fruits_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_fruits_normal;?></label>
         </div>
 
         <?php
@@ -957,7 +957,7 @@ if($options['percentage_of_mrkt_fruit']==1)
 
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_fruits_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_fruits_replica;?></label>
             </div>
         <?php
         }
@@ -989,7 +989,7 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_fruits_weight_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_fruits_weight_normal;?></label>
         </div>
 
         <?php
@@ -998,7 +998,7 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
             $percentage_of_marketed_fruits_weight_replica = round(($sum_total_mrkt_fruit_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_fruits_weight_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_fruits_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1037,7 +1037,7 @@ if($options['no_of_fruits_per_plant']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);?></label>
+            <label class="form-control"><?php echo round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);?></label>
         </div>
 
         <?php
@@ -1045,7 +1045,7 @@ if($options['no_of_fruits_per_plant']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo round($sum_no_of_fruits_replica/$sum_no_of_plants_harvested_replica, 2);?></label>
+                <label class="form-control"><?php echo round($sum_no_of_fruits_replica/$sum_no_of_plants_harvested_replica, 2);?></label>
             </div>
         <?php
         }
@@ -1077,7 +1077,7 @@ if($options['avg_fruit_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_fruit_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_fruit_weight_normal;?></label>
         </div>
 
         <?php
@@ -1086,7 +1086,7 @@ if($options['avg_fruit_wt']==1)
             $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_of_no_of_fruits_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_fruit_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_fruit_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1119,7 +1119,7 @@ if($options['fr_wt_per_plant']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_fruit_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_fruit_weight_normal;?></label>
         </div>
 
         <?php
@@ -1128,7 +1128,7 @@ if($options['fr_wt_per_plant']==1)
             $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_fruit_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_fruit_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1158,7 +1158,7 @@ if($options['total_harv_roots']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_no_of_roots_normal;?></label>
+            <label class="form-control"><?php echo $sum_no_of_roots_normal;?></label>
         </div>
 
         <?php
@@ -1166,7 +1166,7 @@ if($options['total_harv_roots']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_no_of_roots_replica;?></label>
+                <label class="form-control"><?php echo $sum_no_of_roots_replica;?></label>
             </div>
         <?php
         }
@@ -1186,7 +1186,7 @@ if($options['total_root_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $total_harvested_wt_normal;?></label>
+            <label class="form-control"><?php echo $total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -1194,7 +1194,7 @@ if($options['total_root_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $total_harvested_wt_replica;?></label>
+                <label class="form-control"><?php echo $total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
@@ -1223,7 +1223,7 @@ if($options['total_market_roots']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_roots_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_roots_normal;?></label>
         </div>
 
         <?php
@@ -1231,7 +1231,7 @@ if($options['total_market_roots']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_roots_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_roots_replica;?></label>
             </div>
         <?php
         }
@@ -1260,7 +1260,7 @@ if($options['total_market_root_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_roots_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_roots_wt_normal;?></label>
         </div>
 
         <?php
@@ -1268,7 +1268,7 @@ if($options['total_market_root_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_roots_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_roots_wt_replica;?></label>
             </div>
         <?php
         }
@@ -1300,7 +1300,7 @@ if($options['percentage_of_mrkt_root']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_roots_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_roots_normal;?></label>
         </div>
 
         <?php
@@ -1310,7 +1310,7 @@ if($options['percentage_of_mrkt_root']==1)
 
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_roots_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_roots_replica;?></label>
             </div>
         <?php
         }
@@ -1342,7 +1342,7 @@ if($options['percentage_of_mrkt_root_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_roots_weight_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_roots_weight_normal;?></label>
         </div>
 
         <?php
@@ -1351,7 +1351,7 @@ if($options['percentage_of_mrkt_root_wt']==1)
             $percentage_of_marketed_roots_weight_replica = round(($sum_total_mrkt_roots_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_roots_weight_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_roots_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1383,7 +1383,7 @@ if($options['avg_root_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_root_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_root_weight_normal;?></label>
         </div>
 
         <?php
@@ -1392,7 +1392,7 @@ if($options['avg_root_wt']==1)
             $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_root_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_root_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1423,7 +1423,7 @@ if($options['total_no_of_leaves']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_no_of_leaves_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_no_of_leaves_normal;?></label>
         </div>
 
         <?php
@@ -1431,7 +1431,7 @@ if($options['total_no_of_leaves']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_no_of_leaves_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_no_of_leaves_replica;?></label>
             </div>
         <?php
         }
@@ -1451,7 +1451,7 @@ if($options['total_leaf_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $total_harvested_wt_normal;?></label>
+            <label class="form-control"><?php echo $total_harvested_wt_normal;?></label>
         </div>
 
         <?php
@@ -1459,7 +1459,7 @@ if($options['total_leaf_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $total_harvested_wt_replica;?></label>
+                <label class="form-control"><?php echo $total_harvested_wt_replica;?></label>
             </div>
         <?php
         }
@@ -1489,7 +1489,7 @@ if($options['total_mrkt_leaf']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_leaf_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_leaf_normal;?></label>
         </div>
 
         <?php
@@ -1497,7 +1497,7 @@ if($options['total_mrkt_leaf']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_leaf_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_leaf_replica;?></label>
             </div>
         <?php
         }
@@ -1527,7 +1527,7 @@ if($options['total_market_leaf_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $sum_total_mrkt_leaf_wt_normal;?></label>
+            <label class="form-control"><?php echo $sum_total_mrkt_leaf_wt_normal;?></label>
         </div>
 
         <?php
@@ -1535,7 +1535,7 @@ if($options['total_market_leaf_wt']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $sum_total_mrkt_leaf_wt_replica;?></label>
+                <label class="form-control"><?php echo $sum_total_mrkt_leaf_wt_replica;?></label>
             </div>
         <?php
         }
@@ -1574,7 +1574,7 @@ if($options['percentage_of_mrkt_leaf']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_leafs_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_leafs_normal;?></label>
         </div>
 
         <?php
@@ -1583,7 +1583,7 @@ if($options['percentage_of_mrkt_leaf']==1)
             $percentage_of_marketed_leafs_replica = ($sum_total_mrkt_leaf_replica/$sum_total_no_of_leaves_replica)*100;
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_leafs_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_leafs_replica;?></label>
             </div>
         <?php
         }
@@ -1616,7 +1616,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $percentage_of_marketed_leafs_weight_normal;?></label>
+            <label class="form-control"><?php echo $percentage_of_marketed_leafs_weight_normal;?></label>
         </div>
 
         <?php
@@ -1625,7 +1625,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
             $percentage_of_marketed_leafs_weight_replica = round(($sum_total_mrkt_leaf_wt_replica/$sum_total_harvested_wt_replica)*100, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $percentage_of_marketed_leafs_weight_replica;?></label>
+                <label class="form-control"><?php echo $percentage_of_marketed_leafs_weight_replica;?></label>
             </div>
         <?php
         }
@@ -1728,7 +1728,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo round($sum_uniformity_normal/$total_harvest, 2);?></label>
+        <label class="form-control"><?php echo round($sum_uniformity_normal/$total_harvest, 2);?></label>
     </div>
 
     <?php
@@ -1736,7 +1736,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo round($sum_uniformity_replica/$total_harvest, 2);?></label>
+            <label class="form-control"><?php echo round($sum_uniformity_replica/$total_harvest, 2);?></label>
         </div>
     <?php
     }

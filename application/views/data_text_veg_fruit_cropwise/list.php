@@ -185,14 +185,14 @@ if($options['first_curd_formation']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_CURD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['1st_curd_formation']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['1st_curd_formation']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['1st_curd_formation']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['1st_curd_formation']; ?></label>
             </div>
         <?php
         }
@@ -212,14 +212,14 @@ if($options['first_head_formation']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HEAD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['1st_head_formation']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['1st_head_formation']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['1st_head_formation']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['1st_head_formation']; ?></label>
             </div>
         <?php
         }
@@ -239,14 +239,14 @@ if($options['first_flow']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_FLOW');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['1st_flowering_days']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['1st_flowering_days']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['1st_flowering_days']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['1st_flowering_days']; ?></label>
             </div>
         <?php
         }
@@ -266,14 +266,14 @@ if($options['first_root']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_ROOT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['1st_root_formation']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['1st_root_formation']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['1st_root_formation']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['1st_root_formation']; ?></label>
             </div>
         <?php
         }
@@ -337,14 +337,14 @@ if($options['fifty_percent_curd_formation']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_CURD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['50_percent_curd_formation_days']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['50_percent_curd_formation_days']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['50_percent_curd_formation_days']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['50_percent_curd_formation_days']; ?></label>
             </div>
         <?php
         }
@@ -363,14 +363,14 @@ if($options['fifty_percent_head_formation']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_HEAD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['50_percent_head_formation_days']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['50_percent_head_formation_days']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['50_percent_head_formation_days']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['50_percent_head_formation_days']; ?></label>
             </div>
         <?php
         }
@@ -422,14 +422,14 @@ if($options['fifty_percent_root']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_ROOT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['50_percent_root_formation_days']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['50_percent_root_formation_days']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['50_percent_root_formation_days']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['50_percent_root_formation_days']; ?></label>
             </div>
         <?php
         }
@@ -500,7 +500,7 @@ if($options['first_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $date_difference_normal;?></label>
+            <label class="form-control"><?php echo $date_difference_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -508,7 +508,7 @@ if($options['first_harvest']==1)
             $date_difference_replica = (strtotime($first_harvesting_date_replica)-$sowing_date)/(60*60*24);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $date_difference_replica;?></label>
+                <label class="form-control"><?php echo $date_difference_replica;?></label>
             </div>
         <?php
         }
@@ -577,7 +577,7 @@ if($options['last_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $date_difference_normal; ?></label>
+            <label class="form-control"><?php echo $date_difference_normal; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -585,7 +585,7 @@ if($options['last_harvest']==1)
             $date_difference_replica = (strtotime($last_harvesting_date_replica)-$sowing_date)/(60*60*24);
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $date_difference_replica; ?></label>
+                <label class="form-control"><?php echo $date_difference_replica; ?></label>
             </div>
         <?php
         }
@@ -604,14 +604,14 @@ if($options['no_of_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo sizeof($harvest_data); ?></label>
+            <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo sizeof($harvest_data);; ?></label>
+                <label class="form-control"><?php echo sizeof($harvest_data);; ?></label>
             </div>
         <?php
         }
@@ -631,7 +631,7 @@ if($options['curd_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name)
                     {
@@ -648,7 +648,7 @@ if($options['curd_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                     foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name)
                     {
@@ -670,7 +670,7 @@ if($options['curd_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -687,7 +687,7 @@ if($options['curd_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -716,7 +716,7 @@ if($options['head_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_head_colour') as $val=>$name)
                     {
@@ -733,7 +733,7 @@ if($options['head_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_head_colour') as $val=>$name)
                         {
@@ -755,7 +755,7 @@ if($options['head_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -772,7 +772,7 @@ if($options['head_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -801,7 +801,7 @@ if($options['fruit_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                 foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name)
                 {
@@ -818,7 +818,7 @@ if($options['fruit_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                     foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name)
                     {
@@ -840,7 +840,7 @@ if($options['fruit_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                 foreach($this->config->item('rating') as $val=>$name)
                 {
@@ -857,7 +857,7 @@ if($options['fruit_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -886,7 +886,7 @@ if($options['root_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name)
                     {
@@ -903,7 +903,7 @@ if($options['root_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name)
                         {
@@ -925,7 +925,7 @@ if($options['root_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -942,7 +942,7 @@ if($options['root_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -971,7 +971,7 @@ if($options['leaf_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_leaf_colour') as $val=>$name)
                     {
@@ -988,7 +988,7 @@ if($options['leaf_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_leaf_colour') as $val=>$name)
                         {
@@ -1010,7 +1010,7 @@ if($options['leaf_colour']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1027,7 +1027,7 @@ if($options['leaf_colour']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1056,7 +1056,7 @@ if($options['leaf_length']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $fruit_data['normal']['leaf_length'];?>
             </label>
         </div>
@@ -1065,7 +1065,7 @@ if($options['leaf_length']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $fruit_data['replica']['leaf_length'];?>
                 </label>
             </div>
@@ -1079,7 +1079,7 @@ if($options['leaf_length']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1096,7 +1096,7 @@ if($options['leaf_length']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1125,7 +1125,7 @@ if($options['leaf_type']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_leaf_type') as $val=>$name)
                     {
@@ -1142,7 +1142,7 @@ if($options['leaf_type']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_leaf_type') as $val=>$name)
                         {
@@ -1164,7 +1164,7 @@ if($options['leaf_type']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1181,7 +1181,7 @@ if($options['leaf_type']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1212,7 +1212,7 @@ if($options['fruit_size']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 <!--                --><?php
 //                    foreach($this->config->item('fc_fruit_size') as $val=>$name)
 //                    {
@@ -1229,7 +1229,7 @@ if($options['fruit_size']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 <!--                    --><?php
 //                        foreach($this->config->item('fc_fruit_size') as $val=>$name)
 //                        {
@@ -1251,7 +1251,7 @@ if($options['fruit_size']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 <!--                --><?php
 //                    foreach($this->config->item('rating') as $val=>$name)
 //                    {
@@ -1268,7 +1268,7 @@ if($options['fruit_size']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 <!--                    --><?php
 //                        foreach($this->config->item('rating') as $val=>$name)
 //                        {
@@ -1299,7 +1299,7 @@ if($options['root_size']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SIZE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1308,7 +1308,7 @@ if($options['root_size']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
                 </label>
             </div>
@@ -1322,7 +1322,7 @@ if($options['root_size']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SIZE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1331,7 +1331,7 @@ if($options['root_size']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
 
                 </label>
@@ -1355,7 +1355,7 @@ if($options['curd_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1364,7 +1364,7 @@ if($options['curd_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
                 </label>
             </div>
@@ -1378,7 +1378,7 @@ if($options['curd_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1387,7 +1387,7 @@ if($options['curd_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
                 </label>
             </div>
@@ -1409,7 +1409,7 @@ if($options['head_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1418,7 +1418,7 @@ if($options['head_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
                 </label>
             </div>
@@ -1432,7 +1432,7 @@ if($options['head_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
 
             </label>
         </div>
@@ -1441,7 +1441,7 @@ if($options['head_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
 
                 </label>
             </div>
@@ -1462,7 +1462,7 @@ if($options['fruit_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
                     {
@@ -1479,7 +1479,7 @@ if($options['fruit_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
                         {
@@ -1501,7 +1501,7 @@ if($options['fruit_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1518,7 +1518,7 @@ if($options['fruit_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1547,7 +1547,7 @@ if($options['root_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('fc_root_shape') as $val=>$name)
                     {
@@ -1564,7 +1564,7 @@ if($options['root_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('fc_root_shape') as $val=>$name)
                         {
@@ -1586,7 +1586,7 @@ if($options['root_shape']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1603,7 +1603,7 @@ if($options['root_shape']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1632,7 +1632,7 @@ if($options['curd_diam']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAM');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $fruit_data['normal']['curd_diameter']; ?>
             </label>
         </div>
@@ -1641,7 +1641,7 @@ if($options['curd_diam']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $fruit_data['replica']['curd_diameter']; ?>
                 </label>
             </div>
@@ -1655,7 +1655,7 @@ if($options['curd_diam']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAM_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1672,7 +1672,7 @@ if($options['curd_diam']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1701,7 +1701,7 @@ if($options['head_diam']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAM');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $fruit_data['normal']['head_diameter']; ?>
             </label>
         </div>
@@ -1710,7 +1710,7 @@ if($options['head_diam']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $fruit_data['replica']['head_diameter']; ?>
                 </label>
             </div>
@@ -1724,7 +1724,7 @@ if($options['head_diam']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAM_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php
                     foreach($this->config->item('rating') as $val=>$name)
                     {
@@ -1741,7 +1741,7 @@ if($options['head_diam']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php
                         foreach($this->config->item('rating') as $val=>$name)
                         {
@@ -1791,7 +1791,7 @@ if($options['avg_curd_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_curd_wt_normal; ?>
             </label>
         </div>
@@ -1801,7 +1801,7 @@ if($options['avg_curd_wt']==1)
             $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_curd_wt_replica; ?>
                 </label>
             </div>
@@ -1843,7 +1843,7 @@ if($options['avg_leaf_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_LEAF_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_leaf_wt_normal; ?>
             </label>
         </div>
@@ -1853,7 +1853,7 @@ if($options['avg_leaf_wt']==1)
             $avg_leaf_wt_replica = round($sum_of_total_marketed_leafs_wt_replica/$sum_of_total_marketed_leafs_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_leaf_wt_replica; ?>
                 </label>
             </div>
@@ -1896,7 +1896,7 @@ if($options['avg_head_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_head_wt_normal; ?>
             </label>
         </div>
@@ -1906,7 +1906,7 @@ if($options['avg_head_wt']==1)
             $avg_head_wt_replica = round($sum_of_total_marketed_heads_wt_replica/$sum_of_total_marketed_heads_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_head_wt_replica; ?>
                 </label>
             </div>
@@ -1948,7 +1948,7 @@ if($options['avg_root_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_root_wt_normal; ?>
             </label>
         </div>
@@ -1958,7 +1958,7 @@ if($options['avg_root_wt']==1)
             $avg_root_wt_replica = round($sum_of_total_marketed_roots_wt_replica/$sum_of_total_marketed_roots_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_root_wt_replica; ?>
                 </label>
             </div>
@@ -2000,7 +2000,7 @@ if($options['avg_fruit_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_fruit_wt_normal; ?>
             </label>
         </div>
@@ -2010,7 +2010,7 @@ if($options['avg_fruit_wt']==1)
             $avg_fruit_wt_replica = round($sum_of_total_marketed_fruits_wt_replica/$sum_of_total_marketed_fruits_replica, 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_fruit_wt_replica; ?>
                 </label>
             </div>
@@ -2022,37 +2022,35 @@ if($options['avg_fruit_wt']==1)
 }
 ?>
 
-
-
 <?php
-if($options['plant_height']==1)
-{
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT');?></label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label">
-                <?php echo $fruit_data['normal']['plant_height']; ?>
-            </label>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="control-label">
-                    <?php echo $fruit_data['replica']['plant_height']; ?>
-                </label>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
+//if($options['plant_height']==1)
+//{
+//    ?>
+<!--    <div class="row show-grid">-->
+<!--        <div class="col-xs-4">-->
+<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('PLANT_HEIGHT');?><!--</label>-->
+<!--        </div>-->
+<!--        <div class="col-xs-3">-->
+<!--            <label class="form-control">-->
+<!--                --><?php //echo $fruit_data['normal']['plant_height']; ?>
+<!--            </label>-->
+<!--        </div>-->
+<!--        --><?php
+//        if($variety_info['replica_status']==1)
+//        {
+//            ?>
+<!--            <div class="col-xs-3">-->
+<!--                <label class="form-control">-->
+<!--                    --><?php //echo $fruit_data['replica']['plant_height']; ?>
+<!--                </label>-->
+<!--            </div>-->
+<!--        --><?php
+//        }
+//        ?>
+<!--    </div>-->
 <?php
-}
-?>
+//}
+//?>
 
 <?php
 if($options['harvest_unif']==1)
@@ -2334,7 +2332,7 @@ if($options['average_harvested_plant']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVERAGE_HARVESTED_PLANT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label">
+            <label class="form-control">
                 <?php echo $avg_harvested_plant_normal; ?>
             </label>
         </div>
@@ -2344,7 +2342,7 @@ if($options['average_harvested_plant']==1)
             $avg_harvested_plant_replica = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
             ?>
             <div class="col-xs-3">
-                <label class="control-label">
+                <label class="form-control">
                     <?php echo $avg_harvested_plant_replica; ?>
                 </label>
             </div>

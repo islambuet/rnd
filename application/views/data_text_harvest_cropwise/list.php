@@ -92,7 +92,7 @@ if($options['harvesting_date']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $initial_plants;?></label>
+        <label class="form-control"><?php echo $initial_plants;?></label>
     </div>
 
     <?php
@@ -100,7 +100,7 @@ if($options['harvesting_date']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $initial_plants;?></label>
+            <label class="form-control"><?php echo $initial_plants;?></label>
         </div>
     <?php
     }

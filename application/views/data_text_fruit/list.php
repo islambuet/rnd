@@ -2010,37 +2010,22 @@ if($options['head_height_evaluation']==1)
 <?php
 if($options['targeted_weight']==1)
 {
-    $targeted_weight_normal="";
-    if(is_array($info)&& !empty($info['normal']['targeted_weight']))
-    {
-        $targeted_weight_normal=$info['normal']['targeted_weight'];
-    }
-    $targeted_weight_replica="";
-    if(is_array($info)&& !empty($info['replica']['targeted_weight']))
-    {
-        $targeted_weight_replica=$info['replica']['targeted_weight'];
-    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[targeted_weight]" class="form-control" value="<?php echo $targeted_weight;?>" />
+            <label class="form-control"><?php echo $targeted_weight;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[targeted_weight]" class="form-control" value="<?php echo $targeted_weight;?>" />
+                <label class="form-control"><?php echo $targeted_weight;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[targeted_weight]" value="<?php echo $targeted_weight;?>">
         <?php
         }
         ?>
@@ -2053,41 +2038,24 @@ if($options['targeted_weight']==1)
 <?php
 if($options['targeted_height']==1)
 {
-    $targeted_height_normal="";
-    if(is_array($info)&& !empty($info['normal']['targeted_height']))
-    {
-        $targeted_height_normal=$info['normal']['targeted_height'];
-    }
-    $targeted_height_replica="";
-    if(is_array($info)&& !empty($info['replica']['targeted_height']))
-    {
-        $targeted_height_replica=$info['replica']['targeted_height'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[targeted_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+            <label class="form-control"><?php echo $targeted_height;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[targeted_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+                <label class="form-control"><?php echo $targeted_height;?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[targeted_height]" value="<?php echo $targeted_height;?>">
-        <?php
-        }
         ?>
-
     </div>
 <?php
 }
