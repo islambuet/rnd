@@ -92,7 +92,6 @@ class Data_text_veg_fruit_cropwise extends ROOT_Controller
                 $ajax['message']=$this->lang->line('YOU_MUST_SETUP_REQUIRED_DATA');
                 $this->jsonReturn($ajax);
             }
-
         }
     }
 

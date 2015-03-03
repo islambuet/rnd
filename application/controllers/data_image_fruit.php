@@ -83,6 +83,7 @@ class Data_image_fruit extends ROOT_Controller
             $this->jsonReturn($ajax);
         }
     }
+
     public function get_dropDown_fruit_image_type()
     {
         $crop_id=$this->input->post('crop_id');
@@ -265,8 +266,6 @@ class Data_image_fruit extends ROOT_Controller
 
             }
         }
-
-
 
         return $valid;
 

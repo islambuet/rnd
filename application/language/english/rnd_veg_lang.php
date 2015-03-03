@@ -60,4 +60,12 @@ $lang['FRUIT_PUNGENCY'] = 'Fruit Pungency';
 $lang['NO_OF_PLANTS_PER_PLOT'] = 'No. Of Plants/ Plot';
 $lang['AVG_FRUIT_WT_PER_PLANT'] = 'Average Fruit Weight/ Plant';
 $lang['AVERAGE_HARVESTED_PLANT'] = 'Average Harvested Plant';
+$lang['FRUIT_DIA'] = 'Fruit Dia';
+$lang['FRUIT_DIA_EVALUATION'] = 'Fruit Dia Evaluation';
+$lang['FRUIT_LENGTH'] = 'Fruit Length';
+$lang['FRUIT_LENGTH_EVALUATION'] = 'Fruit Length Evaluation';
+$lang['ROOT_DIA'] = 'Root Dia';
+$lang['ROOT_DIA_EVALUATION'] = 'Root Dia Evaluation';
+$lang['ROOT_HEIGHT'] = 'Root Height';
+$lang['ROOT_HEIGHT_EVALUATION'] = 'Root Height Evaluation';
 

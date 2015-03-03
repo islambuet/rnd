@@ -34,6 +34,7 @@ $lang['TARGETED_HEIGHT'] = 'Targeted Height';
 
 $lang['LEAF_LENGTH'] = 'Leaf Length';
 $lang['LEAF_TYPE'] = 'Leaf Type';
+$lang['LEAF_COLOUR'] = 'Leaf Color';
 
 $lang['ROOT_ABOVE_GROUND'] = 'Root Above Ground';
 $lang['ROOT_COLOUR'] = 'Root Colour';

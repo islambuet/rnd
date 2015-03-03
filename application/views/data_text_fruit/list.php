@@ -2332,7 +2332,7 @@ if($options['leaf_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('leaf_colour');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_colour]">
