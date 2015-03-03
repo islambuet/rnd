@@ -31,7 +31,7 @@ class Data_image_fruit extends ROOT_Controller
 
     public function rnd_add_edit()
     {
-        $data['title']="Data Image Flowering";
+        $data['title']="Data Image Fruit";
 
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());

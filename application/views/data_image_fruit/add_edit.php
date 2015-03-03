@@ -187,7 +187,7 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#fruit_image_type", function(event)
         {
-            $("#data_flowerings").html("");
+            $("#data_fruit").html("");
             if($(this).val()>0)
             {
                 $.ajax({
