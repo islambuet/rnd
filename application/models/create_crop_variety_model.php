@@ -137,6 +137,24 @@ class Create_crop_variety_model extends CI_Model
         return $seasons;
     }
 
+    public function get_expected_seed_per_gram($crop_id, $crop_type_id)
+    {
+        $this->db->select('*');
+        $this->db->from('rnd_crop_type');
+        $this->db->where('crop_id',$crop_id);
+        $this->db->where('id',$crop_type_id);
+
+        $result = $this->db->get()->row_array();
+        if($result)
+        {
+            return $result['expected_seed_per_gram'];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     /*
 
     public function get_type_row($id)

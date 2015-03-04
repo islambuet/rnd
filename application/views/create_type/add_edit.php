@@ -94,6 +94,15 @@
             </div>
         </div>
 
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_SEED_PER_GRAM');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="expected_seed_per_gram" id="expected_seed_per_gram" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['expected_seed_per_gram'];?>" >
+            </div>
+        </div>
+
     </div>
     <div class="clearfix"></div>
 </form>

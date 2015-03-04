@@ -66,10 +66,11 @@ $lang['LABEL_PRODUCT_TYPE'] = 'Type Name';
 $lang['LABEL_TYPE_CODE'] = 'Type Code';
 $lang['LABEL_WIDTH'] = 'Width';
 $lang['LABEL_HEIGHT'] = 'Height';
-$lang['LABEL_TARGET_LENGTH'] = 'Targeted Length';
+$lang['LABEL_TARGET_LENGTH'] = 'Targeted Length/ Height';
 $lang['LABEL_TARGET_WEIGHT'] = 'Targeted Weight';
 $lang['LABEL_TARGET_YIELD'] = 'Targeted Yield';
 $lang['LABEL_SELECT_TYPE'] = 'Select Type';
+$lang['LABEL_EXPECTED_SEED_PER_GRAM'] = 'Expected Seed/ gm';
 
 //Create Principal
 $lang['LABEL_PRINCIPAL_NAME'] = 'Principal Name';

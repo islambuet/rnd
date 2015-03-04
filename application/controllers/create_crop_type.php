@@ -74,7 +74,8 @@ class Create_crop_type extends ROOT_Controller
                 'type_code' => '',
                 'terget_length' => '',
                 'terget_weight' => '',
-                'terget_yeild' => ''
+                'terget_yeild' => '',
+                'expected_seed_per_gram' => ''
             );
             $ajax['page_url']=base_url()."create_crop_type/index/add";
         }
@@ -94,7 +95,8 @@ class Create_crop_type extends ROOT_Controller
         $data = Array(
             'terget_length'=>$this->input->post('target_length'),
             'terget_weight'=>$this->input->post('target_weight'),
-            'terget_yeild'=>$this->input->post('target_yield')
+            'terget_yeild'=>$this->input->post('target_yield'),
+            'expected_seed_per_gram'=>$this->input->post('expected_seed_per_gram')
         );
 
         if(!$this->check_validation())

@@ -223,6 +223,17 @@ class Create_crop_variety extends ROOT_Controller
         }
 
     }
+
+    public function get_expected_seed_per_gram_by_type()
+    {
+        $crop_id = $this->input->post('crop_id');
+        $crop_type_id = $this->input->post('crop_type_id');
+
+        $expected = $this->create_crop_variety_model->get_expected_seed_per_gram($crop_id, $crop_type_id);
+        $this->jsonReturn($expected);
+    }
+
+
     private function check_validation()
     {
         if($this->input->post("variety_id"))
@@ -234,6 +245,7 @@ class Create_crop_variety extends ROOT_Controller
             return $this->check_validation_add();
         }
     }
+
     private function check_validation_edit()
     {
         $valid=true;

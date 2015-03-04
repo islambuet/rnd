@@ -122,10 +122,6 @@
             </div>
         </div>
 
-
-
-
-
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
@@ -164,6 +160,15 @@
                     }
                 }
                 ?>
+            </div>
+        </div>
+
+        <div style="" class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_SEED_PER_GRAM');?></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="expected_seed_per_gram" id="expected_seed_per_gram" disabled class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['number_of_seeds'];?>" >
             </div>
         </div>
 
@@ -216,6 +221,8 @@
         $(document).on("change","#crop_id",function()
         {
             $("#crop_type_id").val("");
+            $("#expected_seed_per_gram").val('');
+
             var crop_id=$(this).val();
             if(crop_id>0)
             {
@@ -234,12 +241,44 @@
 
                     }
                 });
-
             }
-
-
-
         });
+
+        $(document).on("change","#crop_type_id",function()
+        {
+            var crop_id = $("#crop_id").val();
+            var crop_type_id = $(this).val();
+
+            if(crop_type_id>0 && crop_id>0)
+            {
+                $.ajax({
+                    url: base_url+"create_crop_variety/get_expected_seed_per_gram_by_type/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id, crop_type_id:crop_type_id},
+                    success: function (data, status)
+                    {
+                        if(data)
+                        {
+                            $("#expected_seed_per_gram").val(data)
+                        }
+                        else
+                        {
+                            $("#expected_seed_per_gram").val('');
+                        }
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+                    }
+                });
+            }
+            else
+            {
+                $("#expected_seed_per_gram").val('');
+            }
+        });
+
         $(document).on("change",'input[name="variety_type"]:radio',function()
         {
             var variety_type=$(this).val();
