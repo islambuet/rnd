@@ -2,8 +2,6 @@
 
     $info=json_decode($variety_info['info'],true);
 
-    $sum_no_of_plants_normal = '';
-    $sum_no_of_plants_replica = '';
     $sum_total_harvested_wt_normal = '';
     $sum_total_harvested_wt_replica = '';
 
@@ -11,33 +9,10 @@
     {
         $detail = json_decode($harvest['info'],true);
 
-        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
-        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
-        $sum_no_of_plants_normal += $no_of_plants_normal;
-        $sum_no_of_plants_replica += $no_of_plants_replica;
-
         $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
         $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
         $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
         $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
-    }
-
-    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
-    {
-        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
-    }
-    else
-    {
-        $average_plant_weight_normal = '';
-    }
-
-    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
-    {
-        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
-    }
-    else
-    {
-        $average_plant_weight_replica = '';
     }
 
 ?>
@@ -206,13 +181,46 @@ if($options['total_plant_per_ha']==1)
 }
 ?>
 
-<input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
-<input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
 
 <?php
 if($options['avg_curd_wt']==1)
 {
+    $sum_no_of_plants_normal = '';
+    $sum_no_of_plants_replica = '';
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_normal += $no_of_plants_normal;
+        $sum_no_of_plants_replica += $no_of_plants_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
+
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
+
     ?>
+
+    <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
+    <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
@@ -238,8 +246,41 @@ if($options['avg_curd_wt']==1)
 <?php
 if($options['avg_head_wt']==1)
 {
+    $sum_no_of_plants_normal = '';
+    $sum_no_of_plants_replica = '';
 
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_plants_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_normal += $no_of_plants_normal;
+        $sum_no_of_plants_replica += $no_of_plants_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_plants_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
+
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_plants_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
     ?>
+
+    <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
+    <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT');?></label>
@@ -265,8 +306,41 @@ if($options['avg_head_wt']==1)
 <?php
 if($options['avg_fruit_wt']==1)
 {
+    $sum_no_of_fruits_normal = '';
+    $sum_no_of_fruits_replica = '';
 
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+        $sum_no_of_fruits_normal += $no_of_fruits_normal;
+        $sum_no_of_fruits_replica += $no_of_fruits_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_fruits_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_fruits_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
+
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_fruits_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_fruits_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
     ?>
+
+    <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
+    <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT');?></label>
@@ -292,8 +366,41 @@ if($options['avg_fruit_wt']==1)
 <?php
 if($options['avg_root_wt']==1)
 {
+    $sum_no_of_roots_normal = '';
+    $sum_no_of_roots_replica = '';
 
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
+        $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
+        $sum_no_of_roots_normal += $no_of_roots_normal;
+        $sum_no_of_roots_replica += $no_of_roots_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_roots_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_roots_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
+
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_roots_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
     ?>
+
+    <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
+    <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT');?></label>
@@ -319,7 +426,41 @@ if($options['avg_root_wt']==1)
 <?php
 if($options['avg_leaf_wt']==1)
 {
+    $sum_no_of_leaves_normal = '';
+    $sum_no_of_leaves_replica = '';
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $no_of_leaves_normal = $detail['normal']['total_no_of_leaves'];
+        $no_of_leaves_replica = $detail['replica']['total_no_of_leaves'];
+        $sum_no_of_leaves_normal += $no_of_leaves_normal;
+        $sum_no_of_leaves_replica += $no_of_leaves_replica;
+    }
+
+    if(!empty($sum_total_harvested_wt_normal) && !empty($sum_no_of_leaves_normal))
+    {
+        $average_plant_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_leaves_normal, 2);
+    }
+    else
+    {
+        $average_plant_weight_normal = '';
+    }
+
+    if(!empty($sum_total_harvested_wt_replica) && !empty($sum_no_of_leaves_replica))
+    {
+        $average_plant_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_leaves_replica, 2);
+    }
+    else
+    {
+        $average_plant_weight_replica = '';
+    }
     ?>
+
+    <input type="hidden" class="average_plant_weight_normal" value="<?php echo $average_plant_weight_normal;?>"/>
+    <input type="hidden" class="average_plant_weight_replica" value="<?php echo $average_plant_weight_replica;?>"/>
+
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_LEAF_WT');?></label>
