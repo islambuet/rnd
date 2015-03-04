@@ -98,34 +98,48 @@ class Receive_setup extends ROOT_Controller
 
                 $deliveryInfo = $this->receive_setup_model->get_setup_row($id);
 
-                if($deliveryInfo['delivery_date'])
+                if($deliveryInfo['sowing_status']==1)
                 {
-                    $data['receive_date'] = strtotime($this->input->post('receive_date'));
-
-                    $data['modified_by'] = $user->user_id;
-                    $data['modification_date'] = time();
-
-                    Query_helper::update('delivery_and_sowing_setup',$data,array("id = ".$id));
-
-                    $this->db->trans_complete();   //DB Transaction Handle END
-
-                    if ($this->db->trans_status() === TRUE)
+                    if(strlen($this->input->post('transplanting_date'))>0)
                     {
-                        $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                        $data['transplanting_date'] = strtotime($this->input->post('transplanting_date'));
                     }
-                    else
+                    if($this->input->post('season_end_status')==1)
                     {
-                        $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                        $data['season_end_status'] = $this->input->post('season_end_status');
+                        $data['season_end_date'] = strtotime($this->input->post('season_end_date'));
                     }
-
-                    $this->rnd_list();//this is similar like redirect
                 }
                 else
                 {
-                    $ajax['status']=false;
-                    $ajax['message']='Delivery Date Not Set!';
-                    $this->jsonReturn($ajax);
+                    if($this->input->post('sowing_status')==1)
+                    {
+                        $data['sowing_status'] = $this->input->post('sowing_status');
+                        $data['sowing_date'] = strtotime($this->input->post('sowing_date'));
+                    }
+                    else
+                    {
+                        $data['receive_date'] = strtotime($this->input->post('receive_date'));
+                    }
                 }
+
+                $data['modified_by'] = $user->user_id;
+                $data['modification_date'] = time();
+
+                Query_helper::update('delivery_and_sowing_setup',$data,array("id = ".$id));
+
+                $this->db->trans_complete();   //DB Transaction Handle END
+
+                if ($this->db->trans_status() === TRUE)
+                {
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+                }
+                else
+                {
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+                }
+
+                $this->rnd_list();//this is similar like redirect
             }
             else
             {
@@ -148,10 +162,28 @@ class Receive_setup extends ROOT_Controller
                 $this->message.="Please input Receive Date!<br>";
             }
         }
+
+        if($deliveryInfo['sowing_status']==1)
+        {
+            if($this->input->post('season_end_status')==1)
+            {
+                if(Validation_helper::validate_empty($this->input->post('season_end_date')))
+                {
+                    $valid=false;
+                    $this->message.="Please input a Season End Date<br>";
+                }
+            }
+        }
         else
         {
-            $valid=false;
-            $this->message.="Sowing started. You cann't change the Receive Date now!<br>";
+            if($this->input->post('sowing_status')==1)
+            {
+                if(Validation_helper::validate_empty($this->input->post('sowing_date')))
+                {
+                    $valid=false;
+                    $this->message.="Please input a Sowing Date<br>";
+                }
+            }
         }
 
         return $valid;

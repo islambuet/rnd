@@ -218,14 +218,14 @@ if($options['avg_curd_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal;?></label>
+            <label class="control-label"><?php echo $average_plant_weight_normal*1000;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica;?></label>
+                <label class="control-label"><?php echo $average_plant_weight_replica*1000;?></label>
             </div>
         <?php
         }

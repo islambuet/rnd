@@ -2201,18 +2201,14 @@ if($options['plant_height']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control">
-                <input type="text" class="form-control" name="normal[plant_height]" value="<?php echo $plant_height_normal;?>" />
-            </label>
+            <input type="text" class="form-control" name="normal[plant_height]" value="<?php echo $plant_height_normal;?>" />
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="form-control">
-                    <input type="text" class="form-control" name="replica[plant_height]" value="<?php echo $plant_height_replica;?>" />
-                </label>
+                <input type="text" class="form-control" name="replica[plant_height]" value="<?php echo $plant_height_replica;?>" />
             </div>
         <?php
         }

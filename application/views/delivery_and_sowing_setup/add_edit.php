@@ -158,7 +158,6 @@
         <?php
         }
         ?>
-
     </div>
 
     <div class="clearfix"></div>
@@ -175,7 +174,6 @@
         $( "#season_end_date" ).datepicker({dateFormat : display_date_format});
 
 //        $(".form_valid").validationEngine();
-
     });
 
 
