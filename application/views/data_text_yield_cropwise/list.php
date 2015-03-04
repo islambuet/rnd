@@ -722,6 +722,7 @@ if($options['actual_yield_per_ha_evaluation']==1)
     {
         $accepted_normal=$info['normal']['accepted'];
     }
+
     $accepted_replica="";
     if(is_array($info)&& !empty($info['replica']['accepted']))
     {

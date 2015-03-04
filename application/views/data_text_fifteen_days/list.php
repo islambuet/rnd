@@ -2144,6 +2144,7 @@ if($options['accepted']==1)
     {
         $accepted_normal=$info['normal']['accepted'];
     }
+
     $accepted_replica="";
     if(is_array($info)&& !empty($info['replica']['accepted']))
     {

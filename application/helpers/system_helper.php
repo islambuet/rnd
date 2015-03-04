@@ -58,8 +58,7 @@ class System_helper
         if($display_style==0)
         {
             $rndCode = $rndCode.'-'.$variety['year'];
-            $rndCode = $rndCode.'-'.str_pad($variety['variety_no'],3,'0',STR_PAD_LEFT);
-
+            $rndCode = $rndCode.'-'.$variety['variety_no'];
         }
 
         if($variety['replica_status']==1)
