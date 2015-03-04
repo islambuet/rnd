@@ -255,18 +255,6 @@ class Delivery_and_sowing_setup extends ROOT_Controller
         $deliveryInfo = $this->delivery_and_sowing_setup_model->get_setup_row($this->input->post('delivery_id'));
         $valid=true;
 
-        if(Validation_helper::validate_empty($this->input->post('estimated_delivery_date')))
-        {
-            $valid=false;
-            $this->message.="Please input Destined Delivery Date<br>";
-        }
-
-        if(Validation_helper::validate_empty($this->input->post('delivery_date')))
-        {
-            $valid=false;
-            $this->message.="Please input Delivery Date<br>";
-        }
-
         if($deliveryInfo['sowing_status']==1)
         {
             if($this->input->post('season_end_status')==1)

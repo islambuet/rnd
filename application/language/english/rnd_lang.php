@@ -159,6 +159,7 @@ $lang['LABEL_BELOW_AVERAGE'] = 'Below Average';
 
 $lang['LABEL_DOME'] = 'Dome';
 $lang['LABEL_SEMI_DOME'] = 'Semi-Dome';
+$lang['LABEL_REPORTING_DATE'] = 'Reporting Date';
 
 // 15 Days Picture Report
 

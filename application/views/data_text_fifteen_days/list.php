@@ -1,16 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-//echo "<pre>";
-//print_r($variety_info);
-//echo "</pre>";
-////echo "<pre>";
-////print_r($options);
-////echo "</pre>";
 $info=json_decode($variety_info['info'],true);
-//
-//echo "<pre>";
-//print_r($info);
-//echo "</pre>";
+
 ?>
 <div class="widget-header">
     <div class="title">
@@ -72,6 +63,7 @@ if($options['sowing_date']==1)
 ?>
 
 <?php
+
 if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 {
     if($variety_info['sowing_date'] && $variety_info['optimum_transplanting_days'])
@@ -87,7 +79,18 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
             {
                 ?>
                 <div class="col-xs-6">
-                    <label class="form-control"><?php echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);?></label>
+                    <label class="form-control">
+                        <?php
+                        if($variety_info['optimum_transplanting_days'])
+                        {
+                            echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);
+                        }
+                        else
+                        {
+                            echo $this->lang->line("LABEL_NOT_SET");
+                        }
+                        ?>
+                    </label>
                 </div>
             <?php
             }
@@ -95,7 +98,18 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
             {
                 ?>
                 <div class="col-xs-3">
-                    <label class="form-control"><?php echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);?></label>
+                    <label class="form-control">
+                        <?php
+                        if($variety_info['optimum_transplanting_days'])
+                        {
+                            echo System_helper::display_date(($variety_info['optimum_transplanting_days']*60*60*24)+$variety_info['sowing_date']);
+                        }
+                        else
+                        {
+                            echo $this->lang->line("LABEL_NOT_SET");
+                        }
+                        ?>
+                    </label>
                 </div>
             <?php
             }
@@ -154,38 +168,38 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
 }
 ?>
 
-<!-- ///////////////////////////////////////////// NEED TO DISCUSS ABOUT DAY NUMBER!!! -->
 
 <?php
-if($options['fortnightly_reporting_date']==1)
-{
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_REPORTING_DATE');?></label>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-6">
-                <label class="form-control"><?php echo System_helper::display_date($variety_info['transplanting_date']);?></label>
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="form-control"><?php echo System_helper::display_date($variety_info['transplanting_date']);?></label>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
+//if($options['fortnightly_reporting_date']==1)
+//{
+//    ?>
+<!--    <div class="row show-grid">-->
+<!--        <div class="col-xs-4">-->
+<!--            <label class="control-label pull-right">--><?php //echo $this->lang->line('LABEL_TRANSPLANTING_REPORTING_DATE');?><!--</label>-->
+<!--        </div>-->
+<!--        --><?php
+//        if($variety_info['replica_status']==1)
+//        {
+//            ?>
+<!--            <div class="col-xs-6">-->
+<!--                <label class="form-control">--><?php //echo System_helper::display_date($variety_info['transplanting_date']);?><!--</label>-->
+<!--            </div>-->
+<!--        --><?php
+//        }
+//        else
+//        {
+//            ?>
+<!--            <div class="col-xs-3">-->
+<!--                <label class="form-control">--><?php //echo System_helper::display_date($variety_info['transplanting_date']);?><!--</label>-->
+<!--            </div>-->
+<!--        --><?php
+//        }
+//        ?>
+<!--    </div>-->
 <?php
-}
-?>
+//}
+//?>
+
 
 <?php
     $actual_reporting_date_normal="";
@@ -202,7 +216,7 @@ if($options['fortnightly_reporting_date']==1)
 
 <div class="row show-grid">
     <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACTUAL_REPORTING_DATE');?></label>
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REPORTING_DATE');?></label>
     </div>
     <?php
     if($variety_info['replica_status']==1)
