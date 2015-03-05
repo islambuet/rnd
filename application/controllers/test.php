@@ -6,7 +6,7 @@ class Test extends CI_Controller
 
     public function index()
 	{
-        echo "inside test";
+        $this->session->set_userdata('user_id',null);
 
     }
     public function get_index($array,$task_id)
@@ -22,3 +22,4 @@ class Test extends CI_Controller
     }
 
 }
+

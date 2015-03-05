@@ -46,7 +46,7 @@ if($options['fruit_size']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_SIZE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_size]">
@@ -99,7 +99,7 @@ if($options['fruit_size_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SIZE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_SIZE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_size_evaluation]">
@@ -152,7 +152,7 @@ if($options['fruit_shape']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_shape]">
@@ -205,7 +205,7 @@ if($options['fruit_shape_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_shape_evaluation]">
@@ -258,7 +258,7 @@ if($options['fruit_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_colour]">
@@ -311,7 +311,7 @@ if($options['fruit_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_colour_evaluation]">
@@ -364,7 +364,7 @@ if($options['fruit_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_WEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_normal;?>"/>
@@ -407,7 +407,7 @@ if($options['fruit_weight_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_WEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_WEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_weight_evaluation]">
@@ -460,7 +460,7 @@ if($options['fruit_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_DIAMETER');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[fruit_diameter]" value="<?php echo $fruit_diameter_normal;?>" />
@@ -503,7 +503,7 @@ if($options['fruit_diameter_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_DIAMETER_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_DIAMETER_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_diameter_evaluation]">
@@ -556,7 +556,7 @@ if($options['fruit_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[fruit_height]" value="<?php echo $fruit_height_normal;?>" />
@@ -599,7 +599,7 @@ if($options['fruit_height_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_HEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_HEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_height_evaluation]">
@@ -652,7 +652,7 @@ if($options['fruit_firmness']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_FIRMNESS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_FIRMNESS');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_firmness]">
@@ -705,7 +705,7 @@ if($options['fruit_taste']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_TASTE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_TASTE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_taste]">
@@ -758,7 +758,7 @@ if($options['fruit_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_type]">
@@ -811,7 +811,7 @@ if($options['fruit_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_type_evaluation]">
@@ -864,7 +864,7 @@ if($options['fruit_bearing_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_BEARING_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_BEARING_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_bearing_type]">
@@ -917,7 +917,7 @@ if($options['fruit_bearing_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_BEARING_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_BEARING_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[fruit_bearing_type_evaluation]">
@@ -970,7 +970,7 @@ if($options['curd_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_type]">
@@ -1023,7 +1023,7 @@ if($options['curd_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_type_evaluation]">
@@ -1076,7 +1076,7 @@ if($options['curd_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_colour]">
@@ -1129,7 +1129,7 @@ if($options['curd_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_colour_evaluation]">
@@ -1182,7 +1182,7 @@ if($options['curd_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_WEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_weight]" class="form-control" value="<?php echo $curd_weight_normal;?>" />
@@ -1225,7 +1225,7 @@ if($options['curd_weight_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_WEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_WEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_weight_evaluation]">
@@ -1278,7 +1278,7 @@ if($options['curd_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAMETER');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_diameter]" class="form-control" value="<?php echo $curd_diameter_normal;?>" />
@@ -1321,7 +1321,7 @@ if($options['curd_diameter_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAMETER_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_DIAMETER_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_diameter_evaluation]">
@@ -1374,7 +1374,7 @@ if($options['curd_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_height]" class="form-control" value="<?php echo $curd_height_normal;?>" />
@@ -1417,7 +1417,7 @@ if($options['curd_height_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_HEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_HEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_height_evaluation]">
@@ -1470,7 +1470,7 @@ if($options['curd_compactness']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COMPACTNESS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_COMPACTNESS');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[curd_compactness]">
@@ -1523,7 +1523,7 @@ if($options['head_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_type]">
@@ -1576,7 +1576,7 @@ if($options['head_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_type_evaluation]">
@@ -1629,7 +1629,7 @@ if($options['head_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_colour]">
@@ -1682,7 +1682,7 @@ if($options['head_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_colour_evaluation]">
@@ -1735,7 +1735,7 @@ if($options['head_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_WEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_weight]" class="form-control" value="<?php echo $head_weight_normal;?>" />
@@ -1778,7 +1778,7 @@ if($options['head_weight_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_WEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_WEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_weight_evaluation]">
@@ -1831,7 +1831,7 @@ if($options['head_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAMETER');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_diameter]" class="form-control" value="<?php echo $head_diameter_normal;?>" />
@@ -1874,7 +1874,7 @@ if($options['head_diameter_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAMETER_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_DIAMETER_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_diameter_evaluation]">
@@ -1927,7 +1927,7 @@ if($options['head_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_height]" class="form-control" value="<?php echo $head_height_normal;?>" />
@@ -1970,7 +1970,7 @@ if($options['head_height_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_HEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_HEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_height_evaluation]">
@@ -2014,7 +2014,7 @@ if($options['targeted_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_WEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <label class="form-control"><?php echo $targeted_weight;?></label>
@@ -2041,7 +2041,7 @@ if($options['targeted_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <label class="form-control"><?php echo $targeted_height;?></label>
@@ -2077,7 +2077,7 @@ if($options['head_compactness']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COMPACTNESS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_COMPACTNESS');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[head_compactness]">
@@ -2130,7 +2130,7 @@ if($options['leaf_length']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_LENGTH');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[leaf_length]" class="form-control" value="<?php echo $leaf_length_normal;?>" />
@@ -2173,7 +2173,7 @@ if($options['leaf_length_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_LENGTH_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_length_evaluation]">
@@ -2226,7 +2226,7 @@ if($options['leaf_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_type]">
@@ -2279,7 +2279,7 @@ if($options['leaf_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_type_evaluation]">
@@ -2332,7 +2332,7 @@ if($options['leaf_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_colour]">
@@ -2385,7 +2385,7 @@ if($options['leaf_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[leaf_colour_evaluation]">
@@ -2438,7 +2438,7 @@ if($options['root_above_ground']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_ABOVE_GROUND');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_ABOVE_GROUND');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_above_ground]" class="form-control" value="<?php echo $root_above_ground_normal;?>" />
@@ -2481,7 +2481,7 @@ if($options['root_above_ground_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_ABOVE_GROUND_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_ABOVE_GROUND_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_above_ground_evaluation]">
@@ -2534,7 +2534,7 @@ if($options['root_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_colour]">
@@ -2587,7 +2587,7 @@ if($options['root_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_colour_evaluation]">
@@ -2640,7 +2640,7 @@ if($options['root_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_WEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_weight]" class="form-control" value="<?php echo $root_weight_normal;?>" />
@@ -2683,7 +2683,7 @@ if($options['root_weight_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_WEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_WEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_weight_evaluation]">
@@ -2736,7 +2736,7 @@ if($options['root_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_DIAMETER');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_diameter]" class="form-control" value="<?php echo $root_diameter_normal;?>" />
@@ -2779,7 +2779,7 @@ if($options['root_diameter_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_DIAMETER_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_DIAMETER_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_diameter_evaluation]">
@@ -2832,7 +2832,7 @@ if($options['targeted_root_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_ROOT_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_ROOT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
@@ -2875,7 +2875,7 @@ if($options['root_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_height]" class="form-control" value="<?php echo $root_height_normal;?>" />
@@ -2918,7 +2918,7 @@ if($options['root_height_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_HEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_HEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_height_evaluation]">
@@ -2972,7 +2972,7 @@ if($options['root_taste']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_TASTE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_TASTE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_taste]">
@@ -3026,7 +3026,7 @@ if($options['root_shape']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_SHAPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_shape]">
@@ -3080,7 +3080,7 @@ if($options['root_shape_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_SHAPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[root_shape_evaluation]">
@@ -3133,7 +3133,7 @@ if($options['taste']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TASTE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TASTE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[taste]">
@@ -3187,7 +3187,7 @@ if($options['keeping_quality']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('KEEPING_QUALITY');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_KEEPING_QUALITY');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[keeping_quality]">
@@ -3240,7 +3240,7 @@ if($options['pungency']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('PUNGENCY');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PUNGENCY');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[pungency]">
@@ -3294,7 +3294,7 @@ if($options['seed_maturity_during_harvest']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_MATURITY_DURING_HARVEST');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEED_MATURITY_DURING_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[seed_maturity_during_harvest]">
@@ -3347,7 +3347,7 @@ if($options['seed_density']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_DENSITY');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEED_DENSITY');?></label>
         </div>
         <div class="col-xs-3">
             <textarea name="normal[seed_density]" class="form-control"><?php echo $seed_density_normal;?></textarea>
@@ -3391,7 +3391,7 @@ if($options['spine_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SPINE_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SPINE_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[spine_type]">
@@ -3445,7 +3445,7 @@ if($options['spine_type_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SPINE_TYPE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SPINE_TYPE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[spine_type_evaluation]">
@@ -3499,7 +3499,7 @@ if($options['hardness_of_spines']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('hardness_of_spines');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_hardness_of_spines');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[hardness_of_spines]">
@@ -3553,7 +3553,7 @@ if($options['core_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CORE_DIAMETER');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CORE_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[core_diameter]" class="form-control" value="<?php echo $core_diameter_normal;?>" />
@@ -3597,7 +3597,7 @@ if($options['core_diameter_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('CORE_DIAMETER_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CORE_DIAMETER_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[core_diameter_evaluation]">
@@ -3651,7 +3651,7 @@ if($options['flesh_colour']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FLESH_COLOUR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLESH_COLOUR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[flesh_colour]">
@@ -3704,7 +3704,7 @@ if($options['flesh_colour_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FLESH_COLOUR_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLESH_COLOUR_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[flesh_colour_evaluation]">
@@ -3758,7 +3758,7 @@ if($options['smoothness_of_skin']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SMOOTHNESS_OF_SKIN');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SMOOTHNESS_OF_SKIN');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[smoothness_of_skin]">
@@ -3812,7 +3812,7 @@ if($options['ridge_type']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('RIDGE_TYPE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RIDGE_TYPE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[ridge_type]">
@@ -3866,7 +3866,7 @@ if($options['ridge_strength']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('RIDGE_STRENGTH');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RIDGE_STRENGTH');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[ridge_strength]">
@@ -3920,7 +3920,7 @@ if($options['waxiness_of_skin']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('WAXINESS_OF_SKIN');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_WAXINESS_OF_SKIN');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[waxiness_of_skin]">
@@ -3974,7 +3974,7 @@ if($options['no_of_edges_in_fruit']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('no_of_edges_in_fruit');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_NO_OF_EDGES_IN_FRUIT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[no_of_edges_in_fruit]" value="<?php echo $no_of_edges_in_fruit_normal;?>" />
@@ -4018,7 +4018,7 @@ if($options['no_of_edges_in_fruit_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_EDGES_IN_FRUIT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_NO_OF_EDGES_IN_FRUIT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[no_of_edges_in_fruit_evaluation]">
@@ -4072,7 +4072,7 @@ if($options['tenderness_of_fruit']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TENDERNESS_OF_FRUIT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TENDERNESS_OF_FRUIT');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[tenderness_of_fruit]">
@@ -4126,7 +4126,7 @@ if($options['plant_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[plant_height]" value="<?php echo $plant_height_normal;?>" />
@@ -4170,7 +4170,7 @@ if($options['plant_height_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('PLANT_HEIGHT_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_HEIGHT_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[plant_height_evaluation]">
@@ -4224,7 +4224,7 @@ if($options['brix_percent']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('BRIX_PERCENT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_BRIX_PERCENT');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[brix_percent]">
@@ -4278,7 +4278,7 @@ if($options['flavor']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FLAVOR');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FLAVOR');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[flavor]">
@@ -4332,7 +4332,7 @@ if($options['seed_percentage']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_PERCENTAGE');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEED_PERCENTAGE');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[seed_percentage]">
@@ -4386,7 +4386,7 @@ if($options['seed_percentage_evaluation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('SEED_PERCENTAGE_EVALUATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SEED_PERCENTAGE_EVALUATION');?></label>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="normal[seed_percentage_evaluation]">
@@ -4488,16 +4488,16 @@ if($options['accepted']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACCEPTED');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="radio" name="normal[accepted]" value="1" <?php if($accepted_normal!=0){echo 'checked';} ?>><?php echo $this->lang->line('YES');?>
-            <input type="radio" name="normal[accepted]" value="0" <?php if($accepted_normal==0){echo 'checked';} ?>><?php echo $this->lang->line('NO');?>
+            <input type="radio" name="normal[accepted]" value="1" <?php if($accepted_normal!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
+            <input type="radio" name="normal[accepted]" value="0" <?php if($accepted_normal==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="radio" name="replica[accepted]" value="1" <?php if($accepted_replica!=0){echo 'checked';} ?>><?php echo $this->lang->line('YES');?>
-                <input type="radio" name="replica[accepted]" value="0" <?php if($accepted_replica==0){echo 'checked';} ?>><?php echo $this->lang->line('NO');?>
+                <input type="radio" name="replica[accepted]" value="1" <?php if($accepted_replica!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
+                <input type="radio" name="replica[accepted]" value="0" <?php if($accepted_replica==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
             </div>
         <?php
         }

@@ -9,6 +9,7 @@ class Setup_text_fruit extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("setup_text_fruit_model");
+        $this->lang->load('rnd_fruit');
     }
 
     public function index($task="list",$id=0)

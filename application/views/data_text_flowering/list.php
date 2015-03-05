@@ -56,7 +56,7 @@ if($options['1st_curd_formation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('1ST_CURD_FORMATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_CURD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[1st_curd_formation]" value="<?php echo $f_curd_formation_normal;?>"/>
@@ -228,7 +228,7 @@ if($options['50_percent_flowering_days']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50PERCENT_FLOWERING_DAYS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50_PERCENT_FLOWERING_DAYS');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[50_percent_flowering_days]" value="<?php echo $fifty_percent_flowering_days_normal;?>"/>
@@ -529,7 +529,7 @@ if($options['50_percent_curd_formation_days']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FIFTY_PERCENT_CURD_FORMATION_DAYS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50_PERCENT_CURD_FORMATION_DAYS');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[50_percent_curd_formation_days]" value="<?php echo $fifty_percent_curd_formation_days_normal;?>"/>
@@ -572,7 +572,7 @@ if($options['50_percent_head_formation_days']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FIFTY_PERCENT_HEAD_FORMATION_DAYS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50_PERCENT_HEAD_FORMATION_DAYS');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[50_percent_head_formation_days]" value="<?php echo $fifty_percent_head_formation_days_normal;?>"/>
@@ -615,7 +615,7 @@ if($options['50_percent_root_formation_days']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FIFTY_PERCENT_ROOT_FORMATION_DAYS');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_50_PERCENT_ROOT_FORMATION_DAYS');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[50_percent_root_formation_days]" value="<?php echo $fifty_percent_root_formation_days_normal;?>"/>
@@ -658,7 +658,7 @@ if($options['1st_curd_formation_to_marketable_curd_formation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_MARKETABLE_CURD_FORMATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_CURD_FORMATION_TO_MARKETABLE_CURD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[1st_curd_formation_to_marketable_curd_formation]" value="<?php echo $marketable_curd_formation_normal;?>"/>
@@ -701,7 +701,7 @@ if($options['1st_head_formation_to_marketable_head_formation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_MARKETABLE_HEAD_FORMATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_HEAD_FORMATION_TO_MARKETABLE_HEAD_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[1st_head_formation_to_marketable_head_formation]" value="<?php echo $marketable_head_formation_normal;?>"/>
@@ -744,7 +744,7 @@ if($options['1st_root_formation_to_marketable_root_formation']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_MARKETABLE_ROOT_FORMATION');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_ROOT_FORMATION_TO_MARKETABLE_ROOT_FORMATION');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[1st_root_formation_to_marketable_root_formation]" value="<?php echo $marketable_root_formation_normal;?>"/>

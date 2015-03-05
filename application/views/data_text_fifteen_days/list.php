@@ -245,7 +245,7 @@ if($options['initial_plants_during_trial_started']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_INITIAL_PLANTS_DURING_TRIAL');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)

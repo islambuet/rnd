@@ -26,10 +26,13 @@
             ?>
             <div class="row show-grid">
                 <div class="col-xs-4">
-                    <label class="control-label pull-right"><?php echo $key;?></label>
+                    <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_'.strtoupper($key));?></label>
                 </div>
-                <div class="col-sm-4 col-xs-8">
+                <div class="col-xs-1">
                     <input type="checkbox" name="columns[]" class="" value="<?php echo $key;?>" <?php if($column==1) echo "checked";?> >
+                </div>
+                <div class="col-xs-4">
+                    <label class="control-label"><?php echo $key;?></label>
                 </div>
             </div>
             <?php
