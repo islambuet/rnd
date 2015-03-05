@@ -2153,14 +2153,14 @@ if($options['special_characters']==1)
 <?php
 if($options['accepted']==1)
 {
-    $accepted_normal="";
-    if(is_array($info)&& !empty($info['normal']['accepted']))
+    $accepted_normal=1;
+    if(is_array($info)&& isset($info['normal']['accepted']))
     {
         $accepted_normal=$info['normal']['accepted'];
     }
 
-    $accepted_replica="";
-    if(is_array($info)&& !empty($info['replica']['accepted']))
+    $accepted_replica=1;
+    if(is_array($info)&& isset($info['replica']['accepted']))
     {
         $accepted_replica=$info['replica']['accepted'];
     }
