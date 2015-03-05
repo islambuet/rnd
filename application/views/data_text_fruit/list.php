@@ -2017,14 +2017,14 @@ if($options['targeted_weight']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $targeted_weight;?></label>
+            <label class="form-control"><?php echo $variety_info['terget_weight'];?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $targeted_weight;?></label>
+                <label class="form-control"><?php echo $variety_info['terget_weight'];?></label>
             </div>
         <?php
         }
@@ -2044,14 +2044,14 @@ if($options['targeted_height']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $targeted_height;?></label>
+            <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $targeted_height;?></label>
+                <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
             </div>
         <?php
         }
@@ -2819,39 +2819,26 @@ if($options['root_diameter_evaluation']==1)
 <?php
 if($options['targeted_root_height']==1)
 {
-    $targeted_root_height_normal="";
-    if(is_array($info)&& !empty($info['normal']['targeted_root_height']))
-    {
-        $targeted_root_height_normal=$info['normal']['targeted_root_height'];
-    }
-    $targeted_root_height_replica="";
-    if(is_array($info)&& !empty($info['replica']['targeted_root_height']))
-    {
-        $targeted_root_height_replica=$info['replica']['targeted_root_height'];
-    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_ROOT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+            <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
+
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[targeted_root_height]" class="form-control" value="<?php echo $targeted_height;?>" />
+                <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[targeted_root_height]" value="<?php echo $targeted_height;?>">
-        <?php
-        }
+        
         ?>
 
     </div>
@@ -4472,13 +4459,13 @@ if($options['special_characters']==1)
 <?php
 if($options['accepted']==1)
 {
-    $accepted_normal="";
-    if(is_array($info)&& !empty($info['normal']['accepted']))
+    $accepted_normal=1;
+    if(is_array($info)&& isset($info['normal']['accepted']))
     {
         $accepted_normal=$info['normal']['accepted'];
     }
-    $accepted_replica="";
-    if(is_array($info)&& !empty($info['replica']['accepted']))
+    $accepted_replica=1;
+    if(is_array($info)&& isset($info['replica']['accepted']))
     {
         $accepted_replica=$info['replica']['accepted'];
     }
@@ -4523,11 +4510,7 @@ if($options['remarks']==1)
     {
         $remarks_normal=$info['normal']['remarks'];
     }
-    $remarks_replica="";
-    if(is_array($info)&& !empty($info['replica']['remarks']))
-    {
-        $remarks_replica=$info['replica']['remarks'];
-    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -4539,7 +4522,7 @@ if($options['remarks']==1)
         {
             ?>
             <div class="col-xs-6">
-                <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
+                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
             </div>
         <?php
         }
@@ -4561,15 +4544,11 @@ if($options['remarks']==1)
 <?php
 
     $ranking_normal="";
-    if(is_array($info)&& !empty($info['normal']['ranking']))
+    if(is_array($info)&&isset($info['normal']['ranking']))
     {
         $ranking_normal=$info['normal']['ranking'];
     }
-    $ranking_replica="";
-    if(is_array($info)&& !empty($info['replica']['ranking']))
-    {
-        $ranking_replica=$info['replica']['ranking'];
-    }
+
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -4581,7 +4560,7 @@ if($options['remarks']==1)
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
         </div>
     <?php
     }

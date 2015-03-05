@@ -43,7 +43,6 @@ class Data_text_fruit_model extends CI_Model
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
         $this->db->select('dass.sowing_date,dass.transplanting_date');
-        $this->db->select('rc.initial_plants');
         $this->db->select('rdtfd.info,rdtfd.id data_text_id');
 
         $this->db->join($delivery_info_sub_query.' dass', 'dass.crop_id = rv.crop_id', 'INNER');

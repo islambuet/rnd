@@ -65,8 +65,8 @@ class Data_text_fruit extends ROOT_Controller
 
             $data['title']="Fruit Text Report Fields";
             $data['crop_id'] = $crop_id;
-            $data['targeted_weight'] = $this->data_text_fruit_model->get_targeted_weight($crop_id, $crop_type_id);
-            $data['targeted_height'] = $this->data_text_fruit_model->get_targeted_height($crop_id, $crop_type_id);
+            //$data['targeted_weight'] = $this->data_text_fruit_model->get_targeted_weight($crop_id, $crop_type_id);
+            //$data['targeted_height'] = $this->data_text_fruit_model->get_targeted_height($crop_id, $crop_type_id);
 
             $data['variety_info']=$this->data_text_fruit_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options']=Query_helper::get_info('rnd_setup_text_fruit','*',array('crop_id ='.$crop_id),1);
