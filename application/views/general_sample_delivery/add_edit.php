@@ -116,14 +116,7 @@
             </label>
         </div>
     </div>
-    <div class="row show-grid">
-        <div class="col-xs-6">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SAMPLE_SIZE_RND');?></label>
-        </div>
-        <div class="col-xs-2">
-            <label class="form-control"><?php echo $sample['sample_size'];?></label>
-        </div>
-    </div>
+
 </div>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>general_sample_delivery/index/save" method="post">
     <input type="hidden" name="sample_id" value="<?php echo $sample['id']?>">
@@ -152,6 +145,7 @@
                         <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
                         <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
                         <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
+                        <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
 
                     </tr>
                     </thead>
@@ -168,7 +162,7 @@
                                     if($sample['sowing_status']==0)
                                     {
                                         ?>
-                                        <td><input type="checkbox" class="select_variety" name="varieties[]" value="<?php echo $variety['variety_season_id'];?>"></td>
+                                        <td><input type="checkbox" class="select_variety" name="varieties[]" value="<?php echo $variety['id'];?>"></td>
                                         <?php
                                     }
                                     ?>
@@ -176,6 +170,7 @@
                                     <td><?php echo $variety['variety_name'];?></td>
                                     <td><?php echo System_helper::get_rnd_code($variety);?></td>
                                     <td><?php echo $variety['type_name'];?></td>
+                                    <td><?php echo $variety['sample_size'];?></td>
                                 </tr>
                             <?php
                             }
@@ -216,6 +211,7 @@
                     <th><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></th>
                     <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
                     <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
+                    <th><?php echo $this->lang->line("LABEL_SAMPLE_SIZE_RND"); ?></th>
 
                 </tr>
                 </thead>
@@ -232,6 +228,7 @@
                                 <td><?php echo $variety['variety_name'];?></td>
                                 <td><?php echo System_helper::get_rnd_code($variety);?></td>
                                 <td><?php echo $variety['type_name'];?></td>
+                                <td><?php echo $variety['sample_size'];?></td>
                             </tr>
                         <?php
                         }

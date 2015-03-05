@@ -82,16 +82,26 @@ class General_sample_delivery extends ROOT_Controller
             if($sample['sowing_status']==0)
             {
                 $user = User_helper::get_user();
+                $time=time();
+                $year=$sample['year'];
+                $season_id=$sample['season_id'];
 
-                $data['sample_delivery_status']=1;
-                $data['modified_by']=$user->user_id;
-                $data['modification_date']=time();
-                $data['sample_size']=$sample['sample_size'];
+
+
+
                 $this->db->trans_start();  //DB Transaction Handle START
-                foreach($varieties as $variety_season_id)
+                foreach($varieties as $variety)
                 {
-                    Query_helper::update('rnd_variety_season',$data,array("id = ".$variety_season_id));
+                    $data=array();
+                    $data['sample_delivery_status']=1;
+                    $data['modified_by']=$user->user_id;
+                    $data['modification_date']=$time;
+                    $sample_size_info=Query_helper::get_info('rnd_variety',array('sample_size'),array('id ='.$variety),1);
+                    $data['sample_size']=$sample_size_info['sample_size'];
+
+                    Query_helper::update('rnd_variety_season',$data,array('year = '.$year,'variety_id ='.$variety,'season_id ='.$season_id));
                 }
+
                 $this->db->trans_complete();   //DB Transaction Handle END
 
                 if ($this->db->trans_status() === TRUE)

@@ -178,7 +178,6 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#variety_id", function(event)
         {
-            console.log('whose garden?');
             $("#veg_fruit_text").html("");
 
             if($(this).val()>0)
