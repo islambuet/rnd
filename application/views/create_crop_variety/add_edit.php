@@ -168,7 +168,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_SEED_PER_GRAM');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="expected_seed_per_gram" id="expected_seed_per_gram" disabled class="form-control validate[required, custom[number]]" value="<?php echo $varietyInfo['number_of_seeds'];?>" >
+                <label id="expected_seed_per_gram" class="form-control"><?php echo $varietyInfo['number_of_seeds'];?></label>
             </div>
         </div>
 

@@ -59,7 +59,7 @@ class Create_crop_variety extends ROOT_Controller
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
+        if ($id > 0)
         {
             $data['varietyInfo'] = $this->create_crop_variety_model->get_variety_info($id);
             $data['cropTypes'] = $this->create_crop_variety_model->get_crop_types($data['varietyInfo']['crop_id']);
@@ -187,6 +187,19 @@ class Create_crop_variety extends ROOT_Controller
                 $data['status']=$this->config->item("status_active");
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = $time;
+                $crop_info=Query_helper::get_info('rnd_crop','*',array('id ='.$data['crop_id']),1);
+                $data['crop_height']=$crop_info['crop_height'];
+                $data['crop_width']=$crop_info['crop_width'];
+                $data['sample_size']=$crop_info['sample_size'];
+                $data['initial_plants']=$crop_info['initial_plants'];
+                $data['plants_per_hectare']=$crop_info['plants_per_hectare'];
+                $data['optimum_transplanting_days']=$crop_info['optimum_transplanting_days'];
+                $type_info=Query_helper::get_info('rnd_crop_type','*',array('id ='.$data['crop_type_id'],'crop_id ='.$data['crop_id']),1);
+                $data['terget_length']=$type_info['terget_length'];
+                $data['terget_weight']=$type_info['terget_weight'];
+                $data['terget_yeild']=$type_info['terget_yeild'];
+                $data['expected_seed_per_gram']=$type_info['expected_seed_per_gram'];
+
 
                 $this->db->trans_start();
                 $variety_id=Query_helper::add('rnd_variety',$data);
@@ -230,7 +243,10 @@ class Create_crop_variety extends ROOT_Controller
         $crop_type_id = $this->input->post('crop_type_id');
 
         $expected = $this->create_crop_variety_model->get_expected_seed_per_gram($crop_id, $crop_type_id);
-        $this->jsonReturn($expected);
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#expected_seed_per_gram","html"=>$expected);
+        $this->jsonReturn($ajax);
+
     }
 
 
