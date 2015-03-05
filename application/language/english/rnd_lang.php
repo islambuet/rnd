@@ -325,5 +325,5 @@ $lang['HARVESTING_DATE']='Harvest Date';
 $lang['LABEL_FRUIT_IMAGE_TYPE']='Fruit Image Type';
 $lang['IMAGE_FRUIT_NOT_SETUP']='Fruit header images did not set';
 
-
+$lang['INITIAL_PLANTS'] = 'Initial plants';
 

@@ -9,6 +9,7 @@ class Setup_text_yield_cropwise extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("setup_text_yield_cropwise_model");
+        $this->lang->load('rnd_yield');
     }
 
     public function index($task="list",$id=0)

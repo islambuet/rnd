@@ -9,6 +9,7 @@ class Setup_text_harvest_compile extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("setup_text_harvest_compile_model");
+        $this->lang->load('rnd_harvest');
     }
 
     public function index($task="list",$id=0)

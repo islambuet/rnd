@@ -9,6 +9,7 @@ class Setup_text_harvest_cropwise extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("setup_text_harvest_cropwise_model");
+        $this->lang->load('rnd_harvest');
     }
 
     public function index($task="list",$id=0)
