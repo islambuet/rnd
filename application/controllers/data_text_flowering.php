@@ -62,9 +62,8 @@ class Data_text_flowering extends ROOT_Controller
             $variety_id = $this->input->post('variety_id');
 
             $data['title']="Flowering Report Fields";
-
-            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
             $data['options']=Query_helper::get_info('rnd_setup_text_flowering','*',array('crop_id ='.$crop_id),1);
+            $data['variety_info']=$this->data_text_flowering_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
 
             if($this->message)
             {
