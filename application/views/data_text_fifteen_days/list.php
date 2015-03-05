@@ -64,8 +64,9 @@ if($options['sowing_date']==1)
 
 <?php
 
-if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
+if($options['transplanting_date']==1)
 {
+    // && $variety_info['transplanting_date']
     if($variety_info['sowing_date'] && $variety_info['optimum_transplanting_days'])
     {
     ?>
@@ -207,11 +208,6 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
     {
         $actual_reporting_date_normal=$info['normal']['actual_reporting_date'];
     }
-    $actual_reporting_date_replica="";
-    if(is_array($info)&& !empty($info['replica']['actual_reporting_date']))
-    {
-        $actual_reporting_date_replica=$info['replica']['actual_reporting_date'];
-    }
 ?>
 
 <div class="row show-grid">
@@ -223,7 +219,7 @@ if($options['transplanting_date']==1 && $variety_info['transplanting_date'])
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="form-control actual_reporting_date" name="replica[actual_reporting_date]" value="<?php echo $actual_reporting_date_replica;?>" />
+            <input type="text" class="form-control actual_reporting_date" name="normal[actual_reporting_date]" value="<?php echo $actual_reporting_date_normal;?>" />
         </div>
     <?php
     }
@@ -2204,11 +2200,6 @@ if($options['remarks']==1)
     {
         $remarks_normal=$info['normal']['remarks'];
     }
-    $remarks_replica="";
-    if(is_array($info)&& !empty($info['replica']['remarks']))
-    {
-        $remarks_replica=$info['replica']['remarks'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2220,7 +2211,7 @@ if($options['remarks']==1)
         {
             ?>
             <div class="col-xs-6">
-                <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
+                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
             </div>
         <?php
         }
@@ -2246,11 +2237,6 @@ if($options['remarks']==1)
     {
         $ranking_normal=$info['normal']['ranking'];
     }
-    $ranking_replica="";
-    if(is_array($info)&& !empty($info['replica']['ranking']))
-    {
-        $ranking_replica=$info['replica']['ranking'];
-    }
 ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -2262,7 +2248,7 @@ if($options['remarks']==1)
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
         </div>
     <?php
     }
