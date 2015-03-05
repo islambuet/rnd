@@ -1965,8 +1965,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 
 
 <?php
-if($options['accepted']==1)
-{
+
     $accepted_normal=1;
     if(is_array($info)&& isset($info['normal']['accepted']))
     {
@@ -1978,41 +1977,38 @@ if($options['accepted']==1)
         $accepted_replica=$info['replica']['accepted'];
     }
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACCEPTED');?></label>
-        </div>
-        <div class="col-xs-3">
-            <input type="radio" name="normal[accepted]" value="1" <?php if($accepted_normal!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
-            <input type="radio" name="normal[accepted]" value="0" <?php if($accepted_normal==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <input type="radio" name="replica[accepted]" value="1" <?php if($accepted_replica!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
-                <input type="radio" name="replica[accepted]" value="0" <?php if($accepted_replica==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[accepted]" value="<?php echo $accepted_replica;?>">
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACCEPTED');?></label>
     </div>
-<?php
-}
-?>
+    <div class="col-xs-3">
+        <input type="radio" name="normal[accepted]" value="1" <?php if($accepted_normal!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
+        <input type="radio" name="normal[accepted]" value="0" <?php if($accepted_normal==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
+    </div>
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-3">
+            <input type="radio" name="replica[accepted]" value="1" <?php if($accepted_replica!=0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_YES');?>
+            <input type="radio" name="replica[accepted]" value="0" <?php if($accepted_replica==0){echo 'checked';} ?>><?php echo $this->lang->line('LABEL_NO');?>
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <input type="hidden" name="replica[accepted]" value="<?php echo $accepted_replica;?>">
+    <?php
+    }
+    ?>
+
+</div>
 
 
+
 <?php
-if($options['remarks']==1)
-{
+
     $remarks_normal="";
     if(is_array($info)&& !empty($info['normal']['remarks']))
     {
@@ -2020,34 +2016,32 @@ if($options['remarks']==1)
     }
 
     ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
-        </div>
-
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-6">
-                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <div class="col-xs-3">
-                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
-            </div>
-        <?php
-        }
-        ?>
-
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
     </div>
-<?php
-}
-?>
+
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-6">
+            <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
+        </div>
+    <?php
+    }
+    ?>
+
+</div>
+
 
 <?php
 
