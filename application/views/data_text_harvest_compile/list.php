@@ -93,7 +93,7 @@ if($variety_info['replica_status']==1)
     $first_harvest_text=$this->lang->line("NOT_SET");
     if($first_harvest_time>0)
     {
-        //change day difference;
+        $first_harvest_text=($first_harvest_time-$variety_info['sowing_date'])/(3600*24);
     }
 
 
@@ -134,9 +134,9 @@ if($variety_info['replica_status']==1)
 
 
     $last_harvest_text=$this->lang->line("NOT_SET");
-    if($last_harvest_text>0)
+    if($last_harvest_time>0)
     {
-        //change day difference;
+        $last_harvest_text=($last_harvest_time-$variety_info['sowing_date'])/(3600*24);
     }
 
 
@@ -178,7 +178,7 @@ if($variety_info['replica_status']==1)
     }
     else
     {
-        $interval_text=$last_harvest_time-$first_harvest_time;
+        $interval_text=($last_harvest_time-$first_harvest_time)/(3600*24);
     }
 ?>
 <div class="row show-grid">
