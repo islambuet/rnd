@@ -68,6 +68,7 @@ $lang['TOTAL_NO_OF_LEAVES'] = 'Total No. Of leaves';
 $lang['NO_OF_FRUITS_PER_PLANT'] = 'No. Of Fruits/ Plant';
 $lang['FR_WT_PER_PLANT'] = 'Fruit Wt/ Plant';
 $lang['REMARKS'] = 'Remarks';
+$lang['FIRST_HARVEST_DATE_NOT_SET'] = 'First Harvest Date Not Set';
 
 
 

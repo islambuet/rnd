@@ -77,6 +77,18 @@ class System_helper
     {
         return date('Y-m-d',$date);
     }
+    public static function get_time($str)
+    {
+        $time=strtotime($str);
+        if($time===false)
+        {
+            return 0;
+        }
+        else
+        {
+            return $time;
+        }
+    }
     
     public static function get_ordered_crops()
     {

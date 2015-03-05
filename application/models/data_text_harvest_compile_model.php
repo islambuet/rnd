@@ -45,7 +45,6 @@ class Data_text_harvest_compile_model extends CI_Model
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
         $this->db->select('dass.sowing_date,dass.transplanting_date');
-        $this->db->select('rc.initial_plants');
         $this->db->select('rdtfd.info,rdtfd.id data_text_id');
 
         $this->db->join($delivery_info_sub_query.' dass', 'dass.crop_id = rv.crop_id', 'INNER');
@@ -57,21 +56,7 @@ class Data_text_harvest_compile_model extends CI_Model
         return $result;
     }
 
-    /*public function get_initial_plants($crop_id)
-    {
-        $this->db->select('*');
-        $this->db->from('rnd_crop');
-        $this->db->where('id',$crop_id);
-        $result = $this->db->get()->row_array();
-        if($result)
-        {
-            return $result['initial_plants'];
-        }
-        else
-        {
-            return null;
-        }
-    }*/
+
 
 
     public function get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id)
