@@ -92,7 +92,7 @@ if($options['harvesting_date']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="form-control"><?php echo $initial_plants;?></label>
+        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
     </div>
 
     <?php
@@ -100,7 +100,7 @@ if($options['harvesting_date']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $initial_plants;?></label>
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
     }
@@ -1059,11 +1059,6 @@ if($options['remarks']==1)
     {
         $remarks_normal=$info['normal']['remarks'];
     }
-    $remarks_replica="";
-    if(is_array($info)&& !empty($info['replica']['remarks']))
-    {
-        $remarks_replica=$info['replica']['remarks'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -1075,7 +1070,7 @@ if($options['remarks']==1)
         {
             ?>
             <div class="col-xs-6">
-                <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
+                <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
             </div>
         <?php
         }
@@ -1097,15 +1092,11 @@ if($options['remarks']==1)
 <?php
 
     $ranking_normal="";
-    if(is_array($info)&& !empty($info['normal']['ranking']))
+    if(is_array($info)&& isset($info['normal']['ranking']))
     {
         $ranking_normal=$info['normal']['ranking'];
     }
-    $ranking_replica="";
-    if(is_array($info)&& !empty($info['replica']['ranking']))
-    {
-        $ranking_replica=$info['replica']['ranking'];
-    }
+
     ?>
 <div class="row show-grid">
     <div class="col-xs-4">
@@ -1117,7 +1108,7 @@ if($options['remarks']==1)
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
         </div>
     <?php
     }
