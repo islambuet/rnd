@@ -66,18 +66,24 @@ if($variety_info['replica_status']==1)
         <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
     </div>
 
-    <div class="col-xs-3">
-        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
-    </div>
+
 
     <?php
     if($variety_info['replica_status']==1)
     {
         ?>
-        <div class="col-xs-3">
+        <div class="col-xs-6">
             <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+        </div>
+        <?php
     }
     ?>
 </div>

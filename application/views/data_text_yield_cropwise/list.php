@@ -46,20 +46,22 @@ if($variety_info['replica_status']==1)
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
     </div>
-
-    <div class="col-xs-3">
-        <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
-        <input type="hidden" class="hidden_initial" value="<?php echo $variety_info['initial_plants'];?>"/>
-    </div>
+    <input type="hidden" class="hidden_initial" value="<?php echo $variety_info['initial_plants'];?>"/>
 
     <?php
     if($variety_info['replica_status']==1)
     {
         ?>
-        <div class="col-xs-3">
-            <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
+        <div class="col-xs-6">
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
+    }
+    else
+    {
+        ?>
+        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+        <?php
     }
     ?>
 </div>
@@ -136,14 +138,14 @@ if($options['survival_percentage']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('SURVIVAL_PERCENTAGE');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="survival_percentage_normal"><?php echo $survival_percentage_normal;?></label>
+            <label class="form-control survival_percentage_normal"><?php echo $survival_percentage_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="survival_percentage_replica"><?php echo $survival_percentage_replica;?></label>
+                <label class="form-control survival_percentage_replica"><?php echo $survival_percentage_replica;?></label>
             </div>
         <?php
         }
@@ -162,7 +164,7 @@ if($options['total_plant_per_ha']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_PLANT_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $crop_info['plants_per_hectare'];?></label>
+            <label class="form-control"><?php echo $crop_info['plants_per_hectare'];?></label>
             <input type="hidden" class="total_plant_per_ha_normal form-control" name="normal[total_plant_per_ha]" value="<?php echo $crop_info['plants_per_hectare'];?>" />
         </div>
         <?php
@@ -170,7 +172,7 @@ if($options['total_plant_per_ha']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $crop_info['plants_per_hectare'];?></label>
+                <label class="form-control"><?php echo $crop_info['plants_per_hectare'];?></label>
                 <input type="hidden" class="total_plant_per_ha_replica form-control" name="replica[total_plant_per_ha]" value="<?php echo $crop_info['plants_per_hectare'];?>" />
             </div>
         <?php
@@ -226,14 +228,14 @@ if($options['avg_curd_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal*1000;?></label>
+            <label class="form-control"><?php echo $average_plant_weight_normal*1000;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica*1000;?></label>
+                <label class="form-control"><?php echo $average_plant_weight_replica*1000;?></label>
             </div>
         <?php
         }
@@ -286,14 +288,14 @@ if($options['avg_head_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_plant_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_plant_weight_replica;?></label>
             </div>
         <?php
         }
@@ -346,14 +348,14 @@ if($options['avg_fruit_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_plant_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_plant_weight_replica;?></label>
             </div>
         <?php
         }
@@ -406,14 +408,14 @@ if($options['avg_root_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_plant_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_plant_weight_replica;?></label>
             </div>
         <?php
         }
@@ -466,14 +468,14 @@ if($options['avg_leaf_wt']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_LEAF_WT');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $average_plant_weight_normal;?></label>
+            <label class="form-control"><?php echo $average_plant_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $average_plant_weight_replica;?></label>
+                <label class="form-control"><?php echo $average_plant_weight_replica;?></label>
             </div>
         <?php
         }
@@ -492,14 +494,14 @@ if($options['targeted_yield_per_ha']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_YIELD_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $targeted_yield;?></label>
+            <label class="form-control"><?php echo $targeted_yield;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $targeted_yield;?></label>
+                <label class="form-control"><?php echo $targeted_yield;?></label>
             </div>
         <?php
         }
@@ -520,7 +522,7 @@ if($options['max_estimated_yield_per_ha']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('MAX_ESTIMATED_YIELD_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="max_estimated_normal"><?php echo $max_estimated_yield_normal;?></label>
+            <label class="form-control max_estimated_normal"><?php echo $max_estimated_yield_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -528,7 +530,7 @@ if($options['max_estimated_yield_per_ha']==1)
             $max_estimated_yield_replica = round(($crop_info['plants_per_hectare']*$average_plant_weight_normal)/1000, 2);
             ?>
             <div class="col-xs-3">
-                <label class="max_estimated_replica"><?php echo $max_estimated_yield_replica;?></label>
+                <label class="form-control max_estimated_replica"><?php echo $max_estimated_yield_replica;?></label>
             </div>
         <?php
         }
@@ -644,14 +646,14 @@ if($options['actual_yield_per_ha']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('ACTUAL_YIELD_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="actual_yield_per_ha_normal"><?php echo $actual_estimated_yield_normal;?></label>
+            <label class="form-control actual_yield_per_ha_normal"><?php echo $actual_estimated_yield_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="actual_yield_per_ha_replica"><?php echo $actual_estimated_yield_replica;?></label>
+                <label class="form-control actual_yield_per_ha_replica"><?php echo $actual_estimated_yield_replica;?></label>
             </div>
         <?php
         }

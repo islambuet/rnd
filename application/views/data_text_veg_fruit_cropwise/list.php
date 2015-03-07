@@ -305,27 +305,23 @@ if($options['first_cutting']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_CUTTING');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $date_difference_normal; ?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
-            $first_cutting_replica = $first_harvest_data['replica']['harvesting_date'];
-            $first_cutting_replica_time = System_helper::get_time($first_cutting_replica);
-
-            $sowing_date = $variety_info['sowing_date'];
-            $date_difference_replica=$this->lang->line("NOT_SET");
-            if($date_difference_replica>0)
-            {
-                $date_difference_replica = ($first_cutting_replica_time-$sowing_date)/(60*60*24);
-            }
-
             ?>
-            <div class="col-xs-3">
-                <label class="form-control"><?php echo $date_difference_replica; ?></label>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $date_difference_normal; ?></label>
             </div>
         <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $date_difference_normal; ?></label>
+            </div>
+            <?php
         }
         ?>
 
@@ -356,25 +352,21 @@ if($options['last_cutting']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LAST_CUTTING');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
-            $last_cutting_replica = $last_harvest_data['replica']['harvesting_date'];
-            $last_cutting_replica_time=System_helper::get_time($last_cutting_replica);
-
-            $sowing_date = $variety_info['sowing_date'];
-            $last_date_difference_replica = $this->lang->line("NOT_SET");
-            if($last_cutting_replica_time>0)
-            {
-                $last_date_difference_replica = ($last_cutting_replica_time-$sowing_date)/(60*60*24);
-            }
-
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
+            </div>
+        <?php
+        }
+        else
+        {
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $last_date_difference_replica; ?></label>
+                <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
             </div>
         <?php
         }
@@ -477,14 +469,14 @@ if($options['fifty_percent_flow']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIFTY_PERCENT_FLOW');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $flowering_data['normal']['50_percent_flowering_days']; ?></label>
+            <label class="form-control"><?php echo $flowering_data['normal']['50_percent_flowering_days']; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <label class="control-label"><?php echo $flowering_data['replica']['50_percent_flowering_days']; ?></label>
+                <label class="form-control"><?php echo $flowering_data['replica']['50_percent_flowering_days']; ?></label>
             </div>
         <?php
         }
@@ -546,25 +538,23 @@ if($options['first_harvest']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $first_date_difference_normal;?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
-            $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
-            $first_harvest_replica_time=System_helper::get_time($first_harvesting_date_replica);
-
-            $first_date_difference_replica = $this->lang->line("NOT_SET");
-            if($first_harvest_replica_time>0)
-            {
-                $first_date_difference_replica = ($first_harvest_replica_time-$sowing_date)/(60*60*24);
-            }
             ?>
-            <div class="col-xs-3">
-                <label class="form-control"><?php echo $first_date_difference_replica;?></label>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $first_date_difference_normal;?></label>
             </div>
         <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $first_date_difference_normal;?></label>
+            </div>
+            <?php
         }
         ?>
     </div>
@@ -595,27 +585,23 @@ if($options['last_harvest']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
-            $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
-            $date_difference_replica = (strtotime($last_harvesting_date_replica)-$sowing_date)/(60*60*24);
-
-            $last_harvest_replica_time = System_helper::get_time($last_harvesting_date_replica);
-
-            $last_date_difference_replica = $this->lang->line("NOT_SET");
-            if($last_harvest_replica_time>0)
-            {
-                $last_date_difference_replica = ($last_harvest_replica_time-$sowing_date)/(60*60*24);
-            }
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $last_date_difference_replica; ?></label>
+                <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
             </div>
         <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
+            </div>
+            <?php
         }
         ?>
     </div>
@@ -2107,8 +2093,14 @@ if($options['avg_curd_wt']==1)
         $sum_of_total_marketed_curds_wt_normal += $total_marketed_curds_wt_normal;
         $sum_of_total_marketed_curds_wt_replica += $total_marketed_curds_wt_replica;
     }
+    $avg_curd_wt_normal = $this->lang->line("CANNOT_CALCULATE");;
 
-    $avg_curd_wt_normal = round($sum_of_total_marketed_curds_wt_normal/$sum_of_no_of_plants_harvested_normal, 2);
+    if(($sum_of_total_marketed_curds_wt_normal>0) && ($sum_of_no_of_plants_harvested_normal)>0)
+    {
+        $avg_curd_wt_normal = round($sum_of_total_marketed_curds_wt_normal/$sum_of_no_of_plants_harvested_normal, 2);
+    }
+
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2122,7 +2114,13 @@ if($options['avg_curd_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica, 2);
+            $avg_curd_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if(($sum_of_total_marketed_curds_wt_replica>0) && ($sum_of_no_of_plants_harvested_replica)>0)
+            {
+                $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica, 2);
+            }
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
