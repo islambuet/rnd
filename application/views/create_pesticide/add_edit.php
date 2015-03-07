@@ -30,8 +30,8 @@
 
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>" <?php if($this->config->item('active')==$pesticideInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($this->config->item('inactive')==$pesticideInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_active');?>" <?php if($this->config->item('status_active')==$pesticideInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_delete');?>" <?php if($this->config->item('status_delete')==$pesticideInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
                 </select>
             </div>
         </div>
