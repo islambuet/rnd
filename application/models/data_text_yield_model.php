@@ -90,21 +90,6 @@ class Data_text_yield_model extends CI_Model
         }
     }
 
-    public function get_targeted_yield($crop_id, $crop_type_id)
-    {
-        $this->db->select('*');
-        $this->db->from('rnd_crop_type');
-        $this->db->where('id',$crop_type_id);
-        $this->db->where('crop_id',$crop_id);
-        $result = $this->db->get()->row_array();
-        if($result)
-        {
-            return $result['terget_yeild'];
-        }
-        else
-        {
-            return null;
-        }
-    }
+
 
 }

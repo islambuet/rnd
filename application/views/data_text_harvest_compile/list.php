@@ -408,7 +408,7 @@ if($options['percentage_of_mrkt_curd']==1)
     {
         $percentage_of_marketed_curds_normal = round(($sum_total_mrkt_curds_normal/$sum_no_of_plants_harvested_normal)*100, 2);
     }
-    $percentage_of_marketed_curds_replica = $this->lang->line("CANNOT_CALCULATE");;
+    $percentage_of_marketed_curds_replica = $this->lang->line("CANNOT_CALCULATE");
 
     if(($sum_total_mrkt_curds_replica>0) && ($sum_no_of_plants_harvested_replica)>0)
     {

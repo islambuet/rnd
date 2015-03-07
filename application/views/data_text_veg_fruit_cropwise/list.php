@@ -386,17 +386,22 @@ if($options['no_of_cutting']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_CUTTING');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
                 <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
             </div>
         <?php
+        }
+        else{
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
+            </div>
+            <?php
         }
         ?>
 
@@ -590,7 +595,7 @@ if($options['last_harvest']==1)
         if($variety_info['replica_status']==1)
         {
             ?>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
                 <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
             </div>
         <?php
@@ -617,17 +622,23 @@ if($options['no_of_harvest']==1)
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('NO_OF_HARVEST');?></label>
         </div>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
-        </div>
+
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
                 <label class="form-control"><?php echo sizeof($harvest_data);; ?></label>
             </div>
         <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo sizeof($harvest_data); ?></label>
+            </div>
+            <?php
         }
         ?>
 
