@@ -6,7 +6,7 @@ $data["hide_save"]="1";
 $this->load->view("action_buttons_edit",$data);
 ?>
 
-<div class="row widget">
+<div class="row widget hidden-print">
     <div class="widget-header">
         <div class="title">
             <?php echo $title; ?>
