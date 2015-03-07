@@ -5,6 +5,7 @@
 //print_r($harvest_data);
 //echo '</pre>';
 
+
     function get_specific_array($harvest_data, $num)
     {
         foreach($harvest_data as $harvest)
@@ -243,6 +244,7 @@ if($options['total_harv_curds']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
         $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
         $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
@@ -347,6 +349,7 @@ if($options['total_market_curd_wt']==1)
     $sum_total_mrkt_curd_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
         $total_mrkt_curd_wt_replica = $detail['replica']['total_mrkt_curd_wt'];
         $sum_total_mrkt_curd_wt_normal += $total_mrkt_curd_wt_normal;
@@ -444,6 +447,7 @@ if($options['percentage_of_mrkt_curd_wt']==1)
     $sum_total_mrkt_curd_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_curd_wt_normal = $detail['normal']['total_mrkt_curd_wt'];
         $total_mrkt_curd_wt_replica = $detail['replica']['total_mrkt_curd_wt'];
         $sum_total_mrkt_curd_wt_normal += $total_mrkt_curd_wt_normal;
@@ -495,8 +499,10 @@ if($options['avg_curd_wt']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
         $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+
         $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
         $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
     }
@@ -548,6 +554,7 @@ if($options['total_harv_heads']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
         $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
         $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
@@ -655,6 +662,7 @@ if($options['total_market_head_wt']==1)
     $sum_total_mrkt_head_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_head_wt_normal = $detail['normal']['total_mrkt_head_wt'];
         $total_mrkt_head_wt_replica = $detail['replica']['total_mrkt_head_wt'];
         $sum_total_mrkt_head_wt_normal += $total_mrkt_head_wt_normal;
@@ -754,6 +762,7 @@ if($options['percentage_of_mrkt_head_wt']==1)
     $sum_total_mrkt_head_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_head_wt_normal = $detail['normal']['total_mrkt_head_wt'];
         $total_mrkt_head_wt_replica = $detail['replica']['total_mrkt_head_wt'];
         $sum_total_mrkt_head_wt_normal += $total_mrkt_head_wt_normal;
@@ -807,6 +816,7 @@ if($options['avg_head_wt']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
         $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
         $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
@@ -857,6 +867,7 @@ if($options['total_harv_fruits']==1)
     $sum_no_of_fruits_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
         $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
         $sum_no_of_fruits_normal += $no_of_fruits_normal;
@@ -923,6 +934,7 @@ if($options['total_market_fruits']==1)
     $sum_total_mrkt_fruits_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_fruits_normal = $detail['normal']['total_mrkt_fruits'];
         $total_mrkt_fruits_replica = $detail['replica']['total_mrkt_fruits'];
         $sum_total_mrkt_fruits_normal += $total_mrkt_fruits_normal;
@@ -960,6 +972,7 @@ if($options['total_market_fruit_wt']==1)
     $sum_total_mrkt_fruit_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_fruit_wt_normal = $detail['normal']['total_mrkt_fruit_wt'];
         $total_mrkt_fruit_wt_replica = $detail['replica']['total_mrkt_fruit_wt'];
         $sum_total_mrkt_fruit_wt_normal += $total_mrkt_fruit_wt_normal;
@@ -1000,6 +1013,7 @@ if($options['percentage_of_mrkt_fruit']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_fruits_normal = $detail['normal']['total_mrkt_fruits'];
         $total_mrkt_fruits_replica = $detail['replica']['total_mrkt_fruits'];
         $sum_total_mrkt_fruits_normal += $total_mrkt_fruits_normal;
@@ -1059,6 +1073,7 @@ if($options['percentage_of_mrkt_fruit_wt']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_fruit_wt_normal = $detail['normal']['total_mrkt_fruit_wt'];
         $total_mrkt_fruit_wt_replica = $detail['replica']['total_mrkt_fruit_wt'];
         $sum_total_mrkt_fruit_wt_normal += $total_mrkt_fruit_wt_normal;
@@ -1113,6 +1128,7 @@ if($options['no_of_fruits_per_plant']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
         $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
         $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
@@ -1167,6 +1183,7 @@ if($options['avg_fruit_wt']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
         $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
         $sum_of_no_of_fruits_normal += $no_of_fruits_normal;
@@ -1219,6 +1236,7 @@ if($options['fr_wt_per_plant']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $fr_wt_per_plant_normal = $detail['normal']['no_of_plants_harvested'];
         $fr_wt_per_plant_replica = $detail['replica']['no_of_plants_harvested'];
         $sum_fr_wt_per_plant_normal += $fr_wt_per_plant_normal;
@@ -1270,6 +1288,7 @@ if($options['total_harv_roots']==1)
     $sum_no_of_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
         $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
         $sum_no_of_roots_normal += $no_of_roots_normal;
@@ -1335,6 +1354,7 @@ if($options['total_market_roots']==1)
     $sum_total_mrkt_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_roots_normal = $detail['normal']['total_mrkt_roots'];
         $total_mrkt_roots_replica = $detail['replica']['total_mrkt_roots'];
         $sum_total_mrkt_roots_normal += $total_mrkt_roots_normal;
@@ -1372,6 +1392,7 @@ if($options['total_market_root_wt']==1)
     $sum_total_mrkt_roots_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_roots_wt_normal = $detail['normal']['total_mrkt_roots_wt'];
         $total_mrkt_roots_wt_replica = $detail['replica']['total_mrkt_roots_wt'];
         $sum_total_mrkt_roots_wt_normal += $total_mrkt_roots_wt_normal;
@@ -1412,6 +1433,7 @@ if($options['percentage_of_mrkt_root']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_roots_normal = $detail['normal']['total_mrkt_roots'];
         $total_mrkt_roots_replica = $detail['replica']['total_mrkt_roots'];
         $sum_total_mrkt_roots_normal += $total_mrkt_roots_normal;
@@ -1468,6 +1490,7 @@ if($options['percentage_of_mrkt_root_wt']==1)
     $sum_total_mrkt_roots_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_roots_wt_normal = $detail['normal']['total_mrkt_roots_wt'];
         $total_mrkt_roots_wt_replica = $detail['replica']['total_mrkt_roots_wt'];
         $sum_total_mrkt_roots_wt_normal += $total_mrkt_roots_wt_normal;
@@ -1518,6 +1541,7 @@ if($options['avg_root_wt']==1)
     $sum_no_of_roots_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
         $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
         $sum_no_of_roots_normal += $no_of_roots_normal;
@@ -1569,6 +1593,7 @@ if($options['total_no_of_leaves']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_no_of_leaves_normal = $detail['normal']['total_no_of_leaves'];
         $total_no_of_leaves_replica = $detail['replica']['total_no_of_leaves'];
         $sum_total_no_of_leaves_normal += $total_no_of_leaves_normal;
@@ -1635,6 +1660,7 @@ if($options['total_mrkt_leaf']==1)
     $sum_total_mrkt_leaf_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_leaf_normal = $detail['normal']['total_mrkt_leaf'];
         $total_mrkt_leaf_replica = $detail['replica']['total_mrkt_leaf'];
         $sum_total_mrkt_leaf_normal += $total_mrkt_leaf_normal;
@@ -1644,7 +1670,7 @@ if($options['total_mrkt_leaf']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_LEAF_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_LEAF');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1673,6 +1699,7 @@ if($options['total_market_leaf_wt']==1)
     $sum_total_mrkt_leaf_wt_replica = 0;
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_leaf_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
         $total_mrkt_leaf_wt_replica = $detail['replica']['total_mrkt_leaf_wt'];
         $sum_total_mrkt_leaf_wt_normal += $total_mrkt_leaf_wt_normal;
@@ -1714,6 +1741,7 @@ if($options['percentage_of_mrkt_leaf']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_leaf_normal = $detail['normal']['total_mrkt_leaf'];
         $total_mrkt_leaf_replica = $detail['replica']['total_mrkt_leaf'];
         $sum_total_mrkt_leaf_normal += $total_mrkt_leaf_normal;
@@ -1748,7 +1776,7 @@ if($options['percentage_of_mrkt_leaf']==1)
             $percentage_of_marketed_leafs_replica=$this->lang->line("CANNOT_CALCULATE");
             if(($sum_total_mrkt_leaf_replica>0)&&($sum_total_no_of_leaves_replica>0))
             {
-                $percentage_of_marketed_leafs_replica = ($sum_total_mrkt_leaf_replica/$sum_total_no_of_leaves_replica)*100;
+                $percentage_of_marketed_leafs_replica = round(($sum_total_mrkt_leaf_replica/$sum_total_no_of_leaves_replica)*100,2);
             }
             ?>
             <div class="col-xs-3">
@@ -1770,6 +1798,7 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 
     foreach($harvest_data as $harvest)
     {
+        $detail = json_decode($harvest['info'],true);
         $total_mrkt_leaf_wt_normal = $detail['normal']['total_mrkt_leaf_wt'];
         $total_mrkt_leaf_wt_replica = $detail['replica']['total_mrkt_leaf_wt'];
         $sum_total_mrkt_leaf_wt_normal += $total_mrkt_leaf_wt_normal;
