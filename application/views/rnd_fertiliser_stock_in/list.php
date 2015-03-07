@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."rnd_feriliser_stock_in/index/add";
+    $data["link_new"]=base_url()."rnd_fertiliser_stock_in/index/add";
     $this->load->view("action_buttons",$data);
 //echo '<pre>';
 //print_r($stock_in_info);
@@ -37,16 +37,13 @@
                     <tr>
                         <td><?php echo $key+1;?></td>
                         <td><?php echo $stock_in['fertilizer_name'];?></td>
-                        <td><?php echo date('d-m-Y',$stock_in['creation_date']);?></td>
+                        <td><?php echo System_helper::display_date($stock_in['creation_date']);?></td>
                         <td><?php echo $stock_in['fertilizer_quantity'];?></td>
                         <td><?php echo $stock_in['fertilizer_price'];?></td>
 
                         <td>
-                            <a href="<?php echo base_url();?>rnd_feriliser_stock_in/index/edit/<?php echo $stock_in['id'];?>">
+                            <a href="<?php echo base_url();?>rnd_fertiliser_stock_in/index/edit/<?php echo $stock_in['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">
-                            </a>
-                            <a href="<?php echo base_url();?>rnd_feriliser_stock_in/index/delete/<?php echo $stock_in['id']."/".$stock_in['fertilizer_id'];?>" >
-                                <img src="<?php echo base_url();?>images/delete_record.png">
                             </a>
                         </td>
                     </tr>

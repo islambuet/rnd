@@ -7,7 +7,8 @@
 //print_r($feriliser_info);
 //echo '</pre>';
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url()?>rnd_feriliser_stock_in/index/save" method="post">
+<form class="form_valid" id="save_form" action="<?php echo base_url()?>rnd_fertiliser_stock_in/index/save" method="post">
+    <input type="hidden" name="stock_in_id" id="stock_in_id" value="<?php echo $fertiliserInfo['id'];?>"/>
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -20,26 +21,26 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_FERTILIZER');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <select name="feriliser_in" id="feriliser_in" class="form-control validate[required]">
+                <select name="fertiliser_id" id="fertiliser_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($feriliser_info as $feriliser_in)
+                    foreach($fertilisers as $fertiliser)
                     {
                         ?>
-                        <option value="<?php echo $feriliser_in['id']?>" <?php if ($feriliser_in['id']== $feriliserInfo['fertilizer_id']){ echo 'selected';}?>><?php echo $feriliser_in['fertilizer_name'];?></option>
+                        <option value="<?php echo $fertiliser['id']?>" <?php if ($fertiliser['id']== $fertiliserInfo['fertilizer_id']){ echo 'selected';}?>><?php echo $fertiliser['fertilizer_name'];?></option>
                     <?php
                     }
                     ?>
                 </select>
             </div>
-            <input type="hidden" name="feriliser_stock_in_id" id="feriliser_stock_in_id" value="<?php echo $feriliserInfo['id'];?>"/>
+
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_STOCK_IN');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="feriliser_in_quantity" id="feriliser_in_quantity" class="form-control validate[required]" value="<?php echo $feriliserInfo['fertilizer_quantity'];?>" >
+                <input type="text" name="fertilizer_quantity" id="fertilizer_quantity" class="form-control validate[required]" value="<?php echo $fertiliserInfo['fertilizer_quantity'];?>" >
             </div>
         </div>
         <div style="" class="row show-grid">
@@ -47,7 +48,7 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRICE_STOCK_IN');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="feriliser_in_price" id="feriliser_in_price" class="form-control validate[required, custom[number]]" value="<?php echo $feriliserInfo['fertilizer_price'];?>" >
+                <input type="text" name="fertiliser_price" id="fertiliser_price" class="form-control validate[required, custom[number]]" value="<?php echo $fertiliserInfo['fertilizer_price'];?>" >
             </div>
         </div>
 

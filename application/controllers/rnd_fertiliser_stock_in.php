@@ -57,12 +57,12 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         $this->jsonReturn($ajax);
     }
 
-    /*public function rnd_add_edit($id)
+    public function rnd_add_edit($id)
     {
         if ($id > 0)
         {
-            $data['fertiliserInfo'] = $this->rnd_feriliser_stock_in_model->get_feriliser_row($id);
-            $data['title']="Edit fertilizer Stock (".$data['fertiliserInfo']['fertilizer_name'].")";
+            $data['fertiliserInfo'] = Query_helper::get_info('rnd_fertilizer_stock_in',array('id','fertilizer_id','fertilizer_quantity','fertilizer_price'),array('id ='.$id),1);
+            $data['title']="Edit fertilizer Stock";
             $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/edit/".$id;
         }
         else
@@ -70,7 +70,6 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
             $data["fertiliserInfo"] = Array(
                 'id' => 0,
                 'fertilizer_id'=>'',
-                'fertilizer_name' => '',
                 'fertilizer_quantity' => '',
                 'fertilizer_price' => ''
             );
@@ -78,7 +77,7 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
             $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/add";
         }
 
-        $data['feriliser_info']= $this->rnd_feriliser_stock_in_model->get_ferilisers();
+        $data['fertilisers']= Query_helper::get_info('rnd_fertilizer_info',array('id','fertilizer_name'),array('status = 1'));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertiliser_stock_in/add_edit",$data,true));
         $this->jsonReturn($ajax);
@@ -86,20 +85,20 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("feriliser_stock_in_id");
+        $id = $this->input->post("stock_in_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'fertilizer_id'=>$this->input->post('fertiliser_in'),
-            'fertilizer_quantity'=>$this->input->post('fertiliser_in_quantity'),
-            'fertilizer_price'=>$this->input->post('fertiliser_in_price'),
+            'fertilizer_id'=>$this->input->post('fertiliser_id'),
+            'fertilizer_quantity'=>$this->input->post('fertilizer_quantity'),
+            'fertilizer_price'=>$this->input->post('fertiliser_price'),
 
         );
 
         if(!$this->check_validation())
         {
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
@@ -152,7 +151,7 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
 
     }
 
-    public function rnd_change_status($id, $fertiliser_id)
+    /*public function rnd_change_status($id, $fertiliser_id)
     {
         $check = $this->rnd_feriliser_stock_in_model->check_fertiliser_stock_out($fertiliser_id);
         if($check)
@@ -168,26 +167,36 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
 
         $this->rnd_list();//this is similar like redirect
     }
-
+*/
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('feriliser_in')))
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('fertiliser_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="SELECT a Fertilizer.<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('feriliser_in_quantity')))
+        if(!Validation_helper::validate_numeric($this->input->post('fertilizer_quantity')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Fertilizer Quantity should be a number.<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('feriliser_in_price')))
+        if(!Validation_helper::validate_numeric($this->input->post('fertiliser_price')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Fertilizer Price should be a number.<br>";
+        }
+        $id = $this->input->post("stock_in_id");
+        if($id>0)
+        {
+            $this->message="validation not checked";
+            $valid=false;
         }
 
-        return true;
-    }*/
+        return $valid;
+    }
 
 
 }
