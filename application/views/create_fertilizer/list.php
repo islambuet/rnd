@@ -25,18 +25,33 @@
 
             <tbody>
             <?php
-            foreach($fertilizerInfo as $key=>$fertilizer)
+            if(sizeof($fertilizerInfo)>0)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $fertilizer['fertilizer_name'];?></td>
-                <td>
-                    <a href="<?php echo base_url();?>create_fertilizer/index/edit/<?php echo $fertilizer['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                </td>
-            </tr>
+
+
+                foreach($fertilizerInfo as $key=>$fertilizer)
+                {
+                ?>
+                <tr>
+                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $fertilizer['fertilizer_name'];?></td>
+                    <td>
+                        <a href="<?php echo base_url();?>create_fertilizer/index/edit/<?php echo $fertilizer['id'];?>">
+                            <img src="<?php echo base_url();?>images/edit_record.png">
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
             <?php
             }
             ?>
