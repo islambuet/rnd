@@ -33,6 +33,23 @@ class Rnd_fertiliser_stock_in_model extends CI_Model
 
         return $this->db->count_all_results();
     }
+    public function check_changeable($stock_in_id,$new_quantity,$new_fertilizer_id)
+    {
+        $stack_info=Query_helper::get_info('rnd_fertilizer_stock_in',array('id','fertilizer_id','fertilizer_quantity'),array('id ='.$stock_in_id),1);
+        $sti_result=Query_helper::get_info('rnd_fertilizer_stock_in',array('SUM(fertilizer_quantity) total'),array('fertilizer_id ='.$stack_info['fertilizer_id'],'id !='.$stock_in_id),1);
+
+        $sti_total=$sti_result['total']?$sti_result['total']:0;
+        if($new_fertilizer_id==$stack_info['fertilizer_id'])
+        {
+            $sti_total+=$new_quantity;
+        }
+        $sto_result=Query_helper::get_info('rnd_fertilizer_stock_out',array('SUM(fertilizer_quantity) total'),array('fertilizer_id ='.$stack_info['fertilizer_id'],'id !='.$stock_in_id),1);
+
+
+        echo "<pre>";
+        print_r($sti_total);
+        echo "</pre>";
+    }
 
     /*public function get_feriliser_row($id)
     {

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH . '/libraries/root_controller.php';
 
-class Rnd_feriliser_stock_out extends ROOT_Controller
+class Rnd_fertiliser_stock_out extends ROOT_Controller
 {
 
     private $message;
@@ -10,7 +10,7 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
     {
         parent::__construct();
         $this->message = "";
-        $this->load->model("rnd_feriliser_stock_out_model");
+        $this->load->model("rnd_fertiliser_stock_out_model");
 
     }
 
@@ -42,7 +42,7 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
     public function rnd_list($page = 0)
     {
 
-        $config = System_helper::pagination_config(base_url() . "rnd_feriliser_stock_out/index/list/", $this->rnd_feriliser_stock_out_model->get_total_feriliser_stock_out(), 4);
+        $config = System_helper::pagination_config(base_url() . "rnd_fertiliser_stock_out/index/list/", $this->rnd_fertiliser_stock_out_model->get_total_fertiliser_stock_out(), 4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -51,24 +51,24 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
             $page = $page - 1;
         }
 
-        $data['stock_in_info'] = $this->rnd_feriliser_stock_out_model->get_stock_out_info($page);
+        $data['stock_in_info'] = $this->rnd_fertiliser_stock_out_model->get_stock_out_info($page);
         $data['title'] = "Fertilizer Stock Out List";
 
         $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_feriliser_stock_out/list", $data, true));
+        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_fertiliser_stock_out/list", $data, true));
 
         if ($this->message) {
             $ajax['message'] = $this->message;
         }
-        $ajax['page_url']=base_url()."rnd_feriliser_stock_out/index/list/".($page+1);
+        $ajax['page_url']=base_url()."rnd_fertiliser_stock_out/index/list/".($page+1);
         $this->jsonReturn($ajax);
     } /////    Render list end
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
+        if ($id > 0)
         {
-            $data['feriliserInfo'] = $this->rnd_feriliser_stock_out_model->get_feriliser_row($id);
+            $data['feriliserInfo'] = $this->rnd_fertiliser_stock_out_model->get_feriliser_row($id);
             $data['title'] = "Edit fertilizer Stock (" . $data['feriliserInfo']['fertilizer_name'] . ")";
             $ajax['page_url']=base_url()."rnd_feriliser_stock_out/index/edit/".$id;
         }
@@ -82,15 +82,16 @@ class Rnd_feriliser_stock_out extends ROOT_Controller
                 'rnd_code_id' => '',
                 'fertilizer_quantity' => ''
             );
-            $ajax['page_url']=base_url()."rnd_feriliser_stock_out/index/add";
+            $ajax['page_url']=base_url()."rnd_fertiliser_stock_out/index/add";
             $data['title'] = "New Fertilizer Stock Out";
         }
-        $data['feriliser_info'] = $this->rnd_feriliser_stock_out_model->get_ferilisers();
-        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
+        //$data['feriliser_info'] = $this->rnd_feriliser_stock_out_model->get_ferilisers();
+        $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
+        $data['crops'] = Query_helper::get_info('rnd_crop', '*', array());
         //$data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
+        $data['types'] = Query_helper::get_info('rnd_crop_type', '*', array());
         $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_feriliser_stock_out/add_edit", $data, true));
+        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_fertiliser_stock_out/add_edit", $data, true));
 
         $this->jsonReturn($ajax);
     } ///// add edit end

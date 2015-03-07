@@ -191,6 +191,7 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         $id = $this->input->post("stock_in_id");
         if($id>0)
         {
+            $this->rnd_fertiliser_stock_in_model->check_changeable($id,$this->input->post('fertilizer_quantity'),$this->input->post('fertiliser_id'));
             $this->message="validation not checked";
             $valid=false;
         }
