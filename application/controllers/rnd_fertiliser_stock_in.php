@@ -150,24 +150,6 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         }
 
     }
-
-    /*public function rnd_change_status($id, $fertiliser_id)
-    {
-        $check = $this->rnd_feriliser_stock_in_model->check_fertiliser_stock_out($fertiliser_id);
-        if($check)
-        {
-            $this->message=$this->lang->line("MSG_THIS_FERTILISER_OUT_OF_STOCK");
-        }
-        else
-        {
-            $data=array('status'=>$this->config->item('inactive'));
-            Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
-            $this->rnd_list();//this is similar like redirect
-        }
-
-        $this->rnd_list();//this is similar like redirect
-    }
-*/
     private function check_validation()
     {
         $valid=true;
@@ -191,11 +173,13 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         $id = $this->input->post("stock_in_id");
         if($id>0)
         {
-            $this->rnd_fertiliser_stock_in_model->check_changeable($id,$this->input->post('fertilizer_quantity'),$this->input->post('fertiliser_id'));
-            $this->message="validation not checked";
-            $valid=false;
-        }
+            if(!($this->rnd_fertiliser_stock_in_model->check_changeable($id,$this->input->post('fertilizer_quantity'),$this->input->post('fertiliser_id'))))
+            {
+                $this->message.=$this->lang->line("MSG_STACK_OUT_WILL_BE_BIGGER").'<br>';
+                $valid=false;
+            }
 
+        }
         return $valid;
     }
 

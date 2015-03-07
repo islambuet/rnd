@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."rnd_feriliser_stock_in/index/add";
-    $data["link_back"]=base_url()."rnd_feriliser_stock_in";
+
+    $data["link_back"]=base_url()."rnd_fertiliser_stock_in";
     $this->load->view("action_buttons_edit",$data);
 
 //echo '<pre>';

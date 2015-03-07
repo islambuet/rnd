@@ -42,24 +42,26 @@ class Rnd_fertiliser_stock_out extends ROOT_Controller
     public function rnd_list($page = 0)
     {
 
-        $config = System_helper::pagination_config(base_url() . "rnd_fertiliser_stock_out/index/list/", $this->rnd_fertiliser_stock_out_model->get_total_fertiliser_stock_out(), 4);
+        $config = System_helper::pagination_config(base_url() . "rnd_fertiliser_stock_out/index/list/",$this->rnd_fertiliser_stock_out_model->get_total_fertiliser_stock_out(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
-        if ($page > 0)
+        if($page>0)
         {
-            $page = $page - 1;
+            $page=$page-1;
         }
 
-        $data['stock_in_info'] = $this->rnd_fertiliser_stock_out_model->get_stock_out_info($page);
-        $data['title'] = "Fertilizer Stock Out List";
+        $data['stock_out_info'] = $this->rnd_fertiliser_stock_out_model->get_stock_out_info($page);
+        $data['title']="Fertiliser Stock In List";
 
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_fertiliser_stock_out/list", $data, true));
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertiliser_stock_out/list",$data,true));
 
-        if ($this->message) {
-            $ajax['message'] = $this->message;
+        if($this->message)
+        {
+            $ajax['message']=$this->message;
         }
+
         $ajax['page_url']=base_url()."rnd_fertiliser_stock_out/index/list/".($page+1);
         $this->jsonReturn($ajax);
     } /////    Render list end
@@ -68,63 +70,55 @@ class Rnd_fertiliser_stock_out extends ROOT_Controller
     {
         if ($id > 0)
         {
-            $data['feriliserInfo'] = $this->rnd_fertiliser_stock_out_model->get_feriliser_row($id);
-            $data['title'] = "Edit fertilizer Stock (" . $data['feriliserInfo']['fertilizer_name'] . ")";
-            $ajax['page_url']=base_url()."rnd_feriliser_stock_out/index/edit/".$id;
+            $data['fertiliserInfo'] = Query_helper::get_info('rnd_fertilizer_stock_out',array('id','fertilizer_id','fertilizer_quantity'),array('id ='.$id),1);
+            $data['title']="Edit fertilizer Stock Out";
+            $ajax['page_url']=base_url()."rnd_fertiliser_stock_out/index/edit/".$id;
         }
         else
         {
-            $data['feriliserInfo'] = Array(
+            $data["fertiliserInfo"] = Array(
                 'id' => 0,
-                'season_id' =>'',
-                'crop_id' =>'',
-                'fertilizer_id' => '',
-                'rnd_code_id' => '',
+                'fertilizer_id'=>'',
                 'fertilizer_quantity' => ''
             );
+            $data['title']="New Fertiliser Stock Out";
             $ajax['page_url']=base_url()."rnd_fertiliser_stock_out/index/add";
-            $data['title'] = "New Fertilizer Stock Out";
         }
-        //$data['feriliser_info'] = $this->rnd_feriliser_stock_out_model->get_ferilisers();
-        $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
-        $data['crops'] = Query_helper::get_info('rnd_crop', '*', array());
-        //$data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
-        $data['types'] = Query_helper::get_info('rnd_crop_type', '*', array());
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_fertiliser_stock_out/add_edit", $data, true));
 
+        $data['fertilisers']= Query_helper::get_info('rnd_fertilizer_info',array('id','fertilizer_name'),array('status = 1'));
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertiliser_stock_out/add_edit",$data,true));
         $this->jsonReturn($ajax);
     } ///// add edit end
 
     public function rnd_save()
     {
-
-        $id = $this->input->post("feriliser_stock_out_id");
+        $id = $this->input->post("stock_out_id");
         $user = User_helper::get_user();
 
         $data = Array(
-            'fertilizer_id' => $this->input->post('feriliser_in'),
-            'fertilizer_quantity' => $this->input->post('feriliser_out_quantity'),
-            //'feriliser_price'=>$this->input->post('pesticide_out_price'),
+            'fertilizer_id'=>$this->input->post('fertiliser_id'),
+            'fertilizer_quantity'=>$this->input->post('fertilizer_quantity')
 
         );
 
-        if (!$this->check_validation())
+        if(!$this->check_validation())
         {
-            $ajax['status'] = false;
-            $ajax['message'] = $this->lang->line("MSG_INVALID_INPUT");
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
         {
-            if ($id > 0)
+            if($id>0)
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_fertilizer_stock_out', $data, array("id = " . $id));
+                Query_helper::update('rnd_fertilizer_stock_out',$data,array("id = ".$id));
+                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -141,127 +135,54 @@ class Rnd_fertiliser_stock_out extends ROOT_Controller
             {
                 $this->db->trans_start();  //DB Transaction Handle START
 
-                $data['season_id'] = $this->input->post('season_id');
-                $data['crop_id'] = $this->input->post('crop_id');
-                $data['rnd_code_id'] = $this->input->post('feriliser_out_rnd');
-                $data['status'] = $this->config->item('active');
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_fertilizer_stock_out', $data);
+                Query_helper::add('rnd_fertilizer_stock_out',$data);
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
                 if ($this->db->trans_status() === TRUE)
                 {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
                 }
                 else
                 {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
                 }
             }
-            $this->rnd_list();
+
+            $this->rnd_list();//this is similar like redirect
         }
-    } ////// save end
 
-
-    public function rnd_change_status($id)
-    {
-
-        $data = array('status' => $this->config->item('inactive'));
-        Query_helper::update('rnd_fertilizer_stock_out', $data, array("id = " . $id));
-        $this->message = $this->lang->line("MSG_DELETE_SUCCESS");
-        redirect(base_url() . "rnd_feriliser_stock_out/index/list/");
-       // $this->rnd_list();
     }
-
-    public function check_fertilizer_stock()
-    {
-        if($this->input->post('feriliser_id'))
-        {
-            if($this->rnd_feriliser_stock_out_model->check_existing_fertilizer($this->input->post('feriliser_id')))
-            {
-                $ajax['status']=true;
-            }
-            else
-            {
-                $ajax['status']=false;
-            }
-
-            if(!$ajax['status'])
-            {
-                $ajax['message'] = $this->lang->line("MSG_FERTILISER_NOT_AVAILABLE_STOCK");
-            }
-
-        }
-        else
-        {
-            $ajax['message'] = $this->lang->line("MSG_SELECT_FERTILISER");
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
-    public function check_current_stock()
-    {
-        if($this->input->post('common_fertilizer_id'))
-        {
-
-            if($this->rnd_feriliser_stock_out_model->check_existing_stock($this->input->post('common_fertilizer_id'),$this->input->post('common_fertilizer_quantity'), $this->input->post('rowid')))
-            {
-                $ajax['status']=true;
-            }
-            else
-            {
-                $ajax['status']=false;
-            }
-
-            if(!$ajax['status'])
-            {
-                $ajax['message'] = $this->lang->line("MSG_STOCK_UNAVAILABLE");
-            }
-            else
-            {
-                $ajax['message'] = $this->lang->line("MSG_STOCK_AVAILABLE");
-            }
-        }
-        else
-        {
-            $ajax['message'] = $this->lang->line("MSG_SELECT_FERTILISER");
-        }
-
-        $this->jsonReturn($ajax);
-    }
-
     private function check_validation()
     {
-
-        if (Validation_helper::validate_empty($this->input->post('season_id')))
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('fertiliser_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="SELECT a Fertilizer.<br>";
         }
 
-        if (Validation_helper::validate_empty($this->input->post('crop_id')))
+        if(!Validation_helper::validate_numeric($this->input->post('fertilizer_quantity')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Fertilizer Quantity should be a number.<br>";
         }
 
-        if (Validation_helper::validate_empty($this->input->post('feriliser_out_rnd')))
-        {
-            return false;
-        }
 
-        if (Validation_helper::validate_empty($this->input->post('feriliser_in')))
+        /*$id = $this->input->post("stock_out_id");
+        if($id>0)
         {
-            return false;
-        }
+            if(!($this->rnd_fertiliser_stock_in_model->check_changeable($id,$this->input->post('fertilizer_quantity'),$this->input->post('fertiliser_id'))))
+            {
+                $this->message.=$this->lang->line("MSG_STACK_OUT_WILL_BE_BIGGER").'<br>';
+                $valid=false;
+            }
 
-        if (!Validation_helper::validate_numeric($this->input->post('feriliser_out_quantity')) || !$this->rnd_feriliser_stock_out_model->check_existing_stock($this->input->post('feriliser_in'), $this->input->post('feriliser_out_quantity'), $this->input->post("feriliser_stock_out_id")))
-        {
-            return false;
-        }
-
-        return true;
+        }*/
+        return $valid;
     }
 }
