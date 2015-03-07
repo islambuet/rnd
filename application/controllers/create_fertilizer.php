@@ -68,7 +68,7 @@ class Create_fertilizer extends ROOT_Controller
         {
             $data['title']="Create New Fertilizer";
             $data["fertilizerInfo"] = Array(
-                'id' => 0,
+                'id' => 1,
                 'fertilizer_name' => '',
                 'status' =>$this->config->item('active')
             );

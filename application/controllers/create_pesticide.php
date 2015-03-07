@@ -68,7 +68,7 @@ class Create_pesticide extends ROOT_Controller
         {
             $data['title']="Create New Pesticide & Fungicides";
             $data["pesticideInfo"] = Array(
-                'id' => 0,
+                'id' => 1,
                 'pesticide_name' => '',
                 'status' =>$this->config->item('active')
             );
