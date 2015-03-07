@@ -3,9 +3,6 @@
     $data["link_back"]=base_url()."rnd_feriliser_requirement";
     $this->load->view("action_buttons_edit",$data);
 
-//echo '<pre>';
-//print_r($cropInfo);
-//echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url()?>rnd_feriliser_requirement/index/save" method="post">
     <input type="hidden" name="row_elm_id" id="row_elm_id" value="<?php echo $row_info['id'];?>" />
@@ -24,12 +21,12 @@
                 <select name="fertilizer_id" id="fertilizer_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($fertilizers as $fertilizer)
-                    {
-                        ?>
-                    <option value="<?php echo $fertilizer['id']?>" <?php if($fertilizer['id']==$row_info['fertilizer_id']){ echo "selected";}?>><?php echo $fertilizer['fertilizer_name'];?></option>
-                    <?php
-                    }
+                        foreach($fertilizers as $fertilizer)
+                        {
+                            ?>
+                        <option value="<?php echo $fertilizer['id']?>" <?php if($fertilizer['id']==$row_info['fertilizer_id']){ echo "selected";}?>><?php echo $fertilizer['fertilizer_name'];?></option>
+                        <?php
+                        }
                     ?>
                 </select>
             </div>
@@ -43,11 +40,12 @@
                 <select name="seed_bed_id" id="seed_bed_id" class="form-control validate[required]">
                     <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
-                    foreach($seedbeds as $seedbed){
-                    ?>
-                    <option value="<?php echo $seedbed['id'];?>" <?php if($seedbed['id']==$row_info['seed_bed_id']){ echo "selected";}?>><?php echo $seedbed['seed_bed'];?></option>
-                    <?php
-                    }
+                        foreach($seedbeds as $seedbed)
+                        {
+                        ?>
+                        <option value="<?php echo $seedbed['id'];?>" <?php if($seedbed['id']==$row_info['seed_bed_id']){ echo "selected";}?>><?php echo $seedbed['seed_bed'];?></option>
+                        <?php
+                        }
                     ?>
                 </select>
             </div>
@@ -71,6 +69,7 @@
     </div>
     <div class="clearfix"></div>
 </form>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()

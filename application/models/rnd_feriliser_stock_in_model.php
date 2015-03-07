@@ -18,19 +18,18 @@ class Rnd_feriliser_stock_in_model extends CI_Model
 
         $this->db->join('rnd_fertilizer_info rfi', 'rfi.id = fsi.fertilizer_id', 'left');
 
-        $this->db->where('fsi.status',$this->config->item('active'));
+        $this->db->where('fsi.status',$this->config->item('status_active'));
         $this->db->limit($limit,$start);
 
-        $query = $this->db->get();
-
-        return $query->result_array();
+        $result = $this->db->get()->result_array();
+        return $result;
     }
 
     public function get_total_feriliser_stock_in()
     {
         $this->db->select('rnd_fertilizer_stock_in.*');
         $this->db->from('rnd_fertilizer_stock_in');
-        $this->db->where('status',$this->config->item('active'));
+        $this->db->where('status',$this->config->item('status_active'));
 
         return $this->db->count_all_results();
     }
@@ -45,24 +44,24 @@ class Rnd_feriliser_stock_in_model extends CI_Model
 
         $this->db->where('fsi.id',$id);
 
-        $query = $this->db->get();
-        return $query->row_array();
+        $result = $this->db->get()->row_array();
+        return $result;
     }
 
     public function get_ferilisers()
     {
         $this->db->select('rnd_fertilizer_info.*');
         $this->db->from('rnd_fertilizer_info');
-        $this->db->where('status',$this->config->item('active'));
-        $query = $this->db->get();
-        return $query->result_array();
+        $this->db->where('status',$this->config->item('status_active'));
+        $result = $this->db->get()->result_array();
+        return $result;
     }
 
     public function check_fertiliser_stock_out($fertiliser_id)
     {
         $this->db->from('rnd_fertilizer_stock_out');
         $this->db->where('fertilizer_id',$fertiliser_id);
-        $this->db->where('status',$this->config->item('active'));
+        $this->db->where('status',$this->config->item('status_active'));
         $query = $this->db->get();
         $result=$query->num_rows();
         if($result>0)

@@ -1,9 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     $data["link_new"]=base_url()."rnd_feriliser_requirement/index/add";
     $this->load->view("action_buttons",$data);
-//echo '<pre>';
-//print_r($cropInfo);
-//echo '</pre>';
 ?>
 
 <div class="row widget">

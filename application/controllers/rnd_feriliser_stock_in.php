@@ -58,6 +58,7 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
+
         $ajax['page_url']=base_url()."rnd_feriliser_stock_in/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
@@ -83,18 +84,14 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
             $ajax['page_url']=base_url()."rnd_feriliser_stock_in/index/add";
         }
 
-
         $data['feriliser_info']= $this->rnd_feriliser_stock_in_model->get_ferilisers();
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_feriliser_stock_in/add_edit",$data,true));
-
-
         $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
     {
-
         $id = $this->input->post("feriliser_stock_in_id");
         $user = User_helper::get_user();
 
@@ -154,16 +151,16 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
                 {
                     $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
                 }
-
             }
 
             $this->rnd_list();//this is similar like redirect
         }
 
     }
+
     public function rnd_change_status($id, $fertiliser_id)
     {
-        $check=$this->rnd_feriliser_stock_in_model->check_fertiliser_stock_out($fertiliser_id);
+        $check = $this->rnd_feriliser_stock_in_model->check_fertiliser_stock_out($fertiliser_id);
         if($check)
         {
             $this->message=$this->lang->line("MSG_THIS_FERTILISER_OUT_OF_STOCK");
@@ -173,10 +170,11 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
             $data=array('status'=>$this->config->item('inactive'));
             Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
             $this->rnd_list();//this is similar like redirect
-//            $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
         }
+
         $this->rnd_list();//this is similar like redirect
-   }
+    }
+
     private function check_validation()
     {
         if(Validation_helper::validate_empty($this->input->post('feriliser_in')))
@@ -193,7 +191,6 @@ class Rnd_feriliser_stock_in extends ROOT_Controller
         {
             return false;
         }
-
 
         return true;
     }

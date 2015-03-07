@@ -71,8 +71,7 @@ class Rnd_feriliser_requirement extends ROOT_Controller
                 'fertilizer_id' => '',
                 'seed_bed_id' => '',
                 'fertilizer_quantity' => '',
-                'fertilizer_price' => '',
-                'status' => $this->config->item('active')
+                'fertilizer_price' => ''
             );
             $data['title']="New Fertilizer Requirements";
             $ajax['page_url']=base_url()."rnd_feriliser_requirement/index/add";
@@ -96,8 +95,7 @@ class Rnd_feriliser_requirement extends ROOT_Controller
             'seed_bed_id'=>$this->input->post('seed_bed_id'),
             'fertilizer_quantity'=>$this->input->post('fertilizer_quantity'),
             'fertilizer_price'=>$this->input->post('fertilizer_price'),
-            'requirement_date'=>time(),
-            'status'=>$this->config->item('active')
+            'requirement_date'=>time()
         );
 
         if(!$this->check_validation())
