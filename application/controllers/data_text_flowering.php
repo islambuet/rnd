@@ -86,6 +86,14 @@ class Data_text_flowering extends ROOT_Controller
         else
         {
             $inputs = $this->input->post();
+            if(!isset($inputs['data_text_id']))
+            {
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('MSG_CANNOT_SAVE');
+                $this->jsonReturn($ajax);
+
+            }
+
             $year = $inputs['year'];
             $season_id = $inputs['season_id'];
             $crop_id = $inputs['crop_id'];

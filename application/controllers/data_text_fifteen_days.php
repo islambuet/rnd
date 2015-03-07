@@ -89,13 +89,22 @@ class Data_text_fifteen_days extends ROOT_Controller
         else
         {
             $inputs=$this->input->post();
+            if(!isset($inputs['data_text_id']))
+            {
+                $ajax['status']=false;
+                $ajax['message']=$this->lang->line('MSG_CANNOT_SAVE');
+                $this->jsonReturn($ajax);
+
+            }
+            $id = $inputs['data_text_id'];
             $year = $inputs['year'];
             $season_id = $inputs['season_id'];
             $crop_id = $inputs['crop_id'];
             $crop_type_id = $inputs['crop_type_id'];
             $variety_id = $inputs['variety_id'];
 
-            $id = $inputs['data_text_id'];
+
+
             $data = array();
             $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
             $user = User_helper::get_user();
