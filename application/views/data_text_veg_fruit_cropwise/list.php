@@ -2727,7 +2727,7 @@ if($options['average_harvested_plant']==1)
             if($sum_of_no_of_plants_harvested_normal>0)
             {
                 $avg_harvested_plant_replica = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
-            }           
+            }
 
             ?>
             <div class="col-xs-3">

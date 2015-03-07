@@ -48,34 +48,29 @@ if($options['harvesting_date']==1)
     {
         $harvesting_date_normal=$info['normal']['harvesting_date'];
     }
-    $harvesting_date_replica="";
-    if(is_array($info)&& !empty($info['replica']['harvesting_date']))
-    {
-        $harvesting_date_replica=$info['replica']['harvesting_date'];
-    }
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('HARVESTING_DATE');?></label>
         </div>
 
-        <div class="col-xs-3">
-            <input type="text" id="harvesting_date_normal" name="normal[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_normal;?>" />
-        </div>
+
 
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
-            <div class="col-xs-3">
-                <input type="text" id="harvesting_date_replica" name="replica[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_replica;?>" />
+            <div class="col-xs-6">
+                <input type="text" id="harvesting_date_normal" name="normal[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_normal;?>" />
             </div>
         <?php
         }
         else
         {
             ?>
-            <input type="hidden" name="replica[harvesting_date]" value="<?php echo $harvesting_date_replica;?>">
+            <div class="col-xs-3">
+                <input type="text" id="harvesting_date_normal" name="normal[harvesting_date]" class="form-control" value="<?php echo $harvesting_date_normal;?>" />
+            </div>
         <?php
         }
         ?>
@@ -91,18 +86,24 @@ if($options['harvesting_date']==1)
         <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
     </div>
 
-    <div class="col-xs-3">
-        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
-    </div>
+
 
     <?php
     if($variety_info['replica_status']==1)
     {
         ?>
-        <div class="col-xs-3">
+        <div class="col-xs-6">
             <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
+    }
+    else
+    {
+        ?>
+        <div class="col-xs-3">
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+        </div>
+        <?php
     }
     ?>
 </div>

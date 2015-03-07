@@ -80,7 +80,7 @@ class Create_crop_type extends ROOT_Controller
             $ajax['page_url']=base_url()."create_crop_type/index/add";
         }
 
-        $data['crops'] = Query_helper::get_info('rnd_crop', '*', array('status ='.$this->config->item('status_active')));
+        $data['crops'] = System_helper::get_ordered_crops();
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_type/add_edit",$data,true));
 
