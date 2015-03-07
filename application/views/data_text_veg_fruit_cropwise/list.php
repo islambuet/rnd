@@ -291,9 +291,15 @@ if($options['first_cutting']==1)
     $first_harvest_array = get_specific_array($harvest_data, 1); //hard coded 1 for first harvest
     $first_harvest_data = json_decode($first_harvest_array['info'], true);
     $first_cutting_normal = $first_harvest_data['normal']['harvesting_date'];
+    $first_cutting_normal_time=System_helper::get_time($first_cutting_normal);
 
     $sowing_date = $variety_info['sowing_date'];
-    $date_difference_normal = (strtotime($first_cutting_normal)-$sowing_date)/(60*60*24);
+    $date_difference_normal=$this->lang->line("NOT_SET");
+    if($first_cutting_normal_time>0)
+    {
+        $date_difference_normal = ($first_cutting_normal_time-$sowing_date)/(60*60*24);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -306,7 +312,15 @@ if($options['first_cutting']==1)
         if($variety_info['replica_status']==1)
         {
             $first_cutting_replica = $first_harvest_data['replica']['harvesting_date'];
-            $date_difference_replica = (strtotime($first_cutting_replica)-$sowing_date)/(60*60*24);
+            $first_cutting_replica_time = System_helper::get_time($first_cutting_replica);
+
+            $sowing_date = $variety_info['sowing_date'];
+            $date_difference_replica=$this->lang->line("NOT_SET");
+            if($date_difference_replica>0)
+            {
+                $date_difference_replica = ($first_cutting_replica_time-$sowing_date)/(60*60*24);
+            }
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control"><?php echo $date_difference_replica; ?></label>
@@ -328,24 +342,39 @@ if($options['last_cutting']==1)
     $last_harvest_data = json_decode($last_harvest_array['info'], true);
     $last_cutting_normal = $last_harvest_data['normal']['harvesting_date'];
 
+    $last_cutting_normal_time=System_helper::get_time($last_cutting_normal);
+
     $sowing_date = $variety_info['sowing_date'];
-    $last_harvest_date_difference_normal = (strtotime($last_cutting_normal)-$sowing_date)/(60*60*24);
+    $last_date_difference_normal = $this->lang->line("NOT_SET");
+    if($last_cutting_normal_time>0)
+    {
+        $last_date_difference_normal = ($last_cutting_normal_time-$sowing_date)/(60*60*24);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LAST_CUTTING');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $last_harvest_date_difference_normal; ?></label>
+            <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             $last_cutting_replica = $last_harvest_data['replica']['harvesting_date'];
-            $last_harvest_date_difference_replica = (strtotime($last_cutting_replica)-$sowing_date)/(60*60*24);
+            $last_cutting_replica_time=System_helper::get_time($last_cutting_replica);
+
+            $sowing_date = $variety_info['sowing_date'];
+            $last_date_difference_replica = $this->lang->line("NOT_SET");
+            if($last_cutting_replica_time>0)
+            {
+                $last_date_difference_replica = ($last_cutting_replica_time-$sowing_date)/(60*60*24);
+            }
+
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $last_harvest_date_difference_replica; ?></label>
+                <label class="form-control"><?php echo $last_date_difference_replica; ?></label>
             </div>
         <?php
         }
@@ -504,7 +533,13 @@ if($options['first_harvest']==1)
     $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
 
     $sowing_date = $variety_info['sowing_date'];
-    $date_difference_normal = (strtotime($first_harvesting_date_normal)-$sowing_date)/(60*60*24);
+    $first_harvest_normal_time=System_helper::get_time($first_harvesting_date_normal);
+
+    $first_date_difference_normal = $this->lang->line("NOT_SET");
+    if($first_harvest_normal_time>0)
+    {
+        $first_date_difference_normal = ($first_harvest_normal_time-$sowing_date)/(60*60*24);
+    }
 
     ?>
     <div class="row show-grid">
@@ -512,16 +547,22 @@ if($options['first_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $date_difference_normal;?></label>
+            <label class="form-control"><?php echo $first_date_difference_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             $first_harvesting_date_replica = $first_harvest_data['replica']['harvesting_date'];
-            $date_difference_replica = (strtotime($first_harvesting_date_replica)-$sowing_date)/(60*60*24);
+            $first_harvest_replica_time=System_helper::get_time($first_harvesting_date_replica);
+
+            $first_date_difference_replica = $this->lang->line("NOT_SET");
+            if($first_harvest_replica_time>0)
+            {
+                $first_date_difference_replica = ($first_harvest_replica_time-$sowing_date)/(60*60*24);
+            }
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $date_difference_replica;?></label>
+                <label class="form-control"><?php echo $first_date_difference_replica;?></label>
             </div>
         <?php
         }
@@ -539,9 +580,15 @@ if($options['last_harvest']==1)
     $last_harvest_array = get_specific_array($harvest_data, sizeof($harvest_data)); //hard coded 1 for first harvest
     $last_harvest_data = json_decode($last_harvest_array['info'],true);
     $last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
-    $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
+
     $sowing_date = $variety_info['sowing_date'];
-    $date_difference_normal = (strtotime($last_harvesting_date_normal)-$sowing_date)/(60*60*24);
+    $last_harvest_normal_time = System_helper::get_time($last_harvesting_date_normal);
+
+    $last_date_difference_normal = $this->lang->line("NOT_SET");
+    if($last_harvest_normal_time>0)
+    {
+        $last_date_difference_normal = ($last_harvest_normal_time-$sowing_date)/(60*60*24);
+    }
 
     ?>
     <div class="row show-grid">
@@ -549,15 +596,24 @@ if($options['last_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $date_difference_normal; ?></label>
+            <label class="form-control"><?php echo $last_date_difference_normal; ?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
+            $last_harvesting_date_replica = $last_harvest_data['replica']['harvesting_date'];
             $date_difference_replica = (strtotime($last_harvesting_date_replica)-$sowing_date)/(60*60*24);
+
+            $last_harvest_replica_time = System_helper::get_time($last_harvesting_date_replica);
+
+            $last_date_difference_replica = $this->lang->line("NOT_SET");
+            if($last_harvest_replica_time>0)
+            {
+                $last_date_difference_replica = ($last_harvest_replica_time-$sowing_date)/(60*60*24);
+            }
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $date_difference_replica; ?></label>
+                <label class="form-control"><?php echo $last_date_difference_replica; ?></label>
             </div>
         <?php
         }
@@ -605,12 +661,14 @@ if($options['curd_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name)
+                    if(!empty($fruit_data['normal']['curd_colour']))
                     {
-                        if($val==$fruit_data['normal']['curd_colour'])
-                        {
-                            echo $name;
-                        }
+                        $colors=$this->config->item('fc_curd_colour_'.$crop_id);
+                        echo $colors[$fruit_data['normal']['curd_colour']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -622,13 +680,15 @@ if($options['curd_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('fc_curd_colour_'.$crop_id) as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['curd_colour'])
+                        if(!empty($fruit_data['replica']['curd_colour']))
                         {
-                            echo $name;
+                            $colors=$this->config->item('fc_curd_colour_'.$crop_id);
+                            echo $colors[$fruit_data['replica']['curd_colour']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -644,12 +704,14 @@ if($options['curd_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['curd_colour_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['curd_colour_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['curd_colour_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -661,13 +723,15 @@ if($options['curd_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('rating') as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['curd_colour_evaluation'])
+                        if(!empty($fruit_data['replica']['curd_colour_evaluation']))
                         {
-                            echo $name;
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['curd_colour_evaluation']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -690,12 +754,14 @@ if($options['head_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_head_colour') as $val=>$name)
+                    if(!empty($fruit_data['normal']['head_colour']))
                     {
-                        if($val==$fruit_data['normal']['head_colour'])
-                        {
-                            echo $name;
-                        }
+                        $headColors=$this->config->item('fc_head_colour');
+                        echo $headColors[$fruit_data['normal']['head_colour']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -707,12 +773,14 @@ if($options['head_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_head_colour') as $val=>$name)
+                        if(!empty($fruit_data['replica']['head_colour']))
                         {
-                            if($val==$fruit_data['replica']['head_colour'])
-                            {
-                                echo $name;
-                            }
+                            $headColors=$this->config->item('fc_head_colour');
+                            echo $headColors[$fruit_data['replica']['head_colour']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -729,12 +797,14 @@ if($options['head_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['head_colour_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['head_colour_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['head_colour_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -746,12 +816,14 @@ if($options['head_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['head_colour_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['head_colour_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['head_colour_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -775,13 +847,15 @@ if($options['fruit_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name)
-                {
-                    if($val==$fruit_data['normal']['fruit_colour'])
+                    if(!empty($fruit_data['normal']['fruit_colour']))
                     {
-                        echo $name;
+                        $colors=$this->config->item('fc_fruit_colour_'.$crop_id);
+                        echo $colors[$fruit_data['normal']['fruit_colour']];
                     }
-                }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
+                    }
                 ?>
             </label>
         </div>
@@ -792,13 +866,15 @@ if($options['fruit_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('fc_fruit_colour_'.$crop_id) as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['fruit_colour'])
+                        if(!empty($fruit_data['replica']['fruit_colour']))
                         {
-                            echo $name;
+                            $colors=$this->config->item('fc_fruit_colour_'.$crop_id);
+                            echo $colors[$fruit_data['replica']['fruit_colour']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -814,13 +890,15 @@ if($options['fruit_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                foreach($this->config->item('rating') as $val=>$name)
-                {
-                    if($val==$fruit_data['normal']['fruit_colour_evaluation'])
+                    if(!empty($fruit_data['normal']['fruit_colour_evaluation']))
                     {
-                        echo $name;
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['fruit_colour_evaluation']];
                     }
-                }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
+                    }
                 ?>
             </label>
         </div>
@@ -831,13 +909,15 @@ if($options['fruit_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('rating') as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['fruit_colour_evaluation'])
+                        if(!empty($fruit_data['replica']['fruit_colour_evaluation']))
                         {
-                            echo $name;
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['fruit_colour_evaluation']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -860,12 +940,14 @@ if($options['root_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_colour']))
                     {
-                        if($val==$fruit_data['normal']['root_colour'])
-                        {
-                            echo $name;
-                        }
+                        $colors=$this->config->item('fc_root_colour_'.$crop_id);
+                        echo $colors[$fruit_data['normal']['root_colour']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -877,12 +959,14 @@ if($options['root_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_root_colour_'.$crop_id) as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_colour']))
                         {
-                            if($val==$fruit_data['replica']['root_colour'])
-                            {
-                                echo $name;
-                            }
+                            $colors=$this->config->item('fc_root_colour_'.$crop_id);
+                            echo $colors[$fruit_data['replica']['root_colour']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -899,12 +983,14 @@ if($options['root_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_colour_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['root_colour_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['root_colour_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -916,12 +1002,14 @@ if($options['root_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_colour_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['root_colour_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['root_colour_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -945,12 +1033,14 @@ if($options['leaf_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_leaf_colour') as $val=>$name)
+                    if(!empty($fruit_data['normal']['leaf_colour']))
                     {
-                        if($val==$fruit_data['normal']['leaf_colour'])
-                        {
-                            echo $name;
-                        }
+                        $colors=$this->config->item('fc_leaf_colour');
+                        echo $colors[$fruit_data['normal']['leaf_colour']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -962,12 +1052,14 @@ if($options['leaf_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_leaf_colour') as $val=>$name)
+                        if(!empty($fruit_data['replica']['leaf_colour']))
                         {
-                            if($val==$fruit_data['replica']['leaf_colour'])
-                            {
-                                echo $name;
-                            }
+                            $colors=$this->config->item('fc_leaf_colour');
+                            echo $colors[$fruit_data['replica']['leaf_colour']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -984,12 +1076,14 @@ if($options['leaf_colour']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['leaf_colour_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['leaf_colour_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['leaf_colour_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1001,12 +1095,14 @@ if($options['leaf_colour']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['leaf_colour_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['leaf_colour_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['leaf_colour_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1054,12 +1150,14 @@ if($options['leaf_length']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['leaf_length_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['leaf_length_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['leaf_length_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1071,12 +1169,14 @@ if($options['leaf_length']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['leaf_length_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['leaf_length_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['leaf_length_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1101,12 +1201,14 @@ if($options['leaf_type']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_leaf_type') as $val=>$name)
+                    if(!empty($fruit_data['normal']['leaf_type']))
                     {
-                        if($val==$fruit_data['normal']['leaf_type'])
-                        {
-                            echo $name;
-                        }
+                        $leafTypes=$this->config->item('fc_leaf_type');
+                        echo $leafTypes[$fruit_data['normal']['leaf_type']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1118,12 +1220,14 @@ if($options['leaf_type']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_leaf_type') as $val=>$name)
+                        if(!empty($fruit_data['replica']['leaf_type']))
                         {
-                            if($val==$fruit_data['replica']['leaf_type'])
-                            {
-                                echo $name;
-                            }
+                            $leafTypes=$this->config->item('fc_leaf_type');
+                            echo $leafTypes[$fruit_data['replica']['leaf_type']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1140,12 +1244,14 @@ if($options['leaf_type']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['leaf_type_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['leaf_type_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['leaf_type_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1157,12 +1263,14 @@ if($options['leaf_type']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['leaf_type_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['leaf_type_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['leaf_type_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1210,12 +1318,14 @@ if($options['fruit_size']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['fruit_diameter_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['fruit_diameter_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['fruit_diameter_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1227,12 +1337,14 @@ if($options['fruit_size']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['fruit_diameter_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['fruit_diameter_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['fruit_diameter_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1273,13 +1385,15 @@ if($options['fruit_size']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                foreach($this->config->item('rating') as $val=>$name)
-                {
-                    if($val==$fruit_data['normal']['fruit_height_evaluation'])
+                    if(!empty($fruit_data['normal']['fruit_height_evaluation']))
                     {
-                        echo $name;
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['fruit_height_evaluation']];
                     }
-                }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
+                    }
                 ?>
             </label>
         </div>
@@ -1290,13 +1404,15 @@ if($options['fruit_size']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('rating') as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['fruit_height_evaluation'])
+                        if(!empty($fruit_data['replica']['fruit_height_evaluation']))
                         {
-                            echo $name;
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['fruit_height_evaluation']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -1343,12 +1459,14 @@ if($options['root_size']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_diameter_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['root_diameter_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['root_diameter_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1360,12 +1478,14 @@ if($options['root_size']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_diameter_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['root_diameter_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['root_diameter_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1406,12 +1526,14 @@ if($options['root_size']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_height_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['root_height_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['root_height_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1423,12 +1545,14 @@ if($options['root_size']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_height_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['root_height_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['root_height_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1453,12 +1577,14 @@ if($options['curd_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_curd_type') as $val=>$name)
+                    if(!empty($fruit_data['normal']['curd_type']))
                     {
-                        if($val==$fruit_data['normal']['curd_type'])
-                        {
-                            echo $name;
-                        }
+                        $leafTypes=$this->config->item('fc_curd_type');
+                        echo $leafTypes[$fruit_data['normal']['curd_type']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1470,12 +1596,14 @@ if($options['curd_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_curd_type') as $val=>$name)
+                        if(!empty($fruit_data['replica']['curd_type']))
                         {
-                            if($val==$fruit_data['replica']['curd_type'])
-                            {
-                                echo $name;
-                            }
+                            $leafTypes=$this->config->item('fc_curd_type');
+                            echo $leafTypes[$fruit_data['replica']['curd_type']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1492,12 +1620,14 @@ if($options['curd_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['curd_type_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['curd_type_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['curd_type_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1509,12 +1639,14 @@ if($options['curd_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['curd_type_evaluation']))
                         {
-                            if($val==$fruit_data['normal']['curd_type_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['curd_type_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1539,13 +1671,15 @@ if($options['head_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                foreach($this->config->item('fc_head_type') as $val=>$name)
-                {
-                    if($val==$fruit_data['normal']['head_type'])
+                    if(!empty($fruit_data['normal']['head_type']))
                     {
-                        echo $name;
+                        $headType = $this->config->item('fc_head_type');
+                        echo $headType[$fruit_data['normal']['head_type']];
                     }
-                }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
+                    }
                 ?>
             </label>
         </div>
@@ -1556,13 +1690,15 @@ if($options['head_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                    foreach($this->config->item('fc_head_type') as $val=>$name)
-                    {
-                        if($val==$fruit_data['replica']['head_type'])
+                        if(!empty($fruit_data['replica']['head_type']))
                         {
-                            echo $name;
+                            $headType = $this->config->item('fc_head_type');
+                            echo $headType[$fruit_data['replica']['head_type']];
                         }
-                    }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
+                        }
                     ?>
                 </label>
             </div>
@@ -1578,12 +1714,14 @@ if($options['head_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['head_type_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['head_type_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['head_type_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1595,12 +1733,14 @@ if($options['head_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['head_type_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['head_type_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['head_type_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1624,12 +1764,14 @@ if($options['fruit_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
+                    if(!empty($fruit_data['normal']['fruit_shape']))
                     {
-                        if($val==$fruit_data['normal']['fruit_shape'])
-                        {
-                            echo $name;
-                        }
+                        $fruitShape = $this->config->item('fc_fruit_shape_'.$crop_id);
+                        echo $fruitShape[$fruit_data['normal']['fruit_shape']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1641,12 +1783,14 @@ if($options['fruit_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_fruit_shape_'.$crop_id) as $val=>$name)
+                        if(!empty($fruit_data['replica']['fruit_shape']))
                         {
-                            if($val==$fruit_data['replica']['fruit_shape'])
-                            {
-                                echo $name;
-                            }
+                            $fruitShape = $this->config->item('fc_fruit_shape_'.$crop_id);
+                            echo $fruitShape[$fruit_data['replica']['fruit_shape']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1663,12 +1807,14 @@ if($options['fruit_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['fruit_shape_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['fruit_shape_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['fruit_shape_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1680,12 +1826,14 @@ if($options['fruit_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['fruit_shape_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['fruit_shape_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['fruit_shape_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1709,12 +1857,14 @@ if($options['root_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('fc_root_shape') as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_shape']))
                     {
-                        if($val==$fruit_data['normal']['root_shape'])
-                        {
-                            echo $name;
-                        }
+                        $rootShape = $this->config->item('fc_root_shape');
+                        echo $rootShape[$fruit_data['normal']['root_shape']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1726,12 +1876,14 @@ if($options['root_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('fc_root_shape') as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_shape']))
                         {
-                            if($val==$fruit_data['replica']['root_shape'])
-                            {
-                                echo $name;
-                            }
+                            $rootShape = $this->config->item('fc_root_shape');
+                            echo $rootShape[$fruit_data['replica']['root_shape']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1748,12 +1900,14 @@ if($options['root_shape']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['root_shape_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['root_shape_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['root_shape_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1765,12 +1919,14 @@ if($options['root_shape']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['root_shape_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['root_shape_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['root_shape_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1817,12 +1973,14 @@ if($options['curd_diam']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['curd_diameter_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['curd_diameter_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['curd_diameter_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1834,12 +1992,14 @@ if($options['curd_diam']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['curd_diameter_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['curd_diameter_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['curd_diameter_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1886,12 +2046,14 @@ if($options['head_diam']==1)
         <div class="col-xs-3">
             <label class="form-control">
                 <?php
-                    foreach($this->config->item('rating') as $val=>$name)
+                    if(!empty($fruit_data['normal']['head_diameter_evaluation']))
                     {
-                        if($val==$fruit_data['normal']['head_diameter_evaluation'])
-                        {
-                            echo $name;
-                        }
+                        $rating = $this->config->item('rating');
+                        echo $rating[$fruit_data['normal']['curd_diameter_evaluation']];
+                    }
+                    else
+                    {
+                        echo $this->lang->line("NOT_SET");
                     }
                 ?>
             </label>
@@ -1903,12 +2065,14 @@ if($options['head_diam']==1)
             <div class="col-xs-3">
                 <label class="form-control">
                     <?php
-                        foreach($this->config->item('rating') as $val=>$name)
+                        if(!empty($fruit_data['replica']['head_diameter_evaluation']))
                         {
-                            if($val==$fruit_data['replica']['head_diameter_evaluation'])
-                            {
-                                echo $name;
-                            }
+                            $rating = $this->config->item('rating');
+                            echo $rating[$fruit_data['replica']['curd_diameter_evaluation']];
+                        }
+                        else
+                        {
+                            echo $this->lang->line("NOT_SET");
                         }
                     ?>
                 </label>
@@ -1996,7 +2160,13 @@ if($options['avg_leaf_wt']==1)
         $sum_of_total_marketed_leafs_wt_replica += $total_marketed_leafs_wt_replica;
     }
 
-    $avg_leaf_wt_normal = round($sum_of_total_marketed_leafs_wt_normal/$sum_of_total_marketed_leafs_normal, 2);
+    $avg_leaf_wt_normal = $this->lang->line("CANNOT_CALCULATE");;
+
+    if(($sum_of_total_marketed_leafs_wt_normal>0) && ($sum_of_total_marketed_leafs_normal)>0)
+    {
+        $avg_leaf_wt_normal = round($sum_of_total_marketed_leafs_wt_normal/$sum_of_total_marketed_leafs_normal, 2);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2010,7 +2180,13 @@ if($options['avg_leaf_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_leaf_wt_replica = round($sum_of_total_marketed_leafs_wt_replica/$sum_of_total_marketed_leafs_replica, 2);
+            $avg_leaf_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if(($sum_of_total_marketed_leafs_wt_replica>0) && ($sum_of_total_marketed_leafs_replica)>0)
+            {
+                $avg_leaf_wt_replica = round($sum_of_total_marketed_leafs_wt_replica/$sum_of_total_marketed_leafs_replica, 2);
+            }
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
@@ -2049,7 +2225,13 @@ if($options['avg_head_wt']==1)
         $sum_of_total_marketed_heads_wt_replica += $total_marketed_heads_wt_replica;
     }
 
-    $avg_head_wt_normal = round($sum_of_total_marketed_heads_wt_normal/$sum_of_total_marketed_heads_normal, 2);
+    $avg_head_wt_normal = $this->lang->line("CANNOT_CALCULATE");;
+
+    if(($sum_of_total_marketed_heads_wt_normal>0) && ($sum_of_total_marketed_heads_normal)>0)
+    {
+        $avg_head_wt_normal = round($sum_of_total_marketed_heads_wt_normal/$sum_of_total_marketed_heads_normal, 2);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2063,7 +2245,12 @@ if($options['avg_head_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_head_wt_replica = round($sum_of_total_marketed_heads_wt_replica/$sum_of_total_marketed_heads_replica, 2);
+            $avg_head_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if(($sum_of_total_marketed_heads_wt_replica>0) && ($sum_of_total_marketed_heads_replica)>0)
+            {
+                $avg_head_wt_replica = round($sum_of_total_marketed_heads_wt_replica/$sum_of_total_marketed_heads_replica, 2);
+            }
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
@@ -2101,7 +2288,13 @@ if($options['avg_root_wt']==1)
         $sum_of_total_marketed_roots_wt_replica += $total_marketed_roots_wt_replica;
     }
 
-    $avg_root_wt_normal = round($sum_of_total_marketed_roots_wt_normal/$sum_of_total_marketed_roots_normal, 2);
+    $avg_root_wt_normal = $this->lang->line("CANNOT_CALCULATE");;
+
+    if(($sum_of_total_marketed_roots_wt_normal>0) && ($sum_of_total_marketed_roots_normal)>0)
+    {
+        $avg_root_wt_normal = round($sum_of_total_marketed_roots_wt_normal/$sum_of_total_marketed_roots_normal, 2);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2115,7 +2308,13 @@ if($options['avg_root_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_root_wt_replica = round($sum_of_total_marketed_roots_wt_replica/$sum_of_total_marketed_roots_replica, 2);
+            $avg_root_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if(($sum_of_total_marketed_roots_wt_replica>0) && ($sum_of_total_marketed_roots_replica)>0)
+            {
+                $avg_root_wt_replica = round($sum_of_total_marketed_roots_wt_replica/$sum_of_total_marketed_roots_replica, 2);
+            }
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
@@ -2153,7 +2352,13 @@ if($options['avg_fruit_wt']==1)
         $sum_of_total_marketed_fruits_wt_replica += $total_marketed_fruits_wt_replica;
     }
 
-    $avg_fruit_wt_normal = round($sum_of_total_marketed_fruits_wt_normal/$sum_of_total_marketed_fruits_normal, 2);
+    $avg_fruit_wt_normal = $this->lang->line("CANNOT_CALCULATE");;
+
+    if(($sum_of_total_marketed_fruits_wt_normal>0) && ($sum_of_total_marketed_fruits_normal)>0)
+    {
+        $avg_fruit_wt_normal = round($sum_of_total_marketed_fruits_wt_normal/$sum_of_total_marketed_fruits_normal, 2);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2167,7 +2372,13 @@ if($options['avg_fruit_wt']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_fruit_wt_replica = round($sum_of_total_marketed_fruits_wt_replica/$sum_of_total_marketed_fruits_replica, 2);
+            $avg_fruit_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if(($sum_of_total_marketed_fruits_wt_replica>0) && ($sum_of_total_marketed_fruits_replica)>0)
+            {
+                $avg_fruit_wt_replica = round($sum_of_total_marketed_fruits_wt_replica/$sum_of_total_marketed_fruits_replica, 2);
+            }
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
@@ -2491,7 +2702,13 @@ if($options['average_harvested_plant']==1)
         $sum_of_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
     }
 
-    $avg_harvested_plant_normal = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+    $avg_harvested_plant_normal = $this->lang->line("CANNOT_CALCULATE");;
+
+    if($sum_of_no_of_plants_harvested_normal>0)
+    {
+        $avg_harvested_plant_normal = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+    }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
@@ -2505,7 +2722,13 @@ if($options['average_harvested_plant']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_harvested_plant_replica = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+            $avg_harvested_plant_replica = $this->lang->line("CANNOT_CALCULATE");;
+
+            if($sum_of_no_of_plants_harvested_normal>0)
+            {
+                $avg_harvested_plant_replica = round($sum_of_no_of_plants_harvested_normal/sizeof($harvest_data), 2);
+            }           
+
             ?>
             <div class="col-xs-3">
                 <label class="form-control">

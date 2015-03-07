@@ -48,8 +48,8 @@ if($variety_info['replica_status']==1)
     </div>
 
     <div class="col-xs-3">
-        <label class="control-label"><?php echo $crop_info['initial_plants'];?></label>
-        <input type="hidden" class="hidden_initial" value="<?php echo $crop_info['initial_plants'];?>"/>
+        <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
+        <input type="hidden" class="hidden_initial" value="<?php echo $variety_info['initial_plants'];?>"/>
     </div>
 
     <?php
@@ -57,7 +57,7 @@ if($variety_info['replica_status']==1)
     {
         ?>
         <div class="col-xs-3">
-            <label class="control-label"><?php echo $crop_info['initial_plants'];?></label>
+            <label class="control-label"><?php echo $variety_info['initial_plants'];?></label>
         </div>
     <?php
     }
