@@ -58,7 +58,7 @@ class Create_pesticide extends ROOT_Controller
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
+        if ($id >0)
         {
             $data['pesticideInfo'] = $this->create_pesticide_model->get_pesticide_row($id);
             $data['title']="Edit Pesticide (".$data['pesticideInfo']['pesticide_name'].")";
@@ -68,9 +68,8 @@ class Create_pesticide extends ROOT_Controller
         {
             $data['title']="Create New Pesticide & Fungicides";
             $data["pesticideInfo"] = Array(
-                'id' => 1,
-                'pesticide_name' => '',
-                'status' =>$this->config->item('active')
+                'id' => 0,
+                'pesticide_name' => ''
             );
             $ajax['page_url']=base_url()."create_pesticide/index/add";
         }
@@ -88,7 +87,7 @@ class Create_pesticide extends ROOT_Controller
 
         $data = Array(
             'pesticide_name'=>$this->input->post('pesticide_name'),
-            'status'=>$this->input->post('status')
+            'status'=>1
         );
 
         if(!$this->check_validation())
@@ -177,10 +176,6 @@ class Create_pesticide extends ROOT_Controller
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('status')))
-        {
-            return false;
-        }
 
         return true;
     }

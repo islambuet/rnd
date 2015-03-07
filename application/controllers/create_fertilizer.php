@@ -58,7 +58,7 @@ class Create_fertilizer extends ROOT_Controller
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
+        if ($id > 0)
         {
             $data['fertilizerInfo'] = $this->create_fertilizer_model->get_fertilizer_row($id);
             $data['title']="Edit Fertilizer (".$data['fertilizerInfo']['fertilizer_name'].")";
@@ -68,9 +68,8 @@ class Create_fertilizer extends ROOT_Controller
         {
             $data['title']="Create New Fertilizer";
             $data["fertilizerInfo"] = Array(
-                'id' => 1,
-                'fertilizer_name' => '',
-                'status' =>$this->config->item('active')
+                'id' => 0,
+                'fertilizer_name' => ''
             );
 
             $ajax['page_url']=base_url()."create_fertilizer/index/add";
@@ -89,7 +88,7 @@ class Create_fertilizer extends ROOT_Controller
 
         $data = Array(
             'fertilizer_name'=>$this->input->post('fertilizer_name'),
-            'status'=>$this->input->post('status')
+            'status'=>1
         );
 
         if(!$this->check_validation())
@@ -178,10 +177,6 @@ class Create_fertilizer extends ROOT_Controller
             return false;
         }
 
-        if(Validation_helper::validate_empty($this->input->post('status')))
-        {
-            return false;
-        }
 
         return true;
     }
