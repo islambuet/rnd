@@ -3,9 +3,6 @@
     $data["link_back"]=base_url()."create_fertilizer";
     $this->load->view("action_buttons_edit",$data);
 
-//echo '<pre>';
-//print_r($fertilizerInfo);
-//echo '</pre>';
 ?>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>create_fertilizer/index/save" method="post">
     <input type="hidden" name="fertilizer_id" id="fertilizer_id" value="<?php echo $fertilizerInfo['id'];?>"/>
@@ -32,12 +29,13 @@
             </div>
             <div class="col-sm-4 col-xs-8">
                 <select name="status" id="status" class="form-control validate[required]">
-                    <option value="<?php echo $this->config->item('active');?>" <?php if($this->config->item('active')==$fertilizerInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
-                    <option value="<?php echo $this->config->item('inactive');?>" <?php if($this->config->item('inactive')==$fertilizerInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_active');?>" <?php if($this->config->item('status_active')==$fertilizerInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('ACTIVE');?></option>
+                    <option value="<?php echo $this->config->item('status_delete');?>" <?php if($this->config->item('status_delete')==$fertilizerInfo['status']){ echo "selected";}?>><?php echo $this->lang->line('INACTIVE');?></option>
                 </select>
             </div>
         </div>
     </div>
+
     <div class="clearfix"></div>
 </form>
 <script type="text/javascript">

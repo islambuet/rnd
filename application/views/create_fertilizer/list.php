@@ -19,7 +19,6 @@
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_FERTILIZER_NAME"); ?></th>
-                <th><?php echo $this->lang->line("STATUS"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -32,7 +31,6 @@
             <tr>
                 <td><?php echo $key+1;?></td>
                 <td><?php echo $fertilizer['fertilizer_name'];?></td>
-                <td><?php if($fertilizer['status']==$this->config->item('active')){ echo $this->lang->line('ACTIVE');}else{ echo $this->lang->line('INACTIVE');};?></td>
                 <td>
                     <a href="<?php echo base_url();?>create_fertilizer/index/edit/<?php echo $fertilizer['id'];?>">
                         <img src="<?php echo base_url();?>images/edit_record.png">
