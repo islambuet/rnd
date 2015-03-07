@@ -26,7 +26,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         var base_url = "<?php echo base_url(); ?>";
         var display_date_format = "yy-mm-dd";
     </script>
-    <header>
+    <header class="hidden-print">
 
                 <img alt="Logo" height="40" class="site_logo pull-left" src="<?php echo base_url(); ?>images/logo.png">
                 <div class="site_title pull-left">A.R MALIK & Co. (PVT) LTD.</div>
