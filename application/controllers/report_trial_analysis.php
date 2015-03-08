@@ -56,9 +56,12 @@ class Report_trial_analysis extends ROOT_Controller
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $data['varieties']=$this->report_trial_analysis_model->get_varieties_by_ids($variety_ids);
+        $data['delivery_and_sowing_info']=Query_helper::get_info('delivery_and_sowing_setup','*',array('crop_id ='.$crop_id,'year ='.$year,'season_id ='.$season_id),1);
         $ajax['status'] = true;
         if($report_name==1)
         {
+            $data['options']=Query_helper::get_info('rnd_setup_text_fifteen_days','*',array('crop_id ='.$crop_id),1);
+            $data['fortnightly']=$this->report_trial_analysis_model->get_details_fortnightly($variety_ids,$year,$season_id);
             $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
         }
         elseif($report_name==2)

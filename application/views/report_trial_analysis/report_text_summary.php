@@ -116,21 +116,21 @@
             </tr>
                 <?php
                     $index=0;
-                    foreach($varieties as $variety_id=>$variety)
+                    foreach($varieties as $variety)
                     {
                         ?>
                         <tr>
                             <td><?php echo ++$index; ?></td>
-                            <td><?php echo $variety['rnd_code']; ?></td>
+                            <td><?php echo System_helper::get_rnd_code($variety); ?></td>
                             <?php
                             if(($report_name==0)||($report_name==1))
                             {
                                 ?>
                                 <td>
                                     <?php
-                                        if(isset($fortnightly[$variety_id]['remarks']))
+                                        if(isset($fortnightly[$variety['id']]['remarks']))
                                         {
-                                            echo $fortnightly[$variety_id]['remarks'];
+                                            echo $fortnightly[$variety['id']]['remarks'];
                                         }
                                         else
                                         {
@@ -148,9 +148,9 @@
                                 ?>
                                 <td>
                                     <?php
-                                    if(isset($flowering[$variety_id]['remarks']))
+                                    if(isset($flowering[$variety['id']]['remarks']))
                                     {
-                                        echo $flowering[$variety_id]['remarks'];
+                                        echo $flowering[$variety['id']]['remarks'];
                                     }
                                     else
                                     {
@@ -168,9 +168,9 @@
                                 ?>
                                 <td>
                                     <?php
-                                    if(isset($fruit[$variety_id]['remarks']))
+                                    if(isset($fruit[$variety['id']]['remarks']))
                                     {
-                                        echo $fruit[$variety_id]['remarks'];
+                                        echo $fruit[$variety['id']]['remarks'];
                                     }
                                     else
                                     {
@@ -188,9 +188,9 @@
                                 ?>
                                 <td>
                                     <?php
-                                    if(isset($harvest_compile[$variety_id]['remarks']))
+                                    if(isset($harvest_compile[$variety['id']]['remarks']))
                                     {
-                                        echo $harvest_compile[$variety_id]['remarks'];
+                                        echo $harvest_compile[$variety['id']]['remarks'];
                                     }
                                     else
                                     {
@@ -208,9 +208,9 @@
                                 ?>
                                 <td>
                                     <?php
-                                    if(isset($yield[$variety_id]['remarks']))
+                                    if(isset($yield[$variety['id']]['remarks']))
                                     {
-                                        echo $yield[$variety_id]['remarks'];
+                                        echo $yield[$variety['id']]['remarks'];
                                     }
                                     else
                                     {
@@ -228,9 +228,9 @@
                                 ?>
                                 <td>
                                     <?php
-                                    if(isset($veg_fruit[$variety_id]['remarks']))
+                                    if(isset($veg_fruit[$variety['id']]['remarks']))
                                     {
-                                        echo $veg_fruit[$variety_id]['remarks'];
+                                        echo $veg_fruit[$variety['id']]['remarks'];
                                     }
                                     else
                                     {

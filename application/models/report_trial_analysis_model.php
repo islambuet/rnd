@@ -57,12 +57,13 @@ class Report_trial_analysis_model extends CI_Model
 
 
         $results = $this->db->get()->result_array();
-        $varieties=array();
-        foreach($results as $result)
-        {
-            $varieties[$result['id']]['rnd_code']=System_helper::get_rnd_code($result);
-        }
-        return $varieties;
+        return $results;
+//        $varieties=array();
+//        foreach($results as $result)
+//        {
+//            $varieties[$result['id']]['rnd_code']=System_helper::get_rnd_code($result);
+//        }
+//        return $varieties;
 
     }
     public function get_remarks($table_name,$ids,$year,$season_id)
@@ -88,7 +89,30 @@ class Report_trial_analysis_model extends CI_Model
         {
             return null;
         }
+    }
+    public function get_details_fortnightly($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_text_fifteen_days rdtfd');
+        $this->db->select('rdtfd.variety_id,rdtfd.info');
+        $this->db->where('rdtfd.year',$year);
+        $this->db->where('rdtfd.season_id',$season_id);
+        $this->db->where_in('rdtfd.variety_id',$ids);
+        $results=$this->db->get()->result_array();
+        //return $results;
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']]['info']=$result['info'];
 
+            }
+            return $varieties;
 
+        }
+        else
+        {
+            return null;
+        }
     }
 }
