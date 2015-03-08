@@ -328,4 +328,5 @@ $lang['IMAGE_FRUIT_NOT_SETUP']='Fruit header images did not set';
 $lang['INITIAL_PLANTS'] = 'Initial plants';
 $lang['CANNOT_CALCULATE'] = 'Cann\'t Calculate';
 $lang['NOT_SET'] = 'Not Set';
+$lang['FULL_REPORT'] = 'View Full Report';
 

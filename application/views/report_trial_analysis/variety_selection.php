@@ -15,6 +15,8 @@
     </div>
 </div>
 <form class="form_valid" id="report_form" action="<?php echo base_url();?>report_trial_analysis/index/report" method="post">
+    <input type="hidden" name="year" value="<?php echo $year; ?>">
+    <input type="hidden" name="season_id" value="<?php echo $season_id; ?>">
     <div class="row show-grid">
 
         <table class="table table-hover table-bordered" style="font-size: 13px;">

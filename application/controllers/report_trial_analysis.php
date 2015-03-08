@@ -45,9 +45,9 @@ class Report_trial_analysis extends ROOT_Controller
 
         $this->jsonReturn($ajax);
     }
-    private function rnd_report_text_details()
+    private function rnd_report_text_details($report_name)
     {
-        $report_name=$this->input->post('report_name');
+        //$report_name=$this->input->post('report_name');
         //$variety_ids=$this->input->post('varieties');
         $ajax['status'] = true;
         $ajax['message'] = 'under_process_for_text_details '.$report_name;
@@ -60,18 +60,44 @@ class Report_trial_analysis extends ROOT_Controller
         $report_type=$this->input->post('report_type');
         $report_name=$this->input->post('report_name');
         $variety_ids=$this->input->post('varieties');
+        $year = $this->input->post('year');
+        $season_id = $this->input->post('season_id');
         if(is_array($variety_ids)&&(sizeof($variety_ids)>0))
         {
             if($report_type==2)
             {
                 if($report_name==4)
                 {
-                    $this->rnd_report_text_details();
+                    $this->rnd_report_text_details(4);
                 }
                 else
                 {
                     $data['report_name']=$report_name;
-                    $data['varieties']=array();
+                    $data['varieties']=$this->report_trial_analysis_model->get_varieties_by_ids($variety_ids);
+                    if(($report_name==0)||($report_name==1))
+                    {
+                        $data['fortnightly']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_fifteen_days',$variety_ids,$year,$season_id);
+                    }
+                    if(($report_name==0)||($report_name==2))
+                    {
+                        $data['flowering']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_flowering',$variety_ids,$year,$season_id);
+                    }
+                    if(($report_name==0)||($report_name==3))
+                    {
+                        $data['fruit']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_fruit',$variety_ids,$year,$season_id);
+                    }
+                    if(($report_name==0)||($report_name==5))
+                    {
+                        $data['harvest_compile']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_harvest_compile',$variety_ids,$year,$season_id);
+                    }
+                    if(($report_name==0)||($report_name==6))
+                    {
+                        $data['yield']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_yield',$variety_ids,$year,$season_id);
+                    }
+                    if(($report_name==0)||($report_name==7))
+                    {
+                        $data['veg_fruit']=$this->report_trial_analysis_model->get_remarks('rnd_data_text_veg_fruit',$variety_ids,$year,$season_id);
+                    }
                     $ajax['status'] = true;
                     $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_summary", $data, true));
                     $this->jsonReturn($ajax);
@@ -109,6 +135,8 @@ class Report_trial_analysis extends ROOT_Controller
         $crop_type_id = $this->input->post('crop_type_id');
         $data['varieties']=$this->report_trial_analysis_model->get_varieties($year,$season_id,$crop_id,$crop_type_id);
         $data['title'] = "Select varieties and report type";
+        $data['year']=$year;
+        $data['season_id']=$season_id;
 
         if($data['varieties'])
         {

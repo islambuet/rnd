@@ -12,8 +12,8 @@ $config['trial_report_name'][7]='Final Report';
 
 
 // Report Type Selection
-
-$config['trial_report_type'][1]='Image Report';
 $config['trial_report_type'][2]='Text Report';
+$config['trial_report_type'][1]='Image Report';
+
 
 
