@@ -202,6 +202,30 @@ $this->load->view("action_buttons_edit",$data);
         $("#report_form").submit();
 
     });
+    $(document).on("click", ".full_text_report", function(event)
+    {
+
+        $.ajax({
+            url: $(this).attr("data-link"),
+            type: 'POST',
+            dataType: "JSON",
+            data: new FormData(document.getElementById("report_form")),
+            processData: false,
+            contentType: false,
+            success: function (data, status)
+            {
+
+            },
+            error: function (xhr, desc, err)
+            {
+
+
+            }
+        });
+
+
+    });
+
 
 
 </script>

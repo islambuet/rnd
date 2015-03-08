@@ -14,7 +14,7 @@
                 if(($report_name==0)||($report_name==1))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/1" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                     <?php
                 }
                 ?>
@@ -22,7 +22,7 @@
                 if(($report_name==0)||($report_name==2))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/2" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                 <?php
                 }
                 ?>
@@ -30,7 +30,7 @@
                 if(($report_name==0)||($report_name==3))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/3" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                 <?php
                 }
                 ?>
@@ -38,7 +38,7 @@
                 if(($report_name==0)||($report_name==5))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/5" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                 <?php
                 }
                 ?>
@@ -46,7 +46,7 @@
                 if(($report_name==0)||($report_name==6))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/6" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                 <?php
                 }
                 ?>
@@ -54,7 +54,7 @@
                 if(($report_name==0)||($report_name==7))
                 {
                     ?>
-                    <th><button id="" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
+                    <th><button data-link="<?php echo base_url();?>report_trial_analysis/index/report_text_details/7" class="btn bg-primary full_text_report"><?php echo $this->lang->line('FULL_REPORT');?></button> </th>
                 <?php
                 }
                 ?>

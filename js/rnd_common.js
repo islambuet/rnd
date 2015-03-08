@@ -230,6 +230,7 @@ function turn_off_triggers()
     $(document).off("change", "#fruit_image_type");//data_image_fruit
     $(document).off("click", "#variety_button");//trail analysis report
     $(document).off("click", "#load_report");//trail analysis report
+    $(document).off("click", ".full_text_report");//trail analysis report
 }
 
 function isNumberKey(evt)

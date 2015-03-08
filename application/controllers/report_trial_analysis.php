@@ -23,6 +23,10 @@ class Report_trial_analysis extends ROOT_Controller
         {
             $this->rnd_report();
         }
+        elseif($task=="report_text_details")
+        {
+            $this->rnd_report_text_details($id);
+        }
         else
         {
             $this->rnd_search();
@@ -47,10 +51,44 @@ class Report_trial_analysis extends ROOT_Controller
     }
     private function rnd_report_text_details($report_name)
     {
-        //$report_name=$this->input->post('report_name');
-        //$variety_ids=$this->input->post('varieties');
+        $variety_ids=$this->input->post('varieties');
+        $year = $this->input->post('year');
+        $season_id = $this->input->post('season_id');
+        $crop_id = $this->input->post('crop_id');
+        $data['varieties']=$this->report_trial_analysis_model->get_varieties_by_ids($variety_ids);
         $ajax['status'] = true;
-        $ajax['message'] = 'under_process_for_text_details '.$report_name;
+        if($report_name==1)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==2)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==3)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==4)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==5)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==6)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        elseif($report_name==7)
+        {
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+        }
+        else
+        {
+            $ajax['message']=$this->lang->line('INVALID_SELECTION');
+        }
         $this->jsonReturn($ajax);
     }
 
@@ -61,6 +99,7 @@ class Report_trial_analysis extends ROOT_Controller
         $report_name=$this->input->post('report_name');
         $variety_ids=$this->input->post('varieties');
         $year = $this->input->post('year');
+
         $season_id = $this->input->post('season_id');
         if(is_array($variety_ids)&&(sizeof($variety_ids)>0))
         {
@@ -137,6 +176,7 @@ class Report_trial_analysis extends ROOT_Controller
         $data['title'] = "Select varieties and report type";
         $data['year']=$year;
         $data['season_id']=$season_id;
+        $data['crop_id']=$crop_id;
 
         if($data['varieties'])
         {
