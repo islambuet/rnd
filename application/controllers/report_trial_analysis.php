@@ -48,11 +48,23 @@ class Report_trial_analysis extends ROOT_Controller
 
     public function rnd_report()
     {
-
-//        $ajax['status'] = true;
-//        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report", $data, true));
-//        $this->jsonReturn($ajax);
-
+        $report_type=$this->input->post('report_type');
+        $report_name=$this->input->post('report_name');
+        $variety_ids=$this->input->post('varieties');
+        if(is_array($variety_ids)&&(sizeof($variety_ids)>0))
+        {
+            echo "<pre>";
+            print_r($variety_ids);
+            echo "</pre>";
+            echo $report_type;
+            echo $report_name;
+        }
+        else
+        {
+            $ajax['status'] = false;
+            $ajax['message'] = $this->lang->line('LABEL_SELECT_VARIETY');
+            $this->jsonReturn($ajax);
+        }
     }
 
     public function load_varieties_for_trial_report()
@@ -62,7 +74,7 @@ class Report_trial_analysis extends ROOT_Controller
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
         $data['varieties']=$this->report_trial_analysis_model->get_varieties($year,$season_id,$crop_id,$crop_type_id);
-        $data['title'] = "Trial Analysis Report Varieties";
+        $data['title'] = "Select varieties and report type";
 
         if($data['varieties'])
         {
@@ -72,7 +84,6 @@ class Report_trial_analysis extends ROOT_Controller
         }
         else
         {
-            $ajax['content'][]=array("id"=>"#variety_list","html"=>$this->load->view("report_trial_analysis/variety_selection",$data,true));
 
             $ajax['status']=false;
             $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');

@@ -227,7 +227,9 @@ function turn_off_triggers()
     $(document).off("change", "#number_of_fifteendays");//setup-15-days
     $(document).off("change", "#harvest_no");//setup-15-days
     $(document).off("change", "#fruit_image_type");//data_image_fruit
+    $(document).off("change", "#fruit_image_type");//data_image_fruit
     $(document).off("click", "#variety_button");//trail analysis report
+    $(document).off("click", "#load_report");//trail analysis report
 }
 
 function isNumberKey(evt)
