@@ -85,7 +85,7 @@ $this->load->view("action_buttons_edit",$data);
 <div class="row widget hidden-print" id="variety_list">
 
 </div>
-<div class="row widget hidden-print" id="report_list">
+<div class="row widget" id="report_list">
 
 </div>
 

@@ -29,7 +29,7 @@ class Report_trial_analysis extends ROOT_Controller
         }
     }
 
-    public function rnd_search()
+    private function rnd_search()
     {
         $data['title'] = "Trial Analysis Report";
 
@@ -45,19 +45,53 @@ class Report_trial_analysis extends ROOT_Controller
 
         $this->jsonReturn($ajax);
     }
+    private function rnd_report_text_details()
+    {
+        $report_name=$this->input->post('report_name');
+        //$variety_ids=$this->input->post('varieties');
+        $ajax['status'] = true;
+        $ajax['message'] = 'under_process_for_text_details '.$report_name;
+        $this->jsonReturn($ajax);
+    }
 
-    public function rnd_report()
+
+    private function rnd_report()
     {
         $report_type=$this->input->post('report_type');
         $report_name=$this->input->post('report_name');
         $variety_ids=$this->input->post('varieties');
         if(is_array($variety_ids)&&(sizeof($variety_ids)>0))
         {
-            echo "<pre>";
-            print_r($variety_ids);
-            echo "</pre>";
-            echo $report_type;
-            echo $report_name;
+            if($report_type==2)
+            {
+                if($report_name==4)
+                {
+                    $this->rnd_report_text_details();
+                }
+                else
+                {
+                    $data['report_name']=$report_name;
+                    $data['varieties']=array();
+                    $ajax['status'] = true;
+                    $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_summary", $data, true));
+                    $this->jsonReturn($ajax);
+                }
+
+            }
+            else if($report_type==1)
+            {
+
+                $ajax['status'] = true;
+                $ajax['message'] = 'under_process_for_image_report';
+                $this->jsonReturn($ajax);
+            }
+            else
+            {
+                $ajax['status'] = false;
+                $ajax['message'] = $this->lang->line('INVALID_REPORT_TYPE');
+                $this->jsonReturn($ajax);
+            }
+
         }
         else
         {

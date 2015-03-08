@@ -1,6 +1,6 @@
 <?php
 
-// Report Name Selection
+// Report Name Selection index is fixed
 $config['trial_report_name'][0]='All Report';
 $config['trial_report_name'][1]='Fortnightly Report';
 $config['trial_report_name'][2]='Flowering Report';
