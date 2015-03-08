@@ -33,9 +33,8 @@ class Report_trial_analysis extends ROOT_Controller
     {
         $data['title'] = "Trial Analysis Report";
 
-        $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
-
+        $data['crops'] = System_helper::get_ordered_crops();
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("report_trial_analysis/search", $data, true));
 

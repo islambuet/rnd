@@ -15,7 +15,7 @@ $this->load->view("action_buttons_edit",$data);
     </div>
 
     <div class="row show-grid">
-        <div class="col-xs-1">
+        <div class="col-xs-2">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_YEAR');?><span style="color:#FF0000">*</span></label>
         </div>
         <div class="col-xs-2">
@@ -31,7 +31,7 @@ $this->load->view("action_buttons_edit",$data);
             </select>
         </div>
 
-        <div class="col-xs-1">
+        <div class="col-xs-2">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?><span style="color:#FF0000">*</span></label>
         </div>
         <div class="col-xs-2">
@@ -48,47 +48,46 @@ $this->load->view("action_buttons_edit",$data);
             </select>
         </div>
 
-        <div class="col-xs-1">
+
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-2 crop_id_container" style="display: none">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_CROP');?><span style="color:#FF0000">*</span></label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-2 crop_id_container" style="display: none">
             <select name="crop_id" id="crop_id" class="form-control">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                 <?php
-                    foreach($crops as $crop)
-                    {
-                        ?>
-                        <option value="<?php echo $crop['id'];?>"><?php echo $crop['crop_name'];?></option>
-                    <?php
-                    }
+                foreach($crops as $crop)
+                {
+                    ?>
+                    <option value="<?php echo $crop['id'];?>"><?php echo $crop['crop_name'];?></option>
+                <?php
+                }
                 ?>
             </select>
         </div>
-
-        <div class="col-xs-1">
+        <div class="col-xs-2 crop_type_id_container" style="display: none">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_TYPE');?></label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-2 crop_type_id_container" style="display: none">
             <select name="crop_type_id" id="crop_type_id" class="form-control validate[required]">
                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
 
             </select>
         </div>
-    </div>
-
-    <div class="row show-grid">
-        <div class="col-lg-2 pull-right">
+        <div class="col-xs-2" id="variety_button_container" style="display: none;">
             <input type="button" id="variety_button" class="form-control btn-primary" value="<?php echo $this->lang->line('LOAD_VARIETY');?>" />
         </div>
     </div>
 </div>
 
-
-
-<div class="row widget" id="variety_list">
+<div class="row widget hidden-print" id="variety_list">
 
 </div>
+<div class="row widget hidden-print" id="report_list">
 
+</div>
 
 <script>
 
@@ -97,23 +96,44 @@ $this->load->view("action_buttons_edit",$data);
     $(document).on("change", "#year", function(event)
     {
         $("#variety_list").html("");
+        $("#report_list").html("");
         $("#season_id").val("");
+        $("#crop_id").val("");
+        $("#crop_type_id").val("");
+        $(".crop_type_id_container").hide();
+        $(".crop_id_container").hide();
+        $("#variety_button_container").hide();
     });
 
     $(document).on("change", "#season_id", function(event)
     {
         $("#variety_list").html("");
+        $("#report_list").html("");
         $("#crop_id").val("");
+        $("#crop_type_id").val("");
+        $(".crop_type_id_container").hide();
+        $("#variety_button_container").hide();
+        if($(this).val()>0)
+        {
+            $(".crop_id_container").show();
+        }
+        else
+        {
+            $(".crop_id_container").hide();
+        }
     });
 
     $(document).on("change", "#crop_id", function(event)
     {
         $("#variety_list").html("");
+        $("#report_list").html("");
         $("#crop_type_id").val("");
 
         var crop_id = $("#crop_id").val();
         if(crop_id>0)
         {
+            $(".crop_type_id_container").show();
+            $("#variety_button_container").show();
             $.ajax({
                 url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
                 type: 'POST',
@@ -130,11 +150,23 @@ $this->load->view("action_buttons_edit",$data);
                 }
             });
         }
+        else
+        {
+            $(".crop_type_id_container").hide();
+            $("#variety_button_container").hide();
+        }
+    });
+    $(document).on("change", "#crop_type_id", function(event)
+    {
+        $("#variety_list").html("");
+        $("#report_list").html("");
+
     });
 
     $(document).on("click", "#variety_button", function(event)
     {
         $("#variety_list").html("");
+        $("#report_list").html("");
 
         $.ajax({
             url: base_url+"report_trial_analysis/load_varieties_for_trial_report",

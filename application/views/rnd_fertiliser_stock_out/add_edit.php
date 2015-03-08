@@ -36,7 +36,7 @@ $this->load->view("action_buttons_edit",$data);
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_STOCK_OUT');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_STOCK_IN');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="fertilizer_quantity" id="fertilizer_quantity" class="form-control validate[required]" value="<?php echo $fertiliserInfo['fertilizer_quantity'];?>" >
