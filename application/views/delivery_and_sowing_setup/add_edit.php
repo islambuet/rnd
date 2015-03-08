@@ -26,6 +26,7 @@
                 <select name="year" class="form-control validate[required]" <?php if(!empty($deliveryInfo['year'])){echo 'disabled';}?>>
                     <?php
                     $current_year=date("Y",time());
+                    $deliveryInfo['year']=$current_year;
                     for($i=$this->config->item("start_year");$i<=($current_year+$this->config->item("next_year_range"));$i++)
                     {?>
                         <option value="<?php echo $i;?>" <?php if($i==$deliveryInfo['year']){echo 'selected';}?>><?php echo $i;?></option>
