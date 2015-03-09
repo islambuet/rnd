@@ -94,6 +94,44 @@ class Report_trial_analysis extends ROOT_Controller
         }
         $this->jsonReturn($ajax);
     }
+    private function rnd_report_images()
+    {
+        $year = $this->input->post('year');
+        $season_id = $this->input->post('season_id');
+        $crop_id = $this->input->post('crop_id');
+        $crop_type_id = $this->input->post('crop_type_id');
+        $report_type=$this->input->post('report_type');//no need
+        $report_name=$this->input->post('report_name');
+        $variety_ids=$this->input->post('varieties');
+        $data['report_name']=$report_name;
+        $data['varieties']=$this->report_trial_analysis_model->get_varieties_by_ids($variety_ids);
+        if(($report_name>4)||($report_name<0))
+        {
+            $ajax['status'] = false;
+            $ajax['message'] = $this->lang->line('INVALID_REPORT_TYPE');
+            $this->jsonReturn($ajax);
+        }
+        if(($report_name==0) ||($report_name==1))
+        {
+
+        }
+        if(($report_name==0) ||($report_name==2))
+        {
+
+        }
+        if(($report_name==0) ||($report_name==3))
+        {
+
+        }
+        if(($report_name==0) ||($report_name==4))
+        {
+
+        }
+
+        $ajax['status'] = true;
+        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_image", $data, true));
+        $this->jsonReturn($ajax);
+    }
 
 
     private function rnd_report()
@@ -149,9 +187,7 @@ class Report_trial_analysis extends ROOT_Controller
             else if($report_type==1)
             {
 
-                $ajax['status'] = true;
-                $ajax['message'] = 'under_process_for_image_report';
-                $this->jsonReturn($ajax);
+                $this->rnd_report_images();
             }
             else
             {
