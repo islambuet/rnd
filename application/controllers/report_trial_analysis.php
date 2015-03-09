@@ -113,6 +113,7 @@ class Report_trial_analysis extends ROOT_Controller
         }
         if(($report_name==0) ||($report_name==1))
         {
+            $data['max_15_days']=$this->report_trial_analysis_model->get_max_15_days($year,$season_id,$crop_id,$crop_type_id);
 
         }
         if(($report_name==0) ||($report_name==2))
@@ -121,10 +122,14 @@ class Report_trial_analysis extends ROOT_Controller
         }
         if(($report_name==0) ||($report_name==3))
         {
+            $fruit_type = Query_helper::get_info("rnd_crop","fruit_type",array('id = '.$crop_id),1);
+            $fruit_types=$this->config->item('fruit_type');
+            $data['fruit_type_name']=$fruit_types[$fruit_type['fruit_type']];
 
         }
-        if(($report_name==0) ||($report_name==4))
+        if(($report_name==4))
         {
+            $data['max_harvest']=$this->report_trial_analysis_model->get_max_harvest_days($year,$season_id,$crop_id,$crop_type_id);
 
         }
 
@@ -216,6 +221,7 @@ class Report_trial_analysis extends ROOT_Controller
         $data['year']=$year;
         $data['season_id']=$season_id;
         $data['crop_id']=$crop_id;
+        $data['crop_type_id']=$crop_type_id;
 
         if($data['varieties'])
         {

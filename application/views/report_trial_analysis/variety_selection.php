@@ -18,6 +18,7 @@
     <input type="hidden" name="year" value="<?php echo $year; ?>">
     <input type="hidden" name="season_id" value="<?php echo $season_id; ?>">
     <input type="hidden" name="crop_id" value="<?php echo $crop_id; ?>">
+    <input type="hidden" name="crop_type_id" value="<?php echo $crop_type_id; ?>">
     <div class="row show-grid">
 
         <table class="table table-hover table-bordered" style="font-size: 13px;">

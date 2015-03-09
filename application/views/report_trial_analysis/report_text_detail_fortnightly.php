@@ -35,6 +35,7 @@
                 <th><?php echo $this->lang->line('LABEL_REPORTING_DATE');?></th>
             </tr>
             </thead>
+            <tbody>
                 <?php
                     $index=0;
                     foreach($varieties as $variety)
@@ -114,7 +115,7 @@
                         if($variety['replica_status'])
                         {
                             ?>
-                            <tr>
+                            <tr style="color: red;">
                                 <td><?php echo $index; ?></td>
                                 <td><?php echo System_helper::get_rnd_code($variety); ?></td>
                                 <?php
@@ -177,7 +178,7 @@
                         }
                     }
                 ?>
-            <tbody>
+
             </tbody>
         </table>
 

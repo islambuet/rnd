@@ -115,4 +115,34 @@ class Report_trial_analysis_model extends CI_Model
             return null;
         }
     }
+    public function get_max_15_days($year,$season_id,$crop_id,$crop_type_id)
+    {
+        $this->db->from('rnd_setup_image_fifteen_days rsifd');
+        $this->db->select('MAX(rsifd.number_of_fifteendays) max_days');
+        $this->db->where('rsifd.year',$year);
+        $this->db->where('rsifd.season_id',$season_id);
+        $this->db->where('rsifd.crop_id',$crop_id);
+        if($crop_type_id>0)
+        {
+            $this->db->where('rsifd.crop_type_id',$crop_type_id);
+        }
+        $result=$this->db->get()->row_array();
+        return $result['max_days']?$result['max_days']:1;
+
+    }
+    public function get_max_harvest_days($year,$season_id,$crop_id,$crop_type_id)
+    {
+        $this->db->from('rnd_data_image_harvest_cropwise rdihc');
+        $this->db->select('MAX(rdihc.harvest_no) max_days');
+        $this->db->where('rdihc.year',$year);
+        $this->db->where('rdihc.season_id',$season_id);
+        $this->db->where('rdihc.crop_id',$crop_id);
+        if($crop_type_id>0)
+        {
+            $this->db->where('rdihc.crop_type_id',$crop_type_id);
+        }
+        $result=$this->db->get()->row_array();
+        return $result['max_days']?$result['max_days']:1;
+
+    }
 }
