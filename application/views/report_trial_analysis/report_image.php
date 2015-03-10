@@ -1,4 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+$dir=$this->config->item('dir');
+$image_height=100;
 //echo "<pre>";
 //print_r($varieties);
 //echo "</pre>";
@@ -120,12 +122,31 @@
                             {
                                 for($i=1;$i<=$max_15_days;$i++)
                                 {
-                                    $title=$this->lang->line('NOT_SET');
+                                    $remarks=$this->lang->line('NOT_SET');
+                                    $image_link='';
+                                    if(isset($fortnightly[$variety['id']][$i*15]))
+                                    {
+                                        if(!empty($fortnightly[$variety['id']][$i*15]['remarks']))
+                                        {
+                                            $remarks=$fortnightly[$variety['id']][$i*15]['remarks'];
+                                        }
+                                        $images=json_decode($fortnightly[$variety['id']][$i*15]['images'],true);
+                                        $image_link=base_url().$dir['15_days_image_data'].'/'.$images['normal'];
 
-                                    //if($fortnightly[$variety['id'][$i*15]])
+
+                                    }
                                     ?>
                                     <td>
-                                        <div data-toggle="tooltip" data-placement="top"  title="<?php echo $title; ?>" data-original-title="<?php echo $title.'original'; ?>"><?php echo $i*15; ?></div>
+                                        <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                            <?php
+                                            if(!empty($image_link))
+                                            {
+                                                ?>
+                                                <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </td>
                                     <?php
                                 }
@@ -233,6 +254,50 @@
                             ?>
                         </tr>
                         <?php
+                        if($variety['replica_status'])
+                        {
+                            ?>
+                            <tr style="color: red;">
+                                <td><?php echo ++$index; ?></td>
+                                <td><?php echo System_helper::get_rnd_code($variety); ?></td>
+                                <?php
+                                if(($report_name==0)||($report_name==1))
+                                {
+                                    for($i=1;$i<=$max_15_days;$i++)
+                                    {
+                                        $remarks=$this->lang->line('NOT_SET');
+                                        $image_link='';
+                                        if(isset($fortnightly[$variety['id']][$i*15]))
+                                        {
+                                            if(!empty($fortnightly[$variety['id']][$i*15]['remarks']))
+                                            {
+                                                $remarks=$fortnightly[$variety['id']][$i*15]['remarks'];
+                                            }
+                                            $images=json_decode($fortnightly[$variety['id']][$i*15]['images'],true);
+                                            $image_link=base_url().$dir['15_days_image_data'].'/'.$images['replica'];
+
+
+                                        }
+                                        ?>
+                                        <td>
+                                            <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                                <?php
+                                                if(!empty($image_link))
+                                                {
+                                                    ?>
+                                                    <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                            </tr>
+                            <?php
+                        }
                     }
                 ?>
             <tbody>
