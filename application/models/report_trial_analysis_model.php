@@ -197,4 +197,30 @@ class Report_trial_analysis_model extends CI_Model
         }
 
     }
+    public function get_fruit_images($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_image_fruit rdif');
+        $this->db->select('variety_id,fruit_image_type,images,remarks');
+        $this->db->where('rdif.year',$year);
+        $this->db->where('rdif.season_id',$season_id);
+        $this->db->where_in('variety_id',$ids);
+        $results=$this->db->get()->result_array();
+
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']][$result['fruit_image_type']]=$result;
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+
+    }
 }

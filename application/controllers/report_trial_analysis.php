@@ -127,6 +127,7 @@ class Report_trial_analysis extends ROOT_Controller
             $fruit_type = Query_helper::get_info("rnd_crop","fruit_type",array('id = '.$crop_id),1);
             $fruit_types=$this->config->item('fruit_type');
             $data['fruit_type_name']=$fruit_types[$fruit_type['fruit_type']];
+            $data['fruit']=$this->report_trial_analysis_model->get_fruit_images($variety_ids,$year,$season_id);
 
         }
         if(($report_name==4))

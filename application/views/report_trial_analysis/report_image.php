@@ -1,6 +1,7 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 $dir=$this->config->item('dir');
 $image_height=100;
+$tool_tip_position='left';
 //echo "<pre>";
 //print_r($varieties);
 //echo "</pre>";
@@ -137,7 +138,7 @@ $image_height=100;
                                     }
                                     ?>
                                     <td>
-                                        <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                        <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
                                             <?php
                                             if(!empty($image_link))
                                             {
@@ -172,7 +173,7 @@ $image_height=100;
                                     }
                                     ?>
                                     <td>
-                                        <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                        <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
                                             <?php
                                             if(!empty($image_link))
                                             {
@@ -192,9 +193,33 @@ $image_height=100;
                             {
                                 foreach($fruit_image_config as $key=>$text)
                                 {
+                                    $remarks=$this->lang->line('NOT_SET');
+                                    $image_link='';
+                                    if(isset($fruit[$variety['id']][$key]))
+                                    {
+                                        if(!empty($fruit[$variety['id']][$key]['remarks']))
+                                        {
+                                            $remarks=$fruit[$variety['id']][$key]['remarks'];
+                                        }
+                                        $images=json_decode($fruit[$variety['id']][$key]['images'],true);
+                                        $image_link=base_url().$dir['fruit_image_data'].'/'.$images['normal'];
+
+
+                                    }
                                     ?>
-                                    <td class="text-center"><?php echo sprintf($text,$fruit_type_name); ?></td>
-                                <?php
+                                    <td>
+                                        <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
+                                            <?php
+                                            if(!empty($image_link))
+                                            {
+                                                ?>
+                                                <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </td>
+                                    <?php
                                 }
                             }
                             ?>
@@ -226,7 +251,7 @@ $image_height=100;
                                         }
                                         ?>
                                         <td>
-                                            <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                            <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
                                                 <?php
                                                 if(!empty($image_link))
                                                 {
@@ -261,7 +286,42 @@ $image_height=100;
                                         }
                                         ?>
                                         <td>
-                                            <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                            <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
+                                                <?php
+                                                if(!empty($image_link))
+                                                {
+                                                    ?>
+                                                    <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                                <?php
+                                if(($report_name==0)||($report_name==3))
+                                {
+                                    foreach($fruit_image_config as $key=>$text)
+                                    {
+                                        $remarks=$this->lang->line('NOT_SET');
+                                        $image_link='';
+                                        if(isset($fruit[$variety['id']][$key]))
+                                        {
+                                            if(!empty($fruit[$variety['id']][$key]['remarks']))
+                                            {
+                                                $remarks=$fruit[$variety['id']][$key]['remarks'];
+                                            }
+                                            $images=json_decode($fruit[$variety['id']][$key]['images'],true);
+                                            $image_link=base_url().$dir['fruit_image_data'].'/'.$images['replica'];
+
+
+                                        }
+                                        ?>
+                                        <td>
+                                            <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
                                                 <?php
                                                 if(!empty($image_link))
                                                 {
