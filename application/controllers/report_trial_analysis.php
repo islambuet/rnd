@@ -114,6 +114,8 @@ class Report_trial_analysis extends ROOT_Controller
         if(($report_name==0) ||($report_name==1))
         {
             $data['max_15_days']=$this->report_trial_analysis_model->get_max_15_days($year,$season_id,$crop_id,$crop_type_id);
+            $data['fortnightly']=$this->report_trial_analysis_model->get_15_days_images($variety_ids,$year,$season_id);
+
 
         }
         if(($report_name==0) ||($report_name==2))

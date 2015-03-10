@@ -145,4 +145,29 @@ class Report_trial_analysis_model extends CI_Model
         return $result['max_days']?$result['max_days']:1;
 
     }
+    public function get_15_days_images($ids,$year,$season_id){
+        $this->db->from('rnd_data_image_fifteen_days rdifd');
+        $this->db->select('variety_id,day_number,images,remarks');
+        $this->db->where('rdifd.year',$year);
+        $this->db->where('rdifd.season_id',$season_id);
+        $this->db->where_in('variety_id',$ids);
+        $results=$this->db->get()->result_array();
+
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']][$result['day_number']]=$result;
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+
+    }
 }

@@ -89,56 +89,91 @@ $this->load->view("action_buttons_edit",$data);
 
 </div>
 
-<script>
-
-    turn_off_triggers();
-
-    $(document).on("change", "#year", function(event)
+<script type="text/javascript">
+    jQuery(document).ready(function()
     {
-        $("#variety_list").html("");
-        $("#report_list").html("");
-        $("#season_id").val("");
-        $("#crop_id").val("");
-        $("#crop_type_id").val("");
-        $(".crop_type_id_container").hide();
-        $(".crop_id_container").hide();
-        $("#variety_button_container").hide();
-    });
+        turn_off_triggers();
 
-    $(document).on("change", "#season_id", function(event)
-    {
-        $("#variety_list").html("");
-        $("#report_list").html("");
-        $("#crop_id").val("");
-        $("#crop_type_id").val("");
-        $(".crop_type_id_container").hide();
-        $("#variety_button_container").hide();
-        if($(this).val()>0)
+        $(document).on("change", "#year", function(event)
         {
-            $(".crop_id_container").show();
-        }
-        else
-        {
+            $("#variety_list").html("");
+            $("#report_list").html("");
+            $("#season_id").val("");
+            $("#crop_id").val("");
+            $("#crop_type_id").val("");
+            $(".crop_type_id_container").hide();
             $(".crop_id_container").hide();
-        }
-    });
+            $("#variety_button_container").hide();
+        });
 
-    $(document).on("change", "#crop_id", function(event)
-    {
-        $("#variety_list").html("");
-        $("#report_list").html("");
-        $("#crop_type_id").val("");
-
-        var crop_id = $("#crop_id").val();
-        if(crop_id>0)
+        $(document).on("change", "#season_id", function(event)
         {
-            $(".crop_type_id_container").show();
-            $("#variety_button_container").show();
+            $("#variety_list").html("");
+            $("#report_list").html("");
+            $("#crop_id").val("");
+            $("#crop_type_id").val("");
+            $(".crop_type_id_container").hide();
+            $("#variety_button_container").hide();
+            if($(this).val()>0)
+            {
+                $(".crop_id_container").show();
+            }
+            else
+            {
+                $(".crop_id_container").hide();
+            }
+        });
+
+        $(document).on("change", "#crop_id", function(event)
+        {
+            $("#variety_list").html("");
+            $("#report_list").html("");
+            $("#crop_type_id").val("");
+
+            var crop_id = $("#crop_id").val();
+            if(crop_id>0)
+            {
+                $(".crop_type_id_container").show();
+                $("#variety_button_container").show();
+                $.ajax({
+                    url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data:{crop_id:crop_id},
+                    success: function (data, status)
+                    {
+
+                    },
+                    error: function (xhr, desc, err)
+                    {
+                        console.log("error");
+
+                    }
+                });
+            }
+            else
+            {
+                $(".crop_type_id_container").hide();
+                $("#variety_button_container").hide();
+            }
+        });
+        $(document).on("change", "#crop_type_id", function(event)
+        {
+            $("#variety_list").html("");
+            $("#report_list").html("");
+
+        });
+
+        $(document).on("click", "#variety_button", function(event)
+        {
+            $("#variety_list").html("");
+            $("#report_list").html("");
+
             $.ajax({
-                url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
+                url: base_url+"report_trial_analysis/load_varieties_for_trial_report",
                 type: 'POST',
                 dataType: "JSON",
-                data:{crop_id:crop_id},
+                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
                 success: function (data, status)
                 {
 
@@ -146,86 +181,52 @@ $this->load->view("action_buttons_edit",$data);
                 error: function (xhr, desc, err)
                 {
                     console.log("error");
+                }
+            });
+
+        });
+        $(document).on("change","#select_all_variety",function()
+        {
+            if($(this).is(':checked'))
+            {
+                $('.select_variety').prop('checked', true);
+            }
+            else
+            {
+                $('.select_variety').prop('checked', false);
+            }
+
+        });
+        $(document).on("click", "#load_report", function(event)
+        {
+            $("#report_list").html("");
+            $("#report_form").submit();
+
+        });
+        $(document).on("click", ".full_text_report", function(event)
+        {
+
+            $.ajax({
+                url: $(this).attr("data-link"),
+                type: 'POST',
+                dataType: "JSON",
+                data: new FormData(document.getElementById("report_form")),
+                processData: false,
+                contentType: false,
+                success: function (data, status)
+                {
+
+                },
+                error: function (xhr, desc, err)
+                {
+
 
                 }
             });
-        }
-        else
-        {
-            $(".crop_type_id_container").hide();
-            $("#variety_button_container").hide();
-        }
-    });
-    $(document).on("change", "#crop_type_id", function(event)
-    {
-        $("#variety_list").html("");
-        $("#report_list").html("");
 
-    });
 
-    $(document).on("click", "#variety_button", function(event)
-    {
-        $("#variety_list").html("");
-        $("#report_list").html("");
-
-        $.ajax({
-            url: base_url+"report_trial_analysis/load_varieties_for_trial_report",
-            type: 'POST',
-            dataType: "JSON",
-            data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-                console.log("error");
-            }
         });
 
     });
-    $(document).on("change","#select_all_variety",function()
-    {
-        if($(this).is(':checked'))
-        {
-            $('.select_variety').prop('checked', true);
-        }
-        else
-        {
-            $('.select_variety').prop('checked', false);
-        }
-
-    });
-    $(document).on("click", "#load_report", function(event)
-    {
-        $("#report_list").html("");
-        $("#report_form").submit();
-
-    });
-    $(document).on("click", ".full_text_report", function(event)
-    {
-
-        $.ajax({
-            url: $(this).attr("data-link"),
-            type: 'POST',
-            dataType: "JSON",
-            data: new FormData(document.getElementById("report_form")),
-            processData: false,
-            contentType: false,
-            success: function (data, status)
-            {
-
-            },
-            error: function (xhr, desc, err)
-            {
-
-
-            }
-        });
-
-
-    });
-
-
 
 </script>

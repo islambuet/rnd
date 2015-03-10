@@ -6,6 +6,9 @@
 //echo "<pre>";
 //print_r($fruit_type_name);
 //echo "</pre>";
+//echo "<pre>";
+//print_r($fortnightly);
+//echo "</pre>";
 
 ?>
 <div class="row show-grid">
@@ -115,21 +118,17 @@
                             <?php
                             if(($report_name==0)||($report_name==1))
                             {
-                                ?>
-                                <td>
-                                    <?php
-                                        if(isset($fortnightly[$variety['id']]['remarks']))
-                                        {
-                                            echo $fortnightly[$variety['id']]['remarks'];
-                                        }
-                                        else
-                                        {
-                                            echo $this->lang->line('NOT_SET');
-                                        }
+                                for($i=1;$i<=$max_15_days;$i++)
+                                {
+                                    $title=$this->lang->line('NOT_SET');
 
+                                    //if($fortnightly[$variety['id'][$i*15]])
                                     ?>
-                                </td>
-                            <?php
+                                    <td>
+                                        <div data-toggle="tooltip" data-placement="top"  title="<?php echo $title; ?>" data-original-title="<?php echo $title.'original'; ?>"><?php echo $i*15; ?></div>
+                                    </td>
+                                    <?php
+                                }
                             }
                             ?>
                             <?php
@@ -242,3 +241,11 @@
 
     </div>
 </div>
+<script type="text/javascript">
+
+    jQuery(document).ready(function()
+    {
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+</script>
