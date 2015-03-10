@@ -12,7 +12,7 @@ $dir=$this->config->item('dir');
 </div>
 
 <?php
-foreach($this->config->item('harvest cropwise_image') as $val=>$flower)
+foreach($this->config->item('harvest_cropwise_image') as $val=>$flower)
 {
     ?>
     <div class="row show-grid">
@@ -23,7 +23,7 @@ foreach($this->config->item('harvest cropwise_image') as $val=>$flower)
             <input class="browse_button" id="file_<?php echo $val;?>" data-image-container="image_<?php echo $val;?>" name="file_<?php echo $val;?>" type="file">
         </div>
         <div class="col-xs-4">
-            <img class="image_flowering" id="image_<?php echo $val;?>" style="max-width: 100px;" src="<?php echo base_url().$dir['harvest cropwise_image_config'].'/'.$images[$val]; ?>">
+            <img class="image_flowering" id="image_<?php echo $val;?>" style="max-width: 100px;" src="<?php echo base_url().$dir['harvest_cropwise_image_config'].'/'.$images[$val]; ?>">
             <input type="hidden" name="old_<?php echo $val;?>" value="<?php echo $images[$val];?>">
         </div>
     </div>

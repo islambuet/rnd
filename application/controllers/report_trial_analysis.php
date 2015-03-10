@@ -133,6 +133,7 @@ class Report_trial_analysis extends ROOT_Controller
         if(($report_name==4))
         {
             $data['max_harvest']=$this->report_trial_analysis_model->get_max_harvest_days($year,$season_id,$crop_id,$crop_type_id);
+            $data['harvest']=$this->report_trial_analysis_model->get_harvest_images($variety_ids,$year,$season_id);
 
         }
 

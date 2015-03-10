@@ -72,8 +72,8 @@ $config['dir']['flowering_image_data'] = 'images/flowering_image_data';
 $config['dir']['fruit_image_config'] = 'images/fruit_image_config';
 $config['dir']['fruit_image_data'] = 'images/fruit_image_data';
 
-$config['dir']['harvest cropwise_image_config'] = 'images/harvest cropwise_image_config';
-$config['dir']['harvest cropwise_image_data'] = 'images/harvest cropwise_image_data';
+$config['dir']['harvest_cropwise_image_config'] = 'images/harvest cropwise_image_config';
+$config['dir']['harvest_cropwise_image_data'] = 'images/harvest cropwise_image_data';
 
 // Flowering Config
 $config['flowering_image'][1]='1st Flowering Pic';
@@ -96,8 +96,8 @@ $config['fruit_image'][9]='cut %s Picture 2';
 $config['fruit_image'][10]='cut %s Picture 3';
 
 // setup hervest cropwise Config
-$config['harvest cropwise_image'][1]='Harvested Normal Fruit';
-$config['harvest cropwise_image'][2]='Harvested Abnormal Fruit';
+$config['harvest_cropwise_image'][1]='Harvested Normal Fruit';
+$config['harvest_cropwise_image'][2]='Harvested Abnormal Fruit';
 
 
 // Keeping Quality

@@ -106,7 +106,7 @@ class Data_image_harvest_cropwise extends ROOT_Controller
             $crop_type_id = $this->input->post('crop_type_id');
             $harvest_no = $this->input->post('harvest_no');
             $dir=$this->config->item("dir");
-            $uploaded_images=System_helper::upload_file($dir['harvest cropwise_image_data']);
+            $uploaded_images=System_helper::upload_file($dir['harvest_cropwise_image_data']);
 
             $user = User_helper::get_user();
             $time=time();
@@ -120,7 +120,7 @@ class Data_image_harvest_cropwise extends ROOT_Controller
                 $image_normal=array();
                 $image_replica=array();
                 $remarks=array();
-                foreach($this->config->item('harvest cropwise_image') as $key=>$harvest_config)
+                foreach($this->config->item('harvest_cropwise_image') as $key=>$harvest_config)
                 {
 
                     $image_normal[$key]=$this->input->post('old_normal_image_'.$key.'_'.$variety_id);

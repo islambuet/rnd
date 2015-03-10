@@ -67,7 +67,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
                 $data['title'] = 'Edit Images';
                 $images = json_decode($config['images'],true);
 
-                foreach($this->config->item("harvest cropwise_image") as $val=>$flowering)
+                foreach($this->config->item("harvest_cropwise_image") as $val=>$flowering)
                 {
                     if($images[$val])
                     {
@@ -88,7 +88,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
                 {
                     $images = json_decode($old_config['images'],true);
 
-                    foreach($this->config->item("harvest cropwise_image") as $val=>$flowering)
+                    foreach($this->config->item("harvest_cropwise_image") as $val=>$flowering)
                     {
                         if($images[$val])
                         {
@@ -102,7 +102,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
                 }
                 else
                 {
-                    foreach($this->config->item("harvest cropwise_image") as $val=>$flowering)
+                    foreach($this->config->item("harvest_cropwise_image") as $val=>$flowering)
                     {
                         $data['images'][$val] = 'no_image.jpg';
                     }
@@ -131,7 +131,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
         else
         {
             $dir=$this->config->item("dir");
-            $uploaded_images=System_helper::upload_file($dir['harvest cropwise_image_config']);
+            $uploaded_images=System_helper::upload_file($dir['harvest_cropwise_image_config']);
 
             $year=$this->input->post("year");
             $season_id=$this->input->post("season_id");
@@ -145,7 +145,7 @@ class Setup_image_harvest_cropwise extends ROOT_Controller
 
             $images = array();
 
-            foreach($this->config->item('harvest cropwise_image') as $val=>$flower)
+            foreach($this->config->item('harvest_cropwise_image') as $val=>$flower)
             {
                 if(array_key_exists('file_'.$val,$uploaded_images))
                 {

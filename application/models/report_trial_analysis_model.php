@@ -223,4 +223,30 @@ class Report_trial_analysis_model extends CI_Model
         }
 
     }
+    public function get_harvest_images($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_image_harvest_cropwise rdihc');
+        $this->db->select('variety_id,harvest_no,images,remarks');
+        $this->db->where('rdihc.year',$year);
+        $this->db->where('rdihc.season_id',$season_id);
+        $this->db->where_in('variety_id',$ids);
+        $results=$this->db->get()->result_array();
+
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']][$result['harvest_no']]=$result;
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+
+    }
 }

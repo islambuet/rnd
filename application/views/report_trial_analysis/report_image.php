@@ -50,8 +50,9 @@ $tool_tip_position='left';
                 <?php
                 if(($report_name==4))
                 {
+                    $harvest_cropwise_image_config=$this->config->item('harvest_cropwise_image');
                     ?>
-                    <th colspan="<?php echo $max_harvest; ?>" class="text-center"><?php echo 'Harvest Report'; ?></th>
+                    <th colspan="<?php echo $max_harvest*sizeof($harvest_cropwise_image_config); ?>" class="text-center"><?php echo 'Harvest Report'; ?></th>
 
                 <?php
                 }
@@ -101,9 +102,12 @@ $tool_tip_position='left';
                 {
                     for($i=1;$i<=$max_harvest;$i++)
                     {
-                        ?>
-                        <td class="text-center"><?php echo $i; ?></td>
-                    <?php
+                        foreach($harvest_cropwise_image_config as $key=>$text)
+                        {
+                            ?>
+                            <td class="text-center"><?php echo $text.'('.$i.')'; ?></td>
+                            <?php
+                        }
                     }
                 }
                 ?>
@@ -223,6 +227,50 @@ $tool_tip_position='left';
                                 }
                             }
                             ?>
+                            <?php
+                            if(($report_name==4))
+                            {
+                                for($i=1;$i<=$max_harvest;$i++)
+                                {
+                                    $images_array=array();
+                                    $remarks_array=array();
+                                    if(isset($harvest[$variety['id']][$i]))
+                                    {
+                                        $harvest_info=$harvest[$variety['id']][$i];
+                                        $images_array=json_decode($harvest[$variety['id']][$i]['images'],true);
+                                        $remarks_array=json_decode($harvest[$variety['id']][$i]['remarks'],true);
+
+                                    }
+                                    foreach($harvest_cropwise_image_config as $key=>$text)
+                                    {
+                                        $remarks=$this->lang->line('NOT_SET');
+                                        $image_link='';
+                                        if(isset($remarks_array[$key]))
+                                        {
+                                            $remarks=$remarks_array[$key];
+                                        }
+                                        if(isset($images_array['normal'][$key]))
+                                        {
+                                            $image_link=base_url().$dir['harvest_cropwise_image_data'].'/'.$images_array['normal'][$key];
+                                        }
+                                        ?>
+                                        <td>
+                                            <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
+                                                <?php
+                                                if(!empty($image_link))
+                                                {
+                                                    ?>
+                                                    <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </tr>
                         <?php
                         if($variety['replica_status'])
@@ -336,6 +384,51 @@ $tool_tip_position='left';
                                     }
                                 }
                                 ?>
+                                <?php
+                                if(($report_name==4))
+                                {
+                                    for($i=1;$i<=$max_harvest;$i++)
+                                    {
+                                        $images_array=array();
+                                        $remarks_array=array();
+                                        if(isset($harvest[$variety['id']][$i]))
+                                        {
+                                            $harvest_info=$harvest[$variety['id']][$i];
+                                            $images_array=json_decode($harvest[$variety['id']][$i]['images'],true);
+                                            $remarks_array=json_decode($harvest[$variety['id']][$i]['remarks'],true);
+
+                                        }
+                                        foreach($harvest_cropwise_image_config as $key=>$text)
+                                        {
+                                            $remarks=$this->lang->line('NOT_SET');
+                                            $image_link='';
+                                            if(isset($remarks_array[$key]))
+                                            {
+                                                $remarks=$remarks_array[$key];
+                                            }
+                                            if(isset($images_array['replica'][$key]))
+                                            {
+                                                $image_link=base_url().$dir['harvest_cropwise_image_data'].'/'.$images_array['replica'][$key];
+                                            }
+                                            ?>
+                                            <td>
+                                                <div class="text-center" data-toggle="tooltip" data-placement="<?php echo $tool_tip_position;  ?>"  title="<?php echo $remarks; ?>">
+                                                    <?php
+                                                    if(!empty($image_link))
+                                                    {
+                                                        ?>
+                                                        <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </td>
+                                        <?php
+                                        }
+                                    }
+                                }
+                                ?>
+
                             </tr>
                             <?php
                         }

@@ -36,7 +36,7 @@ $dir=$this->config->item('dir');
             <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
 
             <?php
-                foreach($this->config->item('harvest cropwise_image') as $key=>$harvest_config)
+                foreach($this->config->item('harvest_cropwise_image') as $key=>$harvest_config)
                 {
                     ?>
                     <th><?php echo $this->lang->line("LABEL_UPLOAD_BUTTONS")." For ".$harvest_config; ?></th>
@@ -44,7 +44,7 @@ $dir=$this->config->item('dir');
                         <?php
                             $head_image=isset($head_images[$key])?$head_images[$key]:'no_image.jpg';
                         ?>
-                        <img style="max-width: 250px;" src="<?php echo base_url().$dir['harvest cropwise_image_config'].'/'.$head_image; ?>">
+                        <img style="max-width: 250px;" src="<?php echo base_url().$dir['harvest_cropwise_image_config'].'/'.$head_image; ?>">
                     </th>
 
                     <th><?php echo $this->lang->line("LABEL_REMARKS")." For ".$harvest_config; ; ?></th>
@@ -73,7 +73,7 @@ $dir=$this->config->item('dir');
                     </td>
                     <td><?php echo System_helper::get_rnd_code($variety,1);?></td>
                     <?php
-                    foreach($this->config->item('harvest cropwise_image') as $key=>$harvest_config)
+                    foreach($this->config->item('harvest_cropwise_image') as $key=>$harvest_config)
                     {
                         ?>
                         <td style="min-width: 200px;">
@@ -99,7 +99,7 @@ $dir=$this->config->item('dir');
 
                             }
                             ?>
-                            <img id="image_normal_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest cropwise_image_data'].'/'.$image; ?>">
+                            <img id="image_normal_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest_cropwise_image_data'].'/'.$image; ?>">
                             <input type="hidden" name="old_normal_image_<?php echo $key.'_'.$variety['id'];?>" value="<?php echo $image; ?>">
                             <?php
                             if($variety['replica_status']==1)
@@ -112,7 +112,7 @@ $dir=$this->config->item('dir');
                                 }
 
                                 ?>
-                                <br><br><img id="image_replica_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest cropwise_image_data'].'/'.$image; ?>">
+                                <br><br><img id="image_replica_<?php echo $key.'_'.$variety['id'];?>" style="max-width: 250px;" src="<?php echo base_url().$dir['harvest_cropwise_image_data'].'/'.$image; ?>">
                                 <input type="hidden" name="old_replica_image_<?php echo $key.'_'.$variety['id'];?>" value="<?php echo $image; ?>">
                             <?php
                             }
