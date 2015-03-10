@@ -145,7 +145,8 @@ class Report_trial_analysis_model extends CI_Model
         return $result['max_days']?$result['max_days']:1;
 
     }
-    public function get_15_days_images($ids,$year,$season_id){
+    public function get_15_days_images($ids,$year,$season_id)
+    {
         $this->db->from('rnd_data_image_fifteen_days rdifd');
         $this->db->select('variety_id,day_number,images,remarks');
         $this->db->where('rdifd.year',$year);
@@ -159,6 +160,32 @@ class Report_trial_analysis_model extends CI_Model
             foreach($results as $result)
             {
                 $varieties[$result['variety_id']][$result['day_number']]=$result;
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+    public function get_flowering_images($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_image_flowering rdif');
+        $this->db->select('variety_id,flowering_time,images,remarks');
+        $this->db->where('rdif.year',$year);
+        $this->db->where('rdif.season_id',$season_id);
+        $this->db->where_in('variety_id',$ids);
+        $results=$this->db->get()->result_array();
+
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']][$result['flowering_time']]=$result;
 
             }
             return $varieties;

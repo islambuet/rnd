@@ -120,7 +120,7 @@ class Report_trial_analysis extends ROOT_Controller
         }
         if(($report_name==0) ||($report_name==2))
         {
-
+            $data['flowering']=$this->report_trial_analysis_model->get_flowering_images($variety_ids,$year,$season_id);
         }
         if(($report_name==0) ||($report_name==3))
         {

@@ -155,101 +155,47 @@ $image_height=100;
                             <?php
                             if(($report_name==0)||($report_name==2))
                             {
-                                ?>
-                                <td>
-                                    <?php
-                                    if(isset($flowering[$variety['id']]['remarks']))
+                                foreach($flowering_image_config as $key=>$text)
+                                {
+                                    $remarks=$this->lang->line('NOT_SET');
+                                    $image_link='';
+                                    if(isset($flowering[$variety['id']][$key]))
                                     {
-                                        echo $flowering[$variety['id']]['remarks'];
-                                    }
-                                    else
-                                    {
-                                        echo $this->lang->line('NOT_SET');
-                                    }
+                                        if(!empty($flowering[$variety['id']][$key]['remarks']))
+                                        {
+                                            $remarks=$flowering[$variety['id']][$key]['remarks'];
+                                        }
+                                        $images=json_decode($flowering[$variety['id']][$key]['images'],true);
+                                        $image_link=base_url().$dir['flowering_image_data'].'/'.$images['normal'];
 
+
+                                    }
                                     ?>
-                                </td>
-                            <?php
+                                    <td>
+                                        <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                            <?php
+                                            if(!empty($image_link))
+                                            {
+                                                ?>
+                                                <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </td>
+                                    <?php
+                                }
                             }
                             ?>
                             <?php
                             if(($report_name==0)||($report_name==3))
                             {
-                                ?>
-                                <td>
-                                    <?php
-                                    if(isset($fruit[$variety['id']]['remarks']))
-                                    {
-                                        echo $fruit[$variety['id']]['remarks'];
-                                    }
-                                    else
-                                    {
-                                        echo $this->lang->line('NOT_SET');
-                                    }
-
+                                foreach($fruit_image_config as $key=>$text)
+                                {
                                     ?>
-                                </td>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if(($report_name==0)||($report_name==5))
-                            {
-                                ?>
-                                <td>
-                                    <?php
-                                    if(isset($harvest_compile[$variety['id']]['remarks']))
-                                    {
-                                        echo $harvest_compile[$variety['id']]['remarks'];
-                                    }
-                                    else
-                                    {
-                                        echo $this->lang->line('NOT_SET');
-                                    }
-
-                                    ?>
-                                </td>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if(($report_name==0)||($report_name==6))
-                            {
-                                ?>
-                                <td>
-                                    <?php
-                                    if(isset($yield[$variety['id']]['remarks']))
-                                    {
-                                        echo $yield[$variety['id']]['remarks'];
-                                    }
-                                    else
-                                    {
-                                        echo $this->lang->line('NOT_SET');
-                                    }
-
-                                    ?>
-                                </td>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if(($report_name==0)||($report_name==7))
-                            {
-                                ?>
-                                <td>
-                                    <?php
-                                    if(isset($veg_fruit[$variety['id']]['remarks']))
-                                    {
-                                        echo $veg_fruit[$variety['id']]['remarks'];
-                                    }
-                                    else
-                                    {
-                                        echo $this->lang->line('NOT_SET');
-                                    }
-
-                                    ?>
-                                </td>
-                            <?php
+                                    <td class="text-center"><?php echo sprintf($text,$fruit_type_name); ?></td>
+                                <?php
+                                }
                             }
                             ?>
                         </tr>
@@ -275,6 +221,41 @@ $image_height=100;
                                             }
                                             $images=json_decode($fortnightly[$variety['id']][$i*15]['images'],true);
                                             $image_link=base_url().$dir['15_days_image_data'].'/'.$images['replica'];
+
+
+                                        }
+                                        ?>
+                                        <td>
+                                            <div class="text-center" data-toggle="tooltip" data-placement="top"  title="<?php echo $remarks; ?>">
+                                                <?php
+                                                if(!empty($image_link))
+                                                {
+                                                    ?>
+                                                    <img src="<?php echo $image_link; ?>" height="<?php echo $image_height; ?>">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                                <?php
+                                if(($report_name==0)||($report_name==2))
+                                {
+                                    foreach($flowering_image_config as $key=>$text)
+                                    {
+                                        $remarks=$this->lang->line('NOT_SET');
+                                        $image_link='';
+                                        if(isset($flowering[$variety['id']][$key]))
+                                        {
+                                            if(!empty($flowering[$variety['id']][$key]['remarks']))
+                                            {
+                                                $remarks=$flowering[$variety['id']][$key]['remarks'];
+                                            }
+                                            $images=json_decode($flowering[$variety['id']][$key]['images'],true);
+                                            $image_link=base_url().$dir['flowering_image_data'].'/'.$images['replica'];
 
 
                                         }
