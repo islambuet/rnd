@@ -107,6 +107,7 @@ class Data_text_fifteen_days extends ROOT_Controller
 
             $data = array();
             $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $data['ranking']=$this->input->post('ranking');
             $user = User_helper::get_user();
             $time = time();
 

@@ -30,6 +30,13 @@ $config['rating'][5] = 5; // 'Average';
 $config['rating'][6] = 6; // 'Good';
 $config['rating'][7] = 7; // 'Excellent';
 
+
+$config['rating_label'][7] = 'Excellent';
+$config['rating_label'][6] = 'Good';
+$config['rating_label'][5] = 'Average';
+$config['rating_label'][4] = 'Below Average';
+$config['rating_label'][3] = 'Poor';
+
 $config['curd_Type_rating'][1] = 'Dome';
 $config['curd_Type_rating'][2] = 'Semi-Dome';
 

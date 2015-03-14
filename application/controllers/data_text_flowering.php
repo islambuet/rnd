@@ -103,6 +103,7 @@ class Data_text_flowering extends ROOT_Controller
             $id = $inputs['data_text_id'];
             $data = array();
             $data['info'] = json_encode(array('normal'=>$inputs['normal'],'replica'=>$inputs['replica']));
+            $data['ranking']=$this->input->post('ranking');
             $user = User_helper::get_user();
             $time = time();
 
