@@ -330,4 +330,6 @@ $lang['CANNOT_CALCULATE'] = 'Cann\'t Calculate';
 $lang['NOT_SET'] = 'Not Set';
 $lang['FULL_REPORT'] = 'View Full Report';
 $lang['LABEL_TRIAL_STATUS'] = 'Trial Status';
+$lang['NO_VARIETY_SENT_FOR_RND'] = 'Warning No variety sent for R&D';
+
 

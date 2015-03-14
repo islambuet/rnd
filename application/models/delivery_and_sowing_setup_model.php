@@ -72,6 +72,29 @@ class Delivery_and_sowing_setup_model extends CI_Model
             return false;
         }
     }
+    public function check_variety_sent($year, $season_id, $crop_id)
+    {
+        $this->db->from('rnd_variety_season rvs');
+        $this->db->join('rnd_variety rv', 'rv.id = rvs.variety_id', 'inner');
+        $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'inner');
+
+
+        $this->db->where('rvs.year',$year);
+        $this->db->where('rvs.season_id',$season_id);
+        $this->db->where('rvs.season_status',1);
+        $this->db->where('rv.crop_id',$crop_id);
+
+
+        $result = $this->db->count_all_results();
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
 }

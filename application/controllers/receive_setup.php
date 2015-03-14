@@ -63,12 +63,12 @@ class Receive_setup extends ROOT_Controller
             $data['deliveryInfo'] = $this->receive_setup_model->get_setup_row($id);
             $data['title']="Edit Setup";
             $ajax['page_url']=base_url()."receive_setup/index/edit/".$id;
+            $data['variety_sowing_able']=$this->receive_setup_model->check_variety_sent($data['deliveryInfo']['year'],$data['deliveryInfo']['season_id'],$data['deliveryInfo']['crop_id']);
         }
         else
         {
 
         }
-
         $data['crops'] = Query_helper::get_info('rnd_crop', '*', array('status ='.$this->config->item('status_active')));
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status']=true;

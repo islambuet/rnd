@@ -63,6 +63,8 @@ class Delivery_and_sowing_setup extends ROOT_Controller
             $data['deliveryInfo'] = $this->delivery_and_sowing_setup_model->get_setup_row($id);
             $data['title']="Edit Setup";
             $ajax['page_url']=base_url()."delivery_and_sowing_setup/index/edit/".$id;
+            $data['variety_sowing_able']=$this->delivery_and_sowing_setup_model->check_variety_sent($data['deliveryInfo']['year'],$data['deliveryInfo']['season_id'],$data['deliveryInfo']['crop_id']);
+
         }
         else
         {
@@ -84,6 +86,7 @@ class Delivery_and_sowing_setup extends ROOT_Controller
 
             $ajax['page_url']=base_url()."delivery_and_sowing_setup/index/add";
         }
+
 
         $data['crops'] = Query_helper::get_info('rnd_crop', '*', array('status ='.$this->config->item('status_active')));
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
