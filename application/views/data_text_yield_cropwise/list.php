@@ -24,6 +24,19 @@
     <div class="clearfix"></div>
 </div>
 <input type="hidden" name="data_text_id" value="<?php echo $variety_info['data_text_id'];?>">
+<div class="row show-grid">
+    <div class="col-xs-4">
+
+    </div>
+    <?php
+    foreach($this->config->item('rating_label') as $key=>$rating)
+    {
+        ?>
+        <button class="btn-primary"><?php echo $key.'='.$rating; ?></button>
+    <?php
+    }
+    ?>
+</div>
 <?php
 if($variety_info['replica_status']==1)
 {
@@ -61,7 +74,9 @@ if($variety_info['replica_status']==1)
     else
     {
         ?>
-        <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+        <div class="col-xs-3">
+            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+        </div>
         <?php
     }
     ?>
@@ -811,19 +826,6 @@ if($options['actual_yield_per_ha_evaluation']==1)
     ?>
 </div>
 
-<?php
-
-    $ranking_normal="";
-    if(is_array($info)&& !empty($info['normal']['ranking']))
-    {
-        $ranking_normal=$info['normal']['ranking'];
-    }
-    $ranking_replica="";
-    if(is_array($info)&& !empty($info['replica']['ranking']))
-    {
-        $ranking_replica=$info['replica']['ranking'];
-    }
-?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>
@@ -834,7 +836,7 @@ if($options['actual_yield_per_ha_evaluation']==1)
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="ranking form-control" name="replica[ranking]" value="<?php echo $ranking_replica;?>" />
+            <input type="text" class="ranking form-control" name="ranking" value="<?php echo $variety_info['ranking'];?>" />
         </div>
     <?php
     }
@@ -842,7 +844,7 @@ if($options['actual_yield_per_ha_evaluation']==1)
     {
         ?>
         <div class="col-xs-3">
-            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
+            <input type="text" class="ranking form-control" name="ranking" value="<?php echo $variety_info['ranking'];?>" />
         </div>
     <?php
     }

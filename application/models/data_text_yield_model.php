@@ -38,12 +38,12 @@ class Data_text_yield_model extends CI_Model
     public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id)
     {
         $delivery_info_sub_query='(SELECT * FROM delivery_and_sowing_setup WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.')';
-        $text_sub_query='(SELECT id,info,variety_id FROM rnd_data_text_yield WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.' AND crop_type_id ='.$crop_type_id.' AND variety_id ='.$variety_id.')';
+        $text_sub_query='(SELECT id,info,ranking,variety_id FROM rnd_data_text_yield WHERE year="'.$year.'" AND season_id ='.$season_id.' AND crop_id ='.$crop_id.' AND crop_type_id ='.$crop_type_id.' AND variety_id ='.$variety_id.')';
 
         $this->db->from('rnd_variety rv');
         $this->db->select('rv.*');
         $this->db->select('dass.sowing_date,dass.transplanting_date');
-        $this->db->select('rdtfd.info,rdtfd.id data_text_id');
+        $this->db->select('rdtfd.info,rdtfd.id data_text_id,rdtfd.ranking');
 
         $this->db->join($delivery_info_sub_query.' dass', 'dass.crop_id = rv.crop_id', 'INNER');
         $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'INNER');

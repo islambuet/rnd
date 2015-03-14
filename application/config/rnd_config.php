@@ -37,6 +37,9 @@ $config['rating_label'][5] = 'Average';
 $config['rating_label'][4] = 'Below Average';
 $config['rating_label'][3] = 'Poor';
 
+$config['trial_status'][1] = 'Retrial';
+$config['trial_status'][2] = 'Reject';
+
 $config['curd_Type_rating'][1] = 'Dome';
 $config['curd_Type_rating'][2] = 'Semi-Dome';
 

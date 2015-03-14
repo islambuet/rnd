@@ -43,6 +43,19 @@
 </div>
 
 <input type="hidden" name="data_text_id" value="<?php echo $variety_info['data_text_id'];?>">
+<div class="row show-grid">
+    <div class="col-xs-4">
+
+    </div>
+    <?php
+    foreach($this->config->item('rating_label') as $key=>$rating)
+    {
+        ?>
+        <button class="btn-primary"><?php echo $key.'='.$rating; ?></button>
+    <?php
+    }
+    ?>
+</div>
 <?php
 if($variety_info['replica_status']==1)
 {
@@ -2078,15 +2091,6 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 </div>
 
 
-<?php
-
-$ranking_normal="";
-if(is_array($info)&&isset($info['normal']['ranking']))
-{
-    $ranking_normal=$info['normal']['ranking'];
-}
-
-?>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>
@@ -2097,7 +2101,7 @@ if(is_array($info)&&isset($info['normal']['ranking']))
     {
         ?>
         <div class="col-xs-6">
-            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
+            <input type="text" class="ranking form-control" name="ranking" value="<?php echo $variety_info['ranking'];?>" />
         </div>
     <?php
     }
@@ -2105,7 +2109,7 @@ if(is_array($info)&&isset($info['normal']['ranking']))
     {
         ?>
         <div class="col-xs-3">
-            <input type="text" class="ranking form-control" name="normal[ranking]" value="<?php echo $ranking_normal;?>" />
+            <input type="text" class="ranking form-control" name="ranking" value="<?php echo $variety_info['ranking'];?>" />
         </div>
     <?php
     }
