@@ -2807,6 +2807,7 @@ if($options['average_harvested_plant']==1)
     </div>
 </div>
 
+
 <script type="text/javascript">
 
     jQuery(document).ready(function()

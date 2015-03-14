@@ -329,4 +329,5 @@ $lang['INITIAL_PLANTS'] = 'Initial plants';
 $lang['CANNOT_CALCULATE'] = 'Cann\'t Calculate';
 $lang['NOT_SET'] = 'Not Set';
 $lang['FULL_REPORT'] = 'View Full Report';
+$lang['LABEL_TRIAL_STATUS'] = 'Trial Status';
 
