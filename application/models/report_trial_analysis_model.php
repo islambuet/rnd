@@ -93,7 +93,7 @@ class Report_trial_analysis_model extends CI_Model
     public function get_details_fortnightly($ids,$year,$season_id)
     {
         $this->db->from('rnd_data_text_fifteen_days rdtfd');
-        $this->db->select('rdtfd.variety_id,rdtfd.info');
+        $this->db->select('rdtfd.variety_id,rdtfd.info,rdtfd.ranking');
         $this->db->where('rdtfd.year',$year);
         $this->db->where('rdtfd.season_id',$season_id);
         $this->db->where_in('rdtfd.variety_id',$ids);
@@ -105,6 +105,7 @@ class Report_trial_analysis_model extends CI_Model
             foreach($results as $result)
             {
                 $varieties[$result['variety_id']]['info']=$result['info'];
+                $varieties[$result['variety_id']]['ranking']=$result['ranking'];
 
             }
             return $varieties;

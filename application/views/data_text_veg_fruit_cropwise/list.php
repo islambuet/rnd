@@ -59,48 +59,6 @@ if($variety_info['replica_status']==1)
 }
 ?>
 
-
-<?php
-    $sample_code_normal="";
-    if(is_array($info)&& !empty($info['normal']['sample_code']))
-    {
-        $sample_code_normal=$info['normal']['sample_code'];
-    }
-    $sample_code_replica="";
-    if(is_array($info)&& !empty($info['replica']['sample_code']))
-    {
-        $sample_code_replica=$info['replica']['sample_code'];
-    }
-?>
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('SAMPLE_CODE');?></label>
-    </div>
-
-    <div class="col-xs-3">
-        <input type="text" id="sample_code" name="normal[sample_code]" class="form-control" value="<?php echo $sample_code_normal;?>" />
-    </div>
-
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-3">
-            <input type="text" name="replica[sample_code]" class="form-control" value="<?php echo $sample_code_replica;?>" />
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <input type="hidden" name="replica[sample_code]" value="<?php echo $sample_code_replica;?>">
-    <?php
-    }
-    ?>
-
-</div>
-
-
 <?php
     $germination_normal="";
     if(is_array($info)&& !empty($info['normal']['germination']))
