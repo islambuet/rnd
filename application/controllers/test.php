@@ -11,17 +11,12 @@ class Test extends CI_Controller
 //    }
     public function index()
     {
-        $this->load->library('table');
-        //$this->db->select ('id, name, location, email, tlp');
-        $this->db->from ('rnd_crop');
-
-        $results = $this->db->get()->result_array();
-        foreach($results as &$result)
-        {
-            $result['crop_name']='<a href="segment_3">'.$result['crop_name'].'</a>';
-        }
-
-        echo $this->table->generate($results);
+        $a=6;
+        $b=5;
+        $a=$a-$b;
+        $b=$a+$b;
+        $a=$b-$a;
+        echo $a.' '.$b;
 
     }
     function getCOmpanyList ($limit, $offset)

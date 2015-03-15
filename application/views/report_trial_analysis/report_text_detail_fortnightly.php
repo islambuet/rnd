@@ -696,16 +696,41 @@ foreach($varieties as $variety)
 
     //for ranking
     $table_heads['ranking']='ranking';
-    $data['ranking']['normal']=9999;
-    $data['ranking']['replica']=9999;
+    $data['ranking']['normal']=$data['ranking']['replica']='';
     if(isset($fortnightly[$variety['id']]['ranking']))
     {
-        $data['ranking']['normal']=$fortnightly[$variety['id']]['ranking'];
-        $data['ranking']['replica']=$fortnightly[$variety['id']]['ranking'];
+        $data['ranking']['normal']=$data['ranking']['replica']=$fortnightly[$variety['id']]['ranking'];
     }
     //ranking finished
 
     $final_varieties[]=$data;
+}
+//sorting final variety
+for($i=0;$i<(sizeof($final_varieties)-1);$i++)
+{
+    for($j=$i+1;$j<sizeof($final_varieties);$j++)
+    {
+        if(($final_varieties[$i]['ranking']['normal']=='')&&($final_varieties[$j]['ranking']['normal']==''))
+        {
+
+        }
+        elseif($final_varieties[$i]['ranking']['normal']=='')
+        {
+            $temp=$final_varieties[$i];
+            $final_varieties[$i]=$final_varieties[$j];
+            $final_varieties[$j]=$temp;
+        }
+        elseif($final_varieties[$j]['ranking']['normal']=='')
+        {
+
+        }
+        elseif(($final_varieties[$i]['ranking']['normal']>$final_varieties[$j]['ranking']['normal']))
+        {
+            $temp=$final_varieties[$i];
+            $final_varieties[$i]=$final_varieties[$j];
+            $final_varieties[$j]=$temp;
+        }
+    }
 }
 ?>
 <div class="row show-grid">
