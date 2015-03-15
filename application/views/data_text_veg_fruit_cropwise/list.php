@@ -2722,7 +2722,86 @@ if($options['average_harvested_plant']==1)
 <?php
 }
 ?>
+<?php
 
+$accepted_normal=1;
+if(is_array($info)&& isset($info['normal']['accepted']))
+{
+    $accepted_normal=$info['normal']['accepted'];
+}
+
+$accepted_replica="";
+if(is_array($info)&& isset($info['replica']['accepted']))
+{
+    $accepted_replica=$info['replica']['accepted'];
+}
+?>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ACCEPTED');?></label>
+    </div>
+    <div class="col-xs-3">
+        <input type="radio" name="normal[accepted]" value="1" <?php if($accepted_normal!=0){echo 'checked';} ?>><?php echo $this->lang->line('YES');?>
+        <input type="radio" name="normal[accepted]" value="0" <?php if($accepted_normal==0){echo 'checked';} ?>><?php echo $this->lang->line('NO');?>
+    </div>
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-3">
+            <input type="radio" name="replica[accepted]" value="1" <?php if($accepted_replica!=0){echo 'checked';} ?>><?php echo $this->lang->line('YES');?>
+            <input type="radio" name="replica[accepted]" value="0" <?php if($accepted_replica==0){echo 'checked';} ?>><?php echo $this->lang->line('NO');?>
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <input type="hidden" name="replica[accepted]" value="<?php echo $accepted_replica;?>">
+    <?php
+    }
+    ?>
+</div>
+
+
+
+<?php
+
+$remarks_normal="";
+if(is_array($info)&& !empty($info['normal']['remarks']))
+{
+    $remarks_normal=$info['normal']['remarks'];
+}
+$remarks_replica="";
+if(is_array($info)&& !empty($info['replica']['remarks']))
+{
+    $remarks_replica=$info['replica']['remarks'];
+}
+?>
+<div class="row show-grid">
+    <div class="col-xs-4">
+        <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REMARKS');?></label>
+    </div>
+    <div class="col-xs-3">
+        <textarea class="form-control" name="normal[remarks]"><?php echo $remarks_normal; ?></textarea>
+    </div>
+    <?php
+    if($variety_info['replica_status']==1)
+    {
+        ?>
+        <div class="col-xs-3">
+            <textarea class="form-control" name="replica[remarks]"><?php echo $remarks_replica; ?></textarea>
+        </div>
+    <?php
+    }
+    else
+    {
+        ?>
+        <input type="hidden" name="replica[remarks]" value="<?php echo $remarks_replica;?>">
+    <?php
+    }
+    ?>
+</div>
 <div class="row show-grid">
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RANKING');?></label>
