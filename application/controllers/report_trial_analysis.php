@@ -55,6 +55,7 @@ class Report_trial_analysis extends ROOT_Controller
         $year = $this->input->post('year');
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
+        $crop_type_id = $this->input->post('crop_type_id');
         $data['varieties']=$this->report_trial_analysis_model->get_varieties_by_ids($variety_ids);
         $data['delivery_and_sowing_info']=Query_helper::get_info('delivery_and_sowing_setup','*',array('crop_id ='.$crop_id,'year ='.$year,'season_id ='.$season_id),1);
         $ajax['status'] = true;
@@ -74,14 +75,15 @@ class Report_trial_analysis extends ROOT_Controller
         {
             $data['options']=Query_helper::get_info('rnd_setup_text_fruit','*',array('crop_id ='.$crop_id),1);
             $data['fruit']=$this->report_trial_analysis_model->get_details_fruit($variety_ids,$year,$season_id);
-            //$fruit_types=$this->config->item('fruit_type');
-            //$data['fruit_type_name']=$fruit_types[$fruit_type['fruit_type']];
             $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fruit", $data, true));
 
         }
         elseif($report_name==4)
         {
-            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+            $data['options']=Query_helper::get_info('rnd_setup_text_harvest_cropwise','*',array('crop_id ='.$crop_id),1);
+            $data['harvest']=$this->report_trial_analysis_model->get_details_harvest($variety_ids,$year,$season_id);
+            $data['max_harvest']=$this->report_trial_analysis_model->get_max_harvest_days_text($year,$season_id,$crop_id,$crop_type_id);
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_harvest", $data, true));
         }
         elseif($report_name==5)
         {
@@ -139,7 +141,7 @@ class Report_trial_analysis extends ROOT_Controller
         }
         if(($report_name==4))
         {
-            $data['max_harvest']=$this->report_trial_analysis_model->get_max_harvest_days($year,$season_id,$crop_id,$crop_type_id);
+            $data['max_harvest']=$this->report_trial_analysis_model->get_max_harvest_days_image($year,$season_id,$crop_id,$crop_type_id);
             $data['harvest']=$this->report_trial_analysis_model->get_harvest_images($variety_ids,$year,$season_id);
 
         }

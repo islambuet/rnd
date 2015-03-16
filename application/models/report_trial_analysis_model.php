@@ -168,6 +168,33 @@ class Report_trial_analysis_model extends CI_Model
             return null;
         }
     }
+    public function get_details_harvest($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_text_harvest_cropwise rdthc');
+        $this->db->select('rdthc.variety_id,rdthc.info,rdthc.harvest_no');
+        $this->db->where('rdthc.year',$year);
+        $this->db->where('rdthc.season_id',$season_id);
+        $this->db->where_in('rdthc.variety_id',$ids);
+        $results=$this->db->get()->result_array();
+        //return $results;
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']][$result['harvest_no']]=$result['info'];
+
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+
+    }
     public function get_max_15_days($year,$season_id,$crop_id,$crop_type_id)
     {
         $this->db->from('rnd_setup_image_fifteen_days rsifd');
@@ -183,7 +210,7 @@ class Report_trial_analysis_model extends CI_Model
         return $result['max_days']?$result['max_days']:1;
 
     }
-    public function get_max_harvest_days($year,$season_id,$crop_id,$crop_type_id)
+    public function get_max_harvest_days_image($year,$season_id,$crop_id,$crop_type_id)
     {
         $this->db->from('rnd_data_image_harvest_cropwise rdihc');
         $this->db->select('MAX(rdihc.harvest_no) max_days');
@@ -193,6 +220,21 @@ class Report_trial_analysis_model extends CI_Model
         if($crop_type_id>0)
         {
             $this->db->where('rdihc.crop_type_id',$crop_type_id);
+        }
+        $result=$this->db->get()->row_array();
+        return $result['max_days']?$result['max_days']:1;
+
+    }
+    public function get_max_harvest_days_text($year,$season_id,$crop_id,$crop_type_id)
+    {
+        $this->db->from('rnd_data_text_harvest_cropwise rdthc');
+        $this->db->select('MAX(rdthc.harvest_no) max_days');
+        $this->db->where('rdthc.year',$year);
+        $this->db->where('rdthc.season_id',$season_id);
+        $this->db->where('rdthc.crop_id',$crop_id);
+        if($crop_type_id>0)
+        {
+            $this->db->where('rdthc.crop_type_id',$crop_type_id);
         }
         $result=$this->db->get()->row_array();
         return $result['max_days']?$result['max_days']:1;
