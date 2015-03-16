@@ -523,13 +523,13 @@ if($options['avg_curd_wt']==1)
 
     if(($sum_total_harvested_wt_normal>0) && ($sum_no_of_plants_harvested_normal>0))
     {
-        $average_curd_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
+        $average_curd_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal)*1000, 2);
     }
 
     $average_curd_weight_replica = $this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_replica>0) && ($sum_no_of_plants_harvested_replica>0))
     {
-        $average_curd_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
+        $average_curd_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica)*1000, 2);
     }
 
 
@@ -838,7 +838,7 @@ if($options['avg_head_wt']==1)
     $average_head_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_plants_harvested_normal>0))
     {
-        $average_head_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
+        $average_head_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal)*1000, 2);
     }
 
 
@@ -858,7 +858,7 @@ if($options['avg_head_wt']==1)
             $average_head_weight_replica=$this->lang->line("CANNOT_CALCULATE");
             if(($sum_total_harvested_wt_replica>0)&&($sum_no_of_plants_harvested_replica>0))
             {
-                $average_head_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
+                $average_head_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica)*1000, 2);
             }
 
             ?>
@@ -1205,7 +1205,7 @@ if($options['avg_fruit_wt']==1)
     $average_fruit_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_of_no_of_fruits_normal>0))
     {
-        $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_of_no_of_fruits_normal, 2);
+        $average_fruit_weight_normal = round(($sum_total_harvested_wt_normal/$sum_of_no_of_fruits_normal)*1000, 2);
     }
 
 
@@ -1225,7 +1225,7 @@ if($options['avg_fruit_wt']==1)
             $average_fruit_weight_replica=$this->lang->line("CANNOT_CALCULATE");
             if(($sum_total_harvested_wt_replica>0)&&($sum_of_no_of_fruits_replica>0))
             {
-                $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_of_no_of_fruits_replica, 2);
+                $average_fruit_weight_replica = round(($sum_total_harvested_wt_replica/$sum_of_no_of_fruits_replica)*1000, 2);
             }
 
             ?>
@@ -1564,7 +1564,7 @@ if($options['avg_root_wt']==1)
     $average_root_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_roots_normal>0))
     {
-        $average_root_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_roots_normal, 2);
+        $average_root_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_roots_normal)*1000, 2);
     }
 
     ?>
@@ -1583,7 +1583,7 @@ if($options['avg_root_wt']==1)
             $average_root_weight_replica=$this->lang->line("CANNOT_CALCULATE");
             if(($sum_total_harvested_wt_replica>0)&&($sum_no_of_roots_replica>0))
             {
-                $average_root_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_roots_replica, 2);
+                $average_root_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_roots_replica)*1000, 2);
             }
 
             ?>
