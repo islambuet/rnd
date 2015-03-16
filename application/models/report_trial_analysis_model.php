@@ -195,6 +195,32 @@ class Report_trial_analysis_model extends CI_Model
         }
 
     }
+    public function get_details_harvest_compile($ids,$year,$season_id)
+    {
+        $this->db->from('rnd_data_text_harvest_compile rdthc');
+        $this->db->select('rdthc.variety_id,rdthc.info,rdthc.ranking');
+        $this->db->where('rdthc.year',$year);
+        $this->db->where('rdthc.season_id',$season_id);
+        $this->db->where_in('rdthc.variety_id',$ids);
+        $results=$this->db->get()->result_array();
+        //return $results;
+        if(sizeof($results)>0)
+        {
+            $varieties=array();
+            foreach($results as $result)
+            {
+                $varieties[$result['variety_id']]['info']=$result['info'];
+                $varieties[$result['variety_id']]['ranking']=$result['ranking'];
+
+            }
+            return $varieties;
+
+        }
+        else
+        {
+            return null;
+        }
+    }
     public function get_max_15_days($year,$season_id,$crop_id,$crop_type_id)
     {
         $this->db->from('rnd_setup_image_fifteen_days rsifd');

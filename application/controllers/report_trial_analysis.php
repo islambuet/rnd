@@ -87,7 +87,10 @@ class Report_trial_analysis extends ROOT_Controller
         }
         elseif($report_name==5)
         {
-            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_fortnightly", $data, true));
+            $data['options']=Query_helper::get_info('rnd_setup_text_harvest_compile','*',array('crop_id ='.$crop_id),1);
+            $data['harvest']=$this->report_trial_analysis_model->get_details_harvest($variety_ids,$year,$season_id);
+            $data['harvest_compile']=$this->report_trial_analysis_model->get_details_harvest_compile($variety_ids,$year,$season_id);
+            $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_harvest_compile", $data, true));
         }
         elseif($report_name==6)
         {
