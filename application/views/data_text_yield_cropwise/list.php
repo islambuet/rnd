@@ -32,7 +32,7 @@
     foreach($this->config->item('rating_label') as $key=>$rating)
     {
         ?>
-        <button class="btn-primary"><?php echo $key.'='.$rating; ?></button>
+        <button type="button" class="btn-primary"><?php echo $key.'='.$rating; ?></button>
     <?php
     }
     ?>

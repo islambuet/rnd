@@ -18,7 +18,7 @@ $info=json_decode($variety_info['info'],true);
     foreach($this->config->item('rating_label') as $key=>$rating)
     {
         ?>
-        <button class="btn-primary"><?php echo $key.'='.$rating; ?></button>
+        <button type="button" class="btn-primary"><?php echo $key.'='.$rating; ?></button>
     <?php
     }
     ?>
@@ -377,7 +377,7 @@ if($options['fruit_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_WEIGHT_GM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_normal;?>"/>
@@ -473,7 +473,7 @@ if($options['fruit_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_DIAMETER_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[fruit_diameter]" value="<?php echo $fruit_diameter_normal;?>" />
@@ -569,7 +569,7 @@ if($options['fruit_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[fruit_height]" value="<?php echo $fruit_height_normal;?>" />
@@ -1195,7 +1195,7 @@ if($options['curd_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_WEIGHT_GM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_weight]" class="form-control" value="<?php echo $curd_weight_normal;?>" />
@@ -1291,7 +1291,7 @@ if($options['curd_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_DIAMETER_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_diameter]" class="form-control" value="<?php echo $curd_diameter_normal;?>" />
@@ -1387,7 +1387,7 @@ if($options['curd_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[curd_height]" class="form-control" value="<?php echo $curd_height_normal;?>" />
@@ -1748,7 +1748,7 @@ if($options['head_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_WEIGHT_GM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_weight]" class="form-control" value="<?php echo $head_weight_normal;?>" />
@@ -1844,7 +1844,7 @@ if($options['head_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_DIAMETER_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_diameter]" class="form-control" value="<?php echo $head_diameter_normal;?>" />
@@ -1940,7 +1940,7 @@ if($options['head_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[head_height]" class="form-control" value="<?php echo $head_height_normal;?>" />
@@ -2027,7 +2027,7 @@ if($options['targeted_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_WEIGHT_GM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <label class="form-control"><?php echo $variety_info['terget_weight'];?></label>
@@ -2054,7 +2054,7 @@ if($options['targeted_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
@@ -2143,7 +2143,7 @@ if($options['leaf_length']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_LENGTH_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_LEAF_LENGTH');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[leaf_length]" class="form-control" value="<?php echo $leaf_length_normal;?>" />
@@ -2653,7 +2653,7 @@ if($options['root_weight']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_WEIGHT_GM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_weight]" class="form-control" value="<?php echo $root_weight_normal;?>" />
@@ -2749,7 +2749,7 @@ if($options['root_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_DIAMETER_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_diameter]" class="form-control" value="<?php echo $root_diameter_normal;?>" />
@@ -2836,10 +2836,11 @@ if($options['targeted_root_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_ROOT_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGETED_ROOT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <label class="form-control"><?php echo $variety_info['terget_length'];?></label>
+
         </div>
         <?php
         if($variety_info['replica_status']==1)
@@ -2874,7 +2875,7 @@ if($options['root_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[root_height]" class="form-control" value="<?php echo $root_height_normal;?>" />
@@ -3552,7 +3553,7 @@ if($options['core_diameter']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CORE_DIAMETER_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CORE_DIAMETER');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" name="normal[core_diameter]" class="form-control" value="<?php echo $core_diameter_normal;?>" />
@@ -4125,7 +4126,7 @@ if($options['plant_height']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_HEIGHT_CM');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLANT_HEIGHT');?></label>
         </div>
         <div class="col-xs-3">
             <input type="text" class="form-control" name="normal[plant_height]" value="<?php echo $plant_height_normal;?>" />

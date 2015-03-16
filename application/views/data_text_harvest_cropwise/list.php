@@ -27,7 +27,7 @@ $info=json_decode($variety_info['info'],true);
     foreach($this->config->item('rating_label') as $key=>$rating)
     {
         ?>
-        <button class="btn-primary"><?php echo $key.'='.$rating; ?></button>
+        <button type="button" class="btn-primary"><?php echo $key.'='.$rating; ?></button>
     <?php
     }
     ?>
@@ -98,6 +98,8 @@ if($options['harvesting_date']==1)
     <div class="col-xs-4">
         <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
     </div>
+
+
 
     <?php
     if($variety_info['replica_status']==1)
@@ -181,7 +183,7 @@ if($options['total_harvested_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_HARVESTED_WT_KG');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_HARVESTED_WT');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -271,7 +273,7 @@ if($options['total_mrkt_curd_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_CURD_WT_KG');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_CURD_WT');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -604,7 +606,7 @@ if($options['total_mrkt_fruit_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_FRUIT_WT_KG');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_FRUIT_WT');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -793,7 +795,7 @@ if($options['total_mrkt_roots_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_ROOTS_WT_KG');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_ROOTS_WT');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -981,7 +983,7 @@ if($options['total_mrkt_leaf_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_LEAF_WT_KG');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MRKT_LEAF_WT');?></label>
         </div>
 
         <div class="col-xs-3">
