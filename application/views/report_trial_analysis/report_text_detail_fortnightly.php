@@ -32,9 +32,11 @@ foreach($varieties as $variety)
     $table_heads['rnd_code']='rnd_code';
     $data['rnd_code']['normal']=$data['rnd_code']['replica']=System_helper::get_rnd_code($variety);
     //rnd code finish
+
+    //we assumed sowing_date and transplant date is same
     if($options['sowing_date']==1)
     {
-        $table_heads['sowing_date']='sowing_date';
+        //$table_heads['sowing_date']='sowing_date';
         $data['sowing_date']['normal']=$data['sowing_date']['replica']=$this->lang->line('NOT_SET');
         if($delivery_and_sowing_info['sowing_date']>0)
         {
@@ -43,10 +45,10 @@ foreach($varieties as $variety)
     }
     if($options['transplanting_date']==1)
     {
-        $table_heads['transplanting_date']='transplanting_date';
-        $table_heads['expected_transplanting_date']='expected_transplanting_date';
-        $data['expected_transplanting_date']['normal']=$data['expected_transplanting_date']['replica']=$this->lang->line('NOT_SET');
-        $data['transplanting_date']['normal']=$data['transplanting_date']['replica']=$this->lang->line('NOT_SET');
+        //$table_heads['transplanting_date']='transplanting_date';
+        //$table_heads['expected_transplanting_date']='expected_transplanting_date';
+        //$data['expected_transplanting_date']['normal']=$data['expected_transplanting_date']['replica']=$this->lang->line('NOT_SET');
+        //$data['transplanting_date']['normal']=$data['transplanting_date']['replica']=$this->lang->line('NOT_SET');
         if($delivery_and_sowing_info['transplanting_date']>0)
         {
             $data['transplanting_date']['normal']=$data['transplanting_date']['replica']=System_helper::display_date($delivery_and_sowing_info['transplanting_date']);
@@ -732,13 +734,54 @@ for($i=0;$i<(sizeof($final_varieties)-1);$i++)
         }
     }
 }
+
+if($options['sowing_date']==1)
+{
+    ?>
+    <div class="row show-grid" style="margin-top: 20px;">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SOWING_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $final_varieties[0]['sowing_date']['normal'];?></label>
+        </div>
+    </div>
+    <?php
+}
+if($options['transplanting_date']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSPLANTING_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $final_varieties[0]['transplanting_date']['normal'];?></label>
+        </div>
+    </div>
+
+
+
+    <div class="row show-grid">
+        <div class="col-xs-6">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_TRANSPLANTING_DATE');?></label>
+        </div>
+        <div class="col-xs-2">
+            <label class="form-control"><?php echo $final_varieties[0]['expected_transplanting_date']['normal'];?></label>
+        </div>
+    </div>
+    <?php
+
+
+}
 ?>
+
 <div class="row show-grid">
     <div class="col-xs-12" style="overflow-x: auto">
         <table class="table table-hover table-bordered" >
-            <thead class="hidden-print">
+            <thead class="">
             <tr>
-                <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("SL"); ?></th>
                 <?php
                     foreach($table_heads as $th)
                     {
