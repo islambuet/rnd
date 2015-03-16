@@ -295,7 +295,7 @@ if($options['total_curd_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_CURD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_CURD_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -371,7 +371,7 @@ if($options['total_market_curd_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_CURD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_CURD_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -536,7 +536,7 @@ if($options['avg_curd_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_CURD_WT_GM');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -606,7 +606,7 @@ if($options['total_head_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_HEAD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_HEAD_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -684,7 +684,7 @@ if($options['total_market_head_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_HEAD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_HEAD_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -845,7 +845,7 @@ if($options['avg_head_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_HEAD_WT_GM');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -918,7 +918,7 @@ if($options['total_fruit_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_FRUIT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_FRUIT_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -994,7 +994,7 @@ if($options['total_market_fruit_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_FRUIT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_FRUIT_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1212,7 +1212,7 @@ if($options['avg_fruit_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT_GM');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1338,7 +1338,7 @@ if($options['total_root_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_ROOT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_ROOT_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1414,7 +1414,7 @@ if($options['total_market_root_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_ROOT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_ROOT_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1570,7 +1570,7 @@ if($options['avg_root_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('AVG_ROOT_WT_GM');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1644,7 +1644,7 @@ if($options['total_leaf_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_LEAF_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_LEAF_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
@@ -1722,7 +1722,7 @@ if($options['total_market_leaf_wt']==1)
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_LEAF_WT');?></label>
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_MARKET_LEAF_WT_KG');?></label>
         </div>
 
         <div class="col-xs-3">
