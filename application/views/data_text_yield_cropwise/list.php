@@ -499,38 +499,6 @@ if($options['avg_leaf_wt']==1)
 ?>
 
 <?php
-if($options['targeted_yield_per_ha']==1)
-{
-    ?>
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_YIELD_PER_HA');?></label>
-        </div>
-
-        <?php
-        if($variety_info['replica_status']==1)
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="form-control"><?php echo $variety_info['terget_yeild'];;?></label>
-            </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <div class="col-xs-3">
-                <label class="form-control"><?php echo $variety_info['terget_yeild'];;?></label>
-            </div>
-            <?php
-        }
-        ?>
-    </div>
-<?php
-}
-?>
-
-<?php
 if($options['max_estimated_yield_per_ha']==1)
 {
     $max_estimated_yield_normal = $this->lang->line("CANNOT_CALCULATE");
@@ -617,6 +585,38 @@ if($options['max_estimated_yield_evaluation']==1)
         }
         ?>
 
+    </div>
+<?php
+}
+?>
+
+<?php
+if($options['targeted_yield_per_ha']==1)
+{
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TARGETED_YIELD_PER_HA');?></label>
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $variety_info['terget_yeild'];;?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $variety_info['terget_yeild'];;?></label>
+            </div>
+        <?php
+        }
+        ?>
     </div>
 <?php
 }
