@@ -11,12 +11,12 @@ class Test extends CI_Controller
 //    }
     public function index()
     {
-        $a=6;
-        $b=5;
-        $a=$a-$b;
-        $b=$a+$b;
-        $a=$b-$a;
-        echo $a.' '.$b;
+        $data=array('lock_id'=>"'lock_id' +1");
+        $this->db->where('st_id',1);
+        $this->db->update('student',$data);
+        echo $this->db->last_query();
+
+
 
     }
     function getCOmpanyList ($limit, $offset)

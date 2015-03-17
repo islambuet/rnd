@@ -19,17 +19,20 @@ $(document).ready(function()
     });
     $(document).ajaxComplete(function(event,xhr,options)
     {
-        if(xhr.responseJSON.page_url)
+        if(xhr.responseJSON)
         {
-            //window.history.pushState(null, "Search Results",xhr.responseJSON.page_url);
-            window.history.replaceState(null, "Search Results",xhr.responseJSON.page_url);
-        }
+            if(xhr.responseJSON.page_url)
+            {
+                //window.history.pushState(null, "Search Results",xhr.responseJSON.page_url);
+                window.history.replaceState(null, "Search Results",xhr.responseJSON.page_url);
+            }
 
-        //$("#loading").hide();
-        $("#loading").hide();
-        if(xhr.responseJSON.message)
-        {
-            animate_message(xhr.responseJSON.message);
+            //$("#loading").hide();
+            $("#loading").hide();
+            if(xhr.responseJSON.message)
+            {
+                animate_message(xhr.responseJSON.message);
+            }
         }
     });
     $(document).ajaxError(function(event,xhr,options)
