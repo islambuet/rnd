@@ -8,9 +8,9 @@
 //echo "<pre>";
 //print_r($options);
 //echo "</pre>";
-echo "<pre>";
-print_r($harvest);
-echo "</pre>";
+//echo "<pre>";
+//print_r($harvest);
+//echo "</pre>";
 //echo "<pre>";
 //print_r($harvest_compile);
 //echo "</pre>";
@@ -156,8 +156,9 @@ foreach($varieties as $variety)
     }
     if($options['total_market_fruits']==1)
     {
+
         $table_heads['total_market_fruits']='total_market_fruits';
-        $data['total_market_fruits']['normal']=$data['total_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        $data['total_market_fruits']['normal']=$data['total_market_fruits']['replica']=$this->lang->line("CANNOT_CALCULATE");
     }
     if($options['total_market_fruit_wt']==1)
     {
@@ -254,7 +255,18 @@ foreach($varieties as $variety)
         $table_heads['percentage_of_mrkt_leaf_wt']='percentage_of_mrkt_leaf_wt';
         $data['percentage_of_mrkt_leaf_wt']['normal']=$data['percentage_of_mrkt_leaf_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
     }
-
+    $table_heads['f_holding_capacity']='f_holding_capacity';
+    $data['f_holding_capacity']['normal']=$data['f_holding_capacity']['replica']=$this->lang->line('NOT_SET');
+    $table_heads['average_uniformity']='average_uniformity';
+    $data['average_uniformity']['normal']=$data['average_uniformity']['replica']=$this->lang->line('CANNOT_CALCULATE');
+    $table_heads['evaluation']='evaluation';
+    $data['evaluation']['normal']=$data['evaluation']['replica']=$this->lang->line('NOT_SET');
+    $table_heads['accepted']='accepted';
+    $data['accepted']['normal']=$data['accepted']['replica']=$this->lang->line('NOT_SET');
+    $table_heads['remarks']='remarks';
+    $data['remarks']['normal']=$data['remarks']['replica']=$this->lang->line('NOT_SET');
+    $table_heads['ranking']='ranking';
+    $data['ranking']['normal']=$data['ranking']['replica']='';
 
     if(isset($harvest[$variety['id']]))
     {
@@ -956,6 +968,87 @@ foreach($varieties as $variety)
                 $data['percentage_of_mrkt_leaf_wt']['replica']=round(($total_replica_up/$total_harvested_weight_replica)*100,2);
             }
         }
+        $sum_uniformity_normal = 0;
+        $sum_uniformity_replica = 0;
+        foreach($harvest[$variety['id']] as $hcd)
+        {
+            $detail = json_decode($hcd,true);
+
+            if(isset($detail['normal']['curd_uniformity']))
+            {
+                $uniformity_normal = $detail['normal']['curd_uniformity'];
+                $uniformity_replica = $detail['replica']['curd_uniformity'];
+                $sum_uniformity_normal += $uniformity_normal;
+                $sum_uniformity_replica += $uniformity_replica;
+            }
+            elseif(isset($detail['normal']['head_uniformity']))
+            {
+                $uniformity_normal = $detail['normal']['head_uniformity'];
+                $uniformity_replica = $detail['replica']['head_uniformity'];
+                $sum_uniformity_normal += $uniformity_normal;
+                $sum_uniformity_replica += $uniformity_replica;
+            }
+            elseif(isset($detail['normal']['fruit_uniformity']))
+            {
+                $uniformity_normal = $detail['normal']['fruit_uniformity'];
+                $uniformity_replica = $detail['replica']['fruit_uniformity'];
+                $sum_uniformity_normal += $uniformity_normal;
+                $sum_uniformity_replica += $uniformity_replica;
+            }
+            elseif(isset($detail['normal']['roots_uniformity']))
+            {
+                $uniformity_normal = $detail['normal']['roots_uniformity'];
+                $uniformity_replica = $detail['replica']['roots_uniformity'];
+                $sum_uniformity_normal += $uniformity_normal;
+                $sum_uniformity_replica += $uniformity_replica;
+            }
+            elseif(isset($detail['normal']['leaf_uniformity']))
+            {
+                $uniformity_normal = $detail['normal']['leaf_uniformity'];
+                $uniformity_replica = $detail['replica']['leaf_uniformity'];
+                $sum_uniformity_normal += $uniformity_normal;
+                $sum_uniformity_replica += $uniformity_replica;
+            }
+        }
+        if(($sum_uniformity_normal>0)&&($total_harvest>0))
+        {
+            $data['average_uniformity']['normal']=round($sum_uniformity_normal/$total_harvest, 2);
+        }
+        if(($sum_uniformity_replica>0)&&($total_harvest>0))
+        {
+            $data['average_uniformity']['replica']=round($sum_uniformity_replica/$total_harvest, 2);
+        }
+
+    }
+
+
+
+    if(is_array($info)&& isset($info['normal']['f_holding_capacity']))
+    {
+        $data['f_holding_capacity']['normal']=$info['normal']['f_holding_capacity'];
+    }
+    if($variety['replica_status']==1)
+    {
+        if(is_array($info)&& isset($info['replica']['f_holding_capacity']))
+        {
+            $data['f_holding_capacity']['replica']=$info['replica']['f_holding_capacity'];
+        }
+
+    }
+
+
+
+
+    if(is_array($info)&& isset($info['normal']['evaluation']))
+    {
+        $data['evaluation']['normal']=$info['normal']['evaluation'];
+    }
+    if($variety['replica_status']==1)
+    {
+        if(is_array($info)&& isset($info['replica']['evaluation']))
+        {
+            $data['evaluation']['replica']=$info['replica']['evaluation'];
+        }
 
     }
 
@@ -963,8 +1056,7 @@ foreach($varieties as $variety)
 
 
     //accepted without option
-    $table_heads['accepted']='accepted';
-    $data['accepted']['normal']=$data['accepted']['replica']=$this->lang->line('NOT_SET');
+
     if(is_array($info)&& isset($info['normal']['accepted']))
     {
         if(($info['normal']['accepted'])==1)
@@ -994,8 +1086,7 @@ foreach($varieties as $variety)
     }
     //accepted without option
     //remarks without option
-    $table_heads['remarks']='remarks';
-    $data['remarks']['normal']=$data['remarks']['replica']=$this->lang->line('NOT_SET');
+
     if(is_array($info)&& !empty($info['normal']['remarks']))
     {
         $data['remarks']['normal']=$data['remarks']['replica']=$info['normal']['remarks'];
@@ -1004,8 +1095,7 @@ foreach($varieties as $variety)
     //remarks without option
 
     //for ranking
-    $table_heads['ranking']='ranking';
-    $data['ranking']['normal']=$data['ranking']['replica']='';
+
     if(isset($harvest_compile[$variety['id']]['ranking']))
     {
         $data['ranking']['normal']=$data['ranking']['replica']=$harvest_compile[$variety['id']]['ranking'];
