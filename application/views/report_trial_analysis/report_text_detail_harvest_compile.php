@@ -99,6 +99,96 @@ foreach($varieties as $variety)
         $table_heads['percentage_of_mrkt_curd']='percentage_of_mrkt_curd';
         $data['percentage_of_mrkt_curd']['normal']=$data['percentage_of_mrkt_curd']['replica']=$this->lang->line("CANNOT_CALCULATE");
     }
+    if($options['percentage_of_mrkt_curd_wt']==1)
+    {
+        $table_heads['percentage_of_mrkt_curd_wt']='percentage_of_mrkt_curd_wt';
+        $data['percentage_of_mrkt_curd_wt']['normal']=$data['percentage_of_mrkt_curd_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_curd_wt']==1)
+    {
+        $table_heads['avg_curd_wt']='avg_curd_wt';
+        $data['avg_curd_wt']['normal']=$data['avg_curd_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_harv_heads']==1)
+    {
+        $table_heads['total_harv_heads']='total_harv_heads';
+        $data['total_harv_heads']['normal']=$data['total_harv_heads']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_head_wt']==1)
+    {
+        $table_heads['total_head_wt']='total_head_wt';
+        $data['total_head_wt']['normal']=$data['total_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_market_heads']==1)
+    {
+        $table_heads['total_market_heads']='total_market_heads';
+        $data['total_market_heads']['normal']=$data['total_market_heads']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_market_head_wt']==1)
+    {
+        $table_heads['total_market_head_wt']='total_market_head_wt';
+        $data['total_market_head_wt']['normal']=$data['total_market_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['percentage_of_mrkt_head']==1)
+    {
+        $table_heads['percentage_of_mrkt_head']='percentage_of_mrkt_head';
+        $data['percentage_of_mrkt_head']['normal']=$data['percentage_of_mrkt_head']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['percentage_of_mrkt_head_wt']==1)
+    {
+        $table_heads['percentage_of_mrkt_head_wt']='percentage_of_mrkt_head_wt';
+        $data['percentage_of_mrkt_head_wt']['normal']=$data['percentage_of_mrkt_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_head_wt']==1)
+    {
+        $table_heads['avg_head_wt']='avg_head_wt';
+        $data['avg_head_wt']['normal']=$data['avg_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_harv_fruits']==1)
+    {
+        $table_heads['total_harv_fruits']='total_harv_fruits';
+        $data['total_harv_fruits']['normal']=$data['total_harv_fruits']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_fruit_wt']==1)
+    {
+        $table_heads['total_fruit_wt']='total_fruit_wt';
+        $data['total_fruit_wt']['normal']=$data['total_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_market_fruits']==1)
+    {
+        $table_heads['total_market_fruits']='total_market_fruits';
+        $data['total_market_fruits']['normal']=$data['total_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['total_market_fruit_wt']==1)
+    {
+        $table_heads['total_market_fruit_wt']='total_market_fruit_wt';
+        $data['total_market_fruit_wt']['normal']=$data['total_market_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['percentage_of_mrkt_fruit']==1)
+    {
+        $table_heads['percentage_of_mrkt_fruit']='percentage_of_mrkt_fruit';
+        $data['percentage_of_mrkt_fruit']['normal']=$data['percentage_of_mrkt_fruit']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['percentage_of_mrkt_fruit_wt']==1)
+    {
+        $table_heads['percentage_of_mrkt_fruit_wt']='percentage_of_mrkt_fruit_wt';
+        $data['percentage_of_mrkt_fruit_wt']['normal']=$data['percentage_of_mrkt_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['no_of_fruits_per_plant']==1)
+    {
+        $table_heads['no_of_fruits_per_plant']='no_of_fruits_per_plant';
+        $data['no_of_fruits_per_plant']['normal']=$data['no_of_fruits_per_plant']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_fruit_wt']==1)
+    {
+        $table_heads['avg_fruit_wt']='avg_fruit_wt';
+        $data['avg_fruit_wt']['normal']=$data['avg_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['fr_wt_per_plant']==1)
+    {
+        $table_heads['fr_wt_per_plant']='fr_wt_per_plant';
+        $data['fr_wt_per_plant']['normal']=$data['fr_wt_per_plant']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
     if(isset($harvest[$variety['id']]))
     {
         $total_harvest=sizeof($harvest[$variety['id']]);
@@ -179,24 +269,395 @@ foreach($varieties as $variety)
             $data['total_market_curd_wt']['normal']=$total_normal;
             $data['total_market_curd_wt']['replica']=$total_replica;
         }
+        //percentage style
+        if($options['percentage_of_mrkt_curd']==1)
+        {
 
-//        if($options['percentage_of_mrkt_curd']==1)
-//        {
-//
-//            $total_normal = 0;
-//            $total_replica = 0;
-//            foreach($harvest[$variety['id']] as $hcd)
-//            {
-//                $detail = json_decode($hcd,true);
-//                $value_normal = $detail['normal']['total_mrkt_curd_wt'];
-//                $value_replica = $detail['replica']['total_mrkt_curd_wt'];
-//                $total_normal += $value_normal;
-//                $total_replica += $value_replica;
-//            }
-//            if(($total_normal>0)&&
-//            //$data['total_market_curd_wt']['normal']=$total_normal;
-//            //$data['total_market_curd_wt']['replica']=$total_replica;
-//        }
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_curds'];
+                $value_replica = $detail['replica']['total_mrkt_curds'];
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
+
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_normal_down>0))
+            {
+                $data['percentage_of_mrkt_curd']['normal']=round(($total_normal_up/$total_normal_down)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_replica_down>0))
+            {
+                $data['percentage_of_mrkt_curd']['replica']=round(($total_replica_up/$total_replica_down)*100,2);
+            }
+        }
+        if($options['percentage_of_mrkt_curd_wt']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_curd_wt'];
+                $value_replica = $detail['replica']['total_mrkt_curd_wt'];
+                $total_normal_up += $value_normal;
+                $total_normal_up += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['percentage_of_mrkt_curd_wt']['normal']=round(($total_normal_up/$total_harvested_weight_normal)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['percentage_of_mrkt_curd_wt']['replica']=round(($total_replica_up/$total_harvested_weight_replica)*100,2);
+            }
+        }
+        if($options['avg_curd_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['avg_curd_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['avg_curd_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['total_harv_heads']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_harv_heads']['normal']=$total_normal;
+            $data['total_harv_heads']['replica']=$total_replica;
+        }
+
+        if($options['total_head_wt']==1)
+        {
+            $data['total_head_wt']['normal']=$total_harvested_weight_normal;
+            $data['total_head_wt']['replica']=$total_harvested_weight_replica;
+        }
+        if($options['total_market_heads']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_heads'];
+                $value_replica = $detail['replica']['total_mrkt_heads'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_market_heads']['normal']=$total_normal;
+            $data['total_market_heads']['replica']=$total_replica;
+        }
+        if($options['total_market_head_wt']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_head_wt'];
+                $value_replica = $detail['replica']['total_mrkt_head_wt'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_market_head_wt']['normal']=$total_normal;
+            $data['total_market_head_wt']['replica']=$total_replica;
+        }
+        if($options['percentage_of_mrkt_head']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_heads'];
+                $value_replica = $detail['replica']['total_mrkt_heads'];
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
+
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_normal_down>0))
+            {
+                $data['percentage_of_mrkt_head']['normal']=round(($total_normal_up/$total_normal_down)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_replica_down>0))
+            {
+                $data['percentage_of_mrkt_head']['replica']=round(($total_replica_up/$total_replica_down)*100,2);
+            }
+        }
+        if($options['percentage_of_mrkt_head_wt']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_head_wt'];
+                $value_replica = $detail['replica']['total_mrkt_head_wt'];
+                $total_normal_up += $value_normal;
+                $total_normal_up += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['percentage_of_mrkt_head_wt']['normal']=round(($total_normal_up/$total_harvested_weight_normal)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['percentage_of_mrkt_head_wt']['replica']=round(($total_replica_up/$total_harvested_weight_replica)*100,2);
+            }
+        }
+        if($options['avg_head_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['avg_head_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['avg_head_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['total_harv_fruits']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_harv_fruits']['normal']=$total_normal;
+            $data['total_harv_fruits']['replica']=$total_replica;
+        }
+        if($options['total_fruit_wt']==1)
+        {
+            $data['total_fruit_wt']['normal']=$total_harvested_weight_normal;
+            $data['total_fruit_wt']['replica']=$total_harvested_weight_replica;
+        }
+        if($options['total_market_fruits']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_fruits'];
+                $value_replica = $detail['replica']['total_mrkt_fruits'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_market_fruits']['normal']=$total_normal;
+            $data['total_market_fruits']['replica']=$total_replica;
+        }
+        if($options['total_market_fruit_wt']==1)
+        {
+
+            $total_normal = 0;
+            $total_replica = 0;
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_fruit_wt'];
+                $value_replica = $detail['replica']['total_mrkt_fruit_wt'];
+                $total_normal += $value_normal;
+                $total_replica += $value_replica;
+            }
+            $data['total_market_fruit_wt']['normal']=$total_normal;
+            $data['total_market_fruit_wt']['replica']=$total_replica;
+        }
+        if($options['percentage_of_mrkt_fruit']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_fruits'];
+                $value_replica = $detail['replica']['total_mrkt_fruits'];
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
+
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_normal_down>0))
+            {
+                $data['percentage_of_mrkt_fruit']['normal']=round(($total_normal_up/$total_normal_down)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_replica_down>0))
+            {
+                $data['percentage_of_mrkt_fruit']['replica']=round(($total_replica_up/$total_replica_down)*100,2);
+            }
+        }
+        if($options['percentage_of_mrkt_fruit_wt']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_mrkt_fruit_wt'];
+                $value_replica = $detail['replica']['total_mrkt_fruit_wt'];
+                $total_normal_up += $value_normal;
+                $total_normal_up += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['percentage_of_mrkt_fruit_wt']['normal']=round(($total_normal_up/$total_harvested_weight_normal)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['percentage_of_mrkt_fruit_wt']['replica']=round(($total_replica_up/$total_harvested_weight_replica)*100,2);
+            }
+        }
+        if($options['no_of_fruits_per_plant']==1)
+        {
+
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
+
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_up>0)&&($total_normal_down>0))
+            {
+                $data['no_of_fruits_per_plant']['normal']=round(($total_normal_up/$total_normal_down)*100,2);
+            }
+            if(($total_replica_up>0)&&($total_replica_down>0))
+            {
+                $data['no_of_fruits_per_plant']['replica']=round(($total_replica_up/$total_replica_down)*100,2);
+            }
+        }
+        if($options['avg_fruit_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['avg_fruit_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['avg_fruit_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['fr_wt_per_plant']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['fr_wt_per_plant']['normal']=round(($total_harvested_weight_normal/$total_normal_down),2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['fr_wt_per_plant']['replica']=round(($total_harvested_weight_replica/$total_replica_down),2);
+            }
+        }
+
     }
 
 
