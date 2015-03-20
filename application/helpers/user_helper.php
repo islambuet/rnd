@@ -18,7 +18,7 @@ class User_helper
     public static function login($username, $password)
     {
         $CI = & get_instance();
-        $user = $CI->db->get_where('ait_user_login', array('user_name' => $username, 'user_pass' => md5(md5($password))))->row();
+        $user = $CI->db->get_where('ait_user_login', array('rnd_group >'=>0,'user_name' => $username, 'user_pass' => md5(md5($password))))->row();
         if ($user)
         {
             $CI->session->set_userdata("user_id", $user->user_id);
