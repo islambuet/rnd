@@ -1,7 +1,7 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 $trial_status_config=$this->config->item('trial_status');
 $this->load->config('veg_config');
-$vc_plant_vigor_config=$this->config->item('vc_plant_vigor');
+$plant_vigor_config=$this->config->item('vc_plant_vigor');
 //echo "<pre>";
 //print_r($varieties);
 //echo "</pre>";
@@ -66,6 +66,20 @@ foreach($varieties as $variety)
         if(is_array($info)&& !empty($info['replica']['germination']))
         {
             $data['germination']['replica']=$info['replica']['germination'];
+        }
+    }
+
+    $table_heads['plant_vigor']='plant_vigor';
+    $data['plant_vigor']['normal']=$data['plant_vigor']['replica']=$this->lang->line('NOT_SET');
+    if(is_array($info)&& !empty($info['normal']['plant_vigor']))
+    {
+        $data['plant_vigor']['normal']=$plant_vigor_config[$info['normal']['plant_vigor']];
+    }
+    if($variety['replica_status']==1)
+    {
+        if(is_array($info)&& !empty($info['replica']['plant_vigor']))
+        {
+            $data['plant_vigor']['replica']=$plant_vigor_config[$info['replica']['plant_vigor']];
         }
     }
 
