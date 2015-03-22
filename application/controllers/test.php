@@ -11,10 +11,28 @@ class Test extends CI_Controller
 //    }
     public function index()
     {
-        $data=array('lock_id'=>"'lock_id' +1");
-        $this->db->where('st_id',1);
-        $this->db->update('student',$data);
-        echo $this->db->last_query();
+//        $this->db->from('rnd_task');
+//        $this->db->where('type','TASK');
+//        $this->db->where_in('id',array(29,30));
+//        $results=$this->db->get()->result();
+//        foreach($results as $result)
+//        {
+//            $data['user_group_id']=4;
+//            $data['task_id']=$result->id;
+//            $data['view']=1;
+//            $data['add']=1;
+//            $data['edit']=1;
+//            $data['delete']=1;
+//            $data['print']=1;
+//            $data['report']=1;
+//            $data['status']=1;
+//            $data['created_by']=0;
+//            $data['creation_date']=time();
+//            $this->db->insert('rnd_user_group_role',$data);
+//
+//
+//        }
+
 
 
 
