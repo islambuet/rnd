@@ -103,6 +103,8 @@ class Report_trial_analysis extends ROOT_Controller
         {
             $data['options']=Query_helper::get_info('rnd_setup_text_veg_fruit','*',array('crop_id ='.$crop_id),1);
             $data['final']=$this->report_trial_analysis_model->get_details_final($variety_ids,$year,$season_id);
+            $data['flowering']=$this->report_trial_analysis_model->get_details_flowering($variety_ids,$year,$season_id);
+            $data['harvest']=$this->report_trial_analysis_model->get_details_harvest($variety_ids,$year,$season_id);
             $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_final", $data, true));
         }
         else
