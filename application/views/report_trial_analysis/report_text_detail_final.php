@@ -1,26 +1,29 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+$trial_status_config=$this->config->item('trial_status');
+$this->load->config('veg_config');
+$vc_plant_vigor_config=$this->config->item('vc_plant_vigor');
 //echo "<pre>";
 //print_r($varieties);
 //echo "</pre>";
 //echo "<pre>";
 //print_r($delivery_and_sowing_info);
 //echo "</pre>";
-echo "<pre>";
-print_r($options);
-echo "</pre>";
-echo "<pre>";
-print_r($final);
-echo "</pre>";
+//echo "<pre>";
+//print_r($options);
+//echo "</pre>";
+//echo "<pre>";
+//print_r($final);
+//echo "</pre>";
 //echo "<pre>";
 //print_r($delivery_and_sowing_info);
 //echo "</pre>";
-return;
+
 $this->lang->load('rnd_veg');
 $table_heads=array();
 $final_varieties=array();
 foreach($varieties as $variety)
 {
-    $total_harvested_weight_normal=0;
+    /*$total_harvested_weight_normal=0;
     $total_harvested_weight_replica=0;
     if(isset($harvest[$variety['id']]))
     {
@@ -37,7 +40,7 @@ foreach($varieties as $variety)
 
         $total_harvested_weight_normal=$total_normal;
         $total_harvested_weight_replica=$total_replica;
-    }
+    }*/
     $info=array();
     if(isset($final[$variety['id']]['info']))
     {
@@ -51,9 +54,24 @@ foreach($varieties as $variety)
     //for rnd code
     $table_heads['rnd_code']='rnd_code';
     $data['rnd_code']['normal']=$data['rnd_code']['replica']=System_helper::get_rnd_code($variety);
+
+    $table_heads['germination']='germination';
+    $data['germination']['normal']=$data['germination']['replica']=$this->lang->line('NOT_SET');
+    if(is_array($info)&& !empty($info['normal']['germination']))
+    {
+        $data['germination']['normal']=$info['normal']['germination'];
+    }
+    if($variety['replica_status']==1)
+    {
+        if(is_array($info)&& !empty($info['replica']['germination']))
+        {
+            $data['germination']['replica']=$info['replica']['germination'];
+        }
+    }
+
     //rnd code finish
 
-    if($options['initial_plants']==1)
+    /*if($options['initial_plants']==1)
     {
         $table_heads['initial_plants']='initial_plants';
         $data['initial_plants']['normal']=$data['initial_plants']['replica']=$variety['initial_plants'];
@@ -313,7 +331,7 @@ foreach($varieties as $variety)
                 $data['actual_yield_per_ha_evaluation']['replica']=$info['replica']['actual_yield_per_ha_evaluation'];
             }
         }
-    }
+    }*/
 
 
     $table_heads['accepted']='accepted';
@@ -364,6 +382,12 @@ foreach($varieties as $variety)
         $data['ranking']['normal']=$data['ranking']['replica']=$final[$variety['id']]['ranking'];
     }
     //ranking finished
+    $table_heads['trial_status']='trial_status';
+    $data['trial_status']['normal']=$data['trial_status']['replica']=$this->lang->line('NOT_SET');
+    if(isset($final[$variety['id']]['trial_status']))
+    {
+        $data['trial_status']['normal']=$data['trial_status']['replica']=$trial_status_config[$final[$variety['id']]['trial_status']];
+    }
 
     $final_varieties[]=$data;
 }

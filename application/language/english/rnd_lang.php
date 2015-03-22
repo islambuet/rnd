@@ -22,6 +22,7 @@ $lang['LABEL_DAYS'] = 'Days';
 $lang['LABEL_TYPE_RND_CODE'] = 'Type R&D Code';
 $lang['LABEL_SELECT_YEAR'] = 'Select Year';
 $lang['LABEL_RANKING'] = 'Ranking';
+$lang['RANKING'] = 'Ranking';
 
 // CREATE BY MARAJ MASSAGE CAPTION
 ////////////////////////// FERTILISER
@@ -122,9 +123,11 @@ $lang['LABEL_SOWING'] = 'Sowing';
 $lang['LABEL_SOWING_DATE'] = 'Sowing Date';
 $lang['LABEL_ADD_MORE'] = 'Add More';
 $lang['LABEL_REMARKS'] = 'Remarks';
+$lang['REMARKS'] = 'Remarks';
 $lang['LABEL_DELETE'] = 'Delete';
 $lang['LABEL_CROP_VARIETY'] = 'Crop Variety';
 $lang['LABEL_RND_CODE'] = 'R&D Code';
+$lang['RND_CODE'] = 'R&D Code';
 $lang['LABEL_ALL_SELECT_RND_CODE'] = 'All Select (R&D Code)';
 $lang['LABEL_NO_DATA_AVAILABLE'] = 'No data available.';
 $lang['LABEL_RND_YEAR'] = 'R&D Year';
@@ -152,6 +155,7 @@ $lang['LABEL_CURD_UNIFORMITY'] = 'Crud Uniformity';
 $lang['LABEL_DISEASE_SEVERITY'] = 'Disease Severity';
 $lang['LABEL_SPECIAL_CHARACTERS'] = 'Special Characters';
 $lang['LABEL_ACCEPTED'] = 'Accepted';
+$lang['ACCEPTED'] = 'Accepted';
 
 $lang['LABEL_GOOD'] = 'Good';
 $lang['LABEL_AVERAGE'] = 'Average';
@@ -330,6 +334,7 @@ $lang['CANNOT_CALCULATE'] = 'Cann\'t Calculate';
 $lang['NOT_SET'] = 'Not Set';
 $lang['FULL_REPORT'] = 'View Full Report';
 $lang['LABEL_TRIAL_STATUS'] = 'Trial Status';
+$lang['TRIAL_STATUS'] = 'Trial Status';
 $lang['NO_VARIETY_SENT_FOR_RND'] = 'Warning No variety sent for R&D';
 
 
