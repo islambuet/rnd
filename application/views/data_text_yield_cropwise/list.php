@@ -504,7 +504,7 @@ if($options['max_estimated_yield_per_ha']==1)
     $max_estimated_yield_normal = $this->lang->line("CANNOT_CALCULATE");
     if($average_plant_weight_normal>0)
     {
-        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$average_plant_weight_normal)/1000, 2);
+        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$average_plant_weight_normal)/1000000, 2);
     }
 
     ?>
@@ -521,7 +521,7 @@ if($options['max_estimated_yield_per_ha']==1)
             $max_estimated_yield_replica = $this->lang->line("CANNOT_CALCULATE");
             if($average_plant_weight_replica>0)
             {
-                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$average_plant_weight_replica)/1000, 2);
+                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$average_plant_weight_replica)/1000000, 2);
             }
 
             ?>
@@ -650,7 +650,7 @@ if($options['actual_yield_per_ha']==1)
     if(is_array($info)&& !empty($info['normal']['total_plant_per_ha']))
     {
         $total_plant_per_ha_normal = $info['normal']['total_plant_per_ha'];
-        $max_estimated_yield_normal = round(($total_plant_per_ha_normal*$average_plant_weight_normal)/1000, 2);
+        $max_estimated_yield_normal = round(($total_plant_per_ha_normal*$average_plant_weight_normal)/1000000, 2);
         $actual_estimated_yield_normal = round($max_estimated_yield_normal*($survival_percentage_normal/100), 2);
     }
     else
@@ -661,7 +661,7 @@ if($options['actual_yield_per_ha']==1)
     if(is_array($info)&& !empty($info['replica']['total_plant_per_ha']))
     {
         $total_plant_per_ha_replica = $info['replica']['total_plant_per_ha'];
-        $max_estimated_yield_replica = round(($total_plant_per_ha_replica*$average_plant_weight_normal)/1000, 2);
+        $max_estimated_yield_replica = round(($total_plant_per_ha_replica*$average_plant_weight_normal)/1000000, 2);
         $actual_estimated_yield_replica = round($max_estimated_yield_replica*($survival_percentage_replica/100), 2);
     }
     else

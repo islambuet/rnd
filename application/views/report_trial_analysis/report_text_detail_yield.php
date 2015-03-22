@@ -14,11 +14,29 @@
 //echo "<pre>";
 //print_r($delivery_and_sowing_info);
 //echo "</pre>";
-
+$this->lang->load('rnd_yield');
 $table_heads=array();
 $final_varieties=array();
 foreach($varieties as $variety)
 {
+    $total_harvested_weight_normal=0;
+    $total_harvested_weight_replica=0;
+    if(isset($harvest[$variety['id']]))
+    {
+        $total_normal = 0;
+        $total_replica = 0;
+        foreach($harvest[$variety['id']] as $hcd)
+        {
+            $detail = json_decode($hcd,true);
+            $value_normal = $detail['normal']['total_harvested_wt'];
+            $value_replica = $detail['replica']['total_harvested_wt'];
+            $total_normal += $value_normal;
+            $total_replica += $value_replica;
+        }
+
+        $total_harvested_weight_normal=$total_normal;
+        $total_harvested_weight_replica=$total_replica;
+    }
     $info=array();
     if(isset($yield[$variety['id']]['info']))
     {
@@ -34,626 +52,268 @@ foreach($varieties as $variety)
     $data['rnd_code']['normal']=$data['rnd_code']['replica']=System_helper::get_rnd_code($variety);
     //rnd code finish
 
-    //we assumed sowing_date and transplant date is same
-    /*if($options['sowing_date']==1)
+    if($options['initial_plants']==1)
     {
-        //$table_heads['sowing_date']='sowing_date';
-        $data['sowing_date']['normal']=$data['sowing_date']['replica']=$this->lang->line('NOT_SET');
-        if($delivery_and_sowing_info['sowing_date']>0)
-        {
-            $data['sowing_date']['normal']=$data['sowing_date']['replica']=System_helper::display_date($delivery_and_sowing_info['sowing_date']);
-        }
-    }
-    if($options['transplanting_date']==1)
-    {
-        //$table_heads['transplanting_date']='transplanting_date';
-        //$table_heads['expected_transplanting_date']='expected_transplanting_date';
-        //$data['expected_transplanting_date']['normal']=$data['expected_transplanting_date']['replica']=$this->lang->line('NOT_SET');
-        //$data['transplanting_date']['normal']=$data['transplanting_date']['replica']=$this->lang->line('NOT_SET');
-        if($delivery_and_sowing_info['transplanting_date']>0)
-        {
-            $data['transplanting_date']['normal']=$data['transplanting_date']['replica']=System_helper::display_date($delivery_and_sowing_info['transplanting_date']);
-            $data['expected_transplanting_date']['normal']=$data['expected_transplanting_date']['replica']=System_helper::display_date($delivery_and_sowing_info['sowing_date']+$variety['optimum_transplanting_days']*24*3600);
-
-        }
+        $table_heads['initial_plants']='initial_plants';
+        $data['initial_plants']['normal']=$data['initial_plants']['replica']=$variety['initial_plants'];
 
     }
-    if($options['fortnightly_reporting_date']==1)
+    if($options['no_of_plants_survived']==1)
     {
-        $table_heads['fortnightly_reporting_date']='fortnightly_reporting_date';
-        $data['fortnightly_reporting_date']['normal']=$data['fortnightly_reporting_date']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['actual_reporting_date']))
+        $table_heads['no_of_plants_survived']='no_of_plants_survived';
+        $data['no_of_plants_survived']['normal']=$data['no_of_plants_survived']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['no_of_plants_survived']))
         {
-            $data['fortnightly_reporting_date']['normal']=$data['fortnightly_reporting_date']['replica']=$info['normal']['actual_reporting_date'];
+            $data['no_of_plants_survived']['normal']=$info['normal']['no_of_plants_survived'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['no_of_plants_survived']))
+            {
+                $data['no_of_plants_survived']['replica']=$info['replica']['no_of_plants_survived'];
+            }
         }
     }
-    if($options['initial_plants_during_trial_started']==1)
+    if($options['survival_percentage']==1)
     {
-        $table_heads['initial_plants_during_trial_started']='initial_plants_during_trial_started';
-        $data['initial_plants_during_trial_started']['normal']=$data['initial_plants_during_trial_started']['replica']=$variety['initial_plants'];
+        $table_heads['survival_percentage']='survival_percentage';
+        $data['survival_percentage']['normal']=$data['survival_percentage']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        if((isset($data['no_of_plants_survived']['normal']))&&($data['no_of_plants_survived']['normal']>0)&&($variety['initial_plants']>0))
+        {
+            $data['survival_percentage']['normal']=round($data['no_of_plants_survived']['normal']/$variety['initial_plants']*100,2);
+        }
+        if($variety['replica_status']==1)
+        {
+            if((isset($data['no_of_plants_survived']['replica']))&&($data['no_of_plants_survived']['replica']>0)&&($variety['initial_plants']>0))
+            {
+                $data['survival_percentage']['replica']=round($data['no_of_plants_survived']['replica']/$variety['initial_plants']*100,2);
+            }
+        }
 
     }
-    if($options['plant_type_appearance']==1)
+    if($options['total_plant_per_ha']==1)
     {
-        $table_heads['plant_type_appearance']='plant_type_appearance';
-        $data['plant_type_appearance']['normal']=$data['plant_type_appearance']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['plant_type_appearance']))
+        $table_heads['total_plant_per_ha']='total_plant_per_ha';
+        $data['total_plant_per_ha']['normal']=$data['total_plant_per_ha']['replica']=$variety['plants_per_hectare'];
+
+    }
+
+
+    if($options['avg_curd_wt']==1)
+    {
+        $table_heads['avg_curd_wt']='avg_curd_wt';
+        $data['avg_curd_wt']['normal']=$data['avg_curd_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_head_wt']==1)
+    {
+        $table_heads['avg_head_wt']='avg_head_wt';
+        $data['avg_head_wt']['normal']=$data['avg_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_fruit_wt']==1)
+    {
+        $table_heads['avg_fruit_wt']='avg_fruit_wt';
+        $data['avg_fruit_wt']['normal']=$data['avg_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_root_wt']==1)
+    {
+        $table_heads['avg_root_wt']='avg_root_wt';
+        $data['avg_root_wt']['normal']=$data['avg_root_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    if($options['avg_leaf_wt']==1)
+    {
+        $table_heads['avg_leaf_wt']='avg_leaf_wt';
+        $data['avg_leaf_wt']['normal']=$data['avg_leaf_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+    }
+    $avg_wt_normal=0;
+    $avg_wt_replica=0;
+    if(isset($harvest[$variety['id']]))
+    {
+        if($options['avg_curd_wt']==1)
         {
-            $data['plant_type_appearance']['normal']=$info['normal']['plant_type_appearance'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['plant_type_appearance']))
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
             {
-                $data['plant_type_appearance']['replica']=$info['replica']['plant_type_appearance'];
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_curd_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_curd_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['avg_head_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_head_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_head_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['avg_fruit_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_fruit_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_fruit_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['avg_root_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_roots_harvested'];
+                $value_replica = $detail['replica']['no_of_roots_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_root_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_root_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+        if($options['avg_leaf_wt']==1)
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_no_of_leaves'];
+                $value_replica = $detail['replica']['total_no_of_leaves'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_root_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_root_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
             }
         }
     }
-    if($options['plant_type']==1)
+    if($options['max_estimated_yield_per_ha']==1)
     {
-        $table_heads['plant_type']='plant_type';
-        $data['plant_type']['normal']=$data['plant_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['plant_type']))
+        $table_heads['max_estimated_yield_per_ha']='max_estimated_yield_per_ha';
+        $data['max_estimated_yield_per_ha']['normal']=$data['max_estimated_yield_per_ha']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(($avg_wt_normal>0)&&($variety['plants_per_hectare']>0))
         {
-            $data['plant_type']['normal']=$info['normal']['plant_type'];
+            $data['max_estimated_yield_per_ha']['normal']=round($variety['plants_per_hectare']*$avg_wt_normal/1000000,2);
         }
         if($variety['replica_status']==1)
         {
-            if(is_array($info)&& !empty($info['replica']['plant_type']))
+            if(($avg_wt_replica>0)&&($variety['plants_per_hectare']>0))
             {
-                $data['plant_type']['replica']=$info['replica']['plant_type'];
+                $data['max_estimated_yield_per_ha']['replica']=round($variety['plants_per_hectare']*$avg_wt_replica/1000000,2);
+            }
+        }
+
+    }
+
+
+    if($options['max_estimated_yield_evaluation']==1)
+    {
+        $table_heads['max_estimated_yield_evaluation']='max_estimated_yield_evaluation';
+        $data['max_estimated_yield_evaluation']['normal']=$data['max_estimated_yield_evaluation']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['max_estimated_yield_evaluation']))
+        {
+            $data['max_estimated_yield_evaluation']['normal']=$info['normal']['max_estimated_yield_evaluation'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['max_estimated_yield_evaluation']))
+            {
+                $data['max_estimated_yield_evaluation']['replica']=$info['replica']['max_estimated_yield_evaluation'];
             }
         }
     }
-    if($options['plant_uniformity']==1)
+    if($options['targeted_yield_per_ha']==1)
     {
-        $table_heads['plant_uniformity']='plant_uniformity';
-        $data['plant_uniformity']['normal']=$data['plant_uniformity']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['plant_uniformity']))
+        $table_heads['targeted_yield_per_ha']='targeted_yield_per_ha';
+        $data['targeted_yield_per_ha']['normal']=$data['targeted_yield_per_ha']['replica']=$variety['terget_yeild'];
+
+    }
+    if($options['actual_yield_per_ha']==1)
+    {
+        $table_heads['actual_yield_per_ha']='actual_yield_per_ha';
+        $data['actual_yield_per_ha']['normal']=$data['actual_yield_per_ha']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(($data['survival_percentage']['normal'])&&($data['survival_percentage']['normal']>0)&&($data['max_estimated_yield_per_ha']['normal'])&&($data['max_estimated_yield_per_ha']['normal']>0))
         {
-            $data['plant_uniformity']['normal']=$info['normal']['plant_uniformity'];
+            $data['actual_yield_per_ha']['normal']=round($data['survival_percentage']['normal']*$data['max_estimated_yield_per_ha']['normal']/100,2);
         }
         if($variety['replica_status']==1)
         {
-            if(is_array($info)&& !empty($info['replica']['plant_uniformity']))
+            if(($data['survival_percentage']['replica'])&&($data['survival_percentage']['replica']>0)&&($data['max_estimated_yield_per_ha']['replica'])&&($data['max_estimated_yield_per_ha']['replica']>0))
             {
-                $data['plant_uniformity']['replica']=$info['replica']['plant_uniformity'];
+                $data['actual_yield_per_ha']['replica']=round($data['survival_percentage']['replica']*$data['max_estimated_yield_per_ha']['replica']/100,2);
+            }
+        }
+
+    }
+    if($options['actual_yield_per_ha_evaluation']==1)
+    {
+        $table_heads['actual_yield_per_ha_evaluation']='actual_yield_per_ha_evaluation';
+        $data['actual_yield_per_ha_evaluation']['normal']=$data['actual_yield_per_ha_evaluation']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['actual_yield_per_ha_evaluation']))
+        {
+            $data['actual_yield_per_ha_evaluation']['normal']=$info['normal']['actual_yield_per_ha_evaluation'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['actual_yield_per_ha_evaluation']))
+            {
+                $data['actual_yield_per_ha_evaluation']['replica']=$info['replica']['actual_yield_per_ha_evaluation'];
             }
         }
     }
-    if($options['distance_from_ground_to_curd']==1)
-    {
-        $table_heads['distance_from_ground_to_curd']='distance_from_ground_to_curd';
-        $data['distance_from_ground_to_curd']['normal']=$data['distance_from_ground_to_curd']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['distance_from_ground_to_curd']))
-        {
-            $data['distance_from_ground_to_curd']['normal']=$info['normal']['distance_from_ground_to_curd'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['distance_from_ground_to_curd']))
-            {
-                $data['distance_from_ground_to_curd']['replica']=$info['replica']['distance_from_ground_to_curd'];
-            }
-        }
-    }
-    if($options['distance_from_ground_to_head']==1)
-    {
-        $table_heads['distance_from_ground_to_head']='distance_from_ground_to_head';
-        $data['distance_from_ground_to_head']['normal']=$data['distance_from_ground_to_head']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['distance_from_ground_to_head']))
-        {
-            $data['distance_from_ground_to_head']['normal']=$info['normal']['distance_from_ground_to_head'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['distance_from_ground_to_head']))
-            {
-                $data['distance_from_ground_to_head']['replica']=$info['replica']['distance_from_ground_to_head'];
-            }
-        }
-    }
-    if($options['distance_from_ground_to_root_shoulder']==1)
-    {
-        $table_heads['distance_from_ground_to_root_shoulder']='distance_from_ground_to_root_shoulder';
-        $data['distance_from_ground_to_root_shoulder']['normal']=$data['distance_from_ground_to_root_shoulder']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['distance_from_ground_to_root_shoulder']))
-        {
-            $data['distance_from_ground_to_root_shoulder']['normal']=$info['normal']['distance_from_ground_to_root_shoulder'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['distance_from_ground_to_root_shoulder']))
-            {
-                $data['distance_from_ground_to_root_shoulder']['replica']=$info['replica']['distance_from_ground_to_root_shoulder'];
-            }
-        }
-    }
-    if($options['distance_from_ground_leaf_shoulder']==1)
-    {
-        $table_heads['distance_from_ground_leaf_shoulder']='distance_from_ground_leaf_shoulder';
-        $data['distance_from_ground_leaf_shoulder']['normal']=$data['distance_from_ground_leaf_shoulder']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['distance_from_ground_leaf_shoulder']))
-        {
-            $data['distance_from_ground_leaf_shoulder']['normal']=$info['normal']['distance_from_ground_leaf_shoulder'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['distance_from_ground_leaf_shoulder']))
-            {
-                $data['distance_from_ground_leaf_shoulder']['replica']=$info['replica']['distance_from_ground_leaf_shoulder'];
-            }
-        }
-    }
-    if($options['curd_type']==1)
-    {
-        $curd_Type_rating=$this->config->item('curd_Type_rating');
-        $table_heads['curd_type']='curd_type';
-        $data['curd_type']['normal']=$data['curd_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['curd_type']))
-        {
-            $data['curd_type']['normal']=$curd_Type_rating[$info['normal']['curd_type']];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['curd_type']))
-            {
-                $data['curd_type']['replica']=$curd_Type_rating[$info['replica']['curd_type']];
-            }
-        }
-    }
-    if($options['head_type']==1)
-    {
-        $curd_Type_rating=$this->config->item('head_Type_rating');
-        $table_heads['head_type']='leaf_type';
-        $data['head_type']['normal']=$data['head_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['head_type']))
-        {
-            $data['head_type']['normal']=$curd_Type_rating[$info['normal']['head_type']];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['head_type']))
-            {
-                $data['head_type']['replica']=$curd_Type_rating[$info['replica']['head_type']];
-            }
-        }
-    }
-    if($options['leaf_shape']==1)
-    {
-        $table_heads['leaf_shape']='leaf_shape';
-        $data['leaf_shape']['normal']=$data['leaf_shape']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['leaf_shape']))
-        {
-            $data['leaf_shape']['normal']=$info['normal']['leaf_shape'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['leaf_shape']))
-            {
-                $data['leaf_shape']['replica']=$info['replica']['leaf_shape'];
-            }
-        }
-    }
-    if($options['root_shape']==1)
-    {
-        $table_heads['root_shape']='root_shape';
-        $data['root_shape']['normal']=$data['root_shape']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['root_shape']))
-        {
-            $data['root_shape']['normal']=$info['normal']['root_shape'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['root_shape']))
-            {
-                $data['root_shape']['replica']=$info['replica']['root_shape'];
-            }
-        }
-    }
-    if($options['fruit_shape']==1)
-    {
-        $table_heads['fruit_shape']='fruit_shape';
-        $data['fruit_shape']['normal']=$data['fruit_shape']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_shape']))
-        {
-            $data['fruit_shape']['normal']=$info['normal']['fruit_shape'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_shape']))
-            {
-                $data['fruit_shape']['replica']=$info['replica']['fruit_shape'];
-            }
-        }
-    }
-    if($options['root_type']==1)
-    {
-        $curd_Type_rating=$this->config->item('root_Type_rating');
-        $table_heads['root_type']='root_type';
-        $data['root_type']['normal']=$data['root_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['root_type']))
-        {
-            $data['root_type']['normal']=$curd_Type_rating[$info['normal']['root_type']];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['root_type']))
-            {
-                $data['root_type']['replica']=$curd_Type_rating[$info['replica']['root_type']];
-            }
-        }
-    }
-    if($options['leaf_type']==1)
-    {
-        $curd_Type_rating=$this->config->item('leaf_Type_rating');
-        $table_heads['leaf_type']='leaf_type';
-        $data['leaf_type']['normal']=$data['leaf_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['leaf_type']))
-        {
-            $data['leaf_type']['normal']=$curd_Type_rating[$info['normal']['leaf_type']];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['leaf_type']))
-            {
-                $data['leaf_type']['replica']=$curd_Type_rating[$info['replica']['leaf_type']];
-            }
-        }
-    }
-    if($options['spine_type']==1)
-    {
-        $curd_Type_rating=$this->config->item('spine_type_rating');
-        $table_heads['spine_type']='spine_type';
-        $data['spine_type']['normal']=$data['spine_type']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['spine_type']))
-        {
-            $data['spine_type']['normal']=$curd_Type_rating[$info['normal']['spine_type']];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['spine_type']))
-            {
-                $data['spine_type']['replica']=$curd_Type_rating[$info['replica']['spine_type']];
-            }
-        }
-    }
-    if($options['curd_colour']==1)
-    {
-        $table_heads['curd_colour']='curd_colour';
-        $data['curd_colour']['normal']=$data['curd_colour']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['curd_colour']))
-        {
-            $data['curd_colour']['normal']=$info['normal']['curd_colour'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['curd_colour']))
-            {
-                $data['curd_colour']['replica']=$info['replica']['curd_colour'];
-            }
-        }
-    }
-    if($options['head_colour']==1)
-    {
-        $table_heads['head_colour']='head_colour';
-        $data['head_colour']['normal']=$data['head_colour']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['head_colour']))
-        {
-            $data['head_colour']['normal']=$info['normal']['head_colour'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['head_colour']))
-            {
-                $data['head_colour']['replica']=$info['replica']['head_colour'];
-            }
-        }
-    }
-    if($options['leaf_colour']==1)
-    {
-        $table_heads['leaf_colour']='leaf_colour';
-        $data['leaf_colour']['normal']=$data['leaf_colour']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['leaf_colour']))
-        {
-            $data['leaf_colour']['normal']=$info['normal']['leaf_colour'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['leaf_colour']))
-            {
-                $data['leaf_colour']['replica']=$info['replica']['leaf_colour'];
-            }
-        }
-    }
-    if($options['fruit_colour']==1)
-    {
-        $table_heads['fruit_colour']='fruit_colour';
-        $data['fruit_colour']['normal']=$data['fruit_colour']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_colour']))
-        {
-            $data['fruit_colour']['normal']=$info['normal']['fruit_colour'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_colour']))
-            {
-                $data['fruit_colour']['replica']=$info['replica']['fruit_colour'];
-            }
-        }
-    }
-    if($options['root_colour']==1)
-    {
-        $table_heads['root_colour']='root_colour';
-        $data['root_colour']['normal']=$data['root_colour']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['root_colour']))
-        {
-            $data['root_colour']['normal']=$info['normal']['root_colour'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['root_colour']))
-            {
-                $data['root_colour']['replica']=$info['replica']['root_colour'];
-            }
-        }
-    }
-    if($options['fruit_size']==1)
-    {
-        $table_heads['fruit_size']='fruit_size';
-        $data['fruit_size']['normal']=$data['fruit_size']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_size']))
-        {
-            $data['fruit_size']['normal']=$info['normal']['fruit_size'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_size']))
-            {
-                $data['fruit_size']['replica']=$info['replica']['fruit_size'];
-            }
-        }
-    }
-    if($options['fruit_bearing']==1)
-    {
-        $table_heads['fruit_bearing']='fruit_bearing';
-        $data['fruit_bearing']['normal']=$data['fruit_bearing']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_bearing']))
-        {
-            $data['fruit_bearing']['normal']=$info['normal']['fruit_bearing'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_bearing']))
-            {
-                $data['fruit_bearing']['replica']=$info['replica']['fruit_bearing'];
-            }
-        }
-    }
-    if($options['curd_compactness']==1)
-    {
-        $table_heads['curd_compactness']='curd_compactness';
-        $data['curd_compactness']['normal']=$data['curd_compactness']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['curd_compactness']))
-        {
-            $data['curd_compactness']['normal']=$info['normal']['curd_compactness'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['curd_compactness']))
-            {
-                $data['curd_compactness']['replica']=$info['replica']['curd_compactness'];
-            }
-        }
-    }
-    if($options['head_compactness']==1)
-    {
-        $table_heads['head_compactness']='head_compactness';
-        $data['head_compactness']['normal']=$data['head_compactness']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['head_compactness']))
-        {
-            $data['head_compactness']['normal']=$info['normal']['head_compactness'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['head_compactness']))
-            {
-                $data['head_compactness']['replica']=$info['replica']['head_compactness'];
-            }
-        }
-    }
-    if($options['curd_uniformity']==1)
-    {
-        $table_heads['curd_uniformity']='curd_uniformity';
-        $data['curd_uniformity']['normal']=$data['curd_uniformity']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['curd_uniformity']))
-        {
-            $data['curd_uniformity']['normal']=$info['normal']['curd_uniformity'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['curd_uniformity']))
-            {
-                $data['curd_uniformity']['replica']=$info['replica']['curd_uniformity'];
-            }
-        }
-    }
-    if($options['head_uniformity']==1)
-    {
-        $table_heads['head_uniformity']='head_uniformity';
-        $data['head_uniformity']['normal']=$data['head_uniformity']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['head_uniformity']))
-        {
-            $data['head_uniformity']['normal']=$info['normal']['head_uniformity'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['head_uniformity']))
-            {
-                $data['head_uniformity']['replica']=$info['replica']['head_uniformity'];
-            }
-        }
-    }
-    if($options['fruit_size_uniformity']==1)
-    {
-        $table_heads['fruit_size_uniformity']='fruit_size_uniformity';
-        $data['fruit_size_uniformity']['normal']=$data['fruit_size_uniformity']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_size_uniformity']))
-        {
-            $data['fruit_size_uniformity']['normal']=$info['normal']['fruit_size_uniformity'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_size_uniformity']))
-            {
-                $data['fruit_size_uniformity']['replica']=$info['replica']['fruit_size_uniformity'];
-            }
-        }
-    }
-    if($options['fruit_uniformity']==1)
-    {
-        $table_heads['fruit_uniformity']='fruit_uniformity';
-        $data['fruit_uniformity']['normal']=$data['fruit_uniformity']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_uniformity']))
-        {
-            $data['fruit_uniformity']['normal']=$info['normal']['fruit_uniformity'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['fruit_uniformity']))
-            {
-                $data['fruit_uniformity']['replica']=$info['replica']['fruit_uniformity'];
-            }
-        }
-    }
-    if($options['uniformity_of_leaves']==1)
-    {
-        $table_heads['uniformity_of_leaves']='uniformity_of_leaves';
-        $data['uniformity_of_leaves']['normal']=$data['uniformity_of_leaves']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['uniformity_of_leaves']))
-        {
-            $data['uniformity_of_leaves']['normal']=$info['normal']['uniformity_of_leaves'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['uniformity_of_leaves']))
-            {
-                $data['uniformity_of_leaves']['replica']=$info['replica']['uniformity_of_leaves'];
-            }
-        }
-    }
-    if($options['disease_sustainability']==1)
-    {
-        $table_heads['disease_sustainability']='disease_sustainability';
-        $data['disease_sustainability']['normal']=$data['disease_sustainability']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['disease_sustainability']))
-        {
-            $data['disease_sustainability']['normal']=$info['normal']['disease_sustainability'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['disease_sustainability']))
-            {
-                $data['disease_sustainability']['replica']=$info['replica']['disease_sustainability'];
-            }
-        }
-    }
-    if($options['internode_distance']==1)
-    {
-        $table_heads['internode_distance']='internode_distance';
-        $data['internode_distance']['normal']=$data['internode_distance']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['internode_distance']))
-        {
-            $data['internode_distance']['normal']=$info['normal']['internode_distance'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['internode_distance']))
-            {
-                $data['internode_distance']['replica']=$info['replica']['internode_distance'];
-            }
-        }
-    }
-    if($options['hardness_of_spines']==1)
-    {
-        $table_heads['hardness_of_spines']='hardness_of_spines';
-        $data['hardness_of_spines']['normal']=$data['hardness_of_spines']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['hardness_of_spines']))
-        {
-            $data['hardness_of_spines']['normal']=$info['normal']['hardness_of_spines'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['hardness_of_spines']))
-            {
-                $data['hardness_of_spines']['replica']=$info['replica']['hardness_of_spines'];
-            }
-        }
-    }
-    if($options['leaf_height_from_root']==1)
-    {
-        $table_heads['leaf_height_from_root']='leaf_height_from_root';
-        $data['leaf_height_from_root']['normal']=$data['leaf_height_from_root']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['leaf_height_from_root']))
-        {
-            $data['leaf_height_from_root']['normal']=$info['normal']['leaf_height_from_root'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['leaf_height_from_root']))
-            {
-                $data['leaf_height_from_root']['replica']=$info['replica']['leaf_height_from_root'];
-            }
-        }
-    }
-    if($options['adaptability']==1)
-    {
-        $table_heads['adaptability']='adaptability';
-        $data['adaptability']['normal']=$data['adaptability']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['adaptability']))
-        {
-            $data['adaptability']['normal']=$info['normal']['adaptability'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['adaptability']))
-            {
-                $data['adaptability']['replica']=$info['replica']['adaptability'];
-            }
-        }
-    }
-    if($options['ridge_quality']==1)
-    {
-        $table_heads['ridge_quality']='ridge_quality';
-        $data['ridge_quality']['normal']=$data['ridge_quality']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['ridge_quality']))
-        {
-            $data['ridge_quality']['normal']=$info['normal']['ridge_quality'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['ridge_quality']))
-            {
-                $data['ridge_quality']['replica']=$info['replica']['ridge_quality'];
-            }
-        }
-    }
-    if($options['special_characters']==1)
-    {
-        $table_heads['special_characters']='special_characters';
-        $data['special_characters']['normal']=$data['special_characters']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['special_characters']))
-        {
-            $data['special_characters']['normal']=$info['normal']['special_characters'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['special_characters']))
-            {
-                $data['special_characters']['replica']=$info['replica']['special_characters'];
-            }
-        }
-    }*/
+
 
     $table_heads['accepted']='accepted';
     $data['accepted']['normal']=$data['accepted']['replica']=$this->lang->line('NOT_SET');
@@ -747,13 +407,13 @@ for($i=0;$i<(sizeof($final_varieties)-1);$i++)
                         if($th=='remarks')
                         {
                             ?>
-                            <th style="min-width: 300px;"><?php echo $this->lang->line('LABEL_'.strtoupper($th)); ?></th>
+                            <th style="min-width: 300px;"><?php echo $this->lang->line(strtoupper($th)); ?></th>
                             <?php
                         }
                         else
                         {
                             ?>
-                            <th><?php echo $this->lang->line('LABEL_'.strtoupper($th)); ?></th>
+                            <th><?php echo $this->lang->line(strtoupper($th)); ?></th>
                             <?php
                         }
                     }
