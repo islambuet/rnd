@@ -2079,7 +2079,7 @@ if($options['avg_curd_wt']==1)
 
     if(($sum_of_total_marketed_curds_wt_normal>0) && ($sum_of_no_of_plants_harvested_normal)>0)
     {
-        $avg_curd_wt_normal = round($sum_of_total_marketed_curds_wt_normal/$sum_of_no_of_plants_harvested_normal, 2);
+        $avg_curd_wt_normal = round($sum_of_total_marketed_curds_wt_normal/$sum_of_no_of_plants_harvested_normal*1000, 2);
     }
 
 
@@ -2100,7 +2100,7 @@ if($options['avg_curd_wt']==1)
 
             if(($sum_of_total_marketed_curds_wt_replica>0) && ($sum_of_no_of_plants_harvested_replica)>0)
             {
-                $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica, 2);
+                $avg_curd_wt_replica = round($sum_of_total_marketed_curds_wt_replica/$sum_of_no_of_plants_harvested_replica*1000, 2);
             }
 
             ?>

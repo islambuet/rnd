@@ -25,7 +25,7 @@ $table_heads=array();
 $final_varieties=array();
 foreach($varieties as $variety)
 {
-    /*$total_harvested_weight_normal=0;
+    $total_harvested_weight_normal=0;
     $total_harvested_weight_replica=0;
     if(isset($harvest[$variety['id']]))
     {
@@ -42,7 +42,7 @@ foreach($varieties as $variety)
 
         $total_harvested_weight_normal=$total_normal;
         $total_harvested_weight_replica=$total_replica;
-    }*/
+    }
     $info=array();
     if(isset($final[$variety['id']]['info']))
     {
@@ -805,7 +805,282 @@ foreach($varieties as $variety)
             }
         }
     }
+    if($options['avg_curd_wt']==1)
+    {
+        $table_heads['avg_curd_wt']='avg_curd_wt';
+        $data['avg_curd_wt']['normal']=$data['avg_curd_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
 
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $data['avg_curd_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $data['avg_curd_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+    }
+    if($options['avg_leaf_wt']==1)//confused with avg_market weight
+    {
+        $table_heads['avg_leaf_wt']='avg_leaf_wt';
+        $data['avg_leaf_wt']['normal']=$data['avg_leaf_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['total_no_of_leaves'];
+                $value_replica = $detail['replica']['total_no_of_leaves'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_root_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_root_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+
+        }
+    }
+    if($options['avg_head_wt']==1)
+    {
+        $table_heads['avg_head_wt']='avg_head_wt';
+        $data['avg_head_wt']['normal']=$data['avg_head_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_head_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_head_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+    }
+    if($options['avg_root_wt']==1)
+    {
+        $table_heads['avg_root_wt']='avg_root_wt';
+        $data['avg_root_wt']['normal']=$data['avg_root_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_roots_harvested'];
+                $value_replica = $detail['replica']['no_of_roots_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_root_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_root_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+
+        }
+    }
+    if($options['avg_fruit_wt']==1)
+    {
+        $table_heads['avg_fruit_wt']='avg_fruit_wt';
+        $data['avg_fruit_wt']['normal']=$data['avg_fruit_wt']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_down = 0;
+            $total_replica_down = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+            if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+            {
+                $avg_wt_normal=$data['avg_fruit_wt']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+            }
+            if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+            {
+                $avg_wt_replica=$data['avg_fruit_wt']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+            }
+        }
+    }
+    if($options['plant_height']==1)
+    {
+        $table_heads['plant_height']='plant_height';
+        $data['plant_height']['normal']=$data['plant_height']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['plant_height']))
+        {
+            $data['plant_height']['normal']=$info['normal']['plant_height'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['plant_height']))
+            {
+                $data['plant_height']['replica']=$info['replica']['plant_height'];
+            }
+        }
+    }
+    if($options['harvest_unif']==1)
+    {
+        $table_heads['harvest_unif']='harvest_unif';
+        $data['harvest_unif']['normal']=$data['harvest_unif']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['harvest_unif']))
+        {
+            $data['harvest_unif']['normal']=$info['normal']['harvest_unif'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['harvest_unif']))
+            {
+                $data['harvest_unif']['replica']=$info['replica']['harvest_unif'];
+            }
+        }
+    }
+    if($options['cluster_per_plant']==1)
+    {
+        $table_heads['cluster_per_plant']='cluster_per_plant';
+        $data['cluster_per_plant']['normal']=$data['cluster_per_plant']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['cluster_per_plant']))
+        {
+            $data['cluster_per_plant']['normal']=$info['normal']['cluster_per_plant'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['cluster_per_plant']))
+            {
+                $data['cluster_per_plant']['replica']=$info['replica']['cluster_per_plant'];
+            }
+        }
+    }
+    if($options['fruit_per_cluster']==1)
+    {
+        $table_heads['fruit_per_cluster']='fruit_per_cluster';
+        $data['fruit_per_cluster']['normal']=$data['fruit_per_cluster']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['fruit_per_cluster']))
+        {
+            $data['fruit_per_cluster']['normal']=$info['normal']['fruit_per_cluster'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['fruit_per_cluster']))
+            {
+                $data['fruit_per_cluster']['replica']=$info['replica']['fruit_per_cluster'];
+            }
+        }
+    }
+    if($options['fruit_pungency']==1)
+    {
+        $table_heads['fruit_pungency']='fruit_pungency';
+        $data['fruit_pungency']['normal']=$data['fruit_pungency']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['fruit_pungency']))
+        {
+            $data['fruit_pungency']['normal']=$info['normal']['fruit_pungency'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['fruit_pungency']))
+            {
+                $data['fruit_pungency']['replica']=$info['replica']['fruit_pungency'];
+            }
+        }
+    }
+    if($options['no_of_plants_per_plot']==1)
+    {
+        $table_heads['no_of_plants_per_plot']='no_of_plants_per_plot';
+        $data['no_of_plants_per_plot']['normal']=$data['no_of_plants_per_plot']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['no_of_plants_per_plot']))
+        {
+            $data['no_of_plants_per_plot']['normal']=$info['normal']['no_of_plants_per_plot'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['no_of_plants_per_plot']))
+            {
+                $data['no_of_plants_per_plot']['replica']=$info['replica']['no_of_plants_per_plot'];
+            }
+        }
+    }
+    if($options['avg_fruit_wt_per_plant']==1)
+    {
+        $table_heads['avg_fruit_wt_per_plant']='avg_fruit_wt_per_plant';
+        $data['avg_fruit_wt_per_plant']['normal']=$data['avg_fruit_wt_per_plant']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['avg_fruit_wt_per_plant']))
+        {
+            $data['avg_fruit_wt_per_plant']['normal']=$info['normal']['avg_fruit_wt_per_plant'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['avg_fruit_wt_per_plant']))
+            {
+                $data['avg_fruit_wt_per_plant']['replica']=$info['replica']['avg_fruit_wt_per_plant'];
+            }
+        }
+    }
+    if($options['average_harvested_plant']==1)
+    {
+        $table_heads['average_harvested_plant']='average_harvested_plant';
+        $data['average_harvested_plant']['normal']=$data['average_harvested_plant']['replica']=$this->lang->line("CANNOT_CALCULATE");
+        if(isset($harvest[$variety['id']]))
+        {
+            $total_normal_up = 0;
+            $total_replica_up = 0;
+
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
+            }
+            if(($total_normal_up>0)&&(sizeof($harvest[$variety['id']])>0))
+            {
+                $data['average_harvested_plant']['normal']=round(($total_normal_up/(sizeof($harvest[$variety['id']]))),2);
+            }
+            if(($total_replica_up>0)&&(sizeof($harvest[$variety['id']])>0))
+            {
+                $data['average_harvested_plant']['replica']=round(($total_replica_up/(sizeof($harvest[$variety['id']]))),2);
+            }
+        }
+    }
     $table_heads['accepted']='accepted';
     $data['accepted']['normal']=$data['accepted']['replica']=$this->lang->line('NOT_SET');
     if(is_array($info)&& isset($info['normal']['accepted']))
