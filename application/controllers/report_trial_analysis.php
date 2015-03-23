@@ -105,6 +105,7 @@ class Report_trial_analysis extends ROOT_Controller
             $data['final']=$this->report_trial_analysis_model->get_details_final($variety_ids,$year,$season_id);
             $data['flowering']=$this->report_trial_analysis_model->get_details_flowering($variety_ids,$year,$season_id);
             $data['harvest']=$this->report_trial_analysis_model->get_details_harvest($variety_ids,$year,$season_id);
+            $data['fruit']=$this->report_trial_analysis_model->get_details_fruit($variety_ids,$year,$season_id);
             $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_trial_analysis/report_text_detail_final", $data, true));
         }
         else
