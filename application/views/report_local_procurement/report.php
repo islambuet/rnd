@@ -55,7 +55,18 @@ $variety_types=$this->config->item('variety_type');
                             <td><?php echo $variety['variety_name'];?></td>
                             <td><?php echo System_helper::get_rnd_code($variety);?></td>
                             <td><?php echo $variety['quantity'];?></td>
-                            <td><?php echo ($variety['quantity']-$variety['total_send']);?></td>
+                            <td>
+                                <?php
+                                    if($variety['replica_status']==1)
+                                    {
+                                        echo ($variety['quantity']-2*$variety['total_send']);
+                                    }
+                                    else
+                                    {
+                                        echo ($variety['quantity']-$variety['total_send']);
+                                    }
+                                ?>
+                            </td>
                             <td><?php echo System_helper::display_date($variety['creation_date']);?></td>
                             <td><?php echo $this->lang->line('LABEL_YES');?></td>
                             <td>
