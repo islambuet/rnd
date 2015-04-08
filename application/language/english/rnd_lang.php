@@ -340,5 +340,10 @@ $lang['NO_VARIETY_SENT_FOR_RND'] = 'Warning No variety sent for R&D';
 $lang['LABEL_PRINCIPAL_REMARK'] = 'Principal Remark';
 $lang['LABEL_FINAL_REMARK'] = 'Final Remark';
 $lang['LABEL_SELECT_PRINCIPAL'] = 'Select Principal';
+$lang['LABEL_PRO_QUANTITY'] = 'Pro. Quantity';
+$lang['LABEL_CURRENT_STOCK'] = 'Current Stock';
+$lang['LABEL_PRO_TIME'] = 'Pro. Time';
+$lang['LABEL_SAMPLE_READY_FOR_TRIAL'] = 'S P FOR T';
+$lang['LABEL_PREVIOUS_TRIAL'] = 'Previous Trail';
 
 
