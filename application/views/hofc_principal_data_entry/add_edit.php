@@ -122,6 +122,14 @@ $this->load->view("action_buttons_edit",$data);
     {
         turn_off_triggers();
 //        $(".form_valid").validationEngine();
+        $(document).on("change", "#principal_id", function(event)
+        {
+            $("#fruit_text").html("");
+            $("#crop_type_id").val("");
+            $("#variety_id_container").hide();
+
+
+        });
         $(document).on("change", "#year", function(event)
         {
             $("#fruit_text").html("");
