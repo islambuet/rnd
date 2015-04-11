@@ -96,6 +96,7 @@ $lang['LABEL_SELECT_SEASON'] = 'Select Season';
 $lang['LABEL_SEASON'] = 'Season';
 $lang['LABEL_VARIETY_TYPE'] = 'Variety Type';
 $lang['LABEL_COMPANY_NAME'] = 'Company Name';
+$lang['LABEL_COMPANY_CODE'] = 'Company Code';
 $lang['LABEL_SEEDS_PER_GRAM'] = 'Number of Seeds Per Gram';
 $lang['LABEL_QUANTITY_IN_GRAM'] = 'Quantity (gm)';
 $lang['LABEL_NEW'] = 'New';
