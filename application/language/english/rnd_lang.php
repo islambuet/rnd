@@ -347,6 +347,10 @@ $lang['LABEL_PRO_TIME'] = 'Pro. Time';
 $lang['LABEL_SAMPLE_READY_FOR_TRIAL'] = 'S P FOR T';
 $lang['LABEL_PREVIOUS_TRIAL'] = 'Previous Trail';
 
+$lang['LABEL_EXPECTED_SOWING_DATE'] = 'Expected Sowing date';
+
+
+
 
 
 
