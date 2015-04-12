@@ -118,7 +118,16 @@
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_COMPANY_NAME');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="company_name" id="company_name" class="form-control" value="<?php echo $varietyInfo['company_name'];?>" <?php if($varietyInfo['id']>0){echo "disabled";}?>>
+                <select name="company_name" id="company_name" class="form-control validate[required]" <?php if($varietyInfo['id']>0){echo "disabled";}?>>
+                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                    <?php
+                    foreach($companies as $company)
+                    {?>
+                        <option value="<?php echo $company['id']?>" <?php if($company['id']==$varietyInfo['company_name']){ echo 'selected';}?>><?php echo $company['company_name'];?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
             </div>
         </div>
 

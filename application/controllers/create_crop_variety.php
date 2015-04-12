@@ -92,6 +92,7 @@ class Create_crop_variety extends ROOT_Controller
 
         $data['crops'] = Query_helper::get_info('rnd_crop', '*', array('status !='.$this->config->item('status_delete')));
         $data['principals'] = Query_helper::get_info('rnd_principal', '*', array('status !='.$this->config->item('status_delete')));
+        $data['companies'] = Query_helper::get_info('rnd_competitor', '*', array('status !='.$this->config->item('status_delete')));
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("create_crop_variety/add_edit",$data,true));
@@ -320,7 +321,7 @@ class Create_crop_variety extends ROOT_Controller
             if(Validation_helper::validate_empty($this->input->post('company_name')))
             {
                 $valid=false;
-                $this->message.="Write a Company Name.<br>";
+                $this->message.="Select a Company Name.<br>";
             }
         }
         else
