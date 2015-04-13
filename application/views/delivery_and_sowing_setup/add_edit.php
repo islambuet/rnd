@@ -75,7 +75,7 @@
 
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ESTIMATED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
                 <input type="text" name="estimated_delivery_date" id="estimated_delivery_date" class="form-control" <?php if($deliveryInfo['sowing_status']==1){echo 'disabled';}?> value="<?php if(!empty($deliveryInfo['estimated_delivery_date'])){echo System_helper::display_date($deliveryInfo['estimated_delivery_date']);}?>">

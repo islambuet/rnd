@@ -171,6 +171,20 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 $data['estimated_delivery_date'] = strtotime($this->input->post('estimated_delivery_date'));
                 $data['delivery_date'] = strtotime($this->input->post('delivery_date'));
 
+                $season_info=Query_helper::get_info('rnd_season','*',array('id ='.$data['season_id']),1);
+                $data['expected_sowing_start']=0;
+                if($season_info['expected_sowing_start']>0)
+                {
+                    $data['expected_sowing_start'] =System_helper::get_time($data['year'].substr(System_helper::display_date($season_info['expected_sowing_start']),4));
+                }
+                $data['expected_sowing_end']=0;
+                if($season_info['expected_sowing_end']>0)
+                {
+                    $data['expected_sowing_end'] = System_helper::get_time($data['year'].substr(System_helper::display_date($season_info['expected_sowing_end']),4));
+                }
+
+
+
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
