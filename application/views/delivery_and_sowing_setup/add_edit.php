@@ -23,7 +23,7 @@
             </div>
             <div class="col-xs-4">
 
-                <select name="year" class="form-control validate[required]" <?php if(!empty($deliveryInfo['year'])){echo 'disabled';}?>>
+                <select id='year' name="year" class="form-control validate[required]" <?php if(!empty($deliveryInfo['year'])){echo 'disabled';}?>>
                     <?php
                     $current_year=date("Y",time());
                     $deliveryInfo['year']=$current_year;
@@ -54,6 +54,24 @@
                 </select>
             </div>
         </div>
+        <div style="display: none;">
+            <?php
+            foreach($seasons as $season)
+            {
+                ?>
+                <input type="text" id="season_<?php echo $season['id']?>" value="<?php
+                if($season['estimated_delivery_date']>0)
+                {
+                    echo substr(System_helper::display_date($season['estimated_delivery_date']),4);
+                }
+                else
+                {
+                    echo '0';
+                }
+                ?>">
+                <?php
+            }?>
+        </div>
 
         <div class="row show-grid">
             <div class="col-xs-4">
@@ -72,7 +90,6 @@
                 </select>
             </div>
         </div>
-
         <div class="row show-grid">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
@@ -188,6 +205,27 @@
         $( "#transplanting_date" ).datepicker({dateFormat : display_date_format});
         $( "#sowing_date" ).datepicker({dateFormat : display_date_format});
         $( "#season_end_date" ).datepicker({dateFormat : display_date_format});
+        $(document).on("change", "#year", function(event)
+        {
+            $('#season_id').val('');
+
+        });
+        $(document).on("change", "#season_id", function(event)
+        {
+            var season_id=$(this).val();
+            $('#estimated_delivery_date').val('');
+            if(season_id>0)
+            {
+                var ddate=$('#season_'+season_id).val();
+                if(ddate!=0)
+                {
+                    $('#estimated_delivery_date').val($("#year").val()+ddate);
+                }
+                //console.log($('#season_'+season_id).html());
+
+            }
+
+        });
 
 //        $(".form_valid").validationEngine();
     });
