@@ -31,6 +31,8 @@ class Report_local_procurement extends ROOT_Controller
     private function rnd_search()
     {
         $data['title'] = "Local Procurement Report";
+        $data['principals'] = Query_helper::get_info('rnd_principal', '*', array('status !='.$this->config->item('status_delete')));
+        $data['companies'] = Query_helper::get_info('rnd_competitor', '*', array('status !='.$this->config->item('status_delete')));
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("report_local_procurement/search", $data, true));
 
@@ -46,7 +48,10 @@ class Report_local_procurement extends ROOT_Controller
 
         $year = $this->input->post('year');
         $variety_type = $this->input->post('variety_type');
-        $data['varieties']=$this->report_local_procurement_model->get_varieties($year,$variety_type);
+        $principal_id = $this->input->post('principal_id');
+        $company_id = $this->input->post('company_id');
+
+        $data['varieties']=$this->report_local_procurement_model->get_varieties($year,$variety_type,$principal_id,$company_id);
 
         $ajax['status']=true;
         $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_local_procurement/report", $data, true));

@@ -12,6 +12,8 @@ $variety_types=$this->config->item('variety_type');
         <table class="table table-hover table-bordered" >
             <thead class="hidden-print">
             <tr>
+                <th><?php echo $this->lang->line("SL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_COMPANY_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
@@ -28,15 +30,18 @@ $variety_types=$this->config->item('variety_type');
                 <?php
                 if(sizeof($varieties)>0)
                 {
+                    $i=0;
                     foreach($varieties as $variety)
                     {
                         ?>
                         <tr>
+                            <td><?php echo ++$i;?></td>
+                            <td><?php echo $variety['year'];?></td>
                             <td>
                                 <?php
                                 if($variety['variety_type']==3)//CKO
                                 {
-                                    echo $variety['company_name'];
+                                    echo $variety['comp_name'];
 
                                 }
                                 elseif($variety['variety_type']==2)//CKA
@@ -57,14 +62,7 @@ $variety_types=$this->config->item('variety_type');
                             <td><?php echo $variety['quantity'];?></td>
                             <td>
                                 <?php
-                                    if($variety['replica_status']==1)
-                                    {
-                                        echo ($variety['quantity']-2*$variety['total_send']);
-                                    }
-                                    else
-                                    {
-                                        echo ($variety['quantity']-$variety['total_send']);
-                                    }
+                                    echo ($variety['quantity']-$variety['total_send']);
                                 ?>
                             </td>
                             <td><?php echo System_helper::display_date($variety['creation_date']);?></td>
