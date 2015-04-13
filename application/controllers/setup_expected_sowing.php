@@ -73,6 +73,7 @@ class Setup_expected_sowing extends ROOT_Controller
             $data = array();
             $data['expected_sowing_start']=System_helper::get_time($this->input->post("expected_sowing_start"));
             $data['expected_sowing_end']=System_helper::get_time($this->input->post("expected_sowing_end"));
+            $data['estimated_delivery_date']=System_helper::get_time($this->input->post("estimated_delivery_date"));
 
 
             $this->db->trans_start();  //DB Transaction Handle START

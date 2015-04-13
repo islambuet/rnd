@@ -20,6 +20,7 @@ $this->load->view("action_buttons",$data);
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_EXPECTED_SOWING_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_DESTINED_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -39,6 +40,18 @@ $this->load->view("action_buttons",$data);
                             if(($season['expected_sowing_start']>0)&&(($season['expected_sowing_end']>0)))
                             {
                                 echo System_helper::display_date($season['expected_sowing_start'])." TO ".System_helper::display_date($season['expected_sowing_end']);
+                            }
+                            else
+                            {
+                                echo $this->lang->line("LABEL_NOT_SET");
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if(($season['estimated_delivery_date']>0))
+                            {
+                                echo System_helper::display_date($season['estimated_delivery_date']);
                             }
                             else
                             {

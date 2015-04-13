@@ -114,7 +114,7 @@ $lang['LABEL_REPLICA_STATUS'] = 'Replica Status';
 
 //General Sample Delivery
 
-$lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Destined Delivery Date';
+$lang['LABEL_DESTINED_DELIVERY_DATE'] = 'Expected Delivery Date';
 $lang['LABEL_DELIVERED'] = 'Delivered';
 $lang['LABEL_DELIVERY_DATE'] = 'Delivery Date';
 $lang['LABEL_RECEIVED'] = 'Received';

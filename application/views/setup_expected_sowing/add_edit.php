@@ -30,6 +30,14 @@
                 <input type="text" name="expected_sowing_end" id="expected_sowing_end" class="form-control" value="<?php if($season_info['expected_sowing_end']){ echo System_helper::display_date($season_info['expected_sowing_end']);}?>">
             </div>
         </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_DESTINED_DELIVERY_DATE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-xs-4">
+                <input type="text" name="estimated_delivery_date" id="estimated_delivery_date" class="form-control" value="<?php if($season_info['estimated_delivery_date']){ echo System_helper::display_date($season_info['estimated_delivery_date']);}?>">
+            </div>
+        </div>
     </div>
 
     <div class="clearfix"></div>
@@ -41,6 +49,7 @@
         turn_off_triggers();
         $( "#expected_sowing_start" ).datepicker({dateFormat : display_date_format});
         $( "#expected_sowing_end" ).datepicker({dateFormat : display_date_format});
+        $( "#estimated_delivery_date" ).datepicker({dateFormat : display_date_format});
     });
 
 
