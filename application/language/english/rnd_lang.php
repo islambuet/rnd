@@ -338,8 +338,11 @@ $lang['LABEL_TRIAL_STATUS'] = 'Trial Status';
 $lang['TRIAL_STATUS'] = 'Trial Status';
 $lang['NO_VARIETY_SENT_FOR_RND'] = 'Warning No variety sent for R&D';
 
-$lang['LABEL_PRINCIPAL_REMARK'] = 'Principal Remark';
-$lang['LABEL_FINAL_REMARK'] = 'Final Remark';
+$lang['LABEL_PRINCIPAL_REMARK'] = 'Principal Remarks';
+$lang['LABEL_FINAL_REMARK'] = 'Final Remarks';
+$lang['LABEL_FORTH_NIGHTLY_REMARK'] = 'Forth Nightly Remarks';
+$lang['LABEL_FRUIT_REMARK'] = 'Fruit Remarks';
+$lang['LABEL_YIELD_REMARK'] = 'Yield Remarks';
 $lang['LABEL_SELECT_PRINCIPAL'] = 'Select Principal';
 $lang['LABEL_PRO_QUANTITY'] = 'Pro. Quantity';
 $lang['LABEL_CURRENT_STOCK'] = 'Current Stock';

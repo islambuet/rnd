@@ -39,7 +39,7 @@ class Hofc_principal_data_entry_model extends CI_Model
     public function get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id,$principal_id)
     {
         $this->db->from('hofc_principal_data_entry hpde');
-        $this->db->select('id,hpde.principal_remark,hpde.final_remark');
+        $this->db->select('id,hpde.principal_remark,hpde.final_remark,hpde.forth_nightly_remark,hpde.fruit_remark,hpde.yield_remark');
         $this->db->where('hpde.year',$year);
         $this->db->where('hpde.season_id',$season_id);
         $this->db->where('hpde.crop_id',$crop_id);
@@ -51,11 +51,17 @@ class Hofc_principal_data_entry_model extends CI_Model
         $data['hpde_id']=0;
         $data['principal_remark']='';
         $data['final_remark']='';
+        $data['forth_nightly_remark']='';
+        $data['fruit_remark']='';
+        $data['yield_remark']='';
         if($result)
         {
             $data['hpde_id']=$result['id'];
             $data['principal_remark']=$result['principal_remark'];
             $data['final_remark']=$result['final_remark'];
+            $data['forth_nightly_remark']=$result['forth_nightly_remark'];
+            $data['fruit_remark']=$result['fruit_remark'];
+            $data['yield_remark']=$result['yield_remark'];
         }
         else
         {
@@ -69,8 +75,49 @@ class Hofc_principal_data_entry_model extends CI_Model
             $result = $this->db->get()->row_array();
             if($result)
             {
-                $info=json_decode($result['info']);
-                $data['final_remark']=$info['remarks'];
+                $info=json_decode($result['info'],true);
+                $data['final_remark']=$info['normal']['remarks'];
+            }
+
+            $this->db->from('rnd_data_text_fifteen_days rdtvf');
+            $this->db->select('info');
+            $this->db->where('rdtvf.year',$year);
+            $this->db->where('rdtvf.season_id',$season_id);
+            $this->db->where('rdtvf.crop_id',$crop_id);
+            $this->db->where('rdtvf.crop_type_id',$crop_type_id);
+            $this->db->where('rdtvf.variety_id',$variety_id);
+            $result = $this->db->get()->row_array();
+            if($result)
+            {
+                $info=json_decode($result['info'],true);
+                $data['forth_nightly_remark']=$info['normal']['remarks'];
+            }
+
+            $this->db->from('rnd_data_text_fruit rdtvf');
+            $this->db->select('info');
+            $this->db->where('rdtvf.year',$year);
+            $this->db->where('rdtvf.season_id',$season_id);
+            $this->db->where('rdtvf.crop_id',$crop_id);
+            $this->db->where('rdtvf.crop_type_id',$crop_type_id);
+            $this->db->where('rdtvf.variety_id',$variety_id);
+            $result = $this->db->get()->row_array();
+            if($result)
+            {
+                $info=json_decode($result['info'],true);
+                $data['fruit_remark']=$info['normal']['remarks'];
+            }
+            $this->db->from('rnd_data_text_yield rdtvf');
+            $this->db->select('info');
+            $this->db->where('rdtvf.year',$year);
+            $this->db->where('rdtvf.season_id',$season_id);
+            $this->db->where('rdtvf.crop_id',$crop_id);
+            $this->db->where('rdtvf.crop_type_id',$crop_type_id);
+            $this->db->where('rdtvf.variety_id',$variety_id);
+            $result = $this->db->get()->row_array();
+            if($result)
+            {
+                $info=json_decode($result['info'],true);
+                $data['yield_remark']=$info['normal']['remarks'];
             }
         }
         return $data;

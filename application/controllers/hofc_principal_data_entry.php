@@ -92,6 +92,9 @@ class Hofc_principal_data_entry extends ROOT_Controller
             $id = $this->input->post('hpde_id');
             $data = array();
             $data['final_remark'] = $this->input->post('final_remark');
+            $data['forth_nightly_remark']=$this->input->post('forth_nightly_remark');
+            $data['fruit_remark']=$this->input->post('fruit_remark');
+            $data['yield_remark']=$this->input->post('yield_remark');
             $data['principal_remark']=$this->input->post('principal_remark');
 
             $user = User_helper::get_user();
