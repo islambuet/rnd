@@ -77,6 +77,10 @@ class System_helper
     {
         return date('Y-m-d',$date);
     }
+    public static function display_date_2($date)
+    {
+        return date('d-M-Y',$date);
+    }
     public static function get_time($str)
     {
         $time=strtotime($str);
