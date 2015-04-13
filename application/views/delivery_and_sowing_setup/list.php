@@ -20,7 +20,7 @@
                 <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_DESTINED_DELIVERY_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_ESTIMATED_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_RECEIVE_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_EXPECTED_SOWING_DATE"); ?></th>
@@ -47,7 +47,7 @@
                             <?php
                             if(($sample['estimated_delivery_date'])>0)
                             {
-                                echo System_helper::display_date_2($sample['estimated_delivery_date']);
+                                echo System_helper::display_date($sample['estimated_delivery_date']);
                             }
                             else
                             {
@@ -59,7 +59,7 @@
                             <?php
                             if(($sample['delivery_date'])>0)
                             {
-                                echo System_helper::display_date_2($sample['delivery_date']);
+                                echo System_helper::display_date($sample['delivery_date']);
                             }
                             else
                             {
@@ -72,7 +72,7 @@
                             <?php
                             if(($sample['receive_date'])>0)
                             {
-                                echo System_helper::display_date_2($sample['receive_date']);
+                                echo System_helper::display_date($sample['receive_date']);
                             }
                             else
                             {
@@ -84,7 +84,7 @@
                             <?php
                             if(($sample['expected_sowing_start']>0)&&(($sample['expected_sowing_end']>0)))
                             {
-                                echo System_helper::display_date_2($sample['expected_sowing_start'])." TO ".System_helper::display_date_2($sample['expected_sowing_end']);
+                                echo System_helper::display_date($sample['expected_sowing_start'])." TO ".System_helper::display_date($sample['expected_sowing_end']);
                             }
                             else
                             {
@@ -96,7 +96,7 @@
                             <?php
                             if(($sample['sowing_status'])==1)
                             {
-                                echo System_helper::display_date_2($sample['sowing_date']);
+                                echo System_helper::display_date($sample['sowing_date']);
                             }
                             else
                             {
@@ -108,7 +108,7 @@
                             <?php
                             if(($sample['transplanting_date'])>0)
                             {
-                                echo System_helper::display_date_2($sample['transplanting_date']);
+                                echo System_helper::display_date($sample['transplanting_date']);
                             }
                             else
                             {
@@ -120,7 +120,7 @@
                             <?php
                             if(($sample['season_end_status'])==1)
                             {
-                                echo System_helper::display_date_2($sample['season_end_date']);
+                                echo System_helper::display_date($sample['season_end_date']);
                             }
                             else
                             {

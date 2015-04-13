@@ -72,12 +72,7 @@ class System_helper
 
         return $rndCode;
     }
-
     public static function display_date($date)
-    {
-        return date('Y-m-d',$date);
-    }
-    public static function display_date_2($date)
     {
         return date('d-M-Y',$date);
     }

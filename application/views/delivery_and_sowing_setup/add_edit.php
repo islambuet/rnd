@@ -26,7 +26,11 @@
                 <select id='year' name="year" class="form-control validate[required]" <?php if(!empty($deliveryInfo['year'])){echo 'disabled';}?>>
                     <?php
                     $current_year=date("Y",time());
-                    $deliveryInfo['year']=$current_year;
+                    if(!($deliveryInfo['year']>0))
+                    {
+                        $deliveryInfo['year']=$current_year;
+                    }
+
                     for($i=$this->config->item("start_year");$i<=($current_year+$this->config->item("next_year_range"));$i++)
                     {?>
                         <option value="<?php echo $i;?>" <?php if($i==$deliveryInfo['year']){echo 'selected';}?>><?php echo $i;?></option>
@@ -60,14 +64,7 @@
             {
                 ?>
                 <input type="text" id="season_<?php echo $season['id']?>" value="<?php
-                if($season['estimated_delivery_date']>0)
-                {
-                    echo substr(System_helper::display_date($season['estimated_delivery_date']),4);
-                }
-                else
-                {
-                    echo '0';
-                }
+                echo ($season['estimated_delivery_date']);
                 ?>">
                 <?php
             }?>
@@ -216,12 +213,12 @@
             $('#estimated_delivery_date').val('');
             if(season_id>0)
             {
-                var ddate=$('#season_'+season_id).val();
-                if(ddate!=0)
-                {
-                    $('#estimated_delivery_date').val($("#year").val()+ddate);
-                }
-                //console.log($('#season_'+season_id).html());
+                var d = new Date($('#season_'+season_id).val()*1000);
+                d.setFullYear($("#year").val());
+                //$('#estimated_delivery_date').val(d.toString(display_date_format));
+                $('#estimated_delivery_date').val($.datepicker.formatDate(display_date_format, d));
+                console.log(d);
+
 
             }
 

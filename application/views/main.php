@@ -24,7 +24,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     <script src="<?php echo base_url() ?>js/validator_js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
-        var display_date_format = "yy-mm-dd";
+        var display_date_format = "dd-M-yy";
     </script>
     <header class="hidden-print">
 

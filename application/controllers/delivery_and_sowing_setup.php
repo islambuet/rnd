@@ -175,12 +175,12 @@ class Delivery_and_sowing_setup extends ROOT_Controller
                 $data['expected_sowing_start']=0;
                 if($season_info['expected_sowing_start']>0)
                 {
-                    $data['expected_sowing_start'] =System_helper::get_time($data['year'].substr(System_helper::display_date($season_info['expected_sowing_start']),4));
+                    $data['expected_sowing_start'] =System_helper::get_time($data['year'].substr(date('Y-m-d',$season_info['expected_sowing_start']),4));
                 }
                 $data['expected_sowing_end']=0;
                 if($season_info['expected_sowing_end']>0)
                 {
-                    $data['expected_sowing_end'] = System_helper::get_time($data['year'].substr(System_helper::display_date($season_info['expected_sowing_end']),4));
+                    $data['expected_sowing_end'] =System_helper::get_time($data['year'].substr(date('Y-m-d',$season_info['expected_sowing_end']),4));
                 }
 
 
