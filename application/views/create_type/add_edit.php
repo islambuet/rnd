@@ -69,37 +69,37 @@
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_LENGTH');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_LENGTH');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="target_length" id="target_length" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_length'];?>" >
+                <input type="text" name="target_length" id="target_length" class="form-control" value="<?php echo $typeInfo['terget_length'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_WEIGHT');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_WEIGHT');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="target_weight" id="target_weight" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_weight'];?>" >
+                <input type="text" name="target_weight" id="target_weight" class="form-control" value="<?php echo $typeInfo['terget_weight'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_YIELD');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TARGET_YIELD');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="target_yield" id="target_yield" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['terget_yeild'];?>" >
+                <input type="text" name="target_yield" id="target_yield" class="form-control" value="<?php echo $typeInfo['terget_yeild'];?>" >
             </div>
         </div>
 
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_SEED_PER_GRAM');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_SEED_PER_GRAM');?></label>
             </div>
             <div class="col-sm-4 col-xs-8">
-                <input type="text" name="expected_seed_per_gram" id="expected_seed_per_gram" class="form-control validate[required, custom[number]]" value="<?php echo $typeInfo['expected_seed_per_gram'];?>" >
+                <input type="text" name="expected_seed_per_gram" id="expected_seed_per_gram" class="form-control" value="<?php echo $typeInfo['expected_seed_per_gram'];?>" >
             </div>
         </div>
 

@@ -44,20 +44,25 @@ class Report_principal extends ROOT_Controller
 
         $this->jsonReturn($ajax);
     }
-    /*private function rnd_report()
+    private function rnd_report()
     {
 
         $year = $this->input->post('year');
-        $variety_type = $this->input->post('variety_type');
+        $season_id = $this->input->post('season_id');
+        $crop_id = $this->input->post('crop_id');
+        $crop_type_id = $this->input->post('crop_type_id');
         $principal_id = $this->input->post('principal_id');
-        $company_id = $this->input->post('company_id');
+        $variety_ids=$this->input->post('varieties');
 
-        $data['varieties']=$this->report_local_procurement_model->get_varieties($year,$variety_type,$principal_id,$company_id);
+        $data['max_15_days']=$this->report_principal_model->get_max_15_days($year,$season_id,$crop_id,$crop_type_id);
+        $data['fortnightly']=$this->report_principal_model->get_15_days_images($variety_ids,$season_id);
+        $data['fruit']=$this->report_principal_model->get_fruit_images($variety_ids,$season_id);
+        $data['varieties']=$this->report_principal_model->get_reports($variety_ids,$season_id);
 
         $ajax['status']=true;
-        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_local_procurement/report", $data, true));
+        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_principal/report", $data, true));
         $this->jsonReturn($ajax);
-    }*/
+    }
     public function load_varieties_for_principal_report()
     {
         $year = $this->input->post('year');

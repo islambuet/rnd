@@ -196,13 +196,13 @@ $this->load->view("action_buttons_edit",$data);
             }
 
         });
-        /*$(document).on("click", "#load_report", function(event)
+        $(document).on("click", "#load_report", function(event)
         {
             $("#report_list").html("");
             $("#report_form").submit();
 
         });
-        $(document).on("click", ".full_text_report", function(event)
+        /*$(document).on("click", ".full_text_report", function(event)
         {
 
             $.ajax({

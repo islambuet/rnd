@@ -188,22 +188,7 @@ class Create_crop_type extends ROOT_Controller
             $this->message.="Type Code Exists<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('target_length')))
-        {
-            $valid=false;
-            $this->message.="Targeted Length Must be number<br>";
-        }
-        if(!Validation_helper::validate_numeric($this->input->post('target_weight')))
-        {
-            $valid=false;
-            $this->message.="Targeted Weight Must be number<br>";
-        }
 
-        if(!Validation_helper::validate_numeric($this->input->post('target_yield')))
-        {
-            $valid=false;
-            $this->message.="Targeted Yield Must be number<br>";
-        }
 
         return $valid;
     }
