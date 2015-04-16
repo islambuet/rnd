@@ -71,12 +71,14 @@ class Report_principal_model extends CI_Model
         $this->db->join('rnd_principal rp', 'rp.id = rv.principal_id', 'left');
         $this->db->join('hofc_principal_data_entry hpde', 'hpde.variety_id = rv.id and hpde.season_id = rvs.season_id', 'left');
         $this->db->where_in('rv.id',$ids);
-        $this->db->order_by('rv.id');
+
         if($season_id>0)
         {
             $this->db->where('rs.id',$season_id);
         }
         $this->db->where('rvs.sample_delivery_status',1);
+
+        $this->db->order_by('rc.id ASC,rv.id');
 
 
         $results = $this->db->get()->result_array();

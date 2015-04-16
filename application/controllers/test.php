@@ -11,7 +11,7 @@ class Test extends CI_Controller
 //    }
     public function index()
     {
-        $info=$this->upload->data();
+        echo $this->uri->segment(3);
 
 
 

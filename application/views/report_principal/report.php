@@ -11,6 +11,15 @@ $tool_tip_position='left';
 //print_r($fruit);
 //echo "</pre>";
 //return;
+$fruit_type_name='curd';
+$current_crop_id=0;
+$fruit_types=$this->config->item('fruit_type');
+if(sizeof($varieties)>0)
+{
+    $current_crop_id=$varieties[0]['crop_id'];
+    $fruit_type = Query_helper::get_info("rnd_crop","fruit_type",array('id = '.$current_crop_id),1);
+    $fruit_type_name=$fruit_types[$fruit_type['fruit_type']];
+}
 
 
 ?>
@@ -34,10 +43,11 @@ $tool_tip_position='left';
                         <th class="text-center"><?php echo $i*15; ?></th>
                     <?php
                     }
+
                     foreach($this->config->item('fruit_image') as $key=>$text)
                     {
                         ?>
-                        <td class="text-center"><?php echo $text; ?></td>
+                        <th class="text-center"><?php echo sprintf($text,$fruit_type_name); ?></th>
                     <?php
                     }
                 ?>
@@ -53,12 +63,41 @@ $tool_tip_position='left';
                 <?php
                 if(sizeof($varieties)>0)
                 {
-                    $i=0;
+                    $index=0;
                     foreach($varieties as $variety)
                     {
+                        if($variety['crop_id']!=$current_crop_id)
+                        {
+                            $current_crop_id=$variety['crop_id'];
+                            $index=0;
+                            ?>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("SL"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_YEAR"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_PRINCIPAL"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_SEASON"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_VARIETY_NAME"); ?></td>
+                            <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_RND_CODE"); ?></td>
+                            <?php
+                            for($i=1;$i<=$max_15_days;$i++)
+                            {
+                                ?>
+                                <td style="font-weight: bold;" class="text-center"><?php echo $i*15; ?></td>
+                            <?php
+                            }
+                            $fruit_type = Query_helper::get_info("rnd_crop","fruit_type",array('id = '.$current_crop_id),1);
+                            $fruit_type_name=$fruit_types[$fruit_type['fruit_type']];
+                            foreach($this->config->item('fruit_image') as $key=>$text)
+                            {
+                                ?>
+                                <td style="font-weight: bold;" class="text-center"><?php echo sprintf($text,$fruit_type_name); ?></td>
+                            <?php
+                            }
+                        }
                         ?>
                         <tr>
-                            <td><?php echo ++$i;?></td>
+                            <td><?php echo ++$index;?></td>
                             <td><?php echo $variety['year'];?></td>
                             <td>
                                 <?php
