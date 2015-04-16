@@ -56,6 +56,7 @@ if(sizeof($varieties)>0)
                 <th style="min-width: 200px;"><?php echo $this->lang->line("LABEL_FRUIT_REMARK"); ?></th>
                 <th style="min-width: 200px;"><?php echo $this->lang->line("LABEL_YIELD_REMARK"); ?></th>
                 <th style="min-width: 200px;"><?php echo $this->lang->line("LABEL_FINAL_REMARK"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_RANKING"); ?></th>
                 <th style="min-width: 200px;"><?php echo $this->lang->line("LABEL_PRINCIPAL_REMARK"); ?></th>
             </tr>
             </thead>
@@ -71,6 +72,7 @@ if(sizeof($varieties)>0)
                             $current_crop_id=$variety['crop_id'];
                             $index=0;
                             ?>
+                            <tr style="background-color: lightgray;">
                             <td style="font-weight: bold;"><?php echo $this->lang->line("SL"); ?></td>
                             <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_YEAR"); ?></td>
                             <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_PRINCIPAL"); ?></td>
@@ -92,8 +94,17 @@ if(sizeof($varieties)>0)
                             {
                                 ?>
                                 <td style="font-weight: bold;" class="text-center"><?php echo sprintf($text,$fruit_type_name); ?></td>
-                            <?php
+                                <?php
                             }
+                            ?>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_FORTH_NIGHTLY_REMARK"); ?></td>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_FRUIT_REMARK"); ?></td>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_YIELD_REMARK"); ?></td>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_FINAL_REMARK"); ?></td>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_RANKING"); ?></td>
+                                <td style="font-weight: bold;"><?php echo $this->lang->line("LABEL_PRINCIPAL_REMARK"); ?></td>
+                            </tr>
+                            <?php
                         }
                         ?>
                         <tr>
@@ -188,6 +199,7 @@ if(sizeof($varieties)>0)
                             <td><?php echo $variety['fruit_remark'];?></td>
                             <td><?php echo $variety['yield_remark'];?></td>
                             <td><?php echo $variety['final_remark'];?></td>
+                            <td><?php echo $variety['ranking'];?></td>
                             <td><?php echo $variety['principal_remark'];?></td>
 
                         </tr>

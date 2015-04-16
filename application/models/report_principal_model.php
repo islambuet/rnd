@@ -61,7 +61,9 @@ class Report_principal_model extends CI_Model
         $this->db->select('ct.type_code type_code, ct.type_name type_name');
         $this->db->select('rp.principal_code,rp.principal_name');
         $this->db->select('rs.season_name,rs.id season_id');
+
         $this->db->select('hpde.principal_remark,hpde.final_remark,hpde.forth_nightly_remark,hpde.fruit_remark,hpde.yield_remark');
+        $this->db->select('vg.ranking');
 
         $this->db->join('rnd_crop rc', 'rc.id = rv.crop_id', 'inner');
         $this->db->join('rnd_crop_type ct', 'ct.id = rv.crop_type_id', 'inner');
@@ -70,6 +72,7 @@ class Report_principal_model extends CI_Model
 
         $this->db->join('rnd_principal rp', 'rp.id = rv.principal_id', 'left');
         $this->db->join('hofc_principal_data_entry hpde', 'hpde.variety_id = rv.id and hpde.season_id = rvs.season_id', 'left');
+        $this->db->join('rnd_data_text_veg_fruit vg', 'vg.variety_id = rv.id and vg.season_id = rvs.season_id', 'left');
         $this->db->where_in('rv.id',$ids);
 
         if($season_id>0)
