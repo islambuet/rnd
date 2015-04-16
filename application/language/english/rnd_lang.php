@@ -338,7 +338,7 @@ $lang['LABEL_TRIAL_STATUS'] = 'Trial Status';
 $lang['TRIAL_STATUS'] = 'Trial Status';
 $lang['NO_VARIETY_SENT_FOR_RND'] = 'Warning No variety sent for R&D';
 
-$lang['LABEL_PRINCIPAL_REMARK'] = 'Principal Remarks';
+$lang['LABEL_PRINCIPAL_REMARK'] = 'Head Office Remarks';
 $lang['LABEL_FINAL_REMARK'] = 'Final Remarks';
 $lang['LABEL_FORTH_NIGHTLY_REMARK'] = 'Forth Nightly Remarks';
 $lang['LABEL_FRUIT_REMARK'] = 'Fruit Remarks';
@@ -355,6 +355,18 @@ $lang['LABEL_EXPECTED_SOWING_DATE'] = 'Expected Sowing date';
 $lang['LABEL_PLOT_NAME'] = 'Plot Name';
 $lang['LABEL_PLOT_LENGTH'] = 'Plot Length';
 $lang['LABEL_PLOT_WIDTH'] = 'Plot Width';
+
+$lang['LABEL_EXPECTED_ANALYSIS_DATE_FROM'] = 'Expected Analysis Date From';
+$lang['LABEL_EXPECTED_ANALYSIS_DATE_TO'] = 'Expected Analysis Date To';
+$lang['LABEL_ANALYSIS_DATE'] = 'Analysis Date';
+
+$lang['LABEL_EXPECTED_ANALYSIS_WITH_MARKET_FROM'] = 'Expected Analysis With Market Date From';
+$lang['LABEL_EXPECTED_ANALYSIS_WITH_MARKET_TO'] = 'Expected Analysis With Market Date To';
+$lang['LABEL_ANALYSIS_DATE'] = 'Analysis With Market';
+
+$lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_FROM'] = 'Expected Presentation To Management Date From';
+$lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_TO'] = 'Expected Presentation To Management Date To';
+$lang['LABEL_ANALYSIS_DATE'] = 'Presentation To Management';
 
 
 
