@@ -356,17 +356,14 @@ $lang['LABEL_PLOT_NAME'] = 'Plot Name';
 $lang['LABEL_PLOT_LENGTH'] = 'Plot Length';
 $lang['LABEL_PLOT_WIDTH'] = 'Plot Width';
 
-$lang['LABEL_EXPECTED_ANALYSIS_DATE_FROM'] = 'Expected Analysis Date From';
-$lang['LABEL_EXPECTED_ANALYSIS_DATE_TO'] = 'Expected Analysis Date To';
+$lang['LABEL_EXPECTED_ANALYSIS_DATE'] = 'Expected Analysis Date';
 $lang['LABEL_ANALYSIS_DATE'] = 'Analysis Date';
 
-$lang['LABEL_EXPECTED_ANALYSIS_WITH_MARKET_FROM'] = 'Expected Analysis With Market Date From';
-$lang['LABEL_EXPECTED_ANALYSIS_WITH_MARKET_TO'] = 'Expected Analysis With Market Date To';
-$lang['LABEL_ANALYSIS_DATE'] = 'Analysis With Market';
+$lang['LABEL_EXPECTED_ANALYSIS_WITH_MARKET'] = 'Expected Analysis With Market Date';
+$lang['LABEL_ANALYSIS_WITH_MARKET_DATE'] = 'Analysis With Market Date';
 
-$lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_FROM'] = 'Expected Presentation To Management Date From';
-$lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_TO'] = 'Expected Presentation To Management Date To';
-$lang['LABEL_PRESENTATION_DATE'] = 'Presentation To Management';
+$lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT'] = 'Expected Presentation To Management Date';
+$lang['LABEL_PRESENTATION_DATE'] = 'Presentation To Management Date';
 
 
 
