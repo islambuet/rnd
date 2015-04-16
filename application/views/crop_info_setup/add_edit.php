@@ -154,7 +154,7 @@
 
         <div class="row show-grid dateClass" style="display: none;">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_TO');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRESENTATION_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
                 <input type="text" name="expected_presentation_to_management_to" class="form-control" value="" />

@@ -366,7 +366,7 @@ $lang['LABEL_ANALYSIS_DATE'] = 'Analysis With Market';
 
 $lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_FROM'] = 'Expected Presentation To Management Date From';
 $lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_TO'] = 'Expected Presentation To Management Date To';
-$lang['LABEL_ANALYSIS_DATE'] = 'Presentation To Management';
+$lang['LABEL_PRESENTATION_DATE'] = 'Presentation To Management';
 
 
 
