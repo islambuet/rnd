@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Setup_plot extends ROOT_Controller
+class Setup_plot_info extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("setup_plot_model");
+        $this->load->model("setup_plot_info_model");
     }
 
     public function index($task="list",$id=0)
@@ -33,7 +33,7 @@ class Setup_plot extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "setup_plot/index/list/",$this->setup_plot_model->get_total_plots(),4);
+        $config = System_helper::pagination_config(base_url() . "setup_plot_info/index/list/",$this->setup_plot_info_model->get_total_plots(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,18 +42,18 @@ class Setup_plot extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['plots'] = $this->setup_plot_model->get_plotInfo($page);
+        $data['plots'] = $this->setup_plot_info_model->get_plotInfo($page);
         $data['title']="Plot Info";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_plot/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_plot_info/list",$data,true));
 
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
 
-        $ajax['page_url']=base_url()."setup_plot/index/list/".($page+1);
+        $ajax['page_url']=base_url()."setup_plot_info/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
@@ -61,13 +61,13 @@ class Setup_plot extends ROOT_Controller
     {
         if ($id > 0)
         {
-            $data['plotInfo'] = $this->setup_plot_model->get_plot_row($id);
-            $data['title']="Edit Plot (".$data['plotInfo']['plot_name'].")";
-            $ajax['page_url']=base_url()."setup_plot/index/edit/".$id;
+            $data['plotInfo'] = $this->setup_plot_info_model->get_plot_row($id);
+            $data['title']="Edit Part (".$data['plotInfo']['plot_name'].")";
+            $ajax['page_url']=base_url()."setup_plot_info/index/edit/".$id;
         }
         else
         {
-            $data['title']="Create New Plot";
+            $data['title']="Create New Part";
             $data["plotInfo"] = Array
             (
                 'id' => 0,
@@ -76,11 +76,11 @@ class Setup_plot extends ROOT_Controller
                 'plot_width' => ''
             );
 
-            $ajax['page_url']=base_url()."setup_plot/index/add";
+            $ajax['page_url']=base_url()."setup_plot_info/index/add";
         }
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_plot/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("setup_plot_info/add_edit",$data,true));
 
         $this->jsonReturn($ajax);
     }
@@ -111,7 +111,7 @@ class Setup_plot extends ROOT_Controller
                 $data['modified_by'] = $user->user_id;
                 $data['modification_date'] = time();
 
-                Query_helper::update('rnd_plot_info',$data,array("id = ".$id));
+                Query_helper::update('rnd_setup_plot_info',$data,array("id = ".$id));
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -131,7 +131,7 @@ class Setup_plot extends ROOT_Controller
                 $data['created_by'] = $user->user_id;
                 $data['creation_date'] = time();
 
-                Query_helper::add('rnd_plot_info',$data);
+                Query_helper::add('rnd_setup_plot_info',$data);
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -152,7 +152,7 @@ class Setup_plot extends ROOT_Controller
 
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('plot_name')) || $this->setup_plot_model->check_plot_existence($this->input->post('plot_name'),$this->input->post('plot_id')))
+        if(Validation_helper::validate_empty($this->input->post('plot_name')) || $this->setup_plot_info_model->check_plot_existence($this->input->post('plot_name'),$this->input->post('plot_id')))
         {
             return false;
         }

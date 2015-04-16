@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    $data["link_new"]=base_url()."setup_plot/index/add";
+    $data["link_new"]=base_url()."setup_plot_info/index/add";
     $this->load->view("action_buttons",$data);
 //echo '<pre>';
 //print_r($plots);
@@ -38,7 +38,7 @@
                         <td><?php echo $plot['plot_length'];?></td>
                         <td><?php echo $plot['plot_width'];?></td>
                         <td>
-                            <a href="<?php echo base_url();?>setup_plot/index/edit/<?php echo $plot['id'];?>">
+                            <a href="<?php echo base_url();?>setup_plot_info/index/edit/<?php echo $plot['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">
                             </a>
                         </td>
