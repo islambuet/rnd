@@ -99,7 +99,7 @@ class Setup_plot_info extends ROOT_Controller
         if(!$this->check_validation())
         {
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
@@ -152,22 +152,26 @@ class Setup_plot_info extends ROOT_Controller
 
     private function check_validation()
     {
+        $valid=true;
         if(Validation_helper::validate_empty($this->input->post('plot_name')) || $this->setup_plot_info_model->check_plot_existence($this->input->post('plot_name'),$this->input->post('plot_id')))
         {
-            return false;
+            $this->message.="Plot name already exists.<br>";
+            $valid=false;
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('plot_length')))
         {
-            return false;
+            $this->message.="Length should be number.<br>";
+            $valid=false;
         }
 
         if(!Validation_helper::validate_numeric($this->input->post('plot_width')))
         {
-            return false;
+            $this->message.='Width should be number.<br>';
+            $valid=false;
         }
 
-        return true;
+        return $valid;
     }
 
 
