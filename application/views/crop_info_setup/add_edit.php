@@ -80,84 +80,84 @@
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_ANALYSIS_DATE_FROM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_analysis_date_from" class="form-control" value="" />
+                <input type="text" name="expected_analysis_date_from" id="expected_analysis_date_from" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_ANALYSIS_DATE_TO');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_analysis_date_to" class="form-control" value="" />
+                <input type="text" name="expected_analysis_date_to" id="expected_analysis_date_to" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ANALYSIS_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_analysis_date" class="form-control" value="" />
+                <input type="text" name="expected_analysis_date" id="expected_analysis_date" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_ANALYSIS_WITH_MARKET_FROM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_analysis_date_with_market_from" class="form-control" value="" />
+                <input type="text" name="expected_analysis_date_with_market_from" id="expected_analysis_date_with_market_from" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_ANALYSIS_WITH_MARKET_TO');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_analysis_date_with_market_to" class="form-control" value="" />
+                <input type="text" name="expected_analysis_date_with_market_to" id="expected_analysis_date_with_market_to" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ANALYSIS_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="analysis_date" class="form-control" value="" />
+                <input type="text" name="analysis_date" id="analysis_date" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_FROM');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_presentation_to_management_from" class="form-control" value="" />
+                <input type="text" name="expected_presentation_to_management_from" id="expected_presentation_to_management_from" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT_TO');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_presentation_to_management_to" class="form-control" value="" />
+                <input type="text" name="expected_presentation_to_management_to" id="expected_presentation_to_management_to" class="form-control" value="" />
             </div>
         </div>
 
-        <div class="row show-grid dateClass" style="display: none;">
+        <div class="row show-grid dateFields" style="display: none;">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRESENTATION_DATE');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-xs-4">
-                <input type="text" name="expected_presentation_to_management_to" class="form-control" value="" />
+                <input type="text" name="presentation_to_management" id="presentation_to_management" class="form-control" value="" />
             </div>
         </div>
     </div>
@@ -169,6 +169,16 @@
     jQuery(document).ready(function()
     {
         turn_off_triggers();
+
+        $( "#expected_analysis_date_from" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_analysis_date_to" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_analysis_date" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_analysis_date_with_market_from" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_analysis_date_with_market_to" ).datepicker({dateFormat : display_date_format});
+        $( "#analysis_date" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_presentation_to_management_from" ).datepicker({dateFormat : display_date_format});
+        $( "#expected_presentation_to_management_to" ).datepicker({dateFormat : display_date_format});
+        $( "#presentation_to_management" ).datepicker({dateFormat : display_date_format});
 
         $(".form_valid").validationEngine();
 
@@ -214,6 +224,18 @@
             else
             {
                 $("#crop_type_id_container").hide();
+            }
+        });
+
+        $(document).on("change", "#crop_type_id", function(event)
+        {
+            if($(this).val()>0)
+            {
+                $(".dateFields").show();
+            }
+            else
+            {
+                $(".dateFields").hide();
             }
         });
     });
