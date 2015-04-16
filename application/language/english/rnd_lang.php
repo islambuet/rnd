@@ -352,6 +352,9 @@ $lang['LABEL_PREVIOUS_TRIAL'] = 'Previous Trail';
 
 $lang['LABEL_EXPECTED_SOWING_DATE'] = 'Expected Sowing date';
 
+$lang['LABEL_PLOT_NAME'] = 'Plot Name';
+$lang['LABEL_PLOT_LENGTH'] = 'Plot Length';
+$lang['LABEL_PLOT_WIDTH'] = 'Plot Width';
 
 
 

@@ -20,8 +20,8 @@ class Setup_plot_model extends CI_Model
         $this->db->limit($limit,$start);
         $this->db->order_by('cpi.id','DESC');
 
-        $query = $this->db->get();
-        return $query->result_array();
+        $result = $this->db->get()->result_array();
+        return $result;
     }
 
     public function get_total_plots()
@@ -39,8 +39,8 @@ class Setup_plot_model extends CI_Model
         $this->db->from('rnd_plot_info');
         $this->db->where('id',$id);
 
-        $query = $this->db->get();
-        return $query->row_array();
+        $result = $this->db->get()->row_array();
+        return $result;
     }
 
     public function check_plot_existence($plot,$id)
@@ -49,10 +49,7 @@ class Setup_plot_model extends CI_Model
         $this->db->from('rnd_plot_info');
         $this->db->where('plot_name',$plot);
         $this->db->where('id !=',$id);
-
-        $query = $this->db->get();
-        $result = $query->row_array();
-
+        $result = $this->db->get()->row_array();
         if($result)
         {
             return true;
