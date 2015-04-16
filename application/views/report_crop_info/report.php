@@ -12,78 +12,77 @@ $variety_types=$this->config->item('variety_type');
         <table class="table table-hover table-bordered" >
             <thead class="hidden-print">
             <tr>
+                <th><?php echo $this->lang->line("SERIAL"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_ESTIMATED_DELIVERY_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_DESTINED_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DELIVERY_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_RECEIVE_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_EXPECTED_SOWING_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SOWING_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_EXPECTED_ANALYSIS_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_ANALYSIS_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_EXPECTED_MARKETING_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_MARKETING_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_EXPECTED_PRESENTATION_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_EXPECTED_ANALYSIS_WITH_MARKET"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_ANALYSIS_WITH_MARKET_DATE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRESENTATION_DATE"); ?></th>
-
             </tr>
             </thead>
             <tbody>
                 <?php
-                if(sizeof($varieties)>0)
+                if(sizeof($crops_info)>0)
                 {
-                    foreach($varieties as $variety)
+                    foreach($crops_info as $key=>$crop)
                     {
                         ?>
                         <tr>
+                            <td><?php echo $key+1;?></td>
+                            <td><?php echo $crop['year'];?></td>
+                            <td><?php echo $crop['crop_name'];?></td>
+                            <td><?php echo $crop['season_name'];?></td>
+                            <td><?php echo $crop['type_name'];?></td>
+                            <td><?php if($crop['estimated_delivery_date']>0){echo System_helper::display_date($crop['estimated_delivery_date']);}?></td>
+                            <td><?php if($crop['delivery_date']>0){echo System_helper::display_date($crop['delivery_date']);}?></td>
+                            <td><?php if($crop['delivery_date']>0){echo System_helper::display_date($crop['receive_date']);}?></td>
                             <td>
                                 <?php
-                                if($variety['variety_type']==3)//CKO
+                                if(($crop['expected_sowing_start']>0)&&($crop['expected_sowing_end']>0))
                                 {
-                                    echo $variety['company_name'];
-
-                                }
-                                elseif($variety['variety_type']==2)//CKA
-                                {
-                                    echo $variety_types[2];
-                                }
-                                elseif($variety['variety_type']==1)//PRINCIPAL
-                                {
-
-                                    echo $variety['principal_name'];
+                                    echo System_helper::display_date($crop['expected_sowing_start']).' TO '.System_helper::display_date($crop['expected_sowing_end']);
                                 }
                                 ?>
                             </td>
-                            <td><?php echo $variety['crop_name'];?></td>
-                            <td><?php echo $variety['type_name'];?></td>
-                            <td><?php echo $variety['variety_name'];?></td>
-                            <td><?php echo System_helper::get_rnd_code($variety);?></td>
-                            <td><?php echo $variety['quantity'];?></td>
+                            <td><?php if($crop['sowing_date']>0){echo System_helper::display_date($crop['sowing_date']);}?></td>
                             <td>
                                 <?php
-                                    if($variety['replica_status']==1)
-                                    {
-                                        echo ($variety['quantity']-2*$variety['total_send']);
-                                    }
-                                    else
-                                    {
-                                        echo ($variety['quantity']-$variety['total_send']);
-                                    }
+                                if(($crop['expected_analysis_date_from']>0)&&($crop['expected_analysis_date_to']>0))
+                                {
+                                    echo System_helper::display_date($crop['expected_analysis_date_from']).' TO '.System_helper::display_date($crop['expected_analysis_date_to']);
+                                }
                                 ?>
                             </td>
-                            <td><?php echo System_helper::display_date($variety['creation_date']);?></td>
-                            <td><?php echo $this->lang->line('LABEL_YES');?></td>
+                            <td><?php if($crop['analysis_date']>0){echo System_helper::display_date($crop['analysis_date']);}?></td>
                             <td>
                                 <?php
-                                if($variety['variety_no']==1)//CKO
+                                if(($crop['expected_analysis_date_with_market_from']>0)&&($crop['expected_analysis_date_with_market_to']>0))
                                 {
-                                    echo $this->lang->line('LABEL_NO');
+                                    echo System_helper::display_date($crop['expected_analysis_date_with_market_from']).' TO '.System_helper::display_date($crop['expected_analysis_date_with_market_to']);
+                                }
+                                ?>
+                            </td>
+                            <td><?php if($crop['analysis_with_market_date']>0){echo System_helper::display_date($crop['analysis_with_market_date']);}?></td>
+                            <td>
+                                <?php
+                                if(($crop['expected_presentation_to_management_from']>0)&&($crop['expected_presentation_to_management_to']>0))
+                                {
+                                    echo System_helper::display_date($crop['expected_presentation_to_management_from']).' TO '.System_helper::display_date($crop['expected_presentation_to_management_to']);
+                                }
+                                ?>
+                            </td>
+                            <td><?php if($crop['presentation_to_management']>0){echo System_helper::display_date($crop['presentation_to_management']);}?></td>
 
-                                }
-                                else
-                                {
-                                    echo $this->lang->line('LABEL_YES');
-                                }
-                                ?>
-                            </td>
                         </tr>
                         <?php
                     }
