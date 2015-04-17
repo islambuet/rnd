@@ -355,6 +355,7 @@ $lang['LABEL_EXPECTED_SOWING_DATE'] = 'Expected Sowing date';
 $lang['LABEL_PLOT_NAME'] = 'Plot Name';
 $lang['LABEL_PLOT_LENGTH'] = 'Plot Length';
 $lang['LABEL_PLOT_WIDTH'] = 'Plot Width';
+$lang['LABEL_SELECT_PART'] = 'Select part';
 
 $lang['LABEL_EXPECTED_ANALYSIS_DATE'] = 'Expected Analysis Date';
 $lang['LABEL_ANALYSIS_DATE'] = 'Analysis Date';
