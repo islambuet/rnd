@@ -40,8 +40,8 @@ $variety_types=$this->config->item('variety_type');
                         <tr>
                             <td><?php echo $key+1;?></td>
                             <td><?php echo $crop['year'];?></td>
-                            <td><?php echo $crop['crop_name'];?></td>
                             <td><?php echo $crop['season_name'];?></td>
+                            <td><?php echo $crop['crop_name'];?></td>
                             <td><?php echo $crop['type_name'];?></td>
                             <td><?php if($crop['estimated_delivery_date']>0){echo System_helper::display_date($crop['estimated_delivery_date']);}?></td>
                             <td><?php if($crop['delivery_date']>0){echo System_helper::display_date($crop['delivery_date']);}?></td>
