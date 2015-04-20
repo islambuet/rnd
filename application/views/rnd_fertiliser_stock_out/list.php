@@ -19,10 +19,13 @@ $this->load->view("action_buttons",$data);
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_FERTILIZER_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
 
-                <th><?php echo $this->lang->line("ACTION"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
             </tr>
             </thead>
 
