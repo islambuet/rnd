@@ -22,8 +22,6 @@
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRICE_STOCK_IN"); ?></th>
-
-                <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
@@ -37,15 +35,10 @@
                     <tr>
                         <td><?php echo $key+1;?></td>
                         <td><?php echo $stock_in['fertilizer_name'];?></td>
-                        <td><?php echo System_helper::display_date($stock_in['creation_date']);?></td>
+                        <td><?php echo System_helper::display_date($stock_in['stock_in_date']);?></td>
                         <td><?php echo $stock_in['fertilizer_quantity'];?></td>
                         <td><?php echo $stock_in['fertilizer_price'];?></td>
 
-                        <td>
-                            <a href="<?php echo base_url();?>rnd_fertiliser_stock_in/index/edit/<?php echo $stock_in['id'];?>">
-                                <img src="<?php echo base_url();?>images/edit_record.png">
-                            </a>
-                        </td>
                     </tr>
                 <?php
                 }

@@ -59,23 +59,17 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
 
     public function rnd_add_edit($id)
     {
-        if ($id > 0)
-        {
-            $data['fertiliserInfo'] = Query_helper::get_info('rnd_fertilizer_stock_in',array('id','fertilizer_id','fertilizer_quantity','fertilizer_price'),array('id ='.$id),1);
-            $data['title']="Edit fertilizer Stock";
-            $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/edit/".$id;
-        }
-        else
-        {
-            $data["fertiliserInfo"] = Array(
-                'id' => 0,
-                'fertilizer_id'=>'',
-                'fertilizer_quantity' => '',
-                'fertilizer_price' => ''
-            );
-            $data['title']="New Fertiliser Stock";
-            $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/add";
-        }
+
+        $data["fertiliserInfo"] = Array(
+            'id' => 0,
+            'fertilizer_id'=>'',
+            'fertilizer_quantity' => '',
+            'fertilizer_price' => '',
+            'stock_in_date'=>''
+        );
+        $data['title']="Fertiliser Stock In";
+        $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/add";
+
 
         $data['fertilisers']= Query_helper::get_info('rnd_fertilizer_info',array('id','fertilizer_name'),array('status = 1'));
         $ajax['status']=true;
@@ -85,13 +79,12 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
 
     public function rnd_save()
     {
-        $id = $this->input->post("stock_in_id");
         $user = User_helper::get_user();
-
         $data = Array(
             'fertilizer_id'=>$this->input->post('fertiliser_id'),
             'fertilizer_quantity'=>$this->input->post('fertilizer_quantity'),
             'fertilizer_price'=>$this->input->post('fertiliser_price'),
+            'stock_in_date'=>System_helper::get_time($this->input->post('stock_in_date'))
 
         );
 
@@ -103,52 +96,27 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         }
         else
         {
-            if($id>0)
+
+            $this->db->trans_start();  //DB Transaction Handle START
+
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = time();
+
+            Query_helper::add('rnd_fertilizer_stock_in',$data);
+            $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+
+            $this->db->trans_complete();   //DB Transaction Handle END
+
+            if ($this->db->trans_status() === TRUE)
             {
-                $this->db->trans_start();  //DB Transaction Handle START
-
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
-
-                Query_helper::update('rnd_fertilizer_stock_in',$data,array("id = ".$id));
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-                }
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
             }
             else
             {
-                $this->db->trans_start();  //DB Transaction Handle START
-
-                $data['created_by'] = $user->user_id;
-                $data['creation_date'] = time();
-
-                Query_helper::add('rnd_fertilizer_stock_in',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
-                }
+                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
             }
-
             $this->rnd_list();//this is similar like redirect
         }
-
     }
     private function check_validation()
     {
@@ -164,22 +132,17 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
             $valid=false;
             $this->message.="Fertilizer Quantity should be a number.<br>";
         }
-
         if(!Validation_helper::validate_numeric($this->input->post('fertiliser_price')))
         {
             $valid=false;
             $this->message.="Fertilizer Price should be a number.<br>";
         }
-        $id = $this->input->post("stock_in_id");
-        if($id>0)
+        if((strtotime($this->input->post('stock_in_date'))===false))
         {
-            if(!($this->rnd_fertiliser_stock_in_model->check_changeable($id,$this->input->post('fertilizer_quantity'),$this->input->post('fertiliser_id'))))
-            {
-                $this->message.=$this->lang->line("MSG_STACK_OUT_WILL_BE_BIGGER").'<br>';
-                $valid=false;
-            }
-
+            $valid=false;
+            $this->message.="Invalid date.<br>";
         }
+
         return $valid;
     }
 

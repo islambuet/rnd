@@ -51,6 +51,14 @@
                 <input type="text" name="fertiliser_price" id="fertiliser_price" class="form-control validate[required, custom[number]]" value="<?php echo $fertiliserInfo['fertilizer_price'];?>" >
             </div>
         </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_STOCK_IN_DATE_DATE');?></label>
+            </div>
+            <div class="col-xs-4">
+                <input type="text" name="stock_in_date" id="stock_in_date" class="form-control" value="">
+            </div>
+        </div>
 
 
 
@@ -62,6 +70,7 @@
     jQuery(document).ready(function()
     {
         $(".form_valid").validationEngine();
+        $( "#stock_in_date" ).datepicker({dateFormat : display_date_format});
 
     });
 </script>

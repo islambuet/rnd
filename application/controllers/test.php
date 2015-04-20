@@ -8,12 +8,8 @@ class Test extends CI_Controller
     public function index()
     {
 
-        $this->db->from('rnd_crop');
-        $this->db->limit($this->uri->segment(3),0);
-        $result=$this->db->get()->result();
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
+        $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+        echo json_encode($arr);
 
     }
     function get()
