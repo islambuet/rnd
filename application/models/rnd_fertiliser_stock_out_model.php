@@ -66,25 +66,30 @@ class Rnd_fertiliser_stock_out_model extends CI_Model
             $stock_out[$result['id']]=$result;
             $stock_out[$result['id']]['rnd_code']=array();
         }
-
-        $this->db->from('rnd_fertilizer_stock_out_varieties rfsov');
-        $this->db->where_in('rfsov.stock_out_id',$ids);
-
-        $this->db->join('rnd_variety rv','rfsov.variety_id = rv.id','INNER');
-        $this->db->select('rfsov.stock_out_id');
-        $this->db->select('rv.*');
-
-        $this->db->select('rc.crop_name,rc.crop_code');
-        $this->db->select('rct.type_name,rct.type_code');
-        $this->db->select('rp.principal_code');
-
-        $this->db->join('rnd_crop rc','rc.id =rv.crop_id','INNER');
-        $this->db->join('rnd_crop_type rct','rct.id =rv.crop_type_id','INNER');
-        $this->db->join('rnd_principal rp','rp.id =rv.principal_id','LEFT');
-        $results = $this->db->get()->result_array();
-        foreach($results as $result)
+        if(sizeof($stock_out)>0)
         {
-            $stock_out[$result['stock_out_id']]['rnd_code'][]=System_helper::get_rnd_code($result);
+
+
+
+            $this->db->from('rnd_fertilizer_stock_out_varieties rfsov');
+            $this->db->where_in('rfsov.stock_out_id',$ids);
+
+            $this->db->join('rnd_variety rv','rfsov.variety_id = rv.id','INNER');
+            $this->db->select('rfsov.stock_out_id');
+            $this->db->select('rv.*');
+
+            $this->db->select('rc.crop_name,rc.crop_code');
+            $this->db->select('rct.type_name,rct.type_code');
+            $this->db->select('rp.principal_code');
+
+            $this->db->join('rnd_crop rc','rc.id =rv.crop_id','INNER');
+            $this->db->join('rnd_crop_type rct','rct.id =rv.crop_type_id','INNER');
+            $this->db->join('rnd_principal rp','rp.id =rv.principal_id','LEFT');
+            $results = $this->db->get()->result_array();
+            foreach($results as $result)
+            {
+                $stock_out[$result['stock_out_id']]['rnd_code'][]=System_helper::get_rnd_code($result);
+            }
         }
 
         return $stock_out;
