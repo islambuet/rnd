@@ -369,6 +369,13 @@ $lang['LABEL_EXPECTED_PRESENTATION_TO_MANAGEMENT'] = 'Expected Presentation To M
 $lang['LABEL_PRESENTATION_DATE'] = 'Presentation To Management Date';
 
 
+$lang['LABEL_INVENTORY_DATE'] = 'Inventory Date';
+$lang['LABEL_SELECT_INVENTORY_TYPE'] = 'Select Inventory Type';
+$lang['LABEL_INVENTORY_TYPE'] = 'Inventory Type';
+$lang['LABEL_STOCK_IN'] = 'Stock in';
+$lang['LABEL_STOCK_OUT'] = 'Stock Out';
+
+
 
 
 
