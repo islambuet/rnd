@@ -183,7 +183,7 @@ $lang['LABEL_SEED_BED']='Seed Bed';
 
 // pesticide Stock In
 $lang['LABEL_PESTICIDE_STOCK_IN']='Pesticide & Fungicide Name';
-$lang['LABEL_QUANTITY_STOCK_IN']='Quantity{Kg)';
+$lang['LABEL_QUANTITY_STOCK_IN']='Quantity(Kg)';
 $lang['LABEL_PRICE_STOCK_IN']='Price(BDT)';
 $lang['LABEL_STOCK_IN_DATE']='Stock In date';
 $lang['LABEL_STOCK_OUT_DATE']='Stock Out date';

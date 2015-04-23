@@ -10,40 +10,6 @@ class Rnd_fertiliser_stock_out_model extends CI_Model
 
     public function get_stock_out_info($page=0)
     {
-        /*$limit=$this->config->item('view_per_page');
-        $start=$page*$limit;
-        $this->db->from('rnd_fertilizer_stock_out rfso');
-        $this->db->select('rfso.*');
-        $this->db->limit($limit,$start);
-        $stock_out=$this->db->get()->result_array();
-        $ids=array();
-        foreach($stock_out as $result)
-        {
-            $ids[]=$result['id'];
-        }
-
-        //$this->db->from($sub_query.' rfso');
-        $this->db->from('rnd_fertilizer_stock_out_varieties rfsov');
-        $this->db->where_in('rfsov.stock_out_id',$ids);
-        $this->db->join('rnd_variety rv','rfsov.variety_id = rv.id','INNER');
-        $this->db->select('rv.*');
-        $this->db->select('rc.crop_name,rc.crop_code');
-        $this->db->select('rct.type_name,rct.type_code');
-        $this->db->select('rs.season_name');
-        $this->db->select('rp.principal_code');
-        $this->db->join('rnd_crop rc','rc.id =rv.crop_id','INNER');
-        $this->db->join('rnd_crop_type rct','rct.id =rv.crop_type_id','INNER');
-        $this->db->join('rnd_season rs','rs.id =rfso.season_id','INNER');
-        $this->db->join('rnd_principal rp','rp.id =rv.principal_id','LEFT');
-
-
-
-        $result = $this->db->get()->result_array();*/
-        //echo $this->db->last_query();
-        //return $stock_out;
-
-
-
 
         $limit=$this->config->item('view_per_page');
         $start=$page*$limit;

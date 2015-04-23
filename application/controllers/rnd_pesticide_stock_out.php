@@ -28,10 +28,6 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         {
             $this->rnd_save($id);
         }
-        elseif ($task == "delete")
-        {
-            $this->rnd_change_status($id);
-        }
         else
         {
             $this->rnd_list($id);
@@ -42,208 +38,171 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
     public function rnd_list($page = 0)
     {
 
-        $config = System_helper::pagination_config(base_url() . "rnd_pesticide_stock_out/index/list/", $this->rnd_pesticide_stock_out_model->get_total_pesticide_stock_out(), 4);
+        $config = System_helper::pagination_config(base_url() . "rnd_pesticide_stock_out/index/list/",$this->rnd_pesticide_stock_out_model->get_total_pesticide_stock_out(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
-        if ($page > 0)
+        if($page>0)
         {
-            $page = $page - 1;
+            $page=$page-1;
         }
 
-        $data['stock_in_info'] = $this->rnd_pesticide_stock_out_model->get_stock_out_info($page);
-        $data['title'] = "Pesticide & Fungicide Stock Out List";
+        $data['stock_out_info'] = $this->rnd_pesticide_stock_out_model->get_stock_out_info($page);
+        $data['title']="Pesticide Stock Out List";
 
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_pesticide_stock_out/list", $data, true));
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_out/list",$data,true));
 
-        if ($this->message)
+        if($this->message)
         {
-            $ajax['message'] = $this->message;
+            $ajax['message']=$this->message;
         }
+
         $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/list/".($page+1);
         $this->jsonReturn($ajax);
-    } /////    Render list end
+    }
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
-        {
-            $data['pesticideInfo'] = $this->rnd_pesticide_stock_out_model->get_pesticide_row($id);
-            $data['title'] = "Edit Pesticide & Fungicide Stock";
-            $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/edit/".$id;
-        }
-        else
-        {
-            $data['pesticideInfo'] = Array(
-                'id' => 0,
-                'season_id' =>'',
-                'crop_id' =>'',
-                'pesticide_id' => '',
-                'rnd_code_id' => '',
-                //'pesticide_name' => '',
-                'pesticide_quantity' => '',
-            );
-            $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/add";
-            $data['title'] = "New Pesticide & Fungicide Stock Out";
-        }
-        $data['pesticide_info'] = $this->rnd_pesticide_stock_out_model->get_pesticides();
-        $data['seasons'] = Query_helper::get_info('rnd_season_info', '*', array('status ='.$this->config->item('active')));
-        $data['crops'] = Query_helper::get_info('rnd_crop_info', '*', array('status ='.$this->config->item('active')));
-        $data['types'] = Query_helper::get_info('rnd_variety_info', '*', array('status ='.$this->config->item('active')));
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_pesticide_stock_out/add_edit", $data, true));
+        $data['title']="Pesticide Stock Out";
+        $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/add";
 
+
+        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name'),array('status = 1'));
+        $data['crops'] = System_helper::get_ordered_crops();
+        $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_out/add_edit",$data,true));
         $this->jsonReturn($ajax);
     } ///// add edit end
 
     public function rnd_save()
     {
-
-        $id = $this->input->post("pesticide_stock_out_id");
         $user = User_helper::get_user();
 
-        $data = Array(
-            'pesticide_id' => $this->input->post('pesticide_in'),
-            'pesticide_quantity' => $this->input->post('pesticide_out_quantity'),
-            //'pesticide_price'=>$this->input->post('pesticide_out_price'),
 
-        );
-        if (!$this->check_validation())
+
+        if(!$this->check_validation())
         {
-            $ajax['status'] = false;
-            $ajax['message'] = $this->lang->line("MSG_INVALID_INPUT");
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
         {
-            if ($id > 0)
             {
                 $this->db->trans_start();  //DB Transaction Handle START
+                $data=array();
+                $time=time();
 
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
-
-                Query_helper::update('rnd_pesticide_fungicide_stock_out', $data, array("id = " . $id));
-
-                $this->db->trans_complete();   //DB Transaction Handle END
-
-                if ($this->db->trans_status() === TRUE)
-                {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-                }
-                else
-                {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
-                }
-            }
-            else
-            {
-                $this->db->trans_start();  //DB Transaction Handle START
-
-                $data['season_id'] = $this->input->post('season_id');
-                $data['crop_id'] = $this->input->post('crop_id');
-                $data['rnd_code_id'] = $this->input->post('pesticide_out_rnd');
                 $data['created_by'] = $user->user_id;
-                $data['creation_date'] = time();
+                $data['creation_date'] =$time;
+                $data['pesticide_id']=$this->input->post('pesticide_id');
+                $data['pesticide_quantity']=$this->input->post('pesticide_quantity');
+                $data['stock_out_date']=System_helper::get_time($this->input->post('stock_out_date'));
+                $data['year']=$this->input->post('year');
+                $data['season_id']=$this->input->post('season_id');
+                $data['crop_id']=$this->input->post('crop_id');
 
-                Query_helper::add('rnd_pesticide_fungicide_stock_out', $data);
+                $stock_out_id=Query_helper::add('rnd_pesticide_fungicide_out',$data);
+                $variety_ids = $this->input->post('varieties');
+                //foreach($variety_ids as $id)
+                {
+                    $data=array();
+                    $data['variety_id']=$variety_ids;
+                    $data['stock_out_id']=$stock_out_id;
+                    $data['created_by'] = $user->user_id;
+                    $data['creation_date'] =$time;
+                    Query_helper::add('rnd_pesticide_fungicide_out_varieties',$data);
+
+                }
+
 
                 $this->db->trans_complete();   //DB Transaction Handle END
 
                 if ($this->db->trans_status() === TRUE)
                 {
-                    $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
+                    $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
                 }
                 else
                 {
-                    $this->message=$this->lang->line("MSG_NOT_UPDATED_SUCCESS");
+                    $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
                 }
             }
-            $this->rnd_list();
+
+            $this->rnd_list();//this is similar like redirect
         }
-    } ////// save end
-
-
-    public function rnd_change_status($id)
-    {
-
-        $data = array('status' => $this->config->item('inactive'));
-        Query_helper::update('rnd_pesticide_fungicide_stock_out', $data, array("id = " . $id));
-        $this->message = $this->lang->line("MSG_DELETE_SUCCESS");
-        redirect(base_url() . "rnd_pesticide_stock_out/index/list/");
-       // $this->rnd_list();
-    }
-
-    public function check_pesticide_stock()
-    {
-        if($this->input->post('pesticide_id'))
-        {
-            if($this->rnd_pesticide_stock_out_model->check_existing_pesticide($this->input->post('pesticide_id')))
-            {
-                $ajax['status']=true;
-            }
-            else
-            {
-                $ajax['status']=false;
-            }
-
-            if(!$ajax['status'])
-            {
-                $ajax['message'] = $this->lang->line("MSG_PESTICIDE_NOT_AVAILABLE_STOCK");
-            }
-
-        }
-        else
-        {
-            $ajax['message'] =  $this->lang->line("MSG_SELECT_PESTICIDE");
-        }
-        $this->jsonReturn($ajax);
-    }
-    public function check_current_stock()
-    {
-
-        if($this->input->post('common_pesticide_id'))
-        {
-            if($this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('common_pesticide_id'),$this->input->post('common_pesticide_quantity'),$this->input->post('rowid')))
-            {
-                $ajax['status']=true;
-            }
-            else
-            {
-                $ajax['status']=false;
-            }
-
-            if(!$ajax['status'])
-            {
-                $ajax['message'] = $this->lang->line("MSG_STOCK_UNAVAILABLE");
-            }
-            else
-            {
-                $ajax['message'] = $this->lang->line("MSG_STOCK_AVAILABLE");
-            }
-        }
-        else
-        {
-            $ajax['message'] = $this->lang->line("MSG_SELECT_PESTICIDE");
-        }
-        $this->jsonReturn($ajax);
 
     }
-
     private function check_validation()
     {
-
-        if (Validation_helper::validate_empty($this->input->post('season_id'))) { return false; }
-        if (Validation_helper::validate_empty($this->input->post('crop_id'))) {  return false; }
-        if (Validation_helper::validate_empty($this->input->post('pesticide_out_rnd'))) { return false; }
-        if (Validation_helper::validate_empty($this->input->post('pesticide_in'))) { return false; }
-        if (!Validation_helper::validate_numeric($this->input->post('pesticide_out_quantity')) || !$this->rnd_pesticide_stock_out_model->check_existing_stock($this->input->post('pesticide_in'),$this->input->post('pesticide_out_quantity'),$this->input->post('pesticide_stock_out_id')))
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('pesticide_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Select a Pesticide.<br>";
+        }
+
+        if(!Validation_helper::validate_numeric($this->input->post('pesticide_quantity')))
+        {
+            $valid=false;
+            $this->message.="Pesticdie Quantity should be a number.<br>";
+        }
+        if((strtotime($this->input->post('stock_out_date'))===false))
+        {
+            $valid=false;
+            $this->message.="Invalid date.<br>";
         }
 
 
-        return true;
+        $year = $this->input->post('year');
+        $season_id = $this->input->post('season_id');
+        $crop_id = $this->input->post('crop_id');
+
+        $variety_ids = $this->input->post('varieties');
+        if(Validation_helper::validate_empty($year))
+        {
+            $valid=false;
+            $this->message.="Select a Year<br>";
+        }
+        if(Validation_helper::validate_empty($season_id))
+        {
+            $valid=false;
+            $this->message.="Select a Season<br>";
+        }
+
+        if(Validation_helper::validate_empty($crop_id))
+        {
+            $valid=false;
+            $this->message.="Select a Crop<br>";
+        }
+        if(Validation_helper::validate_empty($variety_ids))
+        {
+            $valid=false;
+            $this->message.="Select at least one RND code<br>";
+        }
+        return $valid;
+    }
+    public function get_varieties()
+    {
+        $year = $this->input->post('year');
+        $season_id = $this->input->post('season_id');
+        $crop_id = $this->input->post('crop_id');
+
+        $data['title'] = "Select varieties";
+        $data['varieties']=$this->rnd_pesticide_stock_out_model->get_varieties_info($year,$season_id,$crop_id);
+        if($data['varieties'])
+        {
+            $ajax['status']=true;
+            $ajax['content'][]=array("id"=>"#variety_list","html"=>$this->load->view("rnd_pesticide_stock_out/variety_selection",$data,true));
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+
+            $ajax['status']=false;
+            $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');
+            $this->jsonReturn($ajax);
+        }
     }
 }

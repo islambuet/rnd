@@ -118,19 +118,19 @@ $this->load->view("action_buttons_edit",$data);
 
         $(document).on("change", "#year", function(event)
         {
-            $("#variety_container").html("");
+            $("#variety_list").html("");
             $("#crop_id").val("");
 
         });
         $(document).on("change", "#season_id", function(event)
         {
-            $("#variety_container").html("");
+            $("#variety_list").html("");
             $("#crop_id").val("");
 
         });
         $(document).on("change", "#crop_id", function(event)
         {
-            $("#variety_container").html("");
+            $("#variety_list").html("");
             $("#crop_type_id").val("");
             var year = $("#year").val();
             var season_id=$("#season_id").val();

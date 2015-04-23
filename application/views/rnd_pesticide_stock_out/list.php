@@ -18,34 +18,53 @@ $this->load->view("action_buttons",$data);
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PESTICIDE_RND"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_PESTICIDE_STOCK_IN"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PESTICIDE_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
-                <th><?php echo $this->lang->line("ACTION"); ?></th>
+
+                <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
             </tr>
             </thead>
 
             <tbody>
             <?php
-            foreach($stock_in_info as $key=>$stock_in)
+            if(sizeof($stock_out_info)>0)
+            {
+                $index=0;
+                foreach($stock_out_info as $stock_out)
+                {
+                    ?>
+                    <tr>
+                        <td><?php echo ++$index;?></td>
+                        <td><?php echo $stock_out['pesticide_name'];?></td>
+                        <td><?php echo $stock_out['year'];?></td>
+                        <td><?php echo $stock_out['season_name'];?></td>
+                        <td><?php echo $stock_out['crop_name'];?></td>
+                        <td><?php echo System_helper::display_date($stock_out['stock_out_date']);?></td>
+                        <td><?php echo $stock_out['pesticide_quantity'];?></td>
+                        <td>
+                            <?php
+                            foreach($stock_out['rnd_code'] as $rnd_code)
+                            {
+                                echo '<p>'.$rnd_code.'</p>';
+                            }
+
+                            ?>
+                        </td>
+
+                    </tr>
+                <?php
+                }
+            }
+            else
             {
                 ?>
                 <tr>
-                    <td><?php echo $key+1;?></td>
-                    <td><?php echo $stock_in['rnd_code'];?></td>
-                    <td><?php echo $stock_in['pesticide_name'];?></td>
-                    <td><?php echo date('Y-m-d',$stock_in['creation_date']);?></td>
-                    <td><?php echo $stock_in['pesticide_quantity'];?></td>
-
-
-                    <td>
-                        <a href="<?php echo base_url();?>rnd_pesticide_stock_out/index/edit/<?php echo $stock_in['id'];?>">
-                            <img src="<?php echo base_url();?>images/edit_record.png">
-                        </a>
-                        <a href="<?php echo base_url();?>rnd_pesticide_stock_out/index/delete/<?php echo $stock_in['id'];?>">
-                            <img src="<?php echo base_url();?>images/delete_record.png">
-                        </a>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
                     </td>
                 </tr>
             <?php
