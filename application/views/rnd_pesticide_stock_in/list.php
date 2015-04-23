@@ -22,32 +22,34 @@
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRICE_STOCK_IN"); ?></th>
-
-                <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
 
             <tbody>
             <?php
-            foreach($stock_in_info as $key=>$stock_in)
+            if(sizeof($stock_in_info)>0)
             {
-            ?>
-            <tr>
-                <td><?php echo $key+1;?></td>
-                <td><?php echo $stock_in['pesticide_name'];?></td>
-                <td><?php echo date('Y-m-d',$stock_in['creation_date']);?></td>
-                <td><?php echo $stock_in['pesticide_quantity'];?></td>
-                <td><?php echo $stock_in['pesticide_price'];?></td>
-
-                <td>
-                    <a href="<?php echo base_url();?>rnd_pesticide_stock_in/index/edit/<?php echo $stock_in['id'];?>">
-                        <img src="<?php echo base_url();?>images/edit_record.png">
-                    </a>
-                    <a href="<?php echo base_url();?>rnd_pesticide_stock_in/index/delete/<?php echo $stock_in['id']."/".$stock_in['pesticide_id'];?>">
-                        <img src="<?php echo base_url();?>images/delete_record.png">
-                    </a>
-                </td>
-            </tr>
+                foreach($stock_in_info as $key=>$stock_in)
+                {
+                    ?>
+                    <tr>
+                        <td><?php echo $key+1;?></td>
+                        <td><?php echo $stock_in['pesticide_name'];?></td>
+                        <td><?php echo System_helper::display_date($stock_in['stock_in_date']);?></td>
+                        <td><?php echo $stock_in['pesticide_quantity'];?></td>
+                        <td><?php echo $stock_in['pesticide_price'];?></td>
+                    </tr>
+                    <?php
+                }
+            }
+            else
+            {
+                ?>
+                <tr>
+                    <td colspan="20" class="text-center alert-danger">
+                        <?php echo $this->lang->line("NO_DATA_FOUND"); ?>
+                    </td>
+                </tr>
             <?php
             }
             ?>

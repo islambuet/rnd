@@ -49,7 +49,7 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         }
 
         $data['stock_in_info'] = $this->rnd_pesticide_stock_in_model->get_stock_in_info($page);
-        $data['title']="Pesticide & Fungicide Stock In List";
+        $data['title']="Pesticide Stock In List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_in/list",$data,true));
@@ -58,122 +58,97 @@ class Rnd_pesticide_stock_in extends ROOT_Controller
         {
             $ajax['message']=$this->message;
         }
+
         $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/list/".($page+1);
         $this->jsonReturn($ajax);
     }
 
     public function rnd_add_edit($id)
     {
-        if ($id != 0)
-        {
-            $data['pesticideInfo'] = $this->rnd_pesticide_stock_in_model->get_pesticide_row($id);
-            $data['title']="Edit Pesticide & Fungicide Stock (".$data['pesticideInfo']['pesticide_name'].")";
-            $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/edit/".$id;
-        }
-        else
-        {
-            $data["pesticideInfo"] = Array(
-                'id' => 0,
-                'pesticide_id'=>'',
-                'pesticide_name' => '',
-                'pesticide_quantity' => '',
-                'pesticide_price' => '',
-                //'crop_width' => '',
-                //'status' => $this->config->item('active')
-            );
-            $data['title']="New Pesticide & Fungicide Stock";
-            $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/add";
-        }
+        $data["pesticide_info"] = Array(
+            'id' => 0,
+            'pesticide_id'=>'',
+            'pesticide_quantity' => '',
+            'pesticide_price' => '',
+            'stock_in_date'=>''
+        );
+        $data['title']="Pesticide Stock In";
+        $ajax['page_url']=base_url()."rnd_pesticide_stock_in/index/add";
 
 
-        $data['pesticide_info']= $this->rnd_pesticide_stock_in_model->get_pesticides();
+        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name'),array('status = 1'));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_stock_in/add_edit",$data,true));
-
         $this->jsonReturn($ajax);
     }
 
     public function rnd_save()
     {
-        $id = $this->input->post("pesticide_stock_in_id");
         $user = User_helper::get_user();
-
         $data = Array(
-            'pesticide_id'=>$this->input->post('pesticide_in'),
-            'pesticide_quantity'=>$this->input->post('pesticide_in_quantity'),
-            'pesticide_price'=>$this->input->post('pesticide_in_price'),
+            'pesticide_id'=>$this->input->post('pesticide_id'),
+            'pesticide_quantity'=>$this->input->post('pesticide_quantity'),
+            'pesticide_price'=>$this->input->post('pesticide_price'),
+            'stock_in_date'=>System_helper::get_time($this->input->post('stock_in_date'))
 
         );
 
         if(!$this->check_validation())
         {
             $ajax['status']=false;
-            $ajax['message']=$this->lang->line("MSG_INVALID_INPUT");
+            $ajax['message']=$this->message;
             $this->jsonReturn($ajax);
         }
         else
         {
-            if($id>0)
+
+            $this->db->trans_start();  //DB Transaction Handle START
+
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] = time();
+
+            Query_helper::add('rnd_pesticide_fungicide_in',$data);
+            $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+
+            $this->db->trans_complete();   //DB Transaction Handle END
+
+            if ($this->db->trans_status() === TRUE)
             {
-                $data['modified_by'] = $user->user_id;
-                $data['modification_date'] = time();
-
-                Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
-                $this->message=$this->lang->line("MSG_UPDATE_SUCCESS");
-
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
             }
             else
             {
-                $data['status'] = $this->config->item('active');
-                $data['created_by'] = $user->user_id;
-                $data['creation_date'] = time();
-
-                Query_helper::add('rnd_pesticide_fungicide_stock_in',$data);
-                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
-
+                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
             }
-
             $this->rnd_list();//this is similar like redirect
         }
-
-    }
-    public function rnd_change_status($id, $pesticide_id)
-    {
-        $check=$this->rnd_pesticide_stock_in_model->check_pesticide_stock_out($pesticide_id);
-        if($check)
-        {
-            $this->message=$this->lang->line("MSG_THIS_PESTICIDE_OUT_OF_STOCK");
-        }
-        else
-        {
-            $data=array('status'=>$this->config->item('inactive'));
-            Query_helper::update('rnd_pesticide_fungicide_stock_in',$data,array("id = ".$id));
-//            $this->rnd_list();//this is similar like redirect
-        }
-        $this->rnd_list();//this is similar like redirect
     }
     private function check_validation()
     {
-        if(Validation_helper::validate_empty($this->input->post('pesticide_in')))
+        $valid=true;
+        if(Validation_helper::validate_empty($this->input->post('pesticide_id')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Select a Pesticide.<br>";
         }
 
-        if(!Validation_helper::validate_numeric($this->input->post('pesticide_in_quantity')))
+        if(!Validation_helper::validate_numeric($this->input->post('pesticide_quantity')))
         {
-            return false;
+            $valid=false;
+            $this->message.="Pesticide Quantity should be a number.<br>";
+        }
+        if(!Validation_helper::validate_numeric($this->input->post('pesticide_price')))
+        {
+            $valid=false;
+            $this->message.="Pesticide Price should be a number.<br>";
+        }
+        if((strtotime($this->input->post('stock_in_date'))===false))
+        {
+            $valid=false;
+            $this->message.="Invalid date.<br>";
         }
 
-        if($this->input->post('pesticide_in_price'))
-
-        {
-        if(!Validation_helper::validate_numeric($this->input->post('pesticide_in_price')))
-        {
-            return false;
-        }
-
-        }
-        return true;
+        return $valid;
     }
 
 
