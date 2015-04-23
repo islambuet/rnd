@@ -33,20 +33,28 @@ $this->load->view("action_buttons",$data);
             <?php
             if(sizeof($stock_out_info)>0)
             {
-                foreach($stock_out_info as $key=>$stock_out)
+                $index=0;
+                foreach($stock_out_info as $stock_out)
                 {
                     ?>
                     <tr>
-                        <td><?php echo $key+1;?></td>
+                        <td><?php echo ++$index;?></td>
                         <td><?php echo $stock_out['fertilizer_name'];?></td>
-                        <td><?php echo System_helper::display_date($stock_out['creation_date']);?></td>
+                        <td><?php echo $stock_out['year'];?></td>
+                        <td><?php echo $stock_out['season_name'];?></td>
+                        <td><?php echo $stock_out['crop_name'];?></td>
+                        <td><?php echo System_helper::display_date($stock_out['stock_out_date']);?></td>
                         <td><?php echo $stock_out['fertilizer_quantity'];?></td>
-
                         <td>
-                            <a href="<?php echo base_url();?>rnd_fertiliser_stock_out/index/edit/<?php echo $stock_out['id'];?>">
-                                <img src="<?php echo base_url();?>images/edit_record.png">
-                            </a>
+                            <?php
+                            foreach($stock_out['rnd_code'] as $rnd_code)
+                            {
+                                echo '<p>'.$rnd_code.'</p>';
+                            }
+
+                            ?>
                         </td>
+
                     </tr>
                 <?php
                 }

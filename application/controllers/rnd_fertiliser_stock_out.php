@@ -100,7 +100,7 @@ class Rnd_fertiliser_stock_out extends ROOT_Controller
                 $data['fertilizer_id']=$this->input->post('fertilizer_id');
                 $data['fertilizer_quantity']=$this->input->post('fertilizer_quantity');
                 $data['stock_out_date']=System_helper::get_time($this->input->post('stock_out_date'));
-                $data['year']=System_helper::get_time($this->input->post('year'));
+                $data['year']=$this->input->post('year');
                 $data['season_id']=$this->input->post('season_id');
                 $data['crop_id']=$this->input->post('crop_id');
 
