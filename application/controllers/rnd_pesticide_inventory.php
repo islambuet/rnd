@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH.'/libraries/root_controller.php';
 
-class Rnd_fertilizer_inventory extends ROOT_Controller
+class Rnd_pesticide_inventory extends ROOT_Controller
 {
     private  $message;
     public function __construct()
     {
         parent::__construct();
         $this->message="";
-        $this->load->model("rnd_fertilizer_inventory_model");
+        $this->load->model("rnd_pesticide_inventory_model");
     }
 
     public function index($task="list",$id=0)
@@ -33,7 +33,7 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
 
     public function rnd_list($page=0)
     {
-        $config = System_helper::pagination_config(base_url() . "rnd_fertilizer_inventory/index/list/",$this->rnd_fertilizer_inventory_model->get_total_inventory(),4);
+        $config = System_helper::pagination_config(base_url() . "rnd_pesticide_inventory/index/list/",$this->rnd_pesticide_inventory_model->get_total_inventory(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -42,16 +42,16 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
             $page=$page-1;
         }
 
-        $data['inventories_info'] = $this->rnd_fertilizer_inventory_model->get_inventories($page);
-        $data['title']="Fertilizer Inventory List";
+        $data['inventories_info'] = $this->rnd_pesticide_inventory_model->get_inventories($page);
+        $data['title']="Pesticide Inventory List";
 
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertilizer_inventory/list",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_inventory/list",$data,true));
         if($this->message)
         {
             $ajax['message']=$this->message;
         }
-        $ajax['page_url']=base_url()."rnd_fertilizer_inventory/index/list/".($page+1);
+        $ajax['page_url']=base_url()."rnd_pesticide_inventory/index/list/".($page+1);
 
         $this->jsonReturn($ajax);
     }
@@ -59,11 +59,11 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
     public function rnd_add_edit($id)
     {
 
-        $data['title']="Create New Fertilizer Inventory";
-        $ajax['page_url']=base_url()."rnd_fertilizer_inventory/index/add";
-        $data['fertilizers']= Query_helper::get_info('rnd_fertilizer_info',array('id','fertilizer_name'),array('status = 1'));
+        $data['title']="Create New Pesticide Inventory";
+        $ajax['page_url']=base_url()."rnd_pesticide_inventory/index/add";
+        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name'),array('status = 1'));
         $ajax['status']=true;
-        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertilizer_inventory/add_edit",$data,true));
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_inventory/add_edit",$data,true));
         $this->jsonReturn($ajax);
     }
 
@@ -82,8 +82,8 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
 
             $this->db->trans_start();  //DB Transaction Handle START
 
-            $data['fertilizer_id'] = $this->input->post('fertilizer_id');
-            $data['fertilizer_quantity'] = $this->input->post('fertilizer_quantity');
+            $data['pesticide_id'] = $this->input->post('pesticide_id');
+            $data['pesticide_quantity'] = $this->input->post('pesticide_quantity');
             $data['inventory_type'] = $this->input->post('inventory_type');
             $data['status'] = 1;
             $data['remarks'] = $this->input->post('remarks');
@@ -91,7 +91,7 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
             $data['created_by'] = $user->user_id;
             $data['creation_date'] = time();
 
-            Query_helper::add('rnd_fertilizer_inventory',$data);
+            Query_helper::add('rnd_pesticide_inventory',$data);
 
             $this->db->trans_complete();   //DB Transaction Handle END
 
@@ -114,10 +114,10 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
     private function check_validation()
     {
         $valid=true;
-        if(Validation_helper::validate_empty($this->input->post('fertilizer_id')))
+        if(Validation_helper::validate_empty($this->input->post('pesticide_id')))
         {
             $valid=false;
-            $this->message.="Select a Fertilizer<br>";
+            $this->message.="Select a Pesticide<br>";
         }
 
         if(Validation_helper::validate_empty($this->input->post('inventory_type')))
@@ -125,10 +125,10 @@ class Rnd_fertilizer_inventory extends ROOT_Controller
             $valid=false;
             $this->message.="Select Inventory Type<br>";
         }
-        if(!Validation_helper::validate_numeric($this->input->post('fertilizer_quantity')))
+        if(!Validation_helper::validate_numeric($this->input->post('pesticide_quantity')))
         {
             $valid=false;
-            $this->message.="Fertilizer Quantity should be a number.<br>";
+            $this->message.="Pesticide Quantity should be a number.<br>";
         }
         if((strtotime($this->input->post('inventory_date'))===false))
         {
