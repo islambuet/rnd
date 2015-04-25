@@ -47,7 +47,7 @@ $this->load->view("action_buttons_edit",$data);
         </div>
         <div class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_REPORT_TYPE');?></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TRANSACTION_TYPE');?></label>
             </div>
             <div class="col-sm-5">
                 <select name="report_id" id="report_id" class="form-control validate[required]">

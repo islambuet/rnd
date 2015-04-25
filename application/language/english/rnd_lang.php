@@ -374,6 +374,7 @@ $lang['LABEL_SELECT_INVENTORY_TYPE'] = 'Select Inventory Type';
 $lang['LABEL_INVENTORY_TYPE'] = 'Inventory Type';
 $lang['LABEL_STOCK_IN'] = 'Stock in';
 $lang['LABEL_STOCK_OUT'] = 'Stock Out';
+$lang['LABEL_TRANSACTION_TYPE'] = 'Transaction Type';
 
 
 

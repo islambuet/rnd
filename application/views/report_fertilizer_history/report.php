@@ -8,7 +8,7 @@
         <tr>
             <th><?php echo $this->lang->line("SERIAL"); ?></th>
             <th><?php echo $this->lang->line("LABEL_FERTILIZER_NAME"); ?></th>
-            <th><?php echo $this->lang->line("LABEL_REPORT_TYPE"); ?></th>
+            <th><?php echo $this->lang->line("LABEL_TRANSACTION_TYPE"); ?></th>
             <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
             <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
 
@@ -27,6 +27,9 @@
                 <tr>
                     <td><?php echo ++$index;?></td>
                     <td><?php echo $stock['fertilizer_name'];?></td>
+                    <td><?php echo $stock['transaction_type'];?></td>
+                    <td><?php echo $stock['quantity'];?></td>
+                    <td><?php echo System_helper::display_date($stock['date']);?></td>
 
 
                 </tr>
