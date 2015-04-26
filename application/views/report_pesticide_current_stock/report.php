@@ -24,15 +24,20 @@
             $index=0;
             foreach($current_stock_info as $current_stock)
             {
+                $stock_in=round($current_stock['stock_in'],2);
+                $stock_out=round($current_stock['stock_out'],2);
+                $inventory_stock_in=round($current_stock['inventory_stock_in'],2);
+                $inventory_stock_out=round($current_stock['inventory_stock_out'],2);
+                $total=$stock_in+$inventory_stock_in-$stock_out-$inventory_stock_out;
                 ?>
                 <tr>
                     <td><?php echo ++$index;?></td>
                     <td><?php echo $current_stock['pesticide_name'];?></td>
-                    <td><?php echo $current_stock['stock_in'];?></td>
-                    <td><?php echo $current_stock['stock_out'];?></td>
-                    <td><?php echo $current_stock['inventory_stock_in'];?></td>
-                    <td><?php echo $current_stock['inventory_stock_out'];?></td>
-                    <td><?php echo ($current_stock['stock_in']+$current_stock['inventory_stock_in']-$current_stock['stock_out']-$current_stock['inventory_stock_out']);?></td>
+                    <td><?php echo $stock_in;?></td>
+                    <td><?php echo $stock_out;?></td>
+                    <td><?php echo $inventory_stock_in;?></td>
+                    <td><?php echo $inventory_stock_out;?></td>
+                    <td><?php echo $total;?></td>
 
                 </tr>
             <?php
