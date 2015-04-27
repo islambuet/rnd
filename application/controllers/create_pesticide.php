@@ -69,6 +69,7 @@ class Create_pesticide extends ROOT_Controller
             $data['title']="Create New Pesticide & Fungicides";
             $data["pesticideInfo"] = Array(
                 'id' => 0,
+                'unit' => 'gm',
                 'pesticide_name' => ''
             );
             $ajax['page_url']=base_url()."create_pesticide/index/add";
@@ -87,6 +88,7 @@ class Create_pesticide extends ROOT_Controller
 
         $data = Array(
             'pesticide_name'=>$this->input->post('pesticide_name'),
+            'unit'=>$this->input->post('pesticide_unit'),
             'status'=>1
         );
 

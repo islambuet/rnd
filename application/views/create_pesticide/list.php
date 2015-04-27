@@ -18,6 +18,7 @@
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PESTICIDE_NAME"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_UNIT"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <tr>
                         <td><?php echo $key+1;?></td>
                         <td><?php echo $pesticide['pesticide_name'];?></td>
+                        <td><?php echo $pesticide['unit'];?></td>
                         <td>
                             <a href="<?php echo base_url();?>create_pesticide/index/edit/<?php echo $pesticide['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">
