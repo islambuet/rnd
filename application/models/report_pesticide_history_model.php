@@ -18,7 +18,7 @@ class Report_pesticide_history_model extends CI_Model
         {
             $this->db->from('rnd_pesticide_fungicide_in fsi');
             $this->db->select('fsi.*');
-            $this->db->select('rfi.pesticide_name pesticide_name');
+            $this->db->select('rfi.pesticide_name pesticide_name,rfi.unit');
             $this->db->join('rnd_pesticide_fungicide_info rfi', 'rfi.id = fsi.pesticide_id', 'INNER');
             $this->db->where('fsi.status',$this->config->item('status_active'));
             $this->db->where('fsi.stock_in_date >=',$date_from);
@@ -33,6 +33,7 @@ class Report_pesticide_history_model extends CI_Model
             {
                 $data=array();
                 $data['pesticide_name']=$result['pesticide_name'];
+                $data['unit']=$result['unit'];
                 $data['transaction_type']=$transaction_config[1];
                 $data['quantity']=$result['pesticide_quantity'];
                 $data['date']=$result['stock_in_date'];
@@ -46,7 +47,7 @@ class Report_pesticide_history_model extends CI_Model
         {
             $this->db->from('rnd_pesticide_fungicide_out fso');
             $this->db->select('fso.*');
-            $this->db->select('rfi.pesticide_name pesticide_name');
+            $this->db->select('rfi.pesticide_name pesticide_name,rfi.unit');
             $this->db->join('rnd_pesticide_fungicide_info rfi', 'rfi.id = fso.pesticide_id', 'INNER');
             $this->db->where('fso.status',$this->config->item('status_active'));
 
@@ -62,6 +63,7 @@ class Report_pesticide_history_model extends CI_Model
             {
                 $data=array();
                 $data['pesticide_name']=$result['pesticide_name'];
+                $data['unit']=$result['unit'];
                 $data['transaction_type']=$transaction_config[2];
                 $data['quantity']=$result['pesticide_quantity'];
                 $data['date']=$result['stock_out_date'];
@@ -75,7 +77,7 @@ class Report_pesticide_history_model extends CI_Model
 
             $this->db->from('rnd_pesticide_inventory rfinv');
             $this->db->select('rfinv.*');
-            $this->db->select('rfi.pesticide_name');
+            $this->db->select('rfi.pesticide_name,rfi.unit');
 
             $this->db->join('rnd_pesticide_fungicide_info rfi', 'rfi.id = rfinv.pesticide_id', 'INNER');
             $this->db->where('rfinv.status',$this->config->item('status_active'));
@@ -93,6 +95,7 @@ class Report_pesticide_history_model extends CI_Model
             {
                 $data=array();
                 $data['pesticide_name']=$result['pesticide_name'];
+                $data['unit']=$result['unit'];
                 $data['transaction_type']=$transaction_config[3];
                 $data['quantity']=$result['pesticide_quantity'];
                 $data['date']=$result['inventory_date'];
@@ -105,7 +108,7 @@ class Report_pesticide_history_model extends CI_Model
 
             $this->db->from('rnd_pesticide_inventory rfinv');
             $this->db->select('rfinv.*');
-            $this->db->select('rfi.pesticide_name');
+            $this->db->select('rfi.pesticide_name,rfi.unit');
 
             $this->db->join('rnd_pesticide_fungicide_info rfi', 'rfi.id = rfinv.pesticide_id', 'INNER');
             $this->db->where('rfinv.status',$this->config->item('status_active'));
@@ -123,6 +126,7 @@ class Report_pesticide_history_model extends CI_Model
             {
                 $data=array();
                 $data['pesticide_name']=$result['pesticide_name'];
+                $data['unit']=$result['unit'];
                 $data['transaction_type']=$transaction_config[4];
                 $data['quantity']=$result['pesticide_quantity'];
                 $data['date']=$result['inventory_date'];

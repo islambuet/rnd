@@ -13,7 +13,7 @@ class Report_pesticide_current_stock_model extends CI_Model
     {
         $stock_info=array();
         $this->db->from('rnd_pesticide_fungicide_info');
-        $this->db->select('id,pesticide_name');
+        $this->db->select('id,pesticide_name,unit');
         $this->db->where('status',1);
         if($id>0)
         {

@@ -37,7 +37,7 @@
                     <td><?php echo $stock_out;?></td>
                     <td><?php echo $inventory_stock_in;?></td>
                     <td><?php echo $inventory_stock_out;?></td>
-                    <td><?php echo $total;?></td>
+                    <td><?php echo $total.'('.$current_stock['unit'].')';?></td>
 
                 </tr>
             <?php
