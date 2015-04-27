@@ -27,7 +27,7 @@ $this->load->view("action_buttons_edit",$data);
                     foreach($pesticides as $pesticide)
                     {
                         ?>
-                        <option value="<?php echo $pesticide['id']?>"><?php echo $pesticide['pesticide_name'];?></option>
+                        <option value="<?php echo $pesticide['id']?>"><?php echo $pesticide['pesticide_name'].'('.$pesticide['unit'].')';?></option>
                     <?php
                     }
                     ?>
@@ -50,7 +50,7 @@ $this->load->view("action_buttons_edit",$data);
         </div>
         <div style="" class="row show-grid">
             <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_QUANTITY_STOCK_IN');?><span style="color:#FF0000">*</span></label>
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PESTICIDE_QUANTITY');?><span style="color:#FF0000">*</span></label>
             </div>
             <div class="col-sm-4 col-xs-8">
                 <input type="text" name="pesticide_quantity" id="pesticide_quantity" class="form-control validate[required]" value="" >

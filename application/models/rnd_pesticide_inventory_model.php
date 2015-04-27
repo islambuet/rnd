@@ -16,7 +16,7 @@ class Rnd_pesticide_inventory_model extends CI_Model
         $start=$page*$limit;
         $this->db->from('rnd_pesticide_inventory rpinv');
         $this->db->select('rpinv.*');
-        $this->db->select('rpi.pesticide_name');
+        $this->db->select('rpi.pesticide_name,rpi.unit');
 
         $this->db->join('rnd_pesticide_fungicide_info rpi', 'rpi.id = rpinv.pesticide_id', 'INNER');
 

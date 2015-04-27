@@ -21,7 +21,7 @@
                 <th><?php echo $this->lang->line("LABEL_PESTICIDE_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_INVENTORY_TYPE"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PESTICIDE_QUANTITY"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_REMARKS"); ?></th>
 
             </tr>
@@ -50,7 +50,7 @@
                         ?>
                     </td>
                     <td><?php echo System_helper::display_date($inventory['inventory_date']);?></td>
-                    <td><?php echo $inventory['pesticide_quantity'];?></td>
+                    <td><?php echo $inventory['pesticide_quantity'].'('.$inventory['unit'].')';?></td>
                     <td><?php echo $inventory['remarks'];?></td>
 
                 </tr>

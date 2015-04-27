@@ -61,7 +61,7 @@ class Rnd_pesticide_inventory extends ROOT_Controller
 
         $data['title']="Create New Pesticide Inventory";
         $ajax['page_url']=base_url()."rnd_pesticide_inventory/index/add";
-        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name'),array('status = 1'));
+        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name','unit'),array('status = 1'));
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_pesticide_inventory/add_edit",$data,true));
         $this->jsonReturn($ajax);
