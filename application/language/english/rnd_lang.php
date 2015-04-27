@@ -376,6 +376,7 @@ $lang['LABEL_STOCK_IN'] = 'Stock in';
 $lang['LABEL_STOCK_OUT'] = 'Stock Out';
 $lang['LABEL_TRANSACTION_TYPE'] = 'Transaction Type';
 $lang['LABEL_UNIT'] = 'unit';
+$lang['LABEL_PESTICIDE_QUANTITY'] = 'Quantity(ml/gm)';
 
 
 

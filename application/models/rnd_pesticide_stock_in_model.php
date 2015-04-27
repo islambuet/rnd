@@ -14,7 +14,7 @@ class Rnd_pesticide_stock_in_model extends CI_Model
         $start=$page*$limit;
         $this->db->from('rnd_pesticide_fungicide_in rpfin');
         $this->db->select('rpfin.*');
-        $this->db->select('rpfi.pesticide_name');
+        $this->db->select('rpfi.pesticide_name,rpfi.unit');
 
         $this->db->join('rnd_pesticide_fungicide_info rpfi', 'rpfi.id = rpfin.pesticide_id', 'INNER');
 

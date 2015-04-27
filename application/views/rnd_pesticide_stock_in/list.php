@@ -20,7 +20,7 @@
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PESTICIDE_STOCK_IN"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PESTICIDE_QUANTITY"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PRICE_STOCK_IN"); ?></th>
             </tr>
             </thead>
@@ -36,7 +36,7 @@
                         <td><?php echo $key+1;?></td>
                         <td><?php echo $stock_in['pesticide_name'];?></td>
                         <td><?php echo System_helper::display_date($stock_in['stock_in_date']);?></td>
-                        <td><?php echo $stock_in['pesticide_quantity'];?></td>
+                        <td><?php echo $stock_in['pesticide_quantity'].'('.$stock_in['unit'].')';?></td>
                         <td><?php echo $stock_in['pesticide_price'];?></td>
                     </tr>
                     <?php
