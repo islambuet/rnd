@@ -15,7 +15,7 @@ class Rnd_pesticide_stock_out_model extends CI_Model
         $start=$page*$limit;
         $this->db->from('rnd_pesticide_fungicide_out fso');
         $this->db->select('fso.*');
-        $this->db->select('rfi.pesticide_name pesticide_name');
+        $this->db->select('rfi.pesticide_name pesticide_name,rfi.unit');
         $this->db->select('rc.crop_name');
         $this->db->select('rs.season_name');
         $this->db->join('rnd_pesticide_fungicide_info rfi', 'rfi.id = fso.pesticide_id', 'INNER');

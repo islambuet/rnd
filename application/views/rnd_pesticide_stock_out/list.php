@@ -23,7 +23,7 @@ $this->load->view("action_buttons",$data);
                 <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_DATE"); ?></th>
-                <th><?php echo $this->lang->line("LABEL_QUANTITY_STOCK_IN"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PESTICIDE_QUANTITY"); ?></th>
 
                 <th><?php echo $this->lang->line("LABEL_RND_CODE"); ?></th>
             </tr>
@@ -44,7 +44,7 @@ $this->load->view("action_buttons",$data);
                         <td><?php echo $stock_out['season_name'];?></td>
                         <td><?php echo $stock_out['crop_name'];?></td>
                         <td><?php echo System_helper::display_date($stock_out['stock_out_date']);?></td>
-                        <td><?php echo $stock_out['pesticide_quantity'];?></td>
+                        <td><?php echo $stock_out['pesticide_quantity'].'('.$stock_out['unit'].')';?></td>
                         <td>
                             <?php
                             foreach($stock_out['rnd_code'] as $rnd_code)

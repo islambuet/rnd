@@ -68,7 +68,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
         $ajax['page_url']=base_url()."rnd_pesticide_stock_out/index/add";
 
 
-        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name'),array('status = 1'));
+        $data['pesticides']= Query_helper::get_info('rnd_pesticide_fungicide_info',array('id','pesticide_name','unit'),array('status = 1'));
         $data['crops'] = System_helper::get_ordered_crops();
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status']=true;
