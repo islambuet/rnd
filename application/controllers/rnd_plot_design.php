@@ -96,7 +96,30 @@ class Rnd_plot_design extends ROOT_Controller
         $data['season_id']=$this->input->post('season_id');
         $data['plot_id']=$this->input->post('plot_id');
         $data['num_rows']=$this->input->post('num_rows');
-        $data['plot_setup']=$this->input->post('plot_setup');
+        $crops=$this->rnd_plot_design_model->get_crops_variety($data['year'],$data['season_id']);
+        $plot_setup=$this->input->post('plot_setup');
+        for($i=1;$i<=$data['num_rows'];$i++)
+        {
+            for($j=1;$j<=$plot_setup[$i]['col_num'];$j++)
+            {
+
+                $plot_setup[$i]['varieties_selected'][$j]='';
+                //$variety_available=&$crops[$plot_setup[$i]['crop_id']]['varieties_selected'];
+                if(sizeof($crops[$plot_setup[$i]['crop_id']]['varieties_selected'])>0)
+                {
+                    //$plot_setup[$i]['varieties_selected'][$j]=$variety_available[sizeof($variety_available)-1];
+                    $plot_setup[$i]['varieties_selected'][$j]=array_shift($crops[$plot_setup[$i]['crop_id']]['varieties_selected']);
+                    //unset ($variety_available[sizeof($variety_available)-1]);
+                }
+
+
+
+            }
+
+
+        }
+        $data['plot_setup']=$plot_setup;
+        $data['crops']=$crops;
         $ajax['status'] = true;
         $ajax['content'][]=array("id"=>"#report_list","html"=>$this->load->view("rnd_plot_design/plot",$data,true));
         $this->jsonReturn($ajax);
