@@ -97,9 +97,9 @@ class Rnd_plot_design extends ROOT_Controller
         $data['plot_id']=$this->input->post('plot_id');
         $data['num_rows']=$this->input->post('num_rows');
         $data['plot_setup']=$this->input->post('plot_setup');
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+        $ajax['status'] = true;
+        $ajax['content'][]=array("id"=>"#report_list","html"=>$this->load->view("rnd_plot_design/plot",$data,true));
+        $this->jsonReturn($ajax);
     }
     public function rnd_save()
     {

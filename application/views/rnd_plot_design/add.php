@@ -88,7 +88,7 @@ $this->load->view("action_buttons_edit",$data);
 </form>
 <form class="form_valid" id="save_form" action="<?php echo base_url();?>rnd_plot_design/index/save" method="post">
 
-    <div class="row widget" id="report_list">
+    <div class="row widget" id="report_list" style="overflow-x: auto;">
 
     </div>
 </form>
