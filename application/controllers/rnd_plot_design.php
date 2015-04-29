@@ -11,36 +11,66 @@ class Rnd_plot_design extends ROOT_Controller
         $this->load->model("rnd_plot_design_model");
     }
 
-    public function index($task="add_edit",$id=0)
+    public function index($task="list",$id=0)
     {
-        if($task=="add_edit")
+        if($task=="list")
         {
-            $this->rnd_add_edit();
+            $this->rnd_list($id);
         }
-        elseif($task=="list")
+        else if($task=="add")
         {
-            $this->rnd_list();
+            $this->rnd_add();
         }
         elseif($task=="save")
         {
             $this->rnd_save();
         }
+        else
+        {
+            $this->rnd_list();
+        }
+    }
+    public function rnd_list($page=0)
+    {
+
+        //$config = System_helper::pagination_config(base_url() . "rnd_plot_design/index/list/",$this->create_crop_variety_model->get_total_varieties(),4);
+        $config = System_helper::pagination_config(base_url() . "rnd_plot_design/index/list/",200,4);
+        $this->pagination->initialize($config);
+        $data["links"] = $this->pagination->create_links();
+
+        if($page>0)
+        {
+            $page=$page-1;
+        }
+
+        //$data['plots'] = $this->create_crop_variety_model->get_varieties($page);
+        $data['designed_plots'] = array();
+        $data['title']="Designed Plot List";
+
+        $ajax['status']=true;
+        $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_plot_design/list",$data,true));
+        if($this->message)
+        {
+            $ajax['message']=$this->message;
+        }
+        $ajax['page_url']=base_url()."rnd_plot_design/index/list/".($page+1);
+        $this->jsonReturn($ajax);
     }
 
-    public function rnd_add_edit()
+    public function rnd_add()
     {
-        $data['title'] = "Plot Design";
+        $data['title'] = "Design Plot";
         $data['plots'] = Query_helper::get_info('rnd_setup_plot_info', '*', array('status =1'));
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_plot_design/add_edit", $data, true));
+        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("rnd_plot_design/add", $data, true));
 
         if ($this->message)
         {
             $ajax['message'] = $this->message;
         }
 
-        $ajax['page_url']=base_url()."rnd_plot_design/index/add_edit/";
+        $ajax['page_url']=base_url()."rnd_plot_design/index/add/";
         $this->jsonReturn($ajax);
     }
     public function rnd_save()

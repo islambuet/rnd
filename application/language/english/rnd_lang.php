@@ -378,6 +378,9 @@ $lang['LABEL_TRANSACTION_TYPE'] = 'Transaction Type';
 $lang['LABEL_UNIT'] = 'unit';
 $lang['LABEL_PESTICIDE_QUANTITY'] = 'Quantity(ml/gm)';
 
+$lang['LABEL_NUM_ROWS'] = 'Number of Rows';
+$lang['LABEL_NEXT_STEP'] = 'Next Step';
+
 
 
 
