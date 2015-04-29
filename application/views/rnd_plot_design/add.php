@@ -1,6 +1,5 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
-$data["link_back"]="#";
-$data["hide_back"]="1";
+$data["link_back"]=base_url()."rnd_plot_design";
 $this->load->view("action_buttons_edit",$data);
 ?>
 
@@ -80,13 +79,53 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
     </div>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>rnd_plot_design/index/save" method="post">
+
+<form class="form_valid" id="report_form" action="<?php echo base_url();?>rnd_plot_design/load_plot" method="post">
+
     <div class="row widget hidden-print" id="variety_list">
 
     </div>
+</form>
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>rnd_plot_design/index/save" method="post">
+
     <div class="row widget" id="report_list">
 
     </div>
 </form>
+<script type="text/javascript">
+    jQuery(document).ready(function()
+    {
+        turn_off_triggers();
+        $(document).on("click", "#variety_button", function(event)
+        {
+            $("#variety_list").html("");
+            $("#report_list").html("");
+
+            $.ajax({
+                url: base_url+"rnd_plot_design/load_crop_ordering",
+                type: 'POST',
+                dataType: "JSON",
+                data:{year:$("#year").val(),season_id:$("#season_id").val(),plot_id:$("#plot_id").val(),num_rows:$("#num_rows").val()},
+                success: function (data, status)
+                {
+
+                },
+                error: function (xhr, desc, err)
+                {
+                    console.log("error");
+                }
+            });
+
+        });
+
+        $(document).on("click", "#load_report", function(event)
+        {
+            $("#report_list").html("");
+            $("#report_form").submit();
+
+        });
+    });
+
+</script>
 
 

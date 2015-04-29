@@ -73,6 +73,34 @@ class Rnd_plot_design extends ROOT_Controller
         $ajax['page_url']=base_url()."rnd_plot_design/index/add/";
         $this->jsonReturn($ajax);
     }
+    public function load_crop_ordering()
+    {
+        $data['title']='Select Crop ordering';
+        $data['year']=$this->input->post('year');
+        $data['season_id']=$this->input->post('season_id');
+        $data['plot_id']=$this->input->post('plot_id');
+        $data['num_rows']=$this->input->post('num_rows');
+        //check validation for those inputs and already exits at data base;
+        //if invalid or exits show message
+        //else
+        $data['crops']=$this->rnd_plot_design_model->get_crops($data['year'],$data['season_id']);
+        $ajax['status'] = true;
+        $ajax['content'][]=array("id"=>"#variety_list","html"=>$this->load->view("rnd_plot_design/crops_ordering",$data,true));
+        $this->jsonReturn($ajax);
+
+    }
+    public function load_plot()
+    {
+        $data['title']='Design plot';
+        $data['year']=$this->input->post('year');
+        $data['season_id']=$this->input->post('season_id');
+        $data['plot_id']=$this->input->post('plot_id');
+        $data['num_rows']=$this->input->post('num_rows');
+        $data['plot_setup']=$this->input->post('plot_setup');
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    }
     public function rnd_save()
     {
 

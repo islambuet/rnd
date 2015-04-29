@@ -380,6 +380,9 @@ $lang['LABEL_PESTICIDE_QUANTITY'] = 'Quantity(ml/gm)';
 
 $lang['LABEL_NUM_ROWS'] = 'Number of Rows';
 $lang['LABEL_NEXT_STEP'] = 'Next Step';
+$lang['LABEL_NUM_COLUMNS'] = 'Number of varieties';
+$lang['LABEL_ROW_NO'] = 'Row No#';
+$lang['LABEL_LOAD_PLOT'] = 'Load Plot';
 
 
 
