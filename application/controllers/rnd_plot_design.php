@@ -59,7 +59,7 @@ class Rnd_plot_design extends ROOT_Controller
 
     public function rnd_add()
     {
-        $data['title'] = "Design Plot";
+        $data['title'] = "Select Plot";
         $data['plots'] = Query_helper::get_info('rnd_setup_plot_info', '*', array('status =1'));
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $ajax['status'] = true;
