@@ -48,7 +48,7 @@ class Rnd_plot_design_model extends CI_Model
         {
             $crops[$result['crop_id']]['crop_height']=$result['crop_height'];
             $crops[$result['crop_id']]['crop_width']=$result['crop_width'];
-            $crops[$result['crop_id']]['varieties'][]=array('id'=>$result['id'],'rnd_code'=>System_helper::get_rnd_code($result));
+            $crops[$result['crop_id']]['varieties'][]=array('id'=>$result['id'],'rnd_code'=>System_helper::get_rnd_code($result,1));
             $crops[$result['crop_id']]['varieties_selected'][]=$result['id'];
         }
 

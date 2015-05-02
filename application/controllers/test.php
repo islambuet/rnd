@@ -7,16 +7,27 @@ class Test extends CI_Controller
 
     public function index()
     {
+        $this->load->helper(array('form', 'url'));
 
-        $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-        echo json_encode($arr);
+        $this->load->library('form_validation');
+
+        for($i=0;$i<5;$i++)
+        {
+            // print_r($skilldetails);
+            $skillvalue=$i;
+            $skill=array(
+                'name'=>'editskill[]',
+                'placeholder'=>'Skill',
+                'class'=>'skills_text col-md-10 form-control autocomplete',
+                'id'=>'skill_'.$i,
+                'value'=>$skillvalue
+            );
+            echo form_input($skill);
+        }
 
     }
-    function get()
-    {
-        echo 'hi';
-    }
+
+
 
 }
 
-?>

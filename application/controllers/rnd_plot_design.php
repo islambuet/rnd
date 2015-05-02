@@ -127,13 +127,94 @@ class Rnd_plot_design extends ROOT_Controller
     public function rnd_save()
     {
 
-        $ajax['status'] = true;
+        if(!$this->check_validation())
+        {
+            $ajax['status']=false;
+            $ajax['message']=$this->message;
+            $this->jsonReturn($ajax);
+        }
+        else
+        {
+            $user=User_helper::get_user();
+            $year=$this->input->post('year');
+            $season_id=$this->input->post('season_id');
+            $plot_id=$this->input->post('plot_id');
+            $num_rows=$this->input->post('num_rows');
+            $plot=$this->input->post('plot');
+            $time=time();
 
 
-        $ajax['message']="under construction";
+            $data=array();
+            $data['year']=$year;
+            $data['season_id']=$season_id;
+            $data['plot_id']=$plot_id;
+            $data['num_rows']=$num_rows;
+            $data['created_by'] = $user->user_id;
+            $data['creation_date'] =$time;
+            $data['plot_info']=json_encode($plot);
+            $this->db->trans_start();  //DB Transaction Handle START
+            Query_helper::add('rnd_plot_design',$data);
+            $this->db->trans_complete();   //DB Transaction Handle END
 
-
-        $this->jsonReturn($ajax);
+            if ($this->db->trans_status() === TRUE)
+            {
+                $this->message=$this->lang->line("MSG_CREATE_SUCCESS");
+            }
+            else
+            {
+                $this->message=$this->lang->line("MSG_NOT_SAVED_SUCCESS");
+            }
+            $this->rnd_list();//this is similar like redirect
+        }
     }
+    private function check_validation()
+    {
+        $valid=true;
+        $year=$this->input->post('year');
+        $season_id=$this->input->post('season_id');
+        $plot_id=$this->input->post('plot_id');
+        $num_rows=$this->input->post('num_rows');
+
+        $plot=$this->input->post('plot');
+        if(!(is_array($plot)))
+        {
+            $valid=false;
+            $this->message.="Design a plot first.<br>";
+            return $valid;
+
+        }
+        foreach($plot as $p)
+        {
+            if(!($p['col_num']>0))
+            {
+                $valid=false;
+                $this->message.="Invalid number of varities.<br>";
+                return $valid;
+            }
+
+        }
+        if(Validation_helper::validate_empty($year))
+        {
+            $valid=false;
+            $this->message.="Invalid year.<br>";
+        }
+        if(Validation_helper::validate_empty($season_id))
+        {
+            $valid=false;
+            $this->message.="Invalid Season<br>";
+        }
+        if(Validation_helper::validate_empty($plot_id))
+        {
+            $valid=false;
+            $this->message.="Invalid part<br>";
+        }
+        if(!($num_rows>0))
+        {
+            $valid=false;
+            $this->message.="Invalid rows<br>";
+        }
+        return $valid;
+    }
+
 
 }

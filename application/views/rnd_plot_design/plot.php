@@ -27,17 +27,23 @@ $unit=10;
 
 
         ?>
-        <div style="width:<?php echo $plot_setup[$i]['col_num']*$crop_length;?>px;height: <?php echo $crop_width; ?>px;">
-            <input type="hidden" name="plot[<?php echo $i;?>]['col_num']" value="<?php echo $plot_setup[$i]['col_num']; ?>">
-            <input type="hidden" name="plot[<?php echo $i;?>]['crop_length']" value="<?php echo $crop_length; ?>">
-            <input type="hidden" name="plot[<?php echo $i;?>]['crop_width']" value="<?php echo $crop_width; ?>">
+        <div style="width:<?php echo $plot_setup[$i]['col_num']*$crop_length+100;?>px;height: <?php echo $crop_width; ?>px;">
+            <input type="hidden" name="plot[<?php echo $i;?>][col_num]" value="<?php echo $plot_setup[$i]['col_num']; ?>">
+            <input type="hidden" name="plot[<?php echo $i;?>][crop_length]" value="<?php echo $crop_length; ?>">
+            <input type="hidden" name="plot[<?php echo $i;?>][crop_width]" value="<?php echo $crop_width; ?>">
+            <input type="hidden" name="plot[<?php echo $i;?>][crop_id]" value="<?php echo $plot_setup[$i]['crop_id']; ?>">
+            <div style="width: 100px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;text-align: center;vertical-align: middle;">
+                <?php
+                    echo $i;
+                ?>
+            </div>
             <?php
                 for($j=1;$j<=$plot_setup[$i]['col_num'];$j++)
                 {
                     ?>
                     <div style="width: <?php echo $crop_length;?>px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;">
 
-                        <select name="plot[<?php echo $i;?>]['variety_id'][<?php echo $j;?>]" class="form-control">
+                        <select name="plot[<?php echo $i;?>][variety_id][<?php echo $j;?>]" class="form-control">
                             <option value=""><?php echo $this->lang->line('SELECT');?></option>
                             <?php
                             foreach($crops[$plot_setup[$i]['crop_id']]['varieties'] as $variety)
