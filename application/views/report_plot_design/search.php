@@ -83,7 +83,7 @@ $this->load->view("action_buttons_edit",$data);
     </div>
 </div>
 
-<div class="row widget" id="report_list">
+<div class="row widget" id="report_list" style="overflow-x: auto;">
 
 </div>
 

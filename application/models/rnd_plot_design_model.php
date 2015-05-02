@@ -74,7 +74,7 @@ class Rnd_plot_design_model extends CI_Model
 
         $this->db->where('rpd.status != ',$this->config->item('status_delete'));
         $this->db->limit($limit,$start);
-        $this->db->order_by("rpd.id","ASC");
+        $this->db->order_by("rpd.id","DESC");
         $results = $this->db->get()->result_array();
 
         return $results;
