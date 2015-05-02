@@ -2,7 +2,6 @@
 
     $data["link_new"]=base_url()."rnd_plot_design/index/add";
     $this->load->view("action_buttons",$data);
-
 ?>
 
 <div class="row widget">
@@ -17,7 +16,7 @@
             <thead>
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
-                <th><?php echo $this->lang->line("YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PLOT_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_NUM_ROWS"); ?></th>

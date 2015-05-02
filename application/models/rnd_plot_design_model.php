@@ -53,7 +53,30 @@ class Rnd_plot_design_model extends CI_Model
         }
 
         return $crops;
-//        return $results;
+    }
+    public function get_total_plot_design()
+    {
+        $this->db->select('rnd_plot_design.*');
+        $this->db->from('rnd_plot_design');
+        $this->db->where('status',$this->config->item('status_active'));
+        return $this->db->count_all_results();
+    }
+    public function get_plots($page=0)
+    {
+        $limit=$this->config->item('view_per_page');
+        $start=$page*$limit;
+        $this->db->from('rnd_plot_design rpd');
+        $this->db->select('rpd.*');
+        $this->db->select('rs.season_name');
+        $this->db->select('rspi.plot_name');
+        $this->db->join('rnd_season rs','rs.id = rpd.season_id','INNER');
+        $this->db->join('rnd_setup_plot_info rspi','rspi.id = rpd.plot_id','INNER');
 
+        $this->db->where('rpd.status != ',$this->config->item('status_delete'));
+        $this->db->limit($limit,$start);
+        $this->db->order_by("rpd.id","ASC");
+        $results = $this->db->get()->result_array();
+
+        return $results;
     }
 }

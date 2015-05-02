@@ -32,7 +32,7 @@ $unit=10;
             <input type="hidden" name="plot[<?php echo $i;?>][crop_length]" value="<?php echo $crop_length; ?>">
             <input type="hidden" name="plot[<?php echo $i;?>][crop_width]" value="<?php echo $crop_width; ?>">
             <input type="hidden" name="plot[<?php echo $i;?>][crop_id]" value="<?php echo $plot_setup[$i]['crop_id']; ?>">
-            <div style="width: 100px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;text-align: center;vertical-align: middle;">
+            <div style="width: 100px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;text-align: center;line-height: <?php echo $crop_width; ?>px;">
                 <?php
                     echo $i;
                 ?>
@@ -41,7 +41,7 @@ $unit=10;
                 for($j=1;$j<=$plot_setup[$i]['col_num'];$j++)
                 {
                     ?>
-                    <div style="width: <?php echo $crop_length;?>px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;">
+                    <div style="width: <?php echo $crop_length;?>px;height: <?php echo $crop_width; ?>px; border: 1px solid #000000;float: left;text-align: center;line-height: <?php echo $crop_width; ?>px;">
 
                         <select name="plot[<?php echo $i;?>][variety_id][<?php echo $j;?>]" class="form-control">
                             <option value=""><?php echo $this->lang->line('SELECT');?></option>

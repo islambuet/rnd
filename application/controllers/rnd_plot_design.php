@@ -33,8 +33,7 @@ class Rnd_plot_design extends ROOT_Controller
     public function rnd_list($page=0)
     {
 
-        //$config = System_helper::pagination_config(base_url() . "rnd_plot_design/index/list/",$this->create_crop_variety_model->get_total_varieties(),4);
-        $config = System_helper::pagination_config(base_url() . "rnd_plot_design/index/list/",200,4);
+        $config = System_helper::pagination_config(base_url() . "rnd_plot_design/index/list/",$this->rnd_plot_design_model->get_total_plot_design(),4);
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
 
@@ -43,8 +42,7 @@ class Rnd_plot_design extends ROOT_Controller
             $page=$page-1;
         }
 
-        //$data['plots'] = $this->create_crop_variety_model->get_varieties($page);
-        $data['designed_plots'] = array();
+        $data['designed_plots'] = $this->rnd_plot_design_model->get_plots($page);
         $data['title']="Designed Plot List";
 
         $ajax['status']=true;
@@ -149,6 +147,7 @@ class Rnd_plot_design extends ROOT_Controller
             $data['season_id']=$season_id;
             $data['plot_id']=$plot_id;
             $data['num_rows']=$num_rows;
+            $data['status']=1;
             $data['created_by'] = $user->user_id;
             $data['creation_date'] =$time;
             $data['plot_info']=json_encode($plot);
