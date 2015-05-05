@@ -18,7 +18,7 @@ class Rnd_plot_design_model extends CI_Model
         $this->db->where('rvs.year',$year);
         $this->db->where('rvs.season_id',$season_id);
         $this->db->where('rvs.season_status',1);
-        $this->db->where('rvs.sample_delivery_status',1);
+        //$this->db->where('rvs.sample_delivery_status',1);
         $this->db->group_by('rc.id');
         $this->db->order_by('rc.ordering ASC');
         $result = $this->db->get()->result_array();
@@ -40,7 +40,7 @@ class Rnd_plot_design_model extends CI_Model
         $this->db->where('rvs.year',$year);
         $this->db->where('rvs.season_id',$season_id);
         $this->db->where('rvs.season_status',1);
-        $this->db->where('rvs.sample_delivery_status',1);
+        //$this->db->where('rvs.sample_delivery_status',1);
         $this->db->order_by('rv.variety_index ASC');
         $results = $this->db->get()->result_array();
         $crops=array();
