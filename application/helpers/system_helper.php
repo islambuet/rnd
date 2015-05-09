@@ -132,5 +132,16 @@ class System_helper
 
         return $uploaded_files;
     }
+    public static function get_pdf($html)
+    {
+        include(FCPATH."mpdf60/mpdf.php");
+        $mpdf=new mPDF();
+        $mpdf->SetDisplayMode('fullpage');
+
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+
+    }
 
 }

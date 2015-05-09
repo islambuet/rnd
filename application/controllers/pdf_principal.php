@@ -11,32 +11,7 @@ class Pdf_principal extends CI_Controller
         $this->lang->load('rnd_report');
         $this->load->model("report_principal_model");
     }
-
     public function index()
-    {
-        echo 'under construction';
-        echo "<pre>";
-        print_r($this->input->post());
-        echo "</pre>";
-    }
-
-    private function rnd_search()
-    {
-        $data['title'] = "Principal Report";
-        $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
-        $data['crops'] = System_helper::get_ordered_crops();
-        $data['principals'] = Query_helper::get_info('rnd_principal', '*', array('status !='.$this->config->item('status_delete')));
-        $ajax['status'] = true;
-        $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("report_principal/search", $data, true));
-
-        if ($this->message) {
-            $ajax['message'] = $this->message;
-        }
-        $ajax['page_url']=base_url()."report_principal/index/search/";
-
-        $this->jsonReturn($ajax);
-    }
-    private function rnd_report()
     {
 
         $year = $this->input->post('year');
@@ -50,38 +25,46 @@ class Pdf_principal extends CI_Controller
         $data['fortnightly']=$this->report_principal_model->get_15_days_images($variety_ids,$season_id);
         $data['fruit']=$this->report_principal_model->get_fruit_images($variety_ids,$season_id);
         $data['varieties']=$this->report_principal_model->get_reports($variety_ids,$season_id);
-
-        $ajax['status']=true;
-        $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_principal/report", $data, true));
-        $this->jsonReturn($ajax);
-    }
-    public function load_varieties_for_principal_report()
-    {
-        $year = $this->input->post('year');
-        $season_id = $this->input->post('season_id');
-        $crop_id = $this->input->post('crop_id');
-        $crop_type_id = $this->input->post('crop_type_id');
-        $principal_id = $this->input->post('principal_id');
-        $data['varieties']=$this->report_principal_model->get_varieties($principal_id,$year,$season_id,$crop_id,$crop_type_id);
-        $data['title'] = "Select varieties";
-        $data['year']=$year;
-        $data['season_id']=$season_id;
-        $data['crop_id']=$crop_id;
-        $data['crop_type_id']=$crop_type_id;
-        $data['principal_id']=$principal_id;
-
-        if($data['varieties'])
+        $data['year']='All Year';
+        if($year>0)
         {
-            $ajax['status']=true;
-            $ajax['content'][]=array("id"=>"#variety_list","html"=>$this->load->view("report_principal/variety_selection",$data,true));
-            $this->jsonReturn($ajax);
+            $data['year']=$year;
         }
-        else
+        $data['principal_name']='All Principal';
+        if($principal_id>0)
         {
-
-            $ajax['status']=false;
-            $ajax['message']=$this->lang->line('NO_VARIETY_EXIST_FOR_YOUR_SELECTION');
-            $this->jsonReturn($ajax);
+            $principal_info=Query_helper::get_info('rnd_principal', 'principal_name', array('id ='.$principal_id),1);
+            $data['principal_name']=$principal_info['principal_name'];
         }
+            $data['season_name']='All Season';
+        if($season_id>0)
+        {
+            $principal_info=Query_helper::get_info('rnd_season', 'season_name', array('id ='.$season_id),1);
+            $data['season_name']=$principal_info['season_name'];
+        }
+        $data['crop_name']='All Crop';
+        $data['type_name']='';
+        if($crop_id>0)
+        {
+            $principal_info=Query_helper::get_info('rnd_crop', 'crop_name', array('id ='.$crop_id),1);
+            $data['crop_name']=$principal_info['crop_name'];
+            if($crop_type_id>0)
+            {
+                $principal_info=Query_helper::get_info('rnd_crop_type', 'type_name', array('id ='.$crop_type_id),1);
+                $data['type_name']=$principal_info['type_name'];
+            }
+        }
+        $html=$this->load->view("pdf_principal/report", $data,true);
+
+        include(FCPATH."mpdf60/mpdf.php");
+        $mpdf=new mPDF();
+        $mpdf->SetDisplayMode('fullpage');
+
+        $mpdf->WriteHTML($html);
+
+        $mpdf->Output();
+
+        exit;
+
     }
 }
