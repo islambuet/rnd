@@ -111,6 +111,8 @@ $this->load->view("action_buttons_edit",$data);
     jQuery(document).ready(function()
     {
         turn_off_triggers();
+        var report_url='<?php echo base_url();?>report_principal/index/report';
+        var pdf_url='<?php echo base_url();?>pdf_principal/index';
 
         $(document).on("change", "#year", function(event)
         {
@@ -199,6 +201,16 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("click", "#load_report", function(event)
         {
             $("#report_list").html("");
+            $('#report_form').removeClass('external');
+            $('#report_form').attr('action',report_url);
+            $("#report_form").submit();
+
+        });
+        $(document).on("click", "#load_pdf", function(event)
+        {
+            $("#report_list").html("");
+            $('#report_form').addClass('external');
+            $('#report_form').attr('action',pdf_url);
             $("#report_form").submit();
 
         });

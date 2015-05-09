@@ -46,6 +46,10 @@ $(document).ready(function()
     //binds form submission with ajax
     $(document).on("submit", "form", function(event)
     {
+        if($(this).hasClass('external'))
+        {
+            return true;
+        }
         event.preventDefault();
         $.ajax({
             url: $(this).attr("action"),
@@ -234,6 +238,7 @@ function turn_off_triggers()
     $(document).off("change", "#fruit_image_type");//data_image_fruit
     $(document).off("click", "#variety_button");//trail analysis report
     $(document).off("click", "#load_report");//trail analysis report
+    $(document).off("click", "#load_pdf");//trail analysis report
     $(document).off("click", ".full_text_report");//trail analysis report
 }
 
