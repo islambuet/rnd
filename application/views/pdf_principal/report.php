@@ -29,32 +29,34 @@ if(sizeof($varieties)>0)
             <img style="float: left;" alt="Logo" height="40" src="<?php echo base_url(); ?>images/logo.png">
             <h2 style="color: #008003;display: inline-block;margin-left: 10px;">A.R MALIK & Co. (PVT) LTD</h2>
         </div>
-        <div>
+    </div>
+    <div <div align="center;" style="width: 600px;margin: 0 auto 5px;font-size: 5px;">>
+        <div style="width: 100px; float: left">
             <span style="font-weight: bold;">Principal Name:</span>
             <span style=""><?php echo $principal_name; ?></span>
         </div>
-        <div>
-            <span style="font-weight: bold;">Principal Name:</span>
+        <div style="width: 50px; float: left">
+            <span style="font-weight: bold;">Year:</span>
             <span style=""><?php echo $year; ?></span>
         </div>
-        <div>
-            <span style="font-weight: bold;">Principal Name:</span>
+        <div style="width: 50px; float: left">
+            <span style="font-weight: bold;">Season:</span>
             <span style=""><?php echo $season_name; ?></span>
         </div>
-        <div>
-            <span style="font-weight: bold;">Crop Name:</span>
+        <div style="width: 50px; float: left">
+            <span style="font-weight: bold;">Crop:</span>
             <span style=""><?php echo $crop_name; ?></span>
         </div>
         <?php
-            if($type_name)
-            {
-                ?>
-                <div>
-                    <span style="font-weight: bold;">Crop Type Name:</span>
-                    <span style=""><?php echo $type_name; ?></span>
-                </div>
-                <?php
-            }
+        if($type_name)
+        {
+            ?>
+            <div style="width: 100px; float: left">
+                <span style="font-weight: bold;">Crop Type:</span>
+                <span style=""><?php echo $type_name; ?></span>
+            </div>
+        <?php
+        }
         ?>
     </div>
     <table>
