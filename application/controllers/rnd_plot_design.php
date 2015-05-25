@@ -77,7 +77,7 @@ class Rnd_plot_design extends ROOT_Controller
         $data['year']=$this->input->post('year');
         $data['season_id']=$this->input->post('season_id');
         $data['plot_id']=$this->input->post('plot_id');
-        $data['num_rows']=$this->input->post('num_rows');
+        //$data['num_rows']=$this->input->post('num_rows');
         //check validation for those inputs and already exits at data base;
         //if invalid or exits show message
         //else
@@ -93,34 +93,67 @@ class Rnd_plot_design extends ROOT_Controller
         $data['year']=$this->input->post('year');
         $data['season_id']=$this->input->post('season_id');
         $data['plot_id']=$this->input->post('plot_id');
-        $data['num_rows']=$this->input->post('num_rows');
+        $plot_info=Query_helper::get_info('rnd_setup_plot_info','*',array('id ='.$data['plot_id']),1);
         $crops=$this->rnd_plot_design_model->get_crops_variety($data['year'],$data['season_id']);
-        $plot_setup=$this->input->post('plot_setup');
-        for($i=1;$i<=$data['num_rows'];$i++)
+        $data['plot_info']=$plot_info;
+        $data['crops']=$crops;
+
+
+
+        $crop_order=$this->input->post('crop_order');
+        $plot_width=$plot_info['plot_width'];
+
+        $num_rows=0;
+        $plot_setup=array();
+        foreach($crop_order as $i=>$crop_id)
         {
-            for($j=1;$j<=$plot_setup[$i]['col_num'];$j++)
+            $num_rows++;
+            $row_info=array();
+            $row_info['crop_id']=$crop_id;
+            $row_info['crop_length']=$crops[$crop_id]['crop_height'];
+            $row_info['crop_width']=$crops[$crop_id]['crop_width'];
+            $row_info['col_num']=floor(($plot_info['plot_length']-$plot_info['length_space'])/($row_info['crop_length']+$plot_info['length_space']));
+            $row_info['varieties_selected']=array();
+            for($j=1;$j<=$row_info['col_num'];$j++)
             {
-
-                $plot_setup[$i]['varieties_selected'][$j]='';
-                //$variety_available=&$crops[$plot_setup[$i]['crop_id']]['varieties_selected'];
-                if(sizeof($crops[$plot_setup[$i]['crop_id']]['varieties_selected'])>0)
+                $row_info['varieties_selected'][$j]='';
+                if(sizeof($crops[$crop_id]['varieties_selected'])>0)
                 {
-                    //$plot_setup[$i]['varieties_selected'][$j]=$variety_available[sizeof($variety_available)-1];
-                    $plot_setup[$i]['varieties_selected'][$j]=array_shift($crops[$plot_setup[$i]['crop_id']]['varieties_selected']);
-                    //unset ($variety_available[sizeof($variety_available)-1]);
+                    $row_info['varieties_selected'][$j]=array_shift($crops[$crop_id]['varieties_selected']);
                 }
-
-
-
             }
-
-
+            $plot_width=$plot_width-$plot_info['width_space']-$row_info['crop_width'];
+            $plot_setup[$num_rows]=$row_info;
+            while(sizeof($crops[$crop_id]['varieties_selected'])>0)
+            {
+                $num_rows++;
+                $row_info['varieties_selected']=array();
+                for($j=1;$j<=$row_info['col_num'];$j++)
+                {
+                    $row_info['varieties_selected'][$j]='';
+                    if(sizeof($crops[$crop_id]['varieties_selected'])>0)
+                    {
+                        $row_info['varieties_selected'][$j]=array_shift($crops[$crop_id]['varieties_selected']);
+                    }
+                }
+                $plot_width=$plot_width-$plot_info['width_space']-$row_info['crop_width'];
+                $plot_setup[$num_rows]=$row_info;
+            }
         }
+
+        $data['num_rows']=$num_rows;
         $data['plot_setup']=$plot_setup;
         $data['crops']=$crops;
         $ajax['status'] = true;
+        if($plot_width<0)
+        {
+            $ajax['message']="Plot width exceeds";
+        }
         $ajax['content'][]=array("id"=>"#report_list","html"=>$this->load->view("rnd_plot_design/plot",$data,true));
         $this->jsonReturn($ajax);
+
+
+
     }
     public function rnd_save()
     {
@@ -147,6 +180,8 @@ class Rnd_plot_design extends ROOT_Controller
             $data['season_id']=$season_id;
             $data['plot_id']=$plot_id;
             $data['num_rows']=$num_rows;
+            $data['length_space']=$this->input->post('length_space');
+            $data['width_space']=$this->input->post('width_space');
             $data['status']=1;
             $data['created_by'] = $user->user_id;
             $data['creation_date'] =$time;

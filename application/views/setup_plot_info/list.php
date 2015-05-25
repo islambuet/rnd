@@ -21,6 +21,8 @@
                 <th><?php echo $this->lang->line("LABEL_PLOT_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PLOT_LENGTH"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_PLOT_WIDTH"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PLOT_LENGTH_SPACE"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PLOT_WIDTH_SPACE"); ?></th>
                 <th><?php echo $this->lang->line("ACTION"); ?></th>
             </tr>
             </thead>
@@ -37,6 +39,8 @@
                         <td><?php echo $plot['plot_name'];?></td>
                         <td><?php echo $plot['plot_length'];?></td>
                         <td><?php echo $plot['plot_width'];?></td>
+                        <td><?php echo $plot['length_space'];?></td>
+                        <td><?php echo $plot['width_space'];?></td>
                         <td>
                             <a href="<?php echo base_url();?>setup_plot_info/index/edit/<?php echo $plot['id'];?>">
                                 <img src="<?php echo base_url();?>images/edit_record.png">

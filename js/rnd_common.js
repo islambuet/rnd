@@ -240,6 +240,7 @@ function turn_off_triggers()
     $(document).off("click", "#load_report");//trail analysis report
     $(document).off("click", "#load_pdf");//trail analysis report
     $(document).off("click", ".full_text_report");//trail analysis report
+    $(document).off("click", "#btn_add_more");//trail analysis report
 }
 
 function isNumberKey(evt)

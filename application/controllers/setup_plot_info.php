@@ -73,7 +73,9 @@ class Setup_plot_info extends ROOT_Controller
                 'id' => 0,
                 'plot_name' => '',
                 'plot_length' => '',
-                'plot_width' => ''
+                'plot_width' => '',
+                'length_space' => '',
+                'width_space' => ''
             );
 
             $ajax['page_url']=base_url()."setup_plot_info/index/add";
@@ -93,7 +95,9 @@ class Setup_plot_info extends ROOT_Controller
         $data = Array(
             'plot_name'=>$this->input->post('plot_name'),
             'plot_length'=>$this->input->post('plot_length'),
-            'plot_width'=>$this->input->post('plot_width')
+            'plot_width'=>$this->input->post('plot_width'),
+            'length_space'=>$this->input->post('length_space'),
+            'width_space'=>$this->input->post('width_space')
         );
 
         if(!$this->check_validation())

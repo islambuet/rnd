@@ -40,6 +40,22 @@
                 <input type="text" name="plot_width" class="form-control validate[required, custom[number]]" value="<?php echo $plotInfo['plot_width'];?>" >
             </div>
         </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLOT_LENGTH_SPACE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="length_space" class="form-control validate[required, custom[number]]" value="<?php echo $plotInfo['length_space'];?>" >
+            </div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-xs-4">
+                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PLOT_WIDTH_SPACE');?><span style="color:#FF0000">*</span></label>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <input type="text" name="width_space" class="form-control validate[required, custom[number]]" value="<?php echo $plotInfo['width_space'];?>" >
+            </div>
+        </div>
     </div>
 
     <div class="clearfix"></div>

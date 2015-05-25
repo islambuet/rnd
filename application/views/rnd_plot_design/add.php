@@ -51,7 +51,6 @@ $this->load->view("action_buttons_edit",$data);
             </div>
             <div class="col-xs-4">
                 <select id="plot_id" class="form-control validate[required]">
-                    <option value=""><?php echo $this->lang->line('SELECT');?></option>
                     <?php
                     foreach($plots as $plot)
                     {?>
@@ -60,14 +59,6 @@ $this->load->view("action_buttons_edit",$data);
                     }
                     ?>
                 </select>
-            </div>
-        </div>
-        <div class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_NUM_ROWS');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-xs-4">
-                <input type="text" id="num_rows" class="form-control">
             </div>
         </div>
         <div class="row show-grid">
@@ -105,7 +96,7 @@ $this->load->view("action_buttons_edit",$data);
                 url: base_url+"rnd_plot_design/load_crop_ordering",
                 type: 'POST',
                 dataType: "JSON",
-                data:{year:$("#year").val(),season_id:$("#season_id").val(),plot_id:$("#plot_id").val(),num_rows:$("#num_rows").val()},
+                data:{year:$("#year").val(),season_id:$("#season_id").val(),plot_id:$("#plot_id").val()},
                 success: function (data, status)
                 {
 
@@ -124,6 +115,15 @@ $this->load->view("action_buttons_edit",$data);
             $("#report_form").submit();
 
         });
+        $(document).on("click", "#btn_add_more", function(event)
+        {
+            var sel=$('#first_selection').html();
+
+            $(sel).insertBefore('#container_btn_add_more');
+
+
+        });
+
     });
 
 </script>
