@@ -61,7 +61,7 @@ $width_space=ceil($plot_info['width_space']*$unit);
                         ?>
                         <div style="width: <?php echo $crop_length;?>px;height: <?php echo $crop_width; ?>px; float: left;text-align: center;line-height: <?php echo $crop_width; ?>px;margin-left: <?php echo $length_space; ?>px;">
 
-                            <select name="plot[<?php echo $i;?>][variety_id][<?php echo $j;?>]" class="form-control">
+                            <select name="plot[<?php echo $i;?>][variety_id][<?php echo $j;?>]" class="form-control" style="height: 100%;">
                                 <option value=""><?php echo $this->lang->line('SELECT');?></option>
                                 <?php
                                 foreach($crops[$plot_setup[$i]['crop_id']]['varieties'] as $variety)
