@@ -21,6 +21,8 @@ $width_space=ceil($plot_info['width_space']*$unit);
 <input type="hidden" name="season_id" value="<?php echo $season_id; ?>">
 <input type="hidden" name="plot_id" value="<?php echo $plot_id; ?>">
 <input type="hidden" name="num_rows" value="<?php echo $num_rows; ?>">
+<input type="hidden" name="plot_length" value="<?php echo $plot_info['plot_length']; ?>">
+<input type="hidden" name="plot_width" value="<?php echo $plot_info['plot_width']; ?>">
 <input type="hidden" name="length_space" value="<?php echo $plot_info['length_space']; ?>">
 <input type="hidden" name="width_space" value="<?php echo $plot_info['width_space']; ?>">
 <div style="width: <?php echo $plot_info['plot_length']*$unit+100; ?>px;height: <?php echo $plot_info['plot_width']*$unit; ?>px;" >

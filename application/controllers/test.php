@@ -7,7 +7,7 @@ class Test extends CI_Controller
 
     public function index()
     {
-        $a=5;
+        echo  base_url();
 
 
 

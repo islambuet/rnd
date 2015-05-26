@@ -180,6 +180,8 @@ class Rnd_plot_design extends ROOT_Controller
             $data['season_id']=$season_id;
             $data['plot_id']=$plot_id;
             $data['num_rows']=$num_rows;
+            $data['plot_length']=$this->input->post('plot_length');
+            $data['plot_width']=$this->input->post('plot_width');
             $data['length_space']=$this->input->post('length_space');
             $data['width_space']=$this->input->post('width_space');
             $data['status']=1;
