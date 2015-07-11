@@ -975,7 +975,7 @@ if($options['1st_fruit_setting_to_1st_harvest']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_1ST_FRUIT_SETTING_TO_1ST_HARVEST');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="normal[1st_fruit_setting_to_1st_harvest]" value="<?php echo $fruit_setting_to_1st_harvest_replica;?>"/>
+            <input type="text" class="form-control" name="normal[1st_fruit_setting_to_1st_harvest]" value="<?php echo $fruit_setting_to_1st_harvest_normal;?>"/>
         </div>
         <?php
         if($variety_info['replica_status']==1)
