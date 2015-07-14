@@ -391,6 +391,7 @@ $lang['LABEL_NAME'] = 'Name';
 $lang['LABEL_PARENT'] = 'Parent';
 $lang['LABEL_CONTROLLER_NAME'] = 'Controller';
 $lang['LABEL_ORDER'] = 'Ordering';
+$lang['TOTAL_TASK'] = 'Number of Tasks';
 //*****//
 
 
