@@ -386,6 +386,13 @@ $lang['LABEL_NUM_COLUMNS'] = 'Number of varieties';
 $lang['LABEL_ROW_NO'] = 'Row No#';
 $lang['LABEL_LOAD_PLOT'] = 'Load Plot';
 
+//****MODULE TASK//
+$lang['LABEL_NAME'] = 'Name';
+$lang['LABEL_PARENT'] = 'Parent';
+$lang['LABEL_CONTROLLER_NAME'] = 'Controller';
+$lang['LABEL_ORDER'] = 'Ordering';
+//*****//
+
 
 
 
