@@ -2,13 +2,19 @@
     $data["link_back"]=base_url()."sys_user_role";
     $this->load->view("action_buttons_edit",$data);
 
-echo '<pre>';
-print_r($role_status);
-echo '</pre>';
-return;
+//echo '<pre>';
+//print_r($role_status);
+//print_r($access_tasks);
+//echo '</pre>';
+$modules=array();
+foreach($access_tasks as $tasks)
+{
+    $modules[$tasks['parent']]['name']=$tasks['module_name'];
+    $modules[$tasks['parent']]['tasks'][]=$tasks;
+}
 ?>
-<form class="form_valid" id="save_form" action="<?php echo base_url();?>sys_module_task/index/save" method="post">
-    <input type="hidden" id="id" name="id" value="<?php echo $module_task['id']; ?>" />
+<form class="form_valid" id="save_form" action="<?php echo base_url();?>sys_user_role/index/save" method="post">
+    <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
     <div class="row widget">
         <div class="widget-header">
             <div class="title">
@@ -17,107 +23,114 @@ return;
             <div class="clearfix"></div>
         </div>
 
-        <div class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_NAME');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="task[name]" id="name" class="form-control" value="<?php echo $module_task['name']; ?>"/>
-            </div>
-        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th><?php echo "Module"; ?></th>
+                <th><?php echo "Task"; ?></th>
+                <th><?php echo "View"; ?></th>
+                <th><?php echo "Add"; ?></th>
+                <th><?php echo "Edit"; ?></th>
+                <th><?php echo "Delete"; ?></th>
+                <th><?php echo "Report"; ?></th>
+                <th><?php echo "Print"; ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                foreach($modules as $module_id=>$module)
+                {
+                    ?>
+                    <tr>
+                        <td>
+                            <input type="checkbox" data-id='<?php echo $module_id; ?>' class="module_name"><?php echo $module['name'];?>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TYPE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <select id="type" name="task[type]" class="form-control" tabindex="-1">
-                    <!--<option value=""></option>-->
-                    <option value="MODULE"
-                        <?php
-                        if ($module_task['type'] == "MODULE") {
-                            echo "selected='selected'";
-                        }
-                        ?> >Module
-                    </option>
-                    <option value="TASK"
-                        <?php
-                        if ($module_task['type'] == "TASK") {
-                            echo "selected='selected'";
-                        }
-                        ?> >Task</option>
-                </select>
-            </div>
-        </div>
-
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PARENT');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <select id="parent" name="task[parent]" data-placeholder="Select" class="form-control" tabindex="-1">
-                    <option value="0"><?php echo $this->lang->line("SELECT"); ?></option>
+                    </tr>
                     <?php
-                    echo "<pre>";
-                    print_r($modules);
-                    echo "</pre>";
-                    foreach ($modules as $module)
+                    foreach($module['tasks'] as $task)
                     {
                         ?>
-                        <option value='<?php echo $module['module_task']['id']?>' <?php if($module['module_task']['id']==$module_task['parent']){ echo "selected='selected'";} ?>><?php echo $module['prefix'].$module['module_task']['name']; ?></option>
-                    <?php
-
+                        <tr>
+                            <td>
+                                <input type="hidden" name="tasks[<?php echo $task['id'];?>][ugr_id]" value="<?php echo isset($role_status['ugr_id'][$task['id']])?$role_status['ugr_id'][$task['id']]:0;?>">
+                                <input type="hidden" name="tasks[<?php echo $task['id'];?>][task_id]" value="<?php echo $task['id'];?>">
+                            </td>
+                            <td><input type="checkbox" data-id='<?php echo $task['id'];?>' class="task_name module_action_<?php echo $module_id;?>"><?php echo $task['name'];?></td>
+                            <td>
+                                <?php
+                                if($task['view'])
+                                {
+                                    ?>
+                                    <input title="view" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['view'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][view]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($task['add'])
+                                {
+                                    ?>
+                                    <input title="add" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['add'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][add]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($task['edit'])
+                                {
+                                    ?>
+                                    <input title="edit" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['edit'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][edit]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($task['delete'])
+                                {
+                                    ?>
+                                    <input title="delete" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['delete'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][delete]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($task['report'])
+                                {
+                                    ?>
+                                    <input title="report" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['report'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][report]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($task['print'])
+                                {
+                                    ?>
+                                    <input title="print" class="task_action_<?php echo $task['id'];?> module_action_<?php echo $module_id;?>" type="checkbox" <?php if(in_array($task['id'],$role_status['print'])){echo 'checked';}?> value="1" name='tasks[<?php echo $task['id'];?>][print]'>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
                     }
-                    ?>
-                </select>
-            </div>
-        </div>
-
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CONTROLLER_NAME');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="task[controller]" id="controller" class="form-control" value="<?php echo $module_task['controller'] ?>" >
-            </div>
-        </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ORDER');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <input type="text" name="task[ordering]" id="ordering" class="form-control" value="<?php echo $module_task['ordering'] ?>" >
-            </div>
-        </div>
-        <div style="" class="row show-grid">
-            <div class="col-xs-4">
-                <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_TYPE');?><span style="color:#FF0000">*</span></label>
-            </div>
-            <div class="col-sm-4 col-xs-8">
-                <select id="status" name="task[status]" class="form-control" tabindex="-1">
-                    <!--<option value=""></option>-->
-                    <option value="1"
-                        <?php
-                        if ($module_task['status'] == 1) {
-                            echo "selected='selected'";
-                        }
-                        ?> >Active
-                    </option>
-                    <option value="0"
-                        <?php
-                        if ($module_task['status'] == 0) {
-                            echo "selected='selected'";
-                        }
-                        ?> >In-Active</option>
-                    <option value="99"
-                        <?php
-                        if ($module_task['status'] == 99) {
-                            echo "selected='selected'";
-                        }
-                        ?> >Delete</option>
-                </select>
-            </div>
-        </div>
+                }
+            ?>
+            </tbody>
+        </table>
     </div>
 
     <div class="clearfix"></div>
@@ -127,6 +140,35 @@ return;
     jQuery(document).ready(function()
     {
         turn_off_triggers();
+        $(document).on("click",'.task_name',function()
+        {
+            //console.log('task_action clicked');
+            if($(this).is(':checked'))
+            {
+                $('.task_action_'+$(this).attr('data-id')).prop('checked', true);
+
+            }
+            else
+            {
+                $('.task_action_'+$(this).attr('data-id')).prop('checked', false);
+            }
+
+        });
+        $(document).on("click",'.module_name',function()
+        {
+            //console.log('module_action clicked');
+            if($(this).is(':checked'))
+            {
+                $('.module_action_'+$(this).attr('data-id')).prop('checked', true);
+
+            }
+            else
+            {
+                $('.module_action_'+$(this).attr('data-id')).prop('checked', false);
+            }
+
+        });
 
     });
+
 </script>

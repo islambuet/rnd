@@ -51,10 +51,11 @@ class Sys_user_role extends ROOT_Controller
     {
         $data['access_tasks']=$this->sys_user_role_model->get_my_tasks($id);
         $data['role_status']=$this->sys_user_role_model->get_role_status($id);
+        $data['title']="Edit User Role";
         $data['id']=$id;
-
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("sys_user_role/add_edit",$data,true));
+        $ajax['page_url']=base_url()."sys_user_role/index/edit/".$id;
         $this->jsonReturn($ajax);
     }
 
