@@ -22,6 +22,7 @@ class Sys_user_role_model extends CI_Model
         $this->db->select('Count(ugr.id) total_task',false);
         $this->db->join($this->role_table.' ugr','ug.id = ugr.user_group_id','INNER');
         $this->db->where('ug.status',1);
+        $this->db->where('ugr.view',1);
         $this->db->group_by('ug.id');
         $results=$this->db->get()->result_array();
         return $results;
