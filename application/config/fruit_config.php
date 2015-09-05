@@ -195,6 +195,8 @@ $config['fc_spine_type'][3]='Pointed';
 // Flesh Colour Pumpkin
 $config['fc_flesh_colour_24'][1]='Red';
 $config['fc_flesh_colour_24'][2]='Yellow';
+$config['fc_flesh_colour_24'][3]='orange';
+$config['fc_flesh_colour_24'][4]='others';
 
 // Ridge Type
 $config['fc_ridge_type'][1]='Ridged';
