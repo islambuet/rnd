@@ -48,7 +48,7 @@ class Rnd_fertiliser_stock_out extends ROOT_Controller
         }
 
         $data['stock_out_info'] = $this->rnd_fertiliser_stock_out_model->get_stock_out_info($page);
-        $data['title']="Fertiliser Stock Out List";
+        $data['title']="Fertilizer Stock Out List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertiliser_stock_out/list",$data,true));

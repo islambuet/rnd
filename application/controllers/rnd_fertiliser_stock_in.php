@@ -43,7 +43,7 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
         }
 
         $data['stock_in_info'] = $this->rnd_fertiliser_stock_in_model->get_stock_in_info($page);
-        $data['title']="Fertiliser Stock In List";
+        $data['title']="Fertilizer Stock In List";
 
         $ajax['status']=true;
         $ajax['content'][]=array("id"=>"#content","html"=>$this->load->view("rnd_fertiliser_stock_in/list",$data,true));
@@ -67,7 +67,7 @@ class Rnd_fertiliser_stock_in extends ROOT_Controller
             'fertilizer_price' => '',
             'stock_in_date'=>''
         );
-        $data['title']="Fertiliser Stock In";
+        $data['title']="Fertilizer Stock In";
         $ajax['page_url']=base_url()."rnd_fertiliser_stock_in/index/add";
 
 
