@@ -665,7 +665,7 @@ if($options['curd_colour']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['curd_colour_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_COLOUR_EVALUATION');?></label>
         </div>
@@ -758,7 +758,7 @@ if($options['head_colour']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['head_colour_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_COLOUR_EVALUATION');?></label>
         </div>
@@ -851,7 +851,7 @@ if($options['fruit_colour']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['fruit_colour_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_COLOUR_EVALUATION');?></label>
         </div>
@@ -944,7 +944,7 @@ if($options['root_colour']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['root_colour_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_COLOUR_EVALUATION');?></label>
         </div>
@@ -1037,7 +1037,7 @@ if($options['leaf_colour']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['leaf_colour_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_COLOUR_EVALUATION');?></label>
         </div>
@@ -1111,7 +1111,7 @@ if($options['leaf_length']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['leaf_length_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_LENGTH_EVALUATION');?></label>
         </div>
@@ -1205,7 +1205,7 @@ if($options['leaf_type']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['leaf_type_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LEAF_TYPE_EVALUATION');?></label>
         </div>
@@ -1279,7 +1279,7 @@ if($options['fruit_size']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['fruit_diameter_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_DIA_EVALUATION');?></label>
         </div>
@@ -1346,7 +1346,7 @@ if($options['fruit_size']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['fruit_height_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_LENGTH_EVALUATION');?></label>
         </div>
@@ -1420,7 +1420,7 @@ if($options['root_size']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['root_diameter_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_DIA_EVALUATION');?></label>
         </div>
@@ -1487,7 +1487,7 @@ if($options['root_size']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['root_height_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_HEIGHT_EVALUATION');?></label>
         </div>
@@ -1581,7 +1581,7 @@ if($options['curd_shape']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['curd_type_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_SHAPE_EVALUATION');?></label>
         </div>
@@ -1675,7 +1675,7 @@ if($options['head_shape']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['head_type_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_SHAPE_EVALUATION');?></label>
         </div>
@@ -1768,7 +1768,7 @@ if($options['fruit_shape']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['fruit_shape_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_SHAPE_EVALUATION');?></label>
         </div>
@@ -1861,7 +1861,7 @@ if($options['root_shape']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['root_shape_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('ROOT_SHAPE_EVALUATION');?></label>
         </div>
@@ -1934,7 +1934,7 @@ if($options['curd_diam']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['curd_diameter_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('CURD_DIAM_EVALUATION');?></label>
         </div>
@@ -2007,7 +2007,7 @@ if($options['head_diam']==1)
         ?>
     </div>
 
-    <div class="row show-grid">
+    <div class="row show-grid" <?php echo empty($fruit_data['normal']['head_diameter_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('HEAD_DIAM_EVALUATION');?></label>
         </div>
