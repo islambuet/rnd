@@ -1165,7 +1165,7 @@ if($options['no_of_fruits_per_plant']==1)
         </div>
 
         <div class="col-xs-3">
-            <label class="form-control"><?php echo $percentage;?></label>
+            <label class="form-control"><?php echo $percentage*$total_harvest;?></label>
         </div>
 
         <?php
@@ -1178,7 +1178,7 @@ if($options['no_of_fruits_per_plant']==1)
             }
             ?>
             <div class="col-xs-3">
-                <label class="form-control"><?php echo $percentage;?></label>
+                <label class="form-control"><?php echo $percentage*$total_harvest;?></label>
             </div>
         <?php
         }
@@ -1258,7 +1258,7 @@ if($options['fr_wt_per_plant']==1)
     $average_fruit_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_plants_harvested_normal>0))
     {
-        $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal, 2);
+        $average_fruit_weight_normal = round($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal*$total_harvest, 2);
     }
 
 
@@ -1278,7 +1278,7 @@ if($options['fr_wt_per_plant']==1)
             $average_fruit_weight_replica=$this->lang->line("CANNOT_CALCULATE");
             if(($sum_total_harvested_wt_replica>0)&&($sum_no_of_plants_harvested_replica>0))
             {
-                $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica, 2);
+                $average_fruit_weight_replica = round($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica*$total_harvest, 2);
             }
 
             ?>
