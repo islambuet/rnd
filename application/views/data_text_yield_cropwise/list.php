@@ -501,10 +501,11 @@ if($options['avg_leaf_wt']==1)
 <?php
 if($options['max_estimated_yield_per_ha']==1)
 {
+    $total_harvest = sizeof($harvest_data);//check needed
     $max_estimated_yield_normal = $this->lang->line("CANNOT_CALCULATE");
     if($average_plant_weight_normal>0)
     {
-        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$average_plant_weight_normal)/1000000, 2);
+        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$average_plant_weight_normal*$total_harvest)/1000000, 2);
     }
 
     ?>
@@ -521,7 +522,7 @@ if($options['max_estimated_yield_per_ha']==1)
             $max_estimated_yield_replica = $this->lang->line("CANNOT_CALCULATE");
             if($average_plant_weight_replica>0)
             {
-                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$average_plant_weight_replica)/1000000, 2);
+                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$average_plant_weight_replica*$total_harvest)/1000000, 2);
             }
 
             ?>
