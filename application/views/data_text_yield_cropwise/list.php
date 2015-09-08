@@ -502,10 +502,35 @@ if($options['avg_leaf_wt']==1)
 if($options['max_estimated_yield_per_ha']==1)
 {
     $total_harvest = sizeof($harvest_data);//check needed
+    //fixing calculation with discussion with sharif vai
     $max_estimated_yield_normal = $this->lang->line("CANNOT_CALCULATE");
+    $sum_no_of_plants_harvested_normal=0;
+    $sum_no_of_plants_harvested_replica=0;
+    $sum_no_of_fruits_normal=0;
+    $sum_no_of_fruits_replica=0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+
+        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+        $sum_no_of_fruits_normal += $no_of_fruits_normal;
+        $sum_no_of_fruits_replica += $no_of_fruits_replica;
+    }
+    $percentage=0;
+    if(($sum_no_of_fruits_normal>0)&&($sum_no_of_plants_harvested_normal>0))
+    {
+        $percentage = round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);
+    }
+    //above code added
     if($average_plant_weight_normal>0)
     {
-        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$average_plant_weight_normal*$total_harvest)/1000000, 2);
+        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$percentage*$average_plant_weight_normal*$total_harvest)/1000000, 2);
     }
 
     ?>
@@ -519,10 +544,15 @@ if($options['max_estimated_yield_per_ha']==1)
         <?php
         if($variety_info['replica_status']==1)
         {
+            $percentage=0;
+            if(($sum_no_of_fruits_replica>0)&&($sum_no_of_plants_harvested_replica>0))
+            {
+                $percentage = round($sum_no_of_fruits_replica/$sum_no_of_plants_harvested_replica, 2);
+            }
             $max_estimated_yield_replica = $this->lang->line("CANNOT_CALCULATE");
             if($average_plant_weight_replica>0)
             {
-                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$average_plant_weight_replica*$total_harvest)/1000000, 2);
+                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$percentage*$average_plant_weight_replica*$total_harvest)/1000000, 2);
             }
 
             ?>
