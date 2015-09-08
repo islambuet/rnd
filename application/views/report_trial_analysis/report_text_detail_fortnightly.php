@@ -204,7 +204,7 @@ foreach($varieties as $variety)
     if($options['head_type']==1)
     {
         $curd_Type_rating=$this->config->item('head_Type_rating');
-        $table_heads['head_type']='leaf_type';
+        $table_heads['head_type']='head_type';
         $data['head_type']['normal']=$data['head_type']['replica']=$this->lang->line('NOT_SET');
         if(is_array($info)&& !empty($info['normal']['head_type']))
         {
