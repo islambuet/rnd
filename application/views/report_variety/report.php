@@ -1,7 +1,7 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 $variety_types=$this->config->item('variety_type');
 //echo "<pre>";
-//print_r($varieties);
+//print_r($varieties_info);
 //echo "</pre>";
 //return;
 
@@ -14,6 +14,7 @@ $variety_types=$this->config->item('variety_type');
             <tr>
                 <th><?php echo $this->lang->line("SERIAL"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_YEAR"); ?></th>
+                <th><?php echo $this->lang->line("LABEL_PRINCIPAL_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_SEASON"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_NAME"); ?></th>
                 <th><?php echo $this->lang->line("LABEL_CROP_TYPE"); ?></th>
@@ -31,6 +32,7 @@ $variety_types=$this->config->item('variety_type');
                         <tr>
                             <td><?php echo $key+1;?></td>
                             <td><?php echo $variety['year'];?></td>
+                            <td><?php echo $variety['principal_name'];?></td>
                             <td><?php echo $variety['season_name'];?></td>
                             <td><?php echo $variety['crop_name'];?></td>
                             <td><?php echo $variety['type_name'];?></td>

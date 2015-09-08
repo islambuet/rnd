@@ -35,6 +35,23 @@ $this->load->view("action_buttons_edit",$data);
     </div>
     <div class="row show-grid">
         <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_PRINCIPAL_NAME');?></label>
+        </div>
+        <div class="col-xs-4">
+            <select name="principal_id" id="principal_id" class="form-control">
+                <option value=""><?php echo $this->lang->line('SELECT');?></option>
+                <?php
+                foreach($principals as $principal)
+                {?>
+                    <option value="<?php echo $principal['id']?>"><?php echo $principal['principal_name'];?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_SELECT_SEASON');?></label>
         </div>
         <div class="col-xs-4">
@@ -157,7 +174,7 @@ $this->load->view("action_buttons_edit",$data);
                 url: base_url+"report_variety/index/report",
                 type: 'POST',
                 dataType: "JSON",
-                data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
+                data:{year:$("#year").val(),principal_id:$("#principal_id").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val()},
                 success: function (data, status)
                 {
 

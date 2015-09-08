@@ -33,6 +33,7 @@ class Report_variety extends ROOT_Controller
         $data['title'] = "Variety Report";
         $data['seasons'] = Query_helper::get_info('rnd_season', '*', array());
         $data['crops'] = System_helper::get_ordered_crops();
+        $data['principals'] = Query_helper::get_info('rnd_principal', '*', array('status !='.$this->config->item('status_delete')));
         $ajax['status'] = true;
         $ajax['content'][] = array("id" => "#content", "html" => $this->load->view("report_variety/search", $data, true));
 
@@ -47,10 +48,11 @@ class Report_variety extends ROOT_Controller
     {
 
         $year = $this->input->post('year');
+        $principal_id = $this->input->post('principal_id');
         $season_id = $this->input->post('season_id');
         $crop_id = $this->input->post('crop_id');
         $crop_type_id = $this->input->post('crop_type_id');
-        $data['varieties_info']=$this->report_variety_model->get_varieties_info($year,$season_id,$crop_id,$crop_type_id);
+        $data['varieties_info']=$this->report_variety_model->get_varieties_info($year,$principal_id,$season_id,$crop_id,$crop_type_id);
         $ajax['status']=true;
         $ajax['content'][] = array("id" => "#report_list", "html" => $this->load->view("report_variety/report", $data, true));
         $this->jsonReturn($ajax);

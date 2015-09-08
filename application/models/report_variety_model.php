@@ -10,13 +10,13 @@ class Report_Variety_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_varieties_info($year,$season_id,$crop_id,$crop_type_id)
+    public function get_varieties_info($year,$principal_id,$season_id,$crop_id,$crop_type_id)
     {
         $this->db->from('rnd_variety rv');
         $this->db->select('rc.crop_name,rc.crop_code');
         $this->db->select('rct.type_name,rct.type_code');
         $this->db->select('rs.season_name');
-        $this->db->select('rp.principal_code');
+        $this->db->select('rp.principal_code,rp.principal_name');
         $this->db->select('rv.*');
         $this->db->join('rnd_crop rc','rc.id =rv.crop_id','INNER');
         $this->db->join('rnd_crop_type rct','rct.id =rv.crop_type_id','INNER');
@@ -28,6 +28,10 @@ class Report_Variety_model extends CI_Model
         if($year>0)
         {
             $this->db->where('rv.year',$year);
+        }
+        if($principal_id>0)
+        {
+            $this->db->where('rp.id',$principal_id);
         }
         if($season_id>0)
         {
