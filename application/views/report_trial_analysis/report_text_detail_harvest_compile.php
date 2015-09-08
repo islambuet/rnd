@@ -675,21 +675,21 @@ foreach($varieties as $variety)
                 $detail = json_decode($hcd,true);
                 $value_normal = $detail['normal']['no_of_plants_harvested'];
                 $value_replica = $detail['replica']['no_of_plants_harvested'];
-                $total_normal_up += $value_normal;
-                $total_replica_up += $value_replica;
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
 
                 $value_normal = $detail['normal']['no_of_fruits'];
                 $value_replica = $detail['replica']['no_of_fruits'];
-                $total_normal_down += $value_normal;
-                $total_replica_down += $value_replica;
+                $total_normal_up += $value_normal;
+                $total_replica_up += $value_replica;
             }
             if(($total_normal_up>0)&&($total_normal_down>0))
             {
-                $data['no_of_fruits_per_plant']['normal']=round(($total_normal_up/$total_normal_down)*100,2);
+                $data['no_of_fruits_per_plant']['normal']=round(($total_normal_up/$total_normal_down*$total_harvest),2);
             }
             if(($total_replica_up>0)&&($total_replica_down>0))
             {
-                $data['no_of_fruits_per_plant']['replica']=round(($total_replica_up/$total_replica_down)*100,2);
+                $data['no_of_fruits_per_plant']['replica']=round(($total_replica_up/$total_replica_down*$total_harvest),2);
             }
         }
         if($options['avg_fruit_wt']==1)
@@ -729,11 +729,11 @@ foreach($varieties as $variety)
             }
             if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
             {
-                $data['fr_wt_per_plant']['normal']=round(($total_harvested_weight_normal/$total_normal_down),2);
+                $data['fr_wt_per_plant']['normal']=round(($total_harvested_weight_normal/$total_normal_down*$total_harvest),2);
             }
             if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
             {
-                $data['fr_wt_per_plant']['replica']=round(($total_harvested_weight_replica/$total_replica_down),2);
+                $data['fr_wt_per_plant']['replica']=round(($total_harvested_weight_replica/$total_replica_down*$total_harvest),2);
             }
         }
         if($options['total_harv_roots']==1)
