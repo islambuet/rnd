@@ -156,18 +156,18 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-//        $(document).on("change","#select_all_variety",function()
-//        {
-//            if($(this).is(':checked'))
-//            {
-//                $('.select_variety').prop('checked', true);
-//            }
-//            else
-//            {
-//                $('.select_variety').prop('checked', false);
-//            }
-//
-//        });
+        $(document).on("change","#select_all_variety",function()
+        {
+            if($(this).is(':checked'))
+            {
+                $('.select_variety').prop('checked', true);
+            }
+            else
+            {
+                $('.select_variety').prop('checked', false);
+            }
+
+        });
         $( "#stock_out_date" ).datepicker({dateFormat : display_date_format});
 
     });

@@ -106,10 +106,10 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
 
                 $stock_out_id=Query_helper::add('rnd_pesticide_fungicide_out',$data);
                 $variety_ids = $this->input->post('varieties');
-                //foreach($variety_ids as $id)
+                foreach($variety_ids as $id)
                 {
                     $data=array();
-                    $data['variety_id']=$variety_ids;
+                    $data['variety_id']=$id;
                     $data['stock_out_id']=$stock_out_id;
                     $data['created_by'] = $user->user_id;
                     $data['creation_date'] =$time;
@@ -176,7 +176,7 @@ class Rnd_pesticide_stock_out extends ROOT_Controller
             $valid=false;
             $this->message.="Select a Crop<br>";
         }
-        if(Validation_helper::validate_empty($variety_ids))
+        if(!(is_array($variety_ids)))
         {
             $valid=false;
             $this->message.="Select at least one RND code<br>";
