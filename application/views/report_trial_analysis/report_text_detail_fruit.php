@@ -624,6 +624,22 @@ foreach($varieties as $variety)
             }
         }
     }
+    if($options['fruit_length']==1)
+    {
+        $table_heads['fruit_length']='fruit_length';
+        $data['fruit_length']['normal']=$data['fruit_length']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($info)&& !empty($info['normal']['fruit_length']))
+        {
+            $data['fruit_length']['normal']=$info['normal']['fruit_length'];
+        }
+        if($variety['replica_status']==1)
+        {
+            if(is_array($info)&& !empty($info['replica']['fruit_length']))
+            {
+                $data['fruit_length']['replica']=$info['replica']['fruit_length'];
+            }
+        }
+    }
 
 
     if($options['curd_height']==1)
