@@ -1791,7 +1791,48 @@ if($options['fruit_height']==1)
 <?php
 }
 ?>
+<?php
+if($options['fruit_length']==1)
+{
+    $fruit_length_normal="";
+    if(is_array($info)&& !empty($info['normal']['fruit_length']))
+    {
+        $fruit_length_normal=$info['normal']['fruit_length'];
+    }
+    $fruit_length_replica="";
+    if(is_array($info)&& !empty($info['replica']['fruit_length']))
+    {
+        $fruit_length_replica=$info['replica']['fruit_length'];
+    }
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_LENGTH');?></label>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="normal[fruit_length]" value="<?php echo $fruit_length_normal;?>" />
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" name="replica[fruit_length]" value="<?php echo $fruit_length_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[fruit_length]" value="<?php echo $fruit_length_replica;?>">
+        <?php
+        }
+        ?>
 
+    </div>
+<?php
+}
+?>
 <?php
 if($options['curd_height']==1)
 {
