@@ -10,6 +10,7 @@ $lang['LABEL_FRUIT_COLOUR'] = 'Fruit Colour';
 $lang['LABEL_FRUIT_WEIGHT'] = 'Fruit Weight (gm)';
 $lang['LABEL_FRUIT_DIAMETER'] = 'Fruit Diameter (cm)';
 $lang['LABEL_FRUIT_HEIGHT'] = 'Fruit Height (cm)';
+$lang['LABEL_FRUIT_LENGTH'] = 'Fruit Length (cm)';
 $lang['LABEL_FRUIT_FIRMNESS'] = 'Fruit Firmness';
 $lang['LABEL_FRUIT_TASTE'] = 'Fruit Taste';
 $lang['LABEL_FRUIT_TYPE'] = 'Fruit Type';
