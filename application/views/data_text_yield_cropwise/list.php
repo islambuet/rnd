@@ -631,7 +631,6 @@ if($options['actual_yield_per_ha']==1)
         }
         if($has_fruit)
         {
-            echo 'if';
             $sum_no_of_plants_harvested_normal=0;
             $sum_no_of_plants_harvested_replica=0;
             $sum_no_of_fruits_normal=0;
