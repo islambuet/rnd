@@ -501,37 +501,6 @@ if($options['avg_leaf_wt']==1)
 <?php
 if($options['max_estimated_yield_per_ha']==1)
 {
-    $total_harvest = sizeof($harvest_data);//check needed
-    //fixing calculation with discussion with sharif vai
-    $max_estimated_yield_normal = $this->lang->line("CANNOT_CALCULATE");
-    $sum_no_of_plants_harvested_normal=0;
-    $sum_no_of_plants_harvested_replica=0;
-    $sum_no_of_fruits_normal=0;
-    $sum_no_of_fruits_replica=0;
-
-    foreach($harvest_data as $harvest)
-    {
-        $detail = json_decode($harvest['info'],true);
-        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
-        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
-        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
-        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
-
-        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
-        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
-        $sum_no_of_fruits_normal += $no_of_fruits_normal;
-        $sum_no_of_fruits_replica += $no_of_fruits_replica;
-    }
-    $percentage=0;
-    if(($sum_no_of_fruits_normal>0)&&($sum_no_of_plants_harvested_normal>0))
-    {
-        $percentage = round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);
-    }
-    //above code added
-    if($average_plant_weight_normal>0)
-    {
-        $max_estimated_yield_normal = round(($variety_info['plants_per_hectare']*$percentage*$average_plant_weight_normal*$total_harvest)/1000000, 2);
-    }
 
     ?>
     <div class="row show-grid">
@@ -539,25 +508,15 @@ if($options['max_estimated_yield_per_ha']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('MAX_ESTIMATED_YIELD_PER_HA');?></label>
         </div>
         <div class="col-xs-3">
-            <label class="form-control max_estimated_normal"><?php echo $max_estimated_yield_normal;?></label>
+            <label class="form-control max_estimated_normal"><?php echo "Calculation Method not set";?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
-            $percentage=0;
-            if(($sum_no_of_fruits_replica>0)&&($sum_no_of_plants_harvested_replica>0))
-            {
-                $percentage = round($sum_no_of_fruits_replica/$sum_no_of_plants_harvested_replica, 2);
-            }
-            $max_estimated_yield_replica = $this->lang->line("CANNOT_CALCULATE");
-            if($average_plant_weight_replica>0)
-            {
-                $max_estimated_yield_replica = round(($variety_info['plants_per_hectare']*$percentage*$average_plant_weight_replica*$total_harvest)/1000000, 2);
-            }
 
             ?>
             <div class="col-xs-3">
-                <label class="form-control max_estimated_replica"><?php echo $max_estimated_yield_replica;?></label>
+                <label class="form-control max_estimated_replica"><?php echo "Calculation Method not set";?></label>
             </div>
         <?php
         }
@@ -656,48 +615,61 @@ if($options['targeted_yield_per_ha']==1)
 <?php
 if($options['actual_yield_per_ha']==1)
 {
-    $no_of_plants_survived_normal='';
-    if(is_array($info)&& !empty($info['normal']['no_of_plants_survived']))
-    {
-        $no_of_plants_survived_normal=$info['normal']['no_of_plants_survived'];
-        $survival_percentage_normal = round(($no_of_plants_survived_normal/$variety_info['initial_plants'])*100, 2);
-    }
-    else
-    {
-        $survival_percentage_normal = '';
-    }
+    //$average_plant_weight_**
+    //means average curd/root/fruit/leaf weight
 
-    $no_of_plants_survived_replica='';
-    if(is_array($info)&& !empty($info['replica']['no_of_plants_survived']))
+    $actual_estimated_yield_normal='';
+    $actual_estimated_yield_replica='';
+    $has_fruit=false;
+    if(sizeof($harvest_data)>0)
     {
-        $no_of_plants_survived_replica=$info['replica']['no_of_plants_survived'];
-        $survival_percentage_replica = round(($no_of_plants_survived_replica/$variety_info['initial_plants'])*100, 2);
-    }
-    else
-    {
-        $survival_percentage_replica = '';
-    }
+        $detail = json_decode($harvest_data[0]['info'],true);
+        $total_harvest = sizeof($harvest_data);//check needed
+        if(isset($detail['normal']['no_of_fruits']))
+        {
+            $has_fruit=true;
+        }
+        if($has_fruit)
+        {
+            echo 'if';
+            $sum_no_of_plants_harvested_normal=0;
+            $sum_no_of_plants_harvested_replica=0;
+            $sum_no_of_fruits_normal=0;
+            $sum_no_of_fruits_replica=0;
+            foreach($harvest_data as $harvest)
+            {
+                $detail = json_decode($harvest['info'],true);
+                $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+                $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+                $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+                $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
 
-    if(is_array($info)&& !empty($info['normal']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_normal = $info['normal']['total_plant_per_ha'];
-        $max_estimated_yield_normal = round(($total_plant_per_ha_normal*$average_plant_weight_normal)/1000000, 2);
-        $actual_estimated_yield_normal = round($max_estimated_yield_normal*($survival_percentage_normal/100), 2);
-    }
-    else
-    {
-        $actual_estimated_yield_normal = '';
-    }
+                $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+                $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+                $sum_no_of_fruits_normal += $no_of_fruits_normal;
+                $sum_no_of_fruits_replica += $no_of_fruits_replica;
+            }
+            if(($sum_no_of_fruits_normal>0)&&($sum_no_of_plants_harvested_normal>0)&&(isset($average_plant_weight_normal))&&($average_plant_weight_normal>0))
+            {
+                $actual_estimated_yield_normal=round($variety_info['plants_per_hectare']*$sum_no_of_fruits_normal*$average_plant_weight_normal*$total_harvest/$sum_no_of_plants_harvested_normal/1000000, 2);
+            }
+            if(($variety_info['replica_status']==1)&&($sum_no_of_fruits_replica>0)&&($sum_no_of_plants_harvested_replica>0)&&(isset($average_plant_weight_replica))&&($average_plant_weight_replica>0))
+            {
+                $actual_estimated_yield_replica=round($variety_info['plants_per_hectare']*$sum_no_of_fruits_replica*$average_plant_weight_replica*$total_harvest/$sum_no_of_plants_harvested_replica/1000000, 2);
+            }
 
-    if(is_array($info)&& !empty($info['replica']['total_plant_per_ha']))
-    {
-        $total_plant_per_ha_replica = $info['replica']['total_plant_per_ha'];
-        $max_estimated_yield_replica = round(($total_plant_per_ha_replica*$average_plant_weight_normal)/1000000, 2);
-        $actual_estimated_yield_replica = round($max_estimated_yield_replica*($survival_percentage_replica/100), 2);
-    }
-    else
-    {
-        $actual_estimated_yield_replica = '';
+        }
+        else
+        {
+            if(isset($average_plant_weight_normal)&&($average_plant_weight_normal>0))
+            {
+                $actual_estimated_yield_normal=round($variety_info['plants_per_hectare']*$average_plant_weight_normal/1000000, 2);
+            }
+            if(isset($average_plant_weight_replica)&&($average_plant_weight_replica>0))
+            {
+                $actual_estimated_yield_replica=round($variety_info['plants_per_hectare']*$average_plant_weight_replica/1000000, 2);
+            }
+        }
     }
     ?>
     <div class="row show-grid">
