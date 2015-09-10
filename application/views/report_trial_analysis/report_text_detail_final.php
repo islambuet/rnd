@@ -545,20 +545,21 @@ foreach($varieties as $variety)
                 $data['fruit_diameter_evaluation']['replica']=$fruit_info['replica']['fruit_diameter_evaluation'];
             }
         }
-        $table_heads['fruit_height']='fruit_height';
-        $data['fruit_height']['normal']=$data['fruit_height']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_height']))
+        //$table_heads['fruit_height']='fruit_height';//changed to fruit length
+        $table_heads['fruit_length']='fruit_length';//changed to fruit length
+        $data['fruit_length']['normal']=$data['fruit_length']['replica']=$this->lang->line('NOT_SET');
+        if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_length']))
         {
-            $data['fruit_height']['normal']=$fruit_info['normal']['fruit_height'];
+            $data['fruit_length']['normal']=$fruit_info['normal']['fruit_length'];
         }
         if($variety['replica_status']==1)
         {
-            if(is_array($fruit_info)&& !empty($fruit_info['replica']['fruit_height']))
+            if(is_array($fruit_info)&& !empty($fruit_info['replica']['fruit_length']))
             {
-                $data['fruit_height']['replica']=$fruit_info['replica']['fruit_height'];
+                $data['fruit_length']['replica']=$fruit_info['replica']['fruit_length'];
             }
         }
-        $table_heads['fruit_height_evaluation']='fruit_height_evaluation';
+        /*$table_heads['fruit_height_evaluation']='fruit_height_evaluation';
         $data['fruit_height_evaluation']['normal']=$data['fruit_height_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_height_evaluation']))
         {
@@ -570,7 +571,7 @@ foreach($varieties as $variety)
             {
                 $data['fruit_height_evaluation']['replica']=$fruit_info['replica']['fruit_height_evaluation'];
             }
-        }
+        }*/
     }
     if($options['root_size']==1)//actually root_dia+dia evaluation+root height +root height evaluation
     {
