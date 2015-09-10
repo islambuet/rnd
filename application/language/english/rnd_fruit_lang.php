@@ -31,7 +31,7 @@ $lang['LABEL_HEAD_HEIGHT'] = 'Head Height (cm)';
 $lang['LABEL_HEAD_COMPACTNESS'] = 'Head Compactness';
 
 $lang['LABEL_TARGETED_WEIGHT'] = 'Targeted Weight (gm)';
-$lang['LABEL_TARGETED_HEIGHT'] = 'Targeted Height (cm)';
+$lang['LABEL_TARGETED_HEIGHT'] = 'Targeted Height/Length (cm)';
 
 $lang['LABEL_LEAF_LENGTH'] = 'Leaf Length (cm)';
 $lang['LABEL_LEAF_TYPE'] = 'Leaf Type';
