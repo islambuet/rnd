@@ -1329,7 +1329,7 @@ if($options['fruit_size']==1)
         </div>
         <div class="col-xs-3">
             <label class="form-control">
-                <?php echo $fruit_data['normal']['fruit_height'];?>
+                <?php echo $fruit_data['normal']['fruit_length'];?>
             </label>
         </div>
         <?php
@@ -1338,7 +1338,7 @@ if($options['fruit_size']==1)
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
-                    <?php echo $fruit_data['replica']['fruit_height'];?>
+                    <?php echo $fruit_data['replica']['fruit_length'];?>
                 </label>
             </div>
         <?php
