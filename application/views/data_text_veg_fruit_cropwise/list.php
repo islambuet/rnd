@@ -1322,29 +1322,37 @@ if($options['fruit_size']==1)
         ?>
     </div>
 
-
-    <div class="row show-grid">
-        <div class="col-xs-4">
-            <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_LENGTH');?></label>
-        </div>
-        <div class="col-xs-3">
-            <label class="form-control">
-                <?php echo $fruit_data['normal']['fruit_length'];?>
-            </label>
-        </div>
-        <?php
-        if($variety_info['replica_status']==1)
+    <?php
+        if(isset($fruit_data['normal']['fruit_length']))
         {
+
+
             ?>
-            <div class="col-xs-3">
-                <label class="form-control">
-                    <?php echo $fruit_data['replica']['fruit_length'];?>
-                </label>
+            <div class="row show-grid">
+                <div class="col-xs-4">
+                    <label class="control-label pull-right"><?php echo $this->lang->line('FRUIT_LENGTH');?></label>
+                </div>
+                <div class="col-xs-3">
+                    <label class="form-control">
+                        <?php echo $fruit_data['normal']['fruit_length'];?>
+                    </label>
+                </div>
+                <?php
+                if($variety_info['replica_status']==1)
+                {
+                    ?>
+                    <div class="col-xs-3">
+                        <label class="form-control">
+                            <?php echo $fruit_data['replica']['fruit_length'];?>
+                        </label>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
-        <?php
+            <?php
         }
         ?>
-    </div>
 
     <div class="row show-grid" <?php echo empty($fruit_data['normal']['fruit_height_evaluation'])?'style="display:none"':''?>>
         <div class="col-xs-4">
