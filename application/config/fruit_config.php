@@ -212,6 +212,11 @@ $config['fc_taste'][1]='Good';
 $config['fc_taste'][2]='Average';
 $config['fc_taste'][3]='Poor';
 
+//root_shape
+$config['fc_root_shape'][1]='Cylindrical';
+$config['fc_root_shape'][2]='Nantes';
+$config['fc_root_shape'][3]='Others';
+
 
 
 
