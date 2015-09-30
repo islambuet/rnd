@@ -33,6 +33,8 @@
         $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
     }
 
+    $total_harvest = sizeof($harvest_data);//check needed
+
 ?>
 
 <div class="widget-header">
@@ -74,35 +76,43 @@ if($variety_info['replica_status']==1)
 <?php
 }
 ?>
-
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
-    </div>
-
-
-
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-6">
-            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
-        </div>
-        <?php
-    }
+<?php
+if($options['initial_plants']==1)
+{
     ?>
-</div>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('INITIAL_PLANTS_DURING_TRIAL_STARTED');?></label>
+        </div>
+
+
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $variety_info['initial_plants'];?></label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
 
 <?php
+if($options['first_harvest_days']==1)
+{
     $first_harvest_array = get_specific_array($harvest_data, 1);//hard coded 1 for first harvest
     $first_harvest_data = json_decode($first_harvest_array['info'],true);
     $first_harvesting_date_normal = $first_harvest_data['normal']['harvesting_date'];
@@ -115,38 +125,40 @@ if($variety_info['replica_status']==1)
     {
         $first_harvest_text=($first_harvest_time-$variety_info['sowing_date'])/(3600*24);
     }
-
-
-?>
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST_DAYS');?></label>
-    </div>
-
-
-
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-6">
-            <label class="form-control"><?php echo $first_harvest_text;?></label>
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $first_harvest_text;?></label>
-        </div>
-        <?php
-    }
     ?>
-</div>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('FIRST_HARVEST_DAYS');?></label>
+        </div>
 
+
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $first_harvest_text;?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $first_harvest_text;?></label>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
 <?php
-    $total_harvest = sizeof($harvest_data);//check needed
+if($options['last_harvest_days']==1)
+{
+
     $last_harvest_array = get_specific_array($harvest_data, $total_harvest);
     $last_harvest_data = json_decode($last_harvest_array['info'],true);
     $last_harvesting_date_normal = $last_harvest_data['normal']['harvesting_date'];
@@ -158,41 +170,43 @@ if($variety_info['replica_status']==1)
     {
         $last_harvest_text=($last_harvest_time-$variety_info['sowing_date'])/(3600*24);
     }
-
-
-?>
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST_DAYS');?></label>
-    </div>
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-6">
-            <label class="form-control"><?php echo $last_harvest_text;?></label>
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $last_harvest_text;?></label>
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('LAST_HARVEST_DAYS');?></label>
         </div>
         <?php
-    }
-    ?>
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $last_harvest_text;?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $last_harvest_text;?></label>
+            </div>
+            <?php
+        }
+        ?>
 
-</div>
-
+    </div>
+    <?php
+}
+?>
 <?php
+if($options['interval_first_and_last_harvest']==1)
+{
     $interval_text='';
-    if($first_harvest_time==0)
+    if((!(isset($first_harvest_time)))&&($first_harvest_time==0))
     {
         $interval_text=$this->lang->line("FIRST_HARVEST_DATE_NOT_SET");
     }
-    elseif($last_harvest_time==0)
+    elseif((!(isset($last_harvest_time)))&&($last_harvest_time==0))
     {
         $interval_text=$this->lang->line("LAST_HARVEST_DATE_NOT_SET");
     }
@@ -200,54 +214,64 @@ if($variety_info['replica_status']==1)
     {
         $interval_text=($last_harvest_time-$first_harvest_time)/(3600*24);
     }
-?>
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('INTERVAL_FIRST_AND_LAST_HARVEST');?></label>
-    </div>
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-6">
-            <label class="form-control"><?php echo $interval_text;?></label>
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $interval_text;?></label>
+    ?>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('INTERVAL_FIRST_AND_LAST_HARVEST');?></label>
         </div>
         <?php
-    }
-    ?>
-</div>
-
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_HARVEST');?></label>
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $interval_text;?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $interval_text;?></label>
+            </div>
+            <?php
+        }
+        ?>
     </div>
     <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-6">
-            <label class="form-control"><?php echo $total_harvest;?></label>
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <div class="col-xs-3">
-            <label class="form-control"><?php echo $total_harvest;?></label>
-        </div>
-    <?php
-    }
+}
+?>
+<?php
+if($options['total_no_of_harvest']==1)
+{
+
     ?>
-</div>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('TOTAL_NO_OF_HARVEST');?></label>
+        </div>
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-6">
+                <label class="form-control"><?php echo $total_harvest;?></label>
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <div class="col-xs-3">
+                <label class="form-control"><?php echo $total_harvest;?></label>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
 
 <?php
 if($options['total_harv_curds']==1)
@@ -1853,8 +1877,10 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
 <?php
 }
 ?>
-
 <?php
+if($options['f_holding_capacity']==1)
+{
+
     $f_holding_capacity_normal="";
     if(is_array($info)&& !empty($info['normal']['f_holding_capacity']))
     {
@@ -1866,33 +1892,36 @@ if($options['percentage_of_mrkt_leaf_wt']==1)
     {
         $f_holding_capacity_replica=$info['replica']['f_holding_capacity'];
     }
-?>
-<div class="row show-grid">
-    <div class="col-xs-4">
-        <label class="control-label pull-right"><?php echo $this->lang->line('F_HOLDING_CAPACITY');?></label>
-    </div>
-
-    <div class="col-xs-3">
-        <input type="text" id="f_holding_capacity" name="normal[f_holding_capacity]" class="form-control" value="<?php echo $f_holding_capacity_normal;?>" />
-    </div>
-
-    <?php
-    if($variety_info['replica_status']==1)
-    {
-        ?>
-        <div class="col-xs-3">
-            <input type="text" name="replica[f_holding_capacity]" class="form-control" value="<?php echo $f_holding_capacity_replica;?>" />
-        </div>
-    <?php
-    }
-    else
-    {
-        ?>
-        <input type="hidden" name="replica[f_holding_capacity]" value="<?php echo $f_holding_capacity_replica;?>">
-    <?php
-    }
     ?>
-</div>
+    <div class="row show-grid">
+        <div class="col-xs-4">
+            <label class="control-label pull-right"><?php echo $this->lang->line('F_HOLDING_CAPACITY');?></label>
+        </div>
+
+        <div class="col-xs-3">
+            <input type="text" id="f_holding_capacity" name="normal[f_holding_capacity]" class="form-control" value="<?php echo $f_holding_capacity_normal;?>" />
+        </div>
+
+        <?php
+        if($variety_info['replica_status']==1)
+        {
+            ?>
+            <div class="col-xs-3">
+                <input type="text" name="replica[f_holding_capacity]" class="form-control" value="<?php echo $f_holding_capacity_replica;?>" />
+            </div>
+        <?php
+        }
+        else
+        {
+            ?>
+            <input type="hidden" name="replica[f_holding_capacity]" value="<?php echo $f_holding_capacity_replica;?>">
+        <?php
+        }
+        ?>
+    </div>
+    <?php
+}
+?>
 
 <?php
 
