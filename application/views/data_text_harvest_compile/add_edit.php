@@ -123,9 +123,14 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#harvest_text").html("");
             $("#crop_id").val("");
-            $("#crop_id_container").show();
+            $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
+            var session_id=$(this).val();
+            if(session_id>0)
+            {
+                $("#crop_id_container").show();
+            }
 
         });
 
@@ -134,12 +139,13 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#harvest_text").html("");
             $("#crop_type_id").val("");
-            $("#crop_type_id_container").show();
+            $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
 
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
+                $("#crop_type_id_container").show();
                 $.ajax({
                     url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
                     type: 'POST',
@@ -162,11 +168,10 @@ $this->load->view("action_buttons_edit",$data);
         $(document).on("change", "#crop_type_id", function(event)
         {
             $("#harvest_text").html("");
-            $("#day_number").val("");
-
-            $("#variety_id_container").show();
+            $("#variety_id_container").hide();
             if($(this).val()>0)
             {
+                $("#variety_id_container").show();
                 $.ajax({
                     url: base_url+"data_text_harvest_compile/get_harvest_compile_varieties_for_data_text",
                     type: 'POST',
@@ -184,33 +189,6 @@ $this->load->view("action_buttons_edit",$data);
                 });
             }
         });
-
-        /*$(document).on("change", "#variety_id", function(event)
-        {
-            $("#harvest_text").html("");
-            $("#harvest_no").val("");
-            $("#harvest_no_container").show();
-            if($(this).val()>0)
-            {
-                $.ajax({
-                    url: base_url+"data_text_harvest_compile/get_dropDown_harvest_no",
-                    type: 'POST',
-                    dataType: "JSON",
-                    data:{year:$("#year").val(),season_id:$("#season_id").val(),crop_id:$("#crop_id").val(),crop_type_id:$("#crop_type_id").val(),variety_id:$('#variety_id').val()},
-                    success: function (data, status)
-                    {
-
-                    },
-                    error: function (xhr, desc, err)
-                    {
-                        console.log("error");
-
-                    }
-                });
-            }
-
-        });*/
-
         $(document).on("change", "#variety_id", function(event)
         {
             $("#harvest_text").html("");
