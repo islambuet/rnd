@@ -16,6 +16,7 @@ class Dashboard_model extends CI_Model {
         $this->db->from("rnd_task rt");
         $this->db->join('rnd_user_group_role rugr','rt.id = rugr.task_id','INNER');
         $this->db->where("rt.parent",$module_id);
+        $this->db->where("rugr.view",1);
         $this->db->where("rugr.user_group_id",$user->rnd_group);
         $this->db->order_by('rt.ordering');
         $result=$this->db->get()->result_array();
