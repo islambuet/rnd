@@ -81,7 +81,7 @@ $this->load->view("action_buttons_edit",$data);
             </div>
         </div>
 
-        <div class="row show-grid" style="display: none;" id="variety_container">
+        <div class="row show-grid" style="display: none;" id="variety_id_container">
             <div class="col-xs-4">
                 <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_RND_CODE');?><span style="color:#FF0000">*</span></label>
             </div>
@@ -121,9 +121,14 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#data_15_text").html("");
             $("#crop_id").val("");
-            $("#crop_id_container").show();
+            $("#crop_id_container").hide();
             $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
+            var session_id=$(this).val();
+            if(session_id>0)
+            {
+                $("#crop_id_container").show();
+            }
         });
 
 
@@ -131,11 +136,12 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#data_15_text").html("");
             $("#crop_type_id").val("");
-            $("#crop_type_id_container").show();
+            $("#crop_type_id_container").hide();
             $("#variety_id_container").hide();
             var crop_id = $("#crop_id").val();
             if(crop_id>0)
             {
+                $("#crop_type_id_container").show();
                 $.ajax({
                     url: base_url+"rnd_common/get_dropDown_cropType_by_cropId/",
                     type: 'POST',
@@ -159,9 +165,10 @@ $this->load->view("action_buttons_edit",$data);
         {
             $("#data_15_text").html("");
             $("#day_number").val("");
-            $("#variety_container").show();
+            $("#variety_id_container").hide();
             if($(this).val()>0)
             {
+                $("#variety_id_container").show();
                 $.ajax({
                     url: base_url+"data_text_fifteen_days/get_days_varieties_for_data_text",
                     type: 'POST',
