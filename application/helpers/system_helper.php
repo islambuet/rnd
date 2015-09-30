@@ -143,5 +143,22 @@ class System_helper
         exit;
 
     }
+    public static function get_parent_id_of_task($controller_name)
+    {
+        $CI =& get_instance();
+        $CI->db->from('rnd_task');
+        $CI->db->where('controller',$controller_name);
+        $result=$CI->db->get()->row_array();
+        if($result)
+        {
+            return $result['parent'];
+        }
+        else
+        {
+            return 0;
+        }
+
+
+    }
 
 }
