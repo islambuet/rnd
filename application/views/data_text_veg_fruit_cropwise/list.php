@@ -1,5 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+$sum_total_harvested_wt_normal = 0;
+$sum_total_harvested_wt_replica = 0;
+$total_harvest=0;
+if(is_array($harvest_data))
+{
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
+        $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
+    }
+
+    $total_harvest = sizeof($harvest_data);//check needed
+}
+
 $info = json_decode($variety_info['info'],true);
 
 $flowering_data = json_decode($flowering_data['info'], true);
@@ -2320,7 +2338,51 @@ if($options['avg_root_wt']==1)
 <?php
 if($options['avg_fruit_wt']==1)
 {
-    $sum_of_total_marketed_fruits_normal = 0;
+    //calculating number of fruits per plant
+    $sum_no_of_plants_harvested_normal=0;
+    $sum_no_of_plants_harvested_replica=0;
+    $sum_no_of_fruits_normal=0;
+    $sum_no_of_fruits_replica=0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+
+        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+        $sum_no_of_fruits_normal += $no_of_fruits_normal;
+        $sum_no_of_fruits_replica += $no_of_fruits_replica;
+    }
+    $percentage=$this->lang->line("CANNOT_CALCULATE");
+    if(($sum_no_of_fruits_normal>0)&&($sum_no_of_plants_harvested_normal>0))
+    {
+        $percentage = round($sum_no_of_fruits_normal/$sum_no_of_plants_harvested_normal, 2);
+    }
+
+    $sum_of_no_of_fruits_normal = 0;
+    $sum_of_no_of_fruits_replica = 0;
+    if(is_array($harvest_data))
+    {
+        foreach($harvest_data as $harvest)
+        {
+            $detail = json_decode($harvest['info'],true);
+            $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+            $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+            $sum_of_no_of_fruits_normal += $no_of_fruits_normal;
+            $sum_of_no_of_fruits_replica += $no_of_fruits_replica;
+        }
+    }
+    $average_fruit_weight_normal=$this->lang->line("CANNOT_CALCULATE");
+    if(($sum_total_harvested_wt_normal>0)&&($sum_of_no_of_fruits_normal>0))
+    {
+        $average_fruit_weight_normal = round(($sum_total_harvested_wt_normal/$sum_of_no_of_fruits_normal)*1000, 2);
+    }
+
+    /*$sum_of_total_marketed_fruits_normal = 0;
     $sum_of_total_marketed_fruits_replica = 0;
     $sum_of_total_marketed_fruits_wt_normal = 0;
     $sum_of_total_marketed_fruits_wt_replica = 0;
@@ -2345,7 +2407,7 @@ if($options['avg_fruit_wt']==1)
     if(($sum_of_total_marketed_fruits_wt_normal>0) && ($sum_of_total_marketed_fruits_normal)>0)
     {
         $avg_fruit_wt_normal = round($sum_of_total_marketed_fruits_wt_normal/$sum_of_total_marketed_fruits_normal, 2);
-    }
+    }*/
 
     ?>
     <div class="row show-grid">
@@ -2354,23 +2416,22 @@ if($options['avg_fruit_wt']==1)
         </div>
         <div class="col-xs-3">
             <label class="form-control">
-                <?php echo $avg_fruit_wt_normal; ?>
+                <?php echo $average_fruit_weight_normal; ?>
             </label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
-            $avg_fruit_wt_replica = $this->lang->line("CANNOT_CALCULATE");;
-
-            if(($sum_of_total_marketed_fruits_wt_replica>0) && ($sum_of_total_marketed_fruits_replica)>0)
+            $average_fruit_weight_replica=$this->lang->line("CANNOT_CALCULATE");
+            if(($sum_total_harvested_wt_replica>0)&&($sum_of_no_of_fruits_replica>0))
             {
-                $avg_fruit_wt_replica = round($sum_of_total_marketed_fruits_wt_replica/$sum_of_total_marketed_fruits_replica, 2);
+                $average_fruit_weight_replica = round(($sum_total_harvested_wt_replica/$sum_of_no_of_fruits_replica)*1000, 2);
             }
 
             ?>
             <div class="col-xs-3">
                 <label class="form-control">
-                    <?php echo $avg_fruit_wt_replica; ?>
+                    <?php echo $average_fruit_weight_replica; ?>
                 </label>
             </div>
         <?php
@@ -2634,37 +2695,52 @@ if($options['no_of_plants_per_plot']==1)
 <?php
 if($options['avg_fruit_wt_per_plant']==1)
 {
-    $avg_fruit_wt_per_plant_normal = "";
-    if(is_array($info)&& !empty($info['normal']['avg_fruit_wt_per_plant']))
+    $total_weight_normal=0;
+    $total_weight_replica=0;
+    $total_fruit_normal=0;
+    $total_fruit_replica=0;
+    $total_plants_normal=0;
+    $total_plants_replica=0;
+
+    foreach($harvest_data as $harvest)
     {
-        $avg_fruit_wt_per_plant_normal = $info['normal']['avg_fruit_wt_per_plant'];
+        $detail = json_decode($harvest['info'],true);
+
+        $total_fruit_normal += $detail['normal']['no_of_fruits'];
+        $total_fruit_replica += $detail['replica']['no_of_fruits'];
+
+        $total_weight_normal += $detail['normal']['total_harvested_wt'];
+        $total_weight_replica += $detail['replica']['total_harvested_wt'];
+
+        $total_plants_normal += $detail['normal']['no_of_plants_harvested'];
+        $total_plants_replica += $detail['replica']['no_of_plants_harvested'];
     }
-    $avg_fruit_wt_per_plant_replica = "";
-    if(is_array($info)&& !empty($info['replica']['avg_fruit_wt_per_plant']))
+    $avg_fruit_wt_plant_normal = $this->lang->line("CANNOT_CALCULATE");
+    if(($total_weight_normal>0)&&($total_plants_normal>0)&&($total_harvest>0))
     {
-        $avg_fruit_wt_per_plant_replica = $info['replica']['avg_fruit_wt_per_plant'];
+        $avg_fruit_wt_plant_normal=round($total_weight_normal*$total_harvest/$total_plants_normal,2);
     }
+
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('AVG_FRUIT_WT_PER_PLANT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="normal[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_normal;?>" />
+            <label class="form-control"><?php echo $avg_fruit_wt_plant_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
+            $avg_fruit_wt_plant_replica = $this->lang->line("CANNOT_CALCULATE");
+            if(($total_weight_replica>0)&&($total_plants_replica>0)&&($total_harvest>0))
+            {
+                $avg_fruit_wt_plant_replica=round($total_weight_replica*$total_harvest/$total_plants_replica,2);
+            }
             ?>
             <div class="col-xs-3">
-                <input type="text" class="form-control" name="replica[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_replica;?>" />
+                <label class="form-control"><?php echo $avg_fruit_wt_plant_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[avg_fruit_wt_per_plant]" value="<?php echo $avg_fruit_wt_per_plant_replica;?>">
         <?php
         }
         ?>
