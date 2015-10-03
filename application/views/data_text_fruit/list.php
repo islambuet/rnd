@@ -955,14 +955,16 @@ if($options['fruit_weight']==1)
     }*/
     $sum_of_no_of_fruits_normal = 0;
     $sum_of_no_of_fruits_replica = 0;
-
-    foreach($harvest_data as $harvest)
+    if(is_array($harvest_data))
     {
-        $detail = json_decode($harvest['info'],true);
-        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
-        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
-        $sum_of_no_of_fruits_normal += $no_of_fruits_normal;
-        $sum_of_no_of_fruits_replica += $no_of_fruits_replica;
+        foreach($harvest_data as $harvest)
+        {
+            $detail = json_decode($harvest['info'],true);
+            $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+            $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+            $sum_of_no_of_fruits_normal += $no_of_fruits_normal;
+            $sum_of_no_of_fruits_replica += $no_of_fruits_replica;
+        }
     }
     $average_fruit_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_of_no_of_fruits_normal>0))
@@ -1085,14 +1087,16 @@ if($options['head_weight']==1)
 
     $sum_no_of_plants_harvested_normal = 0;
     $sum_no_of_plants_harvested_replica = 0;
-
-    foreach($harvest_data as $harvest)
+    if(is_array($harvest_data))
     {
-        $detail = json_decode($harvest['info'],true);
-        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
-        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
-        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
-        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+        foreach($harvest_data as $harvest)
+        {
+            $detail = json_decode($harvest['info'],true);
+            $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+            $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+            $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+            $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+        }
     }
     $average_head_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_plants_harvested_normal>0))
@@ -1133,15 +1137,17 @@ if($options['root_weight']==1)
 {
     $sum_no_of_roots_normal = 0;
     $sum_no_of_roots_replica = 0;
-    foreach($harvest_data as $harvest)
+    if(is_array($harvest_data))
     {
-        $detail = json_decode($harvest['info'],true);
-        $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
-        $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
-        $sum_no_of_roots_normal += $no_of_roots_normal;
-        $sum_no_of_roots_replica += $no_of_roots_replica;
+        foreach($harvest_data as $harvest)
+        {
+            $detail = json_decode($harvest['info'],true);
+            $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
+            $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
+            $sum_no_of_roots_normal += $no_of_roots_normal;
+            $sum_no_of_roots_replica += $no_of_roots_replica;
+        }
     }
-
     $average_root_weight_normal=$this->lang->line("CANNOT_CALCULATE");
     if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_roots_normal>0))
     {
