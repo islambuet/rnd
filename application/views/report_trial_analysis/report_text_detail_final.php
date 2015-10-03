@@ -1042,18 +1042,40 @@ foreach($varieties as $variety)
     if($options['avg_fruit_wt_per_plant']==1)
     {
         $table_heads['avg_fruit_wt_per_plant']='avg_fruit_wt_per_plant';
-        $data['avg_fruit_wt_per_plant']['normal']=$data['avg_fruit_wt_per_plant']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['avg_fruit_wt_per_plant']))
+        $data['avg_fruit_wt_per_plant']['normal']=$data['avg_fruit_wt_per_plant']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        if(isset($harvest[$variety['id']]))
         {
-            $data['avg_fruit_wt_per_plant']['normal']=$info['normal']['avg_fruit_wt_per_plant'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['avg_fruit_wt_per_plant']))
+            $total_weight_normal=0;
+            $total_weight_replica=0;
+            $total_fruit_normal=0;
+            $total_fruit_replica=0;
+            $total_plants_normal=0;
+            $total_plants_replica=0;
+
+            foreach($harvest[$variety['id']] as $harvest_details)
             {
-                $data['avg_fruit_wt_per_plant']['replica']=$info['replica']['avg_fruit_wt_per_plant'];
+                $detail = json_decode($harvest_details,true);
+
+                $total_fruit_normal += $detail['normal']['no_of_fruits'];
+                $total_fruit_replica += $detail['replica']['no_of_fruits'];
+
+                $total_weight_normal += $detail['normal']['total_harvested_wt'];
+                $total_weight_replica += $detail['replica']['total_harvested_wt'];
+
+                $total_plants_normal += $detail['normal']['no_of_plants_harvested'];
+                $total_plants_replica += $detail['replica']['no_of_plants_harvested'];
+            }
+
+            if(($total_weight_normal>0)&&($total_plants_normal>0)&&($total_harvest>0))
+            {
+                $data['avg_fruit_wt_per_plant']['normal']=round($total_weight_normal*$total_harvest/$total_plants_normal,2);
+            }
+            if(($total_weight_replica>0)&&($total_plants_replica>0)&&($total_harvest>0))
+            {
+                $data['avg_fruit_wt_per_plant']['replica']=round($total_weight_replica*$total_harvest/$total_plants_replica,2);
             }
         }
+
     }
     if($options['average_harvested_plant']==1)
     {
