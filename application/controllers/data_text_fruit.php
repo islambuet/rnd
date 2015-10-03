@@ -9,8 +9,10 @@ class Data_text_fruit extends ROOT_Controller
         parent::__construct();
         $this->message="";
         $this->load->model("data_text_fruit_model");
+        $this->load->model("data_text_harvest_compile_model");
         $this->config->load('fruit_config');
         $this->lang->load('rnd_fruit');
+
     }
 
     public function index($task="add_edit",$id=0)
@@ -69,6 +71,7 @@ class Data_text_fruit extends ROOT_Controller
             //$data['targeted_height'] = $this->data_text_fruit_model->get_targeted_height($crop_id, $crop_type_id);
 
             $data['variety_info']=$this->data_text_fruit_model->get_variety_info($year,$season_id,$crop_id,$crop_type_id,$variety_id);
+            $data['harvest_data'] = $this->data_text_harvest_compile_model->get_data_from_harvest_cropWise($season_id, $crop_id, $crop_type_id, $variety_id);
             $data['options']=Query_helper::get_info('rnd_setup_text_fruit','*',array('crop_id ='.$crop_id),1);
 
             if($this->message)

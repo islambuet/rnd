@@ -1,5 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+$sum_total_harvested_wt_normal = 0;
+$sum_total_harvested_wt_replica = 0;
+$total_harvest=0;
+if(is_array($harvest_data))
+{
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+
+        $total_harvested_wt_normal = $detail['normal']['total_harvested_wt'];
+        $total_harvested_wt_replica = $detail['replica']['total_harvested_wt'];
+        $sum_total_harvested_wt_normal += $total_harvested_wt_normal;
+        $sum_total_harvested_wt_replica += $total_harvested_wt_replica;
+    }
+
+    $total_harvest = sizeof($harvest_data);//check needed
+}
+
+
 $info=json_decode($variety_info['info'],true);
 ?>
 
@@ -923,7 +943,7 @@ if($options['targeted_weight']==1)
 <?php
 if($options['fruit_weight']==1)
 {
-    $fruit_weight_normal="";
+    /*$fruit_weight_normal="";
     if(is_array($info)&& !empty($info['normal']['fruit_weight']))
     {
         $fruit_weight_normal=$info['normal']['fruit_weight'];
@@ -932,6 +952,22 @@ if($options['fruit_weight']==1)
     if(is_array($info)&& !empty($info['replica']['fruit_weight']))
     {
         $fruit_weight_replica=$info['replica']['fruit_weight'];
+    }*/
+    $sum_of_no_of_fruits_normal = 0;
+    $sum_of_no_of_fruits_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+        $no_of_fruits_normal = $detail['normal']['no_of_fruits'];
+        $no_of_fruits_replica = $detail['replica']['no_of_fruits'];
+        $sum_of_no_of_fruits_normal += $no_of_fruits_normal;
+        $sum_of_no_of_fruits_replica += $no_of_fruits_replica;
+    }
+    $average_fruit_weight_normal=$this->lang->line("CANNOT_CALCULATE");
+    if(($sum_total_harvested_wt_normal>0)&&($sum_of_no_of_fruits_normal>0))
+    {
+        $average_fruit_weight_normal = round(($sum_total_harvested_wt_normal/$sum_of_no_of_fruits_normal)*1000, 2);
     }
     ?>
     <div class="row show-grid">
@@ -939,21 +975,20 @@ if($options['fruit_weight']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_FRUIT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_normal;?>"/>
+            <label class="form-control"><?php echo $average_fruit_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_fruit_weight_replica=$this->lang->line("CANNOT_CALCULATE");
+            if(($sum_total_harvested_wt_replica>0)&&($sum_of_no_of_fruits_replica>0))
+            {
+                $average_fruit_weight_replica = round(($sum_total_harvested_wt_replica/$sum_of_no_of_fruits_replica)*1000, 2);
+            }
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[fruit_weight]" class="form-control" value="<?php echo $fruit_weight_replica;?>"/>
+                <label class="form-control"><?php echo $average_fruit_weight_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[fruit_weight]" value="" />
         <?php
         }
         ?>
@@ -967,7 +1002,39 @@ if($options['fruit_weight']==1)
 <?php
 if($options['curd_weight']==1)
 {
+    //$harvest_data=null;
     $curd_weight_normal="";
+    $curd_weight_replica="";
+
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+    if(is_array($harvest_data))
+    {
+        foreach($harvest_data as $harvest)
+        {
+            $detail = json_decode($harvest['info'],true);
+            $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+            $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+
+            $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+            $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+        }
+    }
+
+    $curd_weight_normal=$this->lang->line("CANNOT_CALCULATE");
+
+    if(($sum_total_harvested_wt_normal>0) && ($sum_no_of_plants_harvested_normal>0))
+    {
+        $curd_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal)*1000, 2);
+    }
+
+    $curd_weight_replica = $this->lang->line("CANNOT_CALCULATE");
+    if(($sum_total_harvested_wt_replica>0) && ($sum_no_of_plants_harvested_replica>0))
+    {
+        $curd_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica)*1000, 2);
+    }
+
+    /*$curd_weight_normal="";
     if(is_array($info)&& !empty($info['normal']['curd_weight']))
     {
         $curd_weight_normal=$info['normal']['curd_weight'];
@@ -976,28 +1043,22 @@ if($options['curd_weight']==1)
     if(is_array($info)&& !empty($info['replica']['curd_weight']))
     {
         $curd_weight_replica=$info['replica']['curd_weight'];
-    }
+    }*/
     ?>
     <div class="row show-grid">
         <div class="col-xs-4">
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_CURD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[curd_weight]" class="form-control" value="<?php echo $curd_weight_normal;?>" />
+            <label class="form-control"><?php echo $curd_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[curd_weight]" class="form-control" value="<?php echo $curd_weight_replica;?>" />
+                <label class="form-control"><?php echo $curd_weight_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[curd_weight]" value="<?php echo $curd_weight_replica;?>">
         <?php
         }
         ?>
@@ -1011,7 +1072,7 @@ if($options['curd_weight']==1)
 <?php
 if($options['head_weight']==1)
 {
-    $head_weight_normal="";
+    /*$head_weight_normal="";
     if(is_array($info)&& !empty($info['normal']['head_weight']))
     {
         $head_weight_normal=$info['normal']['head_weight'];
@@ -1020,6 +1081,23 @@ if($options['head_weight']==1)
     if(is_array($info)&& !empty($info['replica']['head_weight']))
     {
         $head_weight_replica=$info['replica']['head_weight'];
+    }*/
+
+    $sum_no_of_plants_harvested_normal = 0;
+    $sum_no_of_plants_harvested_replica = 0;
+
+    foreach($harvest_data as $harvest)
+    {
+        $detail = json_decode($harvest['info'],true);
+        $no_of_plants_harvested_normal = $detail['normal']['no_of_plants_harvested'];
+        $no_of_plants_harvested_replica = $detail['replica']['no_of_plants_harvested'];
+        $sum_no_of_plants_harvested_normal += $no_of_plants_harvested_normal;
+        $sum_no_of_plants_harvested_replica += $no_of_plants_harvested_replica;
+    }
+    $average_head_weight_normal=$this->lang->line("CANNOT_CALCULATE");
+    if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_plants_harvested_normal>0))
+    {
+        $average_head_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_plants_harvested_normal)*1000, 2);
     }
     ?>
     <div class="row show-grid">
@@ -1027,21 +1105,20 @@ if($options['head_weight']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_HEAD_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[head_weight]" class="form-control" value="<?php echo $head_weight_normal;?>" />
+            <label class="form-control"><?php echo $average_head_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_head_weight_replica=$this->lang->line("CANNOT_CALCULATE");
+            if(($sum_total_harvested_wt_replica>0)&&($sum_no_of_plants_harvested_replica>0))
+            {
+                $average_head_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_plants_harvested_replica)*1000, 2);
+            }
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[head_weight]" class="form-control" value="<?php echo $head_weight_replica;?>" />
+                <label class="form-control"><?php echo $average_head_weight_replica;?></label>
             </div>
-        <?php
-        }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[head_weight]" value="<?php echo $head_weight_replica;?>">
         <?php
         }
         ?>
@@ -1054,15 +1131,21 @@ if($options['head_weight']==1)
 <?php
 if($options['root_weight']==1)
 {
-    $root_weight_normal="";
-    if(is_array($info)&& !empty($info['normal']['root_weight']))
+    $sum_no_of_roots_normal = 0;
+    $sum_no_of_roots_replica = 0;
+    foreach($harvest_data as $harvest)
     {
-        $root_weight_normal=$info['normal']['root_weight'];
+        $detail = json_decode($harvest['info'],true);
+        $no_of_roots_normal = $detail['normal']['no_of_roots_harvested'];
+        $no_of_roots_replica = $detail['replica']['no_of_roots_harvested'];
+        $sum_no_of_roots_normal += $no_of_roots_normal;
+        $sum_no_of_roots_replica += $no_of_roots_replica;
     }
-    $root_weight_replica="";
-    if(is_array($info)&& !empty($info['replica']['root_weight']))
+
+    $average_root_weight_normal=$this->lang->line("CANNOT_CALCULATE");
+    if(($sum_total_harvested_wt_normal>0)&&($sum_no_of_roots_normal>0))
     {
-        $root_weight_replica=$info['replica']['root_weight'];
+        $average_root_weight_normal = round(($sum_total_harvested_wt_normal/$sum_no_of_roots_normal)*1000, 2);
     }
     ?>
     <div class="row show-grid">
@@ -1070,23 +1153,24 @@ if($options['root_weight']==1)
             <label class="control-label pull-right"><?php echo $this->lang->line('LABEL_ROOT_WEIGHT');?></label>
         </div>
         <div class="col-xs-3">
-            <input type="text" name="normal[root_weight]" class="form-control" value="<?php echo $root_weight_normal;?>" />
+            <label class="form-control"><?php echo $average_root_weight_normal;?></label>
         </div>
         <?php
         if($variety_info['replica_status']==1)
         {
+            $average_root_weight_replica=$this->lang->line("CANNOT_CALCULATE");
+            if(($sum_total_harvested_wt_replica>0)&&($sum_no_of_roots_replica>0))
+            {
+                $average_root_weight_replica = round(($sum_total_harvested_wt_replica/$sum_no_of_roots_replica)*1000, 2);
+            }
+
             ?>
             <div class="col-xs-3">
-                <input type="text" name="replica[root_weight]" class="form-control" value="<?php echo $root_weight_replica;?>" />
+                <label class="form-control"><?php echo $average_root_weight_replica;?></label>
             </div>
         <?php
         }
-        else
-        {
-            ?>
-            <input type="hidden" name="replica[root_weight]" value="<?php echo $root_weight_replica;?>">
-        <?php
-        }
+
         ?>
 
     </div>
