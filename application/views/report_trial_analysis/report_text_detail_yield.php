@@ -316,11 +316,11 @@ foreach($varieties as $variety)
         $data['actual_yield_per_ha']['normal']=$data['actual_yield_per_ha']['replica']=$this->lang->line("CANNOT_CALCULATE");
         if((isset($data['max_estimated_yield_per_ha']['normal']))&&($data['max_estimated_yield_per_ha']['normal']>0)&&(isset($data['survival_percentage']['normal']))&&($data['survival_percentage']['normal']>0))
         {
-            $data['actual_yield_per_ha']['normal']=$data['max_estimated_yield_per_ha']['normal']*$data['survival_percentage']['normal']/100;
+            $data['actual_yield_per_ha']['normal']=round($data['max_estimated_yield_per_ha']['normal']*$data['survival_percentage']['normal']/100,2);
         }
         if((isset($data['max_estimated_yield_per_ha']['replica']))&&($data['max_estimated_yield_per_ha']['replica']>0)&&(isset($data['survival_percentage']['replica']))&&($data['survival_percentage']['replica']>0))
         {
-            $data['actual_yield_per_ha']['replica']=$data['max_estimated_yield_per_ha']['replica']*$data['survival_percentage']['replica']/100;
+            $data['actual_yield_per_ha']['replica']=round($data['max_estimated_yield_per_ha']['replica']*$data['survival_percentage']['replica']/100,2);
         }
 
 
