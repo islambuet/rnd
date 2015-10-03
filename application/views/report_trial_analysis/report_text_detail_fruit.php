@@ -25,6 +25,26 @@ foreach($varieties as $variety)
     {
         $info=json_decode($fruit[$variety['id']]['info'],true);
     }
+    //harvest compile included
+    $total_harvested_weight_normal=0;
+    $total_harvested_weight_replica=0;
+    if(isset($harvest[$variety['id']]))
+    {
+        $total_normal = 0;
+        $total_replica = 0;
+        foreach($harvest[$variety['id']] as $hcd)
+        {
+            $detail = json_decode($hcd,true);
+            $value_normal = $detail['normal']['total_harvested_wt'];
+            $value_replica = $detail['replica']['total_harvested_wt'];
+            $total_normal += $value_normal;
+            $total_replica += $value_replica;
+        }
+
+        $total_harvested_weight_normal=$total_normal;
+        $total_harvested_weight_replica=$total_replica;
+    }
+    //harvest compile
 
     $data=array();
     $data['replica_status']=$variety['replica_status'];
@@ -324,8 +344,31 @@ foreach($varieties as $variety)
     if($options['fruit_weight']==1)
     {
         $table_heads['fruit_weight']='fruit_weight';
-        $data['fruit_weight']['normal']=$data['fruit_weight']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['fruit_weight']))
+        $data['fruit_weight']['normal']=$data['fruit_weight']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        $total_normal_down = 0;
+        $total_replica_down = 0;
+        if(isset($harvest[$variety['id']]))
+        {
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_fruits'];
+                $value_replica = $detail['replica']['no_of_fruits'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+        }
+
+        if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+        {
+            $data['fruit_weight']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+        }
+        if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+        {
+            $data['fruit_weight']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+        }
+
+        /*if(is_array($info)&& !empty($info['normal']['fruit_weight']))
         {
             $data['fruit_weight']['normal']=$info['normal']['fruit_weight'];
         }
@@ -335,23 +378,33 @@ foreach($varieties as $variety)
             {
                 $data['fruit_weight']['replica']=$info['replica']['fruit_weight'];
             }
-        }
+        }*/
     }
 
     if($options['curd_weight']==1)
     {
         $table_heads['curd_weight']='curd_weight';
-        $data['curd_weight']['normal']=$data['curd_weight']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['curd_weight']))
+        $data['curd_weight']['normal']=$data['curd_weight']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        $total_normal_down = 0;
+        $total_replica_down = 0;
+        if(isset($harvest[$variety['id']]))
         {
-            $data['curd_weight']['normal']=$info['normal']['curd_weight'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['curd_weight']))
+            foreach($harvest[$variety['id']] as $hcd)
             {
-                $data['curd_weight']['replica']=$info['replica']['curd_weight'];
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
             }
+        }
+        if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+        {
+            $data['curd_weight']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+        }
+        if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+        {
+            $data['curd_weight']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
         }
     }
 
@@ -359,25 +412,56 @@ foreach($varieties as $variety)
     if($options['head_weight']==1)
     {
         $table_heads['head_weight']='head_weight';
-        $data['head_weight']['normal']=$data['head_weight']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['head_weight']))
+        $data['head_weight']['normal']=$data['head_weight']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        $total_normal_down = 0;
+        $total_replica_down = 0;
+        if(isset($harvest[$variety['id']]))
         {
-            $data['head_weight']['normal']=$info['normal']['head_weight'];
-        }
-        if($variety['replica_status']==1)
-        {
-            if(is_array($info)&& !empty($info['replica']['head_weight']))
+            foreach($harvest[$variety['id']] as $hcd)
             {
-                $data['head_weight']['replica']=$info['replica']['head_weight'];
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_plants_harvested'];
+                $value_replica = $detail['replica']['no_of_plants_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
             }
+        }
+        if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+        {
+            $data['head_weight']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+        }
+        if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+        {
+            $data['head_weight']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
         }
     }
 
     if($options['root_weight']==1)
     {
         $table_heads['root_weight']='root_weight';
-        $data['root_weight']['normal']=$data['root_weight']['replica']=$this->lang->line('NOT_SET');
-        if(is_array($info)&& !empty($info['normal']['root_weight']))
+        $data['root_weight']['normal']=$data['root_weight']['replica']=$this->lang->line('CANNOT_CALCULATE');
+        $total_normal_down = 0;
+        $total_replica_down = 0;
+        if(isset($harvest[$variety['id']]))
+        {
+            foreach($harvest[$variety['id']] as $hcd)
+            {
+                $detail = json_decode($hcd,true);
+                $value_normal = $detail['normal']['no_of_roots_harvested'];
+                $value_replica = $detail['replica']['no_of_roots_harvested'];
+                $total_normal_down += $value_normal;
+                $total_replica_down += $value_replica;
+            }
+        }
+        if(($total_normal_down>0)&&($total_harvested_weight_normal>0))
+        {
+            $data['root_weight']['normal']=round(($total_harvested_weight_normal/$total_normal_down)*1000,2);
+        }
+        if(($total_replica_down>0)&&($total_harvested_weight_replica>0))
+        {
+            $data['root_weight']['replica']=round(($total_harvested_weight_replica/$total_replica_down)*1000,2);
+        }
+        /*if(is_array($info)&& !empty($info['normal']['root_weight']))
         {
             $data['root_weight']['normal']=$info['normal']['root_weight'];
         }
@@ -387,7 +471,7 @@ foreach($varieties as $variety)
             {
                 $data['root_weight']['replica']=$info['replica']['root_weight'];
             }
-        }
+        }*/
     }
 
     if($options['fruit_weight_evaluation']==1)
@@ -604,7 +688,13 @@ foreach($varieties as $variety)
     if($options['targeted_root_height']==1)
     {
         $table_heads['targeted_root_height']='targeted_root_height';
-        $data['targeted_root_height']['normal']=$data['targeted_root_height']['replica']=$variety['targeted_root_height'];
+        $data['targeted_root_height']['normal']=$data['targeted_root_height']['replica']=$this->lang->line('NOT_SET');
+
+            //if(isset($variety['targeted_root_height']))//missing in db
+            if(isset($variety['terget_length']))
+            {
+                $data['targeted_root_height']['normal']=$data['targeted_root_height']['replica']=$variety['terget_length'];
+            }
 
     }
 
