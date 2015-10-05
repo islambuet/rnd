@@ -323,7 +323,7 @@ foreach($varieties as $variety)
                 $data['curd_colour']['replica']=$curd_Type_rating[$fruit_info['replica']['curd_colour']];
             }
         }
-        $table_heads['curd_colour_evaluation']='curd_colour_evaluation';
+        /*$table_heads['curd_colour_evaluation']='curd_colour_evaluation';
         $data['curd_colour_evaluation']['normal']=$data['curd_colour_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['curd_colour_evaluation']))
         {
@@ -335,7 +335,7 @@ foreach($varieties as $variety)
             {
                 $data['curd_colour_evaluation']['replica']=$fruit_info['replica']['curd_colour_evaluation'];
             }
-        }
+        }*/
     }
     if($options['head_colour']==1)
     {
@@ -354,7 +354,7 @@ foreach($varieties as $variety)
             }
         }
 
-        $table_heads['head_colour_evaluation']='head_colour_evaluation';
+        /*$table_heads['head_colour_evaluation']='head_colour_evaluation';
         $data['head_colour_evaluation']['normal']=$data['head_colour_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['head_colour_evaluation']))
         {
@@ -366,7 +366,7 @@ foreach($varieties as $variety)
             {
                 $data['head_colour_evaluation']['replica']=$fruit_info['replica']['head_colour_evaluation'];
             }
-        }
+        }*/
     }
     if($options['fruit_colour']==1)
     {
@@ -384,7 +384,7 @@ foreach($varieties as $variety)
                 $data['fruit_colour']['replica']=$curd_Type_rating[$fruit_info['replica']['fruit_colour']];
             }
         }
-        $table_heads['fruit_colour_evaluation']='fruit_colour_evaluation';
+        /*$table_heads['fruit_colour_evaluation']='fruit_colour_evaluation';
         $data['fruit_colour_evaluation']['normal']=$data['fruit_colour_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_colour_evaluation']))
         {
@@ -396,7 +396,7 @@ foreach($varieties as $variety)
             {
                 $data['fruit_colour_evaluation']['replica']=$fruit_info['replica']['fruit_colour_evaluation'];
             }
-        }
+        }*/
     }
     if($options['root_colour']==1)
     {
@@ -414,7 +414,7 @@ foreach($varieties as $variety)
                 $data['root_colour']['replica']=$curd_Type_rating[$fruit_info['replica']['root_colour']];
             }
         }
-        $table_heads['root_colour_evaluation']='root_colour_evaluation';
+        /*$table_heads['root_colour_evaluation']='root_colour_evaluation';
         $data['root_colour_evaluation']['normal']=$data['root_colour_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['root_colour_evaluation']))
         {
@@ -426,7 +426,7 @@ foreach($varieties as $variety)
             {
                 $data['root_colour_evaluation']['replica']=$fruit_info['replica']['root_colour_evaluation'];
             }
-        }
+        }*/
     }
     if($options['leaf_colour']==1)
     {
@@ -444,7 +444,7 @@ foreach($varieties as $variety)
                 $data['leaf_colour']['replica']=$curd_Type_rating[$fruit_info['replica']['leaf_colour']];
             }
         }
-        $table_heads['leaf_colour_evaluation']='leaf_colour_evaluation';
+        /*$table_heads['leaf_colour_evaluation']='leaf_colour_evaluation';
         $data['leaf_colour_evaluation']['normal']=$data['leaf_colour_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['leaf_colour_evaluation']))
         {
@@ -456,7 +456,7 @@ foreach($varieties as $variety)
             {
                 $data['leaf_colour_evaluation']['replica']=$fruit_info['replica']['leaf_colour_evaluation'];
             }
-        }
+        }*/
     }
     if($options['leaf_length']==1)
     {
@@ -473,7 +473,7 @@ foreach($varieties as $variety)
                 $data['leaf_length']['replica']=$fruit_info['replica']['leaf_length'];
             }
         }
-        $table_heads['leaf_length_evaluation']='leaf_length_evaluation';
+       /* $table_heads['leaf_length_evaluation']='leaf_length_evaluation';
         $data['leaf_length_evaluation']['normal']=$data['leaf_length_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['leaf_length_evaluation']))
         {
@@ -485,7 +485,7 @@ foreach($varieties as $variety)
             {
                 $data['leaf_length_evaluation']['replica']=$fruit_info['replica']['leaf_length_evaluation'];
             }
-        }
+        }*/
     }
     if($options['leaf_type']==1)
     {
@@ -503,7 +503,7 @@ foreach($varieties as $variety)
                 $data['leaf_type']['replica']=$curd_Type_rating[$fruit_info['replica']['leaf_type']];
             }
         }
-        $table_heads['leaf_type_evaluation']='leaf_type_evaluation';
+        /*$table_heads['leaf_type_evaluation']='leaf_type_evaluation';
         $data['leaf_type_evaluation']['normal']=$data['leaf_type_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['leaf_type_evaluation']))
         {
@@ -515,7 +515,7 @@ foreach($varieties as $variety)
             {
                 $data['leaf_type_evaluation']['replica']=$fruit_info['replica']['leaf_type_evaluation'];
             }
-        }
+        }*/
     }
     if($options['fruit_size']==1)//actually fruit_dia+dia evaluation+fruit height +fruit height evaluation
     {
@@ -532,7 +532,7 @@ foreach($varieties as $variety)
                 $data['fruit_diameter']['replica']=$fruit_info['replica']['fruit_diameter'];
             }
         }
-        $table_heads['fruit_diameter_evaluation']='fruit_diameter_evaluation';
+        /*$table_heads['fruit_diameter_evaluation']='fruit_diameter_evaluation';
         $data['fruit_diameter_evaluation']['normal']=$data['fruit_diameter_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_diameter_evaluation']))
         {
@@ -544,7 +544,7 @@ foreach($varieties as $variety)
             {
                 $data['fruit_diameter_evaluation']['replica']=$fruit_info['replica']['fruit_diameter_evaluation'];
             }
-        }
+        }*/
         //$table_heads['fruit_height']='fruit_height';//changed to fruit length
         $table_heads['fruit_length']='fruit_length';//changed to fruit length
         $data['fruit_length']['normal']=$data['fruit_length']['replica']=$this->lang->line('NOT_SET');
@@ -588,7 +588,7 @@ foreach($varieties as $variety)
                 $data['root_diameter']['replica']=$fruit_info['replica']['root_diameter'];
             }
         }
-        $table_heads['root_diameter_evaluation']='root_diameter_evaluation';
+        /*$table_heads['root_diameter_evaluation']='root_diameter_evaluation';
         $data['root_diameter_evaluation']['normal']=$data['root_diameter_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['root_diameter_evaluation']))
         {
@@ -600,7 +600,7 @@ foreach($varieties as $variety)
             {
                 $data['root_diameter_evaluation']['replica']=$fruit_info['replica']['root_diameter_evaluation'];
             }
-        }
+        }*/
         $table_heads['root_height']='root_height';
         $data['root_height']['normal']=$data['root_height']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['root_height']))
@@ -614,7 +614,7 @@ foreach($varieties as $variety)
                 $data['root_height']['replica']=$fruit_info['replica']['root_height'];
             }
         }
-        $table_heads['root_height_evaluation']='root_height_evaluation';
+        /*$table_heads['root_height_evaluation']='root_height_evaluation';
         $data['root_height_evaluation']['normal']=$data['root_height_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['root_height_evaluation']))
         {
@@ -626,7 +626,7 @@ foreach($varieties as $variety)
             {
                 $data['root_height_evaluation']['replica']=$fruit_info['replica']['root_height_evaluation'];
             }
-        }
+        }*/
     }
     if($options['curd_shape']==1)
     {
@@ -644,7 +644,7 @@ foreach($varieties as $variety)
                 $data['curd_type']['replica']=$curd_Type_rating[$fruit_info['replica']['curd_type']];
             }
         }
-        $table_heads['curd_type_evaluation']='curd_type_evaluation';
+        /*$table_heads['curd_type_evaluation']='curd_type_evaluation';
         $data['curd_type_evaluation']['normal']=$data['curd_type_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['curd_type_evaluation']))
         {
@@ -656,7 +656,7 @@ foreach($varieties as $variety)
             {
                 $data['curd_type_evaluation']['replica']=$fruit_info['replica']['curd_type_evaluation'];
             }
-        }
+        }*/
     }
     if($options['head_shape']==1)
     {
@@ -674,7 +674,7 @@ foreach($varieties as $variety)
                 $data['head_type']['replica']=$curd_Type_rating[$fruit_info['replica']['head_type']];
             }
         }
-        $table_heads['head_type_evaluation']='head_type_evaluation';
+        /*$table_heads['head_type_evaluation']='head_type_evaluation';
         $data['head_type_evaluation']['normal']=$data['head_type_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['head_type_evaluation']))
         {
@@ -686,7 +686,7 @@ foreach($varieties as $variety)
             {
                 $data['head_type_evaluation']['replica']=$fruit_info['replica']['head_type_evaluation'];
             }
-        }
+        }*/
     }
     if($options['fruit_shape']==1)
     {
@@ -704,7 +704,7 @@ foreach($varieties as $variety)
                 $data['fruit_shape']['replica']=$curd_Type_rating[$fruit_info['replica']['fruit_shape']];
             }
         }
-        $table_heads['fruit_shape_evaluation']='fruit_shape_evaluation';
+        /*$table_heads['fruit_shape_evaluation']='fruit_shape_evaluation';
         $data['fruit_shape_evaluation']['normal']=$data['fruit_shape_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['fruit_shape_evaluation']))
         {
@@ -716,7 +716,7 @@ foreach($varieties as $variety)
             {
                 $data['fruit_shape_evaluation']['replica']=$fruit_info['replica']['fruit_shape_evaluation'];
             }
-        }
+        }*/
     }
     if($options['root_shape']==1)
     {
@@ -734,7 +734,7 @@ foreach($varieties as $variety)
                 $data['root_shape']['replica']=$curd_Type_rating[$fruit_info['replica']['root_shape']];
             }
         }
-        $table_heads['root_shape_evaluation']='root_shape_evaluation';
+        /*$table_heads['root_shape_evaluation']='root_shape_evaluation';
         $data['root_shape_evaluation']['normal']=$data['root_shape_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['root_shape_evaluation']))
         {
@@ -746,7 +746,7 @@ foreach($varieties as $variety)
             {
                 $data['root_shape_evaluation']['replica']=$fruit_info['replica']['root_shape_evaluation'];
             }
-        }
+        }*/
     }
     if($options['curd_diam']==1)
     {
@@ -763,7 +763,7 @@ foreach($varieties as $variety)
                 $data['curd_diameter']['replica']=$fruit_info['replica']['curd_diameter'];
             }
         }
-        $table_heads['curd_diameter_evaluation']='curd_diameter_evaluation';
+        /*$table_heads['curd_diameter_evaluation']='curd_diameter_evaluation';
         $data['curd_diameter_evaluation']['normal']=$data['curd_diameter_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['curd_diameter_evaluation']))
         {
@@ -775,7 +775,7 @@ foreach($varieties as $variety)
             {
                 $data['curd_diameter_evaluation']['replica']=$fruit_info['replica']['curd_diameter_evaluation'];
             }
-        }
+        }*/
     }
     if($options['head_diam']==1)
     {
@@ -792,7 +792,7 @@ foreach($varieties as $variety)
                 $data['head_diameter']['replica']=$fruit_info['replica']['head_diameter'];
             }
         }
-        $table_heads['head_diameter_evaluation']='head_diameter_evaluation';
+        /*$table_heads['head_diameter_evaluation']='head_diameter_evaluation';
         $data['head_diameter_evaluation']['normal']=$data['head_diameter_evaluation']['replica']=$this->lang->line('NOT_SET');
         if(is_array($fruit_info)&& !empty($fruit_info['normal']['head_diameter_evaluation']))
         {
@@ -804,7 +804,7 @@ foreach($varieties as $variety)
             {
                 $data['head_diameter_evaluation']['replica']=$fruit_info['replica']['head_diameter_evaluation'];
             }
-        }
+        }*/
     }
     if($options['avg_curd_wt']==1)
     {
