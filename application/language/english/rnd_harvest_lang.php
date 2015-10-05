@@ -66,7 +66,7 @@ $lang['THIS_VARIETY_IS_NOT_HARVESTED_YET'] = 'This Variety is Not Harvested Yet'
 $lang['AVERAGE_UNIFORMITY'] = 'Average Uniformity';
 $lang['TOTAL_NO_OF_LEAVES'] = 'Total No. Of leaves';
 $lang['NO_OF_FRUITS_PER_PLANT'] = 'No. Of Fruits/ Plant';
-$lang['FR_WT_PER_PLANT'] = 'Fruit Wt/ Plant';
+$lang['FR_WT_PER_PLANT'] = 'Fruit Wt/ Plant(kg)';
 $lang['REMARKS'] = 'Remarks';
 $lang['FIRST_HARVEST_DATE_NOT_SET'] = 'First Harvest Date Not Set';
 
