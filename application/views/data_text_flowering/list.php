@@ -645,7 +645,7 @@ if($options['50_percent_root_formation_days']==1)
         else
         {
             ?>
-            <input type="hidden" name="replica[50_percent_root_formation_days]" value="<?php echo $fifty_percent_head_formation_days_replica;?>">
+            <input type="hidden" name="replica[50_percent_root_formation_days]" value="<?php echo $fifty_percent_root_formation_days_replica;?>">
         <?php
         }
         ?>
