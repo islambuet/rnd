@@ -5,7 +5,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 <html lang="en">
 <head>
     <title>RND</title>
-    <link rel="shortcut icon"  type="image/x-icon" href="<?php echo base_url(); ?>images/favicon.ico">
+    <link rel="shortcut icon" href="http://malikseeds.com/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://malikseeds.com/favicon.ico" type="image/x-icon">
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
@@ -49,13 +50,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     </div>
     <footer>
         <div>
-            &copy; 2014 - All Rights Reserved <a class="external" href="http://amaderit.com" target="blank">Amader IT</a>
+            &copy; & All Rights Reserved by Sopan Seeds.
         </div>
         <div class="clearfix"></div>
     </footer>
-    <div id="loading"><img src="<?php echo base_url(); ?>images/spinner.gif"></div>
-    <div id="message"></div>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/rnd_common.js"></script>
+    <div id="loading" class="hidden-print"><img src="<?php echo base_url(); ?>images/spinner.gif"></div>
+    <div id="message" class="hidden-print"></div>
+    <script type="text/javascript" src="<?php echo base_url('js/rnd_common.js?version='.time()); ?>"></script>
 
 
 </body>
