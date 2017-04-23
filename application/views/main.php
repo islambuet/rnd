@@ -26,6 +26,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
         var display_date_format = "dd-M-yy";
+        var system_resized_image_files=[];
     </script>
     <header class="hidden-print">
 

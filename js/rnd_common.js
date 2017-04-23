@@ -23,6 +23,7 @@ $(document).ready(function()
         {
             if(xhr.responseJSON.page_url)
             {
+                system_resized_image_files=[];
                 //window.history.pushState(null, "Search Results",xhr.responseJSON.page_url);
                 window.history.replaceState(null, "Search Results",xhr.responseJSON.page_url);
             }
@@ -46,16 +47,27 @@ $(document).ready(function()
     //binds form submission with ajax
     $(document).on("submit", "form", function(event)
     {
-        if($(this).hasClass('external'))
+        if($(this).is('[class*="external"]'))
         {
             return true;
         }
+        var form_data=new FormData(this);
+        var file;
+        for(var i=0;i<system_resized_image_files.length;i++)
+        {
+            file=system_resized_image_files[i];
+            if(form_data.has(file.key))
+            {
+                form_data.set(file.key,file.value,file.name);
+            }
+        }
+        system_resized_image_files=[];
         event.preventDefault();
         $.ajax({
             url: $(this).attr("action"),
             type: $(this).attr("method"),
             dataType: "JSON",
-            data: new FormData(this),
+            data: form_data,
             processData: false,
             contentType: false,
             success: function (data, status)
@@ -206,14 +218,62 @@ function display_browse_image(brose_bttion,display_id)
 {
     if (brose_bttion.files && brose_bttion.files[0])
     {
-        var reader = new FileReader();
+        var input_file=$(brose_bttion);
+        var file=brose_bttion.files[0];
+        var key=input_file.attr('name');
+        var file_name=file.name.replace(/\.[^/.]+$/,"");
+        var path=URL.createObjectURL(file);
+        $(display_id).attr('src', path);
+        var img=new Image();
+        img.src=path;
+        img.onload=function()
+        {
+            var MAX_WIDTH = 800;
+            var MAX_HEIGHT = 600;
+            var width = img.naturalWidth;
+            var height = img.naturalHeight;
+            if((width>MAX_WIDTH)||(height>MAX_HEIGHT))
+            {
+                if((width/height)>(MAX_WIDTH/MAX_HEIGHT))
+                {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+                else
+                {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+                var canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                var context = canvas.getContext("2d");
+                context.drawImage(img, 0, 0, width, height);
+                canvas.toBlob(function(blob)
+                {
+                    system_resized_image_files[system_resized_image_files.length]={
+                        key:key,
+                        value:blob,
+                        name:file_name+'.png'
+                    };
+                    //saveAs(blob, file.name);
+                    input_file.val(null);
+                    //input_file.parent().find('.badge').remove();
+                });
+                //console.log('with resize');
+
+            }
+            //console.log('without resize');
+        };
+
+        /*var reader = new FileReader();
 
         reader.onload = function (e)
         {
             $(display_id).attr('src', e.target.result);
         }
 
-        reader.readAsDataURL(brose_bttion.files[0]);
+        reader.readAsDataURL(brose_bttion.files[0]);*/
     }
 }
 
